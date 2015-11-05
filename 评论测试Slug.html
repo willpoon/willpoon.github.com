@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>i.M.X.3 - pelican</title>
+    <title>disqus评论专用贴</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="poon">
@@ -64,7 +64,7 @@
           <div class="nav-collapse">
             <ul class="nav">
                           <li class="divider-vertical"></li>
-                  <li >
+                  <li class="active">
                     <a href="/category/comments.html">
 						<i class="icon-folder-open icon-large"></i>comments
 					</a>
@@ -89,9 +89,20 @@
     <div class="container-fluid">
       <div class="row">
         <div class="span9" id="content">
-        <div class="article">
-                <h1><a href="/my-second-post.html">Second ...</a></h1>
-                <div class="well small"><footer class="post-info">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to disqus评论专用贴">
+                                        disqus评论专用贴
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
 <span class="label">Date</span>
 <abbr class="published" title="2015-11-03T10:20:00+08:00">
         <i class="icon-calendar"></i>Tue 03 November 2015
@@ -99,41 +110,30 @@
 <span class="label">By</span>
 <a href="/author/poon.html"><i class="icon-user"></i>poon</a>
 <span class="label">Category</span>
-<a href="/category/mycat.html"><i class="icon-folder-open"></i>mycat</a>.
+<a href="/category/comments.html"><i class="icon-folder-open"></i>comments</a>.
 
 
 <span class="label">Tags</span>
-	<a href="/tag/pelican.html"><i class="icon-tag"></i>pelican</a>
-	<a href="/tag/publishing.html"><i class="icon-tag"></i>publishing</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>Short version for index and feeds</p>
-                        <a class="btn primary xsmall" href="/my-second-post.html">more ...</a>
+	<a href="/tag/ce-shi.html"><i class="icon-tag"></i>测试</a>
+</footer><!-- /.post-info -->                </div>
+                <p>发表你的评论！</p>
+                </div><!-- /.entry-content -->
+                <div class="comments">
+                <h2>Comments !</h2>
+                        <div id="disqus_thread"></div>
+                        <script type="text/javascript">
+                           var disqus_identifier = "评论测试Slug.html";
+                           (function() {
+                                var dsq = document.createElement('script');
+                                dsq.type = 'text/javascript'; dsq.async = true;
+                                dsq.src = 'http://gitwillpoonimx3.disqus.com/embed.js';
+                                (document.getElementsByTagName('head')[0] ||
+                                 document.getElementsByTagName('body')[0]).appendChild(dsq);
+                          })();
+                        </script>
                 </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/my-super-post.html">My super ...</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2010-12-03T10:20:00+08:00">
-        <i class="icon-calendar"></i>Fri 03 December 2010
-</abbr>
-<span class="label">By</span>
-<a href="/author/poon.html"><i class="icon-user"></i>poon</a>
-<span class="label">Category</span>
-<a href="/category/mycat.html"><i class="icon-folder-open"></i>mycat</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/pelican.html"><i class="icon-tag"></i>pelican</a>
-	<a href="/tag/publishing.html"><i class="icon-tag"></i>publishing</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>Short version for index and feeds</p>
-                        <a class="btn primary xsmall" href="/my-super-post.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-
+        </article>
+</section>
         </div><!--/span-->
 
                 <div class="span3 well sidebar-nav" id="sidebar">
