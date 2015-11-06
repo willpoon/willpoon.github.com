@@ -1,37 +1,68 @@
-<!doctype html>
-<html lang="">	
+<!DOCTYPE html>
+<html lang="zh">
 <head>
-	<meta charset="utf-8"/>
-	<title>为什么使用github+pelican搭建我的博客 - i.M.X.3</title>	
-	<meta name="author" content="poon">
-	
-	<meta name="HandheldFriendly" content="True">
-	<meta name="MobileOptimized" content="320">
-	<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0">
-	
-	<link href='http://fonts.googleapis.com/css?family=Droid+Sans:700,400|Droid+Sans+Mono' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="./theme/css/main.css" type="text/css" />
-		
-	<!--[if lt IE 9]>
-		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-	
-	
-	<link href="./" type="application/atom+xml" rel="alternate" title="i.M.X.3 ATOM Feed" />
+
+        <title>为什么使用github+pelican搭建我的博客</title>
+        <meta charset="utf-8" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="./theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="./theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="./theme/pygment.css" />
+
+        <script src="./theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+
+
 </head>
-	
-<body>		
-	<header class="clearfix" role="banner">
-		<div class="wrapper">
-			<h1 class="huge"><a href=".">i.M.X.3</a></h1>
-		</div>
-	</header>
-	
-<div role="main" class="content clearfix">	
-	<article>
-		<div class="post wrapper">
-			<h1>为什么使用github+pelican搭建我的博客</h1>
-			<h1>背景</h1>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="./">i.M.X.3 <strong></strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href="./">Home</a></li>
+
+
+              </ul>
+            </div>
+
+<section id="content" class="body">
+
+   <div class="row">
+        <div class="eleven columns">
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="./setup-and-config-my-github-blog-with-pelican.html" rel="bookmark"
+                   title="Permalink to 为什么使用github+pelican搭建我的博客">为什么使用github+pelican搭建我的博客</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2015-11-06T07:49:00+08:00">
+                Fri 06 November 2015
+              </abbr>
+              <address class="vcard author">By 
+                <a class="url fn" href="./author/poon.html"> poon</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <h1>背景</h1>
 <p>08年建了一个 个人博客网站，购买了hostmonster的空间和一个.info的域名，写过几篇文章，后来不了了之。空间被回收，域名过期，资料丢失，很是遗憾。所以一直有重新开一个的想法。但是想起国内建站的烦人的备案审查和国外服务器的龟速，终究还没有重建。最近有敢于一些东西还是有必要记录&amp;分享，故又萌生了重新搭建博客的想法。</p>
 <p>现在再看博客市场，已经比以前成熟了很多。各种平台网站开的小清新博客一大堆，但在平台网站上搭博客的弊端是显而易见的：</p>
 <h4>问题</h4>
@@ -89,61 +120,100 @@
 <p>而github，正是这样的平台！</p>
 <p>而对于生产静态站的工具选择，我选择了pelican，没有选jekyll。因为jekyll用的是ruby，不了解。pelican是基于python的，我对python比较感兴趣，所以就果断pelican 了。</p>
 <p>待续...</p>
-			
-			<a href="https://twitter.com/share" class="twitter-share-button" data-via="" data-lang="en" data-size="large" data-related="">Tweet</a>
-			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-						
-			<div class="comments">
-			<h2>Comments !</h2>
-			    <div id="disqus_thread"></div>
-			    <script type="text/javascript">
-			       var disqus_identifier = "setup-and-config-my-github-blog-with-pelican.html";
-			       (function() {
-			       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-			       dsq.src = '//gitwillpoonimx3.disqus.com/embed.js';
-			       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-			      })();
-			    </script>
-			</div>
-			
-		</div>
-	
-<div class="meta wrapper">
-	<time datetime="2015-11-06T07:49:00+08:00" pubdate>Fri 06 November 2015</time>
-	<ul class="tag clearfix">
+            </div><!-- /.entry-content -->
+            <div class="comments">
+              <h3>Comments</h3>
+              <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                var disqus_identifier = "setup-and-config-my-github-blog-with-pelican.html";
+                (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://gitwillpoonimx3.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              </script>
+            </div>
+
+
+        </div><!-- /.eleven.columns -->
+
+<div class="three columns">
+
+<h4>Pages</h4>
+
+ <ul>
+  </ul>
+
+<h4>Categories</h4>
+<ul class="blank">
 		<li><a href="./category/tech.html">Tech</a></li>
-		<li><a href="./tag/github.html">github</a></li>
-		<li><a href="./tag/blog.html">blog</a></li>
-		<li><a href="./tag/pelican.html">pelican</a></li>
-		<li><a href="./tag/disqus.html">disqus</a></li>
-	</ul>
-</div>	</article>	
-</div>
-	
-		
-<footer class="clearfix">
-	<div class="wrapper pages">
-		<ul class="nav">
-			<li><a href="./archives.html">Archive</a></li>
-		</ul>
-	</div>
-	
-	<div class="copy wrapper">
-		<ul class="social">
-			<li><a href="#">You can add links in your config file</a></li>
-			<li><a href="#">Another social link</a></li>
-		</ul>
-	
-		<p role="contentinfo">© 2012 poon<br>
-		Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">Pelican</a>.</p>
-	</div>
-</footer>
-	
-	<script>
-	  var _gaq=[['_setAccount',''],['_trackPageview']];
-	  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-	  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-	  s.parentNode.insertBefore(g,s)}(document,'script'));
-	</script>
+</ul>
+
+
+<h4>Tags</h4>
+	<ul class="blank">
+</ul>
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul class="blank">
+    <li><a href="#">You can add links in your config file</a></li>
+    <li><a href="#">Another social link</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+
+</section>
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'gitwillpoonimx3';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+  <script src="./theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="./theme/js/libs/gumby.min.js"></script>
+  <script src="./theme/js/plugins.js"></script>
 </body>
 </html>
