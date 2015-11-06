@@ -19,3 +19,6 @@ with tab as（  ） 这样的子句放到物理表视图中，那么rpd将会让
 
 # 异常处理
 
+##ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.
+
+解决办法：检查rpd物理层子查询中是否有with子句。有的话，改成子查询的形式。
