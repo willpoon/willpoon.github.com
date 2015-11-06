@@ -5,7 +5,7 @@ Category: Tech
 Tags: oracle,biee,BI,frontend,report
 Slug: oracle-biee-develop
 Authors: Poon
-Summary: 
+Summary:  使用biee开发前前后有也有两年多了，对oracle这套产品，也有一点小小心得，在此总结一下，抛砖引玉。持续更新中...
 
 使用biee开发前前后有也有两年多了，对oracle这套产品，也有一点小小心得，在此总结一下，抛砖引玉。持续更新中...
 
