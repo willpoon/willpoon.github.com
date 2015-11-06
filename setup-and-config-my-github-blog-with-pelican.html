@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="">	
+<head>
+	<meta charset="utf-8"/>
+	<title>为什么使用github+pelican搭建我的博客 - i.M.X.3</title>	
+	<meta name="author" content="poon">
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0">
+	
+	<link href='http://fonts.googleapis.com/css?family=Droid+Sans:700,400|Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+		
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+	
+	<link href="/" type="application/atom+xml" rel="alternate" title="i.M.X.3 ATOM Feed" />
+</head>
+	
+<body>		
+	<header class="clearfix" role="banner">
+		<div class="wrapper">
+			<h1 class="huge"><a href="">i.M.X.3</a></h1>
+		</div>
+	</header>
+	
+<div role="main" class="content clearfix">	
+	<article>
+		<div class="post wrapper">
+			<h1>为什么使用github+pelican搭建我的博客</h1>
+			<h1>背景</h1>
+<p>08年建了一个 个人博客网站，购买了hostmonster的空间和一个.info的域名，写过几篇文章，后来不了了之。空间被回收，域名过期，资料丢失，很是遗憾。所以一直有重新开一个的想法。但是想起国内建站的烦人的备案审查和国外服务器的龟速，终究还没有重建。最近有敢于一些东西还是有必要记录&amp;分享，故又萌生了重新搭建博客的想法。</p>
+<p>现在再看博客市场，已经比以前成熟了很多。各种平台网站开的小清新博客一大堆，但在平台网站上搭博客的弊端是显而易见的：</p>
+<h4>问题</h4>
+<ul>
+<li>流量都贡献了给平台</li>
+<li>难以树立个人品牌</li>
+<li>话语权不在本人，而是平台</li>
+<li>各种审查、删帖</li>
+<li>功能无法定制</li>
+<li>无法挂推广代码</li>
+<li>平台广告想插就插</li>
+</ul>
+<p>但也不是一无是处，至少：</p>
+<ul>
+<li>免费</li>
+<li>有可能平台帮助推广 </li>
+</ul>
+<p>总的来说，缺点大于优点，放弃。继而考虑自己申请域名和空间。就在15.11.2日，我申请了godaddy的.com域名(两年¥116走支付宝，有无coupon都是一样的价格，但需要在网上找coupon链接，否者自己在官网购买是无法支付的。)，申请了digitaloccean的vps，$5每月，拿个coupon可以在账户上充值$10,够用3个月了。域名就没有什么好说的了。说说digitaloccean的vps:</p>
+<h4>优点</h4>
+<ul>
+<li>界面清爽，相比godaddy</li>
+<li>菜单操作简单，相比godaddy</li>
+<li>即使加载不出来，也有黑白无图html版本可供使用</li>
+<li>支付也方便，相比godaddy</li>
+</ul>
+<p>（godaddy我是黑定了，哈哈）</p>
+<h4>缺点</h4>
+<ul>
+<li>官网页面加载速度慢，想快得用vpn</li>
+<li>客服不到位(vps才申请了两天就被锁了,说我的主机流量异常，我还没开始搭建网站啊啊啊啊,我至今都不知道我的主机是什么原因异常，难道被黑了？腾讯、阿里云也会发邮件报告各种异常，而你却直接通知我vps被锁定？而且只能重建vps？！！！这一点是不能忍受的！！！)</li>
+</ul>
+<p>刚好，就在这个时候，我想起了blahgeek，想起了他的博客设计正合我意，遂email咨询，答复那个网站竟然是静态站，告诉我是用make生成的。</p>
+<p>茅塞顿开！于是，我知道了：</p>
+<ul>
+<li>jekyll</li>
+<li>github 可以托管个人博客</li>
+<li>github 可以无空间、流量限制托管个人博客</li>
+</ul>
+<p>然后又知道了：</p>
+<ul>
+<li>pelican</li>
+<li>markdown</li>
+<li>disqus</li>
+</ul>
+<p>真是踏破铁鞋无觅处，得来全不费功夫！我一直希望找一个这样的平台：</p>
+<ul>
+<li>可以记录和保存我写的东西</li>
+<li>可以做版本管理</li>
+<li>没有空间流量担忧</li>
+<li>界面可以定制，不被平台干预</li>
+<li>无审核等待</li>
+<li>稳定，最好不要轻易被墙</li>
+<li>最好免费</li>
+</ul>
+<p>而github，正是这样的平台！</p>
+<p>而对于生产静态站的工具选择，我选择了pelican，没有选jekyll。因为jekyll用的是ruby，不了解。pelican是基于python的，我对python比较感兴趣，所以就果断pelican 了。</p>
+<p>待续...</p>
+			
+			<a href="https://twitter.com/share" class="twitter-share-button" data-via="" data-lang="en" data-size="large" data-related="">Tweet</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+						
+			<div class="comments">
+			<h2>Comments !</h2>
+			    <div id="disqus_thread"></div>
+			    <script type="text/javascript">
+			       var disqus_identifier = "setup-and-config-my-github-blog-with-pelican.html";
+			       (function() {
+			       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			       dsq.src = '//gitwillpoonimx3.disqus.com/embed.js';
+			       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			      })();
+			    </script>
+			</div>
+			
+		</div>
+	
+<div class="meta wrapper">
+	<time datetime="2015-11-06T07:49:00+08:00" pubdate>Fri 06 November 2015</time>
+	<ul class="tag clearfix">
+		<li><a href="/category/tech.html">Tech</a></li>
+		<li><a href="/tag/github.html">github</a></li>
+		<li><a href="/tag/blog.html">blog</a></li>
+		<li><a href="/tag/pelican.html">pelican</a></li>
+		<li><a href="/tag/disqus.html">disqus</a></li>
+	</ul>
+</div>	</article>	
+</div>
+	
+		
+<footer class="clearfix">
+	<div class="wrapper pages">
+		<ul class="nav">
+			<li><a href="/archives.html">Archive</a></li>
+		</ul>
+	</div>
+	
+	<div class="copy wrapper">
+		<ul class="social">
+			<li><a href="#">You can add links in your config file</a></li>
+			<li><a href="#">Another social link</a></li>
+		</ul>
+	
+		<p role="contentinfo">© 2012 poon<br>
+		Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">Pelican</a>.</p>
+	</div>
+</footer>
+	
+	<script>
+	  var _gaq=[['_setAccount',''],['_trackPageview']];
+	  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+	  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+	  s.parentNode.insertBefore(g,s)}(document,'script'));
+	</script>
+</body>
+</html>
