@@ -180,6 +180,9 @@ mv myblogpost.md myblogpost.mk.wait
 
 btw : gum这个模版很智能，可以对语法自动高亮！
 
+## WARNING: There are 2 variants of "oracle-biee-develop" with lang zh
+## CRITICAL: RuntimeError: File develop.html is to be overwritten
+当有多个md文件，如果有两个以上的Slug是一样的时候，就会报这个错。slug改成不一样的就行了。
 
 待续...
 
