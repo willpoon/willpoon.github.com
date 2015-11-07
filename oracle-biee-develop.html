@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
 
-        <title>oracle BIEE 经验总结</title>
+        <title>我们都需要一名律师</title>
         <meta charset="utf-8" />
 
 
@@ -50,26 +50,24 @@
             <header>
               <h2 class="entry-title">
                 <a href="/oracle-biee-develop.html" rel="bookmark"
-                   title="Permalink to oracle BIEE 经验总结">oracle BIEE 经验总结</a></h2>
-           
+                   title="Permalink to 我们都需要一名律师">我们都需要一名律师</a></h2>
+           Translations: 
+<a href="/oracle-biee-develop.html">zh</a>
+
             </header>
             <footer class="post-info">
-              <abbr class="published" title="2015-11-06T11:12:00+08:00">
-                Fri 06 November 2015
+              <abbr class="published" title="2015-11-07T21:48:00+08:00">
+                Sat 07 November 2015
               </abbr>
               <address class="vcard author">By 
                 <a class="url fn" href="/author/poon.html"> Poon</a>
               </address>
             </footer><!-- /.post-info -->
             <div class="entry-content">
-              <p>使用biee开发前前后有也有两年多了，对oracle这套产品，也有一点小小心得，在此总结一下，抛砖引玉。持续更新中...</p>
-<h1>经验技巧</h1>
-<h2>physical layer 不支持with子句</h2>
-<p>如果你打算将：
-with tab as（  ） 这样的子句放到物理表视图中，那么rpd将会让你失望。因为rpd中的视图实质上是一个形如 select * from ( ) tab 的子查询。而如果你要将with放到子查询中，将会影响biee前端自动生成with 子句。如果你要用with子句写查询语句，简易先 create view yourviewname as 来建立一个视图，然后再在物理层中调用。</p>
-<h1>异常处理</h1>
-<h2>ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.</h2>
-<p>解决办法：检查rpd物理层子查询中是否有with子句。有的话，改成子查询的形式。</p>
+              <p>Kevin是一位专业人士，希望在外面接些项目来做，帮补家计。由于事前没有拟定合约，Kevin在法律方面，还是图样图森破，客户违约，由于势单力薄，靠自己的努力，还是回不了款。项目金额也不大，请律师的话，花费太大，最后不了了之。做项目＋维权所花的时间，双重损失，让他很受伤，以后都不敢轻易接外面的项目。如果当初签订合同有律师帮忙过一过，可能就会免去不少麻烦。</p>
+<p>David也是一位专业人士，工作之余也在外面接一些项目来做。他有一位律师朋友，每做一个项目，都会请朋友过目合同条款。一旦发生合同纠纷，律师将介入协助维权。这样David可以专心做项目。并按项目合同金额分成给律师朋友。</p>
+<p>很显然，以上两个案例，David做起项目来会顺利很多。其实生活中，还有很多问题，都需要我们有法律知识来出来，而一般人都不会太了解法律条文，常常被坑，如果时常有个律师可以咨询将会顺利很多。</p>
+<p>忽然觉得，活在这个年代，每个人都需要一个律师。法治程度越高，就越需要律师的帮忙。在美国社会，很多家庭都有自己的医生和律师顾问，美国法律规定，穷人也要有自己的律师。相信在以后，随着中国法治水平的提高，也就像美国一样，遇到法律问题时，有律师为我们排忧解难。</p>
             </div><!-- /.entry-content -->
             <div class="comments">
               <h3>Comments</h3>
