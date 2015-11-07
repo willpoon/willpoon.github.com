@@ -166,6 +166,8 @@ mv myblogpost.md myblogpost.mk.wait
 	
 问题：
 
+
+##  问题：如何 "一键"提交&发布博客：
 	imx(){
 	cd /Users/poon/Git/gitblog_imx3
 	make html 
