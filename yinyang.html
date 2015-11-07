@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
 
-        <title>Oracle BIEE 经验总结</title>
+        <title>阴阳五行涉猎</title>
         <meta charset="utf-8" />
 
 
@@ -49,8 +49,8 @@
 
             <header>
               <h2 class="entry-title">
-                <a href="/oracle-biee-develop.html" rel="bookmark"
-                   title="Permalink to Oracle BIEE 经验总结">Oracle BIEE 经验总结</a></h2>
+                <a href="/yinyang.html" rel="bookmark"
+                   title="Permalink to 阴阳五行涉猎">阴阳五行涉猎</a></h2>
            
             </header>
             <footer class="post-info">
@@ -62,23 +62,72 @@
               </address>
             </footer><!-- /.post-info -->
             <div class="entry-content">
-              <h1>前言</h1>
-<p>使用biee开发前前后有也有两年多了，对oracle这套产品，也有一点小小心得，在此总结一下，抛砖引玉。持续更新中...</p>
-<h1>经验技巧</h1>
-<h2>physical layer 不支持with子句</h2>
-<p>如果你打算将：
-with tab as（  ） 这样的子句放到物理表视图中，那么rpd将会让你失望。因为rpd中的视图实质上是一个形如 select * from ( ) tab 的子查询。而如果你要将with放到子查询中，将会影响biee前端自动生成with 子句。如果你要用with子句写查询语句，简易先 create view yourviewname as 来建立一个视图，然后再在物理层中调用。</p>
-<h2>Session variable 可以放到物理层</h2>
-<p>你可以将VALUEOF(NQSESSION.RQVAR) 在物理层中引用Session Variable，然后通过在前端使用request variable来修改session variable的值。</p>
-<h1>异常处理</h1>
-<h2>ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.</h2>
-<p>解决办法：检查rpd物理层子查询中是否有with子句。有的话，改成子查询的形式。</p>
+              <h1><strong>前言</strong></h1>
+<p>阴阳五行是中华民族祖先独创的理论学说，指导着人们认识宇宙、探索世界上千年，尤其在医学上，有非常博大精深的理论，并且有很多实质性的效果，形成了独有的中医体系。虽然很多理论用现代科学无法解释，但其功用是看得见摸得着的。所以涉猎下阴阳、五行方面的知识，不无裨益。鄙人希望能本着科学的精神来探讨这方面的知识，希望不要被误解为迷信。毕竟，有些东西在现代科学未能解释清楚时，我们还是能在信与不信之间自由选择的。</p>
+<h2>五行</h2>
+<h3>属木</h3>
+<h4>乙丑年</h4>
+<h3>木牛</h3>
+<h4>1925年1月25日～</h4>
+<p>1926年2月12日；<br />
+  1985年2月20日～<br />
+  1986年2月8日；<br />
+  乙丑；<br />
+  木；<br />
+  牛；</p>
+<h2>阴阳</h2>
+<h2>天干地支纪年</h2>
+<h3></h3>
+<h4>1985乙丑年</h4>
+<ul>
+<li>
+<p>天干</p>
+<ul>
+<li>
+<p>乙属阴</p>
+</li>
+<li>
+<p>乙属木</p>
+</li>
+</ul>
+</li>
+<li>
+<p>地支</p>
+<ul>
+<li>
+<p>丑属阴</p>
+</li>
+<li>
+<p>丑属土</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3>60一循环</h3>
+<h3>天干（10项）</h3>
+<h4>10*6</h4>
+<h3>地支12项</h3>
+<h4>12*5</h4>
+<h3>干支纪年法</h3>
+<h4>理论上会重复</h4>
+<h4>可以根据事件推算公元年份</h4>
+<h4>一般要携带事件和上下文</h4>
+<h2>网上算命</h2>
+<h3>依据是什么？</h3>
+<h3>海中金</h3>
+<h4>1925年和1985年出生的人，其年天干地支为“乙丑”，五行纳音为“海中金”，所以又称“乙丑牛”。</h4>
+<p>乙丑牛是海中金命，生人为海内牧草之牛。春天出生之人材帛足用，夏天出生之人衣食有余，秋天出生之人福寿绵长，冬天出生之人衣禄微贱；白天出生之人衣食足用，夜晚出生之人中平之命。<br />
+  乙丑年出生的属牛男诚实、有忍耐心，举止稳重，对事多固执。能有较高的工薪收入，财运平平稳稳，不会有大的起伏。此年生人不适合投资证券类有较大风险的理财项目，只要心不为投机利润所诱惑，就不会有大量金钱流失。<br />
+  乙丑牛男生活中会遇到不顺或是小人，亦有贵人从中的帮助，自然能平步青云，扶摇直上。需要注意的是自身思维，多吸取新资讯，不能因为多愁而忧郁或钻牛角尖。<br />
+  乙丑年出生的属牛女冷静、冰雪聪明，内心世界感情丰富、热爱生活，不向命运低头。通常不会想到要去妥协，或有第三条路选择，将注定一生在不断的拼搏中。乙丑牛女认准的路，会坚定不移地走下去，不为世俗观念所动摇。</p>
+<h4>海中金命，生人乃为海内牧草之牛。乙丑年的人个性内向乖僻，顽固不肯让步，常常会因为人际关系上的摩擦而浮沉不定，必须到中年以后才会显露头角。若这年生的人能脚踏实地地做事，也能有所成就。</h4>
+<h4>http://www.xingzuo360.cn/suanmingdaquan/nianming/33739.html</h4>
             </div><!-- /.entry-content -->
             <div class="comments">
               <h3>Comments</h3>
               <div id="disqus_thread"></div>
               <script type="text/javascript">
-                var disqus_identifier = "oracle-biee-develop.html";
+                var disqus_identifier = "yinyang.html";
                 (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
                 dsq.src = 'http://gitwillpoonimx3.disqus.com/embed.js';
