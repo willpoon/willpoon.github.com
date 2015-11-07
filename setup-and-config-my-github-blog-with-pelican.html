@@ -63,11 +63,11 @@
             </footer><!-- /.post-info -->
             <div class="entry-content">
               <h1>背景</h1>
-<p>08年建了一个 个人博客网站，购买了hostmonster的空间和一个.info的域名，写过几篇文章，后来不了了之。空间被回收，域名过期，资料丢失，很是遗憾。所以一直有重新开一个的想法。但是想起国内建站的烦人的备案审查和国外服务器的龟速，终究还没有重建。最近有敢于一些东西还是有必要记录&amp;分享，故又萌生了重新搭建博客的想法。</p>
+<p>08年建了一个 个人博客网站，购买了hostmonster的空间和一个.info的域名，写过几篇文章，后来不了了之。空间被回收，域名过期，资料丢失，很是遗憾。所以一直有重新开一个的想法。但是想起国内建站的烦人的备案审查和国外服务器的龟速，终究还没有重建。最近有感于一些东西还是有必要记录&amp;分享，故又萌生了重新搭建博客的想法。</p>
 <p>现在再看博客市场，已经比以前成熟了很多。各种平台网站开的小清新博客一大堆，但在平台网站上搭博客的弊端是显而易见的：</p>
 <h4>问题</h4>
 <ul>
-<li>流量都贡献了给平台</li>
+<li>流量都贡献给了平台</li>
 <li>难以树立个人品牌</li>
 <li>话语权不在本人，而是平台</li>
 <li>各种审查、删帖</li>
@@ -83,9 +83,9 @@
 <p>总的来说，缺点大于优点，放弃。继而考虑自己申请域名和空间。就在15.11.2日，我申请了godaddy的.com域名(两年¥116走支付宝，有无coupon都是一样的价格，但需要在网上找coupon链接，否者自己在官网购买是无法支付的。)，申请了digitaloccean的vps，$5每月，拿个coupon可以在账户上充值$10,够用3个月了。域名就没有什么好说的了。说说digitaloccean的vps:</p>
 <h4>优点</h4>
 <ul>
-<li>界面清爽，相比godaddy</li>
-<li>菜单操作简单，相比godaddy</li>
-<li>即使加载不出来，也有黑白无图html版本可供使用</li>
+<li>管理界面清爽，相比godaddy</li>
+<li>管理菜单操作简单，相比godaddy</li>
+<li>菜单即使加载不出来，也有黑白无图的basic html版本可供使用</li>
 <li>支付也方便，相比godaddy</li>
 </ul>
 <p>（godaddy我是黑定了，哈哈）</p>
@@ -94,7 +94,7 @@
 <li>官网页面加载速度慢，想快得用vpn</li>
 <li>客服不到位(vps才申请了两天就被锁了,说我的主机流量异常，我还没开始搭建网站啊啊啊啊,我至今都不知道我的主机是什么原因异常，难道被黑了？腾讯、阿里云也会发邮件报告各种异常，而你却直接通知我vps被锁定？而且只能重建vps？！！！这一点是不能忍受的！！！)</li>
 </ul>
-<p>刚好，就在这个时候，我想起了blahgeek，想起了他的博客设计正合我意，遂email咨询，答复那个网站竟然是静态站，告诉我是用make生成的。</p>
+<p>刚好，就在这个时候，我想起了blahgeek，想起了他的博客设计正合我意，遂email咨询，博主好nice地告诉我，那个网站竟然是静态站，告诉我是用make生成的。</p>
 <p>茅塞顿开！于是，我知道了：</p>
 <ul>
 <li>jekyll</li>
@@ -119,6 +119,29 @@
 </ul>
 <p>而github，正是这样的平台！</p>
 <p>而对于生产静态站的工具选择，我选择了pelican，没有选jekyll。因为jekyll用的是ruby，不了解。pelican是基于python的，我对python比较感兴趣，所以就果断pelican 了。</p>
+<p>有人说，写博客的人，要经历三个境界：
+1. 在平台上的免费博客上写
+2. 自己租域名空间架设博客系统写
+3. 使用类似github＋静态站＋评论系统 这样的方式写</p>
+<p>比照自己，似乎也这么走来的。曾经在几个平台，如sina,和讯，qzone等网站开通过博客，虽然没有写过几篇文章，但是也算这么走过来的。自己架网站的事情，正如上所提到的，做过两遍了。而现在，我正在做第三种，采用这种方式搭建博客的好处，就是维护成本低！</p>
+<p>闲话休提，下面就我部署这个博客遇到的问题说说：</p>
+<h1>部署流程</h1>
+<h2>注册github.com 的帐号</h2>
+<p>这里我就不多说了，直接上官方网站注册即可。而我早前已经注册过，我的github是 https://github.com/willpoon 。</p>
+<p><img alt="新建repository" src="img/00001-01.jpg" /></p>
+<h2>在你的电脑上安装python 和 pelican</h2>
+<div class="highlight"><pre><span class="nx">imx</span><span class="p">(){</span>
+<span class="nx">cd</span> <span class="o">/</span><span class="nx">Users</span><span class="o">/</span><span class="nx">poon</span><span class="o">/</span><span class="nx">Git</span><span class="o">/</span><span class="nx">gitblog_imx3</span>
+<span class="nx">make</span> <span class="nx">html</span> 
+<span class="nx">cd</span> <span class="nx">output</span><span class="o">/</span>
+<span class="nx">git</span> <span class="nx">add</span> <span class="p">.</span>
+<span class="nx">git</span> <span class="nx">commit</span> <span class="o">-</span><span class="nx">m</span> <span class="s2">&quot;commit by shell function&quot;</span>
+<span class="nx">git</span> <span class="nx">push</span> <span class="nx">origin</span> <span class="nx">master</span>
+<span class="nx">cd</span> <span class="p">..</span>
+<span class="p">}</span>
+</pre></div>
+
+
 <p>待续...</p>
             </div><!-- /.entry-content -->
             <div class="comments">
