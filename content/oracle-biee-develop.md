@@ -1,12 +1,13 @@
-Title: oracle BIEE 经验总结
+Title: Oracle BIEE 经验总结
 Date: 2015-11-06 11:12
-Modified: 2015-11-06 11:12
+Modified: 2015-11-07 22:12
 Category: Tech
-Tags: oracle,biee,BI,frontend,report
+Tags: oracle,biee,BI
 Slug: oracle-biee-develop
 Authors: Poon
 Summary:  使用biee开发前前后有也有两年多了，对oracle这套产品，也有一点小小心得，在此总结一下，抛砖引玉。持续更新中...
 
+# 前言
 使用biee开发前前后有也有两年多了，对oracle这套产品，也有一点小小心得，在此总结一下，抛砖引玉。持续更新中...
 
 # 经验技巧
@@ -21,6 +22,6 @@ with tab as（  ） 这样的子句放到物理表视图中，那么rpd将会让
 
 # 异常处理
 
-##ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.
+## ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.
 
 解决办法：检查rpd物理层子查询中是否有with子句。有的话，改成子查询的形式。
