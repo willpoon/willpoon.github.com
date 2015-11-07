@@ -76,16 +76,91 @@ Summary: 08年建了一个自己的博客网站，购买了hostmonster的空间�
 
 比照自己，似乎也这么走来的。曾经在几个平台，如sina,和讯，qzone等网站开通过博客，虽然没有写过几篇文章，但是也算这么走过来的。自己架网站的事情，正如上所提到的，做过两遍了。而现在，我正在做第三种，采用这种方式搭建博客的好处，就是维护成本低！
 
-闲话休提，下面就我部署这个博客遇到的问题说说：
+闲话休提，下面就我部署这个博客遇到的问题说说,由于这种建博客的方式相对geek一些，对于没有IT基础的盆友，是比较困难的，这里默认你都是有it底的，至少对root , python , mac/linux ,github等都是有概念的。
 
 # 部署流程
 ## 注册github.com 的帐号
 这里我就不多说了，直接上官方网站注册即可。而我早前已经注册过，我的github是 https://github.com/willpoon 。
 
 ![新建repository](img/00001-01.jpg)
+图1 ： 新建repository
+
+![起名字](img/00001-02.jpg)
+图2 ： 起名
+github要求我们对用于user pages的repository，要用 ：gitusername+github.[com|io] 格式的用户名，如下图。不知道为什么，可能是为了方便管理吧。
+![起名字](img/00001-02.jpg)
+
+参考：https://pages.github.com
+
+
+
 ##  在你的电脑上安装python 和 pelican
+ 请使用root 权限在电脑上安装python和pilican 。
+然后使用 pelican-quickstart 来初始化一个本地目录结构，用于维护你的博客。关于你博客的所有设置，都是在生成的这个目录中维护。
+### 问题1.执行pelican-quickstart 命令，有很多问题提示，该怎么选择，选错了怎么办？
+不用担心，选项所生成的配置，都在pelicanconf.py 中保存，错了可以随时修改。
+例如我的plicanconf.py 配置：
+	
+	#!/usr/bin/env python
+	# -*- coding: utf-8 -*- #
+	from __future__ import unicode_literals
 
+	AUTHOR = u'poon'
+	SITENAME = u'i.M.X.3'
+	SITEURL = ''
 
+	PATH = 'output/content'
+
+	TIMEZONE = 'Asia/Shanghai'
+
+	DEFAULT_LANG = u'zh'
+
+	# Feed generation is usually not desired when developing
+	FEED_ALL_ATOM = None
+	CATEGORY_FEED_ATOM = None
+	TRANSLATION_FEED_ATOM = None
+	AUTHOR_FEED_ATOM = None
+	AUTHOR_FEED_RSS = None
+
+	# Blogroll
+	#LINKS = (('Pelican', 'http://getpelican.com/'),
+	#         ('Python.org', 'http://python.org/'),
+	#         ('Jinja2', 'http://jinja.pocoo.org/'),
+	#         ('You can modify those links in your config file', '#'),)
+
+	LINKS = (('LinkedIn', 'https://www.linkedin.com'),
+	         ('SlideShare', "http://www.slideshare.net"),
+	         ('Github', "https://www.github.com"),
+	         ('知乎', "http://www.zhihu.com"),
+	         ('Quora', "https://www.quora.com"),
+	         ('欢迎交换链接', "#"),)
+
+	SOCIAL = (('weibo', 'http://weibo.com/poooon'),
+	          ('github', 'http://github.com/willpoon'),)
+	# Social widget
+	#SOCIAL = (('You can add links in your config file', '#'),
+	#          ('Another social link', '#'),)
+
+	DEFAULT_PAGINATION = 10
+
+	# Uncomment following line if you want document-relative URLs when developing
+	#RELATIVE_URLS = True
+
+	DISQUS_SITENAME = 'gitwillxxxx'
+	#THEME = 'bootstrap2'  
+	THEME = 'gum'  
+	#THEME = 'simple-bootstrap'  
+	#THEME = 'zurb-F5-basic'  
+	#THEME = 'Just-Read'  
+	#THEME = 'SoMA2'  
+
+### 问题2:出于方便备份需要，我想将content目录放到output目录中，一起提交到github，是否可行？
+完全没问题,你只需要修改Makefile中的INPUTDIR即可。例如我修改为：
+
+	OUTPUTDIR=$(BASEDIR)/output
+	INPUTDIR=$(OUTPUTDIR)/content
+	
+问题：
 
 	imx(){
 	cd /Users/poon/Git/gitblog_imx3

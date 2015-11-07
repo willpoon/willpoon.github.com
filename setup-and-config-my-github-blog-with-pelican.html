@@ -124,12 +124,137 @@
 2. 自己租域名空间架设博客系统写
 3. 使用类似github＋静态站＋评论系统 这样的方式写</p>
 <p>比照自己，似乎也这么走来的。曾经在几个平台，如sina,和讯，qzone等网站开通过博客，虽然没有写过几篇文章，但是也算这么走过来的。自己架网站的事情，正如上所提到的，做过两遍了。而现在，我正在做第三种，采用这种方式搭建博客的好处，就是维护成本低！</p>
-<p>闲话休提，下面就我部署这个博客遇到的问题说说：</p>
+<p>闲话休提，下面就我部署这个博客遇到的问题说说,由于这种建博客的方式相对geek一些，对于没有IT基础的盆友，是比较困难的，这里默认你都是有it底的，至少对root , python , mac/linux ,github等都是有概念的。</p>
 <h1>部署流程</h1>
 <h2>注册github.com 的帐号</h2>
 <p>这里我就不多说了，直接上官方网站注册即可。而我早前已经注册过，我的github是 https://github.com/willpoon 。</p>
-<p><img alt="新建repository" src="img/00001-01.jpg" /></p>
+<p><img alt="新建repository" src="img/00001-01.jpg" />
+图1 ： 新建repository</p>
+<p><img alt="起名字" src="img/00001-02.jpg" />
+图2 ： 起名
+github要求我们对用于user pages的repository，要用 ：gitusername+github.[com|io] 格式的用户名，如下图。不知道为什么，可能是为了方便管理吧。
+<img alt="起名字" src="img/00001-02.jpg" /></p>
+<p>参考：https://pages.github.com</p>
 <h2>在你的电脑上安装python 和 pelican</h2>
+<p>请使用root 权限在电脑上安装python和pilican 。
+然后使用 pelican-quickstart 来初始化一个本地目录结构，用于维护你的博客。关于你博客的所有设置，都是在生成的这个目录中维护。</p>
+<h3>问题1.执行pelican-quickstart 命令，有很多问题提示，该怎么选择，选错了怎么办？</h3>
+<p>不用担心，选项所生成的配置，都在pelicanconf.py 中保存，错了可以随时修改。
+例如我的plicanconf.py 配置：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: utf-8 -*- #</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+
+<span class="n">AUTHOR</span> <span class="o">=</span> <span class="s">u&#39;poon&#39;</span>
+<span class="n">SITENAME</span> <span class="o">=</span> <span class="s">u&#39;i.M.X.3&#39;</span>
+<span class="n">SITEURL</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+
+<span class="n">PATH</span> <span class="o">=</span> <span class="s">&#39;output/content&#39;</span>
+
+<span class="n">TIMEZONE</span> <span class="o">=</span> <span class="s">&#39;Asia/Shanghai&#39;</span>
+
+<span class="n">DEFAULT_LANG</span> <span class="o">=</span> <span class="s">u&#39;zh&#39;</span>
+
+<span class="c"># Feed generation is usually not desired when developing</span>
+<span class="n">FEED_ALL_ATOM</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">CATEGORY_FEED_ATOM</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">TRANSLATION_FEED_ATOM</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">AUTHOR_FEED_ATOM</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">AUTHOR_FEED_RSS</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c"># Blogroll</span>
+<span class="c">#LINKS = ((&#39;Pelican&#39;, &#39;http://getpelican.com/&#39;),</span>
+<span class="c">#         (&#39;Python.org&#39;, &#39;http://python.org/&#39;),</span>
+<span class="c">#         (&#39;Jinja2&#39;, &#39;http://jinja.pocoo.org/&#39;),</span>
+<span class="c">#         (&#39;You can modify those links in your config file&#39;, &#39;#&#39;),)</span>
+
+<span class="n">LINKS</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;LinkedIn&#39;</span><span class="p">,</span> <span class="s">&#39;https://www.linkedin.com&#39;</span><span class="p">),</span>
+         <span class="p">(</span><span class="s">&#39;SlideShare&#39;</span><span class="p">,</span> <span class="s">&quot;http://www.slideshare.net&quot;</span><span class="p">),</span>
+         <span class="p">(</span><span class="s">&#39;Github&#39;</span><span class="p">,</span> <span class="s">&quot;https://www.github.com&quot;</span><span class="p">),</span>
+         <span class="p">(</span><span class="s">&#39;知乎&#39;</span><span class="p">,</span> <span class="s">&quot;http://www.zhihu.com&quot;</span><span class="p">),</span>
+         <span class="p">(</span><span class="s">&#39;Quora&#39;</span><span class="p">,</span> <span class="s">&quot;https://www.quora.com&quot;</span><span class="p">),</span>
+         <span class="p">(</span><span class="s">&#39;欢迎交换链接&#39;</span><span class="p">,</span> <span class="s">&quot;#&quot;</span><span class="p">),)</span>
+
+<span class="n">SOCIAL</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;weibo&#39;</span><span class="p">,</span> <span class="s">&#39;http://weibo.com/poooon&#39;</span><span class="p">),</span>
+          <span class="p">(</span><span class="s">&#39;github&#39;</span><span class="p">,</span> <span class="s">&#39;http://github.com/willpoon&#39;</span><span class="p">),)</span>
+<span class="c"># Social widget</span>
+<span class="c">#SOCIAL = ((&#39;You can add links in your config file&#39;, &#39;#&#39;),</span>
+<span class="c">#          (&#39;Another social link&#39;, &#39;#&#39;),)</span>
+
+<span class="n">DEFAULT_PAGINATION</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c"># Uncomment following line if you want document-relative URLs when developing</span>
+<span class="c">#RELATIVE_URLS = True</span>
+
+<span class="n">DISQUS_SITENAME</span> <span class="o">=</span> <span class="s">&#39;gitwillxxxx&#39;</span>
+<span class="c">#THEME = &#39;bootstrap2&#39;  </span>
+<span class="n">THEME</span> <span class="o">=</span> <span class="s">&#39;gum&#39;</span>  
+<span class="c">#THEME = &#39;simple-bootstrap&#39;  </span>
+<span class="c">#THEME = &#39;zurb-F5-basic&#39;  </span>
+<span class="c">#THEME = &#39;Just-Read&#39;  </span>
+<span class="c">#THEME = &#39;SoMA2&#39;</span>
+</pre></div>
+</td></tr></table>
+
+<h3>问题2:出于方便备份需要，我想将content目录放到output目录中，一起提交到github，是否可行？</h3>
+<p>完全没问题,你只需要修改Makefile中的INPUTDIR即可。例如我修改为：</p>
+<div class="highlight"><pre><span class="nv">OUTPUTDIR</span><span class="o">=</span><span class="k">$(</span>BASEDIR<span class="k">)</span>/output
+<span class="nv">INPUTDIR</span><span class="o">=</span><span class="k">$(</span>OUTPUTDIR<span class="k">)</span>/content
+</pre></div>
+
+
+<p>问题：</p>
 <div class="highlight"><pre><span class="nx">imx</span><span class="p">(){</span>
 <span class="nx">cd</span> <span class="o">/</span><span class="nx">Users</span><span class="o">/</span><span class="nx">poon</span><span class="o">/</span><span class="nx">Git</span><span class="o">/</span><span class="nx">gitblog_imx3</span>
 <span class="nx">make</span> <span class="nx">html</span> 
