@@ -1,4 +1,4 @@
-Title:为什么使用github+pelican搭建我的博客
+Title:为什么使用github+pelican搭建我的博客update3_2015-11-08
 Date: 2015-11-06 07:49
 Modified: 2015-11-06 07:50
 Category: Tech
@@ -164,10 +164,8 @@ github要求我们对用于user pages的repository，要用 ：gitusername+githu
 简单，把相应的md文件重命名一下扩展名就行了,比如：
 mv myblogpost.md myblogpost.mk.wait
 	
-问题：
 
-
-##  问题：如何 "一键"提交&发布博客：
+##  问题4：如何 "一键"提交&发布博客：
 	imx(){
 	cd /Users/poon/Git/gitblog_imx3
 	make html 
@@ -180,9 +178,16 @@ mv myblogpost.md myblogpost.mk.wait
 
 btw : gum这个模版很智能，可以对语法自动高亮！
 
-## WARNING: There are 2 variants of "oracle-biee-develop" with lang zh
+## 问题5:WARNING: There are 2 variants of "oracle-biee-develop" with lang zh
 ## CRITICAL: RuntimeError: File develop.html is to be overwritten
 当有多个md文件，如果有两个以上的Slug是一样的时候，就会报这个错。slug改成不一样的就行了。
+
+# 点评
+## 优点1: pelican 修改标题和更新文章不会影响原文章的链接引用。
+当我们觉得有必要更新博文的标题和内容时，我们只需要更新 Title 和正文，然后重新发布即可，而不用担心链接发生变化，外部不能引用。
+
+## 优点2: pelican 可以根据修改时间来决定博文的展示顺序。
+如果我们要讲某篇博文置顶，我们只需要修改Modified:的时间，讲这个时间置为当前最新的时间，或者将来的某一个时间，文章就会置顶了。
 
 待续...
 

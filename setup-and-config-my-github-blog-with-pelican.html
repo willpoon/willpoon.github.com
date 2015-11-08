@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
 
-        <title>为什么使用github+pelican搭建我的博客</title>
+        <title>为什么使用github+pelican搭建我的博客update3_2015-11-08</title>
         <meta charset="utf-8" />
 
 
@@ -50,7 +50,7 @@
             <header>
               <h2 class="entry-title">
                 <a href="/setup-and-config-my-github-blog-with-pelican.html" rel="bookmark"
-                   title="Permalink to 为什么使用github+pelican搭建我的博客">为什么使用github+pelican搭建我的博客</a></h2>
+                   title="Permalink to 为什么使用github+pelican搭建我的博客update3_2015-11-08">为什么使用github+pelican搭建我的博客update3_2015-11-08</a></h2>
            
             </header>
             <footer class="post-info">
@@ -257,8 +257,7 @@ github要求我们对用于user pages的repository，要用 ：gitusername+githu
 <h3>问题3:如果文章已经写得差不多，已经放在了content目录下，但是暂时不想发布，又不想另外找地方保存，有什么方法可以不让文章自动发布呢？</h3>
 <p>简单，把相应的md文件重命名一下扩展名就行了,比如：
 mv myblogpost.md myblogpost.mk.wait</p>
-<p>问题：</p>
-<h2>问题：如何 "一键"提交&amp;发布博客：</h2>
+<h2>问题4：如何 "一键"提交&amp;发布博客：</h2>
 <div class="highlight"><pre><span class="nx">imx</span><span class="p">(){</span>
 <span class="nx">cd</span> <span class="o">/</span><span class="nx">Users</span><span class="o">/</span><span class="nx">poon</span><span class="o">/</span><span class="nx">Git</span><span class="o">/</span><span class="nx">gitblog_imx3</span>
 <span class="nx">make</span> <span class="nx">html</span> 
@@ -272,9 +271,14 @@ mv myblogpost.md myblogpost.mk.wait</p>
 
 
 <p>btw : gum这个模版很智能，可以对语法自动高亮！</p>
-<h2>WARNING: There are 2 variants of "oracle-biee-develop" with lang zh</h2>
+<h2>问题5:WARNING: There are 2 variants of "oracle-biee-develop" with lang zh</h2>
 <h2>CRITICAL: RuntimeError: File develop.html is to be overwritten</h2>
 <p>当有多个md文件，如果有两个以上的Slug是一样的时候，就会报这个错。slug改成不一样的就行了。</p>
+<h1>点评</h1>
+<h2>优点1: pelican 修改标题和更新文章不会影响原文章的链接引用。</h2>
+<p>当我们觉得有必要更新博文的标题和内容时，我们只需要更新 Title 和正文，然后重新发布即可，而不用担心链接发生变化，外部不能引用。</p>
+<h2>优点2: pelican 可以根据修改时间来决定博文的展示顺序。</h2>
+<p>如果我们要讲某篇博文置顶，我们只需要修改Modified:的时间，讲这个时间置为当前最新的时间，或者将来的某一个时间，文章就会置顶了。</p>
 <p>待续...</p>
             </div><!-- /.entry-content -->
             <div class="comments">
