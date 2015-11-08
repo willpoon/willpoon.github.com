@@ -1,7 +1,7 @@
 Title: 我们都需要一名律师
 Date: 2015-11-07 21:48
 Modified: 2015-11-07 22:00
-Category: Tech
+Category: Life
 Tags: oracle,biee,BI,frontend,report
 Slug: everyone-need-a-lawyer
 Authors: Poon
