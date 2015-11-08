@@ -1,6 +1,6 @@
 Title:为什么使用github+pelican搭建我的博客update3_2015-11-08
 Date: 2015-11-06 07:49
-Modified: 2015-11-06 07:50
+Modified: 2015-11-08 12:50
 Category: Tech
 Tags: github,blog,pelican,disqus
 Slug: setup-and-config-my-github-blog-with-pelican
