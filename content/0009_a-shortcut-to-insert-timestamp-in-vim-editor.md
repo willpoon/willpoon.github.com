@@ -16,7 +16,7 @@ Summary: 使用pelican+markdown写博客，总是要手动输入日期时间，�
     nmap <F3> a<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
     imap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
 
-按f3的输出效果输出效果
+按f3的输出效果:
 
      2015-11-08 Sun 11:06 AM
 
@@ -25,7 +25,7 @@ Summary: 使用pelican+markdown写博客，总是要手动输入日期时间，�
     nmap <F4> a<C-R>=strftime("%Y-%m-%d %H:%M")<CR><Esc>
     imap <F4> <C-R>=strftime("%Y-%m-%d %I:%M")<CR>
 
-按f4的输出效果输出效果：
+按f4的输出效果：
 
       2015-11-08 11:06
 
@@ -35,7 +35,7 @@ Summary: 使用pelican+markdown写博客，总是要手动输入日期时间，�
 
 现在，展示f3的用法：
 
-                                                        本文于 2015-11-08 Sun 11:23 AM 首次编辑！
+    本文最后更新于 2015-11-08 Sun 11:23 AM 
 
 
 That's it !
