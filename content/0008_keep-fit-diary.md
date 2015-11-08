@@ -1,8 +1,8 @@
 Title: 猛男炼成记update1-20151108
 Date: 2015-11-08 07:26
 Modified: 2015-11-08 23:22
-Category: Life,健身,锻炼
-Tags: 生活,进步,堕落
+Category: Life
+Tags: 健身,锻炼,防堕落
 Slug: way-to-be-a-macho-man
 Authors: Poon
 Summary: 
