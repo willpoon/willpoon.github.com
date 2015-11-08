@@ -5,7 +5,7 @@ Category: Life
 Tags: 健身,锻炼,防堕落
 Slug: way-to-be-a-macho-man
 Authors: Poon
-Summary: 
+Summary:  通过坚持每天锻炼，让:身体更好，精神更佳，让自己每天感觉棒棒哒，打造良好的身材...
 
 # 前言
 通过坚持每天锻炼，让：

@@ -5,7 +5,8 @@ Category: Tech
 Tags: vim,hotkeys,edit
 Slug: a-shortcut-to-insert-timestamp-in-vim-editor
 Authors: Poon
-Summary: 
+Summary: 使用pelican+markdown写博客，总是要手动输入日期时间，很是麻烦，作为一个geek，怎能忍受每次都手工修改日期这种事情发生呢？所以，必须找到一种能够一键插入时间戳的方法！
+ 11 对于这种雕虫小技，stackoverflow早已经说烂了，于是...
 
 使用pelican+markdown写博客，总是要手动输入日期时间，很是麻烦，作为一个geek，怎能忍受每次都手工修改日期这种事情发生呢？所以，必须找到一种能够一键插入时间戳的方法！
 对于这种雕虫小技，stackoverflow早已经说烂了，于是，随便找了[一篇](http://stackoverflow.com/questions/56052/best-way-to-insert-timestamp-in-vim)
