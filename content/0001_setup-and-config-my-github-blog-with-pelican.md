@@ -182,6 +182,10 @@ btw : gum这个模版很智能，可以对语法自动高亮！
 ## CRITICAL: RuntimeError: File develop.html is to be overwritten
 当有多个md文件，如果有两个以上的Slug是一样的时候，就会报这个错。slug改成不一样的就行了。
 
+## 错误或不相关的disqus reveal , 如何删除？
+登录disqus reveal , 删除与帖子相关的评论即可。
+
+
 # 点评
 ## 优点1: pelican 修改标题和更新文章不会影响原文章的链接引用。
 当我们觉得有必要更新博文的标题和内容时，我们只需要更新 Title 和正文，然后重新发布即可，而不用担心链接发生变化，外部不能引用。
