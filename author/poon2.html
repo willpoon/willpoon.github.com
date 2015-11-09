@@ -57,7 +57,7 @@
 							<li ><a href="/category/about.html">About</a></li>
 							<li ><a href="/category/career.html">Career</a></li>
 							<li ><a href="/category/life.html">Life</a></li>
-							<li class="active"><a href="/category/tech.html">Tech</a></li>
+							<li ><a href="/category/tech.html">Tech</a></li>
 
 						<li><label>Links</label></li>
 							<li><a href="https://www.linkedin.com">LinkedIn</a></li>
@@ -88,7 +88,7 @@
 								<li ><a href="/category/about.html">About</a></li>
 								<li ><a href="/category/career.html">Career</a></li>
 								<li ><a href="/category/life.html">Life</a></li>
-								<li class="active"><a href="/category/tech.html">Tech</a></li>
+								<li ><a href="/category/tech.html">Tech</a></li>
 						</ul>
                         <ul class="right">                                                                                                                                           
                                                                                                                                              
@@ -101,62 +101,28 @@
 					<div class="row">
 						<!-- Main Content -->
 						<div class="medium-9 small-12 columns" role="content">
+
 <article>
-	<h2>如何在vim中使用快捷键插入时间戳</h2>
-	<p>11 对于这种雕虫小技，stackoverflow早已经说烂了，于是...</p>
-<p>使用pelican+markdown写博客，总是要手动输入日期时间，很是麻烦，作为一个geek，怎能忍受每次都手工修改日期这种事情发生呢？所以，必须找到一种能够一键插入时间戳的方法！
-对于这种雕虫小技，stackoverflow早已经说烂了，于是，随便找了<a href="http://stackoverflow.com/questions/56052/best-way-to-insert-timestamp-in-vim">一篇</a></p>
-<p>~/.vimrc命令:</p>
-<div class="highlight"><pre>nmap &lt;F3&gt; a&lt;C-R&gt;=strftime(&quot;%Y-%m-%d %a %I:%M %p&quot;)&lt;CR&gt;&lt;Esc&gt;
-imap &lt;F3&gt; &lt;C-R&gt;=strftime(&quot;%Y-%m-%d %a %I:%M %p&quot;)&lt;CR&gt;
-</pre></div>
-
-
-<p>按f3的输出效果:</p>
-<div class="highlight"><pre> 2015-11-08 Sun 11:06 AM
-</pre></div>
-
-
-<p>.vimrc 命令：</p>
-<div class="highlight"><pre>nmap &lt;F4&gt; a&lt;C-R&gt;=strftime(&quot;%Y-%m-%d %H:%M&quot;)&lt;CR&gt;&lt;Esc&gt;
-imap &lt;F4&gt; &lt;C-R&gt;=strftime(&quot;%Y-%m-%d %I:%M&quot;)&lt;CR&gt;
-</pre></div>
-
-
-<p>按f4的输出效果：</p>
-<div class="highlight"><pre>  2015-11-08 11:06
-</pre></div>
-
-
-<p>注意：f3的时间戳格式是不适合放在pelican的Date: 和 Modified 里的。f4才是。</p>
-<p>现在，展示f3的用法：</p>
-<div class="highlight"><pre>本文最后更新于 2015-11-08 Sun 11:23 AM
-</pre></div>
-
-
-<p>That's it !</p>
-<p>Enjoy!</p>
-	<hr/>
-	<h6>Written by <a href="/author/poon.html">Poon</a> in <a href="/category/tech.html">Tech</a> on Sun 08 November 2015. Tags: <a href="/tag/vim.html">vim</a>, <a href="/tag/hotkeys.html">hotkeys</a>, <a href="/tag/edit.html">edit</a>, </h6>
+	<h3><a href="/setup-and-config-my-github-blog-with-pelican.html">为什么使用github+pelican搭建我的博客update3_2015-11-08</a></h3>
+	<h6>Written by <a href="/author/poon.html">Poon</a> in <a href="/category/tech.html">Tech</a> on Fri 06 November 2015. Tags: <a href="/tag/github.html">github</a>, <a href="/tag/blog.html">blog</a>, <a href="/tag/pelican.html">pelican</a>, <a href="/tag/disqus.html">disqus</a>, </h6>
+	<p>08年建了一个自己的博客网站，购买了hostmonster的空间和一个.info的域名，写过几篇文章，后来不了了之。空间被回收，域名过期，资料丢失，很是遗憾。所以一直有重新开一个的想法。但是想起国内建站的烦人的备案审查和国外服务器的龟速，终究还没有重建。最近有感于一些东西还是有必要记录&amp;分享，故又萌生了重新搭建博客的想法。</p>
+		<p class="continue"><a href="/setup-and-config-my-github-blog-with-pelican.html">Continue reading &raquo;</a></p>
 </article>
+<hr />
 
-<hr/>
-<div class="row">
-	<div class="small-12 columns">
-		<h3>Comments</h3>
-		<div id="disqus_thread"></div>
-		<script type="text/javascript">
-			var disqus_shortname = 'gitwillpoonimx3';
-			(function() {
-				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-				dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-			})();
-		</script>
-		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+<div class="row" style="margin-bottom: -1.25em;">
+	<div class="small-12 columns text-center">
+		<div class="pagination-centered">
+			<ul class="pagination">
+				<li class="arrow"><a href="/author/poon.html">&larr; Previous</a></li>
+				<li class=""><a href="/author/poon.html">1</a></li>
+				<li class="current"><a href="/author/poon2.html">2</a></li>
+				<li class="arrow unavailable"><a href="#">&rarr; Next</a></li>
+			</ul>
+		</div>
 	</div>
 </div>
+
 						</div>
 						<!-- End Main Content -->
 						<!-- Sidebar -->
