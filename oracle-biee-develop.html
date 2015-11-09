@@ -54,8 +54,8 @@
            
             </header>
             <footer class="post-info">
-              <abbr class="published" title="2015-11-06T11:12:00+08:00">
-                Fri 06 November 2015
+              <abbr class="published" title="2015-11-09T14:47:00+08:00">
+                Mon 09 November 2015
               </abbr>
               <address class="vcard author">By 
                 <a class="url fn" href="/author/poon.html"> Poon</a>
@@ -70,9 +70,12 @@
 with tab as（  ） 这样的子句放到物理表视图中，那么rpd将会让你失望。因为rpd中的视图实质上是一个形如 select * from ( ) tab 的子查询。而如果你要将with放到子查询中，将会影响biee前端自动生成with 子句。如果你要用with子句写查询语句，简易先 create view yourviewname as 来建立一个视图，然后再在物理层中调用。</p>
 <h2>Session variable 可以放到物理层</h2>
 <p>你可以将VALUEOF(NQSESSION.RQVAR) 在物理层中引用Session Variable，然后通过在前端使用request variable来修改session variable的值。</p>
+<h2>BIEE的timestamp类型的日期运算：推算前n天，后n天，前n月，后n月等。</h2>
+<p>使用timestampdiff（）函数，可控制的粒度可以细到秒，粗到年！</p>
 <h1>异常处理</h1>
 <h2>ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.</h2>
 <p>解决办法：检查rpd物理层子查询中是否有with子句。有的话，改成子查询的形式。</p>
+<p>本文最后更新于: 2015-11-09 14:46</p>
             </div><!-- /.entry-content -->
             <div class="comments">
               <h3>Comments</h3>

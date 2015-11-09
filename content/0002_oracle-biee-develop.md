@@ -1,5 +1,5 @@
 Title: Oracle BIEE 经验总结
-Date: 2015-11-06 11:12
+Date: 2015-11-09 14:47
 Modified: 2015-11-07 07:12
 Category: Tech
 Tags: oracle,biee,BI
@@ -20,8 +20,16 @@ with tab as（  ） 这样的子句放到物理表视图中，那么rpd将会让
 ## Session variable 可以放到物理层
 你可以将VALUEOF(NQSESSION.RQVAR) 在物理层中引用Session Variable，然后通过在前端使用request variable来修改session variable的值。
 
+## BIEE的timestamp类型的日期运算：推算前n天，后n天，前n月，后n月等。
+
+使用timestampdiff（）函数，可控制的粒度可以细到秒，粗到年！
+
 # 异常处理
 
 ## ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.
 
 解决办法：检查rpd物理层子查询中是否有with子句。有的话，改成子查询的形式。
+
+
+
+本文最后更新于: 2015-11-09 14:46
