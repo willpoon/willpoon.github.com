@@ -314,6 +314,22 @@ mv myblogpost.md myblogpost.mk.wait</p>
 <p>当有多个md文件，如果有两个以上的Slug是一样的时候，就会报这个错。slug改成不一样的就行了。</p>
 <h2>错误或不相关的disqus reveal , 如何删除？</h2>
 <p>登录disqus reveal , 删除与帖子相关的评论即可。</p>
+<h2>问题6:为何我的主题支持tag cloud ， 但是生成的网站就是无法展示</h2>
+<p>关于 tag cloud not shown 的问题，我当时也纠结了好久，后来google到一篇贴子，说pelican从3.6 开始，把tag cloud 功能作为单独的插件提供，需要安装plugin才能生成。
+具体方法：
+切换到 pelicanconf.py 所在的目录： 
+ 执行：
+    git clone https://github.com/getpelican/pelican-plugins.git
+获得pelican 插件目录。
+编辑：pelicanconf.py,添加如下配置：</p>
+<div class="highlight"><pre>PLUGIN_PATHS = [&quot;pelican-plugins&quot;]
+PLUGINS = [&quot;tag_cloud&quot;]
+TAG_CLOUD_STEPS=4
+TAG_CLOUD_MAX_ITEMS=100
+TAG_CLOUD_SORTING = &#39;random&#39;
+</pre></div>
+
+
 <h1>点评</h1>
 <h2>优点1: pelican 修改标题和更新文章不会影响原文章的链接引用。</h2>
 <p>当我们觉得有必要更新博文的标题和内容时，我们只需要更新 Title 和正文，然后重新发布即可，而不用担心链接发生变化，外部不能引用。</p>
@@ -360,33 +376,33 @@ mv myblogpost.md myblogpost.mk.wait</p>
 							<div class="panel">
 								<h5>Tags</h5>
 								<ul class="tag-cloud">
+									<li><a href="/tag/vim.html" class="tag-4">vim</a></li>
+									<li><a href="/tag/disqus.html" class="tag-4">disqus</a></li>
+									<li><a href="/tag/五行.html" class="tag-4">五行</a></li>
+									<li><a href="/tag/hotkeys.html" class="tag-4">hotkeys</a></li>
+									<li><a href="/tag/同窗.html" class="tag-4">同窗</a></li>
+									<li><a href="/tag/锻炼.html" class="tag-4">锻炼</a></li>
+									<li><a href="/tag/生活.html" class="tag-4">生活</a></li>
+									<li><a href="/tag/阴阳.html" class="tag-4">阴阳</a></li>
+									<li><a href="/tag/report.html" class="tag-4">report</a></li>
+									<li><a href="/tag/堕落.html" class="tag-4">堕落</a></li>
+									<li><a href="/tag/oracle.html" class="tag-1">oracle</a></li>
+									<li><a href="/tag/工作.html" class="tag-4">工作</a></li>
+									<li><a href="/tag/pelican.html" class="tag-4">pelican</a></li>
+									<li><a href="/tag/blog.html" class="tag-4">blog</a></li>
 									<li><a href="/tag/frontend.html" class="tag-4">frontend</a></li>
 									<li><a href="/tag/me.html" class="tag-4">Me</a></li>
-									<li><a href="/tag/防堕落.html" class="tag-4">防堕落</a></li>
-									<li><a href="/tag/五行.html" class="tag-4">五行</a></li>
-									<li><a href="/tag/进步.html" class="tag-4">进步</a></li>
-									<li><a href="/tag/report.html" class="tag-4">report</a></li>
-									<li><a href="/tag/锻炼.html" class="tag-4">锻炼</a></li>
-									<li><a href="/tag/pelican.html" class="tag-4">pelican</a></li>
-									<li><a href="/tag/hotkeys.html" class="tag-4">hotkeys</a></li>
-									<li><a href="/tag/edit.html" class="tag-4">edit</a></li>
-									<li><a href="/tag/聚会.html" class="tag-4">聚会</a></li>
-									<li><a href="/tag/职业.html" class="tag-4">职业</a></li>
-									<li><a href="/tag/健身.html" class="tag-4">健身</a></li>
-									<li><a href="/tag/生活.html" class="tag-4">生活</a></li>
-									<li><a href="/tag/biee.html" class="tag-1">biee</a></li>
-									<li><a href="/tag/bi.html" class="tag-1">BI</a></li>
-									<li><a href="/tag/vim.html" class="tag-4">vim</a></li>
-									<li><a href="/tag/blog.html" class="tag-4">blog</a></li>
-									<li><a href="/tag/赚钱.html" class="tag-4">赚钱</a></li>
-									<li><a href="/tag/堕落.html" class="tag-4">堕落</a></li>
-									<li><a href="/tag/阴阳.html" class="tag-4">阴阳</a></li>
-									<li><a href="/tag/同窗.html" class="tag-4">同窗</a></li>
 									<li><a href="/tag/github.html" class="tag-4">github</a></li>
-									<li><a href="/tag/disqus.html" class="tag-4">disqus</a></li>
+									<li><a href="/tag/bi.html" class="tag-1">BI</a></li>
+									<li><a href="/tag/赚钱.html" class="tag-4">赚钱</a></li>
 									<li><a href="/tag/命理学说.html" class="tag-4">命理学说</a></li>
-									<li><a href="/tag/工作.html" class="tag-4">工作</a></li>
-									<li><a href="/tag/oracle.html" class="tag-1">oracle</a></li>
+									<li><a href="/tag/edit.html" class="tag-4">edit</a></li>
+									<li><a href="/tag/防堕落.html" class="tag-4">防堕落</a></li>
+									<li><a href="/tag/进步.html" class="tag-4">进步</a></li>
+									<li><a href="/tag/聚会.html" class="tag-4">聚会</a></li>
+									<li><a href="/tag/健身.html" class="tag-4">健身</a></li>
+									<li><a href="/tag/职业.html" class="tag-4">职业</a></li>
+									<li><a href="/tag/biee.html" class="tag-1">biee</a></li>
 								</ul>
 							</div>
 

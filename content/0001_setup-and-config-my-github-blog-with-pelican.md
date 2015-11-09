@@ -185,6 +185,21 @@ btw : gum这个模版很智能，可以对语法自动高亮！
 ## 错误或不相关的disqus reveal , 如何删除？
 登录disqus reveal , 删除与帖子相关的评论即可。
 
+## 问题6:为何我的主题支持tag cloud ， 但是生成的网站就是无法展示
+关于 tag cloud not shown 的问题，我当时也纠结了好久，后来google到一篇贴子，说pelican从3.6 开始，把tag cloud 功能作为单独的插件提供，需要安装plugin才能生成。
+具体方法：
+切换到 pelicanconf.py 所在的目录： 
+ 执行：
+    git clone https://github.com/getpelican/pelican-plugins.git
+获得pelican 插件目录。
+编辑：pelicanconf.py,添加如下配置：
+
+    PLUGIN_PATHS = ["pelican-plugins"]
+    PLUGINS = ["tag_cloud"]
+    TAG_CLOUD_STEPS=4
+    TAG_CLOUD_MAX_ITEMS=100
+    TAG_CLOUD_SORTING = 'random'
+
 
 # 点评
 ## 优点1: pelican 修改标题和更新文章不会影响原文章的链接引用。
