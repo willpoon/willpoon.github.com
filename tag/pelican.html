@@ -1,169 +1,169 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <title>i.M.X.3 - pelican</title>
-        <meta charset="utf-8" />
+		<title>i.M.X.3</title>
+		<meta name="description" content="">
+		<meta name="author" content="Poon">
 
-
-        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
-        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
-
-        <link rel="stylesheet" type="text/css" href="/theme/gumby.css" />
-        <link rel="stylesheet" type="text/css" href="/theme/style.css" />
-        <link rel="stylesheet" type="text/css" href="/theme/pygment.css" />
-
-        <script src="/theme/js/libs/modernizr-2.6.2.min.js"></script>
+		<link rel="stylesheet" href="/theme/css/foundation.css" />
+		<link rel="stylesheet" href="/theme/css/pygment/monokai.css" />
+		<link rel="stylesheet" href="/theme/css/custom.css" />
 
 
+		<script src="/theme/js/modernizr.js"></script>
+
+		<!-- Feeds -->
 
 
-</head>
+		<!-- mathjax config similar to math.stackexchange -->
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			jax: ["input/TeX", "output/HTML-CSS"],
+			tex2jax: {
+				inlineMath: [ ['$', '$'] ],
+				displayMath: [ ['$$', '$$']],
+				processEscapes: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+			},
+			messageStyle: "none",
+			"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+		});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+	<body>
+		<div class="off-canvas-wrap">
+			<div class="inner-wrap">
+				<!-- mobile top bar to activate nav -->
+				<nav class="tab-bar show-for-small">
+					<section class="left-small">
+						<a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+					</section>
 
-<body id="index" class="home">
+					<section class="middle tab-bar-section">
+						<h1 class="title">i.M.X.3</h1>
+					</section>
+				</nav>
 
+				<!-- mobile side bar nav -->
+				<aside class="left-off-canvas-menu">
+					<ul class="off-canvas-list">
+						<li><a href="">Home</a></li>
+						<li><label>Categories</label></li>
+							<li ><a href="/category/about.html">About</a></li>
+							<li ><a href="/category/life.html">Life</a></li>
+							<li ><a href="/category/tech.html">Tech</a></li>
 
-    <div class="container">
-
-        <div class="row">
-
-          <header id="banner" class="body">
-                  <h1><a href="/">i.M.X.3 <strong></strong></a></h1>
-          </header><!-- /#banner -->
-
-            <div id="navigation" class="navbar row">
-              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
-             
-              <ul class="columns">
-                <li><a href="/">Home</a></li>
-
-                <li><a href="tags.html">Tags</a></li>
-                <li><a href="about.html">About</a></li>
-
-              </ul>
-            </div>
-
-<section id="content">
-
-
-
-   <div class="row">
-
-
-        <div class="eleven columns">
-                 <ol id="post-list">
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="/setup-and-config-my-github-blog-with-pelican.html" rel="bookmark" title="Permalink to 为什么使用github+pelican搭建我的博客update3_2015-11-08">为什么使用github+pelican搭建我的博客update3_2015-11-08</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2015-11-06T07:31:00+08:00"> Fri 06 November 2015 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="/author/poon.html"> Poon</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>08年建了一个自己的博客网站，购买了hostmonster的空间和一个.info的域名，写过几篇文章，后来不了了之。空间被回收，域名过期，资料丢失，很是遗憾。所以一直有重新开一个的想法。但是想起国内建站的烦人的备案审查和国外服务器的龟速，终究还没有重建。最近有感于一些东西还是有必要记录&amp;分享，故又萌生了重新搭建博客的想法。</p> </div><!-- /.entry-content -->
-
-                                <div class="medium primary btn"><a href="/setup-and-config-my-github-blog-with-pelican.html" rel="bookmark" title="Permalink to 为什么使用github+pelican搭建我的博客update3_2015-11-08">Read more <i class="icon-arrow-right"></i></a></div>
-
-
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="/tag/github.html">github</a>
-                                            <a class="danger label" href="/tag/blog.html">blog</a>
-                                            <a class="danger label" href="/tag/pelican.html">pelican</a>
-                                            <a class="danger label" href="/tag/disqus.html">disqus</a>
-                                </div>
+						<li><label>Links</label></li>
+							<li><a href="https://www.linkedin.com">LinkedIn</a></li>
+							<li><a href="http://www.slideshare.net">SlideShare</a></li>
+							<li><a href="https://www.github.com">Github</a></li>
+							<li><a href="http://www.zhihu.com">知乎(ZhiHu)</a></li>
+							<li><a href="https://www.quora.com">Quora</a></li>
+							<li><a href="#">欢迎交换链接</a></li>
 
 
 
-                        </article></li>
-                </ol><!-- /#posts-list -->
+						<li><label>Social</label></li>
+							<li><a href="http://github.com/willpoon">See me on GitHub</a></li>
+							<li><a href="http://weibo.com/poooon">See me on Sina WeiBo</a></li>
+					</ul>	
+				</aside>
 
-        </div><!-- /.eleven.columns -->
-        
-<div class="three columns">
+				<!-- top bar nav -->
+				<nav class="top-bar hide-for-small-only" data-topbar>
+					<ul class="title-area">
+						<li class="name">
+							<h1><a href="/">i.M.X.3</a></h1>
+						</li>
+					</ul>
 
-<h4>Pages</h4>
+					<section class="top-bar-section">
+						<ul class="left">
+								<li ><a href="/category/about.html">About</a></li>
+								<li ><a href="/category/life.html">Life</a></li>
+								<li ><a href="/category/tech.html">Tech</a></li>
+						</ul>
+                        <ul class="right">                                                                                                                                           
+                                                                                                                                             
+                        </ul>  
+					</section>
+				</nav>
 
- <ul>
-      <li><a href="tags.html">Tags</a></li>
-      <li><a href="about.html">About</a></li>
-  </ul>
+				<!-- Main Page Content and Sidebar -->
+				<section class="main-section">
+					<div class="row">
+						<!-- Main Content -->
+						<div class="medium-9 small-12 columns" role="content">
+							<div class="row">
+								<div class="small-12 columns">
+									<h2>Posts Tagged With 'pelican'</h2>
+								</div>
+							</div>
 
-<h4>Categories</h4>
-<ul class="blank">
-		<li><a href="/category/about.html">About</a></li>
-		<li><a href="/category/life.html">Life</a></li>
-		<li><a href="/category/tech.html">Tech</a></li>
-</ul>
-
-
-<h4>Tags</h4>
-	<ul class="blank">
-</ul>
-
-
-<nav class="widget">
-  <h4>Social</h4>
-  <ul class="blank">
-    <li><a href="http://weibo.com/poooon">See me on Sina WeiBo</a></li>
-    <li><a href="http://github.com/willpoon">See me on GitHub</a></li>
-  </ul>
-</nav>
-
-</div> </div><!-- /.row -->
-
-<p class="paginator">
-    Page 1 / 1
-</p>
-</section><!-- /#content -->
-
-       </div><!-- /.row -->
-    </div><!-- /.container -->
-
-
-       <div class="container.nopad bg">
-
-    
-        <footer id="credits" class="row">
-          <div class="seven columns left-center">
-
-                   <address id="about" class="vcard body">
-                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
-                    which takes great advantage of <a href="http://python.org">Python</a>.
-                    <br />
-                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
-                    </address>
-          </div>
+<article>
+	<h3><a href="/setup-and-config-my-github-blog-with-pelican.html">为什么使用github+pelican搭建我的博客update3_2015-11-08</a></h3>
+	<h6>Written by <a href="/author/poon.html">Poon</a> in <a href="/category/tech.html">Tech</a> on Fri 06 November 2015. Tags: <a href="/tag/github.html">github</a>, <a href="/tag/blog.html">blog</a>, <a href="/tag/pelican.html">pelican</a>, <a href="/tag/disqus.html">disqus</a>, </h6>
+	<p>08年建了一个自己的博客网站，购买了hostmonster的空间和一个.info的域名，写过几篇文章，后来不了了之。空间被回收，域名过期，资料丢失，很是遗憾。所以一直有重新开一个的想法。但是想起国内建站的烦人的备案审查和国外服务器的龟速，终究还没有重建。最近有感于一些东西还是有必要记录&amp;分享，故又萌生了重新搭建博客的想法。</p>
+		<p class="continue"><a href="/setup-and-config-my-github-blog-with-pelican.html">Continue reading &raquo;</a></p>
+</article>
+<hr />
 
 
-          <div class="seven columns">
-            <div class="row">
-              <ul class="socbtns">
+						</div>
+						<!-- End Main Content -->
+						<!-- Sidebar -->
+						<aside class="medium-3 hide-for-small-only columns">
+							<div class="panel">
+								<h5>Links</h5>
+								<ul class="side-nav">
+									<li><a href="https://www.linkedin.com">LinkedIn</a></li>
+									<li><a href="http://www.slideshare.net">SlideShare</a></li>
+									<li><a href="https://www.github.com">Github</a></li>
+									<li><a href="http://www.zhihu.com">知乎(ZhiHu)</a></li>
+									<li><a href="https://www.quora.com">Quora</a></li>
+									<li><a href="#">欢迎交换链接</a></li>
+								</ul>
+							</div>
+
+							<div class="panel">
+								<h5>Tags</h5>
+								<ul class="tag-cloud">
+								</ul>
+							</div>
 
 
+							<div class="panel">
+								<h5>Social</h5>
+								<ul class="side-nav">
+									<li><a href="http://github.com/willpoon">See me on GitHub</a></li>
+									<li><a href="http://weibo.com/poooon">See me on Sina WeiBo</a></li>
+								</ul>
+							</div>
+						</aside>
+						<!-- End Sidebar -->
+					</div>
 
+					<!-- Footer -->
+					<footer class="row">
+						<div class="medium-9 small-12">
+							<hr/>
+							<p class="text-center">Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://foundation.zurb.com/">Zurb Foundation</a>. Theme by <a href="http://hamaluik.com">Kenton Hamaluik</a>.</p>
+						</div>
+					</footer>
+					<!-- End Footer -->
+				</section>
+				<a class="exit-off-canvas"></a>
+			</div><!--off-canvas inner-->
+		</div><!--off-canvas wrap-->
 
-
-              </ul>
-            </div>
-          </div>
-        </footer>
-
-    </div>
-
-
-<script type="text/javascript">
-    var disqus_shortname = 'gitwillpoonimx3';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
-  <script src="/theme/js/libs/jquery-1.9.1.min.js"></script>
-  <script src="/theme/js/libs/gumby.min.js"></script>
-  <script src="/theme/js/plugins.js"></script>
-</body>
+		<script src="/theme/js/jquery.js"></script>
+		<script src="/theme/js/foundation.min.js"></script>
+		<script>
+			$(document).foundation();
+		</script>
+	</body>
 </html>

@@ -1,98 +1,183 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <title>i.M.X.3</title>
-        <meta charset="utf-8" />
+		<title>i.M.X.3</title>
+		<meta name="description" content="">
+		<meta name="author" content="Poon">
 
-
-        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
-        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
-
-        <link rel="stylesheet" type="text/css" href="/theme/gumby.css" />
-        <link rel="stylesheet" type="text/css" href="/theme/style.css" />
-        <link rel="stylesheet" type="text/css" href="/theme/pygment.css" />
-
-        <script src="/theme/js/libs/modernizr-2.6.2.min.js"></script>
+		<link rel="stylesheet" href="/theme/css/foundation.css" />
+		<link rel="stylesheet" href="/theme/css/pygment/monokai.css" />
+		<link rel="stylesheet" href="/theme/css/custom.css" />
 
 
+		<script src="/theme/js/modernizr.js"></script>
+
+		<!-- Feeds -->
 
 
-</head>
+		<!-- mathjax config similar to math.stackexchange -->
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			jax: ["input/TeX", "output/HTML-CSS"],
+			tex2jax: {
+				inlineMath: [ ['$', '$'] ],
+				displayMath: [ ['$$', '$$']],
+				processEscapes: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+			},
+			messageStyle: "none",
+			"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+		});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+	<body>
+		<div class="off-canvas-wrap">
+			<div class="inner-wrap">
+				<!-- mobile top bar to activate nav -->
+				<nav class="tab-bar show-for-small">
+					<section class="left-small">
+						<a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+					</section>
 
-<body id="index" class="home">
+					<section class="middle tab-bar-section">
+						<h1 class="title">i.M.X.3</h1>
+					</section>
+				</nav>
 
+				<!-- mobile side bar nav -->
+				<aside class="left-off-canvas-menu">
+					<ul class="off-canvas-list">
+						<li><a href="">Home</a></li>
+						<li><label>Categories</label></li>
+							<li ><a href="/category/about.html">About</a></li>
+							<li ><a href="/category/life.html">Life</a></li>
+							<li ><a href="/category/tech.html">Tech</a></li>
 
-    <div class="container">
-
-        <div class="row">
-
-          <header id="banner" class="body">
-                  <h1><a href="/">i.M.X.3 <strong></strong></a></h1>
-          </header><!-- /#banner -->
-
-            <div id="navigation" class="navbar row">
-              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
-             
-              <ul class="columns">
-                <li><a href="/">Home</a></li>
-
-                <li><a href="tags.html">Tags</a></li>
-                <li><a href="about.html">About</a></li>
-
-              </ul>
-            </div>
-
-<ul>
-<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
-</ul>
-
-       </div><!-- /.row -->
-    </div><!-- /.container -->
-
-
-       <div class="container.nopad bg">
-
-    
-        <footer id="credits" class="row">
-          <div class="seven columns left-center">
-
-                   <address id="about" class="vcard body">
-                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
-                    which takes great advantage of <a href="http://python.org">Python</a>.
-                    <br />
-                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
-                    </address>
-          </div>
-
-
-          <div class="seven columns">
-            <div class="row">
-              <ul class="socbtns">
+						<li><label>Links</label></li>
+							<li><a href="https://www.linkedin.com">LinkedIn</a></li>
+							<li><a href="http://www.slideshare.net">SlideShare</a></li>
+							<li><a href="https://www.github.com">Github</a></li>
+							<li><a href="http://www.zhihu.com">知乎(ZhiHu)</a></li>
+							<li><a href="https://www.quora.com">Quora</a></li>
+							<li><a href="#">欢迎交换链接</a></li>
 
 
 
+						<li><label>Social</label></li>
+							<li><a href="http://github.com/willpoon">See me on GitHub</a></li>
+							<li><a href="http://weibo.com/poooon">See me on Sina WeiBo</a></li>
+					</ul>	
+				</aside>
+
+				<!-- top bar nav -->
+				<nav class="top-bar hide-for-small-only" data-topbar>
+					<ul class="title-area">
+						<li class="name">
+							<h1><a href="/">i.M.X.3</a></h1>
+						</li>
+					</ul>
+
+					<section class="top-bar-section">
+						<ul class="left">
+								<li ><a href="/category/about.html">About</a></li>
+								<li ><a href="/category/life.html">Life</a></li>
+								<li ><a href="/category/tech.html">Tech</a></li>
+						</ul>
+                        <ul class="right">                                                                                                                                           
+                                                                                                                                             
+                        </ul>  
+					</section>
+				</nav>
+
+				<!-- Main Page Content and Sidebar -->
+				<section class="main-section">
+					<div class="row">
+						<!-- Main Content -->
+						<div class="medium-9 small-12 columns" role="content">
+	<ul>
+		<li><a href="/tag/duo-luo.html">堕落</a></li>
+		<li><a href="/tag/jin-bu.html">进步</a></li>
+		<li><a href="/tag/frontend.html">frontend</a></li>
+		<li><a href="/tag/pelican.html">pelican</a></li>
+		<li><a href="/tag/yin-yang.html">阴阳</a></li>
+		<li><a href="/tag/vim.html">vim</a></li>
+		<li><a href="/tag/hotkeys.html">hotkeys</a></li>
+		<li><a href="/tag/ju-hui.html">聚会</a></li>
+		<li><a href="/tag/zhi-ye.html">职业</a></li>
+		<li><a href="/tag/duan-lian.html">锻炼</a></li>
+		<li><a href="/tag/blog.html">blog</a></li>
+		<li><a href="/tag/fang-duo-luo.html">防堕落</a></li>
+		<li><a href="/tag/biee.html">biee</a></li>
+		<li><a href="/tag/ming-li-xue-shuo.html">命理学说</a></li>
+		<li><a href="/tag/zhuan-qian.html">赚钱</a></li>
+		<li><a href="/tag/sheng-huo.html">生活</a></li>
+		<li><a href="/tag/bi.html">BI</a></li>
+		<li><a href="/tag/report.html">report</a></li>
+		<li><a href="/tag/disqus.html">disqus</a></li>
+		<li><a href="/tag/me.html">Me</a></li>
+		<li><a href="/tag/tong-chuang.html">同窗</a></li>
+		<li><a href="/tag/github.html">github</a></li>
+		<li><a href="/tag/wu-xing.html">五行</a></li>
+		<li><a href="/tag/edit.html">edit</a></li>
+		<li><a href="/tag/gong-zuo.html">工作</a></li>
+		<li><a href="/tag/oracle.html">oracle</a></li>
+		<li><a href="/tag/jian-shen.html">健身</a></li>
+	</ul>
+						</div>
+						<!-- End Main Content -->
+						<!-- Sidebar -->
+						<aside class="medium-3 hide-for-small-only columns">
+							<div class="panel">
+								<h5>Links</h5>
+								<ul class="side-nav">
+									<li><a href="https://www.linkedin.com">LinkedIn</a></li>
+									<li><a href="http://www.slideshare.net">SlideShare</a></li>
+									<li><a href="https://www.github.com">Github</a></li>
+									<li><a href="http://www.zhihu.com">知乎(ZhiHu)</a></li>
+									<li><a href="https://www.quora.com">Quora</a></li>
+									<li><a href="#">欢迎交换链接</a></li>
+								</ul>
+							</div>
+
+							<div class="panel">
+								<h5>Tags</h5>
+								<ul class="tag-cloud">
+								</ul>
+							</div>
 
 
-              </ul>
-            </div>
-          </div>
-        </footer>
+							<div class="panel">
+								<h5>Social</h5>
+								<ul class="side-nav">
+									<li><a href="http://github.com/willpoon">See me on GitHub</a></li>
+									<li><a href="http://weibo.com/poooon">See me on Sina WeiBo</a></li>
+								</ul>
+							</div>
+						</aside>
+						<!-- End Sidebar -->
+					</div>
 
-    </div>
+					<!-- Footer -->
+					<footer class="row">
+						<div class="medium-9 small-12">
+							<hr/>
+							<p class="text-center">Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://foundation.zurb.com/">Zurb Foundation</a>. Theme by <a href="http://hamaluik.com">Kenton Hamaluik</a>.</p>
+						</div>
+					</footer>
+					<!-- End Footer -->
+				</section>
+				<a class="exit-off-canvas"></a>
+			</div><!--off-canvas inner-->
+		</div><!--off-canvas wrap-->
 
-
-<script type="text/javascript">
-    var disqus_shortname = 'gitwillpoonimx3';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
-  <script src="/theme/js/libs/jquery-1.9.1.min.js"></script>
-  <script src="/theme/js/libs/gumby.min.js"></script>
-  <script src="/theme/js/plugins.js"></script>
-</body>
+		<script src="/theme/js/jquery.js"></script>
+		<script src="/theme/js/foundation.min.js"></script>
+		<script>
+			$(document).foundation();
+		</script>
+	</body>
 </html>
