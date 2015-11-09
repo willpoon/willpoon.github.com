@@ -1,7 +1,7 @@
 Title: 工作中如何让自己无可替代
 Date: 2015-11-09 13:12
 Modified: 2015-11-09 13:12
-Category: Life
+Category: Career
 Tags: 工作,职业,赚钱
 Slug: make-oneself-unique-in-jobs
 Authors: Poon
