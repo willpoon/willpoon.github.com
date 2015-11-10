@@ -2,7 +2,7 @@ Title: 我们都需要一名律师
 Date: 2015-11-07 21:48
 Modified: 2015-11-07 22:00
 Category: Career
-Tags: oracle,biee,BI,frontend,report
+Tags: 法律,职业,创业
 Slug: everyone-need-a-lawyer
 Authors: Poon
 Summary:  Kevin是一位专业人士，希望在外面接些项目来做，帮补家计。由于事前没有拟定合约，Kevin在法律方面，还是图样图森破，客户违约，由于势单力薄，靠自己的努力，还是回不了款。项目金额也不大，请律师的话，花费太大，最后不了了之。做项目＋维权所花的时间，双重损失，让他很受伤，以后都不敢轻易接外面的项目。如果当初签订合同有律师帮忙过一过，可能就会免去不少麻烦。
