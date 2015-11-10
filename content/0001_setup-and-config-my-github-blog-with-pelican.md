@@ -1,6 +1,6 @@
-Title:为什么使用github+pelican搭建我的博客update3_2015-11-08
+Title:为什么使用github+pelican搭建我的博客update4_2015-11-10
 Date: 2015-11-06 07:31
-Modified: 2015-11-06 07:31
+Modified: 2015-11-10 09:46
 Category: Tech
 Tags: github,blog,pelican,disqus
 Slug: setup-and-config-my-github-blog-with-pelican
@@ -199,6 +199,15 @@ btw : gum这个模版很智能，可以对语法自动高亮！
     TAG_CLOUD_STEPS=4
     TAG_CLOUD_MAX_ITEMS=100
     TAG_CLOUD_SORTING = 'random'
+
+## 如何添加google https://analytics.google.com/ 的统计？
+
+1. 首先, 你得有一个google帐号，然后登录 https://analytics.google.com/ 开通analytics服务。你将会获得一个 Tracking ID ， 以'UA-' 打头。
+2. 其次, 你需要在 pelicanconf.py 中添加 如下代码：
+
+    GOOGLE_ANALYTICS='UA-12345...'
+
+该代码让google统计服务爬取你的网站，然后把数据统计归入你的账户中。
 
 
 # 点评
