@@ -1,44 +1,107 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html>
 <head>
-          <title>i.M.X.3</title>
-        <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="Poon" />
+    <meta name="robots" content="index, follow"/>
 
+    <meta property="og:title" content="如何在vim中使用快捷键插入时间戳"/>
+    <meta property="og:url" content="/a-shortcut-to-insert-timestamp-in-vim-editor.html"/>
+    <meta property="og:site_name" content="i.M.X.3"/>
+    <meta property="og:type" content="article"/>
 
-    <meta name="tags" content="vim" />
-    <meta name="tags" content="hotkeys" />
-    <meta name="tags" content="edit" />
+    <link rel="canonical" href="/a-shortcut-to-insert-timestamp-in-vim-editor.html" />
 
+    <title>如何在vim中使用快捷键插入时间戳 | i.M.X.3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">
+        stLight.options({
+            publisher: "",
+            doNotHash: false,
+            doNotCopy: false,
+            hashAddressBar: false
+        });
+    </script>
 </head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="/">i.M.X.3 <strong></strong></a></h1>
-        </header><!-- /#banner -->
-        <nav id="menu"><ul>
-            <li><a href="tags.html">Tags</a></li>
-            <li><a href="about.html">About</a></li>
-        </ul></nav><!-- /#menu -->
-<section id="content" class="body">
-  <header>
-    <h2 class="entry-title">
-      <a href="/a-shortcut-to-insert-timestamp-in-vim-editor.html" rel="bookmark"
-         title="Permalink to 如何在vim中使用快捷键插入时间戳">如何在vim中使用快捷键插入时间戳</a></h2>
- 
-  </header>
-  <footer class="post-info">
-    <abbr class="published" title="2015-11-08T11:15:00+08:00">
-      Sun 08 November 2015
-    </abbr>
-    <abbr class="modified" title="2015-11-08T11:15:00+08:00">
-      Sun 08 November 2015
-    </abbr>
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="/">i.M.X.3 </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li ><a href="tags.html">Tags</a></li>
+                            <li ><a href="about.html">About</a></li>
+                            <li ><a href="/category/about.html">About</a></li>
+                            <li ><a href="/category/career.html">Career</a></li>
+                            <li ><a href="/category/life.html">Life</a></li>
+                            <li class="active"><a href="/category/tech.html">Tech</a></li>
+                        </ul>
+
+<script>
+  (function() {
+    var cx = '005973619447881484970:jf4jwrpc3tg';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<div id="google-custom-search" class="nav">
+    <gcse:search></gcse:search>
+</div>
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="/a-shortcut-to-insert-timestamp-in-vim-editor.html" rel="bookmark"
+             title="Permalink to 如何在vim中使用快捷键插入时间戳">如何在vim中使用快捷键插入时间戳</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
     <address class="vcard author">
-      By           <a class="url fn" href="/author/poon.html">Poon</a>
+        by <a class="url fn" href="/author/poon.html">Poon</a>
     </address>
-  </footer><!-- /.post-info -->
-  <div class="entry-content">
-    <p>11 对于这种雕虫小技，stackoverflow早已经说烂了，于是...</p>
+
+    in <a href="/category/tech.html">Tech</a>
+
+    on 2015-11-08
+
+        |
+        tags:         <a href="/tag/vim.html">vim</a>
+        <a href="/tag/hotkeys.html">hotkeys</a>
+        <a href="/tag/edit.html">edit</a>
+
+
+        |
+        <a href="/a-shortcut-to-insert-timestamp-in-vim-editor.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p>11 对于这种雕虫小技，stackoverflow早已经说烂了，于是...</p>
 <p>使用pelican+markdown写博客，总是要手动输入日期时间，很是麻烦，作为一个geek，怎能忍受每次都手工修改日期这种事情发生呢？所以，必须找到一种能够一键插入时间戳的方法！
 对于这种雕虫小技，stackoverflow早已经说烂了，于是，随便找了<a href="http://stackoverflow.com/questions/56052/best-way-to-insert-timestamp-in-vim">一篇</a></p>
 <p>~/.vimrc命令:</p>
@@ -71,13 +134,64 @@ imap &lt;F4&gt; &lt;C-R&gt;=strftime(&quot;%Y-%m-%d %I:%M&quot;)&lt;CR&gt;
 
 <p>That's it !</p>
 <p>Enjoy!</p>
-  </div><!-- /.entry-content -->
-</section>
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
-                which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-        </footer><!-- /#contentinfo -->
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "a-shortcut-to-insert-timestamp-in-vim-editor.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//gitwillpoonimx3.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                    </p>
+                    <p>
+                        <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-69868761-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'gitwillpoonimx3';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
 </body>
 </html>
