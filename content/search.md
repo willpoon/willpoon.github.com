@@ -1,5 +1,6 @@
-title:Search 
-slug:search
+title: Search 
+Date: 2015-11-10 10:25
+slug: search
 
 <script>
   (function() {
