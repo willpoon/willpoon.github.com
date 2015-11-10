@@ -113,10 +113,51 @@ with tab as（  ） 这样的子句放到物理表视图中，那么rpd将会让
 <p>你可以将VALUEOF(NQSESSION.RQVAR) 在物理层中引用Session Variable，然后通过在前端使用request variable来修改session variable的值。</p>
 <h3>BIEE的timestamp类型的日期运算：推算前n天，后n天，前n月，后n月等。</h3>
 <p>使用timestampdiff（）函数，可控制的粒度可以细到秒，粗到年！</p>
+<h3>利用biee的提示,将展示变量传递到会话变量</h3>
+<h4>背景：</h4>
+<ol>
+<li>一个服务器变量 TABLE_NAME_INOUT，又叫 session variable , 对应前端是 request variable  ， 该变量需要保存一个表名，该表名具有INOUT的特征。</li>
+<li>在业务上，为业务人员设计了一个提示框，二选1，对于业务，是切换客户层级，而对于后台，是切换数据表。</li>
+<li>关系梳理： 用户提示：客户层级切换  &lt;—&gt; 后台表名切换</li>
+<li>需要在这中间 添加一个转换机制 ：输入 ： 储蓄/资产 ， 转换为 ： DPSIT/ASSET</li>
+</ol>
+<h4>设计：</h4>
+<ol>
+<li>
+<p>rpd: NQ_SESSION.TABLE_NAME_INOUT</p>
+</li>
+<li>
+<p>analytics 提示a设计：表示变量pv: 作为 转换到表名的输入。该提示a 不能设计为 请求变量， 否则传递无效。</p>
+</li>
+<li>
+<p>analytics 提示b设计：请求变量：TABLE_NAME_INOUT ,  列公式设计：</p>
+<p>case when pv=‘xxx' then ‘dfadfa’
+when pv =‘yyy’ then ‘dfads'
+end</p>
+</li>
+<li>
+<p>注意事项: 如果 pv变量传递的是字符串，那么需要用 单引号引起来。如： ‘@{pv}’</p>
+</li>
+<li>
+<p>define pv = ‘xxx’ ; define rqv = case when pv …. end </p>
+</li>
+<li>
+<p>列公式不是必需的。可以用 ‘anychar’ 代替。</p>
+</li>
+<li>
+<p>默认值的设置，一定要正确。</p>
+</li>
+</ol>
+<h4>其他tips：</h4>
+<ol>
+<li>默认值的填写： 如果是服务器变量，直接填写 : var_name , 不需要 valueof , 也不需要 nq_session </li>
+<li>如果是 变量表达式：就是表示变量：格式：@{pv} 即可。有默认值也可以添加默认值。</li>
+</ol>
 <h1>异常处理</h1>
 <h3>ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.</h3>
 <p>解决办法：检查rpd物理层子查询中是否有with子句。有的话，改成子查询的形式。</p>
-<p>本文最后更新于: 2015-11-09 14:46</p>
+<p><s>本文最后更新于: 2015-11-09 14:46</s></p>
+<p>本文最后更新于: 2015-11-10 11:37</p>
 	<hr/>
 	<h6>Written by <a href="/author/poon.html">Poon</a> in <a href="/category/tech.html">Tech</a> on Mon 09 November 2015. Tags: <a href="/tag/oracle.html">oracle</a>, <a href="/tag/biee.html">biee</a>, <a href="/tag/bi.html">BI</a>, </h6>
 </article>
@@ -157,35 +198,35 @@ with tab as（  ） 这样的子句放到物理表视图中，那么rpd将会让
 							<div class="panel">
 								<h5>Tags</h5>
 								<ul class="tag-cloud">
-									<li><a href="/tag/report.html" class="tag-4">report</a></li>
-									<li><a href="/tag/edit.html" class="tag-4">edit</a></li>
-									<li><a href="/tag/blog.html" class="tag-4">blog</a></li>
-									<li><a href="/tag/聚会.html" class="tag-4">聚会</a></li>
-									<li><a href="/tag/堕落.html" class="tag-4">堕落</a></li>
-									<li><a href="/tag/生活.html" class="tag-1">生活</a></li>
-									<li><a href="/tag/阴阳.html" class="tag-4">阴阳</a></li>
-									<li><a href="/tag/frontend.html" class="tag-4">frontend</a></li>
-									<li><a href="/tag/github.html" class="tag-4">github</a></li>
-									<li><a href="/tag/biee.html" class="tag-1">biee</a></li>
-									<li><a href="/tag/bi.html" class="tag-1">BI</a></li>
-									<li><a href="/tag/职业.html" class="tag-4">职业</a></li>
-									<li><a href="/tag/disqus.html" class="tag-4">disqus</a></li>
-									<li><a href="/tag/赚钱.html" class="tag-4">赚钱</a></li>
-									<li><a href="/tag/talk.html" class="tag-4">talk</a></li>
 									<li><a href="/tag/命理学说.html" class="tag-4">命理学说</a></li>
-									<li><a href="/tag/pelican.html" class="tag-4">pelican</a></li>
 									<li><a href="/tag/film.html" class="tag-4">film</a></li>
-									<li><a href="/tag/进步.html" class="tag-4">进步</a></li>
-									<li><a href="/tag/防堕落.html" class="tag-4">防堕落</a></li>
-									<li><a href="/tag/锻炼.html" class="tag-4">锻炼</a></li>
-									<li><a href="/tag/健身.html" class="tag-4">健身</a></li>
-									<li><a href="/tag/工作.html" class="tag-4">工作</a></li>
-									<li><a href="/tag/me.html" class="tag-4">Me</a></li>
-									<li><a href="/tag/oracle.html" class="tag-1">oracle</a></li>
-									<li><a href="/tag/vim.html" class="tag-4">vim</a></li>
-									<li><a href="/tag/hotkeys.html" class="tag-4">hotkeys</a></li>
+									<li><a href="/tag/pelican.html" class="tag-4">pelican</a></li>
 									<li><a href="/tag/同窗.html" class="tag-4">同窗</a></li>
+									<li><a href="/tag/进步.html" class="tag-4">进步</a></li>
+									<li><a href="/tag/report.html" class="tag-4">report</a></li>
 									<li><a href="/tag/写字.html" class="tag-4">写字</a></li>
+									<li><a href="/tag/赚钱.html" class="tag-4">赚钱</a></li>
+									<li><a href="/tag/github.html" class="tag-4">github</a></li>
+									<li><a href="/tag/职业.html" class="tag-4">职业</a></li>
+									<li><a href="/tag/frontend.html" class="tag-4">frontend</a></li>
+									<li><a href="/tag/edit.html" class="tag-4">edit</a></li>
+									<li><a href="/tag/disqus.html" class="tag-4">disqus</a></li>
+									<li><a href="/tag/堕落.html" class="tag-4">堕落</a></li>
+									<li><a href="/tag/oracle.html" class="tag-1">oracle</a></li>
+									<li><a href="/tag/生活.html" class="tag-1">生活</a></li>
+									<li><a href="/tag/hotkeys.html" class="tag-4">hotkeys</a></li>
+									<li><a href="/tag/me.html" class="tag-4">Me</a></li>
+									<li><a href="/tag/健身.html" class="tag-4">健身</a></li>
+									<li><a href="/tag/bi.html" class="tag-1">BI</a></li>
+									<li><a href="/tag/防堕落.html" class="tag-4">防堕落</a></li>
+									<li><a href="/tag/biee.html" class="tag-1">biee</a></li>
+									<li><a href="/tag/vim.html" class="tag-4">vim</a></li>
+									<li><a href="/tag/blog.html" class="tag-4">blog</a></li>
+									<li><a href="/tag/锻炼.html" class="tag-4">锻炼</a></li>
+									<li><a href="/tag/talk.html" class="tag-4">talk</a></li>
+									<li><a href="/tag/阴阳.html" class="tag-4">阴阳</a></li>
+									<li><a href="/tag/工作.html" class="tag-4">工作</a></li>
+									<li><a href="/tag/聚会.html" class="tag-4">聚会</a></li>
 									<li><a href="/tag/五行.html" class="tag-4">五行</a></li>
 								</ul>
 							</div>
