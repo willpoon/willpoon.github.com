@@ -60,6 +60,25 @@ with tab as（  ） 这样的子句放到物理表视图中，那么rpd将会让
 1. 默认值的填写： 如果是服务器变量，直接填写 : var_name , 不需要 valueof , 也不需要 nq_session 
 2. 如果是 变量表达式：就是表示变量：格式：@{pv} 即可。有默认值也可以添加默认值。
 
+### BIEE分析报表的格式套用/批量设置解答：
+1. 存为默认会发生什么？
+
+    如果把格式存为默认，那么系统中的所有报表都将会采用该设置作为默认值。例如，我们把一个整数列的格式设置为两位小数，那么对于其他报表，如果没有特别设置，都将采用该设置作为默认值。
+2. 从已经保存的报表中借用格式，套用到新报表中，是怎么一个规则？
+
+    以下是官方说法：
+
+    Applying Formatting from Columns [官方链接](http://docs.oracle.com/cd/E28280_01/bi.1111/e10544/format.htm#BIEUG1192i)
+    This functionality works best for views when attribute, measure, or hierarchical column numbers align precisely or for a single column template that can be applied to all columns. If a single column exists in the saved analysis, then its formatting is applied to all columns in the tables, pivot tables, and trellises of the target analysis.
+
+    For multiple columns, formatting is applied positionally, from left to right for column headings and values. A column that exceeds the number in the saved analysis gets the closest column's format repeated. For example, suppose the saved analysis contains four columns formatted with these colors in this order: red, green, blue, yellow. In the target analysis, its six columns would acquire these colors in this order: red, green, blue, yellow, yellow, yellow.
+
+解析：
+
+    1. 如果保存的报表只有一列,那么新报表的格式将全部采用那列的格式。
+    2. 如果属性列，度量列和层级列的数量和对齐都是一致的，那么将会一一匹配。
+    3. 如果列数不等，新报表列数多，那么新报表中不能匹配的列将重复最后一列。比如，4列老报表的列颜色设置为 红绿蓝黄，那么6列新报表的颜色为红绿蓝黄黄黄！
+
 # 异常处理
 
 ### ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.
@@ -70,6 +89,7 @@ with tab as（  ） 这样的子句放到物理表视图中，那么rpd将会让
 
 <s>本文最后更新于: 2015-11-09 14:46</s>
 
-本文最后更新于: 2015-11-10 11:37
+<s>本文最后更新于: 2015-11-10 11:37</s>
+本文最后更新于: 2015-11-10 15:57
 
 
