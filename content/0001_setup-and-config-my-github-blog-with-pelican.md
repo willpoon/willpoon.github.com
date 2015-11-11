@@ -235,9 +235,16 @@ $ sudo chmod 644 /Library/Python/2.7/site-packages/httplib2-0.9.2-py2.7.egg/http
 
 $ proxychains4 python HelloAnalytics.py
 
-    [proxychains] preloading /usr/local/Cellar/proxychains-ng/4.10/lib/libproxychains4.dylib
+[proxychains] preloading /usr/local/Cellar/proxychains-ng/4.10/lib/libproxychains4.dylib
+
     View (Profile): All Web Site Data
     Total Sessions: 25
+
+显示这两行，表示调用成功。
+
+## 安装 ga_page_view 插件后，仍无法显示page view，还需要作什么设置？
+
+With this plugin installed, each article and page object has one extra meta data called pageview, which is an integer of the page view count of that article or page. And there is one global context named total_page_view, which is the total page view of the entire site.
 
 
 # 点评
