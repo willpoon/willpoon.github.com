@@ -55,13 +55,13 @@ with tab as（  ） 这样的子句放到物理表视图中，那么rpd将会让
 
 7. 默认值的设置，一定要正确。
 
-####1.4.3. 其他tips：
+#### 1.4.3. 其他tips：
 
 1. 默认值的填写： 如果是服务器变量，直接填写 : var_name , 不需要 valueof , 也不需要 nq_session 
 2. 如果是 变量表达式：就是表示变量：格式：@{pv} 即可。有默认值也可以添加默认值。
 
 ### 1.5. BIEE分析报表的格式套用/批量设置解答：
-1. 存为默认会发生什么？
+1.  把格式设置存为默认会发生什么？
 
     如果把格式存为默认，那么系统中的所有报表都将会采用该设置作为默认值。例如，我们把一个整数列的格式设置为两位小数，那么对于其他报表，如果没有特别设置，都将采用该设置作为默认值。
 2. 从已经保存的报表中借用格式，套用到新报表中，是怎么一个规则？
@@ -79,6 +79,45 @@ with tab as（  ） 这样的子句放到物理表视图中，那么rpd将会让
 2. 如果属性列，度量列和层级列的数量和对齐都是一致的，那么将会一一匹配。
 3. 如果列数不等，新报表列数多，那么新报表中不能匹配的列将重复最后一列。比如，4列老报表的列颜色设置为 红绿蓝黄，那么6列新报表的颜色为红绿蓝黄黄黄！
 
+## 1.6  Oracle BIEE从开发迁移到生产时，如何处置修改配置这些麻烦事？
+
+### 1.6.1 RPD 密码的修改
+连接池越多，要改的密码就越多！你愿意每次投产，都要做这种没有技术含量，而风险又大的活？of course not !
+通过使用 admintool.exe /command 命令，通过配置的方式，修改密码，只需要执行批处理即可！
+
+a. run.bat 批处理脚本： 
+
+	set ORACLE_BI_LANG=en
+	set path=%path%;"C:\Program Files\Oracle Business Intelligence Enterprise Edition Plus Client 2 2\oraclebi\orahome\bifoundation\server\bin"
+	REM set ORACLE_HOME=C:\Program Files\Oracle Business Intelligence Enterprise Edition Plus Client 2 2\oraclebi\orahome
+	REM set ORACLE_INSTANCE=C:\Program Files\Oracle Business Intelligence Enterprise Edition Plus Client 2 2\oraclebi\orainst
+	REM set ORACLE_BI_APPLICATION=coreapplication
+	AdminTool.exe /command D:\poon\cases\rpd\PRDUCTION\AutoChangeAcct\prd.txt
+
+b. prd.txt 命令内容：
+
+	// 离线打开rpd
+	OpenOffline D:\poon\cases\rpd\PRDUCTION\AutoChangeAcct\rpd001.rpd passwordhere
+
+	 //设置连接池
+
+	SetProperty "Connection Pool" "1_5C"."5C_BIEEMGROPR" "DSN" "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=bieehost)(PORT=1528)))(CONNECT_DATA=(SERVICE_NAME=biee)))"
+
+	// 设置用户名
+	SetProperty "Connection Pool" "1_5C"."5C_BIEEMGROPR" "User" "bieemgropr"
+
+	//设置密码
+	SetProperty "Connection Pool" "1_5C"."5C_BIEEMGROPR" "Password" "passwordhere"
+
+	// 保存rpd
+	Save
+
+
+
+### 1.6.2 服务器ip / 端口的修改
+不要再用ip 了 ！ 赶紧改用域名把！ 把你的开发主机 的hosts 改一下，采用与生产环境主机相同的域名！就不用每次都把ip改来改去了。
+
+
 # 2.异常处理
 
 ### 2.1 ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.
@@ -92,5 +131,3 @@ with tab as（  ） 这样的子句放到物理表视图中，那么rpd将会让
 <s>本文最后更新于: 2015-11-10 11:37</s>
 
 本文最后更新于: 2015-11-10 15:57
-
-
