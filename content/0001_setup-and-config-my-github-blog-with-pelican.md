@@ -213,6 +213,33 @@ btw : gum这个模版很智能，可以对语法自动高亮！
 
  我试过 ｀~~ 删除我~~｀ , 不起作用。 后来查到 `<del> 删除我</del>` 和 ｀<s>删除我</s>` 都可以。
 
+## 安装google page views 提取工具到pelican时，遇到： ssl.SSLError: [Errno 185090050] _ssl.c:343: error:0B084002:x509 certificate routines:X509_load_cert_crl_file:system lib 的解决。
+
+分析：这个报错是由于cacerts.txt这个文件的权限设置问题导致的。需要将文件权限设置为644.如下：
+
+$ sudo find / -name cacerts.txt
+
+    find: /dev/fd/3: Not a directory
+    find: /dev/fd/4: Not a directory
+    /Library/Python/2.7/site-packages/httplib2-0.9.2-py2.7.egg/httplib2/cacerts.txt
+
+$ ls -arlt /Library/Python/2.7/site-packages/httplib2-0.9.2-py2.7.egg/httplib2/cacerts.txt
+
+    -rw-r-----  1 root  wheel  134862 Nov 10 20:44 /Library/Python/2.7/site-packages/httplib2-0.9.2-py2.7.egg/httplib2/cacerts.txt
+
+$ chmod 644 /Library/Python/2.7/site-packages/httplib2-0.9.2-py2.7.egg/httplib2/cacerts.txt
+
+    chmod: Unable to change file mode on /Library/Python/2.7/site-packages/httplib2-0.9.2-py2.7.egg/httplib2/cacerts.txt: Operation not permitted
+
+$ sudo chmod 644 /Library/Python/2.7/site-packages/httplib2-0.9.2-py2.7.egg/httplib2/cacerts.txt
+
+$ proxychains4 python HelloAnalytics.py
+
+    [proxychains] preloading /usr/local/Cellar/proxychains-ng/4.10/lib/libproxychains4.dylib
+    View (Profile): All Web Site Data
+    Total Sessions: 25
+
+
 # 点评
 ## 优点1: pelican 修改标题和更新文章不会影响原文章的链接引用。
 当我们觉得有必要更新博文的标题和内容时，我们只需要更新 Title 和正文，然后重新发布即可，而不用担心链接发生变化，外部不能引用。
@@ -231,5 +258,7 @@ btw : gum这个模版很智能，可以对语法自动高亮！
 
 <s> 本文最后更新于 2015-11-10 Tue 11:19 AM</s>
 
-本文最后更新于 2015-11-10 Tue 11:19 AM
+<s> 本文最后更新于 2015-11-10 Tue 11:19 AM</s>
+
+ 本文最后更新于 2015-11-11 08:54
 
