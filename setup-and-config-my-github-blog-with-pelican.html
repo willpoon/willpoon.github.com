@@ -366,12 +366,15 @@ find: /dev/fd/4: Not a directory
 
 <p>$ sudo chmod 644 /Library/Python/2.7/site-packages/httplib2-0.9.2-py2.7.egg/httplib2/cacerts.txt</p>
 <p>$ proxychains4 python HelloAnalytics.py</p>
-<div class="highlight"><pre>[proxychains] preloading /usr/local/Cellar/proxychains-ng/4.10/lib/libproxychains4.dylib
-View (Profile): All Web Site Data
+<p>[proxychains] preloading /usr/local/Cellar/proxychains-ng/4.10/lib/libproxychains4.dylib</p>
+<div class="highlight"><pre>View (Profile): All Web Site Data
 Total Sessions: 25
 </pre></div>
 
 
+<p>显示这两行，表示调用成功。</p>
+<h2>安装 ga_page_view 插件后，仍无法显示page view，还需要作什么设置？</h2>
+<p>With this plugin installed, each article and page object has one extra meta data called pageview, which is an integer of the page view count of that article or page. And there is one global context named total_page_view, which is the total page view of the entire site.</p>
 <h1>点评</h1>
 <h2>优点1: pelican 修改标题和更新文章不会影响原文章的链接引用。</h2>
 <p>当我们觉得有必要更新博文的标题和内容时，我们只需要更新 Title 和正文，然后重新发布即可，而不用担心链接发生变化，外部不能引用。</p>
