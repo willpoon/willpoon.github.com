@@ -94,7 +94,11 @@ a. run.bat 批处理脚本：
 	REM set ORACLE_BI_APPLICATION=coreapplication
 	AdminTool.exe /command D:\poon\cases\rpd\PRDUCTION\AutoChangeAcct\prd.txt
 
-b. prd.txt 命令内容：
+b. 
+
+> Blockquote
+
+prd.txt 命令内容：
 
 	// 离线打开rpd
 	OpenOffline D:\poon\cases\rpd\PRDUCTION\AutoChangeAcct\rpd001.rpd passwordhere
