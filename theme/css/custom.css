@@ -137,3 +137,13 @@ table.highlighttable {
 	margin: 0.55rem 0.5rem 0 0;
 	padding: 0;
 }
+
+#google-custom-search {
+  width: 300px;
+  float: right;
+  margin-top: 5px; }
+
+#google-custom-search .gsc-control-cse {
+    padding: 0 !important;
+    border: 0 !important;
+    background-color: transparent !important; }
