@@ -1,12 +1,16 @@
-Title: 东家西家工作志
+Title: 东家,西家,不如自己当家
 Date: 2015-11-12 16:06
 Modified: 2015-11-12 16:06
 Category: Job
 Tags: 日志,笔记,工作,实录
 Slug: employment
 Authors: Poon
-Summary: 东家西家工作志
 
+<!-- ^ -->
+
+记录工作点点滴滴。方法、经验、流程、设计、架构、抽象、总结。
+
+<!-- ^ -->
 # 版本测试
 
 ## uat测试
