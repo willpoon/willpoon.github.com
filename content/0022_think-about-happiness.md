@@ -2,7 +2,7 @@ Title: 幸福思考
 Date: 2015-11-12 19:37
 Modified: 2015-11-12 19:37
 Category: Life
-Tags: 快乐
+Tags: 快乐,幸福,思考
 Slug: think-about-happiness
 Authors: Poon
 Summary: 幸福思考
