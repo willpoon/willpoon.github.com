@@ -182,10 +182,10 @@ btw : gum这个模版很智能，可以对语法自动高亮！
 ## CRITICAL: RuntimeError: File develop.html is to be overwritten
 当有多个md文件，如果有两个以上的Slug是一样的时候，就会报这个错。slug改成不一样的就行了。
 
-## 错误或不相关的disqus reveal , 如何删除？
+## 6. 错误或不相关的disqus reveal , 如何删除？
 登录disqus reveal , 删除与帖子相关的评论即可。
 
-## 问题6:为何我的主题支持tag cloud ， 但是生成的网站就是无法展示
+## 7:为何我的主题支持tag cloud ， 但是生成的网站就是无法展示
 关于 tag cloud not shown 的问题，我当时也纠结了好久，后来google到一篇贴子，说pelican从3.6 开始，把tag cloud 功能作为单独的插件提供，需要安装plugin才能生成。
 具体方法：
 切换到 pelicanconf.py 所在的目录： 
@@ -200,7 +200,7 @@ btw : gum这个模版很智能，可以对语法自动高亮！
     TAG_CLOUD_MAX_ITEMS=100
     TAG_CLOUD_SORTING = 'random'
 
-## 如何添加google https://analytics.google.com/ 的统计？
+## 8.如何添加google https://analytics.google.com/ 的统计？
 
 1. 首先, 你得有一个google帐号，然后登录 https://analytics.google.com/ 开通analytics服务。你将会获得一个 Tracking ID ， 以'UA-' 打头。
 2. 其次, 你需要在 pelicanconf.py 中添加 如下代码：
@@ -209,11 +209,11 @@ btw : gum这个模版很智能，可以对语法自动高亮！
 
 该代码让google统计服务爬取你的网站，然后把数据统计归入你的账户中。
 
-## 如何在markdown中使用删除线？
+## 9.如何在markdown中使用删除线？
 
  我试过 ｀~~ 删除我~~｀ , 不起作用。 后来查到 `<del> 删除我</del>` 和 ｀<s>删除我</s>` 都可以。
 
-## 安装google page views 提取工具到pelican时，遇到： ssl.SSLError: [Errno 185090050] _ssl.c:343: error:0B084002:x509 certificate routines:X509_load_cert_crl_file:system lib 的解决。
+## 10.安装google page views 提取工具到pelican时，遇到： ssl.SSLError: [Errno 185090050] _ssl.c:343: error:0B084002:x509 certificate routines:X509_load_cert_crl_file:system lib 的解决。
 
 分析：这个报错是由于cacerts.txt这个文件的权限设置问题导致的。需要将文件权限设置为644.如下：
 
@@ -242,9 +242,26 @@ $ proxychains4 python HelloAnalytics.py
 
 显示这两行，表示调用成功。
 
-## 安装 ga_page_view 插件后，仍无法显示page view，还需要作什么设置？
+## 11.安装 ga_page_view 插件后，仍无法显示page view，还需要作什么设置？
 
 With this plugin installed, each article and page object has one extra meta data called pageview, which is an integer of the page view count of that article or page. And there is one global context named total_page_view, which is the total page view of the entire site.
+
+
+## 12. 如何灵活截取文章片段作为摘要信息？
+
+使用summary !
+
+1. 在pelicanconf.py中加入 summary插件支持：
+
+		PLUGINS = ["tag_cloud","ga_page_view","summary"]
+
+2. 指定截取标记的开头和结尾，在这里，我修改了默认设置，用 ^ ， $  来标记。大家都知道，这是regexp标记开头和结尾用的，用以取代 ｀<!-- PELICAN_BEGIN_SUMMARY -->｀和
+｀<!-- PELICAN_END_SUMMARY -->｀
+，简单，好记！
+
+		SUMMARY_BEGIN_MARKER = '<!-- ^ -->'
+		SUMMARY_END_MARKER =   '<!-- $ -->'
+
 
 
 # 点评
@@ -268,4 +285,3 @@ With this plugin installed, each article and page object has one extra meta data
 <s> 本文最后更新于 2015-11-10 Tue 11:19 AM</s>
 
  本文最后更新于 2015-11-11 08:54
-

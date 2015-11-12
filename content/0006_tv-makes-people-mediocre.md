@@ -4,7 +4,6 @@ Modified: 2015-11-07 23:22
 Category: Life
 Tags: 生活,进步,堕落
 Slug: tv-makes-people-mediocre
-Summary: 
 
 <!-- ^ -->
 
