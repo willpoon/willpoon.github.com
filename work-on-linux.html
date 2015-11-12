@@ -150,7 +150,36 @@ github.map.fastly.net.  3600    IN  A   103.245.222.133
    20   0:00.18
    20   0:00.04
    20   0:00.04</p>
-<p>本文最后更新于：2015-11-11 19:34 </p>
+<h1>3. proxychains4</h1>
+<p>这个工具是让terminal中执行的命令也能翻墙，比如你要使用wget , curl , yum 下载软件，就可以使用 proxychains4 来翻墙下载。</p>
+<p>搭配shadowsocks 效果不错噢。</p>
+<div class="highlight"><pre><span class="nv">$ </span>curl www.google.com
+</pre></div>
+
+
+<p>结果：</p>
+<p>curl: (7) Failed to connect to www.google.com port 80: Operation timed out</p>
+<p>使用proxychains4 :</p>
+<div class="highlight"><pre><span class="nv">$ </span>proxychains4 curl www.google.com
+</pre></div>
+
+
+<p>结果：</p>
+<div class="highlight"><pre>[proxychains] config file found: /Users/poon/.proxychains/proxychains.conf
+[proxychains] preloading /usr/local/Cellar/proxychains-ng/4.10/lib/libproxychains4.dylib
+<span class="nt">&lt;HTML&gt;&lt;HEAD&gt;&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;content-type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html;charset=utf-8&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;TITLE&gt;</span>302 Moved<span class="nt">&lt;/TITLE&gt;&lt;/HEAD&gt;&lt;BODY&gt;</span>
+<span class="nt">&lt;H1&gt;</span>302 Moved<span class="nt">&lt;/H1&gt;</span>
+The document has moved
+<span class="nt">&lt;A</span> <span class="na">HREF=</span><span class="s">&quot;http://www.google.com.hk/url?sa=p&amp;amp;hl=zh-CN&amp;amp;pref=hkredirect&amp;amp;pval=yes&amp;amp;q=http://www.google.com.hk/%3Fgws_rd%3Dcr&amp;amp;ust=1447292938623279&amp;amp;usg=AFQjCNHDVUkjopoYLPreTfeIum11Pmn0KQ&quot;</span><span class="nt">&gt;</span>here<span class="nt">&lt;/A&gt;</span>.
+<span class="nt">&lt;/BODY&gt;&lt;/HTML&gt;</span>
+</pre></div>
+
+
+<h1>4. vi vim</h1>
+<p>4.1 批量行缩进: ctrl-v + shift-&gt;</p>
+<p><s> 本文最后更新于：2015-11-11 19:34 </s></p>
+<p>本文最后更新于：2015-11-12 10:04</p>
 	<hr/>
 	<h6>Written by <a href="/author/poon.html">Poon</a> in <a href="/category/tech.html">Tech</a> on Wed 11 November 2015. Tags: <a href="/tag/linux.html">linux</a>, </h6>
 </article>
@@ -191,44 +220,44 @@ github.map.fastly.net.  3600    IN  A   103.245.222.133
 							<div class="panel">
 								<h5>Tags</h5>
 								<ul class="tag-cloud">
-									<li><a href="/tag/进步.html" class="tag-4">进步</a></li>
-									<li><a href="/tag/聚会.html" class="tag-4">聚会</a></li>
-									<li><a href="/tag/food.html" class="tag-4">food</a></li>
-									<li><a href="/tag/hotkeys.html" class="tag-4">hotkeys</a></li>
-									<li><a href="/tag/饮食.html" class="tag-4">饮食</a></li>
-									<li><a href="/tag/写字.html" class="tag-4">写字</a></li>
-									<li><a href="/tag/bi.html" class="tag-4">BI</a></li>
-									<li><a href="/tag/oracle.html" class="tag-4">oracle</a></li>
-									<li><a href="/tag/职业.html" class="tag-1">职业</a></li>
-									<li><a href="/tag/阴阳.html" class="tag-4">阴阳</a></li>
-									<li><a href="/tag/锻炼.html" class="tag-4">锻炼</a></li>
-									<li><a href="/tag/disqus.html" class="tag-4">disqus</a></li>
-									<li><a href="/tag/五行.html" class="tag-4">五行</a></li>
-									<li><a href="/tag/工作.html" class="tag-4">工作</a></li>
-									<li><a href="/tag/堕落.html" class="tag-1">堕落</a></li>
-									<li><a href="/tag/github.html" class="tag-4">github</a></li>
-									<li><a href="/tag/vim.html" class="tag-4">vim</a></li>
-									<li><a href="/tag/同窗.html" class="tag-4">同窗</a></li>
-									<li><a href="/tag/blog.html" class="tag-4">blog</a></li>
-									<li><a href="/tag/如何当学霸.html" class="tag-4">如何当学霸</a></li>
 									<li><a href="/tag/talk.html" class="tag-4">talk</a></li>
-									<li><a href="/tag/赚钱.html" class="tag-4">赚钱</a></li>
+									<li><a href="/tag/如何当学霸.html" class="tag-4">如何当学霸</a></li>
+									<li><a href="/tag/工作.html" class="tag-4">工作</a></li>
+									<li><a href="/tag/vim.html" class="tag-4">vim</a></li>
+									<li><a href="/tag/food.html" class="tag-4">food</a></li>
+									<li><a href="/tag/阴阳.html" class="tag-4">阴阳</a></li>
 									<li><a href="/tag/study.html" class="tag-4">study</a></li>
-									<li><a href="/tag/创业.html" class="tag-4">创业</a></li>
-									<li><a href="/tag/学习.html" class="tag-4">学习</a></li>
-									<li><a href="/tag/edit.html" class="tag-4">edit</a></li>
-									<li><a href="/tag/linux.html" class="tag-4">linux</a></li>
-									<li><a href="/tag/命理学说.html" class="tag-4">命理学说</a></li>
-									<li><a href="/tag/learning.html" class="tag-4">learning</a></li>
-									<li><a href="/tag/eat.html" class="tag-4">eat</a></li>
-									<li><a href="/tag/生活.html" class="tag-1">生活</a></li>
+									<li><a href="/tag/进步.html" class="tag-4">进步</a></li>
 									<li><a href="/tag/biee.html" class="tag-4">biee</a></li>
-									<li><a href="/tag/法律.html" class="tag-4">法律</a></li>
-									<li><a href="/tag/健身.html" class="tag-4">健身</a></li>
-									<li><a href="/tag/film.html" class="tag-4">film</a></li>
-									<li><a href="/tag/drink.html" class="tag-4">drink</a></li>
-									<li><a href="/tag/me.html" class="tag-4">Me</a></li>
 									<li><a href="/tag/pelican.html" class="tag-4">pelican</a></li>
+									<li><a href="/tag/赚钱.html" class="tag-4">赚钱</a></li>
+									<li><a href="/tag/堕落.html" class="tag-1">堕落</a></li>
+									<li><a href="/tag/职业.html" class="tag-1">职业</a></li>
+									<li><a href="/tag/锻炼.html" class="tag-4">锻炼</a></li>
+									<li><a href="/tag/饮食.html" class="tag-4">饮食</a></li>
+									<li><a href="/tag/学习.html" class="tag-4">学习</a></li>
+									<li><a href="/tag/写字.html" class="tag-4">写字</a></li>
+									<li><a href="/tag/github.html" class="tag-4">github</a></li>
+									<li><a href="/tag/disqus.html" class="tag-4">disqus</a></li>
+									<li><a href="/tag/bi.html" class="tag-4">BI</a></li>
+									<li><a href="/tag/drink.html" class="tag-4">drink</a></li>
+									<li><a href="/tag/五行.html" class="tag-4">五行</a></li>
+									<li><a href="/tag/创业.html" class="tag-4">创业</a></li>
+									<li><a href="/tag/learning.html" class="tag-4">learning</a></li>
+									<li><a href="/tag/健身.html" class="tag-4">健身</a></li>
+									<li><a href="/tag/生活.html" class="tag-1">生活</a></li>
+									<li><a href="/tag/edit.html" class="tag-4">edit</a></li>
+									<li><a href="/tag/film.html" class="tag-4">film</a></li>
+									<li><a href="/tag/me.html" class="tag-4">Me</a></li>
+									<li><a href="/tag/oracle.html" class="tag-4">oracle</a></li>
+									<li><a href="/tag/命理学说.html" class="tag-4">命理学说</a></li>
+									<li><a href="/tag/法律.html" class="tag-4">法律</a></li>
+									<li><a href="/tag/blog.html" class="tag-4">blog</a></li>
+									<li><a href="/tag/同窗.html" class="tag-4">同窗</a></li>
+									<li><a href="/tag/linux.html" class="tag-4">linux</a></li>
+									<li><a href="/tag/eat.html" class="tag-4">eat</a></li>
+									<li><a href="/tag/聚会.html" class="tag-4">聚会</a></li>
+									<li><a href="/tag/hotkeys.html" class="tag-4">hotkeys</a></li>
 								</ul>
 							</div>
 

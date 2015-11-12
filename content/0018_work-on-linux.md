@@ -61,6 +61,39 @@ Summary: Work on linux!   键盘党，终端控,我们用linux 来干活!鼠标?
    20   0:00.04
 
 
-本文最后更新于：2015-11-11 19:34 
+#3. proxychains4 
+
+这个工具是让terminal中执行的命令也能翻墙，比如你要使用wget , curl , yum 下载软件，就可以使用 proxychains4 来翻墙下载。
+
+搭配shadowsocks 效果不错噢。
+
+    $ curl www.google.com
+
+结果：
+
+curl: (7) Failed to connect to www.google.com port 80: Operation timed out
+
+使用proxychains4 :
+
+    $ proxychains4 curl www.google.com
+
+结果：
+
+    [proxychains] config file found: /Users/poon/.proxychains/proxychains.conf
+    [proxychains] preloading /usr/local/Cellar/proxychains-ng/4.10/lib/libproxychains4.dylib
+    <HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <TITLE>302 Moved</TITLE></HEAD><BODY>
+    <H1>302 Moved</H1>
+    The document has moved
+    <A HREF="http://www.google.com.hk/url?sa=p&amp;hl=zh-CN&amp;pref=hkredirect&amp;pval=yes&amp;q=http://www.google.com.hk/%3Fgws_rd%3Dcr&amp;ust=1447292938623279&amp;usg=AFQjCNHDVUkjopoYLPreTfeIum11Pmn0KQ">here</A>.
+    </BODY></HTML>
+
+#4. vi vim 
+
+4.1 批量行缩进: ctrl-v + shift->
+
+<s> 本文最后更新于：2015-11-11 19:34 </s>
+
+本文最后更新于：2015-11-12 10:04
 
 
