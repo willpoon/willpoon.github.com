@@ -5,14 +5,14 @@
     <meta name="author" content="Poon" />
     <meta name="robots" content="index, follow"/>
 
-    <meta property="og:title" content="Work on linux!"/>
-    <meta property="og:url" content="/work-on-linux.html"/>
+    <meta property="og:title" content="read some books 读些书"/>
+    <meta property="og:url" content="/read-some-books.html"/>
     <meta property="og:site_name" content="i.M.X.3"/>
     <meta property="og:type" content="article"/>
 
-    <link rel="canonical" href="/work-on-linux.html" />
+    <link rel="canonical" href="/read-some-books.html" />
 
-    <title>Work on linux! | i.M.X.3</title>
+    <title>read some books 读些书 | i.M.X.3</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
@@ -72,8 +72,8 @@
     <article>
       <header>
         <h1 class="entry-title">
-          <a href="/work-on-linux.html" rel="bookmark"
-             title="Permalink to Work on linux!">Work on linux!</a></h1>
+          <a href="/read-some-books.html" rel="bookmark"
+             title="Permalink to read some books 读些书">read some books 读些书</a></h1>
       </header>
       <div class="entry-content">
 <footer class="post-info">
@@ -81,16 +81,18 @@
         by <a class="url fn" href="/author/poon.html">Poon</a>
     </address>
 
-    in <a href="/category/tech.html">Tech</a>
+    in <a href="/category/life.html">Life</a>
 
-    on 2015-11-11
-
-        |
-        tags:         <a href="/tag/linux.html">linux</a>
-
+    on 2015-11-12
 
         |
-        <a href="/work-on-linux.html#disqus_thread">comments</a>
+        tags:         <a href="/tag/reading.html">reading</a>
+        <a href="/tag/books.html">books</a>
+        <a href="/tag/learn.html">learn</a>
+
+
+        |
+        <a href="/read-some-books.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->
@@ -101,82 +103,24 @@
           <span class='st_email_hcount' displayText='Email'></span>
         </div>
 
-        <p>键盘党，终端控,我们用linux 来干活!鼠标?从来都只是用来玩游戏的！</p>
-<p>仅以此帖，记录在linux下的点点滴滴。</p>
-<h1>1. MYSQL</h1>
-<h2>1.1</h2>
-<div class="highlight"><pre>GRANT ALL PRIVILEGES ON *.* TO &#39;root&#39;@&#39;%&#39; identified by &#39;passwordhere&#39; WITH GRANT OPTION;
-</pre></div>
-
-
-<p>如果不指定identified by , 那么就可以无密码登录了！！ 这时，应该指定 @'host' 。</p>
-<h2>1.2 本机无密码登录</h2>
-<div class="highlight"><pre>mysqld --skip-grant-tables
-</pre></div>
-
-
-<p>2015-11-11 19:47 , 就遇到一个问题：有人把mysql.user 表删掉了，无法登陆，这时，就需要使用这个方法来恢复 mysql.user.</p>
-<h2>1.3 /etc/rc.d/init.d/mysql 设置</h2>
-<p>当你的mysql安装路径或者数据目录迁移了，/etc/my.cnf 设置变化了，就需要修改这个mysql shell 文件。否则，使用 service mysql start/stop 之类命令时，会有问题，比如找不到库等。</p>
-<h2>1.4 dig - DNS lookup utility</h2>
-<div class="highlight"><pre>dig www.imx3.com
-</pre></div>
-
-
-<p>结果：</p>
-<div class="highlight"><pre>;; QUESTION SECTION:
-;www.imx3.com.          IN  A
-
-;; ANSWER SECTION:
-www.imx3.com.       3600    IN  CNAME   willpoon.github.io.
-willpoon.github.io. 3600    IN  CNAME   github.map.fastly.net.
-github.map.fastly.net.  3600    IN  A   103.245.222.133
-</pre></div>
-
-
-<h1>2. ps</h1>
-<h2>使用 -o 选项</h2>
-<div class="highlight"><pre>ps -o gid,time
-</pre></div>
-
-
-<p>结果：</p>
-<p>GID      TIME
-   20   0:00.55
-   20   0:00.70
-   20   0:00.18
-   20   0:00.04
-   20   0:00.04</p>
-<h1>3. proxychains4</h1>
-<p>这个工具是让terminal中执行的命令也能翻墙，比如你要使用wget , curl , yum 下载软件，就可以使用 proxychains4 来翻墙下载。</p>
-<p>搭配shadowsocks 效果不错噢。</p>
-<div class="highlight"><pre><span class="nv">$ </span>curl www.google.com
-</pre></div>
-
-
-<p>结果：</p>
-<p>curl: (7) Failed to connect to www.google.com port 80: Operation timed out</p>
-<p>使用proxychains4 :</p>
-<div class="highlight"><pre><span class="nv">$ </span>proxychains4 curl www.google.com
-</pre></div>
-
-
-<p>结果：</p>
-<div class="highlight"><pre>[proxychains] config file found: /Users/poon/.proxychains/proxychains.conf
-[proxychains] preloading /usr/local/Cellar/proxychains-ng/4.10/lib/libproxychains4.dylib
-<span class="nt">&lt;HTML&gt;&lt;HEAD&gt;&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;content-type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html;charset=utf-8&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;TITLE&gt;</span>302 Moved<span class="nt">&lt;/TITLE&gt;&lt;/HEAD&gt;&lt;BODY&gt;</span>
-<span class="nt">&lt;H1&gt;</span>302 Moved<span class="nt">&lt;/H1&gt;</span>
-The document has moved
-<span class="nt">&lt;A</span> <span class="na">HREF=</span><span class="s">&quot;http://www.google.com.hk/url?sa=p&amp;amp;hl=zh-CN&amp;amp;pref=hkredirect&amp;amp;pval=yes&amp;amp;q=http://www.google.com.hk/%3Fgws_rd%3Dcr&amp;amp;ust=1447292938623279&amp;amp;usg=AFQjCNHDVUkjopoYLPreTfeIum11Pmn0KQ&quot;</span><span class="nt">&gt;</span>here<span class="nt">&lt;/A&gt;</span>.
-<span class="nt">&lt;/BODY&gt;&lt;/HTML&gt;</span>
-</pre></div>
-
-
-<h1>4. vi vim</h1>
-<p>4.1 批量行缩进: ctrl-v + shift-&gt;</p>
-<p><s> 本文最后更新于：2015-11-11 19:34 </s></p>
-<p>本文最后更新于：2015-11-12 10:04</p>
+        <p>我觉得谈读书是一件很矫情很装逼的事情，你读就读了，看就看了，你还到处显摆，炫耀知识和炫耀财富是一样的可恶。
+但是还是应该拿出来说，因为在这个年代，不读书是不行的，保持读书学习的习惯，太必要了。</p>
+<h1>为甚么要读书？</h1>
+<h2>不读书有什么后果？</h2>
+<p>不读书？你就什么都看不懂。</p>
+<p>不读书？你就不能接近真相，只能听别人以讹传讹。</p>
+<p>不读书？就不能让自己更加专业。</p>
+<p>不读书？精神找不到寄托。</p>
+<h2>读书有什么好处？</h2>
+<p>认字。</p>
+<p>与专业的,伟大的人交流。</p>
+<p>打开你的脑洞。</p>
+<p>打发无聊。</p>
+<p>提升赚钱能力。</p>
+<h1>想读:</h1>
+<h2>罗素自传</h2>
+<h1>已读:</h1>
+<p>本文最后更新于：2015-11-12 12:57 </p>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>
@@ -189,7 +133,7 @@ The document has moved
         <h2>Comments</h2>
         <div id="disqus_thread"></div>
         <script type="text/javascript">
-          var disqus_identifier = "work-on-linux.html";
+          var disqus_identifier = "read-some-books.html";
           (function() {
           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
           dsq.src = '//gitwillpoonimx3.disqus.com/embed.js';
