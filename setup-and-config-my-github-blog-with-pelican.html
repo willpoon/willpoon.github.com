@@ -386,16 +386,21 @@ Total Sessions: 25
 
 </li>
 <li>
-<p>指定截取标记的开头和结尾，在这里，我修改了默认设置，用 ^ ， $  来标记。大家都知道，这是regexp标记开头和结尾用的，用以取代 ｀<!-- PELICAN_BEGIN_SUMMARY -->｀和
-｀<!-- PELICAN_END_SUMMARY -->｀
-，简单，好记！</p>
-<div class="highlight"><pre>SUMMARY_BEGIN_MARKER = &#39;&lt;!-- ^ --&gt;&#39;
-SUMMARY_END_MARKER =   &#39;&lt;!-- $ --&gt;&#39;
+<p>指定截取标记的开头和结尾，在这里，我修改了默认设置，用 ^ ， $  来标记。大家都知道，这是regexp标记开头和结尾用的，用以取代 </p>
+<p>｀<!-- PELICAN_BEGIN_SUMMARY -->｀</p>
+</li>
+</ol>
+<p>和</p>
+<div class="highlight"><pre>｀&lt;!-- PELICAN_END_SUMMARY --&gt;｀
 </pre></div>
 
 
-</li>
-</ol>
+<p>，简单，好记！</p>
+<div class="highlight"><pre>    SUMMARY_BEGIN_MARKER = &#39;&lt;!-- ^ --&gt;&#39;
+    SUMMARY_END_MARKER =   &#39;&lt;!-- $ --&gt;&#39;
+</pre></div>
+
+
 <h1>点评</h1>
 <h2>优点1: pelican 修改标题和更新文章不会影响原文章的链接引用。</h2>
 <p>当我们觉得有必要更新博文的标题和内容时，我们只需要更新 Title 和正文，然后重新发布即可，而不用担心链接发生变化，外部不能引用。</p>
@@ -407,7 +412,7 @@ SUMMARY_END_MARKER =   &#39;&lt;!-- $ --&gt;&#39;
 <p><s> 本文最后更新于 2015-11-10 10:40</s></p>
 <p><s> 本文最后更新于 2015-11-10 Tue 11:19 AM</s></p>
 <p><s> 本文最后更新于 2015-11-10 Tue 11:19 AM</s></p>
-<p>本文最后更新于 2015-11-11 08:54</p>
+<p>本文最后更新于 2015-11-12 23:10</p>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>

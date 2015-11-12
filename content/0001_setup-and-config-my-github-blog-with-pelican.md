@@ -255,8 +255,14 @@ With this plugin installed, each article and page object has one extra meta data
 
 		PLUGINS = ["tag_cloud","ga_page_view","summary"]
 
-2. 指定截取标记的开头和结尾，在这里，我修改了默认设置，用 ^ ， $  来标记。大家都知道，这是regexp标记开头和结尾用的，用以取代 ｀<!-- PELICAN_BEGIN_SUMMARY -->｀和
-｀<!-- PELICAN_END_SUMMARY -->｀
+2. 指定截取标记的开头和结尾，在这里，我修改了默认设置，用 ^ ， $  来标记。大家都知道，这是regexp标记开头和结尾用的，用以取代 
+
+    ｀<!-- PELICAN_BEGIN_SUMMARY -->｀
+
+和
+
+    ｀<!-- PELICAN_END_SUMMARY -->｀
+
 ，简单，好记！
 
 		SUMMARY_BEGIN_MARKER = '<!-- ^ -->'
@@ -284,4 +290,4 @@ With this plugin installed, each article and page object has one extra meta data
 
 <s> 本文最后更新于 2015-11-10 Tue 11:19 AM</s>
 
- 本文最后更新于 2015-11-11 08:54
+ 本文最后更新于 2015-11-12 23:10
