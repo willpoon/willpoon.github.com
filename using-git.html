@@ -5,14 +5,14 @@
     <meta name="author" content="Poon" />
     <meta name="robots" content="index, follow"/>
 
-    <meta property="og:title" content="每日菜谱"/>
-    <meta property="og:url" content="/my-recipe.html"/>
+    <meta property="og:title" content="git使用笔记"/>
+    <meta property="og:url" content="/using-git.html"/>
     <meta property="og:site_name" content="i.M.X.3"/>
     <meta property="og:type" content="article"/>
 
-    <link rel="canonical" href="/my-recipe.html" />
+    <link rel="canonical" href="/using-git.html" />
 
-    <title>每日菜谱 | i.M.X.3</title>
+    <title>git使用笔记 | i.M.X.3</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
@@ -72,8 +72,8 @@
     <article>
       <header>
         <h1 class="entry-title">
-          <a href="/my-recipe.html" rel="bookmark"
-             title="Permalink to 每日菜谱">每日菜谱</a></h1>
+          <a href="/using-git.html" rel="bookmark"
+             title="Permalink to git使用笔记">git使用笔记</a></h1>
       </header>
       <div class="entry-content">
 <footer class="post-info">
@@ -81,19 +81,18 @@
         by <a class="url fn" href="/author/poon.html">Poon</a>
     </address>
 
-    in <a href="/category/life.html">Life</a>
+    in <a href="/category/tech.html">Tech</a>
 
-    on 2015-11-10
-
-        |
-        tags:         <a href="/tag/food.html">food</a>
-        <a href="/tag/eat.html">eat</a>
-        <a href="/tag/drink.html">drink</a>
-        <a href="/tag/yin-shi.html">饮食</a>
-
+    on 2015-11-13
 
         |
-        <a href="/my-recipe.html#disqus_thread">comments</a>
+        tags:         <a href="/tag/git.html">git</a>
+        <a href="/tag/ban-ben-guan-li.html">版本管理</a>
+        <a href="/tag/xie-tong-kai-fa.html">协同开发</a>
+
+
+        |
+        <a href="/using-git.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->
@@ -104,19 +103,22 @@
           <span class='st_email_hcount' displayText='Email'></span>
         </div>
 
-        <p>2015-11-10 12:35 午餐主菜：花生猪手；配菜：南乳莲藕；青菜：芥菜；例汤：番茄鸡蛋汤</p>
-<p>2015-11-10 18:35 晚餐主菜：咸鱼廋肉；配菜：        ；青菜：芥菜；例汤：猪肝枸杞</p>
-<p>2015-11-11 14:53 早餐主菜：玉米;煎堆;鸡蛋;白粥;</p>
-<p>2015-11-11 14:56 午餐主菜：咸鱼花肉；配菜：洋葱炒肉；青菜：无；例汤：甜凉茶</p>
-<p>2015-11-11 20:00 晚餐主菜：生炒骨；配菜：        ；青菜：油麦菜；例汤：紫菜蛋花汤</p>
-<p>2015-11-12 09:14 早餐主菜：炒粗米粉;肉松面包;皮蛋廋肉粥;咸榨菜;</p>
-<p>2015-11-12 12:49 午餐主菜：姜葱炒鸡;配菜:红烧茄子;青菜:小白菜;例汤:节瓜</p>
-<p>2015-11-12 20:00 晚餐主菜：null ；配菜： 想不起来了；青菜：小白菜；例汤：鱼汤</p>
-<p>2015-11-13 11:17 早餐主菜：包子;芋头;;白粥;包菜泡菜</p>
-<p>2015-11-13 12:09 午餐: 鱼;豆腐;芥菜;药材汤-药材很粗很韧，没什么味道，像金钥匙粗细，但是没有那种特别的味道。</p>
-<p>2015-11-13 23:09 今晚自己做面条吃：鸡蛋汤面。
-不定时更新...</p>
-<p>本文最后更新于: 2015-11-13 23:12</p>
+        
+
+<p>git 是一个非常非常非常优秀的版本管理，协同开发工具，设计精妙使用，功能强大无比！值得所有coder,甚至blogger学习！
+</p>
+<ol>
+<li>
+<p>将当前工作副本会滚到指定版本</p>
+<p>git log # 获得版本提交历史</p>
+<p>git reset --hard <commit_id></p>
+</li>
+<li>
+<p>本地文件删除后再从版本库中检出还原：</p>
+<p>git checkout filename</p>
+</li>
+</ol>
+<p>本文最后更新于：2015-11-13 23:29 </p>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>
@@ -129,7 +131,7 @@
         <h2>Comments</h2>
         <div id="disqus_thread"></div>
         <script type="text/javascript">
-          var disqus_identifier = "my-recipe.html";
+          var disqus_identifier = "using-git.html";
           (function() {
           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
           dsq.src = '//gitwillpoonimx3.disqus.com/embed.js';
