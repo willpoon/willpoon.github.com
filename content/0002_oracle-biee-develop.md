@@ -94,11 +94,7 @@ a. run.bat 批处理脚本：
 	REM set ORACLE_BI_APPLICATION=coreapplication
 	AdminTool.exe /command D:\poon\cases\rpd\PRDUCTION\AutoChangeAcct\prd.txt
 
-b. 
-
-> Blockquote
-
-prd.txt 命令内容：
+b.  prd.txt 命令内容：
 
 	// 离线打开rpd
 	OpenOffline D:\poon\cases\rpd\PRDUCTION\AutoChangeAcct\rpd001.rpd passwordhere
@@ -115,6 +111,21 @@ prd.txt 命令内容：
 
 	// 保存rpd
 	Save
+
+
+## 1.7 weblogic －服务－数据源－中的 jndi 对应后台哪个xml配置文件？
+
+    ${BIEE_HOME}/user_projects/domains/bifoundation_domain/config/jdbc/bieeds-jdbc.xml
+
+另外，连接池url的格式为：
+
+    jdbc:oracle:thin:@ip_or_domain:port/sid
+
+
+ 
+
+
+
 
 
 
@@ -134,4 +145,8 @@ prd.txt 命令内容：
 
 <s>本文最后更新于: 2015-11-10 11:37</s>
 
-本文最后更新于: 2015-11-10 15:57
+<s>本文最后更新于: 2015-11-10 15:57</s>
+
+本文最后更新于: 2015-11-13 11:16
+
+
