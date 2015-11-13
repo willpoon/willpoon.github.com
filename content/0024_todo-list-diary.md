@@ -4,10 +4,8 @@ Modified: 2015-11-13 07:37
 Category: Life
 Tags: todo,想做,计划
 Slug: todo
-Status: Draft
 Authors: Poon
-Summary: todo list 想做的事
-
+Status: draft
 
 
 # 远期:
@@ -29,7 +27,9 @@ Summary: todo list 想做的事
 
 ### 买灯
 
-# 改变害羞的习惯,要大方，大胆，硬朗！
+## 改变害羞的习惯,要大方，大胆，硬朗！
+
+## 冷静，耐心，认真思考；谢绝浮躁，不良情绪。认真检视输入的每个信息，产生的每个念头。
 
 ## datastructure
 
