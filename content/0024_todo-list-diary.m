@@ -29,6 +29,7 @@ Summary: todo list 想做的事
 
 ### 买灯
 
+# 改变害羞的习惯,要大方，大胆，硬朗！
 
 ## datastructure
 
