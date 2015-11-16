@@ -5,6 +5,7 @@ Category: Life
 Tags: food,eat,drink,饮食
 Slug: my-recipe
 Authors: Poon
+Status: draft
 Summary: 一个不合格吃货的每日菜谱
 
 2015-11-10 12:35 午餐主菜：花生猪手；配菜：南乳莲藕；青菜：芥菜；例汤：番茄鸡蛋汤
