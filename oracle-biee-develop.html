@@ -221,10 +221,23 @@ Save
 <h1>2.异常处理</h1>
 <h3>2.1 ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.</h3>
 <p>解决办法：检查rpd物理层子查询中是否有with子句。有的话，改成子查询的形式。</p>
+<h3>2.2 nqserror:43119 nqserror:42039: report 总计函数的by子句中的列必须在选择列表中。</h3>
+<p>该异常我理解为：select dim... report_sum( measure by dim... ) from table ...
+dim... 没有对应上！</p>
+<p>如何排除该异常：把视图中exclude掉的字段，试验性地添加到include列中。如果你不希望挪上去的列展示出来，再把该列设置为隐藏即可！</p>
 <p><s>本文最后更新于: 2015-11-09 14:46</s></p>
 <p><s>本文最后更新于: 2015-11-10 11:37</s></p>
 <p><s>本文最后更新于: 2015-11-10 15:57</s></p>
-<p>本文最后更新于: 2015-11-13 11:16</p>
+<p>本文最后更新于: 2015-11-17 15:00</p>
+<h3>2.3 biee catalog 指向 不正确如何解决？</h3>
+<p>修改 instanceconfig.xml , 将 <CatalogPath> 标签中的路径改为正确的路径。</p>
+<h3>2.4 加载的rpd 不是我们想要的repository ， 怎么改成我们要的rpd?</h3>
+<p>修改 NQSConfig.INI</p>
+<div class="highlight"><pre>Star = yourRPDname.rpd , DEAULT;
+</pre></div>
+
+
+<p>如果rpd通过前端em上传的，通常会出现rpd名字被修改，导致引用不正确的情况。</p>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>

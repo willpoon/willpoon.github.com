@@ -140,6 +140,12 @@ b.  prd.txt 命令内容：
 解决办法：检查rpd物理层子查询中是否有with子句。有的话，改成子查询的形式。
 
 
+### 2.2 nqserror:43119 nqserror:42039: report 总计函数的by子句中的列必须在选择列表中。
+
+该异常我理解为：select dim... report_sum( measure by dim... ) from table ...
+dim... 没有对应上！
+
+如何排除该异常：把视图中exclude掉的字段，试验性地添加到include列中。如果你不希望挪上去的列展示出来，再把该列设置为隐藏即可！
 
 <s>本文最后更新于: 2015-11-09 14:46</s>
 
@@ -147,6 +153,19 @@ b.  prd.txt 命令内容：
 
 <s>本文最后更新于: 2015-11-10 15:57</s>
 
-本文最后更新于: 2015-11-13 11:16
+本文最后更新于: 2015-11-17 15:00
+
+### 2.3 biee catalog 指向 不正确如何解决？
+
+修改 instanceconfig.xml , 将 <CatalogPath> 标签中的路径改为正确的路径。
+
+### 2.4 加载的rpd 不是我们想要的repository ， 怎么改成我们要的rpd?
+
+修改 NQSConfig.INI
+
+    Star = yourRPDname.rpd , DEAULT;
+
+如果rpd通过前端em上传的，通常会出现rpd名字被修改，导致引用不正确的情况。
+
 
 

@@ -1,5 +1,5 @@
-Title: Work on linux!
-Date: 2015-11-11 19:34
+Title: Work on linux!_update_2015-11-17 20:57
+Date: 2015-11-17 20:57
 Modified: 2015-11-11 19:34
 Category: Tech
 Tags: linux
@@ -91,6 +91,19 @@ curl: (7) Failed to connect to www.google.com port 80: Operation timed out
 #4. vi vim 
 
 4.1 批量行缩进: ctrl-v + shift->
+
+# 5. svn 
+
+## 5.1 会滚到上一版本
+svn merge -c -2683 db_load_data_comm.sh 
+
+# 6. linux shell builtin command 
+
+添加组etl
+    groupadd etl
+添加用户etl
+    useradd db2etl -G etl
+
 
 <s> 本文最后更新于：2015-11-11 19:34 </s>
 
