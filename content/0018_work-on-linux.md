@@ -94,7 +94,7 @@ curl: (7) Failed to connect to www.google.com port 80: Operation timed out
 
 # 5. svn 
 
-## 5.1 会滚到上一版本
+## 5.1 回滚到上一版本
 svn merge -c -2683 db_load_data_comm.sh 
 
 # 6. linux shell builtin command 
@@ -104,9 +104,38 @@ svn merge -c -2683 db_load_data_comm.sh
 添加用户etl
     useradd db2etl -G etl
 
+将新建的用户添加到sudo用户组，让用户不用重新登录，在当前会话切换到sudo 模式：
+
+修改:
+
+    /etc/sudoers
+
+添加一行:
+
+    yourlinuxuser ALL=(ALL) ALL
+
+
+
+### 2015-11-18 22:27
+使用find 查找权限为777 的文件，并改为755:
+
+    find /path/to/file -perm 777 -type f -exec chmod 755 {} \;
+
+使用shell 求昨日：
+
+    stat_dt=`date -d "-1 days " +%Y%m%d`
+
+这个在bi中很常用，我们常常需要确定最近一个统计日期是什么时候。原来date函数很强大，提供了我们想要的很多功能，只是我们没有充分发掘而已。
+
+# Axel 
+
+    Axel tries to accelerate HTTP/FTP downloading process by using multiple connections for one file. It can use multiple mirrors for a download. Axel has no dependencies and is lightweight, so it might be useful as a wget clone on byte-critical systems.
+
+Axel , 多线程，轻量级，快过wget !!!
+
 
 <s> 本文最后更新于：2015-11-11 19:34 </s>
 
-本文最后更新于：2015-11-12 10:04
+本文最后更新于：2015-11-18 22:29
 
 
