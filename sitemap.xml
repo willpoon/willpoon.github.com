@@ -5,29 +5,36 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2015-11-19T07:12:31-00:00</lastmod>
+<lastmod>2015-11-19T07:16:45-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2015-11-19T07:12:31-00:00</lastmod>
+<lastmod>2015-11-19T07:16:45-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2015-11-19T07:12:31-00:00</lastmod>
+<lastmod>2015-11-19T07:16:45-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2015-11-19T07:12:31-00:00</lastmod>
+<lastmod>2015-11-19T07:16:45-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/setup-and-config-my-github-blog-with-pelican.html</loc>
+<lastmod>2015-11-19T07:16:44+08:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -125,13 +132,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/learning-talk.html</loc>
 <lastmod>2015-11-10T13:01:00+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/setup-and-config-my-github-blog-with-pelican.html</loc>
-<lastmod>2015-11-10T09:46:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -250,7 +250,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/tech.html</loc>
-<lastmod>2015-11-17T20:57:00+08:06</lastmod>
+<lastmod>2015-11-19T07:16:44+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -264,7 +264,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/pelican.html</loc>
-<lastmod>2015-11-10T09:46:00+08:06</lastmod>
+<lastmod>2015-11-19T07:16:44+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -305,15 +305,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/linux.html</loc>
-<lastmod>2015-11-17T20:57:00+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/tag/disqus.html</loc>
-<lastmod>2015-11-10T09:46:00+08:06</lastmod>
+<loc>/tag/mysql.html</loc>
+<lastmod>2015-11-17T10:59:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -368,8 +361,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/mysql.html</loc>
-<lastmod>2015-11-17T10:59:00+08:06</lastmod>
+<loc>/tag/linux.html</loc>
+<lastmod>2015-11-17T20:57:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -417,8 +410,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/git.html</loc>
-<lastmod>2015-11-13T23:29:00+08:06</lastmod>
+<loc>/tag/disqus.html</loc>
+<lastmod>2015-11-19T07:16:44+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -467,7 +460,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/blog.html</loc>
-<lastmod>2015-11-10T09:46:00+08:06</lastmod>
+<lastmod>2015-11-19T07:16:44+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -606,6 +599,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>/tag/git.html</loc>
+<lastmod>2015-11-13T23:29:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>/tag/chuang-ye.html</loc>
 <lastmod>2015-11-07T22:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -684,7 +684,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/github.html</loc>
-<lastmod>2015-11-10T09:46:00+08:06</lastmod>
+<lastmod>2015-11-19T07:16:44+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -810,7 +810,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/author/poon.html</loc>
-<lastmod>2015-11-18T22:45:00+08:06</lastmod>
+<lastmod>2015-11-19T07:16:44+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
