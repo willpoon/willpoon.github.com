@@ -269,6 +269,15 @@ With this plugin installed, each article and page object has one extra meta data
 		SUMMARY_END_MARKER =   '<!-- $ -->'
 
 
+## 13. 使用DEFAULT_DATE 来设置文章日期。
+
+    DEFAULT_DATE = 'fs'
+
+这样，就不用再md中添加：
+
+    Date:2015-11-19 07:08
+
+这一行了。
 
 # 点评
 ## 优点1: pelican 修改标题和更新文章不会影响原文章的链接引用。
