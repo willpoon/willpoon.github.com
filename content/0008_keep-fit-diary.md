@@ -1,4 +1,6 @@
 Title: 猛男，猛事，猛醒_update_2015-11-18 22:44
+Date: 2015-11-18 22:45
+Modified: 2015-11-18 22:45
 Category: Life
 Tags: 健身,锻炼,堕落,日记,随想,饮食
 Slug: way-to-be-a-macho-man
