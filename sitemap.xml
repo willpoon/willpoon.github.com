@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2015-11-21T09:42:00-00:00</lastmod>
+<lastmod>2015-11-21T09:47:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2015-11-21T09:42:00-00:00</lastmod>
+<lastmod>2015-11-21T09:47:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2015-11-21T09:42:00-00:00</lastmod>
+<lastmod>2015-11-21T09:47:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2015-11-21T09:42:00-00:00</lastmod>
+<lastmod>2015-11-21T09:47:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -209,13 +209,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/tv-makes-people-mediocre.html</loc>
 <lastmod>2015-11-07T23:22:00+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/yinyang.html</loc>
-<lastmod>2015-11-06T11:12:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -452,13 +445,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/yin-yang.html</loc>
-<lastmod>2015-11-06T11:12:00+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>/tag/xiang-zuo.html</loc>
 <lastmod>2015-11-13T07:37:00+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -475,13 +461,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/tag/tou-ji.html</loc>
 <lastmod>2015-11-17T22:45:00+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/tag/ming-li-xue-shuo.html</loc>
-<lastmod>2015-11-06T11:12:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -720,13 +699,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/tag/github.html</loc>
 <lastmod>2015-11-19T07:16:44+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/tag/wu-xing.html</loc>
-<lastmod>2015-11-06T11:12:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
