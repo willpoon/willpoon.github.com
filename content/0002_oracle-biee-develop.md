@@ -122,6 +122,11 @@ b.  prd.txt 命令内容：
     jdbc:oracle:thin:@ip_or_domain:port/sid
 
 
+## 1.8 BIEE报表如何实现单元格绿白相间？
+
+如图，在结果中，点击表属性。如图：
+
+![设置biee表单元格样式](img/00001-04.jpg)
  
 
 
