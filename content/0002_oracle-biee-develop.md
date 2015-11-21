@@ -1,6 +1,4 @@
-Title: Oracle BIEE 经验总结_update2015-11-09
-Date: 2015-11-09 14:47
-Modified: 2015-11-10 11:30
+Title: Oracle BIEE 经验总结_update_2015-11-21 10:23
 Category: Tech
 Tags: oracle,biee,BI
 Slug: oracle-biee-develop
@@ -129,7 +127,33 @@ b.  prd.txt 命令内容：
 ![设置biee表单元格样式](img/00001-04.jpg)
  
 
+## oracle biee try it live 的地址是？
+2015-11-21 10:24
 
+地址： 
+
+    http://slc02ojq.oracle.com:7780/analytics/
+
+帐号密码:
+
+    Prodney/Admin123
+
+参考：
+
+    https://community.oracle.com/message/13342070
+
+备注：
+
+
+slc02ojq  works
+slc02ojy  works
+
+<s>slc02oky</s>
+
+slc02ojl fail
+slc02ojw fail
+slc02ojr fail 
+slc02oka fail
 
 
 
