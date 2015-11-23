@@ -147,6 +147,16 @@ RIGHT JOIN t2 ON t1.id = t2.id
 <p>limit m,n:</p>
 <p>m(5) -- 表示偏移量。也就是要skip掉m行。</p>
 <p>n(10) --  表示从第m行之后，最大可以提取n行。</p>
+<h2>关联技巧:恢复空表</h2>
+<div class="highlight"><pre>INSERT INTO <span class="cp">${</span><span class="n">PDM_SCH</span><span class="cp">}</span>.LI_COL
+SELECT B.*
+FROM <span class="cp">${</span><span class="n">PDM_SCH</span><span class="cp">}</span>.LI_COL_BAK B,
+(
+    SELECT COUNT(1) AS CNT
+        FROM <span class="cp">${</span><span class="n">PDM_SCH</span><span class="cp">}</span>.LI_COL LIMIT 0,1
+        ) O
+        WHERE O.CNT=0;
+</pre></div>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>

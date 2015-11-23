@@ -62,4 +62,14 @@ m(5) -- 表示偏移量。也就是要skip掉m行。
 
 n(10) --  表示从第m行之后，最大可以提取n行。
 
+##  关联技巧:恢复空表
 
+
+    INSERT INTO ${PDM_SCH}.LI_COL
+    SELECT B.*
+    FROM ${PDM_SCH}.LI_COL_BAK B,
+    (
+        SELECT COUNT(1) AS CNT
+            FROM ${PDM_SCH}.LI_COL LIMIT 0,1
+            ) O
+            WHERE O.CNT=0;
