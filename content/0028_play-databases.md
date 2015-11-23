@@ -4,10 +4,8 @@ Tags: DB,database,数据库,db2,oracle,mysql
 Slug: play-databases
 Authors: Poon
 
-<!-- ^ -->
 记录数据库 安装、维护、开发与管理 的各种操作&技巧。包含但不仅限于db2,oracle , mysql , sqlite...
 
-<!-- $ -->
 
 # DB2
 
@@ -51,6 +49,7 @@ db2 'connect to sample user db2etl using "db2etl!QAZ"'
 
 2015-11-19 07:46 add SQL3001C 
 
+<!-- ^ -->
 
 ## mysql limit 的用法：
 
@@ -73,3 +72,7 @@ n(10) --  表示从第m行之后，最大可以提取n行。
             FROM ${PDM_SCH}.LI_COL LIMIT 0,1
             ) O
             WHERE O.CNT=0;
+
+
+
+<!-- $ -->
