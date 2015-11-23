@@ -50,3 +50,16 @@ db2 'connect to sample user db2etl using "db2etl!QAZ"'
 ## MYSQL 不支持 except or minus 
 
 2015-11-19 07:46 add SQL3001C 
+
+
+## mysql limit 的用法：
+
+    mysql> SELECT * FROM table LIMIT 5,10; // 检索记录行 6-15  
+
+limit m,n:
+
+m(5) -- 表示偏移量。也就是要skip掉m行。
+
+n(10) --  表示从第m行之后，最大可以提取n行。
+
+
