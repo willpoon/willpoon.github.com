@@ -5,29 +5,36 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2015-11-24T13:07:01-00:00</lastmod>
+<lastmod>2015-11-24T14:33:18-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2015-11-24T13:07:01-00:00</lastmod>
+<lastmod>2015-11-24T14:33:18-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2015-11-24T13:07:01-00:00</lastmod>
+<lastmod>2015-11-24T14:33:18-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2015-11-24T13:07:01-00:00</lastmod>
+<lastmod>2015-11-24T14:33:18-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/poons-talk.html</loc>
+<lastmod>2015-11-24T14:33:16+08:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -55,13 +62,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/think-about-happiness.html</loc>
 <lastmod>2015-11-24T12:56:49+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/poons-talk.html</loc>
-<lastmod>2015-11-24T09:06:08+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -144,13 +144,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/learning-talk.html</loc>
-<lastmod>2015-11-10T13:01:00+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>/the-benifit-of-writing.html</loc>
 <lastmod>2015-11-07T23:22:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
@@ -222,7 +215,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/life.html</loc>
-<lastmod>2015-11-24T12:58:18+08:06</lastmod>
+<lastmod>2015-11-24T14:33:16+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -243,7 +236,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/gan-wu.html</loc>
-<lastmod>2015-11-24T09:06:08+08:06</lastmod>
+<lastmod>2015-11-24T14:33:16+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -257,14 +250,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/pan-tan.html</loc>
-<lastmod>2015-11-24T09:06:08+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/tag/learning.html</loc>
-<lastmod>2015-11-10T13:01:00+08:06</lastmod>
+<lastmod>2015-11-24T14:33:16+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -495,7 +481,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/hu-che.html</loc>
-<lastmod>2015-11-24T09:06:08+08:06</lastmod>
+<lastmod>2015-11-24T14:33:16+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -508,15 +494,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/si-kao.html</loc>
-<lastmod>2015-11-24T12:56:49+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/tag/ru-he-dang-xue-ba.html</loc>
-<lastmod>2015-11-10T13:01:00+08:06</lastmod>
+<loc>/tag/xin-ling.html</loc>
+<lastmod>2015-11-24T14:33:16+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -593,7 +572,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/xian-hua.html</loc>
-<lastmod>2015-11-24T09:06:08+08:06</lastmod>
+<lastmod>2015-11-24T14:33:16+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -634,13 +613,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/xue-xi.html</loc>
-<lastmod>2015-11-10T13:01:00+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>/tag/todo.html</loc>
 <lastmod>2015-11-13T07:37:00+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -664,13 +636,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/tag/edit.html</loc>
 <lastmod>2015-11-08T11:15:00+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/tag/study.html</loc>
-<lastmod>2015-11-10T13:01:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -725,8 +690,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/xin-ling.html</loc>
-<lastmod>2015-11-24T09:06:08+08:06</lastmod>
+<loc>/tag/si-kao.html</loc>
+<lastmod>2015-11-24T12:56:49+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -775,7 +740,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/author/poon.html</loc>
-<lastmod>2015-11-24T13:06:26+08:06</lastmod>
+<lastmod>2015-11-24T14:33:16+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
