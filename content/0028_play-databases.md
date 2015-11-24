@@ -33,6 +33,10 @@ db2 'connect to sample user db2etl using "db2etl!QAZ"'
 ## SQL3001C  An I/O error (reason = "sqlofopn -2079391743") occurred while  opening the output file.
 报这个错的原因是路径不存在或路径没有写入权限。
 
+## 统计表大小，用户空间大小
+
+从 SYSIBMADM.ADMINTABINFO  统计。
+
 # MYSQL 
 
 ## MYSQL 不支持 full outer join 

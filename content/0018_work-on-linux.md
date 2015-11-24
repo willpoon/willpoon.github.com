@@ -1,11 +1,8 @@
-Title: Work on linux!_update_2015-11-17 20:57
-Date: 2015-11-17 20:57
-Modified: 2015-11-11 19:34
+Title: Work on linux!
 Category: Tech
-Tags: linux
+Tags: linux,git
 Slug: work-on-linux
 Authors: Poon
-Summary: Work on linux!   键盘党，终端控,我们用linux 来干活!鼠标?从来都只是用来玩游戏的！
 
 
 键盘党，终端控,我们用linux 来干活!鼠标?从来都只是用来玩游戏的！
@@ -134,8 +131,24 @@ svn merge -c -2683 db_load_data_comm.sh
 Axel , 多线程，轻量级，快过wget !!!
 
 
+## git 
+
+<!-- ^ --> 
+ git 是一个非常非常非常优秀的版本管理，协同开发工具，设计精妙使用，功能强大无比！值得所有coder,甚至blogger学习！
+<!-- $ --> 
+
+1. 将当前工作副本会滚到指定版本
+
+    git log # 获得版本提交历史
+
+    git reset --hard <commit_id>
+
+2. 本地文件删除后再从版本库中检出还原：
+
+    git checkout filename
+
+
 <s> 本文最后更新于：2015-11-11 19:34 </s>
 
-本文最后更新于：2015-11-18 22:29
 
-
+[git] 2015-11-24 13:05 add git
