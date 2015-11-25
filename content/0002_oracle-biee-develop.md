@@ -1,4 +1,4 @@
-Title: Oracle BIEE 经验总结_update_2015-11-21 10:23
+Title: Oracle BIEE 经验总结
 Category: Tech
 Tags: oracle,biee,BI
 Slug: oracle-biee-develop

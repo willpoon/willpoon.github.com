@@ -1,4 +1,4 @@
-Title:使用github+pelican搭建我的博客update4_2015-11-10
+Title:使用github+pelican搭建我的博客
 Category: Tech
 Tags: github,blog,pelican,disqus
 Slug: setup-and-config-my-github-blog-with-pelican

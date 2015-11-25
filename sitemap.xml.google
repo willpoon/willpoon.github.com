@@ -5,68 +5,30 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2015-11-25T10:36:23-00:00</lastmod>
+<lastmod>2015-11-25T09:58:52-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2015-11-25T10:36:23-00:00</lastmod>
+<lastmod>2015-11-25T09:58:52-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2015-11-25T10:36:23-00:00</lastmod>
+<lastmod>2015-11-25T09:58:52-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2015-11-25T10:36:23-00:00</lastmod>
+<lastmod>2015-11-25T09:58:52-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
-</url>
-
-<url>
-<loc>/oracle-biee-develop.html</loc>
-<lastmod>2015-11-25T10:07:53+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
-</url>
-
-<url>
-<loc>/setup-and-config-my-github-blog-with-pelican.html</loc>
-<lastmod>2015-11-25T10:07:43+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -74,10 +36,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-25T08:52:15+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -85,10 +43,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-24T22:50:21+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -96,10 +50,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-24T21:20:36+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -107,10 +57,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-24T21:12:54+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -118,10 +64,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-24T13:06:26+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -129,10 +71,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-24T13:00:15+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -140,10 +78,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-21T22:26:54+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
+</url>
+
+<url>
+<loc>/oracle-biee-develop.html</loc>
+<lastmod>2015-11-21T10:44:06+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/setup-and-config-my-github-blog-with-pelican.html</loc>
+<lastmod>2015-11-19T07:16:44+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
 </url>
 
 <url>
@@ -151,10 +99,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-12T10:27:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -162,10 +106,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-17T04:32:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -173,10 +113,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-13T12:55:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -184,10 +120,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-13T07:37:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -195,10 +127,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-12T20:22:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -206,10 +134,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-12T16:06:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -217,10 +141,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-11T16:20:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -228,10 +148,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-07T23:22:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -239,10 +155,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-09T18:45:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -250,10 +162,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-08T23:21:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -261,10 +169,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-08T14:53:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -272,10 +176,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-10T09:03:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -283,10 +183,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-08T11:15:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -294,10 +190,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-09T18:45:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -305,10 +197,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-21T22:26:54+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -316,10 +204,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-08T14:53:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -327,10 +211,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-12T16:06:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -338,21 +218,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-25T08:52:15+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
 <loc>/category/tech.html</loc>
-<lastmod>2015-11-25T10:07:53+08:06</lastmod>
+<lastmod>2015-11-24T13:06:26+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -360,43 +232,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-25T08:52:15+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
-</url>
-
-<url>
-<loc>/tag/pelican.html</loc>
-<lastmod>2015-11-25T10:07:43+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
-</url>
-
-<url>
-<loc>/tag/xiang-fa.html</loc>
-<lastmod>2015-11-08T14:53:00+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
-</url>
-
-<url>
-<loc>/tag/pan-tan.html</loc>
-<lastmod>2015-11-24T22:50:21+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -404,10 +239,27 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-24T22:50:21+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
+</url>
+
+<url>
+<loc>/tag/xiang-fa.html</loc>
+<lastmod>2015-11-08T14:53:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/pan-tan.html</loc>
+<lastmod>2015-11-24T22:50:21+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/pelican.html</loc>
+<lastmod>2015-11-19T07:16:44+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
 </url>
 
 <url>
@@ -415,10 +267,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-11T16:20:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -426,10 +274,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-12T16:06:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -437,10 +281,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-24T13:00:15+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -448,21 +288,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-12T16:06:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
-</url>
-
-<url>
-<loc>/tag/zu-qiu.html</loc>
-<lastmod>2015-11-12T20:22:00+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -470,10 +295,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-08T11:15:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -481,21 +302,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-13T12:55:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
-<loc>/tag/db2.html</loc>
-<lastmod>2015-11-24T13:00:15+08:06</lastmod>
+<loc>/tag/zu-qiu.html</loc>
+<lastmod>2015-11-12T20:22:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -503,10 +316,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-24T21:12:54+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -514,10 +323,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-08T11:15:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -525,10 +330,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-11T16:20:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -536,10 +337,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-24T13:06:26+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -547,10 +344,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-17T22:45:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -558,10 +351,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-25T08:52:15+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -569,10 +358,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-10T09:03:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -580,10 +365,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-08T14:53:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -591,10 +372,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-17T04:32:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -602,10 +379,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-25T08:52:15+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -613,10 +386,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-24T13:06:26+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -624,10 +393,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-08T23:21:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -635,10 +400,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-13T07:37:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -646,10 +407,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-13T07:37:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -657,21 +414,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-17T22:45:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
 <loc>/tag/blog.html</loc>
-<lastmod>2015-11-25T10:07:43+08:06</lastmod>
+<lastmod>2015-11-19T07:16:44+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -679,10 +428,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-08T14:53:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -690,10 +435,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-12T20:22:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -701,10 +442,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-21T22:26:54+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -712,10 +449,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-08T23:21:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -723,21 +456,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-13T12:55:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
 <loc>/tag/biee.html</loc>
-<lastmod>2015-11-25T10:07:53+08:06</lastmod>
+<lastmod>2015-11-21T10:44:06+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -745,10 +470,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-24T21:12:54+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -756,10 +477,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-21T22:26:54+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -767,10 +484,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-24T22:50:21+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -778,10 +491,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-17T04:32:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -789,10 +498,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-24T22:50:21+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -800,10 +505,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-11T16:20:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -811,10 +512,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-24T13:00:15+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -822,10 +519,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-25T08:52:15+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -833,10 +526,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-12T20:22:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -844,21 +533,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-24T13:00:15+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
-</url>
-
-<url>
-<loc>/tag/bi.html</loc>
-<lastmod>2015-11-25T10:07:53+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -866,21 +540,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-21T22:26:54+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
-<loc>/tag/bi-ji.html</loc>
-<lastmod>2015-11-12T16:06:00+08:06</lastmod>
+<loc>/tag/bi.html</loc>
+<lastmod>2015-11-21T10:44:06+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
+</url>
+
+<url>
+<loc>/tag/disqus.html</loc>
+<lastmod>2015-11-19T07:16:44+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
 </url>
 
 <url>
@@ -888,10 +561,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-17T04:32:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -899,10 +568,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-12T20:22:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -910,10 +575,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-24T22:50:21+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -921,21 +582,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-09T23:48:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
-<loc>/tag/disqus.html</loc>
-<lastmod>2015-11-25T10:07:43+08:06</lastmod>
+<loc>/tag/db2.html</loc>
+<lastmod>2015-11-24T13:00:15+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -943,10 +596,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-17T22:45:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -954,10 +603,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-13T12:55:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -965,10 +610,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-09T18:45:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -976,21 +617,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-13T07:37:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
 <loc>/tag/github.html</loc>
-<lastmod>2015-11-25T10:07:43+08:06</lastmod>
+<lastmod>2015-11-19T07:16:44+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -998,10 +631,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-24T13:00:15+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -1009,10 +638,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-08T11:15:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -1020,10 +645,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-17T22:45:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -1031,10 +652,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-17T22:45:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
+</url>
+
+<url>
+<loc>/tag/bi-ji.html</loc>
+<lastmod>2015-11-12T16:06:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
 </url>
 
 <url>
@@ -1042,10 +666,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-12T16:06:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -1053,10 +673,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-24T21:20:36+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -1064,10 +680,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-25T08:52:15+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -1075,10 +687,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-17T22:45:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -1086,10 +694,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-24T21:20:36+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -1097,21 +701,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-24T21:12:54+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
 <loc>/tag/oracle.html</loc>
-<lastmod>2015-11-25T10:07:53+08:06</lastmod>
+<lastmod>2015-11-24T13:00:15+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -1119,10 +715,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-24T21:20:36+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -1130,10 +722,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-25T08:52:15+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -1141,10 +729,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-13T12:55:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
@@ -1152,21 +736,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-11-10T09:03:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 <url>
 <loc>/author/poon.html</loc>
-<lastmod>2015-11-25T10:07:53+08:06</lastmod>
+<lastmod>2015-11-25T08:52:15+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-<data>
-<display>
-</display>
-</data>
 </url>
 
 </urlset>

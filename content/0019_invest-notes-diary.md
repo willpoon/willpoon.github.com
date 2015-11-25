@@ -1,4 +1,4 @@
-Title: 投(du)资(bo)笔记_update_2015-11-17 22:45
+Title: 投(du)资(bo)笔记
 Date: 2015-11-17 22:45
 Modified: 2015-11-12 10:27
 Category: Life
