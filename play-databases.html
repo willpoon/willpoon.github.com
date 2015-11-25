@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2015-11-24
+    on 2015-11-25
 
         |
         tags:         <a href="/tag/db.html">DB</a>
@@ -145,6 +145,38 @@ RIGHT JOIN t2 ON t1.id = t2.id
 
 
 <h2>MYSQL 不支持 except or minus</h2>
+<h2>DB2 on mac 很难找！</h2>
+<p>我找mac版的艰辛过程：
+本来我打算在mac上安装一个client版的就行了，然后远程到云服务器上。google了半天，发现了一个v9.5版本的，但我的mac是10.10 ， 报错，不支持。</p>
+<div class="highlight"><pre>DBI1189E There has been an attempt to use db2setup 
+on an image for a platform that does not match the current platform 
+&#39;Darwin [x86_64]&#39; on which it is being run.
+
+Explanation:
+
+Possible causes include:
+
+- This DB2 install image is not valid for the current 
+platform.
+
+- The current platform is not supported by DB2.
+
+
+User Response:
+
+Install DB2 using the DB2 install image that corresponds 
+with the current platform &#39;Darwin [x86_64]&#39;.
+</pre></div>
+
+
+<p>没办法，只能装个最新的完整版的：</p>
+<p>根据这个链接：</p>
+<div class="highlight"><pre>https://www-01.ibm.com/marketing/iwm/iwm/web/pick.do?source=swg-db2expressc&amp;S_PKG=dlmacosx&amp;S_TACT=100KG31W&amp;lang=en_US
+</pre></div>
+
+
+<p>进入，注册，然后按要求填写，就可以得到一个下载地址。</p>
+<p>还没安装，晚点再写安装&amp;使用体验。</p>
 <p>2015-11-19 07:46 add SQL3001C </p>
 
 

@@ -51,6 +51,44 @@ db2 'connect to sample user db2etl using "db2etl!QAZ"'
 
 ## MYSQL 不支持 except or minus 
 
+## DB2 on mac 很难找！
+
+我找mac版的艰辛过程：
+本来我打算在mac上安装一个client版的就行了，然后远程到云服务器上。google了半天，发现了一个v9.5版本的，但我的mac是10.10 ， 报错，不支持。
+
+    DBI1189E There has been an attempt to use db2setup 
+    on an image for a platform that does not match the current platform 
+    'Darwin [x86_64]' on which it is being run.
+
+    Explanation:
+
+    Possible causes include:
+
+    - This DB2 install image is not valid for the current 
+    platform.
+
+    - The current platform is not supported by DB2.
+
+
+    User Response:
+
+    Install DB2 using the DB2 install image that corresponds 
+    with the current platform 'Darwin [x86_64]'.
+
+没办法，只能装个最新的完整版的：
+
+根据这个链接：
+
+    https://www-01.ibm.com/marketing/iwm/iwm/web/pick.do?source=swg-db2expressc&S_PKG=dlmacosx&S_TACT=100KG31W&lang=en_US
+
+进入，注册，然后按要求填写，就可以得到一个下载地址。
+
+还没安装，晚点再写安装&使用体验。
+
+
+
+
+
 2015-11-19 07:46 add SQL3001C 
 
 <!-- ^ -->
