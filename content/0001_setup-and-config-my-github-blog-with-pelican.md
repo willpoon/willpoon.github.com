@@ -287,14 +287,46 @@ With this plugin installed, each article and page object has one extra meta data
 ## 优点3: 社交化评论系统的嵌入,促进交流
 通过在博客中嵌入disqus 等社区化评论系统，你可以结交一帮跟你志同道合的朋友！从次博客之路不在孤独！
 
+## 14. 为 www.imx3.com 添加 百度 sitemap 支持 [zz]
+
+google SITE map 支持可以直接用  pelican sitemap 插件 插件生成sitemap.xml 。 
+
+然而，生成的这份sitemap并不能直接提交给百度站长工具平台。
+
+所以，需要参照百度站长工具平台的格式 ![说明](http://zhanzhang.baidu.com/wiki/170#_1什么是XML数据文件？)
+
+方法二： 使用curl 提交。 这个方法很简单：先从sitemap插件中抽取url，然后写入到urls.txt 里面，然后用curl提交即可。
+
+示例 ：
+
+    curl -H 'Content-Type:text/plain' --data-binary @urls.txt "http://data.zz.baidu.com/urls?site=www.imx3.com&token=YrrCk***n7TGD***&type=original";
+
+方法三：
+
+使用js 脚本：把脚本include 到模版里即可：
+
+base.html:
+
+    {% include 'baidusitemap.html' %}
+
+baidusitemap.html:
+
+    <script>
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = '//push.zhanzhang.baidu.com/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
+
+最简单的方法，是添加js. 但是如果页面没有被刷新，可能收录就会比较慢。
+
+curl方式好像是有次数限制的。提交多次会报错。
+
+sitemap.xml 也是被动的。
 
 
-<s> 本文最后更新于2015-11-10 09:53 </s>
 
-<s> 本文最后更新于 2015-11-10 10:40</s>
 
-<s> 本文最后更新于 2015-11-10 Tue 11:19 AM</s>
-
-<s> 本文最后更新于 2015-11-10 Tue 11:19 AM</s>
-
- 本文最后更新于 2015-11-12 23:10
+[zz] 2015-11-25 11:23 添加baidu sitemap 提交方法

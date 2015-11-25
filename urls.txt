@@ -1,5 +1,3 @@
-http://www.imx3.comxsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-http://www.imx3.comhttp://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
 http://www.imx3.com/
 http://www.imx3.com/archives.html
 http://www.imx3.com/tags.html
