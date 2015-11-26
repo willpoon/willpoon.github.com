@@ -96,6 +96,16 @@ Wills-MacBook-Pro:bin db2inst1$ db2 "select count(0) from syscat.tables"
 
 ## MYSQL 不支持 except or minus 
 
+## mysql -A 参数
+
+如果想快点进入mysql交互界面，就使用这个参数。否则，表多的时候，就要等好长时间。
+
+mysql -umeta -pxxxx metadata -h120.xx.xx.xx
+
+Reading table information for completion of table and column names You can turn off this feature to get a quicker startup with -A
+
+No automatic rehashing. One has to use 'rehash' to get table and field completion. This gives a quicker start of mysql and disables rehashing on reconnect.
+
 ## DB2 on mac 很难找！
 
 我找mac版的艰辛过程：
@@ -136,7 +146,6 @@ Wills-MacBook-Pro:bin db2inst1$ db2 "select count(0) from syscat.tables"
 
 2015-11-19 07:46 add SQL3001C 
 
-<!-- ^ -->
 
 ## mysql limit 的用法：
 
@@ -162,11 +171,21 @@ n(10) --  表示从第m行之后，最大可以提取n行。
 
 
 
-<!-- $ -->
+<!-- ^ -->
 
 ## 启动mysqld 的时候，一般加什么参数？
 
 ps -ef|grep -i mysql
    74    96     1   0 10:57AM ??         0:03.49 /usr/local/mysql/bin/mysqld --user=_mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data --plugin-dir=/usr/local/mysql/lib/plugin --log-error=/usr/local/mysql/data/mysqld.local.err --pid-file=/usr/local/mysql/data/mysqld.local.pid
 
+## 远程数据库连接配置
 
+1. db2 
+我的工作电脑是macbook，如果要连接远程的db2，需要在本地做catalog . ibm官方网站上有 v10.1 的expc可以下载。可以用来做客户端或者一个简单的开发环境。mac os x 安装db2exc 要用root用户安装，安装之前要设置sysctl.conf参数，重启。然后最好给db2创建单独的用户db2inst1， 这样sqllib就会自动创建到db2inst1的目录下。使用db2icrt创建实例。使用db2sampl创建sample数据库。如果执行db2start时出现权限问题，就要给sqllib下的adm目录赋权。把原来赋给root的权限，chown到db2inst1 。 
+当db2可以正常连接后，使用db2 catalog 归档远程数据库。注意：node 关键字是让你给节点起个名字，这个名字我们自己随便取，而不是服务器的特定值。先 归档 远程服务器节点，再归档数据库。端口用50000 五万。
+
+2. mysql 
+连接远程的mysql，需要装本地mysql client 。 使用-h 参数指定远程服务器。使用-A 参数，降低连接时等待rehash的时间。
+
+
+<!-- $ -->
