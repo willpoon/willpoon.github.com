@@ -1,6 +1,4 @@
 Title: 设计相关思考
-Date: 2015-11-13 12:55
-Modified: 2015-11-13 12:55
 Category: Tech
 Tags: 设计,程序,艺术,架构
 Slug: about-design

@@ -1,6 +1,4 @@
 Title: todo list 想做/要做的事 
-Date: 2015-11-13 07:37
-Modified: 2015-11-13 07:37
 Category: Life
 Tags: todo,想做,计划
 Slug: todo

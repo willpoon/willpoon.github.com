@@ -1,6 +1,4 @@
 Title: 银行金融业务知识学习
-Date: 2015-11-17 04:32
-Modified: 2015-11-17 04:32
 Category: Tech
 Tags: 银行,金融,业务
 Slug: banking-finance

@@ -1,6 +1,4 @@
 Title: 投(du)资(bo)笔记
-Date: 2015-11-17 22:45
-Modified: 2015-11-12 10:27
 Category: Life
 Tags: 赚钱,投资,赌博,投机,股票,基金
 Slug: invest-notes

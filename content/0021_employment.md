@@ -1,6 +1,4 @@
 Title: 东家,西家,不如自己当家
-Date: 2015-11-12 16:06
-Modified: 2015-11-12 16:06
 Category: Job
 Tags: 日志,笔记,工作,实录
 Slug: employment
