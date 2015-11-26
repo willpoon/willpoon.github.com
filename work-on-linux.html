@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2015-11-24
+    on 2015-11-26
 
         |
         tags:         <a href="/tag/linux.html">linux</a>
@@ -187,6 +187,39 @@ The document has moved
 
 <h1>4. vi vim</h1>
 <p>4.1 批量行缩进: ctrl-v + shift-&gt;</p>
+<p>4.2 快捷键配置</p>
+<p>使用pelican+markdown写博客，总是要手动输入日期时间，很是麻烦，作为一个geek，怎能忍受每次都手工修改日期这种事情发生呢？所以，必须找到一种能够一键插入时间戳的方法！
+对于这种雕虫小技，stackoverflow早已经说烂了，于是，随便找了<a href="http://stackoverflow.com/questions/56052/best-way-to-insert-timestamp-in-vim">一篇</a></p>
+<p>~/.vimrc命令: </p>
+<div class="highlight"><pre>nmap &lt;F3&gt; a&lt;C-R&gt;=strftime(&quot;%Y-%m-%d %a %I:%M %p&quot;)&lt;CR&gt;&lt;Esc&gt;
+imap &lt;F3&gt; &lt;C-R&gt;=strftime(&quot;%Y-%m-%d %a %I:%M %p&quot;)&lt;CR&gt;
+</pre></div>
+
+
+<p>按f3的输出效果: </p>
+<div class="highlight"><pre> 2015-11-08 Sun 11:06 AM
+</pre></div>
+
+
+<p>.vimrc 命令：</p>
+<div class="highlight"><pre>nmap &lt;F4&gt; a&lt;C-R&gt;=strftime(&quot;%Y-%m-%d %H:%M&quot;)&lt;CR&gt;&lt;Esc&gt;
+imap &lt;F4&gt; &lt;C-R&gt;=strftime(&quot;%Y-%m-%d %I:%M&quot;)&lt;CR&gt;
+</pre></div>
+
+
+<p>按f4的输出效果：</p>
+<div class="highlight"><pre>  2015-11-08 11:06
+</pre></div>
+
+
+<p>注意：f3的时间戳格式是不适合放在pelican的Date: 和 Modified 里的。f4才是。</p>
+<p>现在，展示f3的用法：</p>
+<div class="highlight"><pre>本文最后更新于 2015-11-08 Sun 11:23 AM
+</pre></div>
+
+
+<p>That's it !</p>
+<p>Enjoy!</p>
 <h1>5. svn</h1>
 <h2>5.1 回滚到上一版本</h2>
 <p>svn merge -c -2683 db_load_data_comm.sh </p>
@@ -241,6 +274,9 @@ The document has moved
 </li>
 </ol>
 <p><s> 本文最后更新于：2015-11-11 19:34 </s></p>
+<h2>date 命令 求 yesterday 的方法，mac和linux 不一样！</h2>
+<p>linux : -d 参数</p>
+<p>mac   : -v 参数</p>
 <p>[git] 2015-11-24 13:05 add git</p>
 
         <div class="sharethis-bottom">
