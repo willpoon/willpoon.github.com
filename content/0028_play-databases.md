@@ -37,6 +37,51 @@ db2 'connect to sample user db2etl using "db2etl!QAZ"'
 
 从 SYSIBMADM.ADMINTABINFO  统计。
 
+
+##  如何catalog 一个远程数据库
+
+Wills-MacBook-Pro:bin db2inst1$ db2 UNCATALOG DATABASE sample
+DB20000I  The UNCATALOG DATABASE command completed successfully.
+DB21056W  Directory changes may not be effective until the directory cache is 
+refreshed.
+Wills-MacBook-Pro:bin db2inst1$ db2 UNCATALOG node devnode   
+DB20000I  The UNCATALOG NODE command completed successfully.
+DB21056W  Directory changes may not be effective until the directory cache is 
+refreshed.
+Wills-MacBook-Pro:bin db2inst1$ db2 catalog tcpip node devnode remote 120.xx.xx.xx server 50000
+DB20000I  The CATALOG TCPIP NODE command completed successfully.
+DB21056W  Directory changes may not be effective until the directory cache is 
+refreshed.
+Wills-MacBook-Pro:bin db2inst1$ db2 catalog database sample at node devnode
+DB20000I  The CATALOG DATABASE command completed successfully.
+DB21056W  Directory changes may not be effective until the directory cache is 
+refreshed.
+Wills-MacBook-Pro:bin db2inst1$ db2 terminate
+DB20000I  The TERMINATE command completed successfully.
+Wills-MacBook-Pro:bin db2inst1$ db2 connect to sample
+SQL30082N  Security processing failed with reason "3" ("PASSWORD MISSING").  
+SQLSTATE=08001
+Wills-MacBook-Pro:bin db2inst1$ db2 connect to sample user db2inst1       
+Enter current password for db2inst1: 
+
+   Database Connection Information
+
+ Database server        = DB2/LINUXX8664 9.7.0
+ SQL authorization ID   = DB2INST1
+ Local database alias   = SAMPLE
+
+Wills-MacBook-Pro:bin db2inst1$ pwd
+/Users/db2inst1/sqllib/bin
+Wills-MacBook-Pro:bin db2inst1$ db2 "select count(0) from syscat.tables"
+
+1          
+-----------
+        426
+
+  1 record(s) selected.
+
+
+
 # MYSQL 
 
 ## MYSQL 不支持 full outer join 
@@ -118,3 +163,10 @@ n(10) --  表示从第m行之后，最大可以提取n行。
 
 
 <!-- $ -->
+
+## 启动mysqld 的时候，一般加什么参数？
+
+ps -ef|grep -i mysql
+   74    96     1   0 10:57AM ??         0:03.49 /usr/local/mysql/bin/mysqld --user=_mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data --plugin-dir=/usr/local/mysql/lib/plugin --log-error=/usr/local/mysql/data/mysqld.local.err --pid-file=/usr/local/mysql/data/mysqld.local.pid
+
+

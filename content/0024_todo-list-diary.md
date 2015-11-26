@@ -26,6 +26,9 @@ Authors: Poon
 
 ### db2 etl development  5%
 
+### 向各大搜索引擎提交sitemap.xml
+
+### 
 
 
 ## 近期:

@@ -1,14 +1,14 @@
 <!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta name="author" content="Poon" />
     <meta name="robots" content="index, follow"/>
 
-    <meta property="og:title" content="主流数据库安装、维护、开发与管理"/>
-    <meta property="og:url" content="/play-databases.html"/>
+    <meta property="og:title" content="Work on Mac!"/>
+    <meta property="og:url" content="/work-on-Mac.html"/>
     <meta property="og:site_name" content="i.M.X.3"/>
     <meta property="og:type" content="article"/>
 
-    <link rel="canonical" href="/play-databases.html" />
+    <link rel="canonical" href="/work-on-Mac.html" />
 
-    <title>主流数据库安装、维护、开发与管理 | i.M.X.3</title>
+    <title>Work on Mac! | i.M.X.3</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
@@ -83,8 +83,8 @@
     <article>
       <header>
         <h1 class="entry-title">
-          <a href="/play-databases.html" rel="bookmark"
-             title="Permalink to 主流数据库安装、维护、开发与管理">主流数据库安装、维护、开发与管理</a></h1>
+          <a href="/work-on-Mac.html" rel="bookmark"
+             title="Permalink to Work on Mac!">Work on Mac!</a></h1>
       </header>
       <div class="entry-content">
 <footer class="post-info">
@@ -97,16 +97,13 @@
     on 2015-11-26
 
         |
-        tags:         <a href="/tag/db.html">DB</a>
-        <a href="/tag/database.html">database</a>
-        <a href="/tag/shu-ju-ku.html">数据库</a>
-        <a href="/tag/db2.html">db2</a>
-        <a href="/tag/oracle.html">oracle</a>
-        <a href="/tag/mysql.html">mysql</a>
+        tags:         <a href="/tag/mac.html">Mac</a>
+        <a href="/tag/osx.html">OSX</a>
+        <a href="/tag/unix.html">Unix</a>
 
 
         |
-        <a href="/play-databases.html#disqus_thread">comments</a>
+        <a href="/work-on-Mac.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->
@@ -117,131 +114,79 @@
           <span class='st_email_hcount' displayText='Email'></span>
         </div>
 
-        <p>记录数据库 安装、维护、开发与管理 的各种操作&amp;技巧。包含但不仅限于db2,oracle , mysql , sqlite...</p>
-<h1>DB2</h1>
-<h2>启动&amp;连接&amp;测试</h2>
-<p>su - db2inst1</p>
-<p>db2stop</p>
-<p>db2start</p>
-<p>db2 connect to sample</p>
-<h2>密码带特殊字符时，如果连接</h2>
-<p>db2 'connect to sample user db2etl using "db2etl!QAZ"'</p>
-<p>使用'' 包住connect 语句</p>
-<p>使用 "" 包住 密码串。</p>
-<p>但是！ 这种方法由于有' ' 的出现，导致变量不能被解释！这样的话，在shell中调用db2 就会遇到一些麻烦了！</p>
-<h2>SQL3001C  An I/O error (reason = "sqlofopn -2079391743") occurred while  opening the output file.</h2>
-<p>报这个错的原因是路径不存在或路径没有写入权限。</p>
-<h2>统计表大小，用户空间大小</h2>
-<p>从 SYSIBMADM.ADMINTABINFO  统计。</p>
-<h2>如何catalog 一个远程数据库</h2>
-<p>Wills-MacBook-Pro:bin db2inst1$ db2 UNCATALOG DATABASE sample
-DB20000I  The UNCATALOG DATABASE command completed successfully.
-DB21056W  Directory changes may not be effective until the directory cache is 
-refreshed.
-Wills-MacBook-Pro:bin db2inst1$ db2 UNCATALOG node devnode <br />
-DB20000I  The UNCATALOG NODE command completed successfully.
-DB21056W  Directory changes may not be effective until the directory cache is 
-refreshed.
-Wills-MacBook-Pro:bin db2inst1$ db2 catalog tcpip node devnode remote 120.xx.xx.xx server 50000
-DB20000I  The CATALOG TCPIP NODE command completed successfully.
-DB21056W  Directory changes may not be effective until the directory cache is 
-refreshed.
-Wills-MacBook-Pro:bin db2inst1$ db2 catalog database sample at node devnode
-DB20000I  The CATALOG DATABASE command completed successfully.
-DB21056W  Directory changes may not be effective until the directory cache is 
-refreshed.
-Wills-MacBook-Pro:bin db2inst1$ db2 terminate
-DB20000I  The TERMINATE command completed successfully.
-Wills-MacBook-Pro:bin db2inst1$ db2 connect to sample
-SQL30082N  Security processing failed with reason "3" ("PASSWORD MISSING").<br />
-SQLSTATE=08001
-Wills-MacBook-Pro:bin db2inst1$ db2 connect to sample user db2inst1     <br />
-Enter current password for db2inst1: </p>
-<p>Database Connection Information</p>
-<p>Database server        = DB2/LINUXX8664 9.7.0
- SQL authorization ID   = DB2INST1
- Local database alias   = SAMPLE</p>
+        <p>Mac 是darwin unix 内核，很多东西跟linux不同。所以，还是单独把Mac拿出来说说。</p>
+<p>仅以此帖，记录在linux下的点点滴滴。</p>
+<h2>1. ulimit -n 65000</h2>
+<p>-bash: ulimit: open files: cannot modify limit: Invalid argument</p>
+<p>这个异常跟mac 的版本有关。</p>
+<p>格式:</p>
+<div class="highlight"><pre>launchctl limit maxfiles softcnt hardcnt
+</pre></div>
+
+
+<p>修改soft：</p>
+<div class="highlight"><pre>launchctl limit maxfiles 512 unlimited
+</pre></div>
+
+
+<p>修改hard:</p>
+<div class="highlight"><pre>launchctl limit maxfiles unlimited unlimited
+</pre></div>
+
+
+<p>[1] 2015-11-26 09:41 init </p>
+<p>关于db2安装中遇到的ulimit参数问题，先改 sysctl.conf , 然后重启！很多问题都能解决！sysctl.conf ! </p>
+<h2>2. db2 安装</h2>
+<p>db2 的安装还是得用root 用户进行。否则会报错的。</p>
+<h3>db2 get dbm cfg</h3>
+<h3>db2licm -l</h3>
+<p>Product name:                     "DB2 Express-C"
+Expiry date:                      "02/23/2016 (Try &amp; Buy)"
+Product identifier:               "db2expc"
+Version information:              "10.1"
+Max number of CPUs:               "2"
+Max amount of memory (GB):        "4"
+Enforcement policy:               "Soft Stop"</p>
+<h3>创建实例：</h3>
+<p>/opt/IBM/db2/V10.1/instance/db2icrt</p>
+<h3>问题： db2start SQL1042C An unexpected system error occurred. SQLSTATE=58004</h3>
+<p>解决：
+Wills-MacBook-Pro:sqllib db2inst1$ sudo chown db2inst1 /Users/db2inst1/sqllib/adm/*
+Wills-MacBook-Pro:sqllib db2inst1$ db2start
+SQL1063N  DB2START processing was successful.</p>
+<p>http://stackoverflow.com/questions/33138859/cannot-db2start-using-db2-express-in-mac</p>
+<h3>问题 ： SQL1031N  The database directory cannot be found on the indicated file system.</h3>
+<p>Wills-MacBook-Pro:sqllib db2inst1$ db2 connect to db2inst1
+SQL1031N  The database directory cannot be found on the indicated file system. </p>
+<p>解决:
+ Wills-MacBook-Pro:bin db2inst1$ db2sampl </p>
+<p>Creating database "SAMPLE"...
+  Connecting to database "SAMPLE"...
+  Creating tables and data in schema "DB2INST1"...
+  Creating tables with XML columns and XML data in schema "DB2INST1"...</p>
+<p>'db2sampl' processing complete.</p>
 <p>Wills-MacBook-Pro:bin db2inst1$ pwd
 /Users/db2inst1/sqllib/bin
-Wills-MacBook-Pro:bin db2inst1$ db2 "select count(0) from syscat.tables"</p>
+Wills-MacBook-Pro:bin db2inst1$ db2 connect to sample</p>
+<p>Database Connection Information</p>
+<p>Database server        = DB2/DARWIN 10.1.0
+ SQL authorization ID   = DB2INST1
+ Local database alias   = SAMPLE</p>
+<p>Wills-MacBook-Pro:bin db2inst1$ db2 "select count(0) from syscat.tables"</p>
 <h2>1</h2>
-<div class="highlight"><pre>    426
+<div class="highlight"><pre>    467
 </pre></div>
 
 
 <p>1 record(s) selected.</p>
-<h1>MYSQL</h1>
-<h2>MYSQL 不支持 full outer join</h2>
-<p>解决办法：</p>
-<div class="highlight"><pre>SELECT * FROM t1
-LEFT JOIN t2 ON t1.id = t2.id
-UNION
-SELECT * FROM t1
-RIGHT JOIN t2 ON t1.id = t2.id
-</pre></div>
-
-
-<h2>MYSQL 不支持 except or minus</h2>
-<h2>DB2 on mac 很难找！</h2>
-<p>我找mac版的艰辛过程：
-本来我打算在mac上安装一个client版的就行了，然后远程到云服务器上。google了半天，发现了一个v9.5版本的，但我的mac是10.10 ， 报错，不支持。</p>
-<div class="highlight"><pre>DBI1189E There has been an attempt to use db2setup 
-on an image for a platform that does not match the current platform 
-&#39;Darwin [x86_64]&#39; on which it is being run.
-
-Explanation:
-
-Possible causes include:
-
-- This DB2 install image is not valid for the current 
-platform.
-
-- The current platform is not supported by DB2.
-
-
-User Response:
-
-Install DB2 using the DB2 install image that corresponds 
-with the current platform &#39;Darwin [x86_64]&#39;.
-</pre></div>
-
-
-<p>没办法，只能装个最新的完整版的：</p>
-<p>根据这个链接：</p>
-<div class="highlight"><pre>https://www-01.ibm.com/marketing/iwm/iwm/web/pick.do?source=swg-db2expressc&amp;S_PKG=dlmacosx&amp;S_TACT=100KG31W&amp;lang=en_US
-</pre></div>
-
-
-<p>进入，注册，然后按要求填写，就可以得到一个下载地址。</p>
-<p>还没安装，晚点再写安装&amp;使用体验。</p>
-<p>2015-11-19 07:46 add SQL3001C </p>
-
-
-<h2>mysql limit 的用法：</h2>
-<div class="highlight"><pre>mysql&gt; SELECT * FROM table LIMIT 5,10; // 检索记录行 6-15
-</pre></div>
-
-
-<p>limit m,n:</p>
-<p>m(5) -- 表示偏移量。也就是要skip掉m行。</p>
-<p>n(10) --  表示从第m行之后，最大可以提取n行。</p>
-<h2>关联技巧:恢复空表</h2>
-<div class="highlight"><pre>INSERT INTO <span class="cp">${</span><span class="n">PDM_SCH</span><span class="cp">}</span>.LI_COL
-SELECT B.*
-FROM <span class="cp">${</span><span class="n">PDM_SCH</span><span class="cp">}</span>.LI_COL_BAK B,
-(
-    SELECT COUNT(1) AS CNT
-        FROM <span class="cp">${</span><span class="n">PDM_SCH</span><span class="cp">}</span>.LI_COL LIMIT 0,1
-        ) O
-        WHERE O.CNT=0;
-</pre></div>
-
-
-
-
-<h2>启动mysqld 的时候，一般加什么参数？</h2>
-<p>ps -ef|grep -i mysql
-   74    96     1   0 10:57AM ??         0:03.49 /usr/local/mysql/bin/mysqld --user=_mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data --plugin-dir=/usr/local/mysql/lib/plugin --log-error=/usr/local/mysql/data/mysqld.local.err --pid-file=/usr/local/mysql/data/mysqld.local.pid</p>
+<h3>mac下如何用date 做日期计算和调整 ， 例如，计算昨日。</h3>
+<p>ref: http://lists.apple.com/archives/macos-x-server/2005/Sep/msg00067.html</p>
+<p>date -v +1d +"%Y%m%d"
+date -v -1d +"%Y%m%d"</p>
+<p>-v      Adjust (i.e., take the current date and display the result of the adjustment; not actually set the date) the second, minute, hour, month day, week
+             day, month or year according to val.  If val is preceded with a plus or minus sign, the date is adjusted forwards or backwards according to the
+             remaining string, otherwise the relevant part of the date is set.  The date can be adjusted as many times as required using these flags.  Flags are
+             processed in the order given.</p>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>
@@ -254,7 +199,7 @@ FROM <span class="cp">${</span><span class="n">PDM_SCH</span><span class="cp">}<
         <h2>Comments</h2>
         <div id="disqus_thread"></div>
         <script type="text/javascript">
-          var disqus_identifier = "play-databases.html";
+          var disqus_identifier = "work-on-Mac.html";
           (function() {
           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
           dsq.src = '//gitwillpoonimx3.disqus.com/embed.js';
