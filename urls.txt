@@ -20,6 +20,7 @@ http://www.imx3.com/work-on-Mac.html
 http://www.imx3.com/this-is-a-story.html
 http://www.imx3.com/tools-to-complete-jobs.html
 http://www.imx3.com/about.html
+http://www.imx3.com/test.html
 http://www.imx3.com/category/about.html
 http://www.imx3.com/category/career.html
 http://www.imx3.com/category/job.html

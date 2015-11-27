@@ -4,6 +4,7 @@ Tags: 心灵,感悟,闲话,胡扯,攀谈
 Slug: poons-talk 
 Authors: Poon
 
+[TOC]
 
 听寒经，变神经；看攀谈，毁三观。
 
