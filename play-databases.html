@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2015-11-26
+    on 2015-11-27
 
         |
         tags:         <a href="/tag/db.html">DB</a>
@@ -117,8 +117,35 @@
           <span class='st_email_hcount' displayText='Email'></span>
         </div>
 
+        <nav class="toc">
+        <div class="toc">
+<ul>
+<li><a href="#db2">DB2</a><ul>
+<li><a href="#_1">启动&amp;连接&amp;测试</a></li>
+<li><a href="#_2">密码带特殊字符时，如果连接</a></li>
+<li><a href="#sql3001c-an-io-error-reason-sqlofopn-2079391743-occurred-while-opening-the-output-file">SQL3001C  An I/O error (reason = "sqlofopn -2079391743") occurred while  opening the output file.</a></li>
+<li><a href="#_3">统计表大小，用户空间大小</a></li>
+<li><a href="#catalog">如何catalog 一个远程数据库</a></li>
+<li><a href="#1">1</a></li>
+</ul>
+</li>
+<li><a href="#mysql">MYSQL</a><ul>
+<li><a href="#mysql-full-outer-join">MYSQL 不支持 full outer join</a></li>
+<li><a href="#mysql-except-or-minus">MYSQL 不支持 except or minus</a></li>
+<li><a href="#mysql-a">mysql -A 参数</a></li>
+<li><a href="#db2-on-mac">DB2 on mac 很难找！</a></li>
+<li><a href="#mysql-limit">mysql limit 的用法：</a></li>
+<li><a href="#_4">关联技巧:恢复空表</a></li>
+<li><a href="#mysqld">启动mysqld 的时候，一般加什么参数？</a></li>
+<li><a href="#_5">远程数据库连接配置</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </nav>
 
         <p>记录数据库 安装、维护、开发与管理 的各种操作&amp;技巧。包含但不仅限于db2,oracle , mysql , sqlite...</p>
+
 <h1 id="db2">DB2</h1>
 <h2 id="_1">启动&amp;连接&amp;测试</h2>
 <p>su - db2inst1</p>
@@ -139,7 +166,7 @@
 DB20000I  The UNCATALOG DATABASE command completed successfully.
 DB21056W  Directory changes may not be effective until the directory cache is 
 refreshed.
-Wills-MacBook-Pro:bin db2inst1$ db2 UNCATALOG node devnode <br />
+Wills-MacBook-Pro:bin db2inst1$ db2 UNCATALOG node devnode <br/>
 DB20000I  The UNCATALOG NODE command completed successfully.
 DB21056W  Directory changes may not be effective until the directory cache is 
 refreshed.
@@ -154,9 +181,9 @@ refreshed.
 Wills-MacBook-Pro:bin db2inst1$ db2 terminate
 DB20000I  The TERMINATE command completed successfully.
 Wills-MacBook-Pro:bin db2inst1$ db2 connect to sample
-SQL30082N  Security processing failed with reason "3" ("PASSWORD MISSING").<br />
+SQL30082N  Security processing failed with reason "3" ("PASSWORD MISSING").<br/>
 SQLSTATE=08001
-Wills-MacBook-Pro:bin db2inst1$ db2 connect to sample user db2inst1     <br />
+Wills-MacBook-Pro:bin db2inst1$ db2 connect to sample user db2inst1     <br/>
 Enter current password for db2inst1: </p>
 <p>Database Connection Information</p>
 <p>Database server        = DB2/LINUXX8664 9.7.0
@@ -229,7 +256,6 @@ FROM ${PDM_SCH}.LI_COL_BAK B,
         ) O
         WHERE O.CNT=0;
 </code></pre>
-
 
 <h2 id="mysqld">启动mysqld 的时候，一般加什么参数？</h2>
 <p>ps -ef|grep -i mysql

@@ -4,6 +4,7 @@ Tags: 银行,金融,业务
 Slug: banking-finance
 Authors: Poon
 
+[TOC]
 
 # 读银行业务与信息化系统分析（刘士峰），网点转型。
 
