@@ -114,32 +114,27 @@
           <span class='st_email_hcount' displayText='Email'></span>
         </div>
 
+
         <p>Mac 是darwin unix 内核，很多东西跟linux不同。所以，还是单独把Mac拿出来说说。</p>
 <p>仅以此帖，记录在linux下的点点滴滴。</p>
-<h2>1. ulimit -n 65000</h2>
+<h2 id="1-ulimit-n-65000">1. ulimit -n 65000</h2>
 <p>-bash: ulimit: open files: cannot modify limit: Invalid argument</p>
 <p>这个异常跟mac 的版本有关。</p>
 <p>格式:</p>
-<div class="highlight"><pre>launchctl limit maxfiles softcnt hardcnt
-</pre></div>
-
-
+<pre><code>launchctl limit maxfiles softcnt hardcnt
+</code></pre>
 <p>修改soft：</p>
-<div class="highlight"><pre>launchctl limit maxfiles 512 unlimited
-</pre></div>
-
-
+<pre><code>launchctl limit maxfiles 512 unlimited
+</code></pre>
 <p>修改hard:</p>
-<div class="highlight"><pre>launchctl limit maxfiles unlimited unlimited
-</pre></div>
-
-
+<pre><code>launchctl limit maxfiles unlimited unlimited
+</code></pre>
 <p>[1] 2015-11-26 09:41 init </p>
 <p>关于db2安装中遇到的ulimit参数问题，先改 sysctl.conf , 然后重启！很多问题都能解决！sysctl.conf ! </p>
-<h2>2. db2 安装</h2>
+<h2 id="2-db2">2. db2 安装</h2>
 <p>db2 的安装还是得用root 用户进行。否则会报错的。</p>
-<h3>db2 get dbm cfg</h3>
-<h3>db2licm -l</h3>
+<h3 id="db2-get-dbm-cfg">db2 get dbm cfg</h3>
+<h3 id="db2licm-l">db2licm -l</h3>
 <p>Product name:                     "DB2 Express-C"
 Expiry date:                      "02/23/2016 (Try &amp; Buy)"
 Product identifier:               "db2expc"
@@ -147,15 +142,15 @@ Version information:              "10.1"
 Max number of CPUs:               "2"
 Max amount of memory (GB):        "4"
 Enforcement policy:               "Soft Stop"</p>
-<h3>创建实例：</h3>
+<h3 id="_1">创建实例：</h3>
 <p>/opt/IBM/db2/V10.1/instance/db2icrt</p>
-<h3>问题： db2start SQL1042C An unexpected system error occurred. SQLSTATE=58004</h3>
+<h3 id="db2start-sql1042c-an-unexpected-system-error-occurred-sqlstate58004">问题： db2start SQL1042C An unexpected system error occurred. SQLSTATE=58004</h3>
 <p>解决：
 Wills-MacBook-Pro:sqllib db2inst1$ sudo chown db2inst1 /Users/db2inst1/sqllib/adm/*
 Wills-MacBook-Pro:sqllib db2inst1$ db2start
 SQL1063N  DB2START processing was successful.</p>
 <p>http://stackoverflow.com/questions/33138859/cannot-db2start-using-db2-express-in-mac</p>
-<h3>问题 ： SQL1031N  The database directory cannot be found on the indicated file system.</h3>
+<h3 id="sql1031n-the-database-directory-cannot-be-found-on-the-indicated-file-system">问题 ： SQL1031N  The database directory cannot be found on the indicated file system.</h3>
 <p>Wills-MacBook-Pro:sqllib db2inst1$ db2 connect to db2inst1
 SQL1031N  The database directory cannot be found on the indicated file system. </p>
 <p>解决:
@@ -173,13 +168,11 @@ Wills-MacBook-Pro:bin db2inst1$ db2 connect to sample</p>
  SQL authorization ID   = DB2INST1
  Local database alias   = SAMPLE</p>
 <p>Wills-MacBook-Pro:bin db2inst1$ db2 "select count(0) from syscat.tables"</p>
-<h2>1</h2>
-<div class="highlight"><pre>    467
-</pre></div>
-
-
+<h2 id="1">1</h2>
+<pre><code>    467
+</code></pre>
 <p>1 record(s) selected.</p>
-<h3>mac下如何用date 做日期计算和调整 ， 例如，计算昨日。</h3>
+<h3 id="macdate">mac下如何用date 做日期计算和调整 ， 例如，计算昨日。</h3>
 <p>ref: http://lists.apple.com/archives/macos-x-server/2005/Sep/msg00067.html</p>
 <p>date -v +1d +"%Y%m%d"
 date -v -1d +"%Y%m%d"</p>

@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2015-11-25
+    on 2015-11-27
 
         |
         tags:         <a href="/tag/github.html">github</a>
@@ -115,10 +115,52 @@
           <span class='st_email_hcount' displayText='Email'></span>
         </div>
 
-        <h1>背景</h1>
+        <nav class="toc">
+        <div class="toc">
+<ul>
+<li><a href="#_1">背景</a><ul>
+<li><a href="#_2">问题</a></li>
+<li><a href="#_3">优点</a></li>
+<li><a href="#_4">缺点</a></li>
+</ul>
+</li>
+<li><a href="#_5">部署流程</a><ul>
+<li><a href="#githubcom">注册github.com 的帐号</a></li>
+<li><a href="#python-pelican">在你的电脑上安装python 和 pelican</a><ul>
+<li><a href="#1pelican-quickstart">问题1.执行pelican-quickstart 命令，有很多问题提示，该怎么选择，选错了怎么办？</a></li>
+<li><a href="#2contentoutputgithub">问题2:出于方便备份需要，我想将content目录放到output目录中，一起提交到github，是否可行？</a></li>
+<li><a href="#3content">问题3:如果文章已经写得差不多，已经放在了content目录下，但是暂时不想发布，又不想另外找地方保存，有什么方法可以不让文章自动发布呢？</a></li>
+</ul>
+</li>
+<li><a href="#4">问题4：如何 "一键"提交&amp;发布博客：</a></li>
+<li><a href="#5warning-there-are-2-variants-of-oracle-biee-develop-with-lang-zh">问题5:WARNING: There are 2 variants of "oracle-biee-develop" with lang zh</a></li>
+<li><a href="#critical-runtimeerror-file-develophtml-is-to-be-overwritten">CRITICAL: RuntimeError: File develop.html is to be overwritten</a></li>
+<li><a href="#6-disqus-reveal">6. 错误或不相关的disqus reveal , 如何删除？</a></li>
+<li><a href="#7tag-cloud">7:为何我的主题支持tag cloud ， 但是生成的网站就是无法展示</a></li>
+<li><a href="#8google-httpsanalyticsgooglecom">8.如何添加google https://analytics.google.com/ 的统计？</a></li>
+<li><a href="#9markdown">9.如何在markdown中使用删除线？</a></li>
+<li><a href="#10google-page-views-pelican-sslsslerror-errno-185090050-_sslc343-error0b084002x509-certificate-routinesx509_load_cert_crl_filesystem-lib">10.安装google page views 提取工具到pelican时，遇到： ssl.SSLError: [Errno 185090050] _ssl.c:343: error:0B084002:x509 certificate routines:X509_load_cert_crl_file:system lib 的解决。</a></li>
+<li><a href="#11-ga_page_view-page-view">11.安装 ga_page_view 插件后，仍无法显示page view，还需要作什么设置？</a></li>
+<li><a href="#12">12. 如何灵活截取文章片段作为摘要信息？</a></li>
+<li><a href="#13-default_date">13. 使用DEFAULT_DATE 来设置文章日期。</a></li>
+</ul>
+</li>
+<li><a href="#_6">点评</a><ul>
+<li><a href="#1-pelican">优点1: pelican 修改标题和更新文章不会影响原文章的链接引用。</a></li>
+<li><a href="#2-pelican">优点2: pelican 可以根据修改时间来决定博文的展示顺序。</a></li>
+<li><a href="#3">优点3: 社交化评论系统的嵌入,促进交流</a></li>
+<li><a href="#14-wwwimx3com-sitemap-zz">14. 为 www.imx3.com 添加 百度 sitemap 支持 [zz]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </nav>
+
+        
+<h1 id="_1">背景</h1>
 <p>08年建了一个 个人博客网站，购买了hostmonster的空间和一个.info的域名，写过几篇文章，后来不了了之。空间被回收，域名过期，资料丢失，很是遗憾。所以一直有重新开一个的想法。但是想起国内建站的烦人的备案审查和国外服务器的龟速，终究还没有重建。最近有感于一些东西还是有必要记录&amp;分享，故又萌生了重新搭建博客的想法。</p>
 <p>现在再看博客市场，已经比以前成熟了很多。各种平台网站开的小清新博客一大堆，但在平台网站上搭博客的弊端是显而易见的：</p>
-<h4>问题</h4>
+<h4 id="_2">问题</h4>
 <ul>
 <li>流量都贡献给了平台</li>
 <li>难以树立个人品牌</li>
@@ -134,7 +176,7 @@
 <li>有可能平台帮助推广 </li>
 </ul>
 <p>总的来说，缺点大于优点，放弃。继而考虑自己申请域名和空间。就在15.11.2日，我申请了godaddy的.com域名(两年¥116走支付宝，有无coupon都是一样的价格，但需要在网上找coupon链接，否者自己在官网购买是无法支付的。)，申请了digitaloccean的vps，$5每月，拿个coupon可以在账户上充值$10,够用3个月了。域名就没有什么好说的了。说说digitaloccean的vps:</p>
-<h4>优点</h4>
+<h4 id="_3">优点</h4>
 <ul>
 <li>管理界面清爽，相比godaddy</li>
 <li>管理菜单操作简单，相比godaddy</li>
@@ -142,7 +184,7 @@
 <li>支付也方便，相比godaddy</li>
 </ul>
 <p>（godaddy我是黑定了，哈哈）</p>
-<h4>缺点</h4>
+<h4 id="_4">缺点</h4>
 <ul>
 <li>官网页面加载速度慢，想快得用vpn</li>
 <li>客服不到位(vps才申请了两天就被锁了,说我的主机流量异常，我还没开始搭建网站啊啊啊啊,我至今都不知道我的主机是什么原因异常，难道被黑了？腾讯、阿里云也会发邮件报告各种异常，而你却直接通知我vps被锁定？而且只能重建vps？！！！这一点是不能忍受的！！！)</li>
@@ -178,158 +220,101 @@
 3. 使用类似github＋静态站＋评论系统 这样的方式写</p>
 <p>比照自己，似乎也这么走来的。曾经在几个平台，如sina,和讯，qzone等网站开通过博客，虽然没有写过几篇文章，但是也算这么走过来的。自己架网站的事情，正如上所提到的，做过两遍了。而现在，我正在做第三种，采用这种方式搭建博客的好处，就是维护成本低！</p>
 <p>闲话休提，下面就我部署这个博客遇到的问题说说,由于这种建博客的方式相对geek一些，对于没有IT基础的盆友，是比较困难的，这里默认你都是有it底的，至少对root , python , mac/linux ,github等都是有概念的。</p>
-<h1>部署流程</h1>
-<h2>注册github.com 的帐号</h2>
+<h1 id="_5">部署流程</h1>
+<h2 id="githubcom">注册github.com 的帐号</h2>
 <p>这里我就不多说了，直接上官方网站注册即可。而我早前已经注册过，我的github是 https://github.com/willpoon 。</p>
-<p><img alt="新建repository" src="img/00001-01.jpg" />
+<p><img alt="新建repository" src="img/00001-01.jpg"/>
 图1 ： 新建repository</p>
-<p><img alt="起名字" src="img/00001-02.jpg" />
+<p><img alt="起名字" src="img/00001-02.jpg"/>
 图2 ： 起名
 github要求我们对用于user pages的repository，要用 ：gitusername+github.[com|io] 格式的用户名，如下图。不知道为什么，可能是为了方便管理吧。
-<img alt="起名字" src="img/00001-03.jpg" /></p>
+<img alt="起名字" src="img/00001-03.jpg"/></p>
 <p>参考：https://pages.github.com</p>
-<h2>在你的电脑上安装python 和 pelican</h2>
+<h2 id="python-pelican">在你的电脑上安装python 和 pelican</h2>
 <p>请使用root 权限在电脑上安装python和pilican 。
 然后使用 pelican-quickstart 来初始化一个本地目录结构，用于维护你的博客。关于你博客的所有设置，都是在生成的这个目录中维护。</p>
-<h3>问题1.执行pelican-quickstart 命令，有很多问题提示，该怎么选择，选错了怎么办？</h3>
+<h3 id="1pelican-quickstart">问题1.执行pelican-quickstart 命令，有很多问题提示，该怎么选择，选错了怎么办？</h3>
 <p>不用担心，选项所生成的配置，都在pelicanconf.py 中保存，错了可以随时修改。
 例如我的plicanconf.py 配置：</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
-<span class="c"># -*- coding: utf-8 -*- #</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+<pre><code>#!/usr/bin/env python
+# -*- coding: utf-8 -*- #
+from __future__ import unicode_literals
 
-<span class="n">AUTHOR</span> <span class="o">=</span> <span class="s">u&#39;poon&#39;</span>
-<span class="n">SITENAME</span> <span class="o">=</span> <span class="s">u&#39;i.M.X.3&#39;</span>
-<span class="n">SITEURL</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+AUTHOR = u'poon'
+SITENAME = u'i.M.X.3'
+SITEURL = ''
 
-<span class="n">PATH</span> <span class="o">=</span> <span class="s">&#39;output/content&#39;</span>
+PATH = 'output/content'
 
-<span class="n">TIMEZONE</span> <span class="o">=</span> <span class="s">&#39;Asia/Shanghai&#39;</span>
+TIMEZONE = 'Asia/Shanghai'
 
-<span class="n">DEFAULT_LANG</span> <span class="o">=</span> <span class="s">u&#39;zh&#39;</span>
+DEFAULT_LANG = u'zh'
 
-<span class="c"># Feed generation is usually not desired when developing</span>
-<span class="n">FEED_ALL_ATOM</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="n">CATEGORY_FEED_ATOM</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="n">TRANSLATION_FEED_ATOM</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="n">AUTHOR_FEED_ATOM</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="n">AUTHOR_FEED_RSS</span> <span class="o">=</span> <span class="bp">None</span>
+# Feed generation is usually not desired when developing
+FEED_ALL_ATOM = None
+CATEGORY_FEED_ATOM = None
+TRANSLATION_FEED_ATOM = None
+AUTHOR_FEED_ATOM = None
+AUTHOR_FEED_RSS = None
 
-<span class="c"># Blogroll</span>
-<span class="c">#LINKS = ((&#39;Pelican&#39;, &#39;http://getpelican.com/&#39;),</span>
-<span class="c">#         (&#39;Python.org&#39;, &#39;http://python.org/&#39;),</span>
-<span class="c">#         (&#39;Jinja2&#39;, &#39;http://jinja.pocoo.org/&#39;),</span>
-<span class="c">#         (&#39;You can modify those links in your config file&#39;, &#39;#&#39;),)</span>
+# Blogroll
+#LINKS = (('Pelican', 'http://getpelican.com/'),
+#         ('Python.org', 'http://python.org/'),
+#         ('Jinja2', 'http://jinja.pocoo.org/'),
+#         ('You can modify those links in your config file', '#'),)
 
-<span class="n">LINKS</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;LinkedIn&#39;</span><span class="p">,</span> <span class="s">&#39;https://www.linkedin.com&#39;</span><span class="p">),</span>
-         <span class="p">(</span><span class="s">&#39;SlideShare&#39;</span><span class="p">,</span> <span class="s">&quot;http://www.slideshare.net&quot;</span><span class="p">),</span>
-         <span class="p">(</span><span class="s">&#39;Github&#39;</span><span class="p">,</span> <span class="s">&quot;https://www.github.com&quot;</span><span class="p">),</span>
-         <span class="p">(</span><span class="s">&#39;知乎&#39;</span><span class="p">,</span> <span class="s">&quot;http://www.zhihu.com&quot;</span><span class="p">),</span>
-         <span class="p">(</span><span class="s">&#39;Quora&#39;</span><span class="p">,</span> <span class="s">&quot;https://www.quora.com&quot;</span><span class="p">),</span>
-         <span class="p">(</span><span class="s">&#39;欢迎交换链接&#39;</span><span class="p">,</span> <span class="s">&quot;#&quot;</span><span class="p">),)</span>
+LINKS = (('LinkedIn', 'https://www.linkedin.com'),
+         ('SlideShare', "http://www.slideshare.net"),
+         ('Github', "https://www.github.com"),
+         ('知乎', "http://www.zhihu.com"),
+         ('Quora', "https://www.quora.com"),
+         ('欢迎交换链接', "#"),)
 
-<span class="n">SOCIAL</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;weibo&#39;</span><span class="p">,</span> <span class="s">&#39;http://weibo.com/poooon&#39;</span><span class="p">),</span>
-          <span class="p">(</span><span class="s">&#39;github&#39;</span><span class="p">,</span> <span class="s">&#39;http://github.com/willpoon&#39;</span><span class="p">),)</span>
-<span class="c"># Social widget</span>
-<span class="c">#SOCIAL = ((&#39;You can add links in your config file&#39;, &#39;#&#39;),</span>
-<span class="c">#          (&#39;Another social link&#39;, &#39;#&#39;),)</span>
+SOCIAL = (('weibo', 'http://weibo.com/poooon'),
+          ('github', 'http://github.com/willpoon'),)
+# Social widget
+#SOCIAL = (('You can add links in your config file', '#'),
+#          ('Another social link', '#'),)
 
-<span class="n">DEFAULT_PAGINATION</span> <span class="o">=</span> <span class="mi">10</span>
+DEFAULT_PAGINATION = 10
 
-<span class="c"># Uncomment following line if you want document-relative URLs when developing</span>
-<span class="c">#RELATIVE_URLS = True</span>
+# Uncomment following line if you want document-relative URLs when developing
+#RELATIVE_URLS = True
 
-<span class="n">DISQUS_SITENAME</span> <span class="o">=</span> <span class="s">&#39;gitwillxxxx&#39;</span>
-<span class="c">#THEME = &#39;bootstrap2&#39;  </span>
-<span class="n">THEME</span> <span class="o">=</span> <span class="s">&#39;gum&#39;</span>  
-<span class="c">#THEME = &#39;simple-bootstrap&#39;  </span>
-<span class="c">#THEME = &#39;zurb-F5-basic&#39;  </span>
-<span class="c">#THEME = &#39;Just-Read&#39;  </span>
-<span class="c">#THEME = &#39;SoMA2&#39;</span>
-</pre></div>
-</td></tr></table>
-
-<h3>问题2:出于方便备份需要，我想将content目录放到output目录中，一起提交到github，是否可行？</h3>
+DISQUS_SITENAME = 'gitwillxxxx'
+#THEME = 'bootstrap2'  
+THEME = 'gum'  
+#THEME = 'simple-bootstrap'  
+#THEME = 'zurb-F5-basic'  
+#THEME = 'Just-Read'  
+#THEME = 'SoMA2'
+</code></pre>
+<h3 id="2contentoutputgithub">问题2:出于方便备份需要，我想将content目录放到output目录中，一起提交到github，是否可行？</h3>
 <p>完全没问题,你只需要修改Makefile中的INPUTDIR即可。例如我修改为：</p>
-<div class="highlight"><pre><span class="nv">OUTPUTDIR</span><span class="o">=</span><span class="k">$(</span>BASEDIR<span class="k">)</span>/output
-<span class="nv">INPUTDIR</span><span class="o">=</span><span class="k">$(</span>OUTPUTDIR<span class="k">)</span>/content
-</pre></div>
-
-
-<h3>问题3:如果文章已经写得差不多，已经放在了content目录下，但是暂时不想发布，又不想另外找地方保存，有什么方法可以不让文章自动发布呢？</h3>
+<pre><code>OUTPUTDIR=$(BASEDIR)/output
+INPUTDIR=$(OUTPUTDIR)/content
+</code></pre>
+<h3 id="3content">问题3:如果文章已经写得差不多，已经放在了content目录下，但是暂时不想发布，又不想另外找地方保存，有什么方法可以不让文章自动发布呢？</h3>
 <p>简单，把相应的md文件重命名一下扩展名就行了,比如：
 mv myblogpost.md myblogpost.mk.wait</p>
-<h2>问题4：如何 "一键"提交&amp;发布博客：</h2>
-<div class="highlight"><pre><span class="nx">imx</span><span class="p">(){</span>
-<span class="nx">cd</span> <span class="o">/</span><span class="nx">Users</span><span class="o">/</span><span class="nx">poon</span><span class="o">/</span><span class="nx">Git</span><span class="o">/</span><span class="nx">gitblog_imx3</span>
-<span class="nx">make</span> <span class="nx">html</span> 
-<span class="nx">cd</span> <span class="nx">output</span><span class="o">/</span>
-<span class="nx">git</span> <span class="nx">add</span> <span class="p">.</span>
-<span class="nx">git</span> <span class="nx">commit</span> <span class="o">-</span><span class="nx">m</span> <span class="s2">&quot;commit by shell function&quot;</span>
-<span class="nx">git</span> <span class="nx">push</span> <span class="nx">origin</span> <span class="nx">master</span>
-<span class="nx">cd</span> <span class="p">..</span>
-<span class="p">}</span>
-</pre></div>
-
-
+<h2 id="4">问题4：如何 "一键"提交&amp;发布博客：</h2>
+<pre><code>imx(){
+cd /Users/poon/Git/gitblog_imx3
+make html 
+cd output/
+git add .
+git commit -m "commit by shell function"
+git push origin master
+cd ..
+}
+</code></pre>
 <p>btw : gum这个模版很智能，可以对语法自动高亮！</p>
-<h2>问题5:WARNING: There are 2 variants of "oracle-biee-develop" with lang zh</h2>
-<h2>CRITICAL: RuntimeError: File develop.html is to be overwritten</h2>
+<h2 id="5warning-there-are-2-variants-of-oracle-biee-develop-with-lang-zh">问题5:WARNING: There are 2 variants of "oracle-biee-develop" with lang zh</h2>
+<h2 id="critical-runtimeerror-file-develophtml-is-to-be-overwritten">CRITICAL: RuntimeError: File develop.html is to be overwritten</h2>
 <p>当有多个md文件，如果有两个以上的Slug是一样的时候，就会报这个错。slug改成不一样的就行了。</p>
-<h2>6. 错误或不相关的disqus reveal , 如何删除？</h2>
+<h2 id="6-disqus-reveal">6. 错误或不相关的disqus reveal , 如何删除？</h2>
 <p>登录disqus reveal , 删除与帖子相关的评论即可。</p>
-<h2>7:为何我的主题支持tag cloud ， 但是生成的网站就是无法展示</h2>
+<h2 id="7tag-cloud">7:为何我的主题支持tag cloud ， 但是生成的网站就是无法展示</h2>
 <p>关于 tag cloud not shown 的问题，我当时也纠结了好久，后来google到一篇贴子，说pelican从3.6 开始，把tag cloud 功能作为单独的插件提供，需要安装plugin才能生成。
 具体方法：
 切换到 pelicanconf.py 所在的目录： 
@@ -337,15 +322,13 @@ mv myblogpost.md myblogpost.mk.wait</p>
     git clone https://github.com/getpelican/pelican-plugins.git
 获得pelican 插件目录。
 编辑：pelicanconf.py,添加如下配置：</p>
-<div class="highlight"><pre>PLUGIN_PATHS = [&quot;pelican-plugins&quot;]
-PLUGINS = [&quot;tag_cloud&quot;]
+<pre><code>PLUGIN_PATHS = ["pelican-plugins"]
+PLUGINS = ["tag_cloud"]
 TAG_CLOUD_STEPS=4
 TAG_CLOUD_MAX_ITEMS=100
-TAG_CLOUD_SORTING = &#39;random&#39;
-</pre></div>
-
-
-<h2>8.如何添加google https://analytics.google.com/ 的统计？</h2>
+TAG_CLOUD_SORTING = 'random'
+</code></pre>
+<h2 id="8google-httpsanalyticsgooglecom">8.如何添加google https://analytics.google.com/ 的统计？</h2>
 <ol>
 <li>首先, 你得有一个google帐号，然后登录 https://analytics.google.com/ 开通analytics服务。你将会获得一个 Tracking ID ， 以'UA-' 打头。</li>
 <li>
@@ -354,47 +337,37 @@ TAG_CLOUD_SORTING = &#39;random&#39;
 </li>
 </ol>
 <p>该代码让google统计服务爬取你的网站，然后把数据统计归入你的账户中。</p>
-<h2>9.如何在markdown中使用删除线？</h2>
+<h2 id="9markdown">9.如何在markdown中使用删除线？</h2>
 <p>我试过 ｀~~ 删除我~~｀ , 不起作用。 后来查到 <code>&lt;del&gt; 删除我&lt;/del&gt;</code> 和 ｀<s>删除我</s>` 都可以。</p>
-<h2>10.安装google page views 提取工具到pelican时，遇到： ssl.SSLError: [Errno 185090050] _ssl.c:343: error:0B084002:x509 certificate routines:X509_load_cert_crl_file:system lib 的解决。</h2>
+<h2 id="10google-page-views-pelican-sslsslerror-errno-185090050-_sslc343-error0b084002x509-certificate-routinesx509_load_cert_crl_filesystem-lib">10.安装google page views 提取工具到pelican时，遇到： ssl.SSLError: [Errno 185090050] _ssl.c:343: error:0B084002:x509 certificate routines:X509_load_cert_crl_file:system lib 的解决。</h2>
 <p>分析：这个报错是由于cacerts.txt这个文件的权限设置问题导致的。需要将文件权限设置为644.如下：</p>
 <p>$ sudo find / -name cacerts.txt</p>
-<div class="highlight"><pre>find: /dev/fd/3: Not a directory
+<pre><code>find: /dev/fd/3: Not a directory
 find: /dev/fd/4: Not a directory
 /Library/Python/2.7/site-packages/httplib2-0.9.2-py2.7.egg/httplib2/cacerts.txt
-</pre></div>
-
-
+</code></pre>
 <p>$ ls -arlt /Library/Python/2.7/site-packages/httplib2-0.9.2-py2.7.egg/httplib2/cacerts.txt</p>
-<div class="highlight"><pre>-rw-r-----  1 root  wheel  134862 Nov 10 20:44 /Library/Python/2.7/site-packages/httplib2-0.9.2-py2.7.egg/httplib2/cacerts.txt
-</pre></div>
-
-
+<pre><code>-rw-r-----  1 root  wheel  134862 Nov 10 20:44 /Library/Python/2.7/site-packages/httplib2-0.9.2-py2.7.egg/httplib2/cacerts.txt
+</code></pre>
 <p>$ chmod 644 /Library/Python/2.7/site-packages/httplib2-0.9.2-py2.7.egg/httplib2/cacerts.txt</p>
-<div class="highlight"><pre><span class="n">chmod</span><span class="o">:</span> <span class="n">Unable</span> <span class="n">to</span> <span class="n">change</span> <span class="n">file</span> <span class="n">mode</span> <span class="n">on</span> <span class="sr">/Library/Python/2.7/site-packages/httplib2-0.9.2-py2.7.egg/httplib2/</span><span class="n">cacerts</span><span class="o">.</span><span class="na">txt</span><span class="o">:</span> <span class="n">Operation</span> <span class="n">not</span> <span class="n">permitted</span>
-</pre></div>
-
-
+<pre><code>chmod: Unable to change file mode on /Library/Python/2.7/site-packages/httplib2-0.9.2-py2.7.egg/httplib2/cacerts.txt: Operation not permitted
+</code></pre>
 <p>$ sudo chmod 644 /Library/Python/2.7/site-packages/httplib2-0.9.2-py2.7.egg/httplib2/cacerts.txt</p>
 <p>$ proxychains4 python HelloAnalytics.py</p>
 <p>[proxychains] preloading /usr/local/Cellar/proxychains-ng/4.10/lib/libproxychains4.dylib</p>
-<div class="highlight"><pre>View (Profile): All Web Site Data
+<pre><code>View (Profile): All Web Site Data
 Total Sessions: 25
-</pre></div>
-
-
+</code></pre>
 <p>显示这两行，表示调用成功。</p>
-<h2>11.安装 ga_page_view 插件后，仍无法显示page view，还需要作什么设置？</h2>
+<h2 id="11-ga_page_view-page-view">11.安装 ga_page_view 插件后，仍无法显示page view，还需要作什么设置？</h2>
 <p>With this plugin installed, each article and page object has one extra meta data called pageview, which is an integer of the page view count of that article or page. And there is one global context named total_page_view, which is the total page view of the entire site.</p>
-<h2>12. 如何灵活截取文章片段作为摘要信息？</h2>
+<h2 id="12">12. 如何灵活截取文章片段作为摘要信息？</h2>
 <p>使用summary !</p>
 <ol>
 <li>
 <p>在pelicanconf.py中加入 summary插件支持：</p>
-<div class="highlight"><pre>PLUGINS = [&quot;tag_cloud&quot;,&quot;ga_page_view&quot;,&quot;summary&quot;]
-</pre></div>
-
-
+<pre><code>PLUGINS = ["tag_cloud","ga_page_view","summary"]
+</code></pre>
 </li>
 <li>
 <p>指定截取标记的开头和结尾，在这里，我修改了默认设置，用 ^ ， $  来标记。大家都知道，这是regexp标记开头和结尾用的，用以取代 </p>
@@ -402,63 +375,49 @@ Total Sessions: 25
 </li>
 </ol>
 <p>和</p>
-<div class="highlight"><pre>｀&lt;!-- PELICAN_END_SUMMARY --&gt;｀
-</pre></div>
-
-
+<pre><code>｀&lt;!-- PELICAN_END_SUMMARY --&gt;｀
+</code></pre>
 <p>，简单，好记！</p>
-<div class="highlight"><pre>    SUMMARY_BEGIN_MARKER = &#39;&lt;!-- ^ --&gt;&#39;
-    SUMMARY_END_MARKER =   &#39;&lt;!-- $ --&gt;&#39;
-</pre></div>
-
-
-<h2>13. 使用DEFAULT_DATE 来设置文章日期。</h2>
-<div class="highlight"><pre>DEFAULT_DATE = &#39;fs&#39;
-</pre></div>
-
-
+<pre><code>    SUMMARY_BEGIN_MARKER = '&lt;!-- ^ --&gt;'
+    SUMMARY_END_MARKER =   '&lt;!-- $ --&gt;'
+</code></pre>
+<h2 id="13-default_date">13. 使用DEFAULT_DATE 来设置文章日期。</h2>
+<pre><code>DEFAULT_DATE = 'fs'
+</code></pre>
 <p>这样，就不用再md中添加：</p>
-<div class="highlight"><pre><span class="n">Date</span><span class="o">:</span><span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">19</span> <span class="mi">07</span><span class="o">:</span><span class="mi">08</span>
-</pre></div>
-
-
+<pre><code>Date:2015-11-19 07:08
+</code></pre>
 <p>这一行了。</p>
-<h1>点评</h1>
-<h2>优点1: pelican 修改标题和更新文章不会影响原文章的链接引用。</h2>
+<h1 id="_6">点评</h1>
+<h2 id="1-pelican">优点1: pelican 修改标题和更新文章不会影响原文章的链接引用。</h2>
 <p>当我们觉得有必要更新博文的标题和内容时，我们只需要更新 Title 和正文，然后重新发布即可，而不用担心链接发生变化，外部不能引用。</p>
-<h2>优点2: pelican 可以根据修改时间来决定博文的展示顺序。</h2>
+<h2 id="2-pelican">优点2: pelican 可以根据修改时间来决定博文的展示顺序。</h2>
 <p>如果我们要讲某篇博文置顶，我们只需要修改Modified:的时间，讲这个时间置为当前最新的时间，或者将来的某一个时间，文章就会置顶了。</p>
-<h2>优点3: 社交化评论系统的嵌入,促进交流</h2>
+<h2 id="3">优点3: 社交化评论系统的嵌入,促进交流</h2>
 <p>通过在博客中嵌入disqus 等社区化评论系统，你可以结交一帮跟你志同道合的朋友！从次博客之路不在孤独！</p>
-<h2>14. 为 www.imx3.com 添加 百度 sitemap 支持 [zz]</h2>
+<h2 id="14-wwwimx3com-sitemap-zz">14. 为 www.imx3.com 添加 百度 sitemap 支持 [zz]</h2>
 <p>google SITE map 支持可以直接用  pelican sitemap 插件 插件生成sitemap.xml 。 </p>
 <p>然而，生成的这份sitemap并不能直接提交给百度站长工具平台。</p>
-<p>所以，需要参照百度站长工具平台的格式 <img alt="说明" src="http://zhanzhang.baidu.com/wiki/170#_1什么是XML数据文件？" /></p>
+<p>所以，需要参照百度站长工具平台的格式 <img alt="说明" src="http://zhanzhang.baidu.com/wiki/170#_1什么是XML数据文件？"/></p>
 <p>方法二： 使用curl 提交。 这个方法很简单：先从sitemap插件中抽取url，然后写入到urls.txt 里面，然后用curl提交即可。</p>
 <p>示例 ：</p>
-<div class="highlight"><pre><span class="nt">curl</span> <span class="nt">-H</span> <span class="s1">&#39;Content-Type:text/plain&#39;</span> <span class="nt">--data-binary</span> <span class="k">@urls</span><span class="nc">.txt</span> <span class="s2">&quot;http://data.zz.baidu.com/urls?site=www.imx3.com&amp;token=YrrCk***n7TGD***&amp;type=original&quot;</span><span class="p">;</span>
-</pre></div>
-
-
+<pre><code>curl -H 'Content-Type:text/plain' --data-binary @urls.txt "http://data.zz.baidu.com/urls?site=www.imx3.com&amp;token=YrrCk***n7TGD***&amp;type=original";
+</code></pre>
 <p>方法三：</p>
 <p>使用js 脚本：把脚本include 到模版里即可：</p>
 <p>base.html:</p>
-<div class="highlight"><pre>{% include &#39;baidusitemap.html&#39; %}
-</pre></div>
-
-
+<pre><code>{% include 'baidusitemap.html' %}
+</code></pre>
 <p>baidusitemap.html:</p>
-<div class="highlight"><pre><span class="nt">&lt;script&gt;</span>
+<pre><code>&lt;script&gt;
 (function(){
-    var bp = document.createElement(&#39;script&#39;);
-    bp.src = &#39;//push.zhanzhang.baidu.com/push.js&#39;;
-    var s = document.getElementsByTagName(&quot;script&quot;)[0];
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
-<span class="nt">&lt;/script&gt;</span>
-</pre></div>
-
-
+&lt;/script&gt;
+</code></pre>
 <p>最简单的方法，是添加js. 但是如果页面没有被刷新，可能收录就会比较慢。</p>
 <p>curl方式好像是有次数限制的。提交多次会报错。</p>
 <p>sitemap.xml 也是被动的。</p>
