@@ -164,7 +164,7 @@ github要求我们对用于user pages的repository，要用 ：gitusername+githu
 mv myblogpost.md myblogpost.mk.wait
 	
 
-##  问题4：如何 "一键"提交&发布博客：
+###  问题4：如何 "一键"提交&发布博客：
 	imx(){
 	cd /Users/poon/Git/gitblog_imx3
 	make html 
@@ -177,14 +177,14 @@ mv myblogpost.md myblogpost.mk.wait
 
 btw : gum这个模版很智能，可以对语法自动高亮！
 
-## 问题5:WARNING: There are 2 variants of "oracle-biee-develop" with lang zh
-## CRITICAL: RuntimeError: File develop.html is to be overwritten
+### 问题5:WARNING: There are 2 variants of "oracle-biee-develop" with lang zh
+CRITICAL: RuntimeError: File develop.html is to be overwritten
 当有多个md文件，如果有两个以上的Slug是一样的时候，就会报这个错。slug改成不一样的就行了。
 
-## 6. 错误或不相关的disqus reveal , 如何删除？
+###  错误或不相关的disqus reveal , 如何删除？
 登录disqus reveal , 删除与帖子相关的评论即可。
 
-## 7:为何我的主题支持tag cloud ， 但是生成的网站就是无法展示
+### 为何我的主题支持tag cloud ， 但是生成的网站就是无法展示
 关于 tag cloud not shown 的问题，我当时也纠结了好久，后来google到一篇贴子，说pelican从3.6 开始，把tag cloud 功能作为单独的插件提供，需要安装plugin才能生成。
 具体方法：
 切换到 pelicanconf.py 所在的目录： 
@@ -199,7 +199,7 @@ btw : gum这个模版很智能，可以对语法自动高亮！
     TAG_CLOUD_MAX_ITEMS=100
     TAG_CLOUD_SORTING = 'random'
 
-## 8.如何添加google https://analytics.google.com/ 的统计？
+### 8.如何添加google https://analytics.google.com/ 的统计？
 
 1. 首先, 你得有一个google帐号，然后登录 https://analytics.google.com/ 开通analytics服务。你将会获得一个 Tracking ID ， 以'UA-' 打头。
 2. 其次, 你需要在 pelicanconf.py 中添加 如下代码：
@@ -208,11 +208,11 @@ btw : gum这个模版很智能，可以对语法自动高亮！
 
 该代码让google统计服务爬取你的网站，然后把数据统计归入你的账户中。
 
-## 9.如何在markdown中使用删除线？
+### 9.如何在markdown中使用删除线？
 
  我试过 ｀~~ 删除我~~｀ , 不起作用。 后来查到 `<del> 删除我</del>` 和 ｀<s>删除我</s>` 都可以。
 
-## 10.安装google page views 提取工具到pelican时，遇到： ssl.SSLError: [Errno 185090050] _ssl.c:343: error:0B084002:x509 certificate routines:X509_load_cert_crl_file:system lib 的解决。
+### 10.安装google page views 提取工具到pelican时，遇到： ssl.SSLError: [Errno 185090050] _ssl.c:343: error:0B084002:x509 certificate routines:X509_load_cert_crl_file:system lib 的解决。
 
 分析：这个报错是由于cacerts.txt这个文件的权限设置问题导致的。需要将文件权限设置为644.如下：
 
@@ -241,12 +241,12 @@ $ proxychains4 python HelloAnalytics.py
 
 显示这两行，表示调用成功。
 
-## 11.安装 ga_page_view 插件后，仍无法显示page view，还需要作什么设置？
+### 11.安装 ga_page_view 插件后，仍无法显示page view，还需要作什么设置？
 
 With this plugin installed, each article and page object has one extra meta data called pageview, which is an integer of the page view count of that article or page. And there is one global context named total_page_view, which is the total page view of the entire site.
 
 
-## 12. 如何灵活截取文章片段作为摘要信息？
+### 12. 如何灵活截取文章片段作为摘要信息？
 
 使用summary !
 
@@ -268,7 +268,7 @@ With this plugin installed, each article and page object has one extra meta data
 		SUMMARY_END_MARKER =   '<!-- $ -->'
 
 
-## 13. 使用DEFAULT_DATE 来设置文章日期。
+### 13. 使用DEFAULT_DATE 来设置文章日期。
 
     DEFAULT_DATE = 'fs'
 
@@ -278,17 +278,8 @@ With this plugin installed, each article and page object has one extra meta data
 
 这一行了。
 
-# 点评
-## 优点1: pelican 修改标题和更新文章不会影响原文章的链接引用。
-当我们觉得有必要更新博文的标题和内容时，我们只需要更新 Title 和正文，然后重新发布即可，而不用担心链接发生变化，外部不能引用。
 
-## 优点2: pelican 可以根据修改时间来决定博文的展示顺序。
-如果我们要讲某篇博文置顶，我们只需要修改Modified:的时间，讲这个时间置为当前最新的时间，或者将来的某一个时间，文章就会置顶了。
-
-## 优点3: 社交化评论系统的嵌入,促进交流
-通过在博客中嵌入disqus 等社区化评论系统，你可以结交一帮跟你志同道合的朋友！从次博客之路不在孤独！
-
-## 14. 为 www.imx3.com 添加 百度 sitemap 支持 [zz]
+### 14. 为 www.imx3.com 添加 百度 sitemap 支持 [zz]
 
 google SITE map 支持可以直接用  pelican sitemap 插件 插件生成sitemap.xml 。 
 
@@ -329,7 +320,8 @@ sitemap.xml 也是被动的。
 
 <!-- ^ -->
 
-## 15. 为博客文章添加目录（toc）支持 
+### 15. 为博客文章添加目录（toc）支持 
+
 2015-11-27 11:17
 
 为了避免文章太多难以维护，我打算把多篇帖子合成一篇。这样就有一个问题，一个页面上内容多了，帖子与帖子之间需要一个目录索引，否则会很乱的。google了一下，有一个extract_toc的插件，可以把文档结构抽取出来，然后展示在页面你想展示的地方。安装方法跟其他插件差不多，
@@ -358,3 +350,13 @@ toc class 不用自己添加，当然如果你想目录好看一点，可以自�
 
 <!-- $ -->
 
+
+# 点评
+## 优点1: pelican 修改标题和更新文章不会影响原文章的链接引用。
+当我们觉得有必要更新博文的标题和内容时，我们只需要更新 Title 和正文，然后重新发布即可，而不用担心链接发生变化，外部不能引用。
+
+## 优点2: pelican 可以根据修改时间来决定博文的展示顺序。
+如果我们要讲某篇博文置顶，我们只需要修改Modified:的时间，讲这个时间置为当前最新的时间，或者将来的某一个时间，文章就会置顶了。
+
+## 优点3: 社交化评论系统的嵌入,促进交流
+通过在博客中嵌入disqus 等社区化评论系统，你可以结交一帮跟你志同道合的朋友！从次博客之路不在孤独！

@@ -130,27 +130,26 @@
 <li><a href="#1pelican-quickstart">问题1.执行pelican-quickstart 命令，有很多问题提示，该怎么选择，选错了怎么办？</a></li>
 <li><a href="#2contentoutputgithub">问题2:出于方便备份需要，我想将content目录放到output目录中，一起提交到github，是否可行？</a></li>
 <li><a href="#3content">问题3:如果文章已经写得差不多，已经放在了content目录下，但是暂时不想发布，又不想另外找地方保存，有什么方法可以不让文章自动发布呢？</a></li>
-</ul>
-</li>
 <li><a href="#4">问题4：如何 "一键"提交&amp;发布博客：</a></li>
 <li><a href="#5warning-there-are-2-variants-of-oracle-biee-develop-with-lang-zh">问题5:WARNING: There are 2 variants of "oracle-biee-develop" with lang zh</a></li>
-<li><a href="#critical-runtimeerror-file-develophtml-is-to-be-overwritten">CRITICAL: RuntimeError: File develop.html is to be overwritten</a></li>
-<li><a href="#6-disqus-reveal">6. 错误或不相关的disqus reveal , 如何删除？</a></li>
-<li><a href="#7tag-cloud">7:为何我的主题支持tag cloud ， 但是生成的网站就是无法展示</a></li>
+<li><a href="#disqus-reveal">错误或不相关的disqus reveal , 如何删除？</a></li>
+<li><a href="#tag-cloud">为何我的主题支持tag cloud ， 但是生成的网站就是无法展示</a></li>
 <li><a href="#8google-httpsanalyticsgooglecom">8.如何添加google https://analytics.google.com/ 的统计？</a></li>
 <li><a href="#9markdown">9.如何在markdown中使用删除线？</a></li>
 <li><a href="#10google-page-views-pelican-sslsslerror-errno-185090050-_sslc343-error0b084002x509-certificate-routinesx509_load_cert_crl_filesystem-lib">10.安装google page views 提取工具到pelican时，遇到： ssl.SSLError: [Errno 185090050] _ssl.c:343: error:0B084002:x509 certificate routines:X509_load_cert_crl_file:system lib 的解决。</a></li>
 <li><a href="#11-ga_page_view-page-view">11.安装 ga_page_view 插件后，仍无法显示page view，还需要作什么设置？</a></li>
 <li><a href="#12">12. 如何灵活截取文章片段作为摘要信息？</a></li>
 <li><a href="#13-default_date">13. 使用DEFAULT_DATE 来设置文章日期。</a></li>
+<li><a href="#14-wwwimx3com-sitemap-zz">14. 为 www.imx3.com 添加 百度 sitemap 支持 [zz]</a></li>
+<li><a href="#15-toc">15. 为博客文章添加目录（toc）支持</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_6">点评</a><ul>
 <li><a href="#1-pelican">优点1: pelican 修改标题和更新文章不会影响原文章的链接引用。</a></li>
 <li><a href="#2-pelican">优点2: pelican 可以根据修改时间来决定博文的展示顺序。</a></li>
 <li><a href="#3">优点3: 社交化评论系统的嵌入,促进交流</a></li>
-<li><a href="#14-wwwimx3com-sitemap-zz">14. 为 www.imx3.com 添加 百度 sitemap 支持 [zz]</a></li>
-<li><a href="#15-toc">15. 为博客文章添加目录（toc）支持</a></li>
 </ul>
 </li>
 </ul>
@@ -298,7 +297,7 @@ INPUTDIR=$(OUTPUTDIR)/content
 <h3 id="3content">问题3:如果文章已经写得差不多，已经放在了content目录下，但是暂时不想发布，又不想另外找地方保存，有什么方法可以不让文章自动发布呢？</h3>
 <p>简单，把相应的md文件重命名一下扩展名就行了,比如：
 mv myblogpost.md myblogpost.mk.wait</p>
-<h2 id="4">问题4：如何 "一键"提交&amp;发布博客：</h2>
+<h3 id="4">问题4：如何 "一键"提交&amp;发布博客：</h3>
 <pre><code>imx(){
 cd /Users/poon/Git/gitblog_imx3
 make html 
@@ -310,12 +309,12 @@ cd ..
 }
 </code></pre>
 <p>btw : gum这个模版很智能，可以对语法自动高亮！</p>
-<h2 id="5warning-there-are-2-variants-of-oracle-biee-develop-with-lang-zh">问题5:WARNING: There are 2 variants of "oracle-biee-develop" with lang zh</h2>
-<h2 id="critical-runtimeerror-file-develophtml-is-to-be-overwritten">CRITICAL: RuntimeError: File develop.html is to be overwritten</h2>
-<p>当有多个md文件，如果有两个以上的Slug是一样的时候，就会报这个错。slug改成不一样的就行了。</p>
-<h2 id="6-disqus-reveal">6. 错误或不相关的disqus reveal , 如何删除？</h2>
+<h3 id="5warning-there-are-2-variants-of-oracle-biee-develop-with-lang-zh">问题5:WARNING: There are 2 variants of "oracle-biee-develop" with lang zh</h3>
+<p>CRITICAL: RuntimeError: File develop.html is to be overwritten
+当有多个md文件，如果有两个以上的Slug是一样的时候，就会报这个错。slug改成不一样的就行了。</p>
+<h3 id="disqus-reveal">错误或不相关的disqus reveal , 如何删除？</h3>
 <p>登录disqus reveal , 删除与帖子相关的评论即可。</p>
-<h2 id="7tag-cloud">7:为何我的主题支持tag cloud ， 但是生成的网站就是无法展示</h2>
+<h3 id="tag-cloud">为何我的主题支持tag cloud ， 但是生成的网站就是无法展示</h3>
 <p>关于 tag cloud not shown 的问题，我当时也纠结了好久，后来google到一篇贴子，说pelican从3.6 开始，把tag cloud 功能作为单独的插件提供，需要安装plugin才能生成。
 具体方法：
 切换到 pelicanconf.py 所在的目录： 
@@ -329,7 +328,7 @@ TAG_CLOUD_STEPS=4
 TAG_CLOUD_MAX_ITEMS=100
 TAG_CLOUD_SORTING = 'random'
 </code></pre>
-<h2 id="8google-httpsanalyticsgooglecom">8.如何添加google https://analytics.google.com/ 的统计？</h2>
+<h3 id="8google-httpsanalyticsgooglecom">8.如何添加google https://analytics.google.com/ 的统计？</h3>
 <ol>
 <li>首先, 你得有一个google帐号，然后登录 https://analytics.google.com/ 开通analytics服务。你将会获得一个 Tracking ID ， 以'UA-' 打头。</li>
 <li>
@@ -338,9 +337,9 @@ TAG_CLOUD_SORTING = 'random'
 </li>
 </ol>
 <p>该代码让google统计服务爬取你的网站，然后把数据统计归入你的账户中。</p>
-<h2 id="9markdown">9.如何在markdown中使用删除线？</h2>
+<h3 id="9markdown">9.如何在markdown中使用删除线？</h3>
 <p>我试过 ｀~~ 删除我~~｀ , 不起作用。 后来查到 <code>&lt;del&gt; 删除我&lt;/del&gt;</code> 和 ｀<s>删除我</s>` 都可以。</p>
-<h2 id="10google-page-views-pelican-sslsslerror-errno-185090050-_sslc343-error0b084002x509-certificate-routinesx509_load_cert_crl_filesystem-lib">10.安装google page views 提取工具到pelican时，遇到： ssl.SSLError: [Errno 185090050] _ssl.c:343: error:0B084002:x509 certificate routines:X509_load_cert_crl_file:system lib 的解决。</h2>
+<h3 id="10google-page-views-pelican-sslsslerror-errno-185090050-_sslc343-error0b084002x509-certificate-routinesx509_load_cert_crl_filesystem-lib">10.安装google page views 提取工具到pelican时，遇到： ssl.SSLError: [Errno 185090050] _ssl.c:343: error:0B084002:x509 certificate routines:X509_load_cert_crl_file:system lib 的解决。</h3>
 <p>分析：这个报错是由于cacerts.txt这个文件的权限设置问题导致的。需要将文件权限设置为644.如下：</p>
 <p>$ sudo find / -name cacerts.txt</p>
 <pre><code>find: /dev/fd/3: Not a directory
@@ -360,9 +359,9 @@ find: /dev/fd/4: Not a directory
 Total Sessions: 25
 </code></pre>
 <p>显示这两行，表示调用成功。</p>
-<h2 id="11-ga_page_view-page-view">11.安装 ga_page_view 插件后，仍无法显示page view，还需要作什么设置？</h2>
+<h3 id="11-ga_page_view-page-view">11.安装 ga_page_view 插件后，仍无法显示page view，还需要作什么设置？</h3>
 <p>With this plugin installed, each article and page object has one extra meta data called pageview, which is an integer of the page view count of that article or page. And there is one global context named total_page_view, which is the total page view of the entire site.</p>
-<h2 id="12">12. 如何灵活截取文章片段作为摘要信息？</h2>
+<h3 id="12">12. 如何灵活截取文章片段作为摘要信息？</h3>
 <p>使用summary !</p>
 <ol>
 <li>
@@ -382,21 +381,14 @@ Total Sessions: 25
 <pre><code>    SUMMARY_BEGIN_MARKER = '&lt;!-- ^ --&gt;'
     SUMMARY_END_MARKER =   '&lt;!-- $ --&gt;'
 </code></pre>
-<h2 id="13-default_date">13. 使用DEFAULT_DATE 来设置文章日期。</h2>
+<h3 id="13-default_date">13. 使用DEFAULT_DATE 来设置文章日期。</h3>
 <pre><code>DEFAULT_DATE = 'fs'
 </code></pre>
 <p>这样，就不用再md中添加：</p>
 <pre><code>Date:2015-11-19 07:08
 </code></pre>
 <p>这一行了。</p>
-<h1 id="_6">点评</h1>
-<h2 id="1-pelican">优点1: pelican 修改标题和更新文章不会影响原文章的链接引用。</h2>
-<p>当我们觉得有必要更新博文的标题和内容时，我们只需要更新 Title 和正文，然后重新发布即可，而不用担心链接发生变化，外部不能引用。</p>
-<h2 id="2-pelican">优点2: pelican 可以根据修改时间来决定博文的展示顺序。</h2>
-<p>如果我们要讲某篇博文置顶，我们只需要修改Modified:的时间，讲这个时间置为当前最新的时间，或者将来的某一个时间，文章就会置顶了。</p>
-<h2 id="3">优点3: 社交化评论系统的嵌入,促进交流</h2>
-<p>通过在博客中嵌入disqus 等社区化评论系统，你可以结交一帮跟你志同道合的朋友！从次博客之路不在孤独！</p>
-<h2 id="14-wwwimx3com-sitemap-zz">14. 为 www.imx3.com 添加 百度 sitemap 支持 [zz]</h2>
+<h3 id="14-wwwimx3com-sitemap-zz">14. 为 www.imx3.com 添加 百度 sitemap 支持 [zz]</h3>
 <p>google SITE map 支持可以直接用  pelican sitemap 插件 插件生成sitemap.xml 。 </p>
 <p>然而，生成的这份sitemap并不能直接提交给百度站长工具平台。</p>
 <p>所以，需要参照百度站长工具平台的格式 <img alt="说明" src="http://zhanzhang.baidu.com/wiki/170#_1什么是XML数据文件？"/></p>
@@ -423,7 +415,7 @@ Total Sessions: 25
 <p>curl方式好像是有次数限制的。提交多次会报错。</p>
 <p>sitemap.xml 也是被动的。</p>
 
-<h2 id="15-toc">15. 为博客文章添加目录（toc）支持</h2>
+<h3 id="15-toc">15. 为博客文章添加目录（toc）支持</h3>
 <p>2015-11-27 11:17</p>
 <p>为了避免文章太多难以维护，我打算把多篇帖子合成一篇。这样就有一个问题，一个页面上内容多了，帖子与帖子之间需要一个目录索引，否则会很乱的。google了一下，有一个extract_toc的插件，可以把文档结构抽取出来，然后展示在页面你想展示的地方。安装方法跟其他插件差不多，</p>
 <p>首先,添加插件支持：</p>
@@ -441,6 +433,13 @@ Total Sessions: 25
 </code></pre>
 <p>toc class 不用自己添加，当然如果你想目录好看一点，可以自己修改、覆盖toc的css。</p>
 
+<h1 id="_6">点评</h1>
+<h2 id="1-pelican">优点1: pelican 修改标题和更新文章不会影响原文章的链接引用。</h2>
+<p>当我们觉得有必要更新博文的标题和内容时，我们只需要更新 Title 和正文，然后重新发布即可，而不用担心链接发生变化，外部不能引用。</p>
+<h2 id="2-pelican">优点2: pelican 可以根据修改时间来决定博文的展示顺序。</h2>
+<p>如果我们要讲某篇博文置顶，我们只需要修改Modified:的时间，讲这个时间置为当前最新的时间，或者将来的某一个时间，文章就会置顶了。</p>
+<h2 id="3">优点3: 社交化评论系统的嵌入,促进交流</h2>
+<p>通过在博客中嵌入disqus 等社区化评论系统，你可以结交一帮跟你志同道合的朋友！从次博客之路不在孤独！</p>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>
