@@ -196,4 +196,14 @@ linux : -d 参数
 
 mac   : -v 参数
 
+## control-m
+
+### 什么是 control-m  的 ajf ?
+
+ajf- active job file 把它看作一个任务列表（队列）就可以了。
+
+http://www.ctmguru.com/2012/04/ajf-active-job-file.html
+
+
+
 [git] 2015-11-24 13:05 add git
