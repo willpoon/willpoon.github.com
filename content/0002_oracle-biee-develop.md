@@ -156,6 +156,9 @@ slc02ojr fail
 slc02oka fail
 
 
+### odbc.ini 有什么用？
+
+odbc.ini 是用户配置展示层到bi server层的数据连接的。我们知道，biee有展示服务，有bi service 服务，一个是展示层，一个是服务层。这两层数据之间数据如何通信？就是通过odbc数据源配置，使得biee的展示层能够存取后台数据库的数据。
 
 
 ### 1.6.2 服务器ip / 端口的修改
