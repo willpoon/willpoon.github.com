@@ -2,11 +2,11 @@ http://www.imx3.com/
 http://www.imx3.com/archives.html
 http://www.imx3.com/tags.html
 http://www.imx3.com/categories.html
+http://www.imx3.com/poons-talk.html
 http://www.imx3.com/setup-and-config-my-github-blog-with-pelican.html
 http://www.imx3.com/todo.html
 http://www.imx3.com/banking-finance.html
 http://www.imx3.com/play-databases.html
-http://www.imx3.com/poons-talk.html
 http://www.imx3.com/invest-notes.html
 http://www.imx3.com/about-design.html
 http://www.imx3.com/employment.html
@@ -26,9 +26,9 @@ http://www.imx3.com/category/job.html
 http://www.imx3.com/category/life.html
 http://www.imx3.com/category/tech.html
 http://www.imx3.com/tag/duo-luo.html
-http://www.imx3.com/tag/pelican.html
-http://www.imx3.com/tag/pan-tan.html
 http://www.imx3.com/tag/gan-wu.html
+http://www.imx3.com/tag/pan-tan.html
+http://www.imx3.com/tag/pelican.html
 http://www.imx3.com/tag/list.html
 http://www.imx3.com/tag/linux.html
 http://www.imx3.com/tag/ri-zhi.html

@@ -9,6 +9,7 @@ Mac 是darwin unix 内核，很多东西跟linux不同。所以，还是单独�
 
 仅以此帖，记录在linux下的点点滴滴。
 
+[TOC]
 
 ## 1. ulimit -n 65000
 

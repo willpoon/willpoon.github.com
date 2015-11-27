@@ -4,7 +4,6 @@ Tags: 设计,程序,艺术,架构
 Slug: about-design
 Authors: Poon
 
-[TOC]
 
 设计，是知识的运用，更是创意的发挥。设计因功底深厚而实用，因独特创意而有味。
 

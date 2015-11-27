@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2015-11-26
+    on 2015-11-27
 
         |
         tags:         <a href="/tag/linux.html">linux</a>
@@ -113,9 +113,42 @@
           <span class='st_email_hcount' displayText='Email'></span>
         </div>
 
+        <nav class="toc">
+        <div class="toc">
+<ul>
+<li><a href="#1-mysql">1. MYSQL</a><ul>
+<li><a href="#11">1.1</a></li>
+<li><a href="#12">1.2 本机无密码登录</a></li>
+<li><a href="#13-etcrcdinitdmysql">1.3 /etc/rc.d/init.d/mysql 设置</a></li>
+<li><a href="#14-dig-dns-lookup-utility">1.4 dig - DNS lookup utility</a></li>
+</ul>
+</li>
+<li><a href="#2-ps">2. ps</a><ul>
+<li><a href="#-o">使用 -o 选项</a></li>
+</ul>
+</li>
+<li><a href="#3-proxychains4">3. proxychains4</a></li>
+<li><a href="#4-vi-vim">4. vi vim</a></li>
+<li><a href="#5-svn">5. svn</a><ul>
+<li><a href="#51">5.1 回滚到上一版本</a></li>
+</ul>
+</li>
+<li><a href="#6-linux-shell-builtin-command">6. linux shell builtin command</a><ul>
+<li><a href="#2015-11-18-2227">2015-11-18 22:27</a></li>
+</ul>
+</li>
+<li><a href="#axel">Axel</a><ul>
+<li><a href="#git">git</a></li>
+<li><a href="#date-yesterday-maclinux">date 命令 求 yesterday 的方法，mac和linux 不一样！</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </nav>
 
         <p>键盘党，终端控,我们用linux 来干活!鼠标?从来都只是用来玩游戏的！</p>
 <p>仅以此帖，记录在linux下的点点滴滴。</p>
+
 <h1 id="1-mysql">1. MYSQL</h1>
 <h2 id="11">1.1</h2>
 <pre><code>GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' identified by 'passwordhere' WITH GRANT OPTION;
@@ -224,14 +257,13 @@ imap &lt;F4&gt; &lt;C-R&gt;=strftime("%Y-%m-%d %I:%M")&lt;CR&gt;
 <p>Axel , 多线程，轻量级，快过wget !!!</p>
 <h2 id="git">git</h2>
 
-
 <p>git 是一个非常非常非常优秀的版本管理，协同开发工具，设计精妙使用，功能强大无比！值得所有coder,甚至blogger学习！
  </p>
 <ol>
 <li>
 <p>将当前工作副本会滚到指定版本</p>
 <p>git log # 获得版本提交历史</p>
-<p>git reset --hard <commit_id></p>
+<p>git reset --hard <commit_id></commit_id></p>
 </li>
 <li>
 <p>本地文件删除后再从版本库中检出还原：</p>

@@ -4,6 +4,8 @@ Tags: 快乐,幸福,思考
 Slug: think-about-happiness
 Authors: Poon
 
+[TOC]
+
 <!-- ^ -->
 
 

@@ -9,6 +9,8 @@ Authors: Poon
 
 仅以此帖，记录在linux下的点点滴滴。
 
+[TOC]
+
 # 1. MYSQL 
 
 ## 1.1 
