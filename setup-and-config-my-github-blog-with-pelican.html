@@ -150,6 +150,7 @@
 <li><a href="#2-pelican">优点2: pelican 可以根据修改时间来决定博文的展示顺序。</a></li>
 <li><a href="#3">优点3: 社交化评论系统的嵌入,促进交流</a></li>
 <li><a href="#14-wwwimx3com-sitemap-zz">14. 为 www.imx3.com 添加 百度 sitemap 支持 [zz]</a></li>
+<li><a href="#15-toc">15. 为博客文章添加目录（toc）支持</a></li>
 </ul>
 </li>
 </ul>
@@ -421,7 +422,25 @@ Total Sessions: 25
 <p>最简单的方法，是添加js. 但是如果页面没有被刷新，可能收录就会比较慢。</p>
 <p>curl方式好像是有次数限制的。提交多次会报错。</p>
 <p>sitemap.xml 也是被动的。</p>
-<p>[zz] 2015-11-25 11:23 添加baidu sitemap 提交方法</p>
+
+<h2 id="15-toc">15. 为博客文章添加目录（toc）支持</h2>
+<p>2015-11-27 11:17</p>
+<p>为了避免文章太多难以维护，我打算把多篇帖子合成一篇。这样就有一个问题，一个页面上内容多了，帖子与帖子之间需要一个目录索引，否则会很乱的。google了一下，有一个extract_toc的插件，可以把文档结构抽取出来，然后展示在页面你想展示的地方。安装方法跟其他插件差不多，</p>
+<p>首先,添加插件支持：</p>
+<pre><code>PLUGINS = ["tag_cloud","ga_page_view","summary","sitemap","extract_toc"]
+</code></pre>
+<p>需要注意的是，如果你使用markdown来写博客，需要在pelicanconf.py中添加：</p>
+<pre><code>MD_EXTENSIONS = (['toc'])
+</code></pre>
+<p>其次， 要修改你的博客的模版， 在 article.content 之前，添加如下代码：</p>
+<pre><code>{% if article.toc %}
+    &lt;nav class="toc"&gt;
+    {{ article.toc }}
+    &lt;/nav&gt;
+{% endif %}
+</code></pre>
+<p>toc class 不用自己添加，当然如果你想目录好看一点，可以自己修改、覆盖toc的css。</p>
+
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>

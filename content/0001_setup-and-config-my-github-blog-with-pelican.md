@@ -327,7 +327,34 @@ curl方式好像是有次数限制的。提交多次会报错。
 
 sitemap.xml 也是被动的。
 
+<!-- ^ -->
+
+## 15. 为博客文章添加目录（toc）支持 
+2015-11-27 11:17
+
+为了避免文章太多难以维护，我打算把多篇帖子合成一篇。这样就有一个问题，一个页面上内容多了，帖子与帖子之间需要一个目录索引，否则会很乱的。google了一下，有一个extract_toc的插件，可以把文档结构抽取出来，然后展示在页面你想展示的地方。安装方法跟其他插件差不多，
+
+首先,添加插件支持：
+
+    PLUGINS = ["tag_cloud","ga_page_view","summary","sitemap","extract_toc"]
 
 
+需要注意的是，如果你使用markdown来写博客，需要在pelicanconf.py中添加：
 
-[zz] 2015-11-25 11:23 添加baidu sitemap 提交方法
+    MD_EXTENSIONS = (['toc'])
+
+
+其次， 要修改你的博客的模版， 在 article.content 之前，添加如下代码：
+
+    {% if article.toc %}
+        <nav class="toc">
+        {{ article.toc }}
+        </nav>
+    {% endif %}
+
+
+toc class 不用自己添加，当然如果你想目录好看一点，可以自己修改、覆盖toc的css。
+
+
+<!-- $ -->
+

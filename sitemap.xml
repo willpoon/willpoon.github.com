@@ -5,29 +5,36 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2015-11-27T11:07:39-00:00</lastmod>
+<lastmod>2015-11-27T11:18:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2015-11-27T11:07:39-00:00</lastmod>
+<lastmod>2015-11-27T11:18:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2015-11-27T11:07:39-00:00</lastmod>
+<lastmod>2015-11-27T11:18:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2015-11-27T11:07:39-00:00</lastmod>
+<lastmod>2015-11-27T11:18:41-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/setup-and-config-my-github-blog-with-pelican.html</loc>
+<lastmod>2015-11-27T11:18:39+08:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -55,13 +62,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/poons-talk.html</loc>
 <lastmod>2015-11-27T11:02:21+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/setup-and-config-my-github-blog-with-pelican.html</loc>
-<lastmod>2015-11-27T11:01:56+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -187,7 +187,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/tech.html</loc>
-<lastmod>2015-11-27T11:07:09+08:06</lastmod>
+<lastmod>2015-11-27T11:18:39+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -200,8 +200,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/gan-wu.html</loc>
-<lastmod>2015-11-27T11:02:21+08:06</lastmod>
+<loc>/tag/pelican.html</loc>
+<lastmod>2015-11-27T11:18:39+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -214,8 +214,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/pelican.html</loc>
-<lastmod>2015-11-27T11:01:56+08:06</lastmod>
+<loc>/tag/gan-wu.html</loc>
+<lastmod>2015-11-27T11:02:21+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -305,8 +305,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/db2.html</loc>
-<lastmod>2015-11-27T11:06:55+08:06</lastmod>
+<loc>/tag/disqus.html</loc>
+<lastmod>2015-11-27T11:18:39+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -341,7 +341,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/blog.html</loc>
-<lastmod>2015-11-27T11:01:56+08:06</lastmod>
+<lastmod>2015-11-27T11:18:39+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -480,8 +480,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/disqus.html</loc>
-<lastmod>2015-11-27T11:01:56+08:06</lastmod>
+<loc>/tag/db2.html</loc>
+<lastmod>2015-11-27T11:06:55+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -516,7 +516,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/github.html</loc>
-<lastmod>2015-11-27T11:01:56+08:06</lastmod>
+<lastmod>2015-11-27T11:18:39+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -628,7 +628,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/author/poon.html</loc>
-<lastmod>2015-11-27T11:07:38+08:06</lastmod>
+<lastmod>2015-11-27T11:18:39+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

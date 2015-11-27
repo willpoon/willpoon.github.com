@@ -85,6 +85,62 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="/setup-and-config-my-github-blog-with-pelican.html" rel="bookmark" title="Permalink to 使用github+pelican搭建我的博客">
+                                       使用github+pelican搭建我的博客
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/poon.html">Poon</a>
+    </address>
+
+    in <a href="/category/tech.html">Tech</a>
+
+    on 2015-11-27
+
+        |
+        tags:         <a href="/tag/github.html">github</a>
+        <a href="/tag/blog.html">blog</a>
+        <a href="/tag/pelican.html">pelican</a>
+        <a href="/tag/disqus.html">disqus</a>
+
+
+        |
+        <a href="/setup-and-config-my-github-blog-with-pelican.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                
+<h2 id="15-toc">15. 为博客文章添加目录（toc）支持</h2>
+<p>2015-11-27 11:17</p>
+<p>为了避免文章太多难以维护，我打算把多篇帖子合成一篇。这样就有一个问题，一个页面上内容多了，帖子与帖子之间需要一个目录索引，否则会很乱的。google了一下，有一个extract_toc的插件，可以把文档结构抽取出来，然后展示在页面你想展示的地方。安装方法跟其他插件差不多，</p>
+<p>首先,添加插件支持：</p>
+<pre><code>PLUGINS = ["tag_cloud","ga_page_view","summary","sitemap","extract_toc"]
+</code></pre>
+<p>需要注意的是，如果你使用markdown来写博客，需要在pelicanconf.py中添加：</p>
+<pre><code>MD_EXTENSIONS = (['toc'])
+</code></pre>
+<p>其次， 要修改你的博客的模版， 在 article.content 之前，添加如下代码：</p>
+<pre><code>{% if article.toc %}
+    &lt;nav class="toc"&gt;
+    {{ article.toc }}
+    &lt;/nav&gt;
+{% endif %}
+</code></pre>
+<p>toc class 不用自己添加，当然如果你想目录好看一点，可以自己修改、覆盖toc的css。</p>
+
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="/setup-and-config-my-github-blog-with-pelican.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="/todo.html" rel="bookmark" title="Permalink to todo list 想做/要做的事">
                                        todo list 想做/要做的事
                                     </a>
@@ -271,63 +327,6 @@
 
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="/poons-talk.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="/setup-and-config-my-github-blog-with-pelican.html" rel="bookmark" title="Permalink to 使用github+pelican搭建我的博客">
-                                       使用github+pelican搭建我的博客
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="/author/poon.html">Poon</a>
-    </address>
-
-    in <a href="/category/tech.html">Tech</a>
-
-    on 2015-11-27
-
-        |
-        tags:         <a href="/tag/github.html">github</a>
-        <a href="/tag/blog.html">blog</a>
-        <a href="/tag/pelican.html">pelican</a>
-        <a href="/tag/disqus.html">disqus</a>
-
-
-        |
-        <a href="/setup-and-config-my-github-blog-with-pelican.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                
-<h1 id="_1">背景</h1>
-<p>08年建了一个 个人博客网站，购买了hostmonster的空间和一个.info的域名，写过几篇文章，后来不了了之。空间被回收，域名过期，资料丢失，很是遗憾。所以一直有重新开一个的想法。但是想起国内建站的烦人的备案审查和国外服务器的龟速，终究还没有重建。最近有感于一些东西还是有必要记录&amp;分享，故又萌生了重新搭建博客的想法。</p>
-<p>现在再看博客市场，已经比以前成熟了很多。各种平台网站开的小清新博客一大堆，但在平台网站上搭博客的弊端是显而易见的：</p>
-<h4 id="_2">问题</h4>
-<ul>
-<li>流量都贡献给了平台</li>
-<li>难以树立个人品牌</li>
-<li>话语权不在本人，而是平台</li>
-<li>各种审查、删帖</li>
-<li>功能无法定制</li>
-<li>无法挂推广代码</li>
-<li>平台广告想插就插</li>
-</ul>
-<p>但也不是一无是处，至少：</p>
-<ul>
-<li>免费</li>
-<li>有可能平台帮助推广 </li>
-</ul>
-<p>总的来说，缺点大于优点，放弃。继而考虑自己申请域名和空间。就在15.11.2日，我申请了godaddy的.com域名(两年¥116走支付宝，有无coupon都是一样的价格，但需要在网上找coupon链接，否者自己在官网购买是无法支付的。)，申请了digitaloccean的vps ...</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="/setup-and-config-my-github-blog-with-pelican.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
@@ -592,68 +591,68 @@
             <div>
                 <h2>Tags</h2>
                 <ul id="cloud">
-                     <li class="tag-4"><a href="/tag/gan-wu.html">感悟</a></li>
-                     <li class="tag-4"><a href="/tag/xing-fu.html">幸福</a></li>
-                     <li class="tag-4"><a href="/tag/biee.html">biee</a></li>
-                     <li class="tag-4"><a href="/tag/gu-shi.html">故事</a></li>
-                     <li class="tag-4"><a href="/tag/mysql.html">mysql</a></li>
-                     <li class="tag-4"><a href="/tag/ri-zhi.html">日志</a></li>
-                     <li class="tag-4"><a href="/tag/gu-piao.html">股票</a></li>
-                     <li class="tag-4"><a href="/tag/bi.html">BI</a></li>
-                     <li class="tag-4"><a href="/tag/ji-jin.html">基金</a></li>
-                     <li class="tag-4"><a href="/tag/github.html">github</a></li>
-                     <li class="tag-4"><a href="/tag/learn.html">learn</a></li>
-                     <li class="tag-4"><a href="/tag/pan-tan.html">攀谈</a></li>
-                     <li class="tag-4"><a href="/tag/disqus.html">disqus</a></li>
-                     <li class="tag-4"><a href="/tag/hu-che.html">胡扯</a></li>
-                     <li class="tag-4"><a href="/tag/bi-ji.html">笔记</a></li>
-                     <li class="tag-4"><a href="/tag/pelican.html">pelican</a></li>
-                     <li class="tag-4"><a href="/tag/database.html">database</a></li>
-                     <li class="tag-4"><a href="/tag/db.html">DB</a></li>
+                     <li class="tag-4"><a href="/tag/blog.html">blog</a></li>
                      <li class="tag-4"><a href="/tag/duo-luo.html">堕落</a></li>
-                     <li class="tag-4"><a href="/tag/yi-zhu.html">艺术</a></li>
-                     <li class="tag-4"><a href="/tag/me.html">Me</a></li>
-                     <li class="tag-4"><a href="/tag/chi-fan-gong-ju.html">吃饭工具</a></li>
-                     <li class="tag-4"><a href="/tag/shi-lu.html">实录</a></li>
-                     <li class="tag-4"><a href="/tag/yin-xing.html">银行</a></li>
-                     <li class="tag-1"><a href="/tag/sheng-huo.html">生活</a></li>
-                     <li class="tag-4"><a href="/tag/cheng-xu.html">程序</a></li>
-                     <li class="tag-4"><a href="/tag/yin-shi.html">饮食</a></li>
-                     <li class="tag-4"><a href="/tag/xiang-zuo.html">想做</a></li>
-                     <li class="tag-4"><a href="/tag/ji-hua.html">计划</a></li>
-                     <li class="tag-4"><a href="/tag/ye-wu.html">业务</a></li>
-                     <li class="tag-4"><a href="/tag/osx.html">OSX</a></li>
-                     <li class="tag-4"><a href="/tag/jian-shen.html">健身</a></li>
-                     <li class="tag-4"><a href="/tag/she-ji.html">设计</a></li>
-                     <li class="tag-4"><a href="/tag/linux.html">linux</a></li>
-                     <li class="tag-4"><a href="/tag/db2.html">db2</a></li>
-                     <li class="tag-4"><a href="/tag/shu-ju-ku.html">数据库</a></li>
-                     <li class="tag-4"><a href="/tag/gong-zuo.html">工作</a></li>
-                     <li class="tag-4"><a href="/tag/xin-ling.html">心灵</a></li>
-                     <li class="tag-4"><a href="/tag/reading.html">reading</a></li>
-                     <li class="tag-4"><a href="/tag/si-kao.html">思考</a></li>
-                     <li class="tag-4"><a href="/tag/git.html">git</a></li>
-                     <li class="tag-4"><a href="/tag/xian-hua.html">闲话</a></li>
-                     <li class="tag-4"><a href="/tag/xie-zi.html">写字</a></li>
-                     <li class="tag-4"><a href="/tag/jin-rong.html">金融</a></li>
-                     <li class="tag-4"><a href="/tag/todo.html">todo</a></li>
-                     <li class="tag-4"><a href="/tag/books.html">books</a></li>
-                     <li class="tag-4"><a href="/tag/jia-gou.html">架构</a></li>
+                     <li class="tag-4"><a href="/tag/bi-ji.html">笔记</a></li>
                      <li class="tag-4"><a href="/tag/list.html">list</a></li>
-                     <li class="tag-4"><a href="/tag/ri-ji.html">日记</a></li>
-                     <li class="tag-4"><a href="/tag/xiao-shuo.html">小说</a></li>
-                     <li class="tag-4"><a href="/tag/duan-lian.html">锻炼</a></li>
+                     <li class="tag-4"><a href="/tag/cheng-xu.html">程序</a></li>
+                     <li class="tag-4"><a href="/tag/linux.html">linux</a></li>
+                     <li class="tag-4"><a href="/tag/pelican.html">pelican</a></li>
+                     <li class="tag-4"><a href="/tag/chi-fan-gong-ju.html">吃饭工具</a></li>
+                     <li class="tag-4"><a href="/tag/reading.html">reading</a></li>
+                     <li class="tag-4"><a href="/tag/xiang-zuo.html">想做</a></li>
+                     <li class="tag-4"><a href="/tag/xin-ling.html">心灵</a></li>
+                     <li class="tag-1"><a href="/tag/oracle.html">oracle</a></li>
                      <li class="tag-4"><a href="/tag/tou-ji.html">投机</a></li>
                      <li class="tag-4"><a href="/tag/mac.html">Mac</a></li>
-                     <li class="tag-4"><a href="/tag/sui-xiang.html">随想</a></li>
-                     <li class="tag-4"><a href="/tag/zhuan-qian.html">赚钱</a></li>
-                     <li class="tag-4"><a href="/tag/tou-zi.html">投资</a></li>
+                     <li class="tag-4"><a href="/tag/si-kao.html">思考</a></li>
+                     <li class="tag-1"><a href="/tag/sheng-huo.html">生活</a></li>
                      <li class="tag-4"><a href="/tag/du-bo.html">赌博</a></li>
-                     <li class="tag-1"><a href="/tag/oracle.html">oracle</a></li>
-                     <li class="tag-4"><a href="/tag/blog.html">blog</a></li>
-                     <li class="tag-4"><a href="/tag/unix.html">Unix</a></li>
-                     <li class="tag-4"><a href="/tag/tools.html">tools</a></li>
+                     <li class="tag-4"><a href="/tag/yin-shi.html">饮食</a></li>
+                     <li class="tag-4"><a href="/tag/ji-jin.html">基金</a></li>
+                     <li class="tag-4"><a href="/tag/mysql.html">mysql</a></li>
+                     <li class="tag-4"><a href="/tag/gan-wu.html">感悟</a></li>
+                     <li class="tag-4"><a href="/tag/duan-lian.html">锻炼</a></li>
+                     <li class="tag-4"><a href="/tag/jian-shen.html">健身</a></li>
+                     <li class="tag-4"><a href="/tag/database.html">database</a></li>
+                     <li class="tag-4"><a href="/tag/sui-xiang.html">随想</a></li>
+                     <li class="tag-4"><a href="/tag/shi-lu.html">实录</a></li>
+                     <li class="tag-4"><a href="/tag/biee.html">biee</a></li>
+                     <li class="tag-4"><a href="/tag/jia-gou.html">架构</a></li>
+                     <li class="tag-4"><a href="/tag/shu-ju-ku.html">数据库</a></li>
+                     <li class="tag-4"><a href="/tag/gu-piao.html">股票</a></li>
+                     <li class="tag-4"><a href="/tag/she-ji.html">设计</a></li>
+                     <li class="tag-4"><a href="/tag/yin-xing.html">银行</a></li>
+                     <li class="tag-4"><a href="/tag/jin-rong.html">金融</a></li>
+                     <li class="tag-4"><a href="/tag/books.html">books</a></li>
+                     <li class="tag-4"><a href="/tag/xian-hua.html">闲话</a></li>
+                     <li class="tag-4"><a href="/tag/db.html">DB</a></li>
+                     <li class="tag-4"><a href="/tag/yi-zhu.html">艺术</a></li>
+                     <li class="tag-4"><a href="/tag/git.html">git</a></li>
+                     <li class="tag-4"><a href="/tag/bi.html">BI</a></li>
+                     <li class="tag-4"><a href="/tag/ye-wu.html">业务</a></li>
                      <li class="tag-4"><a href="/tag/kuai-le.html">快乐</a></li>
+                     <li class="tag-4"><a href="/tag/tools.html">tools</a></li>
+                     <li class="tag-4"><a href="/tag/pan-tan.html">攀谈</a></li>
+                     <li class="tag-4"><a href="/tag/db2.html">db2</a></li>
+                     <li class="tag-4"><a href="/tag/disqus.html">disqus</a></li>
+                     <li class="tag-4"><a href="/tag/osx.html">OSX</a></li>
+                     <li class="tag-4"><a href="/tag/ri-ji.html">日记</a></li>
+                     <li class="tag-4"><a href="/tag/gu-shi.html">故事</a></li>
+                     <li class="tag-4"><a href="/tag/ri-zhi.html">日志</a></li>
+                     <li class="tag-4"><a href="/tag/github.html">github</a></li>
+                     <li class="tag-4"><a href="/tag/ji-hua.html">计划</a></li>
+                     <li class="tag-4"><a href="/tag/unix.html">Unix</a></li>
+                     <li class="tag-4"><a href="/tag/zhuan-qian.html">赚钱</a></li>
+                     <li class="tag-4"><a href="/tag/gong-zuo.html">工作</a></li>
+                     <li class="tag-4"><a href="/tag/xie-zi.html">写字</a></li>
+                     <li class="tag-4"><a href="/tag/todo.html">todo</a></li>
+                     <li class="tag-4"><a href="/tag/me.html">Me</a></li>
+                     <li class="tag-4"><a href="/tag/xing-fu.html">幸福</a></li>
+                     <li class="tag-4"><a href="/tag/learn.html">learn</a></li>
+                     <li class="tag-4"><a href="/tag/xiao-shuo.html">小说</a></li>
+                     <li class="tag-4"><a href="/tag/tou-zi.html">投资</a></li>
+                     <li class="tag-4"><a href="/tag/hu-che.html">胡扯</a></li>
                 </ul>
              </div>
 <!-- /.Tags -->
