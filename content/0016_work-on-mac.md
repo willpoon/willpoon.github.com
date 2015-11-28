@@ -114,3 +114,10 @@ date -v -1d +"%Y%m%d"
              processed in the order given.
 
 
+### mac 上添加用户组
+
+mac上不能像linux那样，用groupadd来添加用户中。网上有两种方法：
+
+1. 通过 system preferences . 
+
+2. 使用mac特有命令

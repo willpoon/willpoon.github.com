@@ -205,5 +205,10 @@ ajf- active job file 把它看作一个任务列表（队列）就可以了。
 http://www.ctmguru.com/2012/04/ajf-active-job-file.html
 
 
+## stat 命令
+
+stat -x filename 
+
+获取 文件的 ctime , mtime , atime  ; change , modified , access
 
 [git] 2015-11-24 13:05 add git
