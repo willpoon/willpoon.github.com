@@ -85,8 +85,8 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
-                                    <a href="/work-on-Mac.html" rel="bookmark" title="Permalink to Work on Mac!">
-                                       Work on Mac!
+                                    <a href="/about-design.html" rel="bookmark" title="Permalink to 设计相关思考">
+                                       设计相关思考
                                     </a>
                                 </h1>
                             </header>
@@ -98,82 +98,37 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2015-11-28
+    on 2015-11-30
 
         |
-        tags:         <a href="/tag/mac.html">Mac</a>
-        <a href="/tag/osx.html">OSX</a>
-        <a href="/tag/unix.html">Unix</a>
-
-
-        |
-        <a href="/work-on-Mac.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>Mac 是darwin unix 内核，很多东西跟linux不同。所以，还是单独把Mac拿出来说说。</p>
-<p>仅以此帖，记录在linux下的点点滴滴。</p>
-
-<h2 id="1-ulimit-n-65000">1. ulimit -n 65000</h2>
-<p>-bash: ulimit: open files: cannot modify limit: Invalid argument</p>
-<p>这个异常跟mac 的版本有关。</p>
-<p>格式:</p>
-<pre><code>launchctl limit maxfiles softcnt hardcnt
-</code></pre>
-<p>修改soft：</p>
-<pre><code>launchctl limit maxfiles 512 unlimited
-</code></pre>
-<p>修改hard:</p>
-<pre><code>launchctl limit maxfiles unlimited unlimited
-</code></pre>
-<p>[1] 2015-11-26 09:41 init </p>
-<p>关于db2安装中遇到的ulimit参数问题，先改 sysctl ...</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="/work-on-Mac.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="/way-to-be-a-macho-man.html" rel="bookmark" title="Permalink to 人生须猛:猛人，猛事，猛醒">
-                                       人生须猛:猛人，猛事，猛醒
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="/author/poon.html">Poon</a>
-    </address>
-
-    in <a href="/category/life.html">Life</a>
-
-    on 2015-11-28
-
-        |
-        tags:         <a href="/tag/jian-shen.html">健身</a>
-        <a href="/tag/duan-lian.html">锻炼</a>
-        <a href="/tag/duo-luo.html">堕落</a>
-        <a href="/tag/ri-ji.html">日记</a>
-        <a href="/tag/sui-xiang.html">随想</a>
-        <a href="/tag/yin-shi.html">饮食</a>
+        tags:         <a href="/tag/she-ji.html">设计</a>
+        <a href="/tag/cheng-xu.html">程序</a>
+        <a href="/tag/yi-zhu.html">艺术</a>
+        <a href="/tag/jia-gou.html">架构</a>
 
 
         |
-        <a href="/way-to-be-a-macho-man.html#disqus_thread">comments</a>
+        <a href="/about-design.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->                                
-<p>2015-11-25 14:27
-今天，忽然想起站桩了，之前了解过，也站了几天，效果是实实在在的。 如果通过站桩能把身体修复到少年时代的状态，那是杠杠的。就算牺牲一些¥¥和时间，也是非常值得的。更何快，这种事情其实并不需要花什么钱。时间？每天一个小时足矣。</p>
-<p>希望今后能够坚持， 但行好事不问前程。</p>
-<p>并记录下站桩的感受。</p>
+<h1 id="_2">调度设计</h1>
+<p>task scheduler , 调度设计，分两种：</p>
+<ol>
+<li>
+<p>定时执行</p>
+</li>
+<li>
+<p>依赖执行</p>
+</li>
+</ol>
+<p>定时执行很简单。在crontab中配置即可，到点执行。</p>
+<p>依赖执行，需要针对每一个任务的返回值作判断，只有都为 完成状态的时候，才执行下一个任务。所以对于依赖条件是否满足的判断，是调度的核心。</p>
+<p>在设计上，就是要将依赖关系转换为任务条件，将任务列表转换为要执行任务的队列。</p>
+<p>一般来说，对于多任务多依赖，还是用数据库来管理比较好。所以如果用shell来写简单作业，定时执行就很简单，但是依赖执行，由于操作数据库没有python等方便，所以开发效率也不会很高。</p>
 
                                 <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="/way-to-be-a-macho-man.html">Read more...</a>
+                                    <a class="btn btn-small btn-info" href="/about-design.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
@@ -183,8 +138,8 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
-                                    <a href="/work-on-linux.html" rel="bookmark" title="Permalink to Work on linux!">
-                                       Work on linux!
+                                    <a href="/banking-finance.html" rel="bookmark" title="Permalink to 银行金融业务知识学习">
+                                       银行金融业务知识学习
                                     </a>
                                 </h1>
                             </header>
@@ -196,22 +151,28 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2015-11-28
+    on 2015-11-30
 
         |
-        tags:         <a href="/tag/linux.html">linux</a>
-        <a href="/tag/git.html">git</a>
+        tags:         <a href="/tag/yin-xing.html">银行</a>
+        <a href="/tag/jin-rong.html">金融</a>
+        <a href="/tag/ye-wu.html">业务</a>
 
 
         |
-        <a href="/work-on-linux.html#disqus_thread">comments</a>
+        <a href="/banking-finance.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->                                
-<p>git 是一个非常非常非常优秀的版本管理，协同开发工具，设计精妙使用，功能强大无比！值得所有coder,甚至blogger学习！
-
+<h1 id="_1">读银行业务与信息化系统分析（刘士峰），网点转型。</h1>
+<p>其中谈及流程再造。建行化龙巷使用六西格玛来做流程优化和资源配置的案例。使得我不由想起每次在银行排队办业务的噩梦。其实，银行完全有能力有条件改善这种局面，但是，由于银行是大爷啊，存贷款你都要求着他，普通客户的时间根本不值钱，除非你是vip.随着互联网的发展，满满推出了自助银行，自助终端。后面还有网银，手机银行等等。全都拜互联网所赐。现在，互联网金融的兴起，更是直接革了银行的命，银行不得不提高对外服务，降低福利待遇。据我观察，银行的科技成本在砍，行内用人成本也在砍，降低待遇，逼你走，然后用更便宜的人；那些原来不怎么用干什么活的人，也不得不承担更多的工作。</p>
+<h1 id="_2">董事会</h1>
+<p>股份公司的权力机构，企业的法定代表。又称管理委员会、执行委员会。由两个以上的董事组成。除法律和章程规定应由股东大会行使的权力之外，其他事项均可由董事会决定。公司董事会是公司经营决策机构，董事会向股东会负责。</p>
+<h1 id="_3">银行核心系统</h1>
+<p>原来我们公司做了那么多小银行的核心系统！ 核心系统边界似乎不太明确！</p>
+<p>本文最后更新于：2015-11-17 04:32 </p>
                                 <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="/work-on-linux.html">Read more...</a>
+                                    <a class="btn btn-small btn-info" href="/banking-finance.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
@@ -221,8 +182,8 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
-                                    <a href="/poons-talk.html" rel="bookmark" title="Permalink to Poon Talk 攀谈">
-                                       Poon Talk 攀谈
+                                    <a href="/employment.html" rel="bookmark" title="Permalink to 东家,西家,不如自己当家">
+                                       东家,西家,不如自己当家
                                     </a>
                                 </h1>
                             </header>
@@ -232,73 +193,26 @@
         by <a class="url fn" href="/author/poon.html">Poon</a>
     </address>
 
-    in <a href="/category/life.html">Life</a>
+    in <a href="/category/job.html">Job</a>
 
-    on 2015-11-28
-
-        |
-        tags:         <a href="/tag/xin-ling.html">心灵</a>
-        <a href="/tag/gan-wu.html">感悟</a>
-        <a href="/tag/xian-hua.html">闲话</a>
-        <a href="/tag/hu-che.html">胡扯</a>
-        <a href="/tag/pan-tan.html">攀谈</a>
-
+    on 2015-11-30
 
         |
-        <a href="/poons-talk.html#disqus_thread">comments</a>
+        tags:         <a href="/tag/ri-zhi.html">日志</a>
+        <a href="/tag/bi-ji.html">笔记</a>
+        <a href="/tag/gong-zuo.html">工作</a>
+        <a href="/tag/shi-lu.html">实录</a>
+
+
+        |
+        <a href="/employment.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->                                
-<h1 id="_33">失去的会以某种形式回来,前提是努力;得到的,也终将失去!</h1>
-<p>-- 75亿富豪做慈善.</p>
-<p>过自己想过的生活，与他人无关。</p>
-<p>人生，对上负责，对下负责，对己负责。</p>
-<p>对上：父母。
-对下：妻儿。
-对自己：honor。</p>
-<p>2015-11-28 10:32-中山石岐</p>
+<p>记录工作点点滴滴。方法、经验、流程、设计、架构、抽象、总结。</p>
 
                                 <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="/poons-talk.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="/todo.html" rel="bookmark" title="Permalink to todo list 想做/要做的事">
-                                       todo list 想做/要做的事
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="/author/poon.html">Poon</a>
-    </address>
-
-    in <a href="/category/life.html">Life</a>
-
-    on 2015-11-28
-
-        |
-        tags:         <a href="/tag/todo.html">todo</a>
-        <a href="/tag/xiang-zuo.html">想做</a>
-        <a href="/tag/ji-hua.html">计划</a>
-
-
-        |
-        <a href="/todo.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                
-<p>关于要做的工作，要学的技能,要处理的个人事务，要去改变的一些东西...</p>
-
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="/todo.html">Read more...</a>
+                                    <a class="btn btn-small btn-info" href="/employment.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
@@ -321,7 +235,7 @@
 
     in <a href="/category/life.html">Life</a>
 
-    on 2015-11-27
+    on 2015-11-30
 
         |
         tags:         <a href="/tag/zhuan-qian.html">赚钱</a>
@@ -351,8 +265,8 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
-                                    <a href="/employment.html" rel="bookmark" title="Permalink to 东家,西家,不如自己当家">
-                                       东家,西家,不如自己当家
+                                    <a href="/oracle-biee-develop.html" rel="bookmark" title="Permalink to Oracle BIEE 经验总结">
+                                       Oracle BIEE 经验总结
                                     </a>
                                 </h1>
                             </header>
@@ -362,26 +276,23 @@
         by <a class="url fn" href="/author/poon.html">Poon</a>
     </address>
 
-    in <a href="/category/job.html">Job</a>
+    in <a href="/category/tech.html">Tech</a>
 
-    on 2015-11-27
-
-        |
-        tags:         <a href="/tag/ri-zhi.html">日志</a>
-        <a href="/tag/bi-ji.html">笔记</a>
-        <a href="/tag/gong-zuo.html">工作</a>
-        <a href="/tag/shi-lu.html">实录</a>
-
+    on 2015-11-30
 
         |
-        <a href="/employment.html#disqus_thread">comments</a>
+        tags:         <a href="/tag/oracle.html">oracle</a>
+        <a href="/tag/biee.html">biee</a>
+        <a href="/tag/bi.html">BI</a>
+
+
+        |
+        <a href="/oracle-biee-develop.html#disqus_thread">comments</a>
 
     
-</footer><!-- /.post-info -->                                
-<p>记录工作点点滴滴。方法、经验、流程、设计、架构、抽象、总结。</p>
-
+</footer><!-- /.post-info -->                                <p>使用biee开发前前后有也有两年多了，对oracle这套产品，也有一点小小心得，在此总结一下，抛砖引玉。持续更新中...</p>
                                 <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="/employment.html">Read more...</a>
+                                    <a class="btn btn-small btn-info" href="/oracle-biee-develop.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
@@ -391,8 +302,8 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
-                                    <a href="/this-is-a-story.html" rel="bookmark" title="Permalink to 小小说">
-                                       小小说
+                                    <a href="/play-databases.html" rel="bookmark" title="Permalink to 主流数据库安装、维护、开发与管理">
+                                       主流数据库安装、维护、开发与管理
                                     </a>
                                 </h1>
                             </header>
@@ -402,26 +313,93 @@
         by <a class="url fn" href="/author/poon.html">Poon</a>
     </address>
 
-    in <a href="/category/career.html">Career</a>
+    in <a href="/category/tech.html">Tech</a>
 
-    on 2015-11-27
-
-        |
-        tags:         <a href="/tag/gu-shi.html">故事</a>
-        <a href="/tag/xiao-shuo.html">小说</a>
-        <a href="/tag/sheng-huo.html">生活</a>
-
+    on 2015-11-30
 
         |
-        <a href="/this-is-a-story.html#disqus_thread">comments</a>
+        tags:         <a href="/tag/db.html">DB</a>
+        <a href="/tag/database.html">database</a>
+        <a href="/tag/shu-ju-ku.html">数据库</a>
+        <a href="/tag/db2.html">db2</a>
+        <a href="/tag/oracle.html">oracle</a>
+        <a href="/tag/mysql.html">mysql</a>
+
+
+        |
+        <a href="/play-databases.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->                                
-<h1 id="2015-11-27-1359">2015-11-27 13:59</h1>
-<p>Kevin是一位专业人士，希望在外面接些项目来做，帮补家计。由于事前没有拟定合约，Kevin在法律方面，还是图样图森破，客户违约，由于势单力薄，靠自己的努力，还是回不了款。项目金额也不大，请律师的话，花费太大，最后不了了之。做项目＋维权所花的时间，双重损失，让他很受伤，以后都不敢轻易接外面的项目。如果当初签订合同有律师帮忙过一过，可能就会免去不少麻烦。</p>
+<h2 id="mysqld">启动mysqld 的时候，一般加什么参数？</h2>
+<p>ps -ef|grep -i mysql
+   74    96     1   0 10:57AM ??         0:03.49 /usr/local/mysql/bin/mysqld --user=_mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data --plugin-dir=/usr/local/mysql/lib/plugin --log-error=/usr/local/mysql/data/mysqld.local.err --pid-file=/usr/local/mysql/data/mysqld.local.pid</p>
+<h2 id="_5">远程数据库连接配置</h2>
+<ol>
+<li>
+<p>db2 
+我的工作电脑是macbook，如果要连接远程的db2，需要在本地做catalog . ibm官方网站上有 v10.1 的db2exc可以下载。可以用来做客户端或者一个简单的开发环境。mac os x 安装db2exc 要用root用户安装，安装之前要设置sysctl.conf参数，重启。然后最好给db2创建单独的用户db2inst1， 这样sqllib就会自动创建到db2inst1的目录下。使用db2icrt创建实例。使用db2sampl创建sample数据库。如果执行db2start时出现权限问题，就要给sqllib下的adm目录赋权。把原来赋给root的权限，chown到db2inst1 。 
+当db2可以正常连接后，使用db2 catalog 归档远程数据库。注意：node 关键字是让你给节点起个名字，这个名字我们自己随便取，而不是服务器的特定值。先 归档 远程服务器节点，再归档数据库。端口用50000 五万。</p>
+</li>
+<li>
+<p>mysql 
+连接远程的mysql，需要装本地mysql client 。 使用-h 参数指定远程服务器。使用-A 参数，降低连接时等待rehash的时间。</p>
+</li>
+</ol>
 
                                 <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="/this-is-a-story.html">Read more...</a>
+                                    <a class="btn btn-small btn-info" href="/play-databases.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="/poons-talk.html" rel="bookmark" title="Permalink to Poon Talk 攀谈">
+                                       Poon Talk 攀谈
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/poon.html">Poon</a>
+    </address>
+
+    in <a href="/category/life.html">Life</a>
+
+    on 2015-11-30
+
+        |
+        tags:         <a href="/tag/xin-ling.html">心灵</a>
+        <a href="/tag/gan-wu.html">感悟</a>
+        <a href="/tag/xian-hua.html">闲话</a>
+        <a href="/tag/hu-che.html">胡扯</a>
+        <a href="/tag/pan-tan.html">攀谈</a>
+
+
+        |
+        <a href="/poons-talk.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                
+<p>2015-11-29 21:44 抛弃完美主义</p>
+<p>技术是手段，业务才是王道。
+技术是路径，业务是目标。也就是，我走路也可以过对岸，过桥也可以过对岸，坐船也能过对岸。只要能过对岸，任何一种方案都有可能是合理的。
+抛弃技术洁癖，抛弃技术为王的观念，把目标放在首位。技术是助力，而不是决定性的力量。
+技术选型，也不要要求高精尖，能达到目标的技术，就是可靠的。然后，能够提高效率的，就是好的技术。如果能够大大提高效率的，就是优秀的技术。
+引入技术手段的方式，无非就是：
+1.自己做，自己用。
+2.花钱买来用。</p>
+<p>哪种更划算？要综合资金成本和时间成本考虑。管理成本也是时间成本。人力成本也是时间成本。采购成本是实实在在的资金投入。</p>
+<p>作为一个技术人员，会非常关注技术实现。这样，反而会被技术所困，跳不出技术这个牢笼。无法上升到业务高度。</p>
+<p>黑猫白猫，能抓到老鼠的，就是好猫！ 技术，就是那只猫！ 搞技术的，要有这样的认识：我们的目标是抓老鼠，而不是选哪只猫来抓。没有必要在技术选型上耗费太多的精力。如果实在要选，我们可以这样选：看那只猫好养，状态稳定，不容易生病。换句话来说，就是吃得少，抓得多，还不容易生病。从技术角度来说，就是上手容易，编码时间短，出活快，性能稳定。</p>
+
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="/poons-talk.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
@@ -444,7 +422,7 @@
 
     in <a href="/category/life.html">Life</a>
 
-    on 2015-11-27
+    on 2015-11-30
 
         |
         tags:         <a href="/tag/reading.html">reading</a>
@@ -471,8 +449,64 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
-                                    <a href="/think-about-happiness.html" rel="bookmark" title="Permalink to 幸福思考">
-                                       幸福思考
+                                    <a href="/setup-and-config-my-github-blog-with-pelican.html" rel="bookmark" title="Permalink to 使用github+pelican搭建我的博客">
+                                       使用github+pelican搭建我的博客
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/poon.html">Poon</a>
+    </address>
+
+    in <a href="/category/tech.html">Tech</a>
+
+    on 2015-11-30
+
+        |
+        tags:         <a href="/tag/github.html">github</a>
+        <a href="/tag/blog.html">blog</a>
+        <a href="/tag/pelican.html">pelican</a>
+        <a href="/tag/disqus.html">disqus</a>
+
+
+        |
+        <a href="/setup-and-config-my-github-blog-with-pelican.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                
+<h3 id="15-toc">15. 为博客文章添加目录（toc）支持</h3>
+<p>2015-11-27 11:17</p>
+<p>为了避免文章太多难以维护，我打算把多篇帖子合成一篇。这样就有一个问题，一个页面上内容多了，帖子与帖子之间需要一个目录索引，否则会很乱的。google了一下，有一个extract_toc的插件，可以把文档结构抽取出来，然后展示在页面你想展示的地方。安装方法跟其他插件差不多，</p>
+<p>首先,添加插件支持：</p>
+<pre><code>PLUGINS = ["tag_cloud","ga_page_view","summary","sitemap","extract_toc"]
+</code></pre>
+<p>需要注意的是，如果你使用markdown来写博客，需要在pelicanconf.py中添加：</p>
+<pre><code>MD_EXTENSIONS = (['toc'])
+</code></pre>
+<p>其次， 要修改你的博客的模版， 在 article.content 之前，添加如下代码：</p>
+<pre><code>{% if article.toc %}
+    &lt;nav class="toc"&gt;
+    {{ article.toc }}
+    &lt;/nav&gt;
+{% endif %}
+</code></pre>
+<p>toc class 不用自己添加，当然如果你想目录好看一点，可以自己修改、覆盖toc的css。</p>
+
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="/setup-and-config-my-github-blog-with-pelican.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="/the-benifit-of-writing.html" rel="bookmark" title="Permalink to 写作的好处">
+                                       写作的好处
                                     </a>
                                 </h1>
                             </header>
@@ -484,27 +518,25 @@
 
     in <a href="/category/life.html">Life</a>
 
-    on 2015-11-27
+    on 2015-11-30
 
         |
-        tags:         <a href="/tag/kuai-le.html">快乐</a>
-        <a href="/tag/xing-fu.html">幸福</a>
-        <a href="/tag/si-kao.html">思考</a>
+        tags:         <a href="/tag/sheng-huo.html">生活</a>
+        <a href="/tag/xie-zi.html">写字</a>
 
 
         |
-        <a href="/think-about-happiness.html#disqus_thread">comments</a>
+        <a href="/the-benifit-of-writing.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->                                
-<p>今天，世界杯预选赛，中国对不丹。对于不丹这个国家，不太了解。只知道他与西藏接壤，是一个幸福指数很高的国家。</p>
-<pre><code>不丹族是不丹的主体民族，西部不丹语“宗卡”和英语为官方用语。不丹是世界上最后一个开放电视与网络的国家。不丹经济相当落后，最不发达国家之一，但2006年发布的“全球快乐国度排行榜”中，不丹却名列第8位，位列亚洲第一位。
--- 来自百度百科
-</code></pre>
-<p>可见，人们的幸福水平和经济发达程度，科技水平高低，并无多大关系。相反，经济发达，科技先进，有可能会降低幸福感。</p>
+<h2 id="_3">文字的力量</h2>
+<p>2015-11-24 15:59</p>
+<p>我感觉到文字有一种收敛力。就是当你感觉到浮躁的时候，当你思维混乱，迷茫，心神不定的时候，写写东西，当你把此刻的想法记下来的时候，思绪一下清晰了，情绪也稳定了，一股要外放的情绪，也能通过文字，一点点的平复。就像散落荷叶上的露珠，终归也要落入地面。又像漂泊在各地的游子，最后都要回家。
+思想落实到文字，就是黄花闺女找到了好的归宿。</p>
 
                                 <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="/think-about-happiness.html">Read more...</a>
+                                    <a class="btn btn-small btn-info" href="/the-benifit-of-writing.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>
@@ -549,68 +581,68 @@
             <div>
                 <h2>Tags</h2>
                 <ul id="cloud">
-                     <li class="tag-4"><a href="/tag/tou-zi.html">投资</a></li>
-                     <li class="tag-4"><a href="/tag/todo.html">todo</a></li>
-                     <li class="tag-4"><a href="/tag/gan-wu.html">感悟</a></li>
-                     <li class="tag-4"><a href="/tag/git.html">git</a></li>
-                     <li class="tag-4"><a href="/tag/pan-tan.html">攀谈</a></li>
-                     <li class="tag-4"><a href="/tag/chi-fan-gong-ju.html">吃饭工具</a></li>
-                     <li class="tag-4"><a href="/tag/yin-shi.html">饮食</a></li>
-                     <li class="tag-4"><a href="/tag/reading.html">reading</a></li>
-                     <li class="tag-4"><a href="/tag/ji-hua.html">计划</a></li>
-                     <li class="tag-4"><a href="/tag/disqus.html">disqus</a></li>
-                     <li class="tag-4"><a href="/tag/xie-zi.html">写字</a></li>
-                     <li class="tag-4"><a href="/tag/learn.html">learn</a></li>
-                     <li class="tag-4"><a href="/tag/osx.html">OSX</a></li>
-                     <li class="tag-4"><a href="/tag/yi-zhu.html">艺术</a></li>
-                     <li class="tag-4"><a href="/tag/zhuan-qian.html">赚钱</a></li>
-                     <li class="tag-4"><a href="/tag/jian-shen.html">健身</a></li>
-                     <li class="tag-1"><a href="/tag/sheng-huo.html">生活</a></li>
-                     <li class="tag-4"><a href="/tag/she-ji.html">设计</a></li>
-                     <li class="tag-4"><a href="/tag/github.html">github</a></li>
-                     <li class="tag-4"><a href="/tag/blog.html">blog</a></li>
-                     <li class="tag-4"><a href="/tag/xian-hua.html">闲话</a></li>
-                     <li class="tag-4"><a href="/tag/mysql.html">mysql</a></li>
-                     <li class="tag-4"><a href="/tag/gu-piao.html">股票</a></li>
-                     <li class="tag-4"><a href="/tag/xing-fu.html">幸福</a></li>
-                     <li class="tag-4"><a href="/tag/db2.html">db2</a></li>
-                     <li class="tag-4"><a href="/tag/jia-gou.html">架构</a></li>
-                     <li class="tag-4"><a href="/tag/linux.html">linux</a></li>
-                     <li class="tag-4"><a href="/tag/cheng-xu.html">程序</a></li>
-                     <li class="tag-4"><a href="/tag/shu-ju-ku.html">数据库</a></li>
-                     <li class="tag-4"><a href="/tag/db.html">DB</a></li>
-                     <li class="tag-4"><a href="/tag/du-bo.html">赌博</a></li>
-                     <li class="tag-4"><a href="/tag/bi-ji.html">笔记</a></li>
-                     <li class="tag-4"><a href="/tag/me.html">Me</a></li>
-                     <li class="tag-4"><a href="/tag/shi-lu.html">实录</a></li>
-                     <li class="tag-4"><a href="/tag/ye-wu.html">业务</a></li>
-                     <li class="tag-4"><a href="/tag/duo-luo.html">堕落</a></li>
-                     <li class="tag-4"><a href="/tag/database.html">database</a></li>
-                     <li class="tag-4"><a href="/tag/duan-lian.html">锻炼</a></li>
-                     <li class="tag-4"><a href="/tag/kuai-le.html">快乐</a></li>
-                     <li class="tag-4"><a href="/tag/tou-ji.html">投机</a></li>
-                     <li class="tag-4"><a href="/tag/bi.html">BI</a></li>
-                     <li class="tag-4"><a href="/tag/hu-che.html">胡扯</a></li>
-                     <li class="tag-4"><a href="/tag/xiang-zuo.html">想做</a></li>
-                     <li class="tag-4"><a href="/tag/list.html">list</a></li>
-                     <li class="tag-4"><a href="/tag/tools.html">tools</a></li>
-                     <li class="tag-1"><a href="/tag/oracle.html">oracle</a></li>
-                     <li class="tag-4"><a href="/tag/pelican.html">pelican</a></li>
-                     <li class="tag-4"><a href="/tag/biee.html">biee</a></li>
-                     <li class="tag-4"><a href="/tag/gong-zuo.html">工作</a></li>
-                     <li class="tag-4"><a href="/tag/ji-jin.html">基金</a></li>
                      <li class="tag-4"><a href="/tag/unix.html">Unix</a></li>
-                     <li class="tag-4"><a href="/tag/si-kao.html">思考</a></li>
-                     <li class="tag-4"><a href="/tag/jin-rong.html">金融</a></li>
-                     <li class="tag-4"><a href="/tag/yin-xing.html">银行</a></li>
-                     <li class="tag-4"><a href="/tag/xiao-shuo.html">小说</a></li>
-                     <li class="tag-4"><a href="/tag/sui-xiang.html">随想</a></li>
-                     <li class="tag-4"><a href="/tag/ri-ji.html">日记</a></li>
-                     <li class="tag-4"><a href="/tag/ri-zhi.html">日志</a></li>
-                     <li class="tag-4"><a href="/tag/xin-ling.html">心灵</a></li>
-                     <li class="tag-4"><a href="/tag/mac.html">Mac</a></li>
-                     <li class="tag-4"><a href="/tag/books.html">books</a></li>
+                     <li class="tag-1"><a href="/tag/oracle.html">oracle</a></li>
                      <li class="tag-4"><a href="/tag/gu-shi.html">故事</a></li>
+                     <li class="tag-4"><a href="/tag/xiang-zuo.html">想做</a></li>
+                     <li class="tag-4"><a href="/tag/yin-shi.html">饮食</a></li>
+                     <li class="tag-4"><a href="/tag/ji-hua.html">计划</a></li>
+                     <li class="tag-4"><a href="/tag/yin-xing.html">银行</a></li>
+                     <li class="tag-4"><a href="/tag/tou-ji.html">投机</a></li>
+                     <li class="tag-4"><a href="/tag/cheng-xu.html">程序</a></li>
+                     <li class="tag-4"><a href="/tag/git.html">git</a></li>
+                     <li class="tag-4"><a href="/tag/ri-zhi.html">日志</a></li>
+                     <li class="tag-4"><a href="/tag/duo-luo.html">堕落</a></li>
+                     <li class="tag-4"><a href="/tag/xie-zi.html">写字</a></li>
+                     <li class="tag-4"><a href="/tag/xing-fu.html">幸福</a></li>
+                     <li class="tag-4"><a href="/tag/tools.html">tools</a></li>
+                     <li class="tag-4"><a href="/tag/linux.html">linux</a></li>
+                     <li class="tag-4"><a href="/tag/biee.html">biee</a></li>
+                     <li class="tag-4"><a href="/tag/osx.html">OSX</a></li>
+                     <li class="tag-4"><a href="/tag/learn.html">learn</a></li>
+                     <li class="tag-4"><a href="/tag/pelican.html">pelican</a></li>
+                     <li class="tag-4"><a href="/tag/chi-fan-gong-ju.html">吃饭工具</a></li>
+                     <li class="tag-4"><a href="/tag/she-ji.html">设计</a></li>
+                     <li class="tag-4"><a href="/tag/sui-xiang.html">随想</a></li>
+                     <li class="tag-4"><a href="/tag/jin-rong.html">金融</a></li>
+                     <li class="tag-4"><a href="/tag/xian-hua.html">闲话</a></li>
+                     <li class="tag-4"><a href="/tag/jian-shen.html">健身</a></li>
+                     <li class="tag-4"><a href="/tag/gan-wu.html">感悟</a></li>
+                     <li class="tag-4"><a href="/tag/ri-ji.html">日记</a></li>
+                     <li class="tag-4"><a href="/tag/db.html">DB</a></li>
+                     <li class="tag-4"><a href="/tag/books.html">books</a></li>
+                     <li class="tag-4"><a href="/tag/bi.html">BI</a></li>
+                     <li class="tag-4"><a href="/tag/kuai-le.html">快乐</a></li>
+                     <li class="tag-4"><a href="/tag/me.html">Me</a></li>
+                     <li class="tag-4"><a href="/tag/xiao-shuo.html">小说</a></li>
+                     <li class="tag-4"><a href="/tag/mac.html">Mac</a></li>
+                     <li class="tag-4"><a href="/tag/tou-zi.html">投资</a></li>
+                     <li class="tag-4"><a href="/tag/xin-ling.html">心灵</a></li>
+                     <li class="tag-4"><a href="/tag/yi-zhu.html">艺术</a></li>
+                     <li class="tag-4"><a href="/tag/mysql.html">mysql</a></li>
+                     <li class="tag-4"><a href="/tag/database.html">database</a></li>
+                     <li class="tag-4"><a href="/tag/ji-jin.html">基金</a></li>
+                     <li class="tag-1"><a href="/tag/sheng-huo.html">生活</a></li>
+                     <li class="tag-4"><a href="/tag/gu-piao.html">股票</a></li>
+                     <li class="tag-4"><a href="/tag/db2.html">db2</a></li>
+                     <li class="tag-4"><a href="/tag/duan-lian.html">锻炼</a></li>
+                     <li class="tag-4"><a href="/tag/gong-zuo.html">工作</a></li>
+                     <li class="tag-4"><a href="/tag/hu-che.html">胡扯</a></li>
+                     <li class="tag-4"><a href="/tag/shi-lu.html">实录</a></li>
+                     <li class="tag-4"><a href="/tag/list.html">list</a></li>
+                     <li class="tag-4"><a href="/tag/pan-tan.html">攀谈</a></li>
+                     <li class="tag-4"><a href="/tag/blog.html">blog</a></li>
+                     <li class="tag-4"><a href="/tag/reading.html">reading</a></li>
+                     <li class="tag-4"><a href="/tag/si-kao.html">思考</a></li>
+                     <li class="tag-4"><a href="/tag/bi-ji.html">笔记</a></li>
+                     <li class="tag-4"><a href="/tag/shu-ju-ku.html">数据库</a></li>
+                     <li class="tag-4"><a href="/tag/jia-gou.html">架构</a></li>
+                     <li class="tag-4"><a href="/tag/zhuan-qian.html">赚钱</a></li>
+                     <li class="tag-4"><a href="/tag/todo.html">todo</a></li>
+                     <li class="tag-4"><a href="/tag/github.html">github</a></li>
+                     <li class="tag-4"><a href="/tag/du-bo.html">赌博</a></li>
+                     <li class="tag-4"><a href="/tag/ye-wu.html">业务</a></li>
+                     <li class="tag-4"><a href="/tag/disqus.html">disqus</a></li>
                 </ul>
              </div>
 <!-- /.Tags -->
