@@ -5,29 +5,36 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2015-12-01T08:50:20-00:00</lastmod>
+<lastmod>2015-12-01T10:43:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2015-12-01T08:50:20-00:00</lastmod>
+<lastmod>2015-12-01T10:43:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2015-12-01T08:50:20-00:00</lastmod>
+<lastmod>2015-12-01T10:43:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2015-12-01T08:50:20-00:00</lastmod>
+<lastmod>2015-12-01T10:43:50-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/oracle-biee-develop.html</loc>
+<lastmod>2015-12-01T10:43:47+08:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -75,13 +82,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/invest-notes.html</loc>
-<lastmod>2015-11-30T07:32:34+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/oracle-biee-develop.html</loc>
 <lastmod>2015-11-30T07:32:34+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
@@ -187,7 +187,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/tech.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
+<lastmod>2015-12-01T10:43:47+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -354,8 +354,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/sui-xiang.html</loc>
-<lastmod>2015-12-01T07:53:45+08:06</lastmod>
+<loc>/tag/biee.html</loc>
+<lastmod>2015-12-01T10:43:47+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -382,8 +382,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/xin-ling.html</loc>
-<lastmod>2015-12-01T08:39:23+08:06</lastmod>
+<loc>/tag/jin-rong.html</loc>
+<lastmod>2015-11-30T07:32:34+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/si-kao.html</loc>
+<lastmod>2015-12-01T08:47:15+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -418,7 +425,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/bi.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
+<lastmod>2015-12-01T10:43:47+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -446,13 +453,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/ye-wu.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/tag/biee.html</loc>
 <lastmod>2015-11-30T07:32:34+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -571,8 +571,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/jin-rong.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
+<loc>/tag/sui-xiang.html</loc>
+<lastmod>2015-12-01T07:53:45+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -585,8 +585,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/si-kao.html</loc>
-<lastmod>2015-12-01T08:47:15+08:06</lastmod>
+<loc>/tag/xin-ling.html</loc>
+<lastmod>2015-12-01T08:39:23+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -600,7 +600,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/oracle.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
+<lastmod>2015-12-01T10:43:47+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -628,7 +628,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/author/poon.html</loc>
-<lastmod>2015-12-01T08:47:15+08:06</lastmod>
+<lastmod>2015-12-01T10:43:47+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
