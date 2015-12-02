@@ -279,7 +279,7 @@ With this plugin installed, each article and page object has one extra meta data
 这一行了。
 
 
-### 14. 为 www.imx3.com 添加 百度 sitemap 支持 [zz]
+### 14. 为 [小站](http://www.imx3.com) 添加 百度 sitemap 支持 [zz]
 
 google SITE map 支持可以直接用  pelican sitemap 插件 插件生成sitemap.xml 。 
 
@@ -318,7 +318,33 @@ curl方式好像是有次数限制的。提交多次会报错。
 
 sitemap.xml 也是被动的。
 
+
 <!-- ^ -->
+
+### 14. 为 [小站](http://www.imx3.com) 添加 bing sitemap 支持 [zz]
+
+1. 登陆 https://www.bing.com/webmaster  , microsoft、bing、msn账号都是通用的。
+
+2. 填入你的网站信息 , 同时会有一个框让你提交sitemap地址。 你可以先不填写。
+
+3. 填入你的个人资料
+
+4. 验证这个网站是不是你的，有几种途径：
+
+4.1 上传文件
+
+4.2 修改html
+
+4.3 修改cname
+
+我选择了上传文件，最方便。
+
+5. 通过验证之后，就可以提交sitemap 了。支持很多种格式的sitemap提交，因为担心bing不认识我的sitemap.xml ， 我同时提交了urls.txt 和 sitemap.xml，双保险。
+
+刚提交，静观其变。－－2015-12-02 09:43
+
+
+<!-- $ -->
 
 ### 15. 为博客文章添加目录（toc）支持 
 
@@ -348,7 +374,6 @@ sitemap.xml 也是被动的。
 toc class 不用自己添加，当然如果你想目录好看一点，可以自己修改、覆盖toc的css。
 
 
-<!-- $ -->
 
 
 # 点评

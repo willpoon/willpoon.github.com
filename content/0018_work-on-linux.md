@@ -153,8 +153,10 @@ svn merge -c -2683 db_load_data_comm.sh
 
 
 
-### 2015-11-18 22:27
-使用find 查找权限为777 的文件，并改为755:
+
+### 使用find 查找权限为777 的文件，并改为755:
+
+2015-11-18 22:27
 
     find /path/to/file -perm 777 -type f -exec chmod 755 {} \;
 
@@ -163,6 +165,8 @@ svn merge -c -2683 db_load_data_comm.sh
     stat_dt=`date -d "-1 days " +%Y%m%d`
 
 这个在bi中很常用，我们常常需要确定最近一个统计日期是什么时候。原来date函数很强大，提供了我们想要的很多功能，只是我们没有充分发掘而已。
+
+注意：在mac上用法不一样。需要使用-v参数
 
 # Axel 
 

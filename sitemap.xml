@@ -5,35 +5,70 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2015-12-02T09:20:22-00:00</lastmod>
+<lastmod>2015-12-02T09:59:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2015-12-02T09:20:22-00:00</lastmod>
+<lastmod>2015-12-02T09:59:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2015-12-02T09:20:22-00:00</lastmod>
+<lastmod>2015-12-02T09:59:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2015-12-02T09:20:22-00:00</lastmod>
+<lastmod>2015-12-02T09:59:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
+<loc>/read-some-books.html</loc>
+<lastmod>2015-12-02T09:59:32+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>/poons-talk.html</loc>
-<lastmod>2015-12-02T09:10:14+08:00</lastmod>
+<lastmod>2015-12-02T09:57:46+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/work-on-linux.html</loc>
+<lastmod>2015-12-02T09:51:05+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/employment.html</loc>
+<lastmod>2015-12-02T09:49:40+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/about-design.html</loc>
+<lastmod>2015-12-02T09:47:01+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/setup-and-config-my-github-blog-with-pelican.html</loc>
+<lastmod>2015-12-02T09:44:51+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -81,13 +116,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/about-design.html</loc>
-<lastmod>2015-11-30T07:32:34+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>/banking-finance.html</loc>
 <lastmod>2015-11-30T07:32:34+08:00</lastmod>
 <changefreq>monthly</changefreq>
@@ -95,28 +123,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/employment.html</loc>
-<lastmod>2015-11-30T07:32:34+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>/play-databases.html</loc>
-<lastmod>2015-11-30T07:32:34+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/read-some-books.html</loc>
-<lastmod>2015-11-30T07:32:34+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/setup-and-config-my-github-blog-with-pelican.html</loc>
 <lastmod>2015-11-30T07:32:34+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
@@ -138,13 +145,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/work-on-Mac.html</loc>
-<lastmod>2015-11-30T07:32:34+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/work-on-linux.html</loc>
 <lastmod>2015-11-30T07:32:34+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
@@ -180,21 +180,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/job.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
+<lastmod>2015-12-02T09:49:40+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/category/life.html</loc>
-<lastmod>2015-12-02T09:10:14+08:06</lastmod>
+<lastmod>2015-12-02T09:59:32+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/category/tech.html</loc>
-<lastmod>2015-12-02T09:02:14+08:06</lastmod>
+<lastmod>2015-12-02T09:51:05+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -208,76 +208,27 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/gan-wu.html</loc>
-<lastmod>2015-12-02T09:10:14+08:06</lastmod>
+<lastmod>2015-12-02T09:57:46+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/pan-tan.html</loc>
-<lastmod>2015-12-02T09:10:14+08:06</lastmod>
+<lastmod>2015-12-02T09:57:46+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/pelican.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
+<lastmod>2015-12-02T09:44:51+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/list.html</loc>
-<lastmod>2015-11-11T16:20:00+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/tag/shi-lu.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/tag/linux.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/tag/ri-zhi.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/tag/cheng-xu.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/tag/unix.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/tag/books.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/tag/tools.html</loc>
 <lastmod>2015-11-11T16:20:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -291,6 +242,48 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>/tag/ri-zhi.html</loc>
+<lastmod>2015-12-02T09:49:40+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/cheng-xu.html</loc>
+<lastmod>2015-12-02T09:47:01+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/db2.html</loc>
+<lastmod>2015-11-30T07:32:34+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/books.html</loc>
+<lastmod>2015-12-02T09:59:32+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/tools.html</loc>
+<lastmod>2015-11-11T16:20:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/linux.html</loc>
+<lastmod>2015-12-02T09:51:05+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>/tag/du-bo.html</loc>
 <lastmod>2015-12-02T08:56:57+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -298,8 +291,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/duan-lian.html</loc>
-<lastmod>2015-12-02T08:32:05+08:06</lastmod>
+<loc>/tag/shi-lu.html</loc>
+<lastmod>2015-12-02T09:49:40+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -319,8 +312,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/disqus.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
+<loc>/tag/git.html</loc>
+<lastmod>2015-12-02T09:51:05+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -340,8 +333,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/todo.html</loc>
-<lastmod>2015-12-01T21:48:55+08:06</lastmod>
+<loc>/tag/duan-lian.html</loc>
+<lastmod>2015-12-02T08:32:05+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -355,7 +348,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/blog.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
+<lastmod>2015-12-02T09:44:51+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -383,7 +376,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/yi-zhu.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
+<lastmod>2015-12-02T09:47:01+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -397,21 +390,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/reading.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
+<lastmod>2015-12-02T09:59:32+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/zhuan-qian.html</loc>
-<lastmod>2015-12-02T08:56:57+08:06</lastmod>
+<loc>/tag/yin-shi.html</loc>
+<lastmod>2015-12-02T08:32:05+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/hu-che.html</loc>
-<lastmod>2015-12-02T09:10:14+08:06</lastmod>
+<lastmod>2015-12-02T09:57:46+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -445,8 +438,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/yin-shi.html</loc>
-<lastmod>2015-12-02T08:32:05+08:06</lastmod>
+<loc>/tag/zhuan-qian.html</loc>
+<lastmod>2015-12-02T08:56:57+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -474,14 +467,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/bi-ji.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/tag/git.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
+<lastmod>2015-12-02T09:49:40+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -495,7 +481,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/xian-hua.html</loc>
-<lastmod>2015-12-02T09:10:14+08:06</lastmod>
+<lastmod>2015-12-02T09:57:46+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -508,8 +494,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/db2.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
+<loc>/tag/disqus.html</loc>
+<lastmod>2015-12-02T09:44:51+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -522,8 +508,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/she-ji.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
+<loc>/tag/jian-shen.html</loc>
+<lastmod>2015-12-02T08:32:05+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -543,8 +529,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>/tag/todo.html</loc>
+<lastmod>2015-12-01T21:48:55+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>/tag/github.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
+<lastmod>2015-12-02T09:44:51+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -559,6 +552,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/tag/gu-piao.html</loc>
 <lastmod>2015-12-02T08:56:57+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/unix.html</loc>
+<lastmod>2015-11-30T07:32:34+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -586,7 +586,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/gong-zuo.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
+<lastmod>2015-12-02T09:49:40+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -614,14 +614,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/xin-ling.html</loc>
-<lastmod>2015-12-02T09:10:14+08:06</lastmod>
+<lastmod>2015-12-02T09:57:46+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/learn.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
+<lastmod>2015-12-02T09:59:32+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -641,22 +641,22 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/jian-shen.html</loc>
-<lastmod>2015-12-02T08:32:05+08:06</lastmod>
+<loc>/tag/she-ji.html</loc>
+<lastmod>2015-12-02T09:47:01+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/jia-gou.html</loc>
-<lastmod>2015-11-30T07:32:34+08:06</lastmod>
+<lastmod>2015-12-02T09:47:01+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/author/poon.html</loc>
-<lastmod>2015-12-02T09:10:14+08:06</lastmod>
+<lastmod>2015-12-02T09:59:32+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

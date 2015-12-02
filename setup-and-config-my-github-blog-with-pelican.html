@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2015-11-30
+    on 2015-12-02
 
         |
         tags:         <a href="/tag/github.html">github</a>
@@ -140,7 +140,8 @@
 <li><a href="#11-ga_page_view-page-view">11.安装 ga_page_view 插件后，仍无法显示page view，还需要作什么设置？</a></li>
 <li><a href="#12">12. 如何灵活截取文章片段作为摘要信息？</a></li>
 <li><a href="#13-default_date">13. 使用DEFAULT_DATE 来设置文章日期。</a></li>
-<li><a href="#14-wwwimx3com-sitemap-zz">14. 为 www.imx3.com 添加 百度 sitemap 支持 [zz]</a></li>
+<li><a href="#14-sitemap-zz">14. 为 小站 添加 百度 sitemap 支持 [zz]</a></li>
+<li><a href="#14-bing-sitemap-zz">14. 为 小站 添加 bing sitemap 支持 [zz]</a></li>
 <li><a href="#15-toc">15. 为博客文章添加目录（toc）支持</a></li>
 </ul>
 </li>
@@ -388,7 +389,7 @@ Total Sessions: 25
 <pre><code>Date:2015-11-19 07:08
 </code></pre>
 <p>这一行了。</p>
-<h3 id="14-wwwimx3com-sitemap-zz">14. 为 www.imx3.com 添加 百度 sitemap 支持 [zz]</h3>
+<h3 id="14-sitemap-zz">14. 为 <a href="http://www.imx3.com">小站</a> 添加 百度 sitemap 支持 [zz]</h3>
 <p>google SITE map 支持可以直接用  pelican sitemap 插件 插件生成sitemap.xml 。 </p>
 <p>然而，生成的这份sitemap并不能直接提交给百度站长工具平台。</p>
 <p>所以，需要参照百度站长工具平台的格式 <img alt="说明" src="http://zhanzhang.baidu.com/wiki/170#_1什么是XML数据文件？"/></p>
@@ -415,6 +416,30 @@ Total Sessions: 25
 <p>curl方式好像是有次数限制的。提交多次会报错。</p>
 <p>sitemap.xml 也是被动的。</p>
 
+<h3 id="14-bing-sitemap-zz">14. 为 <a href="http://www.imx3.com">小站</a> 添加 bing sitemap 支持 [zz]</h3>
+<ol>
+<li>
+<p>登陆 https://www.bing.com/webmaster  , microsoft、bing、msn账号都是通用的。</p>
+</li>
+<li>
+<p>填入你的网站信息 , 同时会有一个框让你提交sitemap地址。 你可以先不填写。</p>
+</li>
+<li>
+<p>填入你的个人资料</p>
+</li>
+<li>
+<p>验证这个网站是不是你的，有几种途径：</p>
+</li>
+</ol>
+<p>4.1 上传文件</p>
+<p>4.2 修改html</p>
+<p>4.3 修改cname</p>
+<p>我选择了上传文件，最方便。</p>
+<ol>
+<li>通过验证之后，就可以提交sitemap 了。支持很多种格式的sitemap提交，因为担心bing不认识我的sitemap.xml ， 我同时提交了urls.txt 和 sitemap.xml，双保险。</li>
+</ol>
+<p>刚提交，静观其变。－－2015-12-02 09:43</p>
+
 <h3 id="15-toc">15. 为博客文章添加目录（toc）支持</h3>
 <p>2015-11-27 11:17</p>
 <p>为了避免文章太多难以维护，我打算把多篇帖子合成一篇。这样就有一个问题，一个页面上内容多了，帖子与帖子之间需要一个目录索引，否则会很乱的。google了一下，有一个extract_toc的插件，可以把文档结构抽取出来，然后展示在页面你想展示的地方。安装方法跟其他插件差不多，</p>
@@ -432,7 +457,6 @@ Total Sessions: 25
 {% endif %}
 </code></pre>
 <p>toc class 不用自己添加，当然如果你想目录好看一点，可以自己修改、覆盖toc的css。</p>
-
 <h1 id="_6">点评</h1>
 <h2 id="1-pelican">优点1: pelican 修改标题和更新文章不会影响原文章的链接引用。</h2>
 <p>当我们觉得有必要更新博文的标题和内容时，我们只需要更新 Title 和正文，然后重新发布即可，而不用担心链接发生变化，外部不能引用。</p>
