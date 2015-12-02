@@ -5,29 +5,36 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2015-12-02T09:59:41-00:00</lastmod>
+<lastmod>2015-12-02T10:45:47-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2015-12-02T09:59:41-00:00</lastmod>
+<lastmod>2015-12-02T10:45:47-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2015-12-02T09:59:41-00:00</lastmod>
+<lastmod>2015-12-02T10:45:47-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2015-12-02T09:59:41-00:00</lastmod>
+<lastmod>2015-12-02T10:45:47-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/way-to-be-a-macho-man.html</loc>
+<lastmod>2015-12-02T10:10:57+08:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -83,13 +90,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/invest-notes.html</loc>
 <lastmod>2015-12-02T08:56:57+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/way-to-be-a-macho-man.html</loc>
-<lastmod>2015-12-02T08:32:05+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -187,7 +187,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/life.html</loc>
-<lastmod>2015-12-02T09:59:32+08:06</lastmod>
+<lastmod>2015-12-02T10:10:57+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -201,7 +201,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/duo-luo.html</loc>
-<lastmod>2015-12-02T08:32:05+08:06</lastmod>
+<lastmod>2015-12-02T10:10:57+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -306,7 +306,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/ri-ji.html</loc>
-<lastmod>2015-12-02T08:32:05+08:06</lastmod>
+<lastmod>2015-12-02T10:10:57+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -334,7 +334,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/duan-lian.html</loc>
-<lastmod>2015-12-02T08:32:05+08:06</lastmod>
+<lastmod>2015-12-02T10:10:57+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -396,8 +396,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/yin-shi.html</loc>
-<lastmod>2015-12-02T08:32:05+08:06</lastmod>
+<loc>/tag/zhuan-qian.html</loc>
+<lastmod>2015-12-02T08:56:57+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -438,8 +438,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/zhuan-qian.html</loc>
-<lastmod>2015-12-02T08:56:57+08:06</lastmod>
+<loc>/tag/yin-shi.html</loc>
+<lastmod>2015-12-02T10:10:57+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -508,8 +508,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/jian-shen.html</loc>
-<lastmod>2015-12-02T08:32:05+08:06</lastmod>
+<loc>/tag/she-ji.html</loc>
+<lastmod>2015-12-02T09:47:01+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -600,7 +600,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/sui-xiang.html</loc>
-<lastmod>2015-12-02T08:32:05+08:06</lastmod>
+<lastmod>2015-12-02T10:10:57+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -641,8 +641,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/she-ji.html</loc>
-<lastmod>2015-12-02T09:47:01+08:06</lastmod>
+<loc>/tag/jian-shen.html</loc>
+<lastmod>2015-12-02T10:10:57+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -656,7 +656,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/author/poon.html</loc>
-<lastmod>2015-12-02T09:59:32+08:06</lastmod>
+<lastmod>2015-12-02T10:10:57+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
