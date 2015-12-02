@@ -343,6 +343,15 @@ sitemap.xml 也是被动的。
 
 刚提交，静观其变。－－2015-12-02 09:43
 
+### 14. 提交给yahoo
+yahoo 的sitemap提交服务已经托管给 微软小冰了 bing.com :
+```
+
+Submit Site to Yahoo!
+
+Since 2010, Yahoo search has been powered by Microsoft's Bing search engine. When you submit your site to Bing you will also show up in Yahoo's search results. See below on how to submit your site to Bing.  Yahoo! had a paid submission process in the past, although Yahoo! Directory is no longer available.
+
+```
 
 <!-- $ -->
 
