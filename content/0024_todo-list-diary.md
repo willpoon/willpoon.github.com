@@ -17,6 +17,8 @@ Authors: Poon
 
 ## 远期:
 
+### datastructure datastructure datastructure 
+
 ### stock bi 
 
 ### 学习大数据
@@ -36,7 +38,7 @@ Authors: Poon
 
 ## 近期:
 
-## i.M.X
+## i.M.X 
 
 
 2015-11-13 07:39 0%
@@ -47,7 +49,6 @@ Authors: Poon
 
 ## 装修
 
-### 
 
 开关
 
@@ -83,7 +84,6 @@ Authors: Poon
 
 
 
-## datastructure datastructure datastructure 
 
 # 改变 
 
@@ -95,7 +95,7 @@ Authors: Poon
 
 ### 冷静，耐心，认真思考；谢绝浮躁，不良情绪。认真检视输入的每个信息，产生的每个念头。
 
-### 帮人练车
+### 练练练练车...
 
 ### 不要轻易承诺，一诺千金。 宁愿无情，也别滥情。
 
