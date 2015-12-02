@@ -201,6 +201,8 @@ or
 
 ## biee analysis 中的标题是可以填写 presentation 变量的。 
 
+同时，副标题也是可以写 展示变量、可以修改字体样式的。
+
 # 2.异常处理
 
 ### 2.1 ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.
