@@ -345,6 +345,7 @@ sitemap.xml 也是被动的。
 
 ### 14. 提交给yahoo
 yahoo 的sitemap提交服务已经托管给 微软小冰了 bing.com :
+
 ```
 
 Submit Site to Yahoo!
