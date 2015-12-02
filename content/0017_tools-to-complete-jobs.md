@@ -23,6 +23,10 @@ Authors: Poon
 
 你懂的
 
+## proxychains4
+
+terminal 上的梯子，让命令支持fan墙，命令行wget curl不再是难事。
+
 ## Navicat 
 
 mac 下数据库连接工具

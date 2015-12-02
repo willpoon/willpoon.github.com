@@ -11,7 +11,7 @@ Mac 是darwin unix 内核，很多东西跟linux不同。所以，还是单独�
 
 [TOC]
 
-## 1. ulimit -n 65000
+## ulimit -n 65000
 
  -bash: ulimit: open files: cannot modify limit: Invalid argument
 
@@ -35,7 +35,7 @@ Mac 是darwin unix 内核，很多东西跟linux不同。所以，还是单独�
 
 关于db2安装中遇到的ulimit参数问题，先改 sysctl.conf , 然后重启！很多问题都能解决！sysctl.conf ! 
 
-## 2. db2 安装
+## db2 安装
 
 db2 的安装还是得用root 用户进行。否则会报错的。
 
@@ -93,8 +93,6 @@ Wills-MacBook-Pro:bin db2inst1$ db2 connect to sample
 
 Wills-MacBook-Pro:bin db2inst1$ db2 "select count(0) from syscat.tables"
 
-1          
------------
         467
 
   1 record(s) selected.

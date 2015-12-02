@@ -94,7 +94,7 @@
 
     in <a href="http://www.imx3.com/category/tech.html">Tech</a>
 
-    on 2015-11-30
+    on 2015-12-02
 
         |
         tags:         <a href="http://www.imx3.com/tag/mac.html">Mac</a>
@@ -117,16 +117,13 @@
         <nav class="toc">
         <div class="toc">
 <ul>
-<li><a href="#1-ulimit-n-65000">1. ulimit -n 65000</a></li>
-<li><a href="#2-db2">2. db2 安装</a><ul>
+<li><a href="#ulimit-n-65000">ulimit -n 65000</a></li>
+<li><a href="#db2">db2 安装</a><ul>
 <li><a href="#db2-get-dbm-cfg">db2 get dbm cfg</a></li>
 <li><a href="#db2licm-l">db2licm -l</a></li>
 <li><a href="#_1">创建实例：</a></li>
 <li><a href="#db2start-sql1042c-an-unexpected-system-error-occurred-sqlstate58004">问题： db2start SQL1042C An unexpected system error occurred. SQLSTATE=58004</a></li>
 <li><a href="#sql1031n-the-database-directory-cannot-be-found-on-the-indicated-file-system">问题 ： SQL1031N  The database directory cannot be found on the indicated file system.</a></li>
-</ul>
-</li>
-<li><a href="#1">1</a><ul>
 <li><a href="#macdate">mac下如何用date 做日期计算和调整 ， 例如，计算昨日。</a></li>
 <li><a href="#mac">mac 上添加用户组</a></li>
 </ul>
@@ -138,7 +135,7 @@
         <p>Mac 是darwin unix 内核，很多东西跟linux不同。所以，还是单独把Mac拿出来说说。</p>
 <p>仅以此帖，记录在linux下的点点滴滴。</p>
 
-<h2 id="1-ulimit-n-65000">1. ulimit -n 65000</h2>
+<h2 id="ulimit-n-65000">ulimit -n 65000</h2>
 <p>-bash: ulimit: open files: cannot modify limit: Invalid argument</p>
 <p>这个异常跟mac 的版本有关。</p>
 <p>格式:</p>
@@ -152,7 +149,7 @@
 </code></pre>
 <p>[1] 2015-11-26 09:41 init </p>
 <p>关于db2安装中遇到的ulimit参数问题，先改 sysctl.conf , 然后重启！很多问题都能解决！sysctl.conf ! </p>
-<h2 id="2-db2">2. db2 安装</h2>
+<h2 id="db2">db2 安装</h2>
 <p>db2 的安装还是得用root 用户进行。否则会报错的。</p>
 <h3 id="db2-get-dbm-cfg">db2 get dbm cfg</h3>
 <h3 id="db2licm-l">db2licm -l</h3>
@@ -189,7 +186,6 @@ Wills-MacBook-Pro:bin db2inst1$ db2 connect to sample</p>
  SQL authorization ID   = DB2INST1
  Local database alias   = SAMPLE</p>
 <p>Wills-MacBook-Pro:bin db2inst1$ db2 "select count(0) from syscat.tables"</p>
-<h2 id="1">1</h2>
 <pre><code>    467
 </code></pre>
 <p>1 record(s) selected.</p>
