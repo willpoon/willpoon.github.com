@@ -11,7 +11,7 @@ Authors: Poon
 
 现在再看博客市场，已经比以前成熟了很多。各种平台网站开的小清新博客一大堆，但在平台网站上搭博客的弊端是显而易见的：
 
-####问题	
+####存在的问题	
 * 流量都贡献给了平台
 * 难以树立个人品牌
 * 话语权不在本人，而是平台
@@ -27,7 +27,7 @@ Authors: Poon
 
 总的来说，缺点大于优点，放弃。继而考虑自己申请域名和空间。就在15.11.2日，我申请了godaddy的.com域名(两年¥116走支付宝，有无coupon都是一样的价格，但需要在网上找coupon链接，否者自己在官网购买是无法支付的。)，申请了digitaloccean的vps，$5每月，拿个coupon可以在账户上充值$10,够用3个月了。域名就没有什么好说的了。说说digitaloccean的vps:
 
-#### 优点
+#### vps优点
 *  管理界面清爽，相比godaddy
 *  管理菜单操作简单，相比godaddy
 *  菜单即使加载不出来，也有黑白无图的basic html版本可供使用
@@ -36,7 +36,7 @@ Authors: Poon
 （godaddy我是黑定了，哈哈）
 
 
-#### 缺点
+#### vps缺点
 * 官网页面加载速度慢，想快得用vpn
 * 客服不到位(vps才申请了两天就被锁了,说我的主机流量异常，我还没开始搭建网站啊啊啊啊,我至今都不知道我的主机是什么原因异常，难道被黑了？腾讯、阿里云也会发邮件报告各种异常，而你却直接通知我vps被锁定？而且只能重建vps？！！！这一点是不能忍受的！！！)
 
@@ -212,7 +212,9 @@ CRITICAL: RuntimeError: File develop.html is to be overwritten
 
  我试过 ｀~~ 删除我~~｀ , 不起作用。 后来查到 `<del> 删除我</del>` 和 ｀<s>删除我</s>` 都可以。
 
-### 10.安装google page views 提取工具到pelican时，遇到： ssl.SSLError: [Errno 185090050] _ssl.c:343: error:0B084002:x509 certificate routines:X509_load_cert_crl_file:system lib 的解决。
+### 10. ssl.SSLError 
+
+安装google page views 提取工具到pelican时，遇到： ssl.SSLError: [Errno 185090050] _ssl.c:343: error:0B084002:x509 certificate routines:X509_load_cert_crl_file:system lib 的解决。
 
 分析：这个报错是由于cacerts.txt这个文件的权限设置问题导致的。需要将文件权限设置为644.如下：
 
@@ -279,7 +281,7 @@ With this plugin installed, each article and page object has one extra meta data
 这一行了。
 
 
-### 14. 为 [小站](http://www.imx3.com) 添加 百度 sitemap 支持 [zz]
+### 14. 为 [小站](http://www.imx3.com) 添加 百度 sitemap 支持 
 
 google SITE map 支持可以直接用  pelican sitemap 插件 插件生成sitemap.xml 。 
 
@@ -321,7 +323,7 @@ sitemap.xml 也是被动的。
 
 <!-- ^ -->
 
-### 14. 为 [小站](http://www.imx3.com) 添加 bing sitemap 支持 [zz]
+### 14. 为 [小站](http://www.imx3.com) 添加 bing sitemap 支持 
 
 1. 登陆 https://www.bing.com/webmaster  , microsoft、bing、msn账号都是通用的。
 
@@ -343,7 +345,7 @@ sitemap.xml 也是被动的。
 
 刚提交，静观其变。－－2015-12-02 09:43
 
-### 14. 提交给yahoo
+### 问题14. 提交给yahoo
 yahoo 的sitemap提交服务已经托管给 微软小冰了 bing.com :
 
 ```
@@ -356,7 +358,7 @@ Since 2010, Yahoo search has been powered by Microsoft's Bing search engine. Whe
 
 <!-- $ -->
 
-### 15. 为博客文章添加目录（toc）支持 
+### 问题15. 为博客文章添加目录（toc）支持 
 
 2015-11-27 11:17
 

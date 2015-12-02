@@ -7,28 +7,28 @@ Summary:  使用biee开发前前后有也有两年多了，对oracle这套产品
 
 [TOC]
 
-# 0.前言
+# 前言
 使用biee开发前前后有也有两年多了，对oracle这套产品，也有一点小小心得，在此总结一下，抛砖引玉。持续更新中...
 
-# 1.经验技巧
+# 经验技巧
 
-### 1.1.physical layer 不支持with子句
+### physical layer 不支持with子句
 
 
 如果你打算将：
 with tab as（  ） 这样的子句放到物理表视图中，那么rpd将会让你失望。因为rpd中的视图实质上是一个形如 select * from ( ) tab 的子查询。而如果你要将with放到子查询中，将会影响biee前端自动生成with 子句。如果你要用with子句写查询语句，简易先 create view yourviewname as 来建立一个视图，然后再在物理层中调用。
 
-### 1.2.Session variable 可以放到物理层
+### Session variable 可以放到物理层
 
 你可以将VALUEOF(NQSESSION.RQVAR) 在物理层中引用Session Variable，然后通过在前端使用request variable来修改session variable的值。
 
-### 1.3.BIEE的timestamp类型的日期运算：推算前n天，后n天，前n月，后n月等。
+### BIEE的timestamp类型的日期运算：推算前n天，后n天，前n月，后n月等。
 
 使用timestampdiff（）函数，可控制的粒度可以细到秒，粗到年！
 
-### 1.4.利用biee的提示,将展示变量传递到会话变量
+### 利用biee的提示,将展示变量传递到会话变量
 
-#### 1.4.1.背景：
+#### 背景：
 
 1. 一个服务器变量 TABLE_NAME_INOUT，又叫 session variable , 对应前端是 request variable  ， 该变量需要保存一个表名，该表名具有INOUT的特征。
 2. 在业务上，为业务人员设计了一个提示框，二选1，对于业务，是切换客户层级，而对于后台，是切换数据表。
@@ -36,7 +36,8 @@ with tab as（  ） 这样的子句放到物理表视图中，那么rpd将会让
 4. 需要在这中间 添加一个转换机制 ：输入 ： 储蓄/资产 ， 转换为 ： DPSIT/ASSET
 
 
-#### 1.4.2.设计：
+#### 设计：
+
 1. rpd: NQ_SESSION.TABLE_NAME_INOUT
 
 2. analytics 提示a设计：表示变量pv: 作为 转换到表名的输入。该提示a 不能设计为 请求变量， 否则传递无效。
@@ -55,12 +56,12 @@ with tab as（  ） 这样的子句放到物理表视图中，那么rpd将会让
 
 7. 默认值的设置，一定要正确。
 
-#### 1.4.3. 其他tips：
+#### 其他tips：
 
 1. 默认值的填写： 如果是服务器变量，直接填写 : var_name , 不需要 valueof , 也不需要 nq_session 
 2. 如果是 变量表达式：就是表示变量：格式：@{pv} 即可。有默认值也可以添加默认值。
 
-### 1.5. BIEE分析报表的格式套用/批量设置解答：
+### BIEE分析报表的格式套用/批量设置解答：
 1.  把格式设置存为默认会发生什么？
 
     如果把格式存为默认，那么系统中的所有报表都将会采用该设置作为默认值。例如，我们把一个整数列的格式设置为两位小数，那么对于其他报表，如果没有特别设置，都将采用该设置作为默认值。
@@ -79,9 +80,9 @@ with tab as（  ） 这样的子句放到物理表视图中，那么rpd将会让
 2. 如果属性列，度量列和层级列的数量和对齐都是一致的，那么将会一一匹配。
 3. 如果列数不等，新报表列数多，那么新报表中不能匹配的列将重复最后一列。比如，4列老报表的列颜色设置为 红绿蓝黄，那么6列新报表的颜色为红绿蓝黄黄黄！
 
-## 1.6  Oracle BIEE从开发迁移到生产时，如何处置修改配置这些麻烦事？
+##  Oracle BIEE从开发迁移到生产时，如何处置修改配置这些麻烦事？
 
-### 1.6.1 RPD 密码的修改
+### RPD 密码的修改
 连接池越多，要改的密码就越多！你愿意每次投产，都要做这种没有技术含量，而风险又大的活？of course not !
 通过使用 admintool.exe /command 命令，通过配置的方式，修改密码，只需要执行批处理即可！
 
@@ -113,7 +114,7 @@ b.  prd.txt 命令内容：
 	Save
 
 
-## 1.7 weblogic －服务－数据源－中的 jndi 对应后台哪个xml配置文件？
+## weblogic －服务－数据源－中的 jndi 对应后台哪个xml配置文件？
 
     ${BIEE_HOME}/user_projects/domains/bifoundation_domain/config/jdbc/bieeds-jdbc.xml
 
@@ -122,7 +123,7 @@ b.  prd.txt 命令内容：
     jdbc:oracle:thin:@ip_or_domain:port/sid
 
 
-## 1.8 BIEE报表如何实现单元格绿白相间？
+## BIEE报表如何实现单元格绿白相间？
 
 如图，在结果中，点击表属性。如图：
 
@@ -163,7 +164,7 @@ slc02oka fail
 odbc.ini 是用户配置展示层到bi server层的数据连接的。我们知道，biee有展示服务，有bi service 服务，一个是展示层，一个是服务层。这两层数据之间数据如何通信？就是通过odbc数据源配置，使得biee的展示层能够存取后台数据库的数据。
 
 
-### 1.6.2 服务器ip / 端口的修改
+### 服务器ip / 端口的修改
 不要再用ip 了 ！ 赶紧改用域名把！ 把你的开发主机 的hosts 改一下，采用与生产环境主机相同的域名！就不用每次都把ip改来改去了。
 
 
@@ -175,11 +176,11 @@ odbc.ini 是用户配置展示层到bi server层的数据连接的。我们知�
 
 ### 方案
 
-#### 挨个用户按用户名赋权
+1. 挨个用户按用户名赋权
 
 对目录右键查找相应用户，直接赋权。
 
-#### 创建应用程序角色
+2. 创建应用程序角色
 
 为该共享目录创建应用程序角色，最后区分角色的权限，比如：
 
@@ -244,14 +245,14 @@ or
 
 <!-- $ -->
 
-# 2.异常处理
+# 异常处理
 
-### 2.1 ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.
+### ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.
 
 解决办法：检查rpd物理层子查询中是否有with子句。有的话，改成子查询的形式。
 
 
-### 2.2 nqserror:43119 nqserror:42039: report 总计函数的by子句中的列必须在选择列表中。
+### nqserror:43119 nqserror:42039: report 总计函数的by子句中的列必须在选择列表中。
 
 该异常我理解为：select dim... report_sum( measure by dim... ) from table ...
 dim... 没有对应上！
