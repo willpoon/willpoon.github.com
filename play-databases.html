@@ -94,7 +94,7 @@
 
     in <a href="http://www.imx3.com/category/tech.html">Tech</a>
 
-    on 2015-11-30
+    on 2015-12-02
 
         |
         tags:         <a href="http://www.imx3.com/tag/db.html">DB</a>
@@ -138,6 +138,10 @@
 <li><a href="#_4">关联技巧:恢复空表</a></li>
 <li><a href="#mysqld">启动mysqld 的时候，一般加什么参数？</a></li>
 <li><a href="#_5">远程数据库连接配置</a></li>
+</ul>
+</li>
+<li><a href="#oracle">ORACLE</a><ul>
+<li><a href="#start-with-connect-by-prior">start with ... connect by prior ...  用法</a></li>
 </ul>
 </li>
 </ul>
@@ -273,6 +277,20 @@ FROM ${PDM_SCH}.LI_COL_BAK B,
 </li>
 </ol>
 
+<h1 id="oracle">ORACLE</h1>
+<h2 id="start-with-connect-by-prior">start with ... connect by prior ...  用法</h2>
+<p>表格式：sid|pid|level ; s for son , p for parent</p>
+<p>start with pid=[截取的根节点nodeA] connect by prior sid = pid</p>
+<p>[截取的根节点] : 当我们需要从哪个节点nodeA开始，就是让 pid 取为该开始节点值nodeA。</p>
+<p>从 nodeA 开始， 取 [树的子节点son] 字段 ， 通过 prior 字段，取得son节点的祖先， 让 prior sid = pid ; 即 prior son = father ; 意思是 son的祖先＝father 。 更近一步：</p>
+<p>prior sunzi = fuqin</p>
+<p>prior fuqin = yeye</p>
+<p>这样sunzi - fuqin - yeye 都关联起来了。</p>
+<p><a href="http://mengya520.blog.51cto.com/1506880/334621">例子</a> ：</p>
+<p>select ID, NAME, SYS_CONNECT_BY_PATH(pid,'/') as pid_path, SYS_CONNECT_BY_PATH(parent_name,'/') as parent_name
+from test_parent1
+start with pid=1 connect by prior id=pid;</p>
+<p>如果 你写成 connect by prior pid = id , 那是不行的。 如果pid 还要取祖先，prior pid 的结果，就是爷爷了。 爷爷 ＝ 孙子 怎么行呢？乱套了！</p>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>

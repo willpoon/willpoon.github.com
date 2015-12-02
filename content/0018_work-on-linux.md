@@ -168,6 +168,30 @@ svn merge -c -2683 db_load_data_comm.sh
 
 注意：在mac上用法不一样。需要使用-v参数
 
+### shell 变量与字符串操作
+
+1. 求变量长度
+
+命令:
+
+    echo $HOME
+
+输出：
+
+    /Users/poon
+
+命令：
+
+    echo ${#HOME}
+
+输出:
+
+    11
+
+
+参考：Bash 101 Hacks, by Ramesh Natarajan.  
+
+
 # Axel 
 
     Axel tries to accelerate HTTP/FTP downloading process by using multiple connections for one file. It can use multiple mirrors for a download. Axel has no dependencies and is lightweight, so it might be useful as a wget clone on byte-critical systems.

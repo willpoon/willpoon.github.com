@@ -188,5 +188,33 @@ ps -ef|grep -i mysql
 2. mysql 
 连接远程的mysql，需要装本地mysql client 。 使用-h 参数指定远程服务器。使用-A 参数，降低连接时等待rehash的时间。
 
-
 <!-- $ -->
+
+# ORACLE
+
+## start with ... connect by prior ...  用法
+
+表格式：sid|pid|level ; s for son , p for parent
+
+ start with pid=[截取的根节点nodeA] connect by prior sid = pid
+
+[截取的根节点] : 当我们需要从哪个节点nodeA开始，就是让 pid 取为该开始节点值nodeA。
+
+从 nodeA 开始， 取 [树的子节点son] 字段 ， 通过 prior 字段，取得son节点的祖先， 让 prior sid = pid ; 即 prior son = father ; 意思是 son的祖先＝father 。 更近一步：
+
+ prior sunzi = fuqin
+
+ prior fuqin = yeye
+
+这样sunzi - fuqin - yeye 都关联起来了。
+
+[例子](http://mengya520.blog.51cto.com/1506880/334621) ：
+
+select ID, NAME, SYS_CONNECT_BY_PATH(pid,'/') as pid_path, SYS_CONNECT_BY_PATH(parent_name,'/') as parent_name
+from test_parent1
+start with pid=1 connect by prior id=pid;
+
+如果 你写成 connect by prior pid = id , 那是不行的。 如果pid 还要取祖先，prior pid 的结果，就是爷爷了。 爷爷 ＝ 孙子 怎么行呢？乱套了！
+
+
+

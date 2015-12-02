@@ -135,6 +135,7 @@
 </li>
 <li><a href="#6-linux-shell-builtin-command">6. linux shell builtin command</a><ul>
 <li><a href="#find-777-755">使用find 查找权限为777 的文件，并改为755:</a></li>
+<li><a href="#shell">shell 变量与字符串操作</a></li>
 </ul>
 </li>
 <li><a href="#axel">Axel</a><ul>
@@ -257,6 +258,23 @@ imap &lt;F4&gt; &lt;C-R&gt;=strftime("%Y-%m-%d %I:%M")&lt;CR&gt;
 </code></pre>
 <p>这个在bi中很常用，我们常常需要确定最近一个统计日期是什么时候。原来date函数很强大，提供了我们想要的很多功能，只是我们没有充分发掘而已。</p>
 <p>注意：在mac上用法不一样。需要使用-v参数</p>
+<h3 id="shell">shell 变量与字符串操作</h3>
+<ol>
+<li>求变量长度</li>
+</ol>
+<p>命令:</p>
+<pre><code>echo $HOME
+</code></pre>
+<p>输出：</p>
+<pre><code>/Users/poon
+</code></pre>
+<p>命令：</p>
+<pre><code>echo ${#HOME}
+</code></pre>
+<p>输出:</p>
+<pre><code>11
+</code></pre>
+<p>参考：Bash 101 Hacks, by Ramesh Natarajan.  </p>
 <h1 id="axel">Axel</h1>
 <pre><code>Axel tries to accelerate HTTP/FTP downloading process by using multiple connections for one file. It can use multiple mirrors for a download. Axel has no dependencies and is lightweight, so it might be useful as a wget clone on byte-critical systems.
 </code></pre>
