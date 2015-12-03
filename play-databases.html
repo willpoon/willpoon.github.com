@@ -94,7 +94,7 @@
 
     in <a href="http://www.imx3.com/category/tech.html">Tech</a>
 
-    on 2015-12-02
+    on 2015-12-03
 
         |
         tags:         <a href="http://www.imx3.com/tag/db.html">DB</a>
@@ -260,7 +260,6 @@ FROM ${PDM_SCH}.LI_COL_BAK B,
         ) O
         WHERE O.CNT=0;
 </code></pre>
-
 <h2 id="mysqld">启动mysqld 的时候，一般加什么参数？</h2>
 <p>ps -ef|grep -i mysql
    74    96     1   0 10:57AM ??         0:03.49 /usr/local/mysql/bin/mysqld --user=_mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data --plugin-dir=/usr/local/mysql/lib/plugin --log-error=/usr/local/mysql/data/mysqld.local.err --pid-file=/usr/local/mysql/data/mysqld.local.pid</p>
@@ -291,6 +290,7 @@ FROM ${PDM_SCH}.LI_COL_BAK B,
 from test_parent1
 start with pid=1 connect by prior id=pid;</p>
 <p>如果 你写成 connect by prior pid = id , 那是不行的。 如果pid 还要取祖先，prior pid 的结果，就是爷爷了。 爷爷 ＝ 孙子 怎么行呢？乱套了！</p>
+
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>
