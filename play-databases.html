@@ -137,6 +137,9 @@
 <li><a href="#mysql-limit">mysql limit 的用法：</a></li>
 <li><a href="#_4">关联技巧:恢复空表</a></li>
 <li><a href="#mysqld">启动mysqld 的时候，一般加什么参数？</a></li>
+<li><a href="#except-minus-mysql">如果不能用 except , minus , mysql 如何比较两张表？</a></li>
+<li><a href="#mysql-row">mysql 使用 row() 实现 多列比较</a></li>
+<li><a href="#mysql-intersect">mysql 模拟 intersect  求差集</a></li>
 <li><a href="#_5">远程数据库连接配置</a></li>
 </ul>
 </li>
@@ -263,6 +266,43 @@ FROM ${PDM_SCH}.LI_COL_BAK B,
 <h2 id="mysqld">启动mysqld 的时候，一般加什么参数？</h2>
 <p>ps -ef|grep -i mysql
    74    96     1   0 10:57AM ??         0:03.49 /usr/local/mysql/bin/mysqld --user=_mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data --plugin-dir=/usr/local/mysql/lib/plugin --log-error=/usr/local/mysql/data/mysqld.local.err --pid-file=/usr/local/mysql/data/mysqld.local.pid</p>
+<p>mysql -u -p -hxxx.xxx.xxx.xxx</p>
+<p>可以添加 -A 参数， 让连接响应速度快一点</p>
+<h2 id="except-minus-mysql">如果不能用 except , minus , mysql 如何比较两张表？</h2>
+<h2 id="mysql-row">mysql 使用 row() 实现 多列比较</h2>
+<p>在where 条件中，使用row() 函数，来枚举多列。</p>
+<pre><code>mysql&gt; select host , user from user where row(host,user) not in (select '127.0.0.1' host , 'root' user from user );
+</code></pre>
+<h2 id="mysql-intersect">mysql 模拟 intersect  求差集</h2>
+<p>由于mysql 不支持 intersect , 如果要求两个结果集的差集，就需要另辟蹊径.</p>
+<p>方法1： 使用 union <em>all</em>  和 group by , having count(0) = 1 求出group by 之后，只有一条的记录。</p>
+<pre><code>SELECT MIN (tbl_name) AS tbl_name, PK, column_list -- min / max make no difference 
+FROM
+ (
+  SELECT ' source_table ' as tbl_name, S.PK, S.column_list
+  FROM source_table AS S
+  UNION ALL
+  SELECT 'destination_table' as tbl_name, D.PK, D.column_list
+  FROM destination_table AS D 
+)  AS alias_table
+GROUP BY PK, column_list
+HAVING COUNT (0) = 1
+ORDER BY PK
+</code></pre>
+<p>方法2:  使用 row() .. not in (select colList from table )  。 使用 not in 求字段差集。row() ， 在多字段的情况下使用。</p>
+<pre><code>SELECT MIN (tbl_name) AS tbl_name, PK, column_list
+FROM
+ (
+  SELECT ' source_table ' as tbl_name, S.PK, S.column_list
+  FROM source_table AS S
+  UNION ALL
+  SELECT 'destination_table' as tbl_name, D.PK, D.column_list
+  FROM destination_table AS D 
+)  AS alias_table
+GROUP BY PK, column_list
+HAVING COUNT (*) = 1
+ORDER BY PK
+</code></pre>
 <h2 id="_5">远程数据库连接配置</h2>
 <ol>
 <li>

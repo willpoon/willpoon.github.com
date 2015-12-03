@@ -178,6 +178,57 @@ n(10) --  表示从第m行之后，最大可以提取n行。
 ps -ef|grep -i mysql
    74    96     1   0 10:57AM ??         0:03.49 /usr/local/mysql/bin/mysqld --user=_mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data --plugin-dir=/usr/local/mysql/lib/plugin --log-error=/usr/local/mysql/data/mysqld.local.err --pid-file=/usr/local/mysql/data/mysqld.local.pid
 
+
+mysql -u -p -hxxx.xxx.xxx.xxx
+
+可以添加 -A 参数， 让连接响应速度快一点
+
+## 如果不能用 except , minus , mysql 如何比较两张表？
+
+## mysql 使用 row() 实现 多列比较 
+
+在where 条件中，使用row() 函数，来枚举多列。
+
+    mysql> select host , user from user where row(host,user) not in (select '127.0.0.1' host , 'root' user from user );
+
+## mysql 模拟 intersect  求差集
+
+由于mysql 不支持 intersect , 如果要求两个结果集的差集，就需要另辟蹊径.
+
+方法1： 使用 union *all*  和 group by , having count(0) = 1 求出group by 之后，只有一条的记录。
+
+    SELECT MIN (tbl_name) AS tbl_name, PK, column_list -- min / max make no difference 
+    FROM
+     (
+      SELECT ' source_table ' as tbl_name, S.PK, S.column_list
+      FROM source_table AS S
+      UNION ALL
+      SELECT 'destination_table' as tbl_name, D.PK, D.column_list
+      FROM destination_table AS D 
+    )  AS alias_table
+    GROUP BY PK, column_list
+    HAVING COUNT (0) = 1
+    ORDER BY PK
+
+
+方法2:  使用 row() .. not in (select colList from table )  。 使用 not in 求字段差集。row() ， 在多字段的情况下使用。
+
+    SELECT MIN (tbl_name) AS tbl_name, PK, column_list
+    FROM
+     (
+      SELECT ' source_table ' as tbl_name, S.PK, S.column_list
+      FROM source_table AS S
+      UNION ALL
+      SELECT 'destination_table' as tbl_name, D.PK, D.column_list
+      FROM destination_table AS D 
+    )  AS alias_table
+    GROUP BY PK, column_list
+    HAVING COUNT (*) = 1
+    ORDER BY PK
+
+
+
+
 ## 远程数据库连接配置
 
 1. db2 

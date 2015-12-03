@@ -104,7 +104,9 @@ id001|a|20151101|20151102 # 关链
 理论和实践是相互促进的，理论不足，看问题的高度就不够。很多问题，如果能上升到理论高度，逼格就满满的了！
 
 # 用户－应用程序角色 管理异常处理一例
+
 case : 
+
 p27用户权限，不跟着st环境走，而是跟着dev环境走。
 
 数据源的问题。st调用的是dev的数据库设置。
@@ -127,6 +129,17 @@ weblogic console -> 服务 -> 数据源-> 点击数据源名称->连接池->锁�
     ./user_projects/domains/bifoundation_domain/servers/domain_bak/config_prev/jdbc/bieeds-jdbc.xml
 
 bieeds- 为数据源名称。随着我们起的名字不同而不同。
+
+
+另外，用户访问报表catalog目录的权限，是跟rpd中用户的ldap验证有关的，而ldap用户的数据源，是在rpd的物理层的连接池中配置的。所以，要让用户－权限同步，需要修改连接池对应的库，该用dev还是st对应的数据库。
+
+
+总结： 
+
+1. 修改console 连接池
+
+2. 修改rpd连接池
+
 
 
 
