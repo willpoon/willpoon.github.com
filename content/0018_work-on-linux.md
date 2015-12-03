@@ -168,7 +168,11 @@ svn merge -c -2683 db_load_data_comm.sh
 
 注意：在mac上用法不一样。需要使用-v参数
 
+<!-- $ --> 
+
 ### shell 变量与字符串操作
+
+2015-12-02 08:52
 
 1. 求变量长度
 
@@ -191,6 +195,7 @@ svn merge -c -2683 db_load_data_comm.sh
 
 参考：Bash 101 Hacks, by Ramesh Natarajan.  
 
+<!-- $ --> 
 
 # Axel 
 
@@ -201,9 +206,7 @@ Axel , 多线程，轻量级，快过wget !!!
 
 ## git 
 
-<!-- ^ --> 
  git 是一个非常非常非常优秀的版本管理，协同开发工具，设计精妙使用，功能强大无比！值得所有coder,甚至blogger学习！
-<!-- $ --> 
 
 1. 将当前工作副本会滚到指定版本
 

@@ -172,7 +172,6 @@ n(10) --  表示从第m行之后，最大可以提取n行。
 
 
 
-<!-- ^ -->
 
 ## 启动mysqld 的时候，一般加什么参数？
 
@@ -188,7 +187,7 @@ ps -ef|grep -i mysql
 2. mysql 
 连接远程的mysql，需要装本地mysql client 。 使用-h 参数指定远程服务器。使用-A 参数，降低连接时等待rehash的时间。
 
-<!-- $ -->
+<!-- ^ -->
 
 # ORACLE
 
@@ -217,4 +216,4 @@ start with pid=1 connect by prior id=pid;
 如果 你写成 connect by prior pid = id , 那是不行的。 如果pid 还要取祖先，prior pid 的结果，就是爷爷了。 爷爷 ＝ 孙子 怎么行呢？乱套了！
 
 
-
+<!-- $ -->
