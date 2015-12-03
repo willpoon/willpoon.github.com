@@ -157,6 +157,7 @@
 <li><a href="#nqserror43119-nqserror42039-report-by">nqserror:43119 nqserror:42039: report 总计函数的by子句中的列必须在选择列表中。</a></li>
 <li><a href="#23-biee-catalog">2.3 biee catalog 指向 不正确如何解决？</a></li>
 <li><a href="#24-rpd-repository-rpd">2.4 加载的rpd 不是我们想要的repository ， 怎么改成我们要的rpd?</a></li>
+<li><a href="#_9">仪表板报表爆表了怎么办？</a></li>
 </ul>
 </li>
 </ul>
@@ -344,16 +345,14 @@ or
 <p>该异常我理解为：select dim... report_sum( measure by dim... ) from table ...
 dim... 没有对应上！</p>
 <p>如何排除该异常：把视图中exclude掉的字段，试验性地添加到include列中。如果你不希望挪上去的列展示出来，再把该列设置为隐藏即可！</p>
-<p><s>本文最后更新于: 2015-11-09 14:46</s></p>
-<p><s>本文最后更新于: 2015-11-10 11:37</s></p>
-<p><s>本文最后更新于: 2015-11-10 15:57</s></p>
-<p>本文最后更新于: 2015-11-17 15:00</p>
 <h3 id="23-biee-catalog">2.3 biee catalog 指向 不正确如何解决？</h3>
 <p>修改 instanceconfig.xml , 将 <catalogpath> 标签中的路径改为正确的路径。</catalogpath></p>
 <h3 id="24-rpd-repository-rpd">2.4 加载的rpd 不是我们想要的repository ， 怎么改成我们要的rpd?</h3>
 <p>修改 NQSConfig.INI</p>
 <pre><code>Star = yourRPDname.rpd , DEAULT;
 </code></pre>
+<h3 id="_9">仪表板报表爆表了怎么办？</h3>
+<p>分析－结果－编辑视图－编辑图形属性－比例－比例和限制－最大值：把最大值调到最大业务实际值以上。</p>
 <p>如果rpd通过前端em上传的，通常会出现rpd名字被修改，导致引用不正确的情况。</p>
 
         <div class="sharethis-bottom">

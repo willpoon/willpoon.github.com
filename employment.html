@@ -94,7 +94,7 @@
 
     in <a href="http://www.imx3.com/category/job.html">Job</a>
 
-    on 2015-12-02
+    on 2015-12-03
 
         |
         tags:         <a href="http://www.imx3.com/tag/ri-zhi.html">日志</a>
@@ -126,6 +126,7 @@
 <li><a href="#db2">db2 元数据抽取与自定义报表 ，仓库做拉链</a></li>
 <li><a href="#_2">集成自己的开发环境</a></li>
 <li><a href="#_3">强化理论知识</a></li>
+<li><a href="#-">用户－应用程序角色 管理异常处理一例</a></li>
 <li><a href="#_4">日志</a></li>
 </ul>
 </div>
@@ -202,6 +203,21 @@ id001|a|20151101|20151102 # 关链</p>
 <h1 id="_3">强化理论知识</h1>
 <p>今天听前同事在群里聊天，offer年薪30w，但是电话面试就被鄙视了。很多基础理论知识不了解，答不上来。
 理论和实践是相互促进的，理论不足，看问题的高度就不够。很多问题，如果能上升到理论高度，逼格就满满的了！</p>
+<h1 id="-">用户－应用程序角色 管理异常处理一例</h1>
+<p>case : 
+p27用户权限，不跟着st环境走，而是跟着dev环境走。</p>
+<p>数据源的问题。st调用的是dev的数据库设置。</p>
+<p>在console中一查，果然。</p>
+<p>解决方案：</p>
+<p>weblogic console -&gt; 服务 -&gt; 数据源-&gt; 点击数据源名称-&gt;连接池-&gt;锁定并编辑-&gt; URL , 修改最后的数据源sid 。 </p>
+<p>该配置激活更改后，就会写到系统xml中。但是若要生效，则需要重启服务。</p>
+<p>该配置将存放在：</p>
+<pre><code>./user_projects/domains/bifoundation_domain/config/jdbc/bieeds-jdbc.xml
+</code></pre>
+<p>旧的配置将存放在：</p>
+<pre><code>./user_projects/domains/bifoundation_domain/servers/domain_bak/config_prev/jdbc/bieeds-jdbc.xml
+</code></pre>
+<p>bieeds- 为数据源名称。随着我们起的名字不同而不同。</p>
 <h1 id="_4">日志</h1>
 <p>2015-11-13 20:54  例行工作记录</p>
 <p>2015-11-24 09:24  拉链设计</p>

@@ -103,6 +103,30 @@ id001|a|20151101|20151102 # 关链
 今天听前同事在群里聊天，offer年薪30w，但是电话面试就被鄙视了。很多基础理论知识不了解，答不上来。
 理论和实践是相互促进的，理论不足，看问题的高度就不够。很多问题，如果能上升到理论高度，逼格就满满的了！
 
+# 用户－应用程序角色 管理异常处理一例
+case : 
+p27用户权限，不跟着st环境走，而是跟着dev环境走。
+
+数据源的问题。st调用的是dev的数据库设置。
+
+在console中一查，果然。
+
+解决方案：
+
+weblogic console -> 服务 -> 数据源-> 点击数据源名称->连接池->锁定并编辑-> URL , 修改最后的数据源sid 。 
+
+该配置激活更改后，就会写到系统xml中。但是若要生效，则需要重启服务。
+
+该配置将存放在：
+
+    ./user_projects/domains/bifoundation_domain/config/jdbc/bieeds-jdbc.xml
+
+旧的配置将存放在：
+
+
+    ./user_projects/domains/bifoundation_domain/servers/domain_bak/config_prev/jdbc/bieeds-jdbc.xml
+
+bieeds- 为数据源名称。随着我们起的名字不同而不同。
 
 
 
