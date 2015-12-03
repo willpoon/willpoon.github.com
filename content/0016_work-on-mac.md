@@ -35,7 +35,7 @@ Mac 是darwin unix 内核，很多东西跟linux不同。所以，还是单独�
 
 关于db2安装中遇到的ulimit参数问题，先改 sysctl.conf , 然后重启！很多问题都能解决！sysctl.conf ! 
 
-## db2 安装
+## Mac 上 db2 的安装
 
 db2 的安装还是得用root 用户进行。否则会报错的。
 
