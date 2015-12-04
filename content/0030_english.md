@@ -10,3 +10,12 @@ Authors: Poon
 
 Opt-Out 选择退出 
 
+2. ROI return on investment
+投资回报率
+
+3. niche 
+
+壁龛；舒适或称心的工作（或生活等）；（产品的）商机；市场定位
+
+
+-- 我发现bing.com/dict 的翻译还是比较智能的。我通过mac上的dictionary查，只查出来基本意思，没有查出引申意思。而用bing查，就能查出详细解析。 
