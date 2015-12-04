@@ -119,3 +119,44 @@ mac上不能像linux那样，用groupadd来添加用户中。网上有两种方�
 1. 通过 system preferences . 
 
 2. 使用mac特有命令
+
+### mac 上快捷键 与 windows / linux 对比
+
+https://en.wikipedia.org/wiki/Table_of_keyboard_shortcuts
+
+### mac 翻墙方法
+
+试过了goagent , shadowsocks , 还是觉得shadowsocks 最简单，网速最给力。如果需要稳定的、持续的账号，可以到网上购买。否则就使用试用帐号就行了。
+
+
+### mac上的破解软件到哪里找？
+
+ifunmac  , 有些要钱，有些不要钱。我有帐号，有需要的可以和我联系。
+
+### mac上挂载移动硬盘，只能读，不能写，如何解决？
+
+我的系统是 yosemite , 试过了很多方法都不行。只能采用第三方的工具。Tuxera NTFS 2015 for Mac .
+
+我是在官方网上下载的，试用了一下，没有什么问题。因为用得不多，所以没有购买。过期之后就没有用了。
+
+真不明白为啥mac还给移动硬盘做写保护。
+
+### mac上打开来自windows 得gbk 编码文件乱码如何解决？
+
+需要转码。
+
+把 iso 或 gbk 编码转成 utf8 . 转码脚本：
+
+    toutf8 () 
+    { 
+        toutf8 ["filename_match"]
+        if [ $# -ne 1 ]; then
+            find . -type f -name "*.sh" -exec bash -c 'iconv -f gbk -t utf8 "{}" > ./"{}".i;mv "{}".i "{}"' \;; # 不加参数，默认转码shell文件
+        fi;
+        matchs=$1;
+        find . -type f -name "${matchs}" -exec bash -c 'iconv -f gbk -t utf8 "{}" > ./"{}".i;mv "{}".i "{}"' \; # toutf8 "*.txt" 就转码 txt 文件
+    }
+
+
+核心命令是 ： iconv -f -t 
+

@@ -2,11 +2,11 @@
     <meta name="robots" content="index, follow"/>
 
     <meta property="og:title" content="Work on Mac!"/>
-    <meta property="og:url" content="http://www.imx3.com/work-on-Mac.html"/>
+    <meta property="og:url" content="/work-on-Mac.html"/>
     <meta property="og:site_name" content="i.M.X.3"/>
     <meta property="og:type" content="article"/>
 
-    <link rel="canonical" href="http://www.imx3.com/work-on-Mac.html" />
+    <link rel="canonical" href="/work-on-Mac.html" />
 
     <title>Work on Mac! | i.M.X.3</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
 
-    <link rel="stylesheet" type="text/css" href="http://www.imx3.com/theme/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
 
     <script type="text/javascript">var switchTo5x=true;</script>
     <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
@@ -42,7 +42,7 @@
         <div class="span10 offset1">
             <header id="banner" >
                 <h1>
-                        <a href="http://www.imx3.com/"> i.M.X.3 </a> 
+                        <a href="/"> i.M.X.3 </a> 
 <!-- /# 
  
                         <strong>
@@ -83,27 +83,27 @@
     <article>
       <header>
         <h1 class="entry-title">
-          <a href="http://www.imx3.com/work-on-Mac.html" rel="bookmark"
+          <a href="/work-on-Mac.html" rel="bookmark"
              title="Permalink to Work on Mac!">Work on Mac!</a></h1>
       </header>
       <div class="entry-content">
 <footer class="post-info">
     <address class="vcard author">
-        by <a class="url fn" href="http://www.imx3.com/author/poon.html">Poon</a>
+        by <a class="url fn" href="/author/poon.html">Poon</a>
     </address>
 
-    in <a href="http://www.imx3.com/category/tech.html">Tech</a>
+    in <a href="/category/tech.html">Tech</a>
 
-    on 2015-12-03
-
-        |
-        tags:         <a href="http://www.imx3.com/tag/mac.html">Mac</a>
-        <a href="http://www.imx3.com/tag/osx.html">OSX</a>
-        <a href="http://www.imx3.com/tag/unix.html">Unix</a>
-
+    on 2015-12-04
 
         |
-        <a href="http://www.imx3.com/work-on-Mac.html#disqus_thread">comments</a>
+        tags:         <a href="/tag/mac.html">Mac</a>
+        <a href="/tag/osx.html">OSX</a>
+        <a href="/tag/unix.html">Unix</a>
+
+
+        |
+        <a href="/work-on-Mac.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->
@@ -126,6 +126,11 @@
 <li><a href="#sql1031n-the-database-directory-cannot-be-found-on-the-indicated-file-system">问题 ： SQL1031N  The database directory cannot be found on the indicated file system.</a></li>
 <li><a href="#macdate">mac下如何用date 做日期计算和调整 ， 例如，计算昨日。</a></li>
 <li><a href="#mac">mac 上添加用户组</a></li>
+<li><a href="#mac-windows-linux">mac 上快捷键 与 windows / linux 对比</a></li>
+<li><a href="#mac_1">mac 翻墙方法</a></li>
+<li><a href="#mac_2">mac上的破解软件到哪里找？</a></li>
+<li><a href="#mac_3">mac上挂载移动硬盘，只能读，不能写，如何解决？</a></li>
+<li><a href="#macwindows-gbk">mac上打开来自windows 得gbk 编码文件乱码如何解决？</a></li>
 </ul>
 </li>
 </ul>
@@ -207,6 +212,30 @@ date -v -1d +"%Y%m%d"</p>
 <p>使用mac特有命令</p>
 </li>
 </ol>
+<h3 id="mac-windows-linux">mac 上快捷键 与 windows / linux 对比</h3>
+<p>https://en.wikipedia.org/wiki/Table_of_keyboard_shortcuts</p>
+<h3 id="mac_1">mac 翻墙方法</h3>
+<p>试过了goagent , shadowsocks , 还是觉得shadowsocks 最简单，网速最给力。如果需要稳定的、持续的账号，可以到网上购买。否则就使用试用帐号就行了。</p>
+<h3 id="mac_2">mac上的破解软件到哪里找？</h3>
+<p>ifunmac  , 有些要钱，有些不要钱。我有帐号，有需要的可以和我联系。</p>
+<h3 id="mac_3">mac上挂载移动硬盘，只能读，不能写，如何解决？</h3>
+<p>我的系统是 yosemite , 试过了很多方法都不行。只能采用第三方的工具。Tuxera NTFS 2015 for Mac .</p>
+<p>我是在官方网上下载的，试用了一下，没有什么问题。因为用得不多，所以没有购买。过期之后就没有用了。</p>
+<p>真不明白为啥mac还给移动硬盘做写保护。</p>
+<h3 id="macwindows-gbk">mac上打开来自windows 得gbk 编码文件乱码如何解决？</h3>
+<p>需要转码。</p>
+<p>把 iso 或 gbk 编码转成 utf8 . 转码脚本：</p>
+<pre><code>toutf8 () 
+{ 
+    toutf8 ["filename_match"]
+    if [ $# -ne 1 ]; then
+        find . -type f -name "*.sh" -exec bash -c 'iconv -f gbk -t utf8 "{}" &gt; ./"{}".i;mv "{}".i "{}"' \;; # 不加参数，默认转码shell文件
+    fi;
+    matchs=$1;
+    find . -type f -name "${matchs}" -exec bash -c 'iconv -f gbk -t utf8 "{}" &gt; ./"{}".i;mv "{}".i "{}"' \; # toutf8 "*.txt" 就转码 txt 文件
+}
+</code></pre>
+<p>核心命令是 ： iconv -f -t </p>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>
