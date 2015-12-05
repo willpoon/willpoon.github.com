@@ -4,14 +4,14 @@
 /categories.html
 /poons-talk.html
 /programming.html
-/work-on-Mac.html
-/english.html
 /keep-fit-diary.html
+/think-about-happiness.html
 /todo.html
 /play-databases.html
+/work-on-Mac.html
+/english.html
 /employment.html
 /oracle-biee-develop.html
-/think-about-happiness.html
 /banking-finance.html
 /work-on-linux.html
 /the-benifit-of-writing.html
@@ -62,7 +62,7 @@
 /tag/xiao-shuo.html
 /tag/hu-che.html
 /tag/jin-rong.html
-/tag/si-kao.html
+/tag/xin-ling.html
 /tag/city.html
 /tag/shu-ju-ku.html
 /tag/yin-shi.html
@@ -88,7 +88,7 @@
 /tag/xing-fu.html
 /tag/sui-xiang.html
 /tag/ji-jin.html
-/tag/xin-ling.html
+/tag/si-kao.html
 /tag/learn.html
 /tag/oracle.html
 /tag/kuai-le.html
