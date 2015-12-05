@@ -31,7 +31,8 @@ db2 'connect to sample user db2etl using "db2etl!QAZ"'
 
 但是！ 这种方法由于有' ' 的出现，导致变量不能被解释！这样的话，在shell中调用db2 就会遇到一些麻烦了！
 
-## SQL3001C  An I/O error (reason = "sqlofopn -2079391743") occurred while  opening the output file.
+## SQL3001C  An I/O error 
+SQL3001C  An I/O error (reason = "sqlofopn -2079391743") occurred while  opening the output file.
 报这个错的原因是路径不存在或路径没有写入权限。
 
 ## 统计表大小，用户空间大小
@@ -41,45 +42,45 @@ db2 'connect to sample user db2etl using "db2etl!QAZ"'
 
 ##  如何catalog 一个远程数据库
 
-Wills-MacBook-Pro:bin db2inst1$ db2 UNCATALOG DATABASE sample
-DB20000I  The UNCATALOG DATABASE command completed successfully.
-DB21056W  Directory changes may not be effective until the directory cache is 
-refreshed.
-Wills-MacBook-Pro:bin db2inst1$ db2 UNCATALOG node devnode   
-DB20000I  The UNCATALOG NODE command completed successfully.
-DB21056W  Directory changes may not be effective until the directory cache is 
-refreshed.
-Wills-MacBook-Pro:bin db2inst1$ db2 catalog tcpip node devnode remote 120.xx.xx.xx server 50000
-DB20000I  The CATALOG TCPIP NODE command completed successfully.
-DB21056W  Directory changes may not be effective until the directory cache is 
-refreshed.
-Wills-MacBook-Pro:bin db2inst1$ db2 catalog database sample at node devnode
-DB20000I  The CATALOG DATABASE command completed successfully.
-DB21056W  Directory changes may not be effective until the directory cache is 
-refreshed.
-Wills-MacBook-Pro:bin db2inst1$ db2 terminate
-DB20000I  The TERMINATE command completed successfully.
-Wills-MacBook-Pro:bin db2inst1$ db2 connect to sample
-SQL30082N  Security processing failed with reason "3" ("PASSWORD MISSING").  
-SQLSTATE=08001
-Wills-MacBook-Pro:bin db2inst1$ db2 connect to sample user db2inst1       
-Enter current password for db2inst1: 
+    Wills-MacBook-Pro:bin db2inst1$ db2 UNCATALOG DATABASE sample
+    DB20000I  The UNCATALOG DATABASE command completed successfully.
+    DB21056W  Directory changes may not be effective until the directory cache is 
+    refreshed.
+    Wills-MacBook-Pro:bin db2inst1$ db2 UNCATALOG node devnode   
+    DB20000I  The UNCATALOG NODE command completed successfully.
+    DB21056W  Directory changes may not be effective until the directory cache is 
+    refreshed.
+    Wills-MacBook-Pro:bin db2inst1$ db2 catalog tcpip node devnode remote 120.xx.xx.xx server 50000
+    DB20000I  The CATALOG TCPIP NODE command completed successfully.
+    DB21056W  Directory changes may not be effective until the directory cache is 
+    refreshed.
+    Wills-MacBook-Pro:bin db2inst1$ db2 catalog database sample at node devnode
+    DB20000I  The CATALOG DATABASE command completed successfully.
+    DB21056W  Directory changes may not be effective until the directory cache is 
+    refreshed.
+    Wills-MacBook-Pro:bin db2inst1$ db2 terminate
+    DB20000I  The TERMINATE command completed successfully.
+    Wills-MacBook-Pro:bin db2inst1$ db2 connect to sample
+    SQL30082N  Security processing failed with reason "3" ("PASSWORD MISSING").  
+    SQLSTATE=08001
+    Wills-MacBook-Pro:bin db2inst1$ db2 connect to sample user db2inst1       
+    Enter current password for db2inst1: 
 
-   Database Connection Information
+       Database Connection Information
 
- Database server        = DB2/LINUXX8664 9.7.0
- SQL authorization ID   = DB2INST1
- Local database alias   = SAMPLE
+     Database server        = DB2/LINUXX8664 9.7.0
+     SQL authorization ID   = DB2INST1
+     Local database alias   = SAMPLE
 
-Wills-MacBook-Pro:bin db2inst1$ pwd
-/Users/db2inst1/sqllib/bin
-Wills-MacBook-Pro:bin db2inst1$ db2 "select count(0) from syscat.tables"
+    Wills-MacBook-Pro:bin db2inst1$ pwd
+    /Users/db2inst1/sqllib/bin
+    Wills-MacBook-Pro:bin db2inst1$ db2 "select count(0) from syscat.tables"
 
-1          
------------
-        426
+    1          
+    -----------
+            426
 
-  1 record(s) selected.
+      1 record(s) selected.
 
 
 
@@ -101,7 +102,7 @@ Wills-MacBook-Pro:bin db2inst1$ db2 "select count(0) from syscat.tables"
 
 如果想快点进入mysql交互界面，就使用这个参数。否则，表多的时候，就要等好长时间。
 
-mysql -umeta -pxxxx metadata -h120.xx.xx.xx
+    mysql -umeta -pxxxx metadata -h120.xx.xx.xx
 
 Reading table information for completion of table and column names You can turn off this feature to get a quicker startup with -A
 
@@ -145,14 +146,13 @@ No automatic rehashing. One has to use 'rehash' to get table and field completio
 
 
 
-2015-11-19 07:46 add SQL3001C 
 
 
 ## mysql limit 的用法：
 
     mysql> SELECT * FROM table LIMIT 5,10; // 检索记录行 6-15  
 
-limit m,n:
+limit m,n 解释:
 
 m(5) -- 表示偏移量。也就是要skip掉m行。
 
@@ -175,11 +175,15 @@ n(10) --  表示从第m行之后，最大可以提取n行。
 
 ## 启动mysqld 的时候，一般加什么参数？
 
-ps -ef|grep -i mysql
-   74    96     1   0 10:57AM ??         0:03.49 /usr/local/mysql/bin/mysqld --user=_mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data --plugin-dir=/usr/local/mysql/lib/plugin --log-error=/usr/local/mysql/data/mysqld.local.err --pid-file=/usr/local/mysql/data/mysqld.local.pid
+    ps -ef|grep -i mysql
 
+    结果：
 
-mysql -u -p -hxxx.xxx.xxx.xxx
+       74    96     1   0 10:57AM ??         0:03.49 /usr/local/mysql/bin/mysqld --user=_mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data --plugin-dir=/usr/local/mysql/lib/plugin --log-error=/usr/local/mysql/data/mysqld.local.err --pid-file=/usr/local/mysql/data/mysqld.local.pid
+
+## mysql 远程连接
+
+    mysql -u -p -hxxx.xxx.xxx.xxx
 
 可以添加 -A 参数， 让连接响应速度快一点
 

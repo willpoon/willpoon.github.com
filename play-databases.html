@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2015-12-03
+    on 2015-12-05
 
         |
         tags:         <a href="/tag/db.html">DB</a>
@@ -123,10 +123,9 @@
 <li><a href="#db2">DB2</a><ul>
 <li><a href="#_1">启动&amp;连接&amp;测试</a></li>
 <li><a href="#_2">密码带特殊字符时，如果连接</a></li>
-<li><a href="#sql3001c-an-io-error-reason-sqlofopn-2079391743-occurred-while-opening-the-output-file">SQL3001C  An I/O error (reason = "sqlofopn -2079391743") occurred while  opening the output file.</a></li>
+<li><a href="#sql3001c-an-io-error">SQL3001C  An I/O error</a></li>
 <li><a href="#_3">统计表大小，用户空间大小</a></li>
 <li><a href="#catalog">如何catalog 一个远程数据库</a></li>
-<li><a href="#1">1</a></li>
 </ul>
 </li>
 <li><a href="#mysql">MYSQL</a><ul>
@@ -137,6 +136,7 @@
 <li><a href="#mysql-limit">mysql limit 的用法：</a></li>
 <li><a href="#_4">关联技巧:恢复空表</a></li>
 <li><a href="#mysqld">启动mysqld 的时候，一般加什么参数？</a></li>
+<li><a href="#mysql_1">mysql 远程连接</a></li>
 <li><a href="#except-minus-mysql">如果不能用 except , minus , mysql 如何比较两张表？</a></li>
 <li><a href="#mysql-row">mysql 使用 row() 实现 多列比较</a></li>
 <li><a href="#mysql-intersect">mysql 模拟 intersect  求差集</a></li>
@@ -164,16 +164,17 @@
 <p>使用'' 包住connect 语句</p>
 <p>使用 "" 包住 密码串。</p>
 <p>但是！ 这种方法由于有' ' 的出现，导致变量不能被解释！这样的话，在shell中调用db2 就会遇到一些麻烦了！</p>
-<h2 id="sql3001c-an-io-error-reason-sqlofopn-2079391743-occurred-while-opening-the-output-file">SQL3001C  An I/O error (reason = "sqlofopn -2079391743") occurred while  opening the output file.</h2>
-<p>报这个错的原因是路径不存在或路径没有写入权限。</p>
+<h2 id="sql3001c-an-io-error">SQL3001C  An I/O error</h2>
+<p>SQL3001C  An I/O error (reason = "sqlofopn -2079391743") occurred while  opening the output file.
+报这个错的原因是路径不存在或路径没有写入权限。</p>
 <h2 id="_3">统计表大小，用户空间大小</h2>
 <p>从 SYSIBMADM.ADMINTABINFO  统计。</p>
 <h2 id="catalog">如何catalog 一个远程数据库</h2>
-<p>Wills-MacBook-Pro:bin db2inst1$ db2 UNCATALOG DATABASE sample
+<pre><code>Wills-MacBook-Pro:bin db2inst1$ db2 UNCATALOG DATABASE sample
 DB20000I  The UNCATALOG DATABASE command completed successfully.
 DB21056W  Directory changes may not be effective until the directory cache is 
 refreshed.
-Wills-MacBook-Pro:bin db2inst1$ db2 UNCATALOG node devnode <br/>
+Wills-MacBook-Pro:bin db2inst1$ db2 UNCATALOG node devnode   
 DB20000I  The UNCATALOG NODE command completed successfully.
 DB21056W  Directory changes may not be effective until the directory cache is 
 refreshed.
@@ -188,21 +189,27 @@ refreshed.
 Wills-MacBook-Pro:bin db2inst1$ db2 terminate
 DB20000I  The TERMINATE command completed successfully.
 Wills-MacBook-Pro:bin db2inst1$ db2 connect to sample
-SQL30082N  Security processing failed with reason "3" ("PASSWORD MISSING").<br/>
+SQL30082N  Security processing failed with reason "3" ("PASSWORD MISSING").  
 SQLSTATE=08001
-Wills-MacBook-Pro:bin db2inst1$ db2 connect to sample user db2inst1     <br/>
-Enter current password for db2inst1: </p>
-<p>Database Connection Information</p>
-<p>Database server        = DB2/LINUXX8664 9.7.0
+Wills-MacBook-Pro:bin db2inst1$ db2 connect to sample user db2inst1       
+Enter current password for db2inst1:
+
+   Database Connection Information
+
+ Database server        = DB2/LINUXX8664 9.7.0
  SQL authorization ID   = DB2INST1
- Local database alias   = SAMPLE</p>
-<p>Wills-MacBook-Pro:bin db2inst1$ pwd
+ Local database alias   = SAMPLE
+
+Wills-MacBook-Pro:bin db2inst1$ pwd
 /Users/db2inst1/sqllib/bin
-Wills-MacBook-Pro:bin db2inst1$ db2 "select count(0) from syscat.tables"</p>
-<h2 id="1">1</h2>
-<pre><code>    426
+Wills-MacBook-Pro:bin db2inst1$ db2 "select count(0) from syscat.tables"
+
+1          
+-----------
+        426
+
+  1 record(s) selected.
 </code></pre>
-<p>1 record(s) selected.</p>
 <h1 id="mysql">MYSQL</h1>
 <h2 id="mysql-full-outer-join">MYSQL 不支持 full outer join</h2>
 <p>解决办法：</p>
@@ -215,7 +222,8 @@ RIGHT JOIN t2 ON t1.id = t2.id
 <h2 id="mysql-except-or-minus">MYSQL 不支持 except or minus</h2>
 <h2 id="mysql-a">mysql -A 参数</h2>
 <p>如果想快点进入mysql交互界面，就使用这个参数。否则，表多的时候，就要等好长时间。</p>
-<p>mysql -umeta -pxxxx metadata -h120.xx.xx.xx</p>
+<pre><code>mysql -umeta -pxxxx metadata -h120.xx.xx.xx
+</code></pre>
 <p>Reading table information for completion of table and column names You can turn off this feature to get a quicker startup with -A</p>
 <p>No automatic rehashing. One has to use 'rehash' to get table and field completion. This gives a quicker start of mysql and disables rehashing on reconnect.</p>
 <h2 id="db2-on-mac">DB2 on mac 很难找！</h2>
@@ -246,11 +254,10 @@ with the current platform 'Darwin [x86_64]'.
 </code></pre>
 <p>进入，注册，然后按要求填写，就可以得到一个下载地址。</p>
 <p>还没安装，晚点再写安装&amp;使用体验。</p>
-<p>2015-11-19 07:46 add SQL3001C </p>
 <h2 id="mysql-limit">mysql limit 的用法：</h2>
 <pre><code>mysql&gt; SELECT * FROM table LIMIT 5,10; // 检索记录行 6-15
 </code></pre>
-<p>limit m,n:</p>
+<p>limit m,n 解释:</p>
 <p>m(5) -- 表示偏移量。也就是要skip掉m行。</p>
 <p>n(10) --  表示从第m行之后，最大可以提取n行。</p>
 <h2 id="_4">关联技巧:恢复空表</h2>
@@ -264,9 +271,15 @@ FROM ${PDM_SCH}.LI_COL_BAK B,
         WHERE O.CNT=0;
 </code></pre>
 <h2 id="mysqld">启动mysqld 的时候，一般加什么参数？</h2>
-<p>ps -ef|grep -i mysql
-   74    96     1   0 10:57AM ??         0:03.49 /usr/local/mysql/bin/mysqld --user=_mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data --plugin-dir=/usr/local/mysql/lib/plugin --log-error=/usr/local/mysql/data/mysqld.local.err --pid-file=/usr/local/mysql/data/mysqld.local.pid</p>
-<p>mysql -u -p -hxxx.xxx.xxx.xxx</p>
+<pre><code>ps -ef|grep -i mysql
+
+结果：
+
+   74    96     1   0 10:57AM ??         0:03.49 /usr/local/mysql/bin/mysqld --user=_mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data --plugin-dir=/usr/local/mysql/lib/plugin --log-error=/usr/local/mysql/data/mysqld.local.err --pid-file=/usr/local/mysql/data/mysqld.local.pid
+</code></pre>
+<h2 id="mysql_1">mysql 远程连接</h2>
+<pre><code>mysql -u -p -hxxx.xxx.xxx.xxx
+</code></pre>
 <p>可以添加 -A 参数， 让连接响应速度快一点</p>
 <h2 id="except-minus-mysql">如果不能用 except , minus , mysql 如何比较两张表？</h2>
 <h2 id="mysql-row">mysql 使用 row() 实现 多列比较</h2>
