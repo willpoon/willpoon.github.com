@@ -19,3 +19,19 @@ Opt-Out 选择退出
 
 
 -- 我发现bing.com/dict 的翻译还是比较智能的。我通过mac上的dictionary查，只查出来基本意思，没有查出引申意思。而用bing查，就能查出详细解析。 
+
+4. dodgy 
+
+dodgy guy 
+
+dodgy weather 
+
+adj.狡猾的；狡诈的；可疑的；有毛病的
+网络躲闪的；危险的；善于骗人的
+
+
+
+5. expenditure
+
+开支 
+
