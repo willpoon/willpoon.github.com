@@ -17,7 +17,11 @@ Authors: Poon
 
 ## 远期:
 
-### datastructure datastructure datastructure 
+### datastructure datastructure datastructure  
+
+### 学英语 2015-12-10 Thu 03:42 AM 为什么？想想俞敏洪的故事。这是一个硬指标！
+
+### 学习钟表体系知识
 
 ### stock bi 
 
@@ -25,7 +29,10 @@ Authors: Poon
 
 ### 学习biee新版
 
+### 世界上最简单的会计
+
 ### 赢 stackoverflow reputation
+
 2015-11-13 07:39 0%
 
 ### db2 etl development  5%
@@ -33,7 +40,9 @@ Authors: Poon
 ### 向各大搜索引擎提交sitemap.xml
 
 ### 数据信息服务
+
 免费vpn账号；数据抓取；数据搜集。公众号：码，六合彩。数据，图表。
+
 2015-11-28 10:30
 
 

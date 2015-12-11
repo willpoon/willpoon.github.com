@@ -94,7 +94,7 @@
 
     in <a href="http://www.imx3.com/category/tech.html">Tech</a>
 
-    on 2015-12-10
+    on 2015-12-11
 
         |
         tags:         <a href="http://www.imx3.com/tag/oracle.html">oracle</a>
@@ -150,6 +150,7 @@
 <li><a href="#excel-sheet">如何在点击导出的时候，一个excel sheet结果页面中，导出两个报表表格？</a></li>
 <li><a href="#biee_3">biee报表没有数据的时候，如何定制系统输出? (无结果设置)</a></li>
 <li><a href="#biee_4">biee 如何通过下拉框按钮等提示工具切换不同的子页面和报表?</a></li>
+<li><a href="#biee-between-valuea-and-valueb">biee 提示： 日期类型 取 between valueA and valueB 时的默认值设置:</a></li>
 </ul>
 </li>
 <li><a href="#_8">异常处理</a><ul>
@@ -337,6 +338,18 @@ or
 <p>如果你有两张或多张报表，放在同一个仪表上，希望通过下拉菜单来实现报表之间的切换，应该如何实现呢？</p>
 <p>我想到的方法是通过设置<em>区域</em> 的条件，来实现条件控制报表的显示和隐藏。</p>
 <p>我们可以制定一个条件，当条件为真时，区域显示（当然也可以隐藏），其他报表隐藏，反之，改报表隐藏，其他符合条件的报表展示。从而达到控制简化页面布局，又能灵活展示所有信息的效果。</p>
+<h2 id="biee-between-valuea-and-valueb">biee 提示： 日期类型 取 between valueA and valueB 时的默认值设置:</h2>
+<ol>
+<li>
+<p>可以通过sql结果， 分别有两个框，可以填入sql来计算结果。</p>
+</li>
+<li>
+<p>日期类型的 pv , 可以使用 in ( @{pv} )   这样的语句。</p>
+</li>
+<li>
+<p>日期取年初：trunc(date,'Y')</p>
+</li>
+</ol>
 <!-- $ -->
 <h1 id="_8">异常处理</h1>
 <h3 id="ora-32034unsupported-use-of-with-clause-at-oci-call-ocistmtexecute">ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.</h3>

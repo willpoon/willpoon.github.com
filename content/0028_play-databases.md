@@ -86,6 +86,20 @@ SQL3001C  An I/O error (reason = "sqlofopn -2079391743") occurred while  opening
 
 # MYSQL 
 
+## mysql : 1040 too many connections  的解决
+
+1. 修改 /etc/my.cnf ( 因系统安装环境而异 )
+2. 添加一行参数，例如1000：max_connections = 1000   
+3. 切换到 mysql 运维账户，我这里就是 su - mysql
+4. 重启： nohup mysqld 2>&1  > mysql.out &
+
+另外，
+1. 有一个类似的参数，max_user_connections ， 网上说似乎无效，未验证。
+2. 使用 show processlist 查看当前连接数。
+3. 使用 show variables like "max_connections"  查看参数值。
+
+
+
 ## MYSQL 不支持 full outer join 
 
 解决办法：

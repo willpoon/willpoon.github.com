@@ -94,7 +94,7 @@
 
     in <a href="http://www.imx3.com/category/tech.html">Tech</a>
 
-    on 2015-12-05
+    on 2015-12-10
 
         |
         tags:         <a href="http://www.imx3.com/tag/db.html">DB</a>
@@ -129,6 +129,7 @@
 </ul>
 </li>
 <li><a href="#mysql">MYSQL</a><ul>
+<li><a href="#mysql-1040-too-many-connections">mysql : 1040 too many connections  的解决</a></li>
 <li><a href="#mysql-full-outer-join">MYSQL 不支持 full outer join</a></li>
 <li><a href="#mysql-except-or-minus">MYSQL 不支持 except or minus</a></li>
 <li><a href="#mysql-a">mysql -A 参数</a></li>
@@ -211,6 +212,17 @@ Wills-MacBook-Pro:bin db2inst1$ db2 "select count(0) from syscat.tables"
   1 record(s) selected.
 </code></pre>
 <h1 id="mysql">MYSQL</h1>
+<h2 id="mysql-1040-too-many-connections">mysql : 1040 too many connections  的解决</h2>
+<ol>
+<li>修改 /etc/my.cnf ( 因系统安装环境而异 )</li>
+<li>添加一行参数，例如1000：max_connections = 1000   </li>
+<li>切换到 mysql 运维账户，我这里就是 su - mysql</li>
+<li>重启： nohup mysqld 2&gt;&amp;1  &gt; mysql.out &amp;</li>
+</ol>
+<p>另外，
+1. 有一个类似的参数，max_user_connections ， 网上说似乎无效，未验证。
+2. 使用 show processlist 查看当前连接数。
+3. 使用 show variables like "max_connections"  查看参数值。</p>
 <h2 id="mysql-full-outer-join">MYSQL 不支持 full outer join</h2>
 <p>解决办法：</p>
 <pre><code>SELECT * FROM t1

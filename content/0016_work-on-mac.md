@@ -160,3 +160,6 @@ ifunmac  , 有些要钱，有些不要钱。我有帐号，有需要的可以和
 
 核心命令是 ： iconv -f -t 
 
+### mac 自带的 preview 工具 的放大镜 功能
+
+使用 ｀ (backtick) 符号就可以打开。 功能菜单： tools -> show magnifier 

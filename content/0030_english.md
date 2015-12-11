@@ -37,5 +37,15 @@ adj.狡猾的；狡诈的；可疑的；有毛病的
 
 
 6. Les Retrouvailles
+重逢 
+
+7. Ronda
+西班牙一小镇，据说是斗牛发源地
+
+8. medieval
+
+中世纪的
+
+
 
 
