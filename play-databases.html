@@ -126,6 +126,8 @@
 <li><a href="#sql3001c-an-io-error">SQL3001C  An I/O error</a></li>
 <li><a href="#_3">统计表大小，用户空间大小</a></li>
 <li><a href="#catalog">如何catalog 一个远程数据库</a></li>
+<li><a href="#db2-on-mac">DB2 on mac 很难找！</a></li>
+<li><a href="#db2-schema">db2 一个系统用户管理多个schema  .</a></li>
 </ul>
 </li>
 <li><a href="#mysql">MYSQL</a><ul>
@@ -133,9 +135,6 @@
 <li><a href="#mysql-full-outer-join">MYSQL 不支持 full outer join</a></li>
 <li><a href="#mysql-except-or-minus">MYSQL 不支持 except or minus</a></li>
 <li><a href="#mysql-a">mysql -A 参数</a></li>
-<li><a href="#db2-on-mac">DB2 on mac 很难找！</a></li>
-<li><a href="#db2-schema">db2 一个系统用户管理多个schema  .</a></li>
-<li><a href="#id">ID</a></li>
 <li><a href="#mysql-limit">mysql limit 的用法：</a></li>
 <li><a href="#_4">关联技巧:恢复空表</a></li>
 <li><a href="#mysqld">启动mysqld 的时候，一般加什么参数？</a></li>
@@ -213,33 +212,6 @@ Wills-MacBook-Pro:bin db2inst1$ db2 "select count(0) from syscat.tables"
 
   1 record(s) selected.
 </code></pre>
-<h1 id="mysql">MYSQL</h1>
-<h2 id="mysql-1040-too-many-connections">mysql : 1040 too many connections  的解决</h2>
-<ol>
-<li>修改 /etc/my.cnf ( 因系统安装环境而异 )</li>
-<li>添加一行参数，例如1000：max_connections = 1000   </li>
-<li>切换到 mysql 运维账户，我这里就是 su - mysql</li>
-<li>重启： nohup mysqld 2&gt;&amp;1  &gt; mysql.out &amp;</li>
-</ol>
-<p>另外，
-1. 有一个类似的参数，max_user_connections ， 网上说似乎无效，未验证。
-2. 使用 show processlist 查看当前连接数。
-3. 使用 show variables like "max_connections"  查看参数值。</p>
-<h2 id="mysql-full-outer-join">MYSQL 不支持 full outer join</h2>
-<p>解决办法：</p>
-<pre><code>SELECT * FROM t1
-LEFT JOIN t2 ON t1.id = t2.id
-UNION
-SELECT * FROM t1
-RIGHT JOIN t2 ON t1.id = t2.id
-</code></pre>
-<h2 id="mysql-except-or-minus">MYSQL 不支持 except or minus</h2>
-<h2 id="mysql-a">mysql -A 参数</h2>
-<p>如果想快点进入mysql交互界面，就使用这个参数。否则，表多的时候，就要等好长时间。</p>
-<pre><code>mysql -umeta -pxxxx metadata -h120.xx.xx.xx
-</code></pre>
-<p>Reading table information for completion of table and column names You can turn off this feature to get a quicker startup with -A</p>
-<p>No automatic rehashing. One has to use 'rehash' to get table and field completion. This gives a quicker start of mysql and disables rehashing on reconnect.</p>
 <h2 id="db2-on-mac">DB2 on mac 很难找！</h2>
 <p>我找mac版的艰辛过程：
 本来我打算在mac上安装一个client版的就行了，然后远程到云服务器上。google了半天，发现了一个v9.5版本的，但我的mac是10.10 ， 报错，不支持。</p>
@@ -270,31 +242,62 @@ with the current platform 'Darwin [x86_64]'.
 <p>还没安装，晚点再写安装&amp;使用体验。</p>
 <h2 id="db2-schema">db2 一个系统用户管理多个schema  .</h2>
 <p>-- 使用 db2inst1 操作</p>
-<p>db2 =&gt; create schema skma AUTHORIZATION  db2etl 
-DB20000I  The SQL command completed successfully.</p>
-<p>db2 =&gt; select * from  skma.testskma</p>
-<h2 id="id">ID</h2>
-<p>0 record(s) selected.</p>
+<pre><code>db2 =&gt; create schema skma AUTHORIZATION  db2etl 
+DB20000I  The SQL command completed successfully.
+
+
+db2 =&gt; select * from  skma.testskma
+0 record(s) selected.
+</code></pre>
 <p>db2 =&gt; create table  skma.testskma(id integer)
   DB20000I  The SQL command completed successfully.</p>
 <p>--使用 db2etl 操作</p>
-<p>db2 =&gt; select * from skma.testskma;
-  SQL0551N  "DB2ETL" does not have the required authorization or privilege to 
-  perform operation "EXECUTE" on object "NULLID.SQLC2J23".  SQLSTATE=42501</p>
+<pre><code>db2 =&gt; select * from skma.testskma;
+SQL0551N  "DB2ETL" does not have the required authorization or privilege to perform operation "EXECUTE" on object "NULLID.SQLC2J23".  SQLSTATE=42501
+</code></pre>
+<p>解决：</p>
 <pre><code>Resolving the problem
 The NULLID.SQLC2H21 package is created by db2clpcs.bnd, which is only in DB2 v9.7. The SQL0551N error may be seen if you have not ran any bind commands from a v9.7 client to the v9.1 or v9.5 database server.
 </code></pre>
-<p>参考：http://www-01.ibm.com/support/docview.wss?uid=swg21440573</p>
-<p>-- 使用db2inst1 操作</p>
-<p>db2 =&gt;  select * from skma.testskma</p>
-<p>db2 =&gt; grant execute on package NULLID.SQLC2J23 to public 
-  DB20000I  The SQL command completed successfully.</p>
-<p>--使用db2etl 登陆：</p>
-<p>db2 =&gt; select * from  skma.testskma</p>
-<p>ID         </p>
-<hr/>
-<pre><code>0 record(s) selected.
+<p>参考：</p>
+<pre><code>http://www-01.ibm.com/support/docview.wss?uid=swg21440573
 </code></pre>
+<p>-- 使用db2inst1 操作</p>
+<pre><code>db2 =&gt; grant execute on package NULLID.SQLC2J23 to public 
+DB20000I  The SQL command completed successfully.
+</code></pre>
+<p>--使用db2etl 登陆：</p>
+<pre><code>db2 =&gt; select * from  skma.testskma
+
+0 record(s) selected.
+</code></pre>
+<h1 id="mysql">MYSQL</h1>
+<h2 id="mysql-1040-too-many-connections">mysql : 1040 too many connections  的解决</h2>
+<ol>
+<li>修改 /etc/my.cnf ( 因系统安装环境而异 )</li>
+<li>添加一行参数，例如1000：max_connections = 1000   </li>
+<li>切换到 mysql 运维账户，我这里就是 su - mysql</li>
+<li>重启： nohup mysqld 2&gt;&amp;1  &gt; mysql.out &amp;</li>
+</ol>
+<p>另外，
+1. 有一个类似的参数，max_user_connections ， 网上说似乎无效，未验证。
+2. 使用 show processlist 查看当前连接数。
+3. 使用 show variables like "max_connections"  查看参数值。</p>
+<h2 id="mysql-full-outer-join">MYSQL 不支持 full outer join</h2>
+<p>解决办法：</p>
+<pre><code>SELECT * FROM t1
+LEFT JOIN t2 ON t1.id = t2.id
+UNION
+SELECT * FROM t1
+RIGHT JOIN t2 ON t1.id = t2.id
+</code></pre>
+<h2 id="mysql-except-or-minus">MYSQL 不支持 except or minus</h2>
+<h2 id="mysql-a">mysql -A 参数</h2>
+<p>如果想快点进入mysql交互界面，就使用这个参数。否则，表多的时候，就要等好长时间。</p>
+<pre><code>mysql -umeta -pxxxx metadata -h120.xx.xx.xx
+</code></pre>
+<p>Reading table information for completion of table and column names You can turn off this feature to get a quicker startup with -A</p>
+<p>No automatic rehashing. One has to use 'rehash' to get table and field completion. This gives a quicker start of mysql and disables rehashing on reconnect.</p>
 <h2 id="mysql-limit">mysql limit 的用法：</h2>
 <pre><code>mysql&gt; SELECT * FROM table LIMIT 5,10; // 检索记录行 6-15
 </code></pre>

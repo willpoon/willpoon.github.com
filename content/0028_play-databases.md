@@ -83,45 +83,6 @@ SQL3001C  An I/O error (reason = "sqlofopn -2079391743") occurred while  opening
       1 record(s) selected.
 
 
-
-# MYSQL 
-
-## mysql : 1040 too many connections  的解决
-
-1. 修改 /etc/my.cnf ( 因系统安装环境而异 )
-2. 添加一行参数，例如1000：max_connections = 1000   
-3. 切换到 mysql 运维账户，我这里就是 su - mysql
-4. 重启： nohup mysqld 2>&1  > mysql.out &
-
-另外，
-1. 有一个类似的参数，max_user_connections ， 网上说似乎无效，未验证。
-2. 使用 show processlist 查看当前连接数。
-3. 使用 show variables like "max_connections"  查看参数值。
-
-
-
-## MYSQL 不支持 full outer join 
-
-解决办法：
-
-    SELECT * FROM t1
-    LEFT JOIN t2 ON t1.id = t2.id
-    UNION
-    SELECT * FROM t1
-    RIGHT JOIN t2 ON t1.id = t2.id
-
-## MYSQL 不支持 except or minus 
-
-## mysql -A 参数
-
-如果想快点进入mysql交互界面，就使用这个参数。否则，表多的时候，就要等好长时间。
-
-    mysql -umeta -pxxxx metadata -h120.xx.xx.xx
-
-Reading table information for completion of table and column names You can turn off this feature to get a quicker startup with -A
-
-No automatic rehashing. One has to use 'rehash' to get table and field completion. This gives a quicker start of mysql and disables rehashing on reconnect.
-
 ## DB2 on mac 很难找！
 
 我找mac版的艰辛过程：
@@ -161,52 +122,82 @@ No automatic rehashing. One has to use 'rehash' to get table and field completio
 
 -- 使用 db2inst1 操作
 
-db2 => create schema skma AUTHORIZATION  db2etl 
-DB20000I  The SQL command completed successfully.
+	db2 => create schema skma AUTHORIZATION  db2etl 
+	DB20000I  The SQL command completed successfully.
 
 
-db2 => select * from  skma.testskma
-
-ID         
------------
-
-  0 record(s) selected.
+	db2 => select * from  skma.testskma
+  	0 record(s) selected.
 
   db2 => create table  skma.testskma(id integer)
   DB20000I  The SQL command completed successfully.
 
-
 --使用 db2etl 操作
 
-  db2 => select * from skma.testskma;
-  SQL0551N  "DB2ETL" does not have the required authorization or privilege to 
-  perform operation "EXECUTE" on object "NULLID.SQLC2J23".  SQLSTATE=42501
+	db2 => select * from skma.testskma;
+	SQL0551N  "DB2ETL" does not have the required authorization or privilege to perform operation "EXECUTE" on object "NULLID.SQLC2J23".  SQLSTATE=42501
 
+解决：
 
     Resolving the problem
     The NULLID.SQLC2H21 package is created by db2clpcs.bnd, which is only in DB2 v9.7. The SQL0551N error may be seen if you have not ran any bind commands from a v9.7 client to the v9.1 or v9.5 database server.
 
- 参考：http://www-01.ibm.com/support/docview.wss?uid=swg21440573
+ 参考：
+ 
+ 	http://www-01.ibm.com/support/docview.wss?uid=swg21440573
 
 
 -- 使用db2inst1 操作
 
-  db2 =>  select * from skma.testskma
-
-  db2 => grant execute on package NULLID.SQLC2J23 to public 
-  DB20000I  The SQL command completed successfully.
+	db2 => grant execute on package NULLID.SQLC2J23 to public 
+  	DB20000I  The SQL command completed successfully.
 
 
   --使用db2etl 登陆：
 
-  db2 => select * from  skma.testskma
-
-  ID         
-  -----------
+  	db2 => select * from  skma.testskma
 
     0 record(s) selected.
 
 
+
+# MYSQL 
+
+## mysql : 1040 too many connections  的解决
+
+1. 修改 /etc/my.cnf ( 因系统安装环境而异 )
+2. 添加一行参数，例如1000：max_connections = 1000   
+3. 切换到 mysql 运维账户，我这里就是 su - mysql
+4. 重启： nohup mysqld 2>&1  > mysql.out &
+
+另外，
+1. 有一个类似的参数，max_user_connections ， 网上说似乎无效，未验证。
+2. 使用 show processlist 查看当前连接数。
+3. 使用 show variables like "max_connections"  查看参数值。
+
+
+
+## MYSQL 不支持 full outer join 
+
+解决办法：
+
+    SELECT * FROM t1
+    LEFT JOIN t2 ON t1.id = t2.id
+    UNION
+    SELECT * FROM t1
+    RIGHT JOIN t2 ON t1.id = t2.id
+
+## MYSQL 不支持 except or minus 
+
+## mysql -A 参数
+
+如果想快点进入mysql交互界面，就使用这个参数。否则，表多的时候，就要等好长时间。
+
+    mysql -umeta -pxxxx metadata -h120.xx.xx.xx
+
+Reading table information for completion of table and column names You can turn off this feature to get a quicker startup with -A
+
+No automatic rehashing. One has to use 'rehash' to get table and field completion. This gives a quicker start of mysql and disables rehashing on reconnect.
 
 
 
