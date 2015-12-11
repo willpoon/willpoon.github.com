@@ -157,6 +157,59 @@ No automatic rehashing. One has to use 'rehash' to get table and field completio
 还没安装，晚点再写安装&使用体验。
 
 
+## db2 一个系统用户管理多个schema  . 
+
+-- 使用 db2inst1 操作
+
+db2 => create schema skma AUTHORIZATION  db2etl 
+DB20000I  The SQL command completed successfully.
+
+
+db2 => select * from  skma.testskma
+
+ID         
+-----------
+
+  0 record(s) selected.
+
+  db2 => create table  skma.testskma(id integer)
+  DB20000I  The SQL command completed successfully.
+
+
+--使用 db2etl 操作
+
+  db2 => select * from skma.testskma;
+  SQL0551N  "DB2ETL" does not have the required authorization or privilege to 
+  perform operation "EXECUTE" on object "NULLID.SQLC2J23".  SQLSTATE=42501
+
+
+    Resolving the problem
+    The NULLID.SQLC2H21 package is created by db2clpcs.bnd, which is only in DB2 v9.7. The SQL0551N error may be seen if you have not ran any bind commands from a v9.7 client to the v9.1 or v9.5 database server.
+
+ 参考：http://www-01.ibm.com/support/docview.wss?uid=swg21440573
+
+
+-- 使用db2inst1 操作
+
+  db2 =>  select * from skma.testskma
+
+  db2 => grant execute on package NULLID.SQLC2J23 to public 
+  DB20000I  The SQL command completed successfully.
+
+
+  --使用db2etl 登陆：
+
+  db2 => select * from  skma.testskma
+
+  ID         
+  -----------
+
+    0 record(s) selected.
+
+
+
+
+
 
 
 
@@ -250,10 +303,12 @@ n(10) --  表示从第m行之后，最大可以提取n行。
 ## 远程数据库连接配置
 
 1. db2 
+
 我的工作电脑是macbook，如果要连接远程的db2，需要在本地做catalog . ibm官方网站上有 v10.1 的db2exc可以下载。可以用来做客户端或者一个简单的开发环境。mac os x 安装db2exc 要用root用户安装，安装之前要设置sysctl.conf参数，重启。然后最好给db2创建单独的用户db2inst1， 这样sqllib就会自动创建到db2inst1的目录下。使用db2icrt创建实例。使用db2sampl创建sample数据库。如果执行db2start时出现权限问题，就要给sqllib下的adm目录赋权。把原来赋给root的权限，chown到db2inst1 。 
 当db2可以正常连接后，使用db2 catalog 归档远程数据库。注意：node 关键字是让你给节点起个名字，这个名字我们自己随便取，而不是服务器的特定值。先 归档 远程服务器节点，再归档数据库。端口用50000 五万。
 
 2. mysql 
+
 连接远程的mysql，需要装本地mysql client 。 使用-h 参数指定远程服务器。使用-A 参数，降低连接时等待rehash的时间。
 
 <!-- ^ -->
