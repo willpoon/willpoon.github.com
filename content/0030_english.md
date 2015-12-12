@@ -47,5 +47,16 @@ adj.狡猾的；狡诈的；可疑的；有毛病的
 中世纪的
 
 
+9.genetic imprinting
+
+10. osmosis
 
 
+11. gross profit 
+
+毛利
+
+
+11. 费用
+
+expenses

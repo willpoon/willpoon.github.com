@@ -128,6 +128,7 @@
 <li><a href="#catalog">如何catalog 一个远程数据库</a></li>
 <li><a href="#db2-on-mac">DB2 on mac 很难找！</a></li>
 <li><a href="#db2-schema">db2 一个系统用户管理多个schema  .</a></li>
+<li><a href="#db2-grant-schema">DB2 grant 无法针对 schema 授权</a></li>
 </ul>
 </li>
 <li><a href="#mysql">MYSQL</a><ul>
@@ -242,34 +243,48 @@ with the current platform 'Darwin [x86_64]'.
 <p>还没安装，晚点再写安装&amp;使用体验。</p>
 <h2 id="db2-schema">db2 一个系统用户管理多个schema  .</h2>
 <p>-- 使用 db2inst1 操作</p>
-<pre><code>db2 =&gt; create schema skma AUTHORIZATION  db2etl 
+<pre><code>db2 =&gt; create schema skma AUTHORIZATION  db2etl
+
 DB20000I  The SQL command completed successfully.
 
 
 db2 =&gt; select * from  skma.testskma
+
 0 record(s) selected.
 </code></pre>
-<p>db2 =&gt; create table  skma.testskma(id integer)
-  DB20000I  The SQL command completed successfully.</p>
+<p>db2 =&gt; create table  skma.testskma(id integer)</p>
+<p>DB20000I  The SQL command completed successfully.</p>
 <p>--使用 db2etl 操作</p>
 <pre><code>db2 =&gt; select * from skma.testskma;
+
 SQL0551N  "DB2ETL" does not have the required authorization or privilege to perform operation "EXECUTE" on object "NULLID.SQLC2J23".  SQLSTATE=42501
 </code></pre>
 <p>解决：</p>
-<pre><code>Resolving the problem
+<pre><code>Resolving the problem:
 The NULLID.SQLC2H21 package is created by db2clpcs.bnd, which is only in DB2 v9.7. The SQL0551N error may be seen if you have not ran any bind commands from a v9.7 client to the v9.1 or v9.5 database server.
 </code></pre>
 <p>参考：</p>
 <pre><code>http://www-01.ibm.com/support/docview.wss?uid=swg21440573
 </code></pre>
 <p>-- 使用db2inst1 操作</p>
-<pre><code>db2 =&gt; grant execute on package NULLID.SQLC2J23 to public 
+<pre><code>db2 =&gt; grant execute on package NULLID.SQLC2J23 to public
+
 DB20000I  The SQL command completed successfully.
 </code></pre>
 <p>--使用db2etl 登陆：</p>
 <pre><code>db2 =&gt; select * from  skma.testskma
 
 0 record(s) selected.
+</code></pre>
+<h2 id="db2-grant-schema">DB2 grant 无法针对 schema 授权</h2>
+<p>如果要对某个schema 下的所有表 做批量授权，需要 做批处理。因为db2没有可以直接对schema授权的方法。</p>
+<p>具体方法如下：</p>
+<pre><code>db2 -tnx "select distinct 'GRANT ALL ON TABLE '||
+    '\"'||rtrim(tabschema)||'\".\"'||rtrim(tabname)||'\" TO USER winuser1;'
+    from syscat.tables
+    where tabschema = 'myschema' "  &gt;&gt; grants.sql
+
+db2 -tvf grants.sql
 </code></pre>
 <h1 id="mysql">MYSQL</h1>
 <h2 id="mysql-1040-too-many-connections">mysql : 1040 too many connections  的解决</h2>

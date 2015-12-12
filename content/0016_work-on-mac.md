@@ -163,3 +163,34 @@ ifunmac  , 有些要钱，有些不要钱。我有帐号，有需要的可以和
 ### mac 自带的 preview 工具 的放大镜 功能
 
 使用 ｀ (backtick) 符号就可以打开。 功能菜单： tools -> show magnifier 
+
+
+
+
+## 测试贴！使用markdown here 编辑微信公众号消息!
+### 背景
+
+这个公众号其实申请很久了，但是基本上没有发布过什么文章。原因是想起那需要点来点去的格式化工具栏就头疼。所以平时写的东西都只发布到博客上。今天突发奇想，有没有可以让微信公众号也支持markdown编辑的工具呢？强大的google没有让我失望：通过安装 chrome 插件：markdown here ， 可以一键渲染markdown语法！
+
+### 如何使用
+
+#### 前提
+
+1. 找梯子翻墙！
+2. 安装chrome浏览器！
+3. 去chrome 插件市场查找 markdown here 插件并安装之!
+
+#### 使用步骤
+
+1. 像往常一样，打开素材管理界面，新建图文消息。
+2. 使用markdown 语法 ： # , ## , ### 等等来排版&标记你的文章段落。
+3. 最后，也是花腐朽为神奇的一步，就是，使用 ctrl+alt+m 来渲染你的文章。（当然也可以使用chrome 浏览器的右上角按钮，click to toggle markdown rendering ）
+
+### 后记
+
+排版方便了，但是刚习惯了用safari , 现在又不得不把chrome 常驻 `commnad + tab` 列表里头了！
+
+
+
+
+

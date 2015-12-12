@@ -123,23 +123,27 @@ SQL3001C  An I/O error (reason = "sqlofopn -2079391743") occurred while  opening
 -- 使用 db2inst1 操作
 
 	db2 => create schema skma AUTHORIZATION  db2etl 
+
 	DB20000I  The SQL command completed successfully.
 
 
 	db2 => select * from  skma.testskma
+
   	0 record(s) selected.
 
   db2 => create table  skma.testskma(id integer)
+
   DB20000I  The SQL command completed successfully.
 
 --使用 db2etl 操作
 
 	db2 => select * from skma.testskma;
+
 	SQL0551N  "DB2ETL" does not have the required authorization or privilege to perform operation "EXECUTE" on object "NULLID.SQLC2J23".  SQLSTATE=42501
 
 解决：
 
-    Resolving the problem
+    Resolving the problem:
     The NULLID.SQLC2H21 package is created by db2clpcs.bnd, which is only in DB2 v9.7. The SQL0551N error may be seen if you have not ran any bind commands from a v9.7 client to the v9.1 or v9.5 database server.
 
  参考：
@@ -150,6 +154,7 @@ SQL3001C  An I/O error (reason = "sqlofopn -2079391743") occurred while  opening
 -- 使用db2inst1 操作
 
 	db2 => grant execute on package NULLID.SQLC2J23 to public 
+
   	DB20000I  The SQL command completed successfully.
 
 
@@ -158,6 +163,20 @@ SQL3001C  An I/O error (reason = "sqlofopn -2079391743") occurred while  opening
   	db2 => select * from  skma.testskma
 
     0 record(s) selected.
+
+## DB2 grant 无法针对 schema 授权
+
+如果要对某个schema 下的所有表 做批量授权，需要 做批处理。因为db2没有可以直接对schema授权的方法。
+
+具体方法如下：
+
+    db2 -tnx "select distinct 'GRANT ALL ON TABLE '||
+        '\"'||rtrim(tabschema)||'\".\"'||rtrim(tabname)||'\" TO USER winuser1;'
+        from syscat.tables
+        where tabschema = 'myschema' "  >> grants.sql
+
+    db2 -tvf grants.sql
+
 
 
 
