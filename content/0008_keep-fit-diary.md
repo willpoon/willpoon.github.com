@@ -3,6 +3,7 @@ Category: Life
 Tags: 健身,锻炼,堕落,日记,随想,饮食
 Slug: keep-fit-diary
 Authors: Poon
+Status: draft
 
 
 通过坚持每天锻炼，让:身体更好，精神更佳，让自己每天感觉棒棒哒，打造良好的身材...等等。
