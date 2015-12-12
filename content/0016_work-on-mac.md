@@ -11,7 +11,7 @@ Mac 是darwin unix 内核，很多东西跟linux不同。所以，还是单独�
 
 [TOC]
 
-## ulimit -n 65000
+# ulimit -n 65000
 
  -bash: ulimit: open files: cannot modify limit: Invalid argument
 
@@ -35,15 +35,15 @@ Mac 是darwin unix 内核，很多东西跟linux不同。所以，还是单独�
 
 关于db2安装中遇到的ulimit参数问题，先改 sysctl.conf , 然后重启！很多问题都能解决！sysctl.conf ! 
 
-## Mac 上 db2 的安装
+# Mac 上 db2 的安装
 
 db2 的安装还是得用root 用户进行。否则会报错的。
 
 
-### db2 get dbm cfg 
+## db2 get dbm cfg 
 
 
-### db2licm -l
+## db2licm -l
 Product name:                     "DB2 Express-C"
 Expiry date:                      "02/23/2016 (Try & Buy)"
 Product identifier:               "db2expc"
@@ -52,12 +52,12 @@ Max number of CPUs:               "2"
 Max amount of memory (GB):        "4"
 Enforcement policy:               "Soft Stop"
 
-### 创建实例：
+## 创建实例：
 
 /opt/IBM/db2/V10.1/instance/db2icrt
 
 
-### 问题： db2start SQL1042C An unexpected system error occurred. SQLSTATE=58004
+## 问题： db2start SQL1042C An unexpected system error occurred. SQLSTATE=58004
 
 解决：
 Wills-MacBook-Pro:sqllib db2inst1$ sudo chown db2inst1 /Users/db2inst1/sqllib/adm/*
@@ -67,7 +67,7 @@ SQL1063N  DB2START processing was successful.
 http://stackoverflow.com/questions/33138859/cannot-db2start-using-db2-express-in-mac
 
 
-### 问题 ： SQL1031N  The database directory cannot be found on the indicated file system. 
+## 问题 ： SQL1031N  The database directory cannot be found on the indicated file system. 
 Wills-MacBook-Pro:sqllib db2inst1$ db2 connect to db2inst1
 SQL1031N  The database directory cannot be found on the indicated file system. 
 
@@ -99,7 +99,7 @@ Wills-MacBook-Pro:bin db2inst1$ db2 "select count(0) from syscat.tables"
 
 
 
-### mac下如何用date 做日期计算和调整 ， 例如，计算昨日。 
+# mac下如何用date 做日期计算和调整 ， 例如，计算昨日。 
 
 ref: http://lists.apple.com/archives/macos-x-server/2005/Sep/msg00067.html
 
@@ -112,7 +112,7 @@ date -v -1d +"%Y%m%d"
              processed in the order given.
 
 
-### mac 上添加用户组
+# mac 上添加用户组
 
 mac上不能像linux那样，用groupadd来添加用户中。网上有两种方法：
 
@@ -120,20 +120,20 @@ mac上不能像linux那样，用groupadd来添加用户中。网上有两种方�
 
 2. 使用mac特有命令
 
-### mac 上快捷键 与 windows / linux 对比
+# mac 上快捷键 与 windows / linux 对比
 
 https://en.wikipedia.org/wiki/Table_of_keyboard_shortcuts
 
-### mac 翻墙方法
+# mac 翻墙方法
 
 试过了goagent , shadowsocks , 还是觉得shadowsocks 最简单，网速最给力。如果需要稳定的、持续的账号，可以到网上购买。否则就使用试用帐号就行了。
 
 
-### mac上的破解软件到哪里找？
+# mac上的破解软件到哪里找？
 
 ifunmac  , 有些要钱，有些不要钱。我有帐号，有需要的可以和我联系。
 
-### mac上挂载移动硬盘，只能读，不能写，如何解决？
+# mac上挂载移动硬盘，只能读，不能写，如何解决？
 
 我的系统是 yosemite , 试过了很多方法都不行。只能采用第三方的工具。Tuxera NTFS 2015 for Mac .
 
@@ -141,7 +141,7 @@ ifunmac  , 有些要钱，有些不要钱。我有帐号，有需要的可以和
 
 真不明白为啥mac还给移动硬盘做写保护。
 
-### mac上打开来自windows 得gbk 编码文件乱码如何解决？
+# mac上打开来自windows 得gbk 编码文件乱码如何解决？
 
 需要转码。
 
@@ -160,35 +160,42 @@ ifunmac  , 有些要钱，有些不要钱。我有帐号，有需要的可以和
 
 核心命令是 ： iconv -f -t 
 
-### mac 自带的 preview 工具 的放大镜 功能
+# mac 自带的 preview 工具 的放大镜 功能
 
 使用 ｀ (backtick) 符号就可以打开。 功能菜单： tools -> show magnifier 
 
 
 
 
-## 测试贴！使用markdown here 编辑微信公众号消息!
-### 背景
+# 测试贴！使用markdown here 编辑微信公众号消息!
+
+## 背景: 
 
 这个公众号其实申请很久了，但是基本上没有发布过什么文章。原因是想起那需要点来点去的格式化工具栏就头疼。所以平时写的东西都只发布到博客上。今天突发奇想，有没有可以让微信公众号也支持markdown编辑的工具呢？强大的google没有让我失望：通过安装 chrome 插件：markdown here ， 可以一键渲染markdown语法！
 
-### 如何使用
+## 如何使用
 
-#### 前提
+### 前提
 
 1. 找梯子翻墙！
 2. 安装chrome浏览器！
 3. 去chrome 插件市场查找 markdown here 插件并安装之!
 
-#### 使用步骤
+### 使用步骤
 
 1. 像往常一样，打开素材管理界面，新建图文消息。
-2. 使用markdown 语法 ： # , ## , ### 等等来排版&标记你的文章段落。
-3. 最后，也是花腐朽为神奇的一步，就是，使用 ctrl+alt+m 来渲染你的文章。（当然也可以使用chrome 浏览器的右上角按钮，click to toggle markdown rendering ）
+2. 使用markdown 语法 ： `#` , `##` , `###` 等等来排版&标记你的文章段落。
+3. 最后，也是花腐朽为神奇的一步，就是，使用 `ctrl+alt+m` 来渲染你的文章。（当然也可以使用chrome 浏览器的右上角按钮，click to toggle markdown rendering ）
 
-### 后记
+### Will's Hacking way 
+如果你认为刚刚我说的就是最好的方法，那你就上当了！其实，我根本不按上面的方法走！为什么？因为markdown here 有一个问题，就是如果你来回编辑、预览几次，你就看不到markdown的标记了！
+这种情况下，如果你再次使用markdown标记编辑文章，就会有前后编辑排版不同步的问题！
+所以，我强烈建议大家先使用第三方markdown编辑工具把markdown文件写好，然后再粘贴到微信自己的网页编辑其中！
+那么你就会问：我之前插入的图片怎么办？对不起，你只好在点发布之前，再去插入图片等多媒体信息了！
 
-排版方便了，但是刚习惯了用safari , 现在又不得不把chrome 常驻 `commnad + tab` 列表里头了！
+## 后记
+
+排版方便了，只是我刚习惯了用safari , 现在又不得不把chrome 常驻 `commnad + tab` 列表里头了！
 
 
 
