@@ -154,6 +154,11 @@
 <li><a href="#biee-logical-dimension-ragged">biee 的logical dimension 中的 Ragged 的应用场景</a></li>
 <li><a href="#biee-skip-level">biee skip-level 越级维度</a></li>
 <li><a href="#biee-logical-dimesion-level-based-parent-child-value-based">biee 创建 logical dimesion 的时候，什么时候使用 Level-Based , 什么时候使用 Parent-Child (value-based)</a></li>
+<li><a href="#biee-logical-dimension-biee">当我们点击 ＋号 展开 biee 逻辑维度 (logical dimension ) 的时候，biee 后台 都发生了什么？</a></li>
+<li><a href="#biee_5">如何让biee 旋转透视图支持多个度量列？</a></li>
+<li><a href="#hierarchy-column">如何默认展开层级列（hierarchy column) ?</a></li>
+<li><a href="#logical-hierarchy-column">物理层的多条件关联，也就是存在复合主键，是否影响逻辑层构建 logical hierarchy column ?</a></li>
+<li><a href="#structure-based-value-based">如何理解 structure based 和 value based ?</a></li>
 </ul>
 </li>
 <li><a href="#_8">异常处理</a><ul>
@@ -353,13 +358,15 @@ or
 <p>日期取年初：trunc(date,'Y')</p>
 </li>
 </ol>
-<!-- ^ -->
+
 <h2 id="biee-logical-dimension-ragged">biee 的logical dimension 中的 Ragged 的应用场景</h2>
 <p>今天配置一张报表，并非每一条记录的层级数都相同。
-就像这样：
-lvl1|lvl2|lvl3|lvl4
-lvl1|lvl2
-lvl1|lvl2|lvl3</p>
+就像这样：</p>
+<p>```</p>
+<p>lvl1|lvl2|lvl3|lvl4</p>
+<p>lvl1|lvl2</p>
+<p>lvl1|lvl2|lvl3</p>
+<p>```</p>
 <p>Ragged , 又叫 unbalanced ，非平衡维度. 也就是说，不是每一条记录的每一个维度都是整齐划一的。</p>
 <p>如果你的维度表是这样的，就要在rpd中对你的逻辑维度做如下设置：</p>
 <p>双击逻辑维度-&gt; general-&gt; structure-&gt; Ragged </p>
@@ -367,9 +374,11 @@ lvl1|lvl2|lvl3</p>
 <p>说到 ragged , 通常都会引出 skip-level . 下面介绍下 skip-level </p>
 <h2 id="biee-skip-level">biee skip-level 越级维度</h2>
 <p>就像这样:</p>
-<p>lvl1|lvl2|lvl3|lvl4
-lvl1|null|null|lvl4
-lvl1|lvl2|null|lvl4</p>
+<p>```</p>
+<p>lvl1|lvl2|lvl3|lvl4</p>
+<p>lvl1|null|null|lvl4</p>
+<p>lvl1|lvl2|null|lvl4</p>
+<p>```</p>
 <p>对于biee 不平衡维和越级维，这个帖子上有一张图可以说明:</p>
 <p><img alt="越级维skip-level 和 不平衡维ragged" src="img/00002-01.png"/></p>
 <p>http://prashanthobiee.blogspot.sg/2013/01/ragged-and-skipped-hierarchy.html
@@ -383,7 +392,40 @@ http://docs.oracle.com/cd/E25054_01/fusionapps.1111/e20836/dimensions.htm</p>
 <li>当层级关系不是同一类型，比如地区－贷款类型－客户分类等等</li>
 </ol>
 <p><a href="http://docs.oracle.com/cd/E25054_01/fusionapps.1111/e20836/dimensions.htm#BABIHCGH">此表</a> 展示了一个 parent-child 表的代际关系。</p>
-<!-- $ -->
+<h2 id="biee-logical-dimension-biee">当我们点击 ＋号 展开 biee 逻辑维度 (logical dimension ) 的时候，biee 后台 都发生了什么？</h2>
+<ol>
+<li>
+<p>后台语句是随着我们的点击动态变化的。</p>
+</li>
+<li>
+<p>展开的节点越多，语句就拼装得越多。</p>
+</li>
+<li>
+<p>当展开下一级别的时候，会用我们所点击的节点的值作为条件，从一个最明细的子表中查询，查出该级别下的所有成员值。</p>
+</li>
+<li>
+<p>每新展开一列，将会产生一个新的union , 把新展开的节点数据union 到已展开的节点上。</p>
+</li>
+</ol>
+<h2 id="biee_5">如何让biee 旋转透视图支持多个度量列？</h2>
+<p>把度量标签拖到右上方区域。</p>
+<h2 id="hierarchy-column">如何默认展开层级列（hierarchy column) ?</h2>
+<p>通过selection steps 步骤！ 详见：</p>
+<p>http://123obi.com/2012/06/obiee-11g-expanding-hierarchy-column/</p>
+<p>http://obieeil.blogspot.sg/2013/03/obiee-11g-hierarchical-columns-and.html</p>
+<p>https://community.oracle.com/thread/2445861</p>
+<p>http://www.rittmanmead.com/2010/07/obiee-11gr1-hierarchical-columns-and-enhancements-to-pivot-table-views/</p>
+<h2 id="logical-hierarchy-column">物理层的多条件关联，也就是存在复合主键，是否影响逻辑层构建 logical hierarchy column ?</h2>
+<p>答案是： 不影响。 比如我们要构建 level-based hierachy , 可以随意构建我们需要的维度层级。</p>
+<h2 id="structure-based-value-based">如何理解 structure based 和 value based ?</h2>
+<p>```</p>
+<p>Parent Child Hierarchies Is a Value Based Hierarchy
+  Level Base Hierarchies Is A Structure Based Hie.</p>
+<p>```</p>
+<p>我们可以根据最终构建出来的 hierarchy column 来理解：</p>
+<p>parent - child 构建出来的 hierarchy colunm , 所有节点都是来自 父子两列的记录值。 所以说他是基于（parent-son 两列的记录）值来构建的。</p>
+<p>而 level based 构建出来的 hierarchy colunm , 每一个层级都是来自不同的列（维度），展开的层次结构里面有几层，用以构建的维表就需要拿出多少列来构建。 所以说，他是基于（维表）结构来构建的。</p>
+
 <h1 id="_8">异常处理</h1>
 <h3 id="ora-32034unsupported-use-of-with-clause-at-oci-call-ocistmtexecute">ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.</h3>
 <p>解决办法：检查rpd物理层子查询中是否有with子句。有的话，改成子查询的形式。</p>

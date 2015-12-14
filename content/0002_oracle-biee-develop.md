@@ -3,7 +3,6 @@ Category: Tech
 Tags: oracle,biee,BI
 Slug: oracle-biee-develop
 Authors: Poon
-Summary:  使用biee开发前前后有也有两年多了，对oracle这套产品，也有一点小小心得，在此总结一下，抛砖引玉。持续更新中...
 
 [TOC]
 
@@ -256,9 +255,16 @@ or
 
 今天配置一张报表，并非每一条记录的层级数都相同。
 就像这样：
+
+```
+
 lvl1|lvl2|lvl3|lvl4
+
 lvl1|lvl2
+
 lvl1|lvl2|lvl3
+
+```
 
 Ragged , 又叫 unbalanced ，非平衡维度. 也就是说，不是每一条记录的每一个维度都是整齐划一的。
 
@@ -274,10 +280,15 @@ Ragged , 又叫 unbalanced ，非平衡维度. 也就是说，不是每一条记
 
 就像这样:
 
+```
+
 lvl1|lvl2|lvl3|lvl4
+
 lvl1|null|null|lvl4
+
 lvl1|lvl2|null|lvl4
 
+```
 
 对于biee 不平衡维和越级维，这个帖子上有一张图可以说明:
 
@@ -297,6 +308,50 @@ biee 对于越级维和不平衡维的识别，是通过记录中空值(null) �
 
 [此表](http://docs.oracle.com/cd/E25054_01/fusionapps.1111/e20836/dimensions.htm#BABIHCGH) 展示了一个 parent-child 表的代际关系。
 
+## 当我们点击 ＋号 展开 biee 逻辑维度 (logical dimension ) 的时候，biee 后台 都发生了什么？
+
+1. 后台语句是随着我们的点击动态变化的。
+
+2. 展开的节点越多，语句就拼装得越多。
+
+3. 当展开下一级别的时候，会用我们所点击的节点的值作为条件，从一个最明细的子表中查询，查出该级别下的所有成员值。
+
+4. 每新展开一列，将会产生一个新的union , 把新展开的节点数据union 到已展开的节点上。
+
+## 如何让biee 旋转透视图支持多个度量列？
+
+把度量标签拖到右上方区域。
+
+## 如何默认展开层级列（hierarchy column) ?
+
+通过selection steps 步骤！ 详见：
+
+http://123obi.com/2012/06/obiee-11g-expanding-hierarchy-column/
+
+http://obieeil.blogspot.sg/2013/03/obiee-11g-hierarchical-columns-and.html
+
+https://community.oracle.com/thread/2445861
+
+http://www.rittmanmead.com/2010/07/obiee-11gr1-hierarchical-columns-and-enhancements-to-pivot-table-views/
+
+## 物理层的多条件关联，也就是存在复合主键，是否影响逻辑层构建 logical hierarchy column ?
+
+答案是： 不影响。 比如我们要构建 level-based hierachy , 可以随意构建我们需要的维度层级。
+
+## 如何理解 structure based 和 value based ?
+
+```
+
+  Parent Child Hierarchies Is a Value Based Hierarchy
+  Level Base Hierarchies Is A Structure Based Hie.
+
+```
+
+我们可以根据最终构建出来的 hierarchy column 来理解：
+
+parent - child 构建出来的 hierarchy colunm , 所有节点都是来自 父子两列的记录值。 所以说他是基于（parent-son 两列的记录）值来构建的。
+
+而 level based 构建出来的 hierarchy colunm , 每一个层级都是来自不同的列（维度），展开的层次结构里面有几层，用以构建的维表就需要拿出多少列来构建。 所以说，他是基于（维表）结构来构建的。
 
 <!-- $ -->
 
@@ -332,6 +387,7 @@ dim... 没有对应上！
 如果rpd通过前端em上传的，通常会出现rpd名字被修改，导致引用不正确的情况。
 
 ### 求助：biee 11.1.1.5.0 打补丁到 11.1.1.5.5 之后，报表导出不再自动合并，如何解决？
+
 2015-12-13 17:45
 也就是说：原来用未打补丁的版本，报表导出来的时候，如果相邻的两行或多行的值是一样的，就会自动合并。相当于excel 中的合并功能。
 但是biee打补丁到 11.1.1.5.5 之后，就不再自动合并了。我的理解是，原来自动合并是biee的bug，现在修复了。但我还是希望能找到方法，打开biee的行合并功能。
