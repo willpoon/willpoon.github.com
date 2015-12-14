@@ -208,7 +208,6 @@ or
 
 只需要在同一个分析中，构建两个表格或者视图。
 
-<!-- ^ -->
 
 ## biee报表没有数据的时候，如何定制系统输出? (无结果设置)
 
@@ -250,6 +249,54 @@ or
 2. 日期类型的 pv , 可以使用 in ( @{pv} )   这样的语句。
 
 3. 日期取年初：trunc(date,'Y')
+
+<!-- ^ -->
+
+## biee 的logical dimension 中的 Ragged 的应用场景
+
+今天配置一张报表，并非每一条记录的层级数都相同。
+就像这样：
+lvl1|lvl2|lvl3|lvl4
+lvl1|lvl2
+lvl1|lvl2|lvl3
+
+Ragged , 又叫 unbalanced ，非平衡维度. 也就是说，不是每一条记录的每一个维度都是整齐划一的。
+
+如果你的维度表是这样的，就要在rpd中对你的逻辑维度做如下设置：
+
+双击逻辑维度-> general-> structure-> Ragged 
+
+这样设置之后，如果你从lvl1 展开到 lvl4 , 也就是从最顶层展开到最底层, 那么如果当从lvl3开始，之后都没有层级划分的情况下，就不会报错。如果没有设置Ragged， 就会报错。
+
+说到 ragged , 通常都会引出 skip-level . 下面介绍下 skip-level 
+
+## biee skip-level 越级维度
+
+就像这样:
+
+lvl1|lvl2|lvl3|lvl4
+lvl1|null|null|lvl4
+lvl1|lvl2|null|lvl4
+
+
+对于biee 不平衡维和越级维，这个帖子上有一张图可以说明:
+
+![越级维skip-level 和 不平衡维ragged](img/00002-01.png)
+
+http://prashanthobiee.blogspot.sg/2013/01/ragged-and-skipped-hierarchy.html
+http://docs.oracle.com/cd/E25054_01/fusionapps.1111/e20836/dimensions.htm
+
+    OBIEE 11g can handle this though with the new ragged and skip-level support for level-based hierarchies. It does this by detecting NULLs in either leaf levels (for ragged hierarchies) or other levels (for skip-level hierarchies) and use this to modify how the new hierarchical column type in Answers handles the missing levels.
+
+biee 对于越级维和不平衡维的识别，是通过记录中空值(null) 的特点来识别的。 
+
+## biee 创建 logical dimesion 的时候，什么时候使用 Level-Based , 什么时候使用 Parent-Child (value-based) 
+
+1. 当层级关系都是同一类型的时候，我们采用Parent－child 。比如员工－上级。节点－父节点等结构。
+2. 当层级关系不是同一类型，比如地区－贷款类型－客户分类等等
+
+[此表](http://docs.oracle.com/cd/E25054_01/fusionapps.1111/e20836/dimensions.htm#BABIHCGH) 展示了一个 parent-child 表的代际关系。
+
 
 <!-- $ -->
 
