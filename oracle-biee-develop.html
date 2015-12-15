@@ -94,7 +94,7 @@
 
     in <a href="http://www.imx3.com/category/tech.html">Tech</a>
 
-    on 2015-12-14
+    on 2015-12-15
 
         |
         tags:         <a href="http://www.imx3.com/tag/oracle.html">oracle</a>
@@ -159,6 +159,11 @@
 <li><a href="#hierarchy-column">如何默认展开层级列（hierarchy column) ?</a></li>
 <li><a href="#logical-hierarchy-column">物理层的多条件关联，也就是存在复合主键，是否影响逻辑层构建 logical hierarchy column ?</a></li>
 <li><a href="#structure-based-value-based">如何理解 structure based 和 value based ?</a></li>
+<li><a href="#logical-dimension">logical dimension 到底是什么？</a></li>
+<li><a href="#biee-logical-dimension">biee 报表中的逻辑维 (logical dimension ) 如何设置默认展开？</a></li>
+<li><a href="#biee_6">biee 透视图如何去除表头标题空行？</a></li>
+<li><a href="#biee_7">biee 数据透视图如何 单独设置每页的行数？</a></li>
+<li><a href="#biee-logical-dimension_1">biee 的 logical dimension 如何指定展开的各节点的顺序？</a></li>
 </ul>
 </li>
 <li><a href="#_8">异常处理</a><ul>
@@ -168,6 +173,8 @@
 <li><a href="#24-rpd-repository-rpd">2.4 加载的rpd 不是我们想要的repository ， 怎么改成我们要的rpd?</a></li>
 <li><a href="#_9">仪表板报表爆表了怎么办？</a></li>
 <li><a href="#biee-111150-111155">求助：biee 11.1.1.5.0 打补丁到 11.1.1.5.5 之后，报表导出不再自动合并，如何解决？</a></li>
+<li><a href="#logical-dimension_1">logical dimension 父节点不能自动汇总？即子节点之和不等于父节点。</a></li>
+<li><a href="#logical-dimension_2">logical dimension 展开到最后一层报错。</a></li>
 </ul>
 </li>
 </ul>
@@ -426,6 +433,51 @@ http://docs.oracle.com/cd/E25054_01/fusionapps.1111/e20836/dimensions.htm</p>
 <p>parent - child 构建出来的 hierarchy colunm , 所有节点都是来自 父子两列的记录值。 所以说他是基于（parent-son 两列的记录）值来构建的。</p>
 <p>而 level based 构建出来的 hierarchy colunm , 每一个层级都是来自不同的列（维度），展开的层次结构里面有几层，用以构建的维表就需要拿出多少列来构建。 所以说，他是基于（维表）结构来构建的。</p>
 
+<h2 id="logical-dimension">logical dimension 到底是什么？</h2>
+<p><img alt="逻辑维度" src="http://gerardnico.com/wiki/_media/dat/obiee/bi_server/design/dimension/obiee_multiple_dimension_hierarchie.jpg"/></p>
+<p>如图，既然叫逻辑维，那就把它看成是一个维度就好了！但为什么一个维度会有那么多层级？</p>
+<p>那么，请看：</p>
+<p>我们可以记录这样一张表：</p>
+<p>白色|4s|iphone </p>
+<p>白色|5s|iphone </p>
+<p>土豪金|5s|iphone </p>
+<p>土豪金|6s|iphone </p>
+<p>也可以这样记录一张表：</p>
+<p>4s白色|iphone</p>
+<p>5s白色|iphone</p>
+<p>5s土豪金|iphone</p>
+<p>6s白色|iphone</p>
+<p>实际上，我们是把 颜色－型号两列组合在一起作为一列了。 作为一列展示的时候，我们还是可以区分层次关系的。</p>
+<p>而且，既然我们可以组合两列，那我们还可以组合第三列、第四列.</p>
+<p>所以，所谓的logical dimension ， 其实只是对几个维度的合并。并且能够让我们区分层次。 我们可以把它当作一个维度看待。</p>
+<h2 id="biee-logical-dimension">biee 报表中的逻辑维 (logical dimension ) 如何设置默认展开？</h2>
+<ol>
+<li>
+<p>通过所选步骤展开。不推荐，因为这种方法展开之后，存在不能折叠回去的情况。还有 明明应该显示－号，结果显示了＋号的情况。</p>
+</li>
+<li>
+<p>手工把所有节点展开，然后保存。下次默认打开就是上次保存的情况。支持折叠回去，不会有＋／－号显示错误的问题。 推荐。</p>
+</li>
+</ol>
+<h2 id="biee_6">biee 透视图如何去除表头标题空行？</h2>
+<p>打开透视图－编辑透视图－布局－行－行属性－选项－去掉勾即可。</p>
+<h2 id="biee_7">biee 数据透视图如何 单独设置每页的行数？</h2>
+<p>打开透视图－编辑透视图－工具栏数据透视图属性－每页的行数－指定数值即可。</p>
+<h2 id="biee-logical-dimension_1">biee 的 logical dimension 如何指定展开的各节点的顺序？</h2>
+<ol>
+<li>
+<p>需要维表中预设顺序列：seq1 , seq2 , seq3 ...</p>
+</li>
+<li>
+<p>如果是level－based 的逻辑维，应该一个维度（一层）预设一个顺序列。</p>
+</li>
+<li>
+<p>不同层之间共用一个顺序列seq，会发生父节点无法汇总的情况。</p>
+</li>
+<li>
+<p>logical dimension 的排序算法是：数字类型－按顺序排。字符类型－先按长度，再按大小顺序排。</p>
+</li>
+</ol>
 <h1 id="_8">异常处理</h1>
 <h3 id="ora-32034unsupported-use-of-with-clause-at-oci-call-ocistmtexecute">ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.</h3>
 <p>解决办法：检查rpd物理层子查询中是否有with子句。有的话，改成子查询的形式。</p>
@@ -447,6 +499,14 @@ dim... 没有对应上！</p>
 也就是说：原来用未打补丁的版本，报表导出来的时候，如果相邻的两行或多行的值是一样的，就会自动合并。相当于excel 中的合并功能。
 但是biee打补丁到 11.1.1.5.5 之后，就不再自动合并了。我的理解是，原来自动合并是biee的bug，现在修复了。但我还是希望能找到方法，打开biee的行合并功能。
 有知道的亲们，请赐教，谢谢！</p>
+<h3 id="logical-dimension_1">logical dimension 父节点不能自动汇总？即子节点之和不等于父节点。</h3>
+<p>可能是rpd 中 每一层的排序设置有问题。最好每一层单独设置排序字段，不要共用一个排序字段。</p>
+<h3 id="logical-dimension_2">logical dimension 展开到最后一层报错。</h3>
+<p>可能是rpd 中 展示层的层级设置得比较多。可以减少展示层中的层级，只取我们要的层数。比如：</p>
+<p>逻辑层设置了 : lvl1 - lvl2 - lvl3 - lvl4 - detail </p>
+<p>但在展示层中，我们可以只设置如下几层：</p>
+<p>lvl1 - lvl2 - lvl3 - lvl4 </p>
+<p>这样，当我们在前台点击 lvl4 时，就不会继续展开。</p>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>
