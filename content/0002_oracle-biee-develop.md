@@ -292,7 +292,7 @@ lvl1|lvl2|null|lvl4
 
 对于biee 不平衡维和越级维，这个帖子上有一张图可以说明:
 
-![越级维skip-level 和 不平衡维ragged](img/00002-01.png)
+![越级维skip-level 和 不平衡维ragged](img/00002-01.jpg)
 
 http://prashanthobiee.blogspot.sg/2013/01/ragged-and-skipped-hierarchy.html
 http://docs.oracle.com/cd/E25054_01/fusionapps.1111/e20836/dimensions.htm
@@ -432,11 +432,11 @@ dim... 没有对应上！
 如何排除该异常：把视图中exclude掉的字段，试验性地添加到include列中。如果你不希望挪上去的列展示出来，再把该列设置为隐藏即可！
 
 
-### 2.3 biee catalog 指向 不正确如何解决？
+### biee catalog 指向 不正确如何解决？
 
 修改 instanceconfig.xml , 将 <CatalogPath> 标签中的路径改为正确的路径。
 
-### 2.4 加载的rpd 不是我们想要的repository ， 怎么改成我们要的rpd?
+### 加载的rpd 不是我们想要的repository ， 怎么改成我们要的rpd?
 
 修改 NQSConfig.INI
 
@@ -451,6 +451,7 @@ dim... 没有对应上！
 ### 求助：biee 11.1.1.5.0 打补丁到 11.1.1.5.5 之后，报表导出不再自动合并，如何解决？
 
 2015-12-13 17:45
+
 也就是说：原来用未打补丁的版本，报表导出来的时候，如果相邻的两行或多行的值是一样的，就会自动合并。相当于excel 中的合并功能。
 但是biee打补丁到 11.1.1.5.5 之后，就不再自动合并了。我的理解是，原来自动合并是biee的bug，现在修复了。但我还是希望能找到方法，打开biee的行合并功能。
 有知道的亲们，请赐教，谢谢！
@@ -472,5 +473,36 @@ dim... 没有对应上！
 
 
 这样，当我们在前台点击 lvl4 时，就不会继续展开。
+
+# 行业动态 
+
+## biee 12c 发布啦!
+
+2015-12-15 17:07
+
+有虚拟机可以下载！ 详见:
+
+http://www.oracle.com/technetwork/middleware/bi-foundation/obiee-samples-167534.html
+
+
+# 同行参考 
+
+## http://gerardnico.com
+
+一个wiki，站长非常有经验。一道认为是oracle官方开发人员！
+
+## http://123obi.com
+
+一个印度人的biee相关网站。10g/11g 都有涉及。
+
+## http://www.obiee247.com
+
+Berry van den Heuvel | Business Intelligence Specialist | NL
+
+## http://obiee-tips.blogspot.sg
+
+该博hack风格比较浓。
+
+
 
 

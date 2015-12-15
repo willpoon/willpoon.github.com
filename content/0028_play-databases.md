@@ -10,6 +10,116 @@ Authors: Poon
 
 # DB2
 
+##  在db2上授权一个用户db2etl，让这个用户具备dbadm & schema创建权限。
+
+2015-12-15 Tue 20:57 PM
+
+--db2 列出schema下所有的tables
+
+db2 list tables for schema syscat | grep -i auth
+
+poon@Wills-MacBook-Pro:~$ db2 list tables for schema metadata
+
+
+
+
+-- 指定当前schema 
+set current schema = 'KALIE'
+
+
+--database 已经默认为当前connect 的用户, 例如sample :
+
+GRANT DBADM ON DATABASE to db2admin  --- 是不行的，必须声明是 user , e.g:
+
+
+[db2inst1@iZ281s312fdZ ~]$ db2 grant dbadm on database to db2etl
+
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0569N  Authorization ID "DB2ETL" does not uniquely identify a user, a group 
+or a role in the system.  SQLSTATE=56092
+
+--解释：
+
+SEPGG_9.5.0/com.ibm.db2.luw.messages.sql.doc/doc/msql00569n.html
+
+
+SQL0569N
+Authorization ID authorization-name does not uniquely identify a user, a group or a role in the system.
+
+Explanation
+
+The authorization ID specified by the GRANT or REVOKE statement does not uniquely identify a user, a role, or a group in the security namespace. The reference to authorization-name is ambiguous. Note that when using DCE security, the USER, GROUP or ROLE keyword is always required.
+
+User response
+
+Change the statement to explicitly specify the USER, GROUP or ROLE keyword to uniquely identify the specified authorization id.
+
+
+ref: http://www-01.ibm.com/support/knowledgecenter/#!/S
+
+
+--正确的姿势：使用db2inst1 ：
+
+[db2inst1@iZ281s312fdZ ~]$ db2 grant dbadm on database to user db2etl
+
+DB20000I  The SQL command completed successfully.
+
+--具备dbadm权限的用户，就具备了创建 db2 schema 的权限：
+
+poon@Wills-MacBook-Pro:~$ db2 create schema skm1 AUTHORIZATION db2etl
+
+DB20000I  The SQL command completed successfully.
+
+
+---查看某schema 下的表名：
+
+poon@Wills-MacBook-Pro:~$ db2 "select TABSCHEMA,tabname from syscat.tables where tabschema = 'METADATA'"
+
+set current schema = 'METADATA'
+
+--db2look 是本地客户端的命令，如果客户端版本和服务器有差别，db2look 可能用不了哦：
+
+
+db2look -d sample -e -l -x  -z metadata -i db2etl -w db2etlpassword
+
+
+--注意事项：
+
+CREATE TABLE "METADATA"."tmplst"  (
+          "TO_inst_id" VARCHAR(64) , 
+          "nLevel" INTEGER , 
+          "sCort" VARCHAR(8000) )   
+         IN "IBMDB2SAMPLEREL" ; 
+
+         这种建表语句是很坑人的，因为大小写混在一起了。请全部用大写。
+如下：
+
+CREATE TABLE "METADATA"."TMPLST"  (
+          "TO_INST_ID" VARCHAR(64) , 
+          "NLEVEL" INTEGER , 
+          "SCORT" VARCHAR(8000) )   
+         IN "IBMDB2SAMPLEREL" 
+
+
+
+
+--- 现在 db2etl 已经具备了创建schema的权限&建表权限。所以可以直接用db2etl来管理schema及其下的tables权限分配。
+
+
+poon@Wills-MacBook-Pro:~/sunline$ db2 -tvf db2.sql 
+CREATE TABLE "METADATA"."TMPLST"  ( "TO_INST_ID" VARCHAR(64) , "NLEVEL" INTEGER , "SCORT" VARCHAR(8000) ) IN "IBMDB2SAMPLEREL" 
+DB20000I  The SQL command completed successfully.
+
+poon@Wills-MacBook-Pro:~/sunline$ db2 grant select on METADATA.TMPLST to public
+DB20000I  The SQL command completed successfully.
+
+
+以上，除了给db2etl赋 dbadm 权限用到db2inst1，其他操作都不需要。 只需要用db2etl即可。
+
+
+
+
 
 ## 启动&连接&测试
 
