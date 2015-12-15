@@ -129,7 +129,10 @@
 <li><a href="#catalog">如何catalog 一个远程数据库</a></li>
 <li><a href="#db2-on-mac">DB2 on mac 很难找！</a></li>
 <li><a href="#db2-schema">db2 一个系统用户管理多个schema  .</a></li>
-<li><a href="#db2-grant-schema">DB2 grant 无法针对 schema 授权</a></li>
+<li><a href="#db2-grant-schema">DB2 grant 无法针对 schema 授权</a><ul>
+<li><a href="#_4">更灵活的操作：</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#mysql">MYSQL</a><ul>
@@ -138,13 +141,13 @@
 <li><a href="#mysql-except-or-minus">MYSQL 不支持 except or minus</a></li>
 <li><a href="#mysql-a">mysql -A 参数</a></li>
 <li><a href="#mysql-limit">mysql limit 的用法：</a></li>
-<li><a href="#_4">关联技巧:恢复空表</a></li>
+<li><a href="#_5">关联技巧:恢复空表</a></li>
 <li><a href="#mysqld">启动mysqld 的时候，一般加什么参数？</a></li>
 <li><a href="#mysql_1">mysql 远程连接</a></li>
 <li><a href="#except-minus-mysql">如果不能用 except , minus , mysql 如何比较两张表？</a></li>
 <li><a href="#mysql-row">mysql 使用 row() 实现 多列比较</a></li>
 <li><a href="#mysql-intersect">mysql 模拟 intersect  求差集</a></li>
-<li><a href="#_5">远程数据库连接配置</a></li>
+<li><a href="#_6">远程数据库连接配置</a></li>
 </ul>
 </li>
 <li><a href="#oracle">ORACLE</a><ul>
@@ -342,6 +345,37 @@ DB20000I  The SQL command completed successfully.
 
 db2 -tvf grants.sql
 </code></pre>
+<h3 id="_4">更灵活的操作：</h3>
+<pre><code>ksh grant_privs.ksh DB_X USER_X SCHEMA_X insert,delete,update,select
+</code></pre>
+<p>脚本如下：</p>
+<pre><code>#!/bin/ksh
+# Grant privileges for a user or group on a specified schema
+#---------------------------------------------------------------------------------------------
+
+. ~/sqllib/db2profile
+
+NUMARGS=$#
+
+if [[ $NUMARGS -ne "4" ]]; then
+        echo "Usage: $0 database userid schema privilege,..."
+        echo "SYSADM authority required."
+        exit -2
+fi
+
+typeset -u SCHEMA=$3
+$(db2 connect to $1)
+STMT="db2 select tabname from syscat.tables where tabschema='$SCHEMA'"
+TABLES_TO_GRANT=$($STMT|egrep -v "TABNAME|----|selected.")
+for TAB in $TABLES_TO_GRANT; do
+     cmd="db2 grant $4 on $3.$TAB to $2"
+     echo $cmd
+     ret=$($cmd)
+     echo $ret
+done
+</code></pre>
+<p>Grant privileges for a user or group on a specified schema</p>
+<p>http://www.dbatodba.com/db2/scripts-db2/shell-scripts-to-db2/grant-privileges-for-a-user-or-group-on-a-specified-schema/</p>
 <h1 id="mysql">MYSQL</h1>
 <h2 id="mysql-1040-too-many-connections">mysql : 1040 too many connections  的解决</h2>
 <ol>
@@ -375,7 +409,7 @@ RIGHT JOIN t2 ON t1.id = t2.id
 <p>limit m,n 解释:</p>
 <p>m(5) -- 表示偏移量。也就是要skip掉m行。</p>
 <p>n(10) --  表示从第m行之后，最大可以提取n行。</p>
-<h2 id="_4">关联技巧:恢复空表</h2>
+<h2 id="_5">关联技巧:恢复空表</h2>
 <pre><code>INSERT INTO ${PDM_SCH}.LI_COL
 SELECT B.*
 FROM ${PDM_SCH}.LI_COL_BAK B,
@@ -431,7 +465,7 @@ GROUP BY PK, column_list
 HAVING COUNT (*) = 1
 ORDER BY PK
 </code></pre>
-<h2 id="_5">远程数据库连接配置</h2>
+<h2 id="_6">远程数据库连接配置</h2>
 <ol>
 <li>db2 </li>
 </ol>

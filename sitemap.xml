@@ -5,35 +5,42 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.imx3.com/</loc>
-<lastmod>2015-12-15T21:19:41-00:00</lastmod>
+<lastmod>2015-12-15T22:26:35-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.imx3.com/archives.html</loc>
-<lastmod>2015-12-15T21:19:41-00:00</lastmod>
+<lastmod>2015-12-15T22:26:35-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.imx3.com/tags.html</loc>
-<lastmod>2015-12-15T21:19:41-00:00</lastmod>
+<lastmod>2015-12-15T22:26:35-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.imx3.com/categories.html</loc>
-<lastmod>2015-12-15T21:19:41-00:00</lastmod>
+<lastmod>2015-12-15T22:26:35-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
+<loc>http://www.imx3.com/poons-talk.html</loc>
+<lastmod>2015-12-15T22:26:28+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://www.imx3.com/play-databases.html</loc>
-<lastmod>2015-12-15T20:58:51+08:00</lastmod>
+<lastmod>2015-12-15T22:03:25+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -41,13 +48,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://www.imx3.com/oracle-biee-develop.html</loc>
 <lastmod>2015-12-15T17:24:20+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://www.imx3.com/poons-talk.html</loc>
-<lastmod>2015-12-15T13:23:34+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -194,7 +194,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.imx3.com/category/life.html</loc>
-<lastmod>2015-12-15T13:23:34+08:06</lastmod>
+<lastmod>2015-12-15T22:26:28+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -208,7 +208,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.imx3.com/category/tech.html</loc>
-<lastmod>2015-12-15T20:58:51+08:06</lastmod>
+<lastmod>2015-12-15T22:03:25+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -222,14 +222,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.imx3.com/tag/gan-wu.html</loc>
-<lastmod>2015-12-15T13:23:34+08:06</lastmod>
+<lastmod>2015-12-15T22:26:28+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.imx3.com/tag/pan-tan.html</loc>
-<lastmod>2015-12-15T13:23:34+08:06</lastmod>
+<lastmod>2015-12-15T22:26:28+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -292,7 +292,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.imx3.com/tag/mysql.html</loc>
-<lastmod>2015-12-15T20:58:51+08:06</lastmod>
+<lastmod>2015-12-15T22:03:25+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -411,14 +411,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.imx3.com/tag/hu-che.html</loc>
-<lastmod>2015-12-15T13:23:34+08:06</lastmod>
+<lastmod>2015-12-15T22:26:28+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.imx3.com/tag/xin-ling.html</loc>
-<lastmod>2015-12-15T13:23:34+08:06</lastmod>
+<lastmod>2015-12-15T22:26:28+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -432,7 +432,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.imx3.com/tag/shu-ju-ku.html</loc>
-<lastmod>2015-12-15T20:58:51+08:06</lastmod>
+<lastmod>2015-12-15T22:03:25+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -446,7 +446,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.imx3.com/tag/db.html</loc>
-<lastmod>2015-12-15T20:58:51+08:06</lastmod>
+<lastmod>2015-12-15T22:03:25+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -488,7 +488,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.imx3.com/tag/xian-hua.html</loc>
-<lastmod>2015-12-15T13:23:34+08:06</lastmod>
+<lastmod>2015-12-15T22:26:28+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -502,7 +502,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.imx3.com/tag/db2.html</loc>
-<lastmod>2015-12-15T20:58:51+08:06</lastmod>
+<lastmod>2015-12-15T22:03:25+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -530,7 +530,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.imx3.com/tag/database.html</loc>
-<lastmod>2015-12-15T20:58:51+08:06</lastmod>
+<lastmod>2015-12-15T22:03:25+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -600,7 +600,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.imx3.com/tag/oracle.html</loc>
-<lastmod>2015-12-15T20:58:51+08:06</lastmod>
+<lastmod>2015-12-15T22:03:25+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -635,7 +635,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.imx3.com/author/poon.html</loc>
-<lastmod>2015-12-15T20:58:51+08:06</lastmod>
+<lastmod>2015-12-15T22:26:28+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

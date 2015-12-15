@@ -288,6 +288,41 @@ SQL3001C  An I/O error (reason = "sqlofopn -2079391743") occurred while  opening
     db2 -tvf grants.sql
 
 
+### 更灵活的操作：
+
+    ksh grant_privs.ksh DB_X USER_X SCHEMA_X insert,delete,update,select
+
+脚本如下：
+
+    #!/bin/ksh
+    # Grant privileges for a user or group on a specified schema
+    #---------------------------------------------------------------------------------------------
+
+    . ~/sqllib/db2profile
+
+    NUMARGS=$#
+
+    if [[ $NUMARGS -ne "4" ]]; then
+            echo "Usage: $0 database userid schema privilege,..."
+            echo "SYSADM authority required."
+            exit -2
+    fi
+
+    typeset -u SCHEMA=$3
+    $(db2 connect to $1)
+    STMT="db2 select tabname from syscat.tables where tabschema='$SCHEMA'"
+    TABLES_TO_GRANT=$($STMT|egrep -v "TABNAME|----|selected.")
+    for TAB in $TABLES_TO_GRANT; do
+         cmd="db2 grant $4 on $3.$TAB to $2"
+         echo $cmd
+         ret=$($cmd)
+         echo $ret
+    done
+
+
+Grant privileges for a user or group on a specified schema
+
+http://www.dbatodba.com/db2/scripts-db2/shell-scripts-to-db2/grant-privileges-for-a-user-or-group-on-a-specified-schema/
 
 
 # MYSQL 
