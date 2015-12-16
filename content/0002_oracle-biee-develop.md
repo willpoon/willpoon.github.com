@@ -524,6 +524,9 @@ obiee siebel 领域的人才市场情况、询价。工作机会等。
 
 ## http://obieeil.blogspot.com
 
+## http://dr-obi.blogspot.com
+
+不仅限于 howto. 
 
 内容丰富翔实。
 
