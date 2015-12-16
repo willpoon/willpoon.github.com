@@ -325,6 +325,41 @@ Grant privileges for a user or group on a specified schema
 http://www.dbatodba.com/db2/scripts-db2/shell-scripts-to-db2/grant-privileges-for-a-user-or-group-on-a-specified-schema/
 
 
+## DB2 建表注意事项
+
+1. 尽量用大写
+
+2. 尽量不用双引号
+
+CREATE TABLE "METADATA"."tmplst"  ( "TO_inst_id" VARCHAR(64) , "nLevel" INTEGER , "sCort" VARCHAR(8000) )   IN "IBMDB2SAMPLEREL" 
+CREATE TABLE METADATA.tmplst  ( TO_inst_id VARCHAR(64) , nLevel INTEGER , sCort VARCHAR(8000) )   IN IBMDB2SAMPLEREL 
+大小写只是习惯问题。但是如果加了双引号，性质就变了。
+
+3. 大写＋双引号 建的表，小写不带双引号,大写带双引号，大写不带双引号都可以访问。
+
+4. 小写＋双引号 建的表  就只有小写＋双引号才能访问了。
+
+## DB2 如何对日期timestamp设置默认值
+
+    drop table tt;
+
+    create table tt (
+        begin_dt timestamp not null default current timestamp
+            , end_dt timestamp not null default '2000-01-01 00:00:00'
+            );
+
+1. default 后面跟的日期必须是真实存在的日期。不能是0000-00-00... 之类的。
+
+2. 不支持 default 0 
+
+3. 00.000000 也支持, 例如：
+
+    create table tt ( begin_dt timestamp not null default current timestamp , end_dt timestamp not null default '2000-01-01 00:00:00.000000' )
+
+    DB20000I  The SQL command completed successfully.
+
+keyword: db2 create table default value timestamp 0000
+
 # MYSQL 
 
 ## mysql : 1040 too many connections  的解决
@@ -493,6 +528,12 @@ from test_parent1
 start with pid=1 connect by prior id=pid;
 
 如果 你写成 connect by prior pid = id , 那是不行的。 如果pid 还要取祖先，prior pid 的结果，就是爷爷了。 爷爷 ＝ 孙子 怎么行呢？乱套了！
+
+## oracle 和 python 交互
+
+如何在 python 中 操纵 oracle ?
+
+http://www.oracle.com/technetwork/articles/dsl/python-091105.html
 
 
 <!-- $ -->

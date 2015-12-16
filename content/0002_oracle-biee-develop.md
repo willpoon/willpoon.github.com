@@ -414,7 +414,7 @@ parent - child 构建出来的 hierarchy colunm , 所有节点都是来自 父�
 
 4. logical dimension 的排序算法是：数字类型－按顺序排。字符类型－先按长度，再按大小顺序排。
 
-
+# 如何给biee 11.1.1.5.0 打补丁？( 使用 bp5 将 biee 升级到 11.1.1.5.5 ) 
 
 
 # 异常处理
@@ -489,7 +489,7 @@ http://www.oracle.com/technetwork/middleware/bi-foundation/obiee-samples-167534.
 
 ## http://gerardnico.com
 
-一个wiki，站长非常有经验。一道认为是oracle官方开发人员！
+一个wiki，站长非常有经验。一度认为是oracle官方开发人员！
 
 ## http://123obi.com
 
@@ -503,6 +503,52 @@ Berry van den Heuvel | Business Intelligence Specialist | NL
 
 该博hack风格比较浓。
 
+## http://joeferna.blogspot.com/
+一个oracle独立顾问。erp,dba,obiee 等。印度人 from Goa
+
+## http://majendi.blogspot.com 
+
+obiee siebel 领域的人才市场情况、询价。工作机会等。
+
+## http://www.rittmanmead.com
+
+神级 biee 专家。很多产！
+
+## http://obiee-blog.info
+
+专注于biee 的博客 。  
+
+## http://tipsonobiee.blogspot.com
+
+这个博客跟得上节奏哦
+
+## http://obieeil.blogspot.com
 
 
+内容丰富翔实。
+
+
+## http://obiee-freelancer.blogspot.com
+
+    To brief you, i am a DW & BI Freelancer. A qualified Bachelor of Engineering in Information Technology experienced with the latest trends and techniques of the field, having an inborn quantitative aptitude, determined to carve a successful and satisfying career in the IT industry.
+
+
+## http://justbusinessintelligence.blogspot.com
+
+印度人 
+
+## http://itconsultingjobs.blogspot.com
+
+如题，猎头服务。 更新也比较及时。
+
+
+# 知己知彼
+
+## tableau
+
+## qlikview
+
+## 大家都卖多少钱？(时薪)
+
+http://www.guru.com/d/freelancers/q/obiee/
 

@@ -57,6 +57,45 @@ adj.狡猾的；狡诈的；可疑的；有毛病的
 毛利
 
 
-11. 费用
+12. expenses
 
-expenses
+ 费用
+
+
+13. rate 
+
+How much is the rate for just one day?
+
+只租一天的租价要多少呢？
+
+# what is your current rate for obiee consultancy (euro per day)
+
+400 or less
+
+500
+
+700
+
+More than 700
+
+# Rate Card
+I keep meaning to put the rate card on the Majendi website.
+
+If anyone is interested this is what we charge. (all in GBP)
+
+
+Senior Consultant - 800 plus expenses
+Consultant - 750 (expenses included in home country, add on for Europe)
+Junior Consultant- 250 plus expenses
+
+
+What are the levels?
+
+Senior Consultants have 4 years of Analytics / OBIEE expereince. They have at least 6 projects implementing new or upgrading systems. They can lead the reporting part of any Siebel Implementation and take personal responsibity to ensure the client is happy with the deployment. They will also have other skills, e.g. unix.
+
+Consultants are qualified from Oracle University and have worked alongside the Senior consultants on large projects. They have been working on at least 3 projects and demonstrated a high skill level to the seniors.
+
+Junior consultants are qualified from Oracle University but have only worked ont he internal Majendi project. They are not sent out alone, but always in an assisting role with a senior.
+
+
+
