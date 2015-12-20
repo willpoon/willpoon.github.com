@@ -201,7 +201,13 @@ or
 
 ## biee analysis 中的标题是可以填写 presentation 变量的。 
 
-同时，副标题也是可以写 展示变量、可以修改字体样式的。
+同时，副标题也是可以写 展示变量、可以修改字体样式的。 
+
+还有：
+
+1. 不支持 &nbsp; 空白间隔.
+
+2. 在analysis 中预览的时候，@{} 是不被解析的。
 
 ## 如何在点击导出的时候，一个excel sheet结果页面中，导出两个报表表格？
 
@@ -414,10 +420,38 @@ parent - child 构建出来的 hierarchy colunm , 所有节点都是来自 父�
 
 4. logical dimension 的排序算法是：数字类型－按顺序排。字符类型－先按长度，再按大小顺序排。
 
-# 如何给biee 11.1.1.5.0 打补丁？( 使用 bp5 将 biee 升级到 11.1.1.5.5 ) 
+##  如何给biee 11.1.1.5.0 打补丁？( 使用 bp5 将 biee 升级到 11.1.1.5.5 ) 
+
+待续 
+
+## 提示设计：再过滤器中使用 提示中的 展示变量 (presentation variable) 
+
+1. 仪表盘中的提示设置为 日历类型 (date) 
+
+2. 数据库中的日期列 为 char yyyymm 格式。
+
+3. 现在需要通过设定 date 提示来 达到 筛选 yyyymm 的效果。
+
+解决方案：
+
+1. 将日期的传递统一转成 yyyymm 格式，再来比较。
+
+2. 使用 evaluate to_char（） 将 提示变量 pv 转换成 yyyymm 的char格式
+
+3. 让 2.的结果与 表中的日期字段相等。
+
+4. 注意 char 型字段 末尾是否有空格。有则需要截掉。
 
 
-# 异常处理
+## 为什么我导出的的biee报表标题不完整，被截断了？
+
+1. 很可能你的报表名字是用中文来命名的。
+
+2. 一个中文，将会转化为 '%12%34%56' 这种形式的编码来传递参数。所以1个中文相当于9个ascii字符。
+
+3. biee支持100多个ascii字符长度，但是如果是中文，就会大打折扣。
+
+# 异常处理 exception handle
 
 ### ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.
 
@@ -455,6 +489,12 @@ dim... 没有对应上！
 也就是说：原来用未打补丁的版本，报表导出来的时候，如果相邻的两行或多行的值是一样的，就会自动合并。相当于excel 中的合并功能。
 但是biee打补丁到 11.1.1.5.5 之后，就不再自动合并了。我的理解是，原来自动合并是biee的bug，现在修复了。但我还是希望能找到方法，打开biee的行合并功能。
 有知道的亲们，请赐教，谢谢！
+
+
+根据这个帖子，说是bug. 在 11.1.1.6.7 版本中都没有解决...
+
+https://community.oracle.com/thread/2536758?tstart=0
+
 
 ### logical dimension 父节点不能自动汇总？即子节点之和不等于父节点。
 
@@ -535,6 +575,12 @@ obiee siebel 领域的人才市场情况、询价。工作机会等。
 
     To brief you, i am a DW & BI Freelancer. A qualified Bachelor of Engineering in Information Technology experienced with the latest trends and techniques of the field, having an inborn quantitative aptitude, determined to carve a successful and satisfying career in the IT industry.
 
+## http://bidirect.blogspot.sg
+
+BI Apps, Exalytics,Advanced and Predictive Analytics & Big Data
+
+又是印度人
+
 
 ## http://justbusinessintelligence.blogspot.com
 
@@ -554,4 +600,28 @@ obiee siebel 领域的人才市场情况、询价。工作机会等。
 ## 大家都卖多少钱？(时薪)
 
 http://www.guru.com/d/freelancers/q/obiee/
+
+### oracle consultants blog
+
+keyword: obiee freelance  consultant site:blogspot.com
+
+#### http://iloveoracle.com
+
+a guy teach u how to become an oracle independent consultant 
+
+#### http://andrejusb.blogspot.sg
+
+I'm Oracle ACE Director, CEO and Independent Oracle Consultant at Red Samurai Consulting with focus on Oracle Fusion Middleware and SOA technologies.'
+
+#### https://richardfoote.wordpress.com
+
+#### https://blogs.oracle.com/certification/
+
+oracle 官方认证 的博客
+
+#### https://richardfoote.wordpress.com
+
+很干货、很务实的博客。 从2007年一直以来都有更新
+
+
 

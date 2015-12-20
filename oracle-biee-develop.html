@@ -164,25 +164,27 @@
 <li><a href="#biee_6">biee 透视图如何去除表头标题空行？</a></li>
 <li><a href="#biee_7">biee 数据透视图如何 单独设置每页的行数？</a></li>
 <li><a href="#biee-logical-dimension_1">biee 的 logical dimension 如何指定展开的各节点的顺序？</a></li>
+<li><a href="#biee-111150-bp5-biee-111155">如何给biee 11.1.1.5.0 打补丁？( 使用 bp5 将 biee 升级到 11.1.1.5.5 )</a></li>
+<li><a href="#presentation-variable">提示设计：再过滤器中使用 提示中的 展示变量 (presentation variable)</a></li>
+<li><a href="#biee_8">为什么我导出的的biee报表标题不完整，被截断了？</a></li>
 </ul>
 </li>
-<li><a href="#biee-111150-bp5-biee-111155">如何给biee 11.1.1.5.0 打补丁？( 使用 bp5 将 biee 升级到 11.1.1.5.5 )</a></li>
-<li><a href="#_8">异常处理</a><ul>
+<li><a href="#exception-handle">异常处理 exception handle</a><ul>
 <li><a href="#ora-32034unsupported-use-of-with-clause-at-oci-call-ocistmtexecute">ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.</a></li>
 <li><a href="#nqserror43119-nqserror42039-report-by">nqserror:43119 nqserror:42039: report 总计函数的by子句中的列必须在选择列表中。</a></li>
 <li><a href="#biee-catalog">biee catalog 指向 不正确如何解决？</a></li>
 <li><a href="#rpd-repository-rpd">加载的rpd 不是我们想要的repository ， 怎么改成我们要的rpd?</a></li>
-<li><a href="#_9">仪表板报表爆表了怎么办？</a></li>
+<li><a href="#_8">仪表板报表爆表了怎么办？</a></li>
 <li><a href="#biee-111150-111155">求助：biee 11.1.1.5.0 打补丁到 11.1.1.5.5 之后，报表导出不再自动合并，如何解决？</a></li>
 <li><a href="#logical-dimension_1">logical dimension 父节点不能自动汇总？即子节点之和不等于父节点。</a></li>
 <li><a href="#logical-dimension_2">logical dimension 展开到最后一层报错。</a></li>
 </ul>
 </li>
-<li><a href="#_10">行业动态</a><ul>
+<li><a href="#_9">行业动态</a><ul>
 <li><a href="#biee-12c">biee 12c 发布啦!</a></li>
 </ul>
 </li>
-<li><a href="#_11">同行参考</a><ul>
+<li><a href="#_10">同行参考</a><ul>
 <li><a href="#httpgerardnicocom">http://gerardnico.com</a></li>
 <li><a href="#http123obicom">http://123obi.com</a></li>
 <li><a href="#httpwwwobiee247com">http://www.obiee247.com</a></li>
@@ -195,14 +197,25 @@
 <li><a href="#httpobieeilblogspotcom">http://obieeil.blogspot.com</a></li>
 <li><a href="#httpdr-obiblogspotcom">http://dr-obi.blogspot.com</a></li>
 <li><a href="#httpobiee-freelancerblogspotcom">http://obiee-freelancer.blogspot.com</a></li>
+<li><a href="#httpbidirectblogspotsg">http://bidirect.blogspot.sg</a></li>
 <li><a href="#httpjustbusinessintelligenceblogspotcom">http://justbusinessintelligence.blogspot.com</a></li>
 <li><a href="#httpitconsultingjobsblogspotcom">http://itconsultingjobs.blogspot.com</a></li>
 </ul>
 </li>
-<li><a href="#_12">知己知彼</a><ul>
+<li><a href="#_11">知己知彼</a><ul>
 <li><a href="#tableau">tableau</a></li>
 <li><a href="#qlikview">qlikview</a></li>
-<li><a href="#_13">大家都卖多少钱？(时薪)</a></li>
+<li><a href="#_12">大家都卖多少钱？(时薪)</a><ul>
+<li><a href="#oracle-consultants-blog">oracle consultants blog</a><ul>
+<li><a href="#httpiloveoraclecom">http://iloveoracle.com</a></li>
+<li><a href="#httpandrejusbblogspotsg">http://andrejusb.blogspot.sg</a></li>
+<li><a href="#httpsrichardfootewordpresscom">https://richardfoote.wordpress.com</a></li>
+<li><a href="#httpsblogsoraclecomcertification">https://blogs.oracle.com/certification/</a></li>
+<li><a href="#httpsrichardfootewordpresscom_1">https://richardfoote.wordpress.com</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -362,7 +375,16 @@ or
 <p>再通过用户权限角色，把用户划分成一个个群体，挂接到相应的目录上。</p>
 <p>然后通过 用户－组 配置工具， 为用户添加权限。</p>
 <h2 id="biee-analysis-presentation">biee analysis 中的标题是可以填写 presentation 变量的。</h2>
-<p>同时，副标题也是可以写 展示变量、可以修改字体样式的。</p>
+<p>同时，副标题也是可以写 展示变量、可以修改字体样式的。 </p>
+<p>还有：</p>
+<ol>
+<li>
+<p>不支持   空白间隔.</p>
+</li>
+<li>
+<p>在analysis 中预览的时候，@{} 是不被解析的。</p>
+</li>
+</ol>
 <h2 id="excel-sheet">如何在点击导出的时候，一个excel sheet结果页面中，导出两个报表表格？</h2>
 <p>只需要在同一个分析中，构建两个表格或者视图。</p>
 <h2 id="biee_3">biee报表没有数据的时候，如何定制系统输出? (无结果设置)</h2>
@@ -506,8 +528,48 @@ http://docs.oracle.com/cd/E25054_01/fusionapps.1111/e20836/dimensions.htm</p>
 <p>logical dimension 的排序算法是：数字类型－按顺序排。字符类型－先按长度，再按大小顺序排。</p>
 </li>
 </ol>
-<h1 id="biee-111150-bp5-biee-111155">如何给biee 11.1.1.5.0 打补丁？( 使用 bp5 将 biee 升级到 11.1.1.5.5 )</h1>
-<h1 id="_8">异常处理</h1>
+<h2 id="biee-111150-bp5-biee-111155">如何给biee 11.1.1.5.0 打补丁？( 使用 bp5 将 biee 升级到 11.1.1.5.5 )</h2>
+<p>待续 </p>
+<h2 id="presentation-variable">提示设计：再过滤器中使用 提示中的 展示变量 (presentation variable)</h2>
+<ol>
+<li>
+<p>仪表盘中的提示设置为 日历类型 (date) </p>
+</li>
+<li>
+<p>数据库中的日期列 为 char yyyymm 格式。</p>
+</li>
+<li>
+<p>现在需要通过设定 date 提示来 达到 筛选 yyyymm 的效果。</p>
+</li>
+</ol>
+<p>解决方案：</p>
+<ol>
+<li>
+<p>将日期的传递统一转成 yyyymm 格式，再来比较。</p>
+</li>
+<li>
+<p>使用 evaluate to_char（） 将 提示变量 pv 转换成 yyyymm 的char格式</p>
+</li>
+<li>
+<p>让 2.的结果与 表中的日期字段相等。</p>
+</li>
+<li>
+<p>注意 char 型字段 末尾是否有空格。有则需要截掉。</p>
+</li>
+</ol>
+<h2 id="biee_8">为什么我导出的的biee报表标题不完整，被截断了？</h2>
+<ol>
+<li>
+<p>很可能你的报表名字是用中文来命名的。</p>
+</li>
+<li>
+<p>一个中文，将会转化为 '%12%34%56' 这种形式的编码来传递参数。所以1个中文相当于9个ascii字符。</p>
+</li>
+<li>
+<p>biee支持100多个ascii字符长度，但是如果是中文，就会大打折扣。</p>
+</li>
+</ol>
+<h1 id="exception-handle">异常处理 exception handle</h1>
 <h3 id="ora-32034unsupported-use-of-with-clause-at-oci-call-ocistmtexecute">ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.</h3>
 <p>解决办法：检查rpd物理层子查询中是否有with子句。有的话，改成子查询的形式。</p>
 <h3 id="nqserror43119-nqserror42039-report-by">nqserror:43119 nqserror:42039: report 总计函数的by子句中的列必须在选择列表中。</h3>
@@ -520,7 +582,7 @@ dim... 没有对应上！</p>
 <p>修改 NQSConfig.INI</p>
 <pre><code>Star = yourRPDname.rpd , DEAULT;
 </code></pre>
-<h3 id="_9">仪表板报表爆表了怎么办？</h3>
+<h3 id="_8">仪表板报表爆表了怎么办？</h3>
 <p>分析－结果－编辑视图－编辑图形属性－比例－比例和限制－最大值：把最大值调到最大业务实际值以上。</p>
 <p>如果rpd通过前端em上传的，通常会出现rpd名字被修改，导致引用不正确的情况。</p>
 <h3 id="biee-111150-111155">求助：biee 11.1.1.5.0 打补丁到 11.1.1.5.5 之后，报表导出不再自动合并，如何解决？</h3>
@@ -528,6 +590,8 @@ dim... 没有对应上！</p>
 <p>也就是说：原来用未打补丁的版本，报表导出来的时候，如果相邻的两行或多行的值是一样的，就会自动合并。相当于excel 中的合并功能。
 但是biee打补丁到 11.1.1.5.5 之后，就不再自动合并了。我的理解是，原来自动合并是biee的bug，现在修复了。但我还是希望能找到方法，打开biee的行合并功能。
 有知道的亲们，请赐教，谢谢！</p>
+<p>根据这个帖子，说是bug. 在 11.1.1.6.7 版本中都没有解决...</p>
+<p>https://community.oracle.com/thread/2536758?tstart=0</p>
 <h3 id="logical-dimension_1">logical dimension 父节点不能自动汇总？即子节点之和不等于父节点。</h3>
 <p>可能是rpd 中 每一层的排序设置有问题。最好每一层单独设置排序字段，不要共用一个排序字段。</p>
 <h3 id="logical-dimension_2">logical dimension 展开到最后一层报错。</h3>
@@ -536,12 +600,12 @@ dim... 没有对应上！</p>
 <p>但在展示层中，我们可以只设置如下几层：</p>
 <p>lvl1 - lvl2 - lvl3 - lvl4 </p>
 <p>这样，当我们在前台点击 lvl4 时，就不会继续展开。</p>
-<h1 id="_10">行业动态</h1>
+<h1 id="_9">行业动态</h1>
 <h2 id="biee-12c">biee 12c 发布啦!</h2>
 <p>2015-12-15 17:07</p>
 <p>有虚拟机可以下载！ 详见:</p>
 <p>http://www.oracle.com/technetwork/middleware/bi-foundation/obiee-samples-167534.html</p>
-<h1 id="_11">同行参考</h1>
+<h1 id="_10">同行参考</h1>
 <h2 id="httpgerardnicocom">http://gerardnico.com</h2>
 <p>一个wiki，站长非常有经验。一度认为是oracle官方开发人员！</p>
 <h2 id="http123obicom">http://123obi.com</h2>
@@ -567,15 +631,29 @@ dim... 没有对应上！</p>
 <h2 id="httpobiee-freelancerblogspotcom">http://obiee-freelancer.blogspot.com</h2>
 <pre><code>To brief you, i am a DW &amp; BI Freelancer. A qualified Bachelor of Engineering in Information Technology experienced with the latest trends and techniques of the field, having an inborn quantitative aptitude, determined to carve a successful and satisfying career in the IT industry.
 </code></pre>
+<h2 id="httpbidirectblogspotsg">http://bidirect.blogspot.sg</h2>
+<p>BI Apps, Exalytics,Advanced and Predictive Analytics &amp; Big Data</p>
+<p>又是印度人</p>
 <h2 id="httpjustbusinessintelligenceblogspotcom">http://justbusinessintelligence.blogspot.com</h2>
 <p>印度人 </p>
 <h2 id="httpitconsultingjobsblogspotcom">http://itconsultingjobs.blogspot.com</h2>
 <p>如题，猎头服务。 更新也比较及时。</p>
-<h1 id="_12">知己知彼</h1>
+<h1 id="_11">知己知彼</h1>
 <h2 id="tableau">tableau</h2>
 <h2 id="qlikview">qlikview</h2>
-<h2 id="_13">大家都卖多少钱？(时薪)</h2>
+<h2 id="_12">大家都卖多少钱？(时薪)</h2>
 <p>http://www.guru.com/d/freelancers/q/obiee/</p>
+<h3 id="oracle-consultants-blog">oracle consultants blog</h3>
+<p>keyword: obiee freelance  consultant site:blogspot.com</p>
+<h4 id="httpiloveoraclecom">http://iloveoracle.com</h4>
+<p>a guy teach u how to become an oracle independent consultant </p>
+<h4 id="httpandrejusbblogspotsg">http://andrejusb.blogspot.sg</h4>
+<p>I'm Oracle ACE Director, CEO and Independent Oracle Consultant at Red Samurai Consulting with focus on Oracle Fusion Middleware and SOA technologies.'</p>
+<h4 id="httpsrichardfootewordpresscom">https://richardfoote.wordpress.com</h4>
+<h4 id="httpsblogsoraclecomcertification">https://blogs.oracle.com/certification/</h4>
+<p>oracle 官方认证 的博客</p>
+<h4 id="httpsrichardfootewordpresscom_1">https://richardfoote.wordpress.com</h4>
+<p>很干货、很务实的博客。 从2007年一直以来都有更新</p>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>

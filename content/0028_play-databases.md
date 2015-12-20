@@ -10,6 +10,45 @@ Authors: Poon
 
 # DB2
 
+## 使用response文件安装 db2 ese v9.7 
+
+Response file installation of DB2 overview (Linux and UNIX)
+This task describes how to perform response file installations on Linux or UNIX. You can use the response file to install additional components or products after an initial installation. A response file installation might also be referred to as a silent installation or an unattended installation.
+
+About this task
+Restrictions
+
+Be aware of the following limitations when using the response files method to install DB2 on Linux or UNIX operating systems:
+If you set any instance or global profile registry keywords to BLANK (the word "BLANK"), that keyword is, in effect, deleted from the list of currently set keywords.
+Ensure that you have sufficient disk space before installing. Otherwise, if the installation fails, manual cleanup is required.
+If you are performing multiple installations or are installing DB2 database products from multiple DVDs, it is recommended that you install from a network file system rather than a DVD drive. Installing from a network file system significantly decreases the amount of time it will take to perform the installation.
+If you are planning on installing multiple clients, set up a mounted file system on a code server to improve performance.
+Before you begin
+Before you begin the installation, ensure that:
+Your system meets all of the memory, hardware, and software requirements to install your DB2® database product.
+All DB2 processes are stopped. If you are installing a DB2 database product on top of an existing DB2 installation on the computer, you must stop all DB2 applications, the DB2 database manager, and DB2 processes for all DB2 instances and DB2 DAS related to the existing DB2 installation.
+Procedure
+To perform a response file installation:
+
+Mount your DB2 database product DVD or access the file system where the installation image is stored.
+Create a response file using the sample response file. Refer to Creating a response file using the sample response file (Linux and UNIX).
+Response files have a file type of .rsp. For example, ese.rsp.
+
+Install DB2 using the response file. Refer to Installing a DB2 database product using a response file (Linux and UNIX).
+Creating a response file using the sample response file (Linux and UNIX)
+Installing a DB2 database product using a response file (Linux and UNIX)
+Installing database partition servers on participating computers using a response file (Linux and UNIX)
+In this task you will use the response file you created using the DB2 Setup wizard to install database partition servers on participating computers.
+Response file error codes (Linux and UNIX)
+Uninstalling a DB2 database product, feature, or language using a response file (Linux and UNIX)
+To silently uninstall DB2 database products, features, or languages in a DB2 copy, use the db2_deinstall command with the -r option.
+
+
+ref: https://www-01.ibm.com/support/knowledgecenter/#!/SSEPGG_9.7.0/com.ibm.db2.luw.qb.server.doc/doc/t0007298.html
+ref: http://db2commerce.com/2012/06/25/installing-db2-using-a-response-file/
+
+
+
 ##  在db2上授权一个用户db2etl，让这个用户具备dbadm & schema创建权限。
 
 2015-12-15 Tue 20:57 PM
@@ -322,7 +361,7 @@ SQL3001C  An I/O error (reason = "sqlofopn -2079391743") occurred while  opening
 
 Grant privileges for a user or group on a specified schema
 
-http://www.dbatodba.com/db2/scripts-db2/shell-scripts-to-db2/grant-privileges-for-a-user-or-group-on-a-specified-schema/
+    http://www.dbatodba.com/db2/scripts-db2/shell-scripts-to-db2/grant-privileges-for-a-user-or-group-on-a-specified-schema/
 
 
 ## DB2 建表注意事项
@@ -359,6 +398,170 @@ CREATE TABLE METADATA.tmplst  ( TO_inst_id VARCHAR(64) , nLevel INTEGER , sCort 
     DB20000I  The SQL command completed successfully.
 
 keyword: db2 create table default value timestamp 0000
+
+## db2 查报错方法： `db2 ? SQL1477N`
+
+sql messages vs  sqlcode vs sqlstate 关系：
+
+通过 `db2 ? sql_message` 命令，可以查找到 message 对应的 sqlcode 和 sqlstate 
+
+sqlcode 是 sql return code .
+
+sqlstate 有特定的编码方式：
+
+    ref : https://www-01.ibm.com/support/knowledgecenter/#!/SSEPGG_10.1.0/com.ibm.db2.luw.messages.doc/doc/rdb2stt.html
+
+如： 
+
+    01002
+
+中的 ｀01｀ 是 类别编码，对应一个特定类别。
+
+后3位 `002` 叫 subcodes ， 是状态本身的编码。
+
+
+此链接有 3种代码的基本概念介绍：
+
+    https://www-01.ibm.com/support/knowledgecenter/#!/ssw_ibm_i_71/rzala/rzalakickoff.htm
+
+### SQLCODE
+
+An SQLCODE is a return code. The return code is sent by the database manager after completion of each SQL statement.
+
+Each SQLCODE that is recognized by a DB2 for i application server has a corresponding message in the message file QSQLMSG. The message identifier for any SQLCODE is constructed by appending the absolute value (5 digits) of the SQLCODE to SQ and changing the third character to L if the first character of the SQLCODE is 0. For example, if the SQLCODE is 30070, the message identifier is SQ30070. If the SQLCODE is -0204, the message identifier is SQL0204. Lastly, if the SQLCODE is a 3-digit positive number, a zero is added before the first digit. For example, if the SQLCODE is 551, the message identifier is SQL0551.
+
+### SQLSTATE
+SQLSTATE provides application programs with common return codes for success, warning, and error conditions that are found among the DB2 products. SQLSTATE values are particularly useful when handling errors in distributed SQL applications. SQLSTATE values are consistent with the SQLSTATE specifications that are contained in the SQL 1999 standard.
+
+An SQLSTATE value is a return code that indicates the outcome of the most recently executed SQL statement. The mechanism used to access SQLSTATE values depends on where the SQL statement is executed. In Java™, SQLSTATE values are returned by using the getSQLState() method. In SQL functions, SQL procedures, SQL triggers, and embedded applications other than Java, SQLSTATE values are returned in the following ways:
+The last five bytes of the SQLCA
+A stand-alone SQLSTATE variable
+The GET DIAGNOSTICS statement
+SQLSTATE values are designed so that application programs can test for specific conditions or classes of conditions.
+
+SQLSTATE values are comprised of a two-character class code value, followed by a three-character subclass code value. Class code values represent classes of successful and unsuccessful completion conditions. If you want to use SQLSTATE as the basis of your application's return codes, you can define your own SQLSTATE classes or subclasses using the following guidelines:
+
+SQLSTATE classes that begin with the characters 7 through 9 or I through Z can be defined. Within these classes, any subclass can be defined.
+SQLSTATE classes that begin with the characters 0 through 6 or A through H are reserved for the database manager. Within these classes, subclasses that begin with the characters 0 through H are reserved for the database manager. Subclasses that begin with the characters I through Z can be defined.
+The class code of an SQLSTATE value indicates whether the SQL statement was executed successfully (class codes 00 and 01) or unsuccessfully (all other class codes).
+
+SQLSTATE is related to SQLCODE. Every SQLSTATE has one or more SQLCODEs associated with it. An SQLSTATE can refer to more than one SQLCODE.
+
+
+#### 注意
+
+1. SQLSTATE is related to SQLCODE. Every SQLSTATE has one or more SQLCODEs associated with it. An SQLSTATE can refer to more than one SQLCODE.
+
+    sqlstate 1个 可对应 多个 sqlcodes . 也就是说，多个sqlcodes 可能共用一个 sqlstate . 
+
+2. 每一个sqlstate的解释：
+
+    http://www-01.ibm.com/support/knowledgecenter/?lang=en#!/SSEPGG_9.5.0/com.ibm.db2.luw.messages.doc/doc/rdb2stt.html
+
+
+### SQL message concepts
+SQL messages are displayed when DB2® for i returns an error or warning code to the application that uses it.
+
+To find a specific message, SQLCODE, or SQLSTATE, try the SQL message finder.
+
+## SQL message finder
+
+
+## db2 message code 前缀的含义
+
+The suffix of a message identifier indicates the severity of the problem:
+I - "Information"
+W - "Warning"
+E - "Error"
+N - "Non-critical error"
+C - "Critical error"
+
+There is more information in the following topic titled "Introduction to messages":
+http://www-01.ibm.com/support/knowledgecenter/api/content/SSEPGG_9.7.0/com.ibm.db2.luw.messages.doc/doc/c0052007.html
+
+所有messages 大集合：
+
+    http://www-01.ibm.com/support/knowledgecenter/#!/SSEPGG_9.7.0/com.ibm.db2.luw.messages.sql.doc/doc/rsqlmsg.html?cp=SSEPGG_9.7.0%2F2-6-27
+
+## db2 修改日志文件大小和数量
+
+2015-12-18 09:26 
+
+ 针对： sqlcode -964, sqlstate 57011 
+
+ db2 get db cfg for sample
+
+ db2 update db cfg for sample using LOGFILSIZ 4096
+ db2 update db cfg for sample using LOGPRIMARY 25
+
+ poon@Wills-MacBook-Pro:~/Git/gitblog_imx3/output/content$ db2 update db cfg for sample using LOGFILSIZ 4096
+ DB20000I  The UPDATE DATABASE CONFIGURATION command completed successfully.
+ SQL1363W  Database must be deactivated and reactivated before the changes to 
+ one or more of the configuration parameters will be effective.
+ poon@Wills-MacBook-Pro:~/Git/gitblog_imx3/output/content$ 
+ poon@Wills-MacBook-Pro:~/Git/gitblog_imx3/output/content$ db2 update db cfg for sample using LOGPRIMARY 25
+ DB20000I  The UPDATE DATABASE CONFIGURATION command completed successfully.
+ SQL1363W  Database must be deactivated and reactivated before the changes to 
+ one or more of the configuration parameters will be effective.
+
+ ref: https://www-01.ibm.com/support/knowledgecenter/#!/SSEPGG_10.1.0/com.ibm.db2.luw.messages.sql.doc/doc/msql01363w.html
+
+ 根据官方解释：
+
+ 1. 不一定要重新激活。
+
+ 2. 如果要激活，就用deactivate / ACITVATE 命令重新激活。
+
+ 3. 重新激活时，最好远程到服务器上进行。并且fore掉／kill掉所有活动会话。
+
+ [db2inst1@iZ281s312fdZ ~]$ db2 DEACTIVATE DATABASE sample 
+ SQL1495W  Deactivate database is successful, however, there is still a 
+ connection to the database.
+ [db2inst1@iZ281s312fdZ ~]$ ps -ef|grep -i db2
+ root       924 32365  0 09:05 pts/0    00:00:00 su - db2inst1
+ db2inst1   925   924  0 09:05 pts/0    00:00:00 -bash
+ db2inst1  1103     1  0 09:08 pts/0    00:00:00 /home/db2inst1/sqllib/bin/db2bp 925A501 5 A
+ db2inst1  1191   925  0 09:10 pts/0    00:00:00 ps -ef
+ db2inst1  1192   925  0 09:10 pts/0    00:00:00 grep -i db2
+ db2fenc1  1879 32011  0 Dec16 ?        00:00:00 db2fmp ( ,0,0,0,0,0,0,2,1,0,8a65b0,14,1e014,2,0,1,131fc0,0x210000000,0x210000000,1600000,93000c,2,31088023
+ db2fenc1  2270 32011  0 Dec16 ?        00:00:00 db2fmp ( ,0,0,0,0,0,0,2,1,0,8a65b0,14,1e014,2,0,1,151fc0,0x210000000,0x210000000,1600000,93000c,2,31138047
+ db2fenc1  2887 32011  0 Dec16 ?        00:00:00 db2fmp ( ,0,0,0,0,0,0,2,1,0,8a65b0,14,1e014,2,0,1,171fc0,0x210000000,0x210000000,1600000,93000c,2,31250049
+ db2fenc1  3252 32011  0 Dec16 ?        00:00:01 db2fmp ( ,0,0,0,0,0,0,2,1,0,8a65b0,14,1e014,2,0,1,191fc0,0x210000000,0x210000000,1600000,93000c,2,312e8050
+ db2fenc1  6375 32011  0 Dec11 ?        00:00:00 db2fmp ( ,0,0,0,0,1,0,2,1,0,8a65b0,14,1e014,2,0,1,f1fc0,0x210000000,0x210000000,1600000,93000c,2,209a0039
+ db2fenc1  7479 32011  0 Dec11 ?        00:00:01 db2fmp ( ,0,0,0,0,0,0,2,1,0,8a65b0,14,1e014,2,0,1,111fc0,0x210000000,0x210000000,1600000,93000c,2,20f20048
+ db2fenc1  7650 32011  0 Dec08 ?        00:00:00 db2fmp ( ,0,0,0,0,0,0,2,1,0,8a65b0,14,1e014,2,0,1,b1fc0,0x210000000,0x210000000,1600000,93000c,2,1b9a8029
+ db2fenc1 27110 32011  0 Dec03 ?        00:00:00 db2fmp ( ,0,0,0,0,0,0,2,1,0,8a65b0,14,1e014,2,0,1,91fc0,0x210000000,0x210000000,1600000,93000c,2,14cc002a
+ root     32011     1  0 Nov17 ?        00:00:00 db2wdog                                         
+ db2inst1 32013 32011  0 Nov17 ?        00:19:06 db2sysc                                        
+ root     32014 32013  0 Nov17 ?        00:00:12 db2ckpwd                                        
+ root     32015 32013  0 Nov17 ?        00:00:12 db2ckpwd                                        
+ root     32016 32013  0 Nov17 ?        00:00:12 db2ckpwd                                        
+ db2inst1 32028 32011  0 Nov17 ?        00:11:36 db2acd   ,0,0,0,1,0,0,2,1,0,8a65b0,14,1e014,2,0,1,11fc0,0x210000000,0x210000000,1600000,93000c,2,430016
+ db2fenc1 32221 32011  0 Nov17 ?        00:00:03 db2fmp ( ,1,0,0,0,0,0,2,1,0,8a65b0,14,1e014,2,0,1,31fc0,0x210000000,0x210000000,1600000,93000c,2,54802d
+ [db2inst1@iZ281s312fdZ ~]$ kill 1103
+ [db2inst1@iZ281s312fdZ ~]$ kill 1103
+ -bash: kill: (1103) - No such process
+ [db2inst1@iZ281s312fdZ ~]$ db2 DEACTIVATE DATABASE sample 
+ SQL1496W  Deactivate database is successful, but the database was not 
+ activated.
+ [db2inst1@iZ281s312fdZ ~]$ db2 activate DATABASE sample 
+ DB20000I  The ACTIVATE DATABASE command completed successfully.
+
+ 已成功重激活。
+
+ 注意，force会话的步骤，是异步的。所以最后先让用户主动关闭连接。然后在force自动连接。
+
+ [db2inst1@iZ281s312fdZ ~]$ DB2 FORCE APPLICATION ALL
+ -bash: DB2: command not found
+ [db2inst1@iZ281s312fdZ ~]$ db2 force application all
+ DB20000I  The FORCE APPLICATION command completed successfully.
+ DB21024I  This command is asynchronous and may not be effective immediately.
+
+
+
+
+
+
 
 # MYSQL 
 
@@ -535,5 +738,39 @@ start with pid=1 connect by prior id=pid;
 
 http://www.oracle.com/technetwork/articles/dsl/python-091105.html
 
+## oracle response 文件安装方式是怎么回事？
+
+1. response 文件安装 也叫响应文件安装方式。
+
+2. response 文件有特定格式。
+
+3. response 文件设定好之后，就不需要再用图形界面方式，通过鼠标点击和键盘输入进行下一步了。
+
+
+## oracle 在执行 dml的时候 escape & (ampersand)符号？
+
+    set define off
+
+    SET ESCAPE ON;
+
+
+
 
 <!-- $ -->
+
+# 优秀博客
+
+## http://db2commerce.com/
+
+ember crooks :
+
+In 2014, IBM named me as an IBM Gold Consultant.
+
+# 老牌论坛
+
+http://www.dbforums.com
+
+
+
+
+

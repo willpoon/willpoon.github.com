@@ -16,14 +16,12 @@
 /programming.html
 /employment.html
 /work-on-linux.html
-/this-is-a-story.html
 /cites_memory.html
 /setup-and-config-my-github-blog-with-pelican.html
 /about-design.html
 /tools-to-complete-jobs.html
 /about.html
 /category/about.html
-/category/career.html
 /category/job.html
 /category/life.html
 /category/misc.html
@@ -50,12 +48,10 @@
 /tag/travel.html
 /tag/blog.html
 /tag/chi-fan-gong-ju.html
-/tag/gu-shi.html
 /tag/memory.html
 /tag/yi-zhu.html
 /tag/biee.html
 /tag/reading.html
-/tag/xiao-shuo.html
 /tag/hu-che.html
 /tag/xin-ling.html
 /tag/city.html

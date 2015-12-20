@@ -242,4 +242,17 @@ stat -x filename
 
 获取 文件的 ctime , mtime , atime  ; change , modified , access
 
+
+
+## mount 命令
+
+2015-12-18 09:35
+
+centos 上使用mount 命令 挂载虚拟光盘iso文件：
+
+[root@iZ281s312fdZ ~]# sudo mkdir /mnt/iso
+[root@iZ281s312fdZ iso]# mount -t iso9660 -o loop /opt/packages/DB2_ESE_9_7_0_0_LNXX86_64.iso /mnt/iso/
+
+
+
 [git] 2015-11-24 13:05 add git
