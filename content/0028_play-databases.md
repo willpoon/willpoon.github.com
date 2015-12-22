@@ -714,6 +714,12 @@ CentOS release 6.5 (Final)
 
 
 
+## database pagesize 和 tablespace pagesize 的关系：
+
+类似继承关系：
+
+数据库的pagesize为创建数据库时作为缺省页大小的值，可能的取值包括4k，8k，16k和32k。当创建表空间或者是缓冲池的时候，如果不显式的指定pagesize的大小，创建的表空间将为缺省页的大小，如user1,syscat表空间等。因此从这个意义来说，数据库页大小在创建数据库时指定，之后就不能更改。
+
 
 
 # MYSQL 
