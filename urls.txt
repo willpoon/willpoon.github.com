@@ -2,6 +2,7 @@
 /archives.html
 /tags.html
 /categories.html
+/setup-and-config-my-github-blog-with-pelican.html
 /play-databases.html
 /work-on-linux.html
 /poons-talk.html
@@ -18,7 +19,6 @@
 /programming.html
 /employment.html
 /cites_memory.html
-/setup-and-config-my-github-blog-with-pelican.html
 /tools-to-complete-jobs.html
 /about.html
 /category/about.html
@@ -26,10 +26,9 @@
 /category/life.html
 /category/misc.html
 /category/tech.html
-/tag/disqus.html
-/tag/gan-wu.html
+/tag/pelican.html
 /tag/pan-tan.html
-/tag/osx.html
+/tag/gan-wu.html
 /tag/list.html
 /tag/mysql.html
 /tag/ri-zhi.html
@@ -61,7 +60,8 @@
 /tag/bi.html
 /tag/wai-yu.html
 /tag/sheng-huo.html
-/tag/mac.html
+/tag/bi-ji.html
+/tag/disqus.html
 /tag/ye-wu.html
 /tag/xian-hua.html
 /tag/xie-zi.html
@@ -69,10 +69,11 @@
 /tag/tou-ji.html
 /tag/me.html
 /tag/github.html
+/tag/osx.html
 /tag/database.html
 /tag/gu-piao.html
 /tag/tou-zi.html
-/tag/bi-ji.html
+/tag/mac.html
 /tag/gong-zuo.html
 /tag/xing-fu.html
 /tag/jin-rong.html
@@ -83,5 +84,4 @@
 /tag/kuai-le.html
 /tag/she-ji.html
 /tag/jia-gou.html
-/tag/pelican.html
 /author/poon.html
