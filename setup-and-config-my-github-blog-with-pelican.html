@@ -1,165 +1,60 @@
-<!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta name="author" content="Poon" />
-    <meta name="robots" content="index, follow"/>
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
 
-    <meta property="og:title" content="使用github+pelican搭建我的博客"/>
-    <meta property="og:url" content="/setup-and-config-my-github-blog-with-pelican.html"/>
-    <meta property="og:site_name" content="仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖"/>
-    <meta property="og:type" content="article"/>
+    <title>使用github+pelican搭建我的博客</title>
 
-    <link rel="canonical" href="/setup-and-config-my-github-blog-with-pelican.html" />
-
-    <title>使用github+pelican搭建我的博客 | 仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
-    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
-
-    <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
-
-    <script type="text/javascript">var switchTo5x=true;</script>
-    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-    <script type="text/javascript">
-        stLight.options({
-            publisher: "7470bcd0-1833-4a2b-a25f-c4a233bdfced",
-            doNotHash: false,
-            doNotCopy: false,
-            hashAddressBar: false
-        });
-    </script>
+    <link rel="stylesheet" href="/theme/css/normalize.css" />
+    <link rel="stylesheet" href="/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="stylesheet" href="/theme/css/pygments.css" />	
+    <script src="/theme/js/modernizr.js"></script>
 </head>
 
-<body id="index">
+<body>
 
-<script>
-(function(){
-    var bp = document.createElement('script');
-    bp.src = '//push.zhanzhang.baidu.com/push.js';
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-    <div class="row-fluid">
-        <div class="span10 offset1">
-            <header id="banner" >
-                <h2>
-                        <a href="/"> 仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 </a> 
-<!-- /# 
- 
-                        <strong>
-                            <span style="font-size:12px;vertical-align:bottom">Be a Coder,Lifehacker,Storyteller </span>
-                        </strong>
- -->
-                </h2>
-                <nav class="navbar">
-                    <div class="navbar-inner">
-                        <ul class="nav">
-                            <li ><a href="tags.html">Tags</a></li>
-                            <li ><a href="about.html">About</a></li>
-                        </ul>
-
-<script>
-  (function() {
-    var cx = '005973619447881484970:jf4jwrpc3tg';
-    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
-    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-        '//www.google.com/cse/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
-  })();
-</script>
-<div id="google-custom-search" class="nav">
-    <gcse:search></gcse:search>
-</div>
-                    </div>
-                </nav>
-            </header><!-- /#banner -->
-        </div>
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="">仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</a></h1>
     </div>
+</div>
+</div>
 
-    <div class="row-fluid">
-        <div class="span10 offset1">
-            <div class="row-fluid">
-<div class="span10 offset1">
-  <section>
-    <article>
-      <header>
-        <h1 class="entry-title">
-          <a href="/setup-and-config-my-github-blog-with-pelican.html" rel="bookmark"
-             title="Permalink to 使用github+pelican搭建我的博客">使用github+pelican搭建我的博客</a></h1>
-      </header>
-      <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="/author/poon.html">Poon</a>
-    </address>
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+    <li><a href="tags.html" class="button secondary small">Tags</a></li>
+    <li><a href="about.html" class="button secondary small">About</a></li>
 
-    in <a href="/category/tech.html">Tech</a>
-
-    on 2015-12-22
-
-        |
-        tags:         <a href="/tag/github.html">github</a>
-        <a href="/tag/blog.html">blog</a>
-        <a href="/tag/pelican.html">pelican</a>
-        <a href="/tag/disqus.html">disqus</a>
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
 
 
-        |
-        <a href="/setup-and-config-my-github-blog-with-pelican.html#disqus_thread">comments</a>
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="/setup-and-config-my-github-blog-with-pelican.html" rel="bookmark"
+        title="Permalink to 使用github+pelican搭建我的博客">使用github+pelican搭建我的博客</a></h3>
+    </header>
+
+<h6 class="subheader" title="2015-12-22T17:32:16+08:00">Tue 22 December 2015
+</h6>
+
 
     
-</footer><!-- /.post-info -->
-        <div class="sharethis-top">
-          <span class='st_fblike_hcount' displayText='Facebook Like'></span>
-          <span class='st_plusone_hcount' displayText='Google +1'></span>
-          <span class='st_twitter_hcount' displayText='Tweet'></span>
-          <span class='st_email_hcount' displayText='Email'></span>
-        </div>
-
-        <nav class="toc">
-        <div class="toc">
-<ul>
-<li><a href="#_1">背景</a><ul>
-<li><a href="#_2">存在的问题</a></li>
-<li><a href="#vps">vps优点</a></li>
-<li><a href="#vps_1">vps缺点</a></li>
-</ul>
-</li>
-<li><a href="#_3">部署流程</a><ul>
-<li><a href="#githubcom">注册github.com 的帐号</a></li>
-<li><a href="#python-pelican">在你的电脑上安装python 和 pelican</a><ul>
-<li><a href="#1pelican-quickstart">问题1.执行pelican-quickstart 命令，有很多问题提示，该怎么选择，选错了怎么办？</a></li>
-<li><a href="#2contentoutputgithub">问题2:出于方便备份需要，我想将content目录放到output目录中，一起提交到github，是否可行？</a></li>
-<li><a href="#3content">问题3:如果文章已经写得差不多，已经放在了content目录下，但是暂时不想发布，又不想另外找地方保存，有什么方法可以不让文章自动发布呢？</a></li>
-<li><a href="#4">问题4：如何 "一键"提交&amp;发布博客：</a></li>
-<li><a href="#5warning-there-are-2-variants-of-oracle-biee-develop-with-lang-zh">问题5:WARNING: There are 2 variants of "oracle-biee-develop" with lang zh</a></li>
-<li><a href="#disqus-reveal">错误或不相关的disqus reveal , 如何删除？</a></li>
-<li><a href="#tag-cloud">为何我的主题支持tag cloud ， 但是生成的网站就是无法展示</a></li>
-<li><a href="#8google-httpsanalyticsgooglecom">8.如何添加google https://analytics.google.com/ 的统计？</a></li>
-<li><a href="#9markdown">9.如何在markdown中使用删除线？</a></li>
-<li><a href="#10-sslsslerror">10. ssl.SSLError</a></li>
-<li><a href="#11-ga_page_view-page-view">11.安装 ga_page_view 插件后，仍无法显示page view，还需要作什么设置？</a></li>
-<li><a href="#12">12. 如何灵活截取文章片段作为摘要信息？</a></li>
-<li><a href="#13-default_date">13. 使用DEFAULT_DATE 来设置文章日期。</a></li>
-<li><a href="#14-sitemap">14. 为 小站 添加 百度 sitemap 支持</a></li>
-<li><a href="#14-bing-sitemap">14. 为 小站 添加 bing sitemap 支持</a></li>
-<li><a href="#14-yahoo">问题14. 提交给yahoo</a></li>
-<li><a href="#15-toc">问题15. 为博客文章添加目录（toc）支持</a></li>
-<li><a href="#pelican-fresh-js">pelican-fresh 模版 关闭 影响网速的 js 插件功能。</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_4">点评</a><ul>
-<li><a href="#1-pelican">优点1: pelican 修改标题和更新文章不会影响原文章的链接引用。</a></li>
-<li><a href="#2-pelican">优点2: pelican 可以根据修改时间来决定博文的展示顺序。</a></li>
-<li><a href="#3">优点3: 社交化评论系统的嵌入,促进交流</a></li>
-</ul>
-</li>
-</ul>
-</div>
-        </nav>
-
-        
 <h1 id="_1">背景</h1>
 <p>08年建了一个 个人博客网站，购买了hostmonster的空间和一个.info的域名，写过几篇文章，后来不了了之。空间被回收，域名过期，资料丢失，很是遗憾。所以一直有重新开一个的想法。但是想起国内建站的烦人的备案审查和国外服务器的龟速，终究还没有重建。最近有感于一些东西还是有必要记录&amp;分享，故又萌生了重新搭建博客的想法。</p>
 <p>现在再看博客市场，已经比以前成熟了很多。各种平台网站开的小清新博客一大堆，但在平台网站上搭博客的弊端是显而易见的：</p>
@@ -488,70 +383,72 @@ Total Sessions: 25
 <p>如果我们要讲某篇博文置顶，我们只需要修改Modified:的时间，讲这个时间置为当前最新的时间，或者将来的某一个时间，文章就会置顶了。</p>
 <h2 id="3">优点3: 社交化评论系统的嵌入,促进交流</h2>
 <p>通过在博客中嵌入disqus 等社区化评论系统，你可以结交一帮跟你志同道合的朋友！从次博客之路不在孤独！</p>
+<p class="subheader">Category: <a href="/category/tech.html">Tech</a>
 
-        <div class="sharethis-bottom">
-          <span class='st_fblike_hcount' displayText='Facebook Like'></span>
-          <span class='st_plusone_hcount' displayText='Google +1'></span>
-          <span class='st_twitter_hcount' displayText='Tweet'></span>
-          <span class='st_email_hcount' displayText='Email'></span>
-        </div>
-      </div><!-- /.entry-content -->
-      <div class="comments">
-        <h2>Comments</h2>
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-          var disqus_identifier = "setup-and-config-my-github-blog-with-pelican.html";
-          (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//gitwillpoonimx3.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-          })();
-        </script>
-      </div>
+    Tagged: 
+    <a href="/tag/github.html">github </a>
+    <a href="/tag/blog.html">blog </a>
+    <a href="/tag/pelican.html">pelican </a>
+    <a href="/tag/disqus.html">disqus </a>
+</p>
 
-    </article>
-  </section>
-</div>
-            </div>
-        </div>
+
+
+
+</article>
     </div>
+    <!-- End Main Content -->
 
-    <footer id="site-footer">
-        <div class="row-fluid">
-            <div class="span10 offset1">
-                <address>
-                    <p>
-                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                    </p>
-                    <p>
-                        <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
-                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
-                    </p>
-                </address>
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="/archives.html">Archives</a>
+            <li><a href="/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="/category/about.html">About</a></li>
+            <li><a href="/category/job.html">Job</a></li>
+            <li><a href="/category/life.html">Life</a></li>
+            <li><a href="/category/misc.html">misc</a></li>
+            <li><a href="/category/tech.html">Tech</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://www.linkedin.com">LinkedIn</a></li>
+            <li><a href="http://www.slideshare.net">SlideShare</a></li>
+            <li><a href="https://www.github.com">Github</a></li>
+            <li><a href="http://www.zhihu.com">知乎(ZhiHu)</a></li>
+            <li><a href="https://www.quora.com">Quora</a></li>
+            <li><a href="#">欢迎交换链接</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/poooon">See me on Sina WeiBo</a></li>
+            <li><a href="http://github.com/willpoon">See me on GitHub</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 by Poon</p> -->
             </div>
-        </div>
-    </footer>
-
-    <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-69868761-1']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-    </script>
-<script type="text/javascript">
-    var disqus_shortname = 'gitwillpoonimx3';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
-    <script src="//code.jquery.com/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+            </div>
+    </div>
+</footer>
 </body>
 </html>

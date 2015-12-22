@@ -1,293 +1,951 @@
-<!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta name="author" content="Poon" />
-    <meta name="robots" content="index, follow"/>
-
-    <meta property="og:title" content="仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 - Tech"/>
-    <meta property="og:url" content="/category/tech.html"/>
-    <meta property="og:site_name" content="仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖"/>
-    <meta property="og:type" content="website"/>
-
-    <link rel="canonical" href="/category/tech.html" />
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
 
     <title>仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 - Tech</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
-    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
-
-    <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
-
-    <script type="text/javascript">var switchTo5x=true;</script>
-    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-    <script type="text/javascript">
-        stLight.options({
-            publisher: "7470bcd0-1833-4a2b-a25f-c4a233bdfced",
-            doNotHash: false,
-            doNotCopy: false,
-            hashAddressBar: false
-        });
-    </script>
+    <link rel="stylesheet" href="/theme/css/normalize.css" />
+    <link rel="stylesheet" href="/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="stylesheet" href="/theme/css/pygments.css" />	
+    <script src="/theme/js/modernizr.js"></script>
 </head>
 
-<body id="index">
+<body>
 
-<script>
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="">仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+    <li><a href="tags.html" class="button secondary small">Tags</a></li>
+    <li><a href="about.html" class="button secondary small">About</a></li>
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="/setup-and-config-my-github-blog-with-pelican.html"><h3 class="article-title">使用github+pelican搭建我的博客</h3></a>
+<h6 class="subheader" title="2015-12-22T17:32:16+08:00">Tue 22 December 2015
+</h6>
+
+
+
+<h1 id="_1">背景</h1>
+<p>08年建了一个 个人博客网站，购买了hostmonster的空间和一个.info的域名，写过几篇文章，后来不了了之。空间被回收，域名过期，资料丢失，很是遗憾。所以一直有重新开一个的想法。但是想起国内建站的烦人的备案审查和国外服务器的龟速，终究还没有重建。最近有感于一些东西还是有必要记录&amp;分享，故又萌生了重新搭建博客的想法。</p>
+<p>现在再看博客市场，已经比以前成熟了很多。各种平台网站开的小清新博客一大堆，但在平台网站上搭博客的弊端是显而易见的：</p>
+<h4 id="_2">存在的问题</h4>
+<ul>
+<li>流量都贡献给了平台</li>
+<li>难以树立个人品牌</li>
+<li>话语权不在本人，而是平台</li>
+<li>各种审查、删帖</li>
+<li>功能无法定制</li>
+<li>无法挂推广代码</li>
+<li>平台广告想插就插</li>
+</ul>
+<p>但也不是一无是处，至少：</p>
+<ul>
+<li>免费</li>
+<li>有可能平台帮助推广 </li>
+</ul>
+<p>总的来说，缺点大于优点，放弃。继而考虑自己申请域名和空间。就在15.11.2日，我申请了godaddy的.com域名(两年¥116走支付宝，有无coupon都是一样的价格，但需要在网上找coupon链接，否者自己在官网购买是无法支付的。)，申请了digitaloccean的vps，$5每月，拿个coupon可以在账户上充值$10,够用3个月了。域名就没有什么好说的了。说说digitaloccean的vps:</p>
+<h4 id="vps">vps优点</h4>
+<ul>
+<li>管理界面清爽，相比godaddy</li>
+<li>管理菜单操作简单，相比godaddy</li>
+<li>菜单即使加载不出来，也有黑白无图的basic html版本可供使用</li>
+<li>支付也方便，相比godaddy</li>
+</ul>
+<p>（godaddy我是黑定了，哈哈）</p>
+<h4 id="vps_1">vps缺点</h4>
+<ul>
+<li>官网页面加载速度慢，想快得用vpn</li>
+<li>客服不到位(vps才申请了两天就被锁了,说我的主机流量异常，我还没开始搭建网站啊啊啊啊,我至今都不知道我的主机是什么原因异常，难道被黑了？腾讯、阿里云也会发邮件报告各种异常，而你却直接通知我vps被锁定？而且只能重建vps？！！！这一点是不能忍受的！！！)</li>
+</ul>
+<p>刚好，就在这个时候，我想起了blahgeek，想起了他的博客设计正合我意，遂email咨询，博主好nice地告诉我，那个网站竟然是静态站，告诉我是用make生成的。</p>
+<p>茅塞顿开！于是，我知道了：</p>
+<ul>
+<li>jekyll</li>
+<li>github 可以托管个人博客</li>
+<li>github 可以无空间、流量限制托管个人博客</li>
+</ul>
+<p>然后又知道了：</p>
+<ul>
+<li>pelican</li>
+<li>markdown</li>
+<li>disqus</li>
+</ul>
+<p>真是踏破铁鞋无觅处，得来全不费功夫！我一直希望找一个这样的平台：</p>
+<ul>
+<li>可以记录和保存我写的东西</li>
+<li>可以做版本管理</li>
+<li>没有空间流量担忧</li>
+<li>界面可以定制，不被平台干预</li>
+<li>无审核等待</li>
+<li>稳定，最好不要轻易被墙</li>
+<li>最好免费</li>
+</ul>
+<p>而github，正是这样的平台！</p>
+<p>而对于生产静态站的工具选择，我选择了pelican，没有选jekyll。因为jekyll用的是ruby，不了解。pelican是基于python的，我对python比较感兴趣，所以就果断pelican 了。</p>
+<p>有人说，写博客的人，要经历三个境界：
+1. 在平台上的免费博客上写
+2. 自己租域名空间架设博客系统写
+3. 使用类似github＋静态站＋评论系统 这样的方式写</p>
+<p>比照自己，似乎也这么走来的。曾经在几个平台，如sina,和讯，qzone等网站开通过博客，虽然没有写过几篇文章，但是也算这么走过来的。自己架网站的事情，正如上所提到的，做过两遍了。而现在，我正在做第三种，采用这种方式搭建博客的好处，就是维护成本低！</p>
+<p>闲话休提，下面就我部署这个博客遇到的问题说说,由于这种建博客的方式相对geek一些，对于没有IT基础的盆友，是比较困难的，这里默认你都是有it底的，至少对root , python , mac/linux ,github等都是有概念的。</p>
+<h1 id="_3">部署流程</h1>
+<h2 id="githubcom">注册github.com 的帐号</h2>
+<p>这里我就不多说了，直接上官方网站注册即可。而我早前已经注册过，我的github是 https://github.com/willpoon 。</p>
+<p><img alt="新建repository" src="img/00001-01.jpg"/>
+图1 ： 新建repository</p>
+<p><img alt="起名字" src="img/00001-02.jpg"/>
+图2 ： 起名
+github要求我们对用于user pages的repository，要用 ：gitusername+github.[com|io] 格式的用户名，如下图。不知道为什么，可能是为了方便管理吧。
+<img alt="起名字" src="img/00001-03.jpg"/></p>
+<p>参考：https://pages.github.com</p>
+<h2 id="python-pelican">在你的电脑上安装python 和 pelican</h2>
+<p>请使用root 权限在电脑上安装python和pilican 。
+然后使用 pelican-quickstart 来初始化一个本地目录结构，用于维护你的博客。关于你博客的所有设置，都是在生成的这个目录中维护。</p>
+<h3 id="1pelican-quickstart">问题1.执行pelican-quickstart 命令，有很多问题提示，该怎么选择，选错了怎么办？</h3>
+<p>不用担心，选项所生成的配置，都在pelicanconf.py 中保存，错了可以随时修改。
+例如我的plicanconf.py 配置：</p>
+<pre><code>#!/usr/bin/env python
+# -*- coding: utf-8 -*- #
+from __future__ import unicode_literals
+
+AUTHOR = u'poon'
+SITENAME = u'i.M.X.3'
+SITEURL = ''
+
+PATH = 'output/content'
+
+TIMEZONE = 'Asia/Shanghai'
+
+DEFAULT_LANG = u'zh'
+
+# Feed generation is usually not desired when developing
+FEED_ALL_ATOM = None
+CATEGORY_FEED_ATOM = None
+TRANSLATION_FEED_ATOM = None
+AUTHOR_FEED_ATOM = None
+AUTHOR_FEED_RSS = None
+
+# Blogroll
+#LINKS = (('Pelican', 'http://getpelican.com/'),
+#         ('Python.org', 'http://python.org/'),
+#         ('Jinja2', 'http://jinja.pocoo.org/'),
+#         ('You can modify those links in your config file', '#'),)
+
+LINKS = (('LinkedIn', 'https://www.linkedin.com'),
+         ('SlideShare', "http://www.slideshare.net"),
+         ('Github', "https://www.github.com"),
+         ('知乎', "http://www.zhihu.com"),
+         ('Quora', "https://www.quora.com"),
+         ('欢迎交换链接', "#"),)
+
+SOCIAL = (('weibo', 'http://weibo.com/poooon'),
+          ('github', 'http://github.com/willpoon'),)
+# Social widget
+#SOCIAL = (('You can add links in your config file', '#'),
+#          ('Another social link', '#'),)
+
+DEFAULT_PAGINATION = 10
+
+# Uncomment following line if you want document-relative URLs when developing
+#RELATIVE_URLS = True
+
+DISQUS_SITENAME = 'gitwillxxxx'
+#THEME = 'bootstrap2'  
+THEME = 'gum'  
+#THEME = 'simple-bootstrap'  
+#THEME = 'zurb-F5-basic'  
+#THEME = 'Just-Read'  
+#THEME = 'SoMA2'
+</code></pre>
+<h3 id="2contentoutputgithub">问题2:出于方便备份需要，我想将content目录放到output目录中，一起提交到github，是否可行？</h3>
+<p>完全没问题,你只需要修改Makefile中的INPUTDIR即可。例如我修改为：</p>
+<pre><code>OUTPUTDIR=$(BASEDIR)/output
+INPUTDIR=$(OUTPUTDIR)/content
+</code></pre>
+<h3 id="3content">问题3:如果文章已经写得差不多，已经放在了content目录下，但是暂时不想发布，又不想另外找地方保存，有什么方法可以不让文章自动发布呢？</h3>
+<p>简单，把相应的md文件重命名一下扩展名就行了,比如：
+mv myblogpost.md myblogpost.mk.wait</p>
+<h3 id="4">问题4：如何 "一键"提交&amp;发布博客：</h3>
+<pre><code>imx(){
+cd /Users/poon/Git/gitblog_imx3
+make html 
+cd output/
+git add .
+git commit -m "commit by shell function"
+git push origin master
+cd ..
+}
+</code></pre>
+<p>btw : gum这个模版很智能，可以对语法自动高亮！</p>
+<h3 id="5warning-there-are-2-variants-of-oracle-biee-develop-with-lang-zh">问题5:WARNING: There are 2 variants of "oracle-biee-develop" with lang zh</h3>
+<p>CRITICAL: RuntimeError: File develop.html is to be overwritten
+当有多个md文件，如果有两个以上的Slug是一样的时候，就会报这个错。slug改成不一样的就行了。</p>
+<h3 id="disqus-reveal">错误或不相关的disqus reveal , 如何删除？</h3>
+<p>登录disqus reveal , 删除与帖子相关的评论即可。</p>
+<h3 id="tag-cloud">为何我的主题支持tag cloud ， 但是生成的网站就是无法展示</h3>
+<p>关于 tag cloud not shown 的问题，我当时也纠结了好久，后来google到一篇贴子，说pelican从3.6 开始，把tag cloud 功能作为单独的插件提供，需要安装plugin才能生成。
+具体方法：
+切换到 pelicanconf.py 所在的目录： 
+ 执行：
+    git clone https://github.com/getpelican/pelican-plugins.git
+获得pelican 插件目录。
+编辑：pelicanconf.py,添加如下配置：</p>
+<pre><code>PLUGIN_PATHS = ["pelican-plugins"]
+PLUGINS = ["tag_cloud"]
+TAG_CLOUD_STEPS=4
+TAG_CLOUD_MAX_ITEMS=100
+TAG_CLOUD_SORTING = 'random'
+</code></pre>
+<h3 id="8google-httpsanalyticsgooglecom">8.如何添加google https://analytics.google.com/ 的统计？</h3>
+<ol>
+<li>首先, 你得有一个google帐号，然后登录 https://analytics.google.com/ 开通analytics服务。你将会获得一个 Tracking ID ， 以'UA-' 打头。</li>
+<li>
+<p>其次, 你需要在 pelicanconf.py 中添加 如下代码：</p>
+<p>GOOGLE_ANALYTICS='UA-12345...'</p>
+</li>
+</ol>
+<p>该代码让google统计服务爬取你的网站，然后把数据统计归入你的账户中。</p>
+<h3 id="9markdown">9.如何在markdown中使用删除线？</h3>
+<p>我试过 ｀~~ 删除我~~｀ , 不起作用。 后来查到 <code>&lt;del&gt; 删除我&lt;/del&gt;</code> 和 ｀<s>删除我</s>` 都可以。</p>
+<h3 id="10-sslsslerror">10. ssl.SSLError</h3>
+<p>安装google page views 提取工具到pelican时，遇到： ssl.SSLError: [Errno 185090050] _ssl.c:343: error:0B084002:x509 certificate routines:X509_load_cert_crl_file:system lib 的解决。</p>
+<p>分析：这个报错是由于cacerts.txt这个文件的权限设置问题导致的。需要将文件权限设置为644.如下：</p>
+<p>$ sudo find / -name cacerts.txt</p>
+<pre><code>find: /dev/fd/3: Not a directory
+find: /dev/fd/4: Not a directory
+/Library/Python/2.7/site-packages/httplib2-0.9.2-py2.7.egg/httplib2/cacerts.txt
+</code></pre>
+<p>$ ls -arlt /Library/Python/2.7/site-packages/httplib2-0.9.2-py2.7.egg/httplib2/cacerts.txt</p>
+<pre><code>-rw-r-----  1 root  wheel  134862 Nov 10 20:44 /Library/Python/2.7/site-packages/httplib2-0.9.2-py2.7.egg/httplib2/cacerts.txt
+</code></pre>
+<p>$ chmod 644 /Library/Python/2.7/site-packages/httplib2-0.9.2-py2.7.egg/httplib2/cacerts.txt</p>
+<pre><code>chmod: Unable to change file mode on /Library/Python/2.7/site-packages/httplib2-0.9.2-py2.7.egg/httplib2/cacerts.txt: Operation not permitted
+</code></pre>
+<p>$ sudo chmod 644 /Library/Python/2.7/site-packages/httplib2-0.9.2-py2.7.egg/httplib2/cacerts.txt</p>
+<p>$ proxychains4 python HelloAnalytics.py</p>
+<p>[proxychains] preloading /usr/local/Cellar/proxychains-ng/4.10/lib/libproxychains4.dylib</p>
+<pre><code>View (Profile): All Web Site Data
+Total Sessions: 25
+</code></pre>
+<p>显示这两行，表示调用成功。</p>
+<h3 id="11-ga_page_view-page-view">11.安装 ga_page_view 插件后，仍无法显示page view，还需要作什么设置？</h3>
+<p>With this plugin installed, each article and page object has one extra meta data called pageview, which is an integer of the page view count of that article or page. And there is one global context named total_page_view, which is the total page view of the entire site.</p>
+<h3 id="12">12. 如何灵活截取文章片段作为摘要信息？</h3>
+<p>使用summary !</p>
+<ol>
+<li>
+<p>在pelicanconf.py中加入 summary插件支持：</p>
+<pre><code>PLUGINS = ["tag_cloud","ga_page_view","summary"]
+</code></pre>
+</li>
+<li>
+<p>指定截取标记的开头和结尾，在这里，我修改了默认设置，用 ^ ， $  来标记。大家都知道，这是regexp标记开头和结尾用的，用以取代 </p>
+<p>｀<!-- PELICAN_BEGIN_SUMMARY -->｀</p>
+</li>
+</ol>
+<p>和</p>
+<pre><code>｀&lt;!-- PELICAN_END_SUMMARY --&gt;｀
+</code></pre>
+<p>，简单，好记！</p>
+<pre><code>    SUMMARY_BEGIN_MARKER = '&lt;!-- ^ --&gt;'
+    SUMMARY_END_MARKER =   '&lt;!-- $ --&gt;'
+</code></pre>
+<h3 id="13-default_date">13. 使用DEFAULT_DATE 来设置文章日期。</h3>
+<pre><code>DEFAULT_DATE = 'fs'
+</code></pre>
+<p>这样，就不用再md中添加：</p>
+<pre><code>Date:2015-11-19 07:08
+</code></pre>
+<p>这一行了。</p>
+<h3 id="14-sitemap">14. 为 <a href="http://www.imx3.com">小站</a> 添加 百度 sitemap 支持</h3>
+<p>google SITE map 支持可以直接用  pelican sitemap 插件 插件生成sitemap.xml 。 </p>
+<p>然而，生成的这份sitemap并不能直接提交给百度站长工具平台。</p>
+<p>所以，需要参照百度站长工具平台的格式 <img alt="说明" src="http://zhanzhang.baidu.com/wiki/170#_1什么是XML数据文件？"/></p>
+<p>方法二： 使用curl 提交。 这个方法很简单：先从sitemap插件中抽取url，然后写入到urls.txt 里面，然后用curl提交即可。</p>
+<p>示例 ：</p>
+<pre><code>curl -H 'Content-Type:text/plain' --data-binary @urls.txt "http://data.zz.baidu.com/urls?site=www.imx3.com&amp;token=YrrCk***n7TGD***&amp;type=original";
+</code></pre>
+<p>方法三：</p>
+<p>使用js 脚本：把脚本include 到模版里即可：</p>
+<p>base.html:</p>
+<pre><code>{% include 'baidusitemap.html' %}
+</code></pre>
+<p>baidusitemap.html:</p>
+<pre><code>&lt;script&gt;
 (function(){
     var bp = document.createElement('script');
     bp.src = '//push.zhanzhang.baidu.com/push.js';
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
-</script>
-    <div class="row-fluid">
-        <div class="span10 offset1">
-            <header id="banner" >
-                <h2>
-                        <a href="/"> 仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 </a> 
-<!-- /# 
- 
-                        <strong>
-                            <span style="font-size:12px;vertical-align:bottom">Be a Coder,Lifehacker,Storyteller </span>
-                        </strong>
- -->
-                </h2>
-                <nav class="navbar">
-                    <div class="navbar-inner">
-                        <ul class="nav">
-                            <li ><a href="tags.html">Tags</a></li>
-                            <li ><a href="about.html">About</a></li>
-                        </ul>
+&lt;/script&gt;
+</code></pre>
+<p>最简单的方法，是添加js. 但是如果页面没有被刷新，可能收录就会比较慢。</p>
+<p>curl方式好像是有次数限制的。提交多次会报错。</p>
+<p>sitemap.xml 也是被动的。</p>
 
-<script>
-  (function() {
-    var cx = '005973619447881484970:jf4jwrpc3tg';
-    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
-    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-        '//www.google.com/cse/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
-  })();
-</script>
-<div id="google-custom-search" class="nav">
-    <gcse:search></gcse:search>
+<h3 id="14-bing-sitemap">14. 为 <a href="http://www.imx3.com">小站</a> 添加 bing sitemap 支持</h3>
+<ol>
+<li>
+<p>登陆 https://www.bing.com/webmaster  , microsoft、bing、msn账号都是通用的。</p>
+</li>
+<li>
+<p>填入你的网站信息 , 同时会有一个框让你提交sitemap地址。 你可以先不填写。</p>
+</li>
+<li>
+<p>填入你的个人资料</p>
+</li>
+<li>
+<p>验证这个网站是不是你的，有几种途径：</p>
+</li>
+</ol>
+<p>4.1 上传文件</p>
+<p>4.2 修改html</p>
+<p>4.3 修改cname</p>
+<p>我选择了上传文件，最方便。</p>
+<ol>
+<li>通过验证之后，就可以提交sitemap 了。支持很多种格式的sitemap提交，因为担心bing不认识我的sitemap.xml ， 我同时提交了urls.txt 和 sitemap.xml，双保险。</li>
+</ol>
+<p>刚提交，静观其变。－－2015-12-02 09:43</p>
+<h3 id="14-yahoo">问题14. 提交给yahoo</h3>
+<p>yahoo 的sitemap提交服务已经托管给 微软小冰了 bing.com :</p>
+<p>```</p>
+<p>Submit Site to Yahoo!</p>
+<p>Since 2010, Yahoo search has been powered by Microsoft's Bing search engine. When you submit your site to Bing you will also show up in Yahoo's search results. See below on how to submit your site to Bing.  Yahoo! had a paid submission process in the past, although Yahoo! Directory is no longer available.</p>
+<p>```</p>
+
+<h3 id="15-toc">问题15. 为博客文章添加目录（toc）支持</h3>
+<p>2015-11-27 11:17</p>
+<p>为了避免文章太多难以维护，我打算把多篇帖子合成一篇。这样就有一个问题，一个页面上内容多了，帖子与帖子之间需要一个目录索引，否则会很乱的。google了一下，有一个extract_toc的插件，可以把文档结构抽取出来，然后展示在页面你想展示的地方。安装方法跟其他插件差不多，</p>
+<p>首先,添加插件支持：</p>
+<pre><code>PLUGINS = ["tag_cloud","ga_page_view","summary","sitemap","extract_toc"]
+</code></pre>
+<p>需要注意的是，如果你使用markdown来写博客，需要在pelicanconf.py中添加：</p>
+<pre><code>MD_EXTENSIONS = (['toc'])
+</code></pre>
+<p>其次， 要修改你的博客的模版， 在 article.content 之前，添加如下代码：</p>
+<pre><code>{% if article.toc %}
+    &lt;nav class="toc"&gt;
+    {{ article.toc }}
+    &lt;/nav&gt;
+{% endif %}
+</code></pre>
+<p>toc class 不用自己添加，当然如果你想目录好看一点，可以自己修改、覆盖toc的css。</p>
+<h3 id="pelican-fresh-js">pelican-fresh 模版 关闭 影响网速的 js 插件功能。</h3>
+<ol>
+<li>
+<p>facebook , google+ , twitter </p>
+</li>
+<li>
+<p>google custom search </p>
+</li>
+<li>
+<p>google 分析 插件等</p>
+</li>
+<li>
+<p>最后，还不如直接换一个模版！</p>
+</li>
+</ol>
+<h1 id="_4">点评</h1>
+<h2 id="1-pelican">优点1: pelican 修改标题和更新文章不会影响原文章的链接引用。</h2>
+<p>当我们觉得有必要更新博文的标题和内容时，我们只需要更新 Title 和正文，然后重新发布即可，而不用担心链接发生变化，外部不能引用。</p>
+<h2 id="2-pelican">优点2: pelican 可以根据修改时间来决定博文的展示顺序。</h2>
+<p>如果我们要讲某篇博文置顶，我们只需要修改Modified:的时间，讲这个时间置为当前最新的时间，或者将来的某一个时间，文章就会置顶了。</p>
+<h2 id="3">优点3: 社交化评论系统的嵌入,促进交流</h2>
+<p>通过在博客中嵌入disqus 等社区化评论系统，你可以结交一帮跟你志同道合的朋友！从次博客之路不在孤独！</p><p class="subheader">Category: <a href="/category/tech.html">Tech</a>
+
+    Tagged: 
+    <a href="/tag/github.html">github </a>
+    <a href="/tag/blog.html">blog </a>
+    <a href="/tag/pelican.html">pelican </a>
+    <a href="/tag/disqus.html">disqus </a>
+</p>
+
+
+
+<p><a href="/setup-and-config-my-github-blog-with-pelican.html#disqus_thread">comments</a></p>            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="/play-databases.html"><h3 class="article-title">主流数据库安装、维护、开发与管理</h3></a>
+<h6 class="subheader" title="2015-12-22T17:28:50+08:00">Tue 22 December 2015
+</h6>
+
+
+
+<h1 id="oracle">ORACLE</h1>
+<h2 id="start-with-connect-by-prior">start with ... connect by prior ...  用法</h2>
+<p>表格式：sid|pid|level ; s for son , p for parent</p>
+<p>start with pid=[截取的根节点nodeA] connect by prior sid = pid</p>
+<p>[截取的根节点] : 当我们需要从哪个节点nodeA开始，就是让 pid 取为该开始节点值nodeA。</p>
+<p>从 nodeA 开始， 取 [树的子节点son] 字段 ， 通过 prior 字段，取得son节点的祖先， 让 prior sid = pid ; 即 prior son = father ; 意思是 son的祖先＝father 。 更近一步：</p>
+<p>prior sunzi = fuqin</p>
+<p>prior fuqin = yeye</p>
+<p>这样sunzi - fuqin - yeye 都关联起来了。</p>
+<p><a href="http://mengya520.blog.51cto.com/1506880/334621">例子</a> ：</p>
+<p>select ID, NAME, SYS_CONNECT_BY_PATH(pid,'/') as pid_path, SYS_CONNECT_BY_PATH(parent_name,'/') as parent_name
+from test_parent1
+start with pid=1 connect by prior id=pid;</p>
+<p>如果 你写成 connect by prior pid = id , 那是不行的。 如果pid 还要取祖先，prior pid 的结果，就是爷爷了。 爷爷 ＝ 孙子 怎么行呢？乱套了！</p>
+<h2 id="oracle-python">oracle 和 python 交互</h2>
+<p>如何在 python 中 操纵 oracle ?</p>
+<p>http://www.oracle.com/technetwork/articles/dsl/python-091105.html</p>
+<h2 id="oracle-response">oracle response 文件安装方式是怎么回事？</h2>
+<ol>
+<li>
+<p>response 文件安装 也叫响应文件安装方式。</p>
+</li>
+<li>
+<p>response 文件有特定格式。</p>
+</li>
+<li>
+<p>response 文件设定好之后，就不需要再用图形界面方式，通过鼠标点击和键盘输入进行下一步了。</p>
+</li>
+</ol>
+<h2 id="oracle-dml-escape-ampersand">oracle 在执行 dml的时候 escape &amp; (ampersand)符号？</h2>
+<pre><code>set define off
+
+SET ESCAPE ON;
+</code></pre>
+<p class="subheader">Category: <a href="/category/tech.html">Tech</a>
+
+    Tagged: 
+    <a href="/tag/db.html">DB </a>
+    <a href="/tag/database.html">database </a>
+    <a href="/tag/shu-ju-ku.html">数据库 </a>
+    <a href="/tag/db2.html">db2 </a>
+    <a href="/tag/oracle.html">oracle </a>
+    <a href="/tag/mysql.html">mysql </a>
+</p>
+
+
+
+<p><a href="/play-databases.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/play-databases.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="/work-on-linux.html"><h3 class="article-title">Work on linux!</h3></a>
+<h6 class="subheader" title="2015-12-22T16:09:55+08:00">Tue 22 December 2015
+</h6>
+
+
+<p>键盘党，终端控,我们用linux 来干活!鼠标?从来都只是用来玩游戏的！</p>
+<p>仅以此帖，记录在linux下的点点滴滴。</p>
+
+<h1 id="1-mysql">1. MYSQL</h1>
+<h2 id="11">1.1</h2>
+<pre><code>GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' identified by 'passwordhere' WITH GRANT OPTION;
+</code></pre>
+<p>如果不指定identified by , 那么就可以无密码登录了！！ 这时，应该指定 @'host' 。</p>
+<h2 id="12">1.2 本机无密码登录</h2>
+<pre><code>mysqld --skip-grant-tables
+</code></pre>
+<p>2015-11-11 19:47 , 就遇到一个问题：有人把mysql.user 表删掉了，无法登陆，这时，就需要使用这个方法来恢复 mysql.user.</p>
+<h2 id="13-etcrcdinitdmysql">1.3 /etc/rc.d/init.d/mysql 设置</h2>
+<p>当你的mysql安装路径或者数据目录迁移了，/etc/my.cnf 设置变化了，就需要修改这个mysql shell 文件。否则，使用 service mysql start/stop 之类命令时，会有问题，比如找不到库等。</p>
+<h2 id="14-dig-dns-lookup-utility">1.4 dig - DNS lookup utility</h2>
+<pre><code>dig www.imx3.com
+</code></pre>
+<p>结果：</p>
+<pre><code>;; QUESTION SECTION:
+;www.imx3.com.          IN  A
+
+;; ANSWER SECTION:
+www.imx3.com.       3600    IN  CNAME   willpoon.github.io.
+willpoon.github.io. 3600    IN  CNAME   github.map.fastly.net.
+github.map.fastly.net.  3600    IN  A   103.245.222.133
+</code></pre>
+<h1 id="2-ps">2. ps</h1>
+<h2 id="-o">使用 -o 选项</h2>
+<pre><code>ps -o gid,time
+</code></pre>
+<p>结果：</p>
+<p>GID      TIME
+   20   0:00.55
+   20   0:00.70
+   20   0:00.18
+   20   0:00.04
+   20   0:00.04</p>
+<h1 id="3-proxychains4">3. proxychains4</h1>
+<p>这个工具是让terminal中执行的命令也能翻墙，比如你要使用wget , curl , yum 下载软件，就可以使用 proxychains4 来翻墙下载。</p>
+<p>搭配shadowsocks 效果不错噢。</p>
+<pre><code>$ curl www.google.com
+</code></pre>
+<p>结果：</p>
+<p>curl: (7) Failed to connect to www.google.com port 80: Operation timed out</p>
+<p>使用proxychains4 :</p>
+<pre><code>$ proxychains4 curl www.google.com
+</code></pre>
+<p>结果：</p>
+<pre><code>[proxychains] config file found: /Users/poon/.proxychains/proxychains.conf
+[proxychains] preloading /usr/local/Cellar/proxychains-ng/4.10/lib/libproxychains4.dylib
+&lt;HTML&gt;&lt;HEAD&gt;&lt;meta http-equiv="content-type" content="text/html;charset=utf-8"&gt;
+&lt;TITLE&gt;302 Moved&lt;/TITLE&gt;&lt;/HEAD&gt;&lt;BODY&gt;
+&lt;H1&gt;302 Moved&lt;/H1&gt;
+The document has moved
+&lt;A HREF="http://www.google.com.hk/url?sa=p&amp;amp;hl=zh-CN&amp;amp;pref=hkredirect&amp;amp;pval=yes&amp;amp;q=http://www.google.com.hk/%3Fgws_rd%3Dcr&amp;amp;ust=1447292938623279&amp;amp;usg=AFQjCNHDVUkjopoYLPreTfeIum11Pmn0KQ"&gt;here&lt;/A&gt;.
+&lt;/BODY&gt;&lt;/HTML&gt;
+</code></pre>
+<h1 id="4-vi-vim">4. vi vim</h1>
+<p>4.1 批量行缩进: ctrl-v + shift-&gt;</p>
+<p>4.2 快捷键配置</p>
+<p>使用pelican+markdown写博客，总是要手动输入日期时间，很是麻烦，作为一个geek，怎能忍受每次都手工修改日期这种事情发生呢？所以，必须找到一种能够一键插入时间戳的方法！
+对于这种雕虫小技，stackoverflow早已经说烂了，于是，随便找了<a href="http://stackoverflow.com/questions/56052/best-way-to-insert-timestamp-in-vim">一篇</a></p>
+<p>~/.vimrc命令: </p>
+<pre><code>nmap &lt;F3&gt; a&lt;C-R&gt;=strftime("%Y-%m-%d %a %I:%M %p")&lt;CR&gt;&lt;Esc&gt;
+imap &lt;F3&gt; &lt;C-R&gt;=strftime("%Y-%m-%d %a %I:%M %p")&lt;CR&gt;
+</code></pre>
+<p>按f3的输出效果: </p>
+<pre><code> 2015-11-08 Sun 11:06 AM
+</code></pre>
+<p>.vimrc 命令：</p>
+<pre><code>nmap &lt;F4&gt; a&lt;C-R&gt;=strftime("%Y-%m-%d %H:%M")&lt;CR&gt;&lt;Esc&gt;
+imap &lt;F4&gt; &lt;C-R&gt;=strftime("%Y-%m-%d %I:%M")&lt;CR&gt;
+</code></pre>
+<p>按f4的输出效果：</p>
+<pre><code>  2015-11-08 11:06
+</code></pre>
+<p>注意：f3的时间戳格式是不适合放在pelican的Date: 和 Modified 里的。f4才是。</p>
+<p>现在，展示f3的用法：</p>
+<pre><code>本文最后更新于 2015-11-08 Sun 11:23 AM
+</code></pre>
+<p>That's it !</p>
+<p>Enjoy!</p>
+<h1 id="5-svn">5. svn</h1>
+<h2 id="51">5.1 回滚到上一版本</h2>
+<p>svn merge -c -2683 db_load_data_comm.sh </p>
+<h1 id="6-linux-shell-builtin-command">6. linux shell builtin command</h1>
+<p>添加组etl
+    groupadd etl
+添加用户etl
+    useradd db2etl -G etl</p>
+<p>将新建的用户添加到sudo用户组，让用户不用重新登录，在当前会话切换到sudo 模式：</p>
+<p>修改:</p>
+<pre><code>/etc/sudoers
+</code></pre>
+<p>添加一行:</p>
+<pre><code>yourlinuxuser ALL=(ALL) ALL
+</code></pre>
+<h3 id="find-777-755">使用find 查找权限为777 的文件，并改为755:</h3>
+<p>2015-11-18 22:27</p>
+<pre><code>find /path/to/file -perm 777 -type f -exec chmod 755 {} \;
+</code></pre>
+<p>使用shell 求昨日：</p>
+<pre><code>stat_dt=`date -d "-1 days " +%Y%m%d`
+</code></pre>
+<p>这个在bi中很常用，我们常常需要确定最近一个统计日期是什么时候。原来date函数很强大，提供了我们想要的很多功能，只是我们没有充分发掘而已。</p>
+<p>注意：在mac上用法不一样。需要使用-v参数</p>
+<p class="subheader">Category: <a href="/category/tech.html">Tech</a>
+
+    Tagged: 
+    <a href="/tag/linux.html">linux </a>
+    <a href="/tag/git.html">git </a>
+</p>
+
+
+
+<p><a href="/work-on-linux.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/work-on-linux.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="/oracle-biee-develop.html"><h3 class="article-title">Oracle BIEE 经验总结</h3></a>
+<h6 class="subheader" title="2015-12-22T15:47:19+08:00">Tue 22 December 2015
+</h6>
+
+
+
+<h2 id="biee-logical-dimension-ragged">biee 的logical dimension 中的 Ragged 的应用场景</h2>
+<p>今天配置一张报表，并非每一条记录的层级数都相同。
+就像这样：</p>
+<p>```</p>
+<p>lvl1|lvl2|lvl3|lvl4</p>
+<p>lvl1|lvl2</p>
+<p>lvl1|lvl2|lvl3</p>
+<p>```</p>
+<p>Ragged , 又叫 unbalanced ，非平衡维度. 也就是说，不是每一条记录的每一个维度都是整齐划一的。</p>
+<p>如果你的维度表是这样的，就要在rpd中对你的逻辑维度做如下设置：</p>
+<p>双击逻辑维度-&gt; general-&gt; structure-&gt; Ragged </p>
+<p>这样设置之后，如果你从lvl1 展开到 lvl4 , 也就是从最顶层展开到最底层, 那么如果当从lvl3开始，之后都没有层级划分的情况下，就不会报错。如果没有设置Ragged， 就会报错。</p>
+<p>说到 ragged , 通常都会引出 skip-level . 下面介绍下 skip-level </p>
+<h2 id="biee-skip-level">biee skip-level 越级维度</h2>
+<p>就像这样:</p>
+<p>```</p>
+<p>lvl1|lvl2|lvl3|lvl4</p>
+<p>lvl1|null|null|lvl4</p>
+<p>lvl1|lvl2|null|lvl4</p>
+<p>```</p>
+<p>对于biee 不平衡维和越级维，这个帖子上有一张图可以说明:</p>
+<p><img alt="越级维skip-level 和 不平衡维ragged" src="img/00002-01.jpg"/></p>
+<p>http://prashanthobiee.blogspot.sg/2013/01/ragged-and-skipped-hierarchy.html
+http://docs.oracle.com/cd/E25054_01/fusionapps.1111/e20836/dimensions.htm</p>
+<pre><code>OBIEE 11g can handle this though with the new ragged and skip-level support for level-based hierarchies. It does this by detecting NULLs in either leaf levels (for ragged hierarchies) or other levels (for skip-level hierarchies) and use this to modify how the new hierarchical column type in Answers handles the missing levels.
+</code></pre>
+<p>biee 对于越级维和不平衡维的识别，是通过记录中空值(null) 的特点来识别的。 </p>
+<h2 id="biee-logical-dimesion-level-based-parent-child-value-based">biee 创建 logical dimesion 的时候，什么时候使用 Level-Based , 什么时候使用 Parent-Child (value-based)</h2>
+<ol>
+<li>当层级关系都是同一类型的时候，我们采用Parent－child 。比如员工－上级。节点－父节点等结构。</li>
+<li>当层级关系不是同一类型，比如地区－贷款类型－客户分类等等</li>
+</ol>
+<p><a href="http://docs.oracle.com/cd/E25054_01/fusionapps.1111/e20836/dimensions.htm#BABIHCGH">此表</a> 展示了一个 parent-child 表的代际关系。</p>
+<h2 id="biee-logical-dimension-biee">当我们点击 ＋号 展开 biee 逻辑维度 (logical dimension ) 的时候，biee 后台 都发生了什么？</h2>
+<ol>
+<li>
+<p>后台语句是随着我们的点击动态变化的。</p>
+</li>
+<li>
+<p>展开的节点越多，语句就拼装得越多。</p>
+</li>
+<li>
+<p>当展开下一级别的时候，会用我们所点击的节点的值作为条件，从一个最明细的子表中查询，查出该级别下的所有成员值。</p>
+</li>
+<li>
+<p>每新展开一列，将会产生一个新的union , 把新展开的节点数据union 到已展开的节点上。</p>
+</li>
+</ol>
+<h2 id="biee_5">如何让biee 旋转透视图支持多个度量列？</h2>
+<p>把度量标签拖到右上方区域。</p>
+<h2 id="hierarchy-column">如何默认展开层级列（hierarchy column) ?</h2>
+<p>通过selection steps 步骤！ 详见：</p>
+<p>http://123obi.com/2012/06/obiee-11g-expanding-hierarchy-column/</p>
+<p>http://obieeil.blogspot.sg/2013/03/obiee-11g-hierarchical-columns-and.html</p>
+<p>https://community.oracle.com/thread/2445861</p>
+<p>http://www.rittmanmead.com/2010/07/obiee-11gr1-hierarchical-columns-and-enhancements-to-pivot-table-views/</p>
+<h2 id="logical-hierarchy-column">物理层的多条件关联，也就是存在复合主键，是否影响逻辑层构建 logical hierarchy column ?</h2>
+<p>答案是： 不影响。 比如我们要构建 level-based hierachy , 可以随意构建我们需要的维度层级。</p>
+<h2 id="structure-based-value-based">如何理解 structure based 和 value based ?</h2>
+<p>```</p>
+<p>Parent Child Hierarchies Is a Value Based Hierarchy
+  Level Base Hierarchies Is A Structure Based Hie.</p>
+<p>```</p>
+<p>我们可以根据最终构建出来的 hierarchy column 来理解：</p>
+<p>parent - child 构建出来的 hierarchy colunm , 所有节点都是来自 父子两列的记录值。 所以说他是基于（parent-son 两列的记录）值来构建的。</p>
+<p>而 level based 构建出来的 hierarchy colunm , 每一个层级都是来自不同的列（维度），展开的层次结构里面有几层，用以构建的维表就需要拿出多少列来构建。 所以说，他是基于（维表）结构来构建的。</p>
+<p class="subheader">Category: <a href="/category/tech.html">Tech</a>
+
+    Tagged: 
+    <a href="/tag/oracle.html">oracle </a>
+    <a href="/tag/biee.html">biee </a>
+    <a href="/tag/bi.html">BI </a>
+</p>
+
+
+
+<p><a href="/oracle-biee-develop.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/oracle-biee-develop.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="/about-design.html"><h3 class="article-title">设计相关思考</h3></a>
+<h6 class="subheader" title="2015-12-17T11:43:46+08:00">Thu 17 December 2015
+</h6>
+
+
+
+<h1 id="_3">调度设计</h1>
+<p>task scheduler , 调度设计，分两种：</p>
+<ol>
+<li>
+<p>定时执行</p>
+</li>
+<li>
+<p>依赖执行</p>
+</li>
+</ol>
+<p>定时执行很简单。在crontab中配置即可，到点执行。</p>
+<p>依赖执行，需要针对每一个任务的返回值作判断，只有都为 完成状态的时候，才执行下一个任务。所以对于依赖条件是否满足的判断，是调度的核心。</p>
+<p>在设计上，就是要将依赖关系转换为任务条件，将任务列表转换为要执行任务的队列。</p>
+<p>一般来说，对于多任务多依赖，还是用数据库来管理比较好。所以如果用shell来写简单作业，定时执行就很简单，但是依赖执行，由于操作数据库没有python等方便，所以开发效率也不会很高。</p>
+<p class="subheader">Category: <a href="/category/tech.html">Tech</a>
+
+    Tagged: 
+    <a href="/tag/she-ji.html">设计 </a>
+    <a href="/tag/cheng-xu.html">程序 </a>
+    <a href="/tag/yi-zhu.html">艺术 </a>
+    <a href="/tag/jia-gou.html">架构 </a>
+</p>
+
+
+
+<p><a href="/about-design.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/about-design.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="/banking-finance.html"><h3 class="article-title">银行金融业务知识学习</h3></a>
+<h6 class="subheader" title="2015-12-17T10:51:58+08:00">Thu 17 December 2015
+</h6>
+
+
+
+<h1 id="_5">收付实现制和权责发生制</h1>
+<p>2015-12-13 11:07</p>
+<p>权责发生制：既有现金项目，又有非现金项目;允许信用的存在。收付可以提前或发生在将来。</p>
+<p>收付实现制：只有现金项目; 一手交钱，一手交货。</p>
+<p>其实是收付时间、权责发生时间、核算时间存在着时间差！ 要把账做明白，让人看懂，必须要有合理的会计方法，于是就导出了收付实现制和权责发生制。</p>
+<p class="subheader">Category: <a href="/category/tech.html">Tech</a>
+
+    Tagged: 
+    <a href="/tag/yin-xing.html">银行 </a>
+    <a href="/tag/jin-rong.html">金融 </a>
+    <a href="/tag/ye-wu.html">业务 </a>
+</p>
+
+
+
+<p><a href="/banking-finance.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/banking-finance.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="/english.html"><h3 class="article-title">英语学习</h3></a>
+<h6 class="subheader" title="2015-12-16T19:26:46+08:00">Wed 16 December 2015
+</h6>
+
+
+
+<ol>
+<li>Google Analytics Email-Opt-Out Confirmation</li>
+</ol>
+<p>Opt-Out 选择退出 </p>
+<ol>
+<li>
+<p>ROI return on investment
+投资回报率</p>
+</li>
+<li>
+<p>niche </p>
+</li>
+</ol>
+<p>壁龛；舒适或称心的工作（或生活等）；（产品的）商机；市场定位</p>
+<p>-- 我发现bing.com/dict 的翻译还是比较智能的。我通过mac上的dictionary查，只查出来基本意思，没有查出引申意思。而用bing查，就能查出详细解析。 </p>
+<ol>
+<li>dodgy </li>
+</ol>
+<p>dodgy guy </p>
+<p>dodgy weather </p>
+<p>adj.狡猾的；狡诈的；可疑的；有毛病的
+网络躲闪的；危险的；善于骗人的</p>
+<ol>
+<li>expenditure</li>
+</ol>
+<p>开支 </p>
+<ol>
+<li>
+<p>Les Retrouvailles
+重逢 </p>
+</li>
+<li>
+<p>Ronda
+西班牙一小镇，据说是斗牛发源地</p>
+</li>
+<li>
+<p>medieval</p>
+</li>
+</ol>
+<p>中世纪的 ...</p><p class="subheader">Category: <a href="/category/tech.html">Tech</a>
+
+    Tagged: 
+    <a href="/tag/wai-yu.html">外语 </a>
+</p>
+
+
+
+<p><a href="/english.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/english.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="/work-on-Mac.html"><h3 class="article-title">Work on Mac!</h3></a>
+<h6 class="subheader" title="2015-12-13T21:32:00+08:00">Sun 13 December 2015
+</h6>
+
+
+
+<h1 id="markdown-here">使用markdown here 编辑微信公众号消息!</h1>
+<h2 id="_2">背景</h2>
+<p>这个公众号其实申请很久了，但是基本上没有发布过什么文章。原因是想起那需要点来点去的格式化工具栏就头疼。所以平时写的东西都只发布到博客上。今天突发奇想，有没有可以让微信公众号也支持markdown编辑的工具呢？强大的google没有让我失望：通过安装 chrome 插件：markdown here ， 可以一键渲染markdown语法！</p>
+<h2 id="_3">如何使用</h2>
+<h3 id="_4">前提</h3>
+<ol>
+<li>找梯子翻墙！</li>
+<li>安装chrome浏览器！</li>
+<li>去chrome 插件市场查找 markdown here 插件并安装之!</li>
+</ol>
+<h3 id="_5">使用步骤</h3>
+<ol>
+<li>像往常一样，打开素材管理界面，新建图文消息。</li>
+<li>使用markdown 语法 ： <code>#</code> , <code>##</code> , <code>###</code> 等等来排版&amp;标记你的文章段落。</li>
+<li>最后，也是花腐朽为神奇的一步，就是，使用 <code>ctrl+alt+m</code> 来渲染你的文章。（当然也可以使用chrome 浏览器的右上角按钮，click to toggle markdown rendering ）</li>
+</ol>
+<h3 id="wills-hacking-ways">Will's Hacking ways</h3>
+<p>如果你认为刚刚我说的就是最好的方法，那你就掉坑里了！😄！其实，我根本不按上面的方法走！为什么？
+因为markdown here 有一个问题，就是如果你来回编辑、预览几次，你就看不到markdown的标记了！
+这种情况下，如果你再次使用markdown标记编辑文章，就会有前后编辑排版不同步的问题！
+所以，我强烈建议大家先使用第三方markdown编辑工具(比如mou , 但我会用vi咯)把markdown文件写好，然后再粘贴到微信自己的网页编辑其中！
+那么你就会问：我之前插入的图片怎么办？对不起，你只好在点发布之前，再去插入图片等多媒体信息了！等一切都想好了，再发布，不是很好吗？</p>
+<h2 id="_6">后记</h2>
+<p>现在你看到的这篇文章，就是用markdown来排版和渲染的，各位感觉如何？
+虽然排版方便了，不过我也要小小吐槽一下，我刚习惯了用safari , 现在又不得不把chrome 常驻 <code>commnad + tab</code> 列表里头了！
+大家如果在使用markdown过程中有什么问题或者心得，或者在文章中捉到了bug, 都欢迎点击左下角的<code>阅读原文</code>(如果你是微信公众号读者),或在评论区向我吐槽！</p>
+<p class="subheader">Category: <a href="/category/tech.html">Tech</a>
+
+    Tagged: 
+    <a href="/tag/mac.html">Mac </a>
+    <a href="/tag/osx.html">OSX </a>
+    <a href="/tag/unix.html">Unix </a>
+</p>
+
+
+
+<p><a href="/work-on-Mac.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/work-on-Mac.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="/tools-to-complete-jobs.html"><h3 class="article-title">我的常用工具清单</h3></a>
+<h6 class="subheader" title="2015-11-11T16:20:00+08:00">Wed 11 November 2015
+</h6>
+
+
+
+<h2 id="shadowsocks">ShadowSocks</h2>
+<p>你懂的</p>
+<h2 id="proxychains4">proxychains4</h2>
+<p>terminal 上的梯子，让命令支持fan墙，命令行wget curl不再是难事。</p>
+<p class="subheader">Category: <a href="/category/tech.html">Tech</a>
+
+    Tagged: 
+    <a href="/tag/tools.html">tools </a>
+    <a href="/tag/list.html">list </a>
+    <a href="/tag/chi-fan-gong-ju.html">吃饭工具 </a>
+</p>
+
+
+
+<p><a href="/tools-to-complete-jobs.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/tools-to-complete-jobs.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
 </div>
-                    </div>
-                </nav>
-            </header><!-- /#banner -->
-        </div>
+
     </div>
+    <!-- End Main Content -->
 
-    <div class="row-fluid">
-        <div class="span10 offset1">
-            <div class="row-fluid">
-<div class="span9">
-    <section>
-    <h1>Articles in Tech</h1>
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="/archives.html">Archives</a>
+            <li><a href="/tags.html">Tags</a>
+        </ul>
 
-        <div class="row-fluid archive_row">
-            <div class="span1 archive_year">2015</div>
-        </div>
-        <div class="row-fluid archive_row">
-            <div class="offset1 span1 archive_month">Dec</div>
-        </div>
-        <div class="row-fluid archive_row">
-                <div class="offset1 span1 archive_day">
-                22
-                </div>
-            <div class="span10">
-                <a href="/setup-and-config-my-github-blog-with-pelican.html">使用github+pelican搭建我的博客</a>
-            </div>
-        </div>
-        <div class="row-fluid archive_row">
-            <div class="offset2 span10">
-                <a href="/play-databases.html">主流数据库安装、维护、开发与管理</a>
-            </div>
-        </div>
-        <div class="row-fluid archive_row">
-            <div class="offset2 span10">
-                <a href="/work-on-linux.html">Work on linux!</a>
-            </div>
-        </div>
-        <div class="row-fluid archive_row">
-            <div class="offset2 span10">
-                <a href="/oracle-biee-develop.html">Oracle BIEE 经验总结</a>
-            </div>
-        </div>
-        <div class="row-fluid archive_row">
-                <div class="offset1 span1 archive_day">
-                17
-                </div>
-            <div class="span10">
-                <a href="/about-design.html">设计相关思考</a>
-            </div>
-        </div>
-        <div class="row-fluid archive_row">
-            <div class="offset2 span10">
-                <a href="/banking-finance.html">银行金融业务知识学习</a>
-            </div>
-        </div>
-        <div class="row-fluid archive_row">
-                <div class="offset1 span1 archive_day">
-                16
-                </div>
-            <div class="span10">
-                <a href="/english.html">英语学习</a>
-            </div>
-        </div>
-        <div class="row-fluid archive_row">
-                <div class="offset1 span1 archive_day">
-                13
-                </div>
-            <div class="span10">
-                <a href="/work-on-Mac.html">Work on Mac!</a>
-            </div>
-        </div>
-        <div class="row-fluid archive_row">
-            <div class="offset1 span1 archive_month">Nov</div>
-        </div>
-        <div class="row-fluid archive_row">
-                <div class="offset1 span1 archive_day">
-                11
-                </div>
-            <div class="span10">
-                <a href="/tools-to-complete-jobs.html">我的常用工具清单</a>
-            </div>
-        </div>
-    </section>
-</div>
-<div class="span3">
-    <section id="sidebar">
-            <div>
-                <h2>Browse content by</h2>
-                <ul class="fa-ul">
-                <li><a href="/categories.html"><i class="fa-li fa fa-tags"></i> Categories</a></li>
-                <li><a href="/archives.html"><i class="fa-li fa fa-calendar"></i> Dates</a></li>
-                <li><a href="/tags.html"><i class="fa-li fa fa-tag"></i> Tags</a></li>
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="/category/about.html">About</a></li>
+            <li><a href="/category/job.html">Job</a></li>
+            <li><a href="/category/life.html">Life</a></li>
+            <li><a href="/category/misc.html">misc</a></li>
+            <li><a href="/category/tech.html">Tech</a></li>
+   
+        </ul>
 
-                </ul>
-            </div><!-- /.browse -->
-            <div>
-                <h2>Links</h2>
-                <ul>
-                    <li><a href="https://www.linkedin.com">LinkedIn</a></li>
-                    <li><a href="http://www.slideshare.net">SlideShare</a></li>
-                    <li><a href="https://www.github.com">Github</a></li>
-                    <li><a href="http://www.zhihu.com">知乎(ZhiHu)</a></li>
-                    <li><a href="https://www.quora.com">Quora</a></li>
-                    <li><a href="#">欢迎交换链接</a></li>
-                </ul>
-            </div><!-- /.Links -->
-            <div>
-                <h2>Social</h2>
-                <ul>
-                    <li><a href="http://weibo.com/poooon">See me on Sina WeiBo</a></li>
-                    <li><a href="http://github.com/willpoon">See me on GitHub</a></li>
-                </ul>
-            </div><!-- /.social -->
-            <div>
-                <h2>Tags</h2>
-                <ul id="cloud">
-                     <li class="tag-4"><a href="/tag/unix.html">Unix</a></li>
-                     <li class="tag-4"><a href="/tag/pan-tan.html">潘谈</a></li>
-                     <li class="tag-4"><a href="/tag/gan-wu.html">感悟</a></li>
-                     <li class="tag-4"><a href="/tag/yi-zhu.html">艺术</a></li>
-                     <li class="tag-4"><a href="/tag/mysql.html">mysql</a></li>
-                     <li class="tag-4"><a href="/tag/gu-piao.html">股票</a></li>
-                     <li class="tag-4"><a href="/tag/gong-zuo.html">工作</a></li>
-                     <li class="tag-4"><a href="/tag/osx.html">OSX</a></li>
-                     <li class="tag-4"><a href="/tag/pelican.html">pelican</a></li>
-                     <li class="tag-4"><a href="/tag/yin-xing.html">银行</a></li>
-                     <li class="tag-4"><a href="/tag/ji-hua.html">计划</a></li>
-                     <li class="tag-4"><a href="/tag/database.html">database</a></li>
-                     <li class="tag-4"><a href="/tag/bi.html">BI</a></li>
-                     <li class="tag-4"><a href="/tag/blog.html">blog</a></li>
-                     <li class="tag-4"><a href="/tag/tou-zi.html">投资</a></li>
-                     <li class="tag-4"><a href="/tag/travel.html">travel</a></li>
-                     <li class="tag-4"><a href="/tag/du-bo.html">赌博</a></li>
-                     <li class="tag-4"><a href="/tag/learn.html">learn</a></li>
-                     <li class="tag-4"><a href="/tag/si-kao.html">思考</a></li>
-                     <li class="tag-4"><a href="/tag/xie-zi.html">写字</a></li>
-                     <li class="tag-4"><a href="/tag/kuai-le.html">快乐</a></li>
-                     <li class="tag-4"><a href="/tag/me.html">Me</a></li>
-                     <li class="tag-4"><a href="/tag/todo.html">todo</a></li>
-                     <li class="tag-4"><a href="/tag/biee.html">biee</a></li>
-                     <li class="tag-4"><a href="/tag/shu-ju-ku.html">数据库</a></li>
-                     <li class="tag-4"><a href="/tag/she-ji.html">设计</a></li>
-                     <li class="tag-4"><a href="/tag/db2.html">db2</a></li>
-                     <li class="tag-4"><a href="/tag/chi-fan-gong-ju.html">吃饭工具</a></li>
-                     <li class="tag-4"><a href="/tag/tools.html">tools</a></li>
-                     <li class="tag-4"><a href="/tag/zhuan-qian.html">赚钱</a></li>
-                     <li class="tag-4"><a href="/tag/disqus.html">disqus</a></li>
-                     <li class="tag-4"><a href="/tag/mac.html">Mac</a></li>
-                     <li class="tag-4"><a href="/tag/jin-rong.html">金融</a></li>
-                     <li class="tag-4"><a href="/tag/city.html">city</a></li>
-                     <li class="tag-4"><a href="/tag/jia-gou.html">架构</a></li>
-                     <li class="tag-4"><a href="/tag/reading.html">reading</a></li>
-                     <li class="tag-4"><a href="/tag/books.html">books</a></li>
-                     <li class="tag-4"><a href="/tag/ye-wu.html">业务</a></li>
-                     <li class="tag-4"><a href="/tag/memory.html">memory</a></li>
-                     <li class="tag-4"><a href="/tag/list.html">list</a></li>
-                     <li class="tag-4"><a href="/tag/bi-ji.html">笔记</a></li>
-                     <li class="tag-4"><a href="/tag/tou-ji.html">投机</a></li>
-                     <li class="tag-4"><a href="/tag/xing-fu.html">幸福</a></li>
-                     <li class="tag-4"><a href="/tag/linux.html">linux</a></li>
-                     <li class="tag-4"><a href="/tag/xiang-zuo.html">想做</a></li>
-                     <li class="tag-4"><a href="/tag/db.html">DB</a></li>
-                     <li class="tag-4"><a href="/tag/ji-jin.html">基金</a></li>
-                     <li class="tag-4"><a href="/tag/sheng-huo.html">生活</a></li>
-                     <li class="tag-4"><a href="/tag/wai-yu.html">外语</a></li>
-                     <li class="tag-4"><a href="/tag/ri-zhi.html">日志</a></li>
-                     <li class="tag-4"><a href="/tag/cheng-xu.html">程序</a></li>
-                     <li class="tag-1"><a href="/tag/oracle.html">oracle</a></li>
-                     <li class="tag-4"><a href="/tag/xin-ling.html">心灵</a></li>
-                     <li class="tag-4"><a href="/tag/hu-che.html">胡扯</a></li>
-                     <li class="tag-4"><a href="/tag/github.html">github</a></li>
-                     <li class="tag-4"><a href="/tag/shi-lu.html">实录</a></li>
-                     <li class="tag-4"><a href="/tag/xian-hua.html">闲话</a></li>
-                     <li class="tag-4"><a href="/tag/git.html">git</a></li>
-                </ul>
-             </div>
-<!-- /.Tags -->
-    </section><!-- /#sidebar -->
-</div>
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://www.linkedin.com">LinkedIn</a></li>
+            <li><a href="http://www.slideshare.net">SlideShare</a></li>
+            <li><a href="https://www.github.com">Github</a></li>
+            <li><a href="http://www.zhihu.com">知乎(ZhiHu)</a></li>
+            <li><a href="https://www.quora.com">Quora</a></li>
+            <li><a href="#">欢迎交换链接</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/poooon">See me on Sina WeiBo</a></li>
+            <li><a href="http://github.com/willpoon">See me on GitHub</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 by Poon</p> -->
             </div>
-        </div>
+            </div>
     </div>
-
-    <footer id="site-footer">
-        <div class="row-fluid">
-            <div class="span10 offset1">
-                <address>
-                    <p>
-                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                    </p>
-                    <p>
-                        <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
-                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
-                    </p>
-                </address>
-            </div>
-        </div>
-    </footer>
-
-    <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-69868761-1']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-    </script>
-<script type="text/javascript">
-    var disqus_shortname = 'gitwillpoonimx3';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
-    <script src="//code.jquery.com/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+</footer>
 </body>
 </html>
