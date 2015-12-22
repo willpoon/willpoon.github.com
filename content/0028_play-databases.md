@@ -47,6 +47,92 @@ To silently uninstall DB2 database products, features, or languages in a DB2 cop
 ref: https://www-01.ibm.com/support/knowledgecenter/#!/SSEPGG_9.7.0/com.ibm.db2.luw.qb.server.doc/doc/t0007298.html
 ref: http://db2commerce.com/2012/06/25/installing-db2-using-a-response-file/
 
+## db2 ese 安装相关的几个问题
+
+1. 如何使用响应文件安装 db2 ese ?
+
+db2setup -r /path/to/response_file
+
+2. response 文件模版哪里有？
+
+安装包目录中有模版。
+
+3. ese 如何 添加 license ?
+
+db2licm -a /path/to/license ?
+
+4. 一台机器是否可以按装多套不同版本的db2 产品？
+
+可以。使用 db2ls 查看各个安装版本的安装情况。
+
+同时：同一个版本，可以创建多个instance，一个instance可以创建多个数据库。
+
+5. db2 安装前，要创建用户和组，为什么？ 
+
+https://bytes.com/topic/db2/answers/181692-what-db2-users-db2fenc1-dasusr1
+
+说说我自己的理解：
+
+1. 权限隔离－－什么的功能，就用什么样的用户来管理。隔离了权限，不至于混乱。否则一个文件谁都可以改，就乱套了。
+
+2. 安全考虑。 其实 1 也就是安全考虑。
+
+http://www-01.ibm.com/support/knowledgecenter/?lang=en#!/SSEPGG_9.7.0/com.ibm.db2.luw.qb.server.doc/doc/c0011931.html
+
+http://www.ibm.com/developerworks/data/library/techarticle/dm-0508wasserman/
+
+https://www-01.ibm.com/support/knowledgecenter/#!/SSEPGG_9.5.0/com.ibm.db2.luw.admin.sec.doc/doc/c0005375.html
+
+
+
+
+## 分页大小测试
+
+### 8k PAGESIZE 分页测试：
+
+create table testvarchar( c1 varchar(30000) ,c2 varchar(2000) ,c3 varchar(662) ) 
+DB20000I  The SQL command completed successfully.
+
+32662 is ok  !
+32663 is not ok !
+
+SQL0670N  The row length of the table exceeded a limit of "32677" bytes. 
+
+说明，还有一些字节被其他东西占用了。
+
+
+create table testvarchar( c1 varchar(30000) ,c2 varchar(2000) ,c3 varchar(660) ) in testtbs01
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0670N  The row length of the table exceeded a limit of "4005" bytes. (Table 
+space "TESTTBS01".)  SQLSTATE=54010
+
+
+### 4K pagesize 分页测试：
+
+CREATE BUFFERPOOL testbpool  SIZE 2000 PAGESIZE 4K ;
+
+CREATE TABLESPACE testtbs01 PAGESIZE 4K MANAGED BY DATABASE USING (FILE '/tmp/UMPSYS01.dms' 10M)  BUFFERPOOL testbpool;
+
+drop table testvarchar;
+
+create table testvarchar(
+     c1 varchar(4000)
+     ) in testtbs01;
+
+
+
+     可见，
+
+     1.根据表空间分页大小的不同，对于行的存储大小也不同。这直接导致了varchar(n) 中 n 的大小限制。
+
+     2.所谓分页，其实就是表中每条纪录的总长度限制。不管字段多少，算的是总和。
+
+     3. sql messages 中提示的 limit 值，其实是偏大的。比如 4k的表空间 ，提示 limit ＝ 4005 ， 其实你只能 对varchar(n )  指定最大的n值为
+     varchar(4000)  , varchar(4001) 都会报错。
+
+
+
 
 
 ##  在db2上授权一个用户db2etl，让这个用户具备dbadm & schema创建权限。
@@ -57,7 +143,7 @@ ref: http://db2commerce.com/2012/06/25/installing-db2-using-a-response-file/
 
 db2 list tables for schema syscat | grep -i auth
 
-poon@Wills-MacBook-Pro:~$ db2 list tables for schema metadata
+user@localhost:~$ db2 list tables for schema metadata
 
 
 
@@ -71,7 +157,7 @@ set current schema = 'KALIE'
 GRANT DBADM ON DATABASE to db2admin  --- 是不行的，必须声明是 user , e.g:
 
 
-[db2inst1@iZ281s312fdZ ~]$ db2 grant dbadm on database to db2etl
+[db2inst1@localhost ~]$ db2 grant dbadm on database to db2etl
 
 DB21034E  The command was processed as an SQL statement because it was not a 
 valid Command Line Processor command.  During SQL processing it returned:
@@ -100,20 +186,20 @@ ref: http://www-01.ibm.com/support/knowledgecenter/#!/S
 
 --正确的姿势：使用db2inst1 ：
 
-[db2inst1@iZ281s312fdZ ~]$ db2 grant dbadm on database to user db2etl
+[db2inst1@localhost ~]$ db2 grant dbadm on database to user db2etl
 
 DB20000I  The SQL command completed successfully.
 
 --具备dbadm权限的用户，就具备了创建 db2 schema 的权限：
 
-poon@Wills-MacBook-Pro:~$ db2 create schema skm1 AUTHORIZATION db2etl
+user@localhost:~$ db2 create schema skm1 AUTHORIZATION db2etl
 
 DB20000I  The SQL command completed successfully.
 
 
 ---查看某schema 下的表名：
 
-poon@Wills-MacBook-Pro:~$ db2 "select TABSCHEMA,tabname from syscat.tables where tabschema = 'METADATA'"
+user@localhost:~$ db2 "select TABSCHEMA,tabname from syscat.tables where tabschema = 'METADATA'"
 
 set current schema = 'METADATA'
 
@@ -146,11 +232,11 @@ CREATE TABLE "METADATA"."TMPLST"  (
 --- 现在 db2etl 已经具备了创建schema的权限&建表权限。所以可以直接用db2etl来管理schema及其下的tables权限分配。
 
 
-poon@Wills-MacBook-Pro:~/sunline$ db2 -tvf db2.sql 
+user@localhost:~/sunline$ db2 -tvf db2.sql 
 CREATE TABLE "METADATA"."TMPLST"  ( "TO_INST_ID" VARCHAR(64) , "NLEVEL" INTEGER , "SCORT" VARCHAR(8000) ) IN "IBMDB2SAMPLEREL" 
 DB20000I  The SQL command completed successfully.
 
-poon@Wills-MacBook-Pro:~/sunline$ db2 grant select on METADATA.TMPLST to public
+user@localhost:~/sunline$ db2 grant select on METADATA.TMPLST to public
 DB20000I  The SQL command completed successfully.
 
 
@@ -494,12 +580,12 @@ http://www-01.ibm.com/support/knowledgecenter/api/content/SSEPGG_9.7.0/com.ibm.d
  db2 update db cfg for sample using LOGFILSIZ 4096
  db2 update db cfg for sample using LOGPRIMARY 25
 
- poon@Wills-MacBook-Pro:~/Git/gitblog_imx3/output/content$ db2 update db cfg for sample using LOGFILSIZ 4096
+ user@localhost:~/Git/gitblog_imx3/output/content$ db2 update db cfg for sample using LOGFILSIZ 4096
  DB20000I  The UPDATE DATABASE CONFIGURATION command completed successfully.
  SQL1363W  Database must be deactivated and reactivated before the changes to 
  one or more of the configuration parameters will be effective.
- poon@Wills-MacBook-Pro:~/Git/gitblog_imx3/output/content$ 
- poon@Wills-MacBook-Pro:~/Git/gitblog_imx3/output/content$ db2 update db cfg for sample using LOGPRIMARY 25
+ user@localhost:~/Git/gitblog_imx3/output/content$ 
+ user@localhost:~/Git/gitblog_imx3/output/content$ db2 update db cfg for sample using LOGPRIMARY 25
  DB20000I  The UPDATE DATABASE CONFIGURATION command completed successfully.
  SQL1363W  Database must be deactivated and reactivated before the changes to 
  one or more of the configuration parameters will be effective.
@@ -514,10 +600,10 @@ http://www-01.ibm.com/support/knowledgecenter/api/content/SSEPGG_9.7.0/com.ibm.d
 
  3. 重新激活时，最好远程到服务器上进行。并且fore掉／kill掉所有活动会话。
 
- [db2inst1@iZ281s312fdZ ~]$ db2 DEACTIVATE DATABASE sample 
+ [db2inst1@localhost ~]$ db2 DEACTIVATE DATABASE sample 
  SQL1495W  Deactivate database is successful, however, there is still a 
  connection to the database.
- [db2inst1@iZ281s312fdZ ~]$ ps -ef|grep -i db2
+ [db2inst1@localhost ~]$ ps -ef|grep -i db2
  root       924 32365  0 09:05 pts/0    00:00:00 su - db2inst1
  db2inst1   925   924  0 09:05 pts/0    00:00:00 -bash
  db2inst1  1103     1  0 09:08 pts/0    00:00:00 /home/db2inst1/sqllib/bin/db2bp 925A501 5 A
@@ -538,26 +624,84 @@ http://www-01.ibm.com/support/knowledgecenter/api/content/SSEPGG_9.7.0/com.ibm.d
  root     32016 32013  0 Nov17 ?        00:00:12 db2ckpwd                                        
  db2inst1 32028 32011  0 Nov17 ?        00:11:36 db2acd   ,0,0,0,1,0,0,2,1,0,8a65b0,14,1e014,2,0,1,11fc0,0x210000000,0x210000000,1600000,93000c,2,430016
  db2fenc1 32221 32011  0 Nov17 ?        00:00:03 db2fmp ( ,1,0,0,0,0,0,2,1,0,8a65b0,14,1e014,2,0,1,31fc0,0x210000000,0x210000000,1600000,93000c,2,54802d
- [db2inst1@iZ281s312fdZ ~]$ kill 1103
- [db2inst1@iZ281s312fdZ ~]$ kill 1103
+ [db2inst1@localhost ~]$ kill 1103
+ [db2inst1@localhost ~]$ kill 1103
  -bash: kill: (1103) - No such process
- [db2inst1@iZ281s312fdZ ~]$ db2 DEACTIVATE DATABASE sample 
+ [db2inst1@localhost ~]$ db2 DEACTIVATE DATABASE sample 
  SQL1496W  Deactivate database is successful, but the database was not 
  activated.
- [db2inst1@iZ281s312fdZ ~]$ db2 activate DATABASE sample 
+ [db2inst1@localhost ~]$ db2 activate DATABASE sample 
  DB20000I  The ACTIVATE DATABASE command completed successfully.
 
  已成功重激活。
 
  注意，force会话的步骤，是异步的。所以最后先让用户主动关闭连接。然后在force自动连接。
 
- [db2inst1@iZ281s312fdZ ~]$ DB2 FORCE APPLICATION ALL
+ [db2inst1@localhost ~]$ DB2 FORCE APPLICATION ALL
  -bash: DB2: command not found
- [db2inst1@iZ281s312fdZ ~]$ db2 force application all
+ [db2inst1@localhost ~]$ db2 force application all
  DB20000I  The FORCE APPLICATION command completed successfully.
  DB21024I  This command is asynchronous and may not be effective immediately.
 
 
+# 不能distinct 的几种数据类型：  CLOB, DBCLOB, BLOB, LONG VARCHAR, or LONG VARGRAPHIC 
+
+user@localhost:~$ db2 "create table testlong( lv long varchar ) "
+
+DB20000I  The SQL command completed successfully.
+
+user@localhost:~$ db2 "select distinct lv from testlong"
+
+SQL0134N  Improper use of a string column, host variable, constant, or 
+function "LV".  SQLSTATE=42907
+
+user@localhost:~$ db2 ? SQL0134N
+
+
+    SQL0134N  Improper use of a string column, host variable, constant, or
+      function "<name>".
+
+      Explanation: 
+
+      The use of the string "<name>" is not permitted.
+
+      An expression resulting in a CLOB, DBCLOB, BLOB, LONG VARCHAR, or LONG
+      VARGRAPHIC data type is not permitted in: 
+      *  A SELECT DISTINCT statement
+      *  A GROUP BY clause
+      *  An ORDER BY clause
+      *  A column function with DISTINCT
+      *  A SELECT or VALUES statement of a set operator other than UNION ALL.
+
+      Federated system users: in a pass-through session, a data
+      source-specific restriction can cause this error. See the SQL Reference
+      documentation for the failing data sources.
+
+      The statement cannot be processed.
+
+      User response: 
+
+      The requested operation on the string is not supported.
+
+       sqlcode: -134
+
+        sqlstate: 42907
+
+同事问我是不是long varchar 有什么限制，比如不能distinct group by ， 我测试了一下，发现不但long varchar  , 还有  CLOB, DBCLOB, BLOB, LONG VARCHAR, or LONG
+583       VARGRAPHIC 等都不能 做 DISTINCT ， GROUP BY ， ORDER BY，set operator 。 
+
+看来还是 勤动手，才能有更多收获！
+
+# db2 ese 安装 
+
+## 获取linux发行版本
+
+cat /etc/*-release
+
+CentOS release 6.5 (Final)
+LSB_VERSION=base-4.0-amd64:base-4.0-noarch:core-4.0-amd64:core-4.0-noarch
+CentOS release 6.5 (Final)
+CentOS release 6.5 (Final)
 
 
 

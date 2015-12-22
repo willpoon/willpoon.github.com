@@ -9,7 +9,11 @@ Authors: Poon
 # 前言
 使用biee开发前前后有也有两年多了，对oracle这套产品，也有一点小小心得，在此总结一下，抛砖引玉。持续更新中...
 
-# 经验技巧
+# 经验技巧 tips & tricks 
+
+### 为每个仪表盘标签页单独设置提示作用域！
+
+编辑仪表盘－点击提示右上角的属性－范围－页／仪表盘 － 选用页即可。
 
 ### physical layer 不支持with子句
 
@@ -451,7 +455,28 @@ parent - child 构建出来的 hierarchy colunm , 所有节点都是来自 父�
 
 3. biee支持100多个ascii字符长度，但是如果是中文，就会大打折扣。
 
+
+## biee catalog 报表权限分配 ： 
+
+pms 应用程序角色 -> system-jazn-data.xml 角色配置 -> catalog 报表和应用权限角色挂钩 
+
+权限规则：
+
+1. 父级设置的权限，可以被子级的权限覆盖
+
+2. 如果一个目录权限被设置为 遍历，那么不管目录内的项目是何种权限，都不能打开查看。但是可以被程序调用。
+
+
 # 异常处理 exception handle
+
+### bug report : biee analysis 创建报表内筛选的弊端：
+
+1. 加载速度慢－－因为需要一个数据加载和去重的过程。
+
+2. 会有报表纪录数据不全的情况。本来有100条的，可能只展示了10几条。
+
+所以，不推荐使用 表提示！! 应该尽量使用仪表盘提示！
+
 
 ### ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.
 

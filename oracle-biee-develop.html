@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2015-12-17
+    on 2015-12-22
 
         |
         tags:         <a href="/tag/oracle.html">oracle</a>
@@ -118,7 +118,8 @@
         <div class="toc">
 <ul>
 <li><a href="#_1">前言</a></li>
-<li><a href="#_2">经验技巧</a><ul>
+<li><a href="#tips-tricks">经验技巧 tips &amp; tricks</a><ul>
+<li><a href="#_2">为每个仪表盘标签页单独设置提示作用域！</a></li>
 <li><a href="#physical-layer-with">physical layer 不支持with子句</a></li>
 <li><a href="#session-variable">Session variable 可以放到物理层</a></li>
 <li><a href="#bieetimestampnnnn">BIEE的timestamp类型的日期运算：推算前n天，后n天，前n月，后n月等。</a></li>
@@ -167,12 +168,14 @@
 <li><a href="#biee-111150-bp5-biee-111155">如何给biee 11.1.1.5.0 打补丁？( 使用 bp5 将 biee 升级到 11.1.1.5.5 )</a></li>
 <li><a href="#presentation-variable">提示设计：再过滤器中使用 提示中的 展示变量 (presentation variable)</a></li>
 <li><a href="#biee_8">为什么我导出的的biee报表标题不完整，被截断了？</a></li>
+<li><a href="#biee-catalog">biee catalog 报表权限分配 ：</a></li>
 </ul>
 </li>
 <li><a href="#exception-handle">异常处理 exception handle</a><ul>
+<li><a href="#bug-report-biee-analysis">bug report : biee analysis 创建报表内筛选的弊端：</a></li>
 <li><a href="#ora-32034unsupported-use-of-with-clause-at-oci-call-ocistmtexecute">ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.</a></li>
 <li><a href="#nqserror43119-nqserror42039-report-by">nqserror:43119 nqserror:42039: report 总计函数的by子句中的列必须在选择列表中。</a></li>
-<li><a href="#biee-catalog">biee catalog 指向 不正确如何解决？</a></li>
+<li><a href="#biee-catalog_1">biee catalog 指向 不正确如何解决？</a></li>
 <li><a href="#rpd-repository-rpd">加载的rpd 不是我们想要的repository ， 怎么改成我们要的rpd?</a></li>
 <li><a href="#_8">仪表板报表爆表了怎么办？</a></li>
 <li><a href="#biee-111150-111155">求助：biee 11.1.1.5.0 打补丁到 11.1.1.5.5 之后，报表导出不再自动合并，如何解决？</a></li>
@@ -225,7 +228,9 @@
         
 <h1 id="_1">前言</h1>
 <p>使用biee开发前前后有也有两年多了，对oracle这套产品，也有一点小小心得，在此总结一下，抛砖引玉。持续更新中...</p>
-<h1 id="_2">经验技巧</h1>
+<h1 id="tips-tricks">经验技巧 tips &amp; tricks</h1>
+<h3 id="_2">为每个仪表盘标签页单独设置提示作用域！</h3>
+<p>编辑仪表盘－点击提示右上角的属性－范围－页／仪表盘 － 选用页即可。</p>
 <h3 id="physical-layer-with">physical layer 不支持with子句</h3>
 <p>如果你打算将：
 with tab as（  ） 这样的子句放到物理表视图中，那么rpd将会让你失望。因为rpd中的视图实质上是一个形如 select * from ( ) tab 的子查询。而如果你要将with放到子查询中，将会影响biee前端自动生成with 子句。如果你要用with子句写查询语句，简易先 create view yourviewname as 来建立一个视图，然后再在物理层中调用。</p>
@@ -569,14 +574,35 @@ http://docs.oracle.com/cd/E25054_01/fusionapps.1111/e20836/dimensions.htm</p>
 <p>biee支持100多个ascii字符长度，但是如果是中文，就会大打折扣。</p>
 </li>
 </ol>
+<h2 id="biee-catalog">biee catalog 报表权限分配 ：</h2>
+<p>pms 应用程序角色 -&gt; system-jazn-data.xml 角色配置 -&gt; catalog 报表和应用权限角色挂钩 </p>
+<p>权限规则：</p>
+<ol>
+<li>
+<p>父级设置的权限，可以被子级的权限覆盖</p>
+</li>
+<li>
+<p>如果一个目录权限被设置为 遍历，那么不管目录内的项目是何种权限，都不能打开查看。但是可以被程序调用。</p>
+</li>
+</ol>
 <h1 id="exception-handle">异常处理 exception handle</h1>
+<h3 id="bug-report-biee-analysis">bug report : biee analysis 创建报表内筛选的弊端：</h3>
+<ol>
+<li>
+<p>加载速度慢－－因为需要一个数据加载和去重的过程。</p>
+</li>
+<li>
+<p>会有报表纪录数据不全的情况。本来有100条的，可能只展示了10几条。</p>
+</li>
+</ol>
+<p>所以，不推荐使用 表提示！! 应该尽量使用仪表盘提示！</p>
 <h3 id="ora-32034unsupported-use-of-with-clause-at-oci-call-ocistmtexecute">ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.</h3>
 <p>解决办法：检查rpd物理层子查询中是否有with子句。有的话，改成子查询的形式。</p>
 <h3 id="nqserror43119-nqserror42039-report-by">nqserror:43119 nqserror:42039: report 总计函数的by子句中的列必须在选择列表中。</h3>
 <p>该异常我理解为：select dim... report_sum( measure by dim... ) from table ...
 dim... 没有对应上！</p>
 <p>如何排除该异常：把视图中exclude掉的字段，试验性地添加到include列中。如果你不希望挪上去的列展示出来，再把该列设置为隐藏即可！</p>
-<h3 id="biee-catalog">biee catalog 指向 不正确如何解决？</h3>
+<h3 id="biee-catalog_1">biee catalog 指向 不正确如何解决？</h3>
 <p>修改 instanceconfig.xml , 将 <catalogpath> 标签中的路径改为正确的路径。</catalogpath></p>
 <h3 id="rpd-repository-rpd">加载的rpd 不是我们想要的repository ， 怎么改成我们要的rpd?</h3>
 <p>修改 NQSConfig.INI</p>

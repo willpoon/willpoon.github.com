@@ -2,8 +2,8 @@
 /archives.html
 /tags.html
 /categories.html
-/read-some-books.html
 /poons-talk.html
+/read-some-books.html
 /play-databases.html
 /work-on-linux.html
 /oracle-biee-develop.html

@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2015-12-18
+    on 2015-12-22
 
         |
         tags:         <a href="/tag/db.html">DB</a>
@@ -122,16 +122,22 @@
 <ul>
 <li><a href="#db2">DB2</a><ul>
 <li><a href="#response-db2-ese-v97">使用response文件安装 db2 ese v9.7</a></li>
+<li><a href="#db2-ese">db2 ese 安装相关的几个问题</a></li>
+<li><a href="#_1">分页大小测试</a><ul>
+<li><a href="#8k-pagesize">8k PAGESIZE 分页测试：</a></li>
+<li><a href="#4k-pagesize">4K pagesize 分页测试：</a></li>
+</ul>
+</li>
 <li><a href="#db2db2etldbadm-schema">在db2上授权一个用户db2etl，让这个用户具备dbadm &amp; schema创建权限。</a></li>
-<li><a href="#_1">启动&amp;连接&amp;测试</a></li>
-<li><a href="#_2">密码带特殊字符时，如果连接</a></li>
+<li><a href="#_2">启动&amp;连接&amp;测试</a></li>
+<li><a href="#_3">密码带特殊字符时，如果连接</a></li>
 <li><a href="#sql3001c-an-io-error">SQL3001C  An I/O error</a></li>
-<li><a href="#_3">统计表大小，用户空间大小</a></li>
+<li><a href="#_4">统计表大小，用户空间大小</a></li>
 <li><a href="#catalog">如何catalog 一个远程数据库</a></li>
 <li><a href="#db2-on-mac">DB2 on mac 很难找！</a></li>
 <li><a href="#db2-schema">db2 一个系统用户管理多个schema  .</a></li>
 <li><a href="#db2-grant-schema">DB2 grant 无法针对 schema 授权</a><ul>
-<li><a href="#_4">更灵活的操作：</a></li>
+<li><a href="#_5">更灵活的操作：</a></li>
 </ul>
 </li>
 <li><a href="#db2_1">DB2 建表注意事项</a></li>
@@ -139,7 +145,7 @@
 <li><a href="#db2-db2-sql1477n">db2 查报错方法： db2 ? SQL1477N</a><ul>
 <li><a href="#sqlcode">SQLCODE</a></li>
 <li><a href="#sqlstate">SQLSTATE</a><ul>
-<li><a href="#_5">注意</a></li>
+<li><a href="#_6">注意</a></li>
 </ul>
 </li>
 <li><a href="#sql-message-concepts">SQL message concepts</a></li>
@@ -150,19 +156,24 @@
 <li><a href="#db2_2">db2 修改日志文件大小和数量</a></li>
 </ul>
 </li>
+<li><a href="#distinct-clob-dbclob-blob-long-varchar-or-long-vargraphic">不能distinct 的几种数据类型：  CLOB, DBCLOB, BLOB, LONG VARCHAR, or LONG VARGRAPHIC</a></li>
+<li><a href="#db2-ese_1">db2 ese 安装</a><ul>
+<li><a href="#linux">获取linux发行版本</a></li>
+</ul>
+</li>
 <li><a href="#mysql">MYSQL</a><ul>
 <li><a href="#mysql-1040-too-many-connections">mysql : 1040 too many connections  的解决</a></li>
 <li><a href="#mysql-full-outer-join">MYSQL 不支持 full outer join</a></li>
 <li><a href="#mysql-except-or-minus">MYSQL 不支持 except or minus</a></li>
 <li><a href="#mysql-a">mysql -A 参数</a></li>
 <li><a href="#mysql-limit">mysql limit 的用法：</a></li>
-<li><a href="#_6">关联技巧:恢复空表</a></li>
+<li><a href="#_7">关联技巧:恢复空表</a></li>
 <li><a href="#mysqld">启动mysqld 的时候，一般加什么参数？</a></li>
 <li><a href="#mysql_1">mysql 远程连接</a></li>
 <li><a href="#except-minus-mysql">如果不能用 except , minus , mysql 如何比较两张表？</a></li>
 <li><a href="#mysql-row">mysql 使用 row() 实现 多列比较</a></li>
 <li><a href="#mysql-intersect">mysql 模拟 intersect  求差集</a></li>
-<li><a href="#_7">远程数据库连接配置</a></li>
+<li><a href="#_8">远程数据库连接配置</a></li>
 </ul>
 </li>
 <li><a href="#oracle">ORACLE</a><ul>
@@ -172,11 +183,11 @@
 <li><a href="#oracle-dml-escape-ampersand">oracle 在执行 dml的时候 escape &amp; (ampersand)符号？</a></li>
 </ul>
 </li>
-<li><a href="#_8">优秀博客</a><ul>
+<li><a href="#_9">优秀博客</a><ul>
 <li><a href="#httpdb2commercecom">http://db2commerce.com/</a></li>
 </ul>
 </li>
-<li><a href="#_9">老牌论坛</a></li>
+<li><a href="#_10">老牌论坛</a></li>
 </ul>
 </div>
         </nav>
@@ -213,16 +224,79 @@ Uninstalling a DB2 database product, feature, or language using a response file 
 To silently uninstall DB2 database products, features, or languages in a DB2 copy, use the db2_deinstall command with the -r option.</p>
 <p>ref: https://www-01.ibm.com/support/knowledgecenter/#!/SSEPGG_9.7.0/com.ibm.db2.luw.qb.server.doc/doc/t0007298.html
 ref: http://db2commerce.com/2012/06/25/installing-db2-using-a-response-file/</p>
+<h2 id="db2-ese">db2 ese 安装相关的几个问题</h2>
+<ol>
+<li>如何使用响应文件安装 db2 ese ?</li>
+</ol>
+<p>db2setup -r /path/to/response_file</p>
+<ol>
+<li>response 文件模版哪里有？</li>
+</ol>
+<p>安装包目录中有模版。</p>
+<ol>
+<li>ese 如何 添加 license ?</li>
+</ol>
+<p>db2licm -a /path/to/license ?</p>
+<ol>
+<li>一台机器是否可以按装多套不同版本的db2 产品？</li>
+</ol>
+<p>可以。使用 db2ls 查看各个安装版本的安装情况。</p>
+<p>同时：同一个版本，可以创建多个instance，一个instance可以创建多个数据库。</p>
+<ol>
+<li>db2 安装前，要创建用户和组，为什么？ </li>
+</ol>
+<p>https://bytes.com/topic/db2/answers/181692-what-db2-users-db2fenc1-dasusr1</p>
+<p>说说我自己的理解：</p>
+<ol>
+<li>
+<p>权限隔离－－什么的功能，就用什么样的用户来管理。隔离了权限，不至于混乱。否则一个文件谁都可以改，就乱套了。</p>
+</li>
+<li>
+<p>安全考虑。 其实 1 也就是安全考虑。</p>
+</li>
+</ol>
+<p>http://www-01.ibm.com/support/knowledgecenter/?lang=en#!/SSEPGG_9.7.0/com.ibm.db2.luw.qb.server.doc/doc/c0011931.html</p>
+<p>http://www.ibm.com/developerworks/data/library/techarticle/dm-0508wasserman/</p>
+<p>https://www-01.ibm.com/support/knowledgecenter/#!/SSEPGG_9.5.0/com.ibm.db2.luw.admin.sec.doc/doc/c0005375.html</p>
+<h2 id="_1">分页大小测试</h2>
+<h3 id="8k-pagesize">8k PAGESIZE 分页测试：</h3>
+<p>create table testvarchar( c1 varchar(30000) ,c2 varchar(2000) ,c3 varchar(662) ) 
+DB20000I  The SQL command completed successfully.</p>
+<p>32662 is ok  !
+32663 is not ok !</p>
+<p>SQL0670N  The row length of the table exceeded a limit of "32677" bytes. </p>
+<p>说明，还有一些字节被其他东西占用了。</p>
+<p>create table testvarchar( c1 varchar(30000) ,c2 varchar(2000) ,c3 varchar(660) ) in testtbs01
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0670N  The row length of the table exceeded a limit of "4005" bytes. (Table 
+space "TESTTBS01".)  SQLSTATE=54010</p>
+<h3 id="4k-pagesize">4K pagesize 分页测试：</h3>
+<p>CREATE BUFFERPOOL testbpool  SIZE 2000 PAGESIZE 4K ;</p>
+<p>CREATE TABLESPACE testtbs01 PAGESIZE 4K MANAGED BY DATABASE USING (FILE '/tmp/UMPSYS01.dms' 10M)  BUFFERPOOL testbpool;</p>
+<p>drop table testvarchar;</p>
+<p>create table testvarchar(
+     c1 varchar(4000)
+     ) in testtbs01;</p>
+<pre><code> 可见，
+
+ 1.根据表空间分页大小的不同，对于行的存储大小也不同。这直接导致了varchar(n) 中 n 的大小限制。
+
+ 2.所谓分页，其实就是表中每条纪录的总长度限制。不管字段多少，算的是总和。
+
+ 3. sql messages 中提示的 limit 值，其实是偏大的。比如 4k的表空间 ，提示 limit ＝ 4005 ， 其实你只能 对varchar(n )  指定最大的n值为
+ varchar(4000)  , varchar(4001) 都会报错。
+</code></pre>
 <h2 id="db2db2etldbadm-schema">在db2上授权一个用户db2etl，让这个用户具备dbadm &amp; schema创建权限。</h2>
 <p>2015-12-15 Tue 20:57 PM</p>
 <p>--db2 列出schema下所有的tables</p>
 <p>db2 list tables for schema syscat | grep -i auth</p>
-<p>poon@Wills-MacBook-Pro:~$ db2 list tables for schema metadata</p>
+<p>user@localhost:~$ db2 list tables for schema metadata</p>
 <p>-- 指定当前schema 
 set current schema = 'KALIE'</p>
 <p>--database 已经默认为当前connect 的用户, 例如sample :</p>
 <p>GRANT DBADM ON DATABASE to db2admin  --- 是不行的，必须声明是 user , e.g:</p>
-<p>[db2inst1@iZ281s312fdZ ~]$ db2 grant dbadm on database to db2etl</p>
+<p>[db2inst1@localhost ~]$ db2 grant dbadm on database to db2etl</p>
 <p>DB21034E  The command was processed as an SQL statement because it was not a 
 valid Command Line Processor command.  During SQL processing it returned:
 SQL0569N  Authorization ID "DB2ETL" does not uniquely identify a user, a group 
@@ -237,13 +311,13 @@ Authorization ID authorization-name does not uniquely identify a user, a group o
 <p>Change the statement to explicitly specify the USER, GROUP or ROLE keyword to uniquely identify the specified authorization id.</p>
 <p>ref: http://www-01.ibm.com/support/knowledgecenter/#!/S</p>
 <p>--正确的姿势：使用db2inst1 ：</p>
-<p>[db2inst1@iZ281s312fdZ ~]$ db2 grant dbadm on database to user db2etl</p>
+<p>[db2inst1@localhost ~]$ db2 grant dbadm on database to user db2etl</p>
 <p>DB20000I  The SQL command completed successfully.</p>
 <p>--具备dbadm权限的用户，就具备了创建 db2 schema 的权限：</p>
-<p>poon@Wills-MacBook-Pro:~$ db2 create schema skm1 AUTHORIZATION db2etl</p>
+<p>user@localhost:~$ db2 create schema skm1 AUTHORIZATION db2etl</p>
 <p>DB20000I  The SQL command completed successfully.</p>
 <p>---查看某schema 下的表名：</p>
-<p>poon@Wills-MacBook-Pro:~$ db2 "select TABSCHEMA,tabname from syscat.tables where tabschema = 'METADATA'"</p>
+<p>user@localhost:~$ db2 "select TABSCHEMA,tabname from syscat.tables where tabschema = 'METADATA'"</p>
 <p>set current schema = 'METADATA'</p>
 <p>--db2look 是本地客户端的命令，如果客户端版本和服务器有差别，db2look 可能用不了哦：</p>
 <p>db2look -d sample -e -l -x  -z metadata -i db2etl -w db2etlpassword</p>
@@ -262,18 +336,18 @@ Authorization ID authorization-name does not uniquely identify a user, a group o
           "SCORT" VARCHAR(8000) ) <br/>
          IN "IBMDB2SAMPLEREL" </p>
 <p>--- 现在 db2etl 已经具备了创建schema的权限&amp;建表权限。所以可以直接用db2etl来管理schema及其下的tables权限分配。</p>
-<p>poon@Wills-MacBook-Pro:~/sunline$ db2 -tvf db2.sql 
+<p>user@localhost:~/sunline$ db2 -tvf db2.sql 
 CREATE TABLE "METADATA"."TMPLST"  ( "TO_INST_ID" VARCHAR(64) , "NLEVEL" INTEGER , "SCORT" VARCHAR(8000) ) IN "IBMDB2SAMPLEREL" 
 DB20000I  The SQL command completed successfully.</p>
-<p>poon@Wills-MacBook-Pro:~/sunline$ db2 grant select on METADATA.TMPLST to public
+<p>user@localhost:~/sunline$ db2 grant select on METADATA.TMPLST to public
 DB20000I  The SQL command completed successfully.</p>
 <p>以上，除了给db2etl赋 dbadm 权限用到db2inst1，其他操作都不需要。 只需要用db2etl即可。</p>
-<h2 id="_1">启动&amp;连接&amp;测试</h2>
+<h2 id="_2">启动&amp;连接&amp;测试</h2>
 <p>su - db2inst1</p>
 <p>db2stop</p>
 <p>db2start</p>
 <p>db2 connect to sample</p>
-<h2 id="_2">密码带特殊字符时，如果连接</h2>
+<h2 id="_3">密码带特殊字符时，如果连接</h2>
 <p>db2 'connect to sample user db2etl using "db2etl!QAZ"'</p>
 <p>使用'' 包住connect 语句</p>
 <p>使用 "" 包住 密码串。</p>
@@ -281,7 +355,7 @@ DB20000I  The SQL command completed successfully.</p>
 <h2 id="sql3001c-an-io-error">SQL3001C  An I/O error</h2>
 <p>SQL3001C  An I/O error (reason = "sqlofopn -2079391743") occurred while  opening the output file.
 报这个错的原因是路径不存在或路径没有写入权限。</p>
-<h2 id="_3">统计表大小，用户空间大小</h2>
+<h2 id="_4">统计表大小，用户空间大小</h2>
 <p>从 SYSIBMADM.ADMINTABINFO  统计。</p>
 <h2 id="catalog">如何catalog 一个远程数据库</h2>
 <pre><code>Wills-MacBook-Pro:bin db2inst1$ db2 UNCATALOG DATABASE sample
@@ -397,7 +471,7 @@ DB20000I  The SQL command completed successfully.
 
 db2 -tvf grants.sql
 </code></pre>
-<h3 id="_4">更灵活的操作：</h3>
+<h3 id="_5">更灵活的操作：</h3>
 <pre><code>ksh grant_privs.ksh DB_X USER_X SCHEMA_X insert,delete,update,select
 </code></pre>
 <p>脚本如下：</p>
@@ -501,7 +575,7 @@ SQLSTATE values are designed so that application programs can test for specific 
 SQLSTATE classes that begin with the characters 0 through 6 or A through H are reserved for the database manager. Within these classes, subclasses that begin with the characters 0 through H are reserved for the database manager. Subclasses that begin with the characters I through Z can be defined.
 The class code of an SQLSTATE value indicates whether the SQL statement was executed successfully (class codes 00 and 01) or unsuccessfully (all other class codes).</p>
 <p>SQLSTATE is related to SQLCODE. Every SQLSTATE has one or more SQLCODEs associated with it. An SQLSTATE can refer to more than one SQLCODE.</p>
-<h4 id="_5">注意</h4>
+<h4 id="_6">注意</h4>
 <ol>
 <li>
 <p>SQLSTATE is related to SQLCODE. Every SQLSTATE has one or more SQLCODEs associated with it. An SQLSTATE can refer to more than one SQLCODE.</p>
@@ -534,12 +608,12 @@ http://www-01.ibm.com/support/knowledgecenter/api/content/SSEPGG_9.7.0/com.ibm.d
 <p>db2 get db cfg for sample</p>
 <p>db2 update db cfg for sample using LOGFILSIZ 4096
  db2 update db cfg for sample using LOGPRIMARY 25</p>
-<p>poon@Wills-MacBook-Pro:~/Git/gitblog_imx3/output/content$ db2 update db cfg for sample using LOGFILSIZ 4096
+<p>user@localhost:~/Git/gitblog_imx3/output/content$ db2 update db cfg for sample using LOGFILSIZ 4096
  DB20000I  The UPDATE DATABASE CONFIGURATION command completed successfully.
  SQL1363W  Database must be deactivated and reactivated before the changes to 
  one or more of the configuration parameters will be effective.
- poon@Wills-MacBook-Pro:~/Git/gitblog_imx3/output/content$ 
- poon@Wills-MacBook-Pro:~/Git/gitblog_imx3/output/content$ db2 update db cfg for sample using LOGPRIMARY 25
+ user@localhost:~/Git/gitblog_imx3/output/content$ 
+ user@localhost:~/Git/gitblog_imx3/output/content$ db2 update db cfg for sample using LOGPRIMARY 25
  DB20000I  The UPDATE DATABASE CONFIGURATION command completed successfully.
  SQL1363W  Database must be deactivated and reactivated before the changes to 
  one or more of the configuration parameters will be effective.</p>
@@ -556,10 +630,10 @@ http://www-01.ibm.com/support/knowledgecenter/api/content/SSEPGG_9.7.0/com.ibm.d
 <p>重新激活时，最好远程到服务器上进行。并且fore掉／kill掉所有活动会话。</p>
 </li>
 </ol>
-<p>[db2inst1@iZ281s312fdZ ~]$ db2 DEACTIVATE DATABASE sample 
+<p>[db2inst1@localhost ~]$ db2 DEACTIVATE DATABASE sample 
  SQL1495W  Deactivate database is successful, however, there is still a 
  connection to the database.
- [db2inst1@iZ281s312fdZ ~]$ ps -ef|grep -i db2
+ [db2inst1@localhost ~]$ ps -ef|grep -i db2
  root       924 32365  0 09:05 pts/0    00:00:00 su - db2inst1
  db2inst1   925   924  0 09:05 pts/0    00:00:00 -bash
  db2inst1  1103     1  0 09:08 pts/0    00:00:00 /home/db2inst1/sqllib/bin/db2bp 925A501 5 A
@@ -580,21 +654,67 @@ http://www-01.ibm.com/support/knowledgecenter/api/content/SSEPGG_9.7.0/com.ibm.d
  root     32016 32013  0 Nov17 ?        00:00:12 db2ckpwd                                      <br/>
  db2inst1 32028 32011  0 Nov17 ?        00:11:36 db2acd   ,0,0,0,1,0,0,2,1,0,8a65b0,14,1e014,2,0,1,11fc0,0x210000000,0x210000000,1600000,93000c,2,430016
  db2fenc1 32221 32011  0 Nov17 ?        00:00:03 db2fmp ( ,1,0,0,0,0,0,2,1,0,8a65b0,14,1e014,2,0,1,31fc0,0x210000000,0x210000000,1600000,93000c,2,54802d
- [db2inst1@iZ281s312fdZ ~]$ kill 1103
- [db2inst1@iZ281s312fdZ ~]$ kill 1103
+ [db2inst1@localhost ~]$ kill 1103
+ [db2inst1@localhost ~]$ kill 1103
  -bash: kill: (1103) - No such process
- [db2inst1@iZ281s312fdZ ~]$ db2 DEACTIVATE DATABASE sample 
+ [db2inst1@localhost ~]$ db2 DEACTIVATE DATABASE sample 
  SQL1496W  Deactivate database is successful, but the database was not 
  activated.
- [db2inst1@iZ281s312fdZ ~]$ db2 activate DATABASE sample 
+ [db2inst1@localhost ~]$ db2 activate DATABASE sample 
  DB20000I  The ACTIVATE DATABASE command completed successfully.</p>
 <p>已成功重激活。</p>
 <p>注意，force会话的步骤，是异步的。所以最后先让用户主动关闭连接。然后在force自动连接。</p>
-<p>[db2inst1@iZ281s312fdZ ~]$ DB2 FORCE APPLICATION ALL
+<p>[db2inst1@localhost ~]$ DB2 FORCE APPLICATION ALL
  -bash: DB2: command not found
- [db2inst1@iZ281s312fdZ ~]$ db2 force application all
+ [db2inst1@localhost ~]$ db2 force application all
  DB20000I  The FORCE APPLICATION command completed successfully.
  DB21024I  This command is asynchronous and may not be effective immediately.</p>
+<h1 id="distinct-clob-dbclob-blob-long-varchar-or-long-vargraphic">不能distinct 的几种数据类型：  CLOB, DBCLOB, BLOB, LONG VARCHAR, or LONG VARGRAPHIC</h1>
+<p>user@localhost:~$ db2 "create table testlong( lv long varchar ) "</p>
+<p>DB20000I  The SQL command completed successfully.</p>
+<p>user@localhost:~$ db2 "select distinct lv from testlong"</p>
+<p>SQL0134N  Improper use of a string column, host variable, constant, or 
+function "LV".  SQLSTATE=42907</p>
+<p>user@localhost:~$ db2 ? SQL0134N</p>
+<pre><code>SQL0134N  Improper use of a string column, host variable, constant, or
+  function "&lt;name&gt;".
+
+  Explanation:
+
+  The use of the string "&lt;name&gt;" is not permitted.
+
+  An expression resulting in a CLOB, DBCLOB, BLOB, LONG VARCHAR, or LONG
+  VARGRAPHIC data type is not permitted in: 
+  *  A SELECT DISTINCT statement
+  *  A GROUP BY clause
+  *  An ORDER BY clause
+  *  A column function with DISTINCT
+  *  A SELECT or VALUES statement of a set operator other than UNION ALL.
+
+  Federated system users: in a pass-through session, a data
+  source-specific restriction can cause this error. See the SQL Reference
+  documentation for the failing data sources.
+
+  The statement cannot be processed.
+
+  User response:
+
+  The requested operation on the string is not supported.
+
+   sqlcode: -134
+
+    sqlstate: 42907
+</code></pre>
+<p>同事问我是不是long varchar 有什么限制，比如不能distinct group by ， 我测试了一下，发现不但long varchar  , 还有  CLOB, DBCLOB, BLOB, LONG VARCHAR, or LONG
+583       VARGRAPHIC 等都不能 做 DISTINCT ， GROUP BY ， ORDER BY，set operator 。 </p>
+<p>看来还是 勤动手，才能有更多收获！</p>
+<h1 id="db2-ese_1">db2 ese 安装</h1>
+<h2 id="linux">获取linux发行版本</h2>
+<p>cat /etc/*-release</p>
+<p>CentOS release 6.5 (Final)
+LSB_VERSION=base-4.0-amd64:base-4.0-noarch:core-4.0-amd64:core-4.0-noarch
+CentOS release 6.5 (Final)
+CentOS release 6.5 (Final)</p>
 <h1 id="mysql">MYSQL</h1>
 <h2 id="mysql-1040-too-many-connections">mysql : 1040 too many connections  的解决</h2>
 <ol>
@@ -628,7 +748,7 @@ RIGHT JOIN t2 ON t1.id = t2.id
 <p>limit m,n 解释:</p>
 <p>m(5) -- 表示偏移量。也就是要skip掉m行。</p>
 <p>n(10) --  表示从第m行之后，最大可以提取n行。</p>
-<h2 id="_6">关联技巧:恢复空表</h2>
+<h2 id="_7">关联技巧:恢复空表</h2>
 <pre><code>INSERT INTO ${PDM_SCH}.LI_COL
 SELECT B.*
 FROM ${PDM_SCH}.LI_COL_BAK B,
@@ -684,7 +804,7 @@ GROUP BY PK, column_list
 HAVING COUNT (*) = 1
 ORDER BY PK
 </code></pre>
-<h2 id="_7">远程数据库连接配置</h2>
+<h2 id="_8">远程数据库连接配置</h2>
 <ol>
 <li>db2 </li>
 </ol>
@@ -730,11 +850,11 @@ start with pid=1 connect by prior id=pid;</p>
 SET ESCAPE ON;
 </code></pre>
 
-<h1 id="_8">优秀博客</h1>
+<h1 id="_9">优秀博客</h1>
 <h2 id="httpdb2commercecom">http://db2commerce.com/</h2>
 <p>ember crooks :</p>
 <p>In 2014, IBM named me as an IBM Gold Consultant.</p>
-<h1 id="_9">老牌论坛</h1>
+<h1 id="_10">老牌论坛</h1>
 <p>http://www.dbforums.com</p>
 
         <div class="sharethis-bottom">

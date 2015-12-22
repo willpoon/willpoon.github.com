@@ -253,6 +253,20 @@ centos 上使用mount 命令 挂载虚拟光盘iso文件：
 [root@iZ281s312fdZ ~]# sudo mkdir /mnt/iso
 [root@iZ281s312fdZ iso]# mount -t iso9660 -o loop /opt/packages/DB2_ESE_9_7_0_0_LNXX86_64.iso /mnt/iso/
 
+## 修改用户和修改用户组
 
+usermod 
+
+chgrp 
+
+## 添加用户和添加组
+
+groupadd 
+
+useradd
+
+## 查看一个用户和一个组的归属关系
+
+id user_name
 
 [git] 2015-11-24 13:05 add git
