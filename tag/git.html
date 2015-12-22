@@ -1,301 +1,238 @@
-<!DOCTYPE html>
-<head>
-    <meta charset="utf-8" />
-    <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width" />
+<!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta name="author" content="Poon" />
+    <meta name="robots" content="index, follow"/>
 
-    <title>仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 - git</title>
+    <meta property="og:title" content="仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 - git"/>
+    <meta property="og:url" content="/tag/git.html"/>
+    <meta property="og:site_name" content="仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖"/>
+    <meta property="og:type" content="website"/>
 
-    <link rel="stylesheet" href="/theme/css/normalize.css" />
-    <link rel="stylesheet" href="/theme/css/foundation.min.css" />
-    <link rel="stylesheet" href="/theme/css/style.css" />
-    <link rel="stylesheet" href="/theme/css/pygments.css" />	
-    <script src="/theme/js/modernizr.js"></script>
+    <link rel="canonical" href="/tag/git.html" />
+
+    <title>仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 - git | 仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">
+        stLight.options({
+            publisher: "7470bcd0-1833-4a2b-a25f-c4a233bdfced",
+            doNotHash: false,
+            doNotCopy: false,
+            hashAddressBar: false
+        });
+    </script>
 </head>
 
-<body>
+<body id="index">
 
-<!-- Nav Bar -->
-<nav>
-<div class="top-bar">
-<div class="row">
-    <div class="large-9 large-centered columns">
-	    <h1><a href="">仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</a></h1>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h2>
+                        <a href="/"> 仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 </a> 
+<!-- /# 
+ 
+                        <strong>
+                            <span style="font-size:12px;vertical-align:bottom">Be a Coder,Lifehacker,Storyteller </span>
+                        </strong>
+ -->
+                </h2>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li ><a href="tags.html">Tags</a></li>
+                            <li ><a href="about.html">About</a></li>
+                        </ul>
+
+<script>
+  (function() {
+    var cx = '005973619447881484970:jf4jwrpc3tg';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<div id="google-custom-search" class="nav">
+    <gcse:search></gcse:search>
+</div>
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
     </div>
-</div>
-</div>
 
-<!-- Show menu items and pages -->
-<div class="row">
-<div class="large-9 columns">
-    <ul class="button-group navigation">
-    <li><a href="tags.html" class="button secondary small">Tags</a></li>
-    <li><a href="about.html" class="button secondary small">About</a></li>
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span9">
+    <section>
+    <h1>Articles tagged with "git"</h1>
 
-    </ul>
-</div>
-</div>
-</nav>
-<!-- End Nav -->
-
-
-<!-- Main Page Content and Sidebar -->
-<div class="row">
-
-    <!-- Main Blog Content -->
-    <div class="large-9 columns">
-        
-        
-
-            <article>
-                <a href="/work-on-linux.html"><h3 class="article-title">Work on linux!</h3></a>
-<h6 class="subheader" title="2015-12-22T16:09:55+08:00">Tue 22 December 2015
-</h6>
-
-
-<p>键盘党，终端控,我们用linux 来干活!鼠标?从来都只是用来玩游戏的！</p>
-<p>仅以此帖，记录在linux下的点点滴滴。</p>
-
-<h1 id="1-mysql">1. MYSQL</h1>
-<h2 id="11">1.1</h2>
-<pre><code>GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' identified by 'passwordhere' WITH GRANT OPTION;
-</code></pre>
-<p>如果不指定identified by , 那么就可以无密码登录了！！ 这时，应该指定 @'host' 。</p>
-<h2 id="12">1.2 本机无密码登录</h2>
-<pre><code>mysqld --skip-grant-tables
-</code></pre>
-<p>2015-11-11 19:47 , 就遇到一个问题：有人把mysql.user 表删掉了，无法登陆，这时，就需要使用这个方法来恢复 mysql.user.</p>
-<h2 id="13-etcrcdinitdmysql">1.3 /etc/rc.d/init.d/mysql 设置</h2>
-<p>当你的mysql安装路径或者数据目录迁移了，/etc/my.cnf 设置变化了，就需要修改这个mysql shell 文件。否则，使用 service mysql start/stop 之类命令时，会有问题，比如找不到库等。</p>
-<h2 id="14-dig-dns-lookup-utility">1.4 dig - DNS lookup utility</h2>
-<pre><code>dig www.imx3.com
-</code></pre>
-<p>结果：</p>
-<pre><code>;; QUESTION SECTION:
-;www.imx3.com.          IN  A
-
-;; ANSWER SECTION:
-www.imx3.com.       3600    IN  CNAME   willpoon.github.io.
-willpoon.github.io. 3600    IN  CNAME   github.map.fastly.net.
-github.map.fastly.net.  3600    IN  A   103.245.222.133
-</code></pre>
-<h1 id="2-ps">2. ps</h1>
-<h2 id="-o">使用 -o 选项</h2>
-<pre><code>ps -o gid,time
-</code></pre>
-<p>结果：</p>
-<p>GID      TIME
-   20   0:00.55
-   20   0:00.70
-   20   0:00.18
-   20   0:00.04
-   20   0:00.04</p>
-<h1 id="3-proxychains4">3. proxychains4</h1>
-<p>这个工具是让terminal中执行的命令也能翻墙，比如你要使用wget , curl , yum 下载软件，就可以使用 proxychains4 来翻墙下载。</p>
-<p>搭配shadowsocks 效果不错噢。</p>
-<pre><code>$ curl www.google.com
-</code></pre>
-<p>结果：</p>
-<p>curl: (7) Failed to connect to www.google.com port 80: Operation timed out</p>
-<p>使用proxychains4 :</p>
-<pre><code>$ proxychains4 curl www.google.com
-</code></pre>
-<p>结果：</p>
-<pre><code>[proxychains] config file found: /Users/poon/.proxychains/proxychains.conf
-[proxychains] preloading /usr/local/Cellar/proxychains-ng/4.10/lib/libproxychains4.dylib
-&lt;HTML&gt;&lt;HEAD&gt;&lt;meta http-equiv="content-type" content="text/html;charset=utf-8"&gt;
-&lt;TITLE&gt;302 Moved&lt;/TITLE&gt;&lt;/HEAD&gt;&lt;BODY&gt;
-&lt;H1&gt;302 Moved&lt;/H1&gt;
-The document has moved
-&lt;A HREF="http://www.google.com.hk/url?sa=p&amp;amp;hl=zh-CN&amp;amp;pref=hkredirect&amp;amp;pval=yes&amp;amp;q=http://www.google.com.hk/%3Fgws_rd%3Dcr&amp;amp;ust=1447292938623279&amp;amp;usg=AFQjCNHDVUkjopoYLPreTfeIum11Pmn0KQ"&gt;here&lt;/A&gt;.
-&lt;/BODY&gt;&lt;/HTML&gt;
-</code></pre>
-<h1 id="4-vi-vim">4. vi vim</h1>
-<p>4.1 批量行缩进: ctrl-v + shift-&gt;</p>
-<p>4.2 快捷键配置</p>
-<p>使用pelican+markdown写博客，总是要手动输入日期时间，很是麻烦，作为一个geek，怎能忍受每次都手工修改日期这种事情发生呢？所以，必须找到一种能够一键插入时间戳的方法！
-对于这种雕虫小技，stackoverflow早已经说烂了，于是，随便找了<a href="http://stackoverflow.com/questions/56052/best-way-to-insert-timestamp-in-vim">一篇</a></p>
-<p>~/.vimrc命令: </p>
-<pre><code>nmap &lt;F3&gt; a&lt;C-R&gt;=strftime("%Y-%m-%d %a %I:%M %p")&lt;CR&gt;&lt;Esc&gt;
-imap &lt;F3&gt; &lt;C-R&gt;=strftime("%Y-%m-%d %a %I:%M %p")&lt;CR&gt;
-</code></pre>
-<p>按f3的输出效果: </p>
-<pre><code> 2015-11-08 Sun 11:06 AM
-</code></pre>
-<p>.vimrc 命令：</p>
-<pre><code>nmap &lt;F4&gt; a&lt;C-R&gt;=strftime("%Y-%m-%d %H:%M")&lt;CR&gt;&lt;Esc&gt;
-imap &lt;F4&gt; &lt;C-R&gt;=strftime("%Y-%m-%d %I:%M")&lt;CR&gt;
-</code></pre>
-<p>按f4的输出效果：</p>
-<pre><code>  2015-11-08 11:06
-</code></pre>
-<p>注意：f3的时间戳格式是不适合放在pelican的Date: 和 Modified 里的。f4才是。</p>
-<p>现在，展示f3的用法：</p>
-<pre><code>本文最后更新于 2015-11-08 Sun 11:23 AM
-</code></pre>
-<p>That's it !</p>
-<p>Enjoy!</p>
-<h1 id="5-svn">5. svn</h1>
-<h2 id="51">5.1 回滚到上一版本</h2>
-<p>svn merge -c -2683 db_load_data_comm.sh </p>
-<h1 id="6-linux-shell-builtin-command">6. linux shell builtin command</h1>
-<p>添加组etl
-    groupadd etl
-添加用户etl
-    useradd db2etl -G etl</p>
-<p>将新建的用户添加到sudo用户组，让用户不用重新登录，在当前会话切换到sudo 模式：</p>
-<p>修改:</p>
-<pre><code>/etc/sudoers
-</code></pre>
-<p>添加一行:</p>
-<pre><code>yourlinuxuser ALL=(ALL) ALL
-</code></pre>
-<h3 id="find-777-755">使用find 查找权限为777 的文件，并改为755:</h3>
-<p>2015-11-18 22:27</p>
-<pre><code>find /path/to/file -perm 777 -type f -exec chmod 755 {} \;
-</code></pre>
-<p>使用shell 求昨日：</p>
-<pre><code>stat_dt=`date -d "-1 days " +%Y%m%d`
-</code></pre>
-<p>这个在bi中很常用，我们常常需要确定最近一个统计日期是什么时候。原来date函数很强大，提供了我们想要的很多功能，只是我们没有充分发掘而已。</p>
-<p>注意：在mac上用法不一样。需要使用-v参数</p>
-
-<h3 id="shell">shell 变量与字符串操作</h3>
-<p>2015-12-02 08:52</p>
-<ol>
-<li>求变量长度</li>
-</ol>
-<p>命令:</p>
-<pre><code>echo $HOME
-</code></pre>
-<p>输出：</p>
-<pre><code>/Users/poon
-</code></pre>
-<p>命令：</p>
-<pre><code>echo ${#HOME}
-</code></pre>
-<p>输出:</p>
-<pre><code>11
-</code></pre>
-<p>参考：Bash 101 Hacks, by Ramesh Natarajan.  </p>
-<!-- $ -->
-<h1 id="axel">Axel</h1>
-<pre><code>Axel tries to accelerate HTTP/FTP downloading process by using multiple connections for one file. It can use multiple mirrors for a download. Axel has no dependencies and is lightweight, so it might be useful as a wget clone on byte-critical systems.
-</code></pre>
-<p>Axel , 多线程，轻量级，快过wget !!!</p>
-<h2 id="git">git</h2>
-<p>git 是一个非常非常非常优秀的版本管理，协同开发工具，设计精妙使用，功能强大无比！值得所有coder,甚至blogger学习！</p>
-<ol>
-<li>
-<p>将当前工作副本会滚到指定版本</p>
-<p>git log # 获得版本提交历史</p>
-<p>git reset --hard <commit_id></commit_id></p>
-</li>
-<li>
-<p>本地文件删除后再从版本库中检出还原：</p>
-<p>git checkout filename</p>
-</li>
-</ol>
-<p><s> 本文最后更新于：2015-11-11 19:34 </s></p>
-<h2 id="date-yesterday-maclinux">date 命令 求 yesterday 的方法，mac和linux 不一样！</h2>
-<p>linux : -d 参数</p>
-<p>mac   : -v 参数</p>
-<h2 id="control-m">control-m</h2>
-<h3 id="control-m-ajf">什么是 control-m  的 ajf ?</h3>
-<p>ajf- active job file 把它看作一个任务列表（队列）就可以了。</p>
-<p>http://www.ctmguru.com/2012/04/ajf-active-job-file.html</p>
-<h2 id="stat">stat 命令</h2>
-<p>stat -x filename </p>
-<p>获取 文件的 ctime , mtime , atime  ; change , modified , access</p>
-<h2 id="mount">mount 命令</h2>
-<p>2015-12-18 09:35</p>
-<p>centos 上使用mount 命令 挂载虚拟光盘iso文件：</p>
-<p>[root@iZ281s312fdZ ~]# sudo mkdir /mnt/iso
-[root@iZ281s312fdZ iso]# mount -t iso9660 -o loop /opt/packages/DB2_ESE_9_7_0_0_LNXX86_64.iso /mnt/iso/</p>
-<h2 id="_1">修改用户和修改用户组</h2>
-<p>usermod </p>
-<p>chgrp </p>
-<h2 id="_2">添加用户和添加组</h2>
-<p>groupadd </p>
-<p>useradd</p>
-<h2 id="_3">查看一个用户和一个组的归属关系</h2>
-<p>id user_name</p>
-<p>[git] 2015-11-24 13:05 add git</p><p class="subheader">Category: <a href="/category/tech.html">Tech</a>
-
-    Tagged: 
-    <a href="/tag/linux.html">linux </a>
-    <a href="/tag/git.html">git </a>
-</p>
-
-
-
-<p><a href="/work-on-linux.html#disqus_thread">comments</a></p>            </article>
-
-<div class="pagination-centered">
-<h6 class="subheader">Page 1 of 1</h6>
-
-<p>
-
-</p>
-</div>
-
-
-
-            <!-- /#posts-list -->
-
-    </div>
-    <!-- End Main Content -->
-
-    <!-- Sidebar -->
-    <aside class="large-3 columns">
-        <h5 class="sidebar-title">Site</h5>
-        <ul class="side-nav">
-            <li><a href="/archives.html">Archives</a>
-            <li><a href="/tags.html">Tags</a>
-        </ul>
-
-		
-        <h5 class="sidebar-title">Categories</h5>
-        <ul class="side-nav">
-            <li><a href="/category/about.html">About</a></li>
-            <li><a href="/category/job.html">Job</a></li>
-            <li><a href="/category/life.html">Life</a></li>
-            <li><a href="/category/misc.html">misc</a></li>
-            <li><a href="/category/tech.html">Tech</a></li>
-   
-        </ul>
-
-        <h5 class="sidebar-title">Links</h5>
-        <ul class="side-nav">
-            <li><a href="https://www.linkedin.com">LinkedIn</a></li>
-            <li><a href="http://www.slideshare.net">SlideShare</a></li>
-            <li><a href="https://www.github.com">Github</a></li>
-            <li><a href="http://www.zhihu.com">知乎(ZhiHu)</a></li>
-            <li><a href="https://www.quora.com">Quora</a></li>
-            <li><a href="#">欢迎交换链接</a></li>
-        </ul>
-		
-        <h5 class="sidebar-title">Social</h5>
-        <ul class="side-nav">
-            <li><a href="http://weibo.com/poooon">See me on Sina WeiBo</a></li>
-            <li><a href="http://github.com/willpoon">See me on GitHub</a></li>
-        </ul>
-
-    </aside> <!-- End Sidebar -->
-
-</div> <!-- End Main Content and Sidebar -->
-
-
-<!-- Footer -->
-<footer class="row">
-    <div class="large-12 columns">
-        <hr />
-        <div class="row">
-            <div class="large-6 columns">
-              <!--                  <p>仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 by Poon</p> -->
+        <div class="row-fluid archive_row">
+            <div class="span1 archive_year">2015</div>
+        </div>
+        <div class="row-fluid archive_row">
+            <div class="offset1 span1 archive_month">Dec</div>
+        </div>
+        <div class="row-fluid archive_row">
+                <div class="offset1 span1 archive_day">
+                22
+                </div>
+            <div class="span10">
+                <a href="/work-on-linux.html">Work on linux!</a>
             </div>
+        </div>
+    </section>
+</div>
+<div class="span3">
+    <section id="sidebar">
+            <div>
+                <h2>Browse content by</h2>
+                <ul class="fa-ul">
+                <li><a href="/categories.html"><i class="fa-li fa fa-tags"></i> Categories</a></li>
+                <li><a href="/archives.html"><i class="fa-li fa fa-calendar"></i> Dates</a></li>
+                <li><a href="/tags.html"><i class="fa-li fa fa-tag"></i> Tags</a></li>
+
+                </ul>
+            </div><!-- /.browse -->
+            <div>
+                <h2>Links</h2>
+                <ul>
+                    <li><a href="https://www.linkedin.com">LinkedIn</a></li>
+                    <li><a href="http://www.slideshare.net">SlideShare</a></li>
+                    <li><a href="https://www.github.com">Github</a></li>
+                    <li><a href="http://www.zhihu.com">知乎(ZhiHu)</a></li>
+                    <li><a href="https://www.quora.com">Quora</a></li>
+                    <li><a href="#">欢迎交换链接</a></li>
+                </ul>
+            </div><!-- /.Links -->
+            <div>
+                <h2>Social</h2>
+                <ul>
+                    <li><a href="http://weibo.com/poooon">See me on Sina WeiBo</a></li>
+                    <li><a href="http://github.com/willpoon">See me on GitHub</a></li>
+                </ul>
+            </div><!-- /.social -->
+            <div>
+                <h2>Tags</h2>
+                <ul id="cloud">
+                     <li class="tag-4"><a href="/tag/mysql.html">mysql</a></li>
+                     <li class="tag-4"><a href="/tag/yin-xing.html">银行</a></li>
+                     <li class="tag-4"><a href="/tag/me.html">Me</a></li>
+                     <li class="tag-4"><a href="/tag/shi-lu.html">实录</a></li>
+                     <li class="tag-4"><a href="/tag/si-kao.html">思考</a></li>
+                     <li class="tag-4"><a href="/tag/jia-gou.html">架构</a></li>
+                     <li class="tag-1"><a href="/tag/oracle.html">oracle</a></li>
+                     <li class="tag-4"><a href="/tag/db2.html">db2</a></li>
+                     <li class="tag-4"><a href="/tag/todo.html">todo</a></li>
+                     <li class="tag-4"><a href="/tag/tools.html">tools</a></li>
+                     <li class="tag-4"><a href="/tag/xie-zi.html">写字</a></li>
+                     <li class="tag-4"><a href="/tag/xing-fu.html">幸福</a></li>
+                     <li class="tag-4"><a href="/tag/du-bo.html">赌博</a></li>
+                     <li class="tag-4"><a href="/tag/jin-rong.html">金融</a></li>
+                     <li class="tag-4"><a href="/tag/wai-yu.html">外语</a></li>
+                     <li class="tag-4"><a href="/tag/db.html">DB</a></li>
+                     <li class="tag-4"><a href="/tag/biee.html">biee</a></li>
+                     <li class="tag-4"><a href="/tag/books.html">books</a></li>
+                     <li class="tag-4"><a href="/tag/pelican.html">pelican</a></li>
+                     <li class="tag-4"><a href="/tag/cheng-xu.html">程序</a></li>
+                     <li class="tag-4"><a href="/tag/yi-zhu.html">艺术</a></li>
+                     <li class="tag-4"><a href="/tag/ji-jin.html">基金</a></li>
+                     <li class="tag-4"><a href="/tag/memory.html">memory</a></li>
+                     <li class="tag-4"><a href="/tag/xin-ling.html">心灵</a></li>
+                     <li class="tag-4"><a href="/tag/gan-wu.html">感悟</a></li>
+                     <li class="tag-4"><a href="/tag/city.html">city</a></li>
+                     <li class="tag-4"><a href="/tag/shu-ju-ku.html">数据库</a></li>
+                     <li class="tag-4"><a href="/tag/disqus.html">disqus</a></li>
+                     <li class="tag-4"><a href="/tag/list.html">list</a></li>
+                     <li class="tag-4"><a href="/tag/database.html">database</a></li>
+                     <li class="tag-4"><a href="/tag/unix.html">Unix</a></li>
+                     <li class="tag-4"><a href="/tag/mac.html">Mac</a></li>
+                     <li class="tag-4"><a href="/tag/zhuan-qian.html">赚钱</a></li>
+                     <li class="tag-4"><a href="/tag/linux.html">linux</a></li>
+                     <li class="tag-4"><a href="/tag/ri-zhi.html">日志</a></li>
+                     <li class="tag-4"><a href="/tag/bi-ji.html">笔记</a></li>
+                     <li class="tag-4"><a href="/tag/xiang-zuo.html">想做</a></li>
+                     <li class="tag-4"><a href="/tag/bi.html">BI</a></li>
+                     <li class="tag-4"><a href="/tag/tou-zi.html">投资</a></li>
+                     <li class="tag-4"><a href="/tag/blog.html">blog</a></li>
+                     <li class="tag-4"><a href="/tag/github.html">github</a></li>
+                     <li class="tag-4"><a href="/tag/xian-hua.html">闲话</a></li>
+                     <li class="tag-4"><a href="/tag/learn.html">learn</a></li>
+                     <li class="tag-4"><a href="/tag/git.html">git</a></li>
+                     <li class="tag-4"><a href="/tag/gu-piao.html">股票</a></li>
+                     <li class="tag-4"><a href="/tag/ji-hua.html">计划</a></li>
+                     <li class="tag-4"><a href="/tag/chi-fan-gong-ju.html">吃饭工具</a></li>
+                     <li class="tag-4"><a href="/tag/gong-zuo.html">工作</a></li>
+                     <li class="tag-4"><a href="/tag/ye-wu.html">业务</a></li>
+                     <li class="tag-4"><a href="/tag/hu-che.html">胡扯</a></li>
+                     <li class="tag-4"><a href="/tag/sheng-huo.html">生活</a></li>
+                     <li class="tag-4"><a href="/tag/she-ji.html">设计</a></li>
+                     <li class="tag-4"><a href="/tag/kuai-le.html">快乐</a></li>
+                     <li class="tag-4"><a href="/tag/travel.html">travel</a></li>
+                     <li class="tag-4"><a href="/tag/pan-tan.html">潘谈</a></li>
+                     <li class="tag-4"><a href="/tag/osx.html">OSX</a></li>
+                     <li class="tag-4"><a href="/tag/tou-ji.html">投机</a></li>
+                     <li class="tag-4"><a href="/tag/reading.html">reading</a></li>
+                </ul>
+             </div>
+<!-- /.Tags -->
+    </section><!-- /#sidebar -->
+</div>
             </div>
+        </div>
     </div>
-</footer>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                    </p>
+                    <p>
+                        <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-69868761-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'gitwillpoonimx3';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
 </body>
 </html>
