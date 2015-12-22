@@ -83,6 +83,15 @@ http://www.ibm.com/developerworks/data/library/techarticle/dm-0508wasserman/
 
 https://www-01.ibm.com/support/knowledgecenter/#!/SSEPGG_9.5.0/com.ibm.db2.luw.admin.sec.doc/doc/c0005375.html
 
+3. 如何创建的问题：
+
+https://www-304.ibm.com/support/knowledgecenter/#!/SSEPGG_10.5.0/com.ibm.db2.luw.qb.server.doc/doc/t0007016.html
+
+6. 强制重建 sample数据库：
+
+    db2sampl  -force -sql -verbose -name testdb
+
+
 
 
 

@@ -385,7 +385,15 @@ Since 2010, Yahoo search has been powered by Microsoft's Bing search engine. Whe
 
 toc class 不用自己添加，当然如果你想目录好看一点，可以自己修改、覆盖toc的css。
 
+### pelican-fresh 模版 关闭 影响网速的 js 插件功能。
 
+1. facebook , google+ , twitter 
+
+2. google custom search 
+
+3. google 分析 插件等
+
+4. 最后，还不如直接换一个模版！
 
 
 # 点评

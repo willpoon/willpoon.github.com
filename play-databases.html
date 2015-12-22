@@ -258,6 +258,16 @@ ref: http://db2commerce.com/2012/06/25/installing-db2-using-a-response-file/</p>
 <p>http://www-01.ibm.com/support/knowledgecenter/?lang=en#!/SSEPGG_9.7.0/com.ibm.db2.luw.qb.server.doc/doc/c0011931.html</p>
 <p>http://www.ibm.com/developerworks/data/library/techarticle/dm-0508wasserman/</p>
 <p>https://www-01.ibm.com/support/knowledgecenter/#!/SSEPGG_9.5.0/com.ibm.db2.luw.admin.sec.doc/doc/c0005375.html</p>
+<ol>
+<li>如何创建的问题：</li>
+</ol>
+<p>https://www-304.ibm.com/support/knowledgecenter/#!/SSEPGG_10.5.0/com.ibm.db2.luw.qb.server.doc/doc/t0007016.html</p>
+<ol>
+<li>
+<p>强制重建 sample数据库：</p>
+<p>db2sampl  -force -sql -verbose -name testdb</p>
+</li>
+</ol>
 <h2 id="_1">分页大小测试</h2>
 <h3 id="8k-pagesize">8k PAGESIZE 分页测试：</h3>
 <p>create table testvarchar( c1 varchar(30000) ,c2 varchar(2000) ,c3 varchar(662) ) 
