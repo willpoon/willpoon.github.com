@@ -98,4 +98,41 @@ Consultants are qualified from Oracle University and have worked alongside the S
 Junior consultants are qualified from Oracle University but have only worked ont he internal Majendi project. They are not sent out alone, but always in an assisting role with a senior.
 
 
+# The rich are not necessarily happy.
+
+有钱人未必快乐。
+
+
+# 不确定的词
+
+## at a time 
+
+## necessarily 
+
+
+# in additional to ...
+
+另外 的意思。
+
+如何 理解 additional 的意思？
+
+在 。。。基础上。。。附加。。。 －－－另外。 额外。
+
+额外－－超出标准的－－超额的－－附加的－－－additional 。 
+
+# mere 
+
+微不足道的
+
+# 两个词意思一样，本质上不同，但是却有不同的语气和态度，比如：
+
+I want to learn about ...
+
+I want to know ...
+
+当然，使用场合也是不一样的。
+
+所以，很多东西，都是要分场合的！！
+
+
 

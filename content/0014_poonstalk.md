@@ -1657,7 +1657,27 @@ learn biee
 
 # 在巨人、强权之下 的渺小感觉 
 
+
 如何面对？
+
+
+" 
+既然人生最终并无意义，那就让精神自由飞翔，在短暂的人生中，去发现美与爱
+
+世俗修行的第一个目标就是能够接受这个事实，而且内心平静地接受这一事实。这是很不容易做到的。因为这个冷酷事实给每个稍有敏感度的灵魂带来的，一开始都是抓狂的感觉，渺小至极的感觉。因此，既接纳这一事实，又获得内心平静，是修行的一个很难达到的目标。
+
+做一个清醒的人。
+
+李银河：我不过是一粒芝麻，但渺小的生命却是我的全部
+
+http://www.jfdaily.com/shendu/bwyc/201508/t20150813_1750079.html
+
+"
+
+
+觉得自己渺小这种情绪毕竟是短暂的。更多的时候，是波澜不惊。就像一阵风吹过湖面，掀起的一阵波澜，然后又恢复平静。
+
+毕竟，意识到自己的渺小，总比盲目自大要好。
 
 # 我TM好讨厌心机婊啊啊啊啊啊
 
@@ -1688,7 +1708,163 @@ learn biee
 5. 中层管理人员压力很大！通常都会吸烟！
 
 
+# 把握架构很重要
+
+2015-12-23 08:29
+
+以点、线来带面。
+
+多使用 mindnode 。 
 
 
+# 使用资产负债表来分析自己的资产和人生的资产
+
+自己的资产负债： 房、车、贷款等。
+
+人生的资产负债： 身体是资产，长期固定不可出售。父母是我们的负债。家庭是我们的负债，因为家人为我们提供了支持。所有者权益？all the family。
+
+
+# 事业三大支柱
+
+技术 、 业务 、 外语
+
+# There’s a regular disclaimer that these opinions of mine – and not of my employers’, clients’, or other 3d party.
+
+
+
+# onsite 现场
+
+就是我们这种
+
+# H1B 
+
+Eligibility
+The H1B visa is issued for a specialty occupation, requires theoretical and practical application of a body of specialized knowledge and requires the visa holder to have at least a Bachelors degree or its equivalent.
+
+http://www.path2usa.com/what-is-h1b-visa
+
+http://www.h1base.com/visa/work/holding%20multiple%20h1b%20visas%20for%20different%20employers/ref/1170/
+
+http://www.inc.com/eric-markowitz/are-h1bs-just-a-clever-trick-for-cheap-labor.html
+
+http://www.nytimes.com/interactive/2015/11/06/us/outsourcing-companies-dominate-h1b-visas.html?_r=0
+
+国外人力需求：
+
+http://www.payscale.com/research/US/Job=Business_Intelligence_Consultant/Salary
+
+
+# 可以天天上的网站
+
+1. stackoverflow.com
+
+2. http://www.shanbay.com
+
+3. https://community.oracle.com
+
+4. 业内精英的博客：rss阅读
+
+5. 微信公众平台：mp.weixin.qq.com
+
+# 低估了自己的行业优势
+
+其实bi也是一个很好的行业
+
+以前认为dba很cool, 很适合自己，现在看来，其实咨询应该更好。
+
+dba 很可能要起夜。
+
+咨询当然也要熬夜写材料，但是如果你有足够的素材积累，也就变成了一件顺手捻来的事情。
+
+BI 有什么优势？
+
+从客户角度：
+
+1. 运用智能分析，发现价值，提升销售，节约成本
+
+2. 自动化节约人力成本
+
+3. 
+
+从咨询师角度：
+
+1. 懂业务的人用嘴巴解决问题，不懂业务只能动手，所谓精人动口，笨人动手
+
+2. 比较容易出效果，不像c/c++ ， 都是后台，看不见，摸不着。
+
+3. 市场需求越来越大
+
+4. 越老越吃香， 年纪越大，越不能久坐，需要与人交流，与人互动。走出去！
+
+5. 作为it公司，咨询可以直接创造/更接近利润，有别于研发部门，是成本部门。
+
+要求：
+
+1. 懂技术、懂业务、懂架构。
+
+2. 创造性： 因为客户的需求本来就比较模糊，很多时候需要引导。
+
+3. 沟通！沟通！沟通！
+
+4. 能急人所难，解常人不能解之困。
+
+5.negotiation skills
+
+6. market research
+
+机会：
+
+There’re a lot more full-time OBIEE jobs than ever before, mostly in three types of companies: 
+
+a) large consulting companies growing their OBIEE practice 
+
+b) companies that have invested heavily in OBIEE and would like to make the best use of their investment 
+
+c) small consulting vendors bidding on pieces of larger projects with their small-disadvantaged-minority-owned status
+
+
+rate:
+
+I avoided discussing hourly rates for the reason that there’re many key factors that influence rates, mainly: 
+
+immigration status, 
+
+location, 
+
+form of contract, 
+
+consulting company’s cut, etc. etc.  
+
+So that makes it difficult to weight-in. 
+
+Do you think that an anonymous rate survey would be in order?
+
+
+
+ref:
+
+http://www.jamesserra.com/archive/2011/05/dbas-what-to-earn-the-big-bucks-learn-bi/
+
+ I started my career as a software developer, then was a DBA for 12 years, and for the last seven years I have been working extensively with business intelligence and data warehousing using numerous Microsoft technologies and tools.  I have been at times a permanent employee, consultant, contractor, and owner of my own business.  All these experiences along with continuous learning have helped me to develop many successful data warehouse and BI projects.   I am a popular blogger and speaker, having presented at dozens of PASS events including the PASS Business Analytics conference and the PASS Summit. 
+
+
+http://www.lifehacker.com.au/2012/05/what-are-the-hourly-rates-for-it-contractors/
+
+# 发现自己的价值
+
+不要让自卑这层雾霾和护甲把自己的优点都遮挡、蒙蔽和抹杀。
+
+
+
+
+
+
+重要能力：
+
+沟通！ one’s who are very good communicators (a necessity in BI since you meet with a lot of users, usually VP’s and up).
+
+
+
+http://www.jamesserra.com/archive/2011/05/dbas-what-to-earn-the-big-bucks-learn-bi/
 
 

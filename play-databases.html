@@ -128,16 +128,29 @@
 <li><a href="#4k-pagesize">4K pagesize 分页测试：</a></li>
 </ul>
 </li>
-<li><a href="#db2db2etldbadm-schema">在db2上授权一个用户db2etl，让这个用户具备dbadm &amp; schema创建权限。</a></li>
-<li><a href="#_2">启动&amp;连接&amp;测试</a></li>
-<li><a href="#_3">密码带特殊字符时，如果连接</a></li>
+<li><a href="#db2db2etldbadm-schema">在db2上授权一个用户db2etl，让这个用户具备dbadm &amp; schema创建权限。</a><ul>
+<li><a href="#db2-schematables">db2 列出schema下所有的tables</a></li>
+<li><a href="#schema">指定当前schema</a></li>
+<li><a href="#database-connect-sample">database 已经默认为当前connect 的用户, 例如sample :</a><ul>
+<li><a href="#_2">解释：</a></li>
+<li><a href="#db2inst1">正确的姿势：使用db2inst1 ：</a></li>
+<li><a href="#dbadm-db2-schema">具备dbadm权限的用户，就具备了创建 db2 schema 的权限：</a></li>
+<li><a href="#schema_1">查看某schema 下的表名：</a></li>
+<li><a href="#db2look-db2look">db2look 是本地客户端的命令，如果客户端版本和服务器有差别，db2look 可能用不了哦：</a></li>
+<li><a href="#_3">注意事项：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_4">启动&amp;连接&amp;测试</a></li>
+<li><a href="#_5">密码带特殊字符时，如果连接</a></li>
 <li><a href="#sql3001c-an-io-error">SQL3001C  An I/O error</a></li>
-<li><a href="#_4">统计表大小，用户空间大小</a></li>
+<li><a href="#_6">统计表大小，用户空间大小</a></li>
 <li><a href="#catalog">如何catalog 一个远程数据库</a></li>
 <li><a href="#db2-on-mac">DB2 on mac 很难找！</a></li>
 <li><a href="#db2-schema">db2 一个系统用户管理多个schema  .</a></li>
 <li><a href="#db2-grant-schema">DB2 grant 无法针对 schema 授权</a><ul>
-<li><a href="#_5">更灵活的操作：</a></li>
+<li><a href="#_7">更灵活的操作：</a></li>
 </ul>
 </li>
 <li><a href="#db2_1">DB2 建表注意事项</a></li>
@@ -145,7 +158,7 @@
 <li><a href="#db2-db2-sql1477n">db2 查报错方法： db2 ? SQL1477N</a><ul>
 <li><a href="#sqlcode">SQLCODE</a></li>
 <li><a href="#sqlstate">SQLSTATE</a><ul>
-<li><a href="#_6">注意</a></li>
+<li><a href="#_8">注意</a></li>
 </ul>
 </li>
 <li><a href="#sql-message-concepts">SQL message concepts</a></li>
@@ -160,6 +173,9 @@
 <li><a href="#db2-ese_1">db2 ese 安装</a><ul>
 <li><a href="#linux">获取linux发行版本</a></li>
 <li><a href="#database-pagesize-tablespace-pagesize">database pagesize 和 tablespace pagesize 的关系：</a></li>
+<li><a href="#db2acd">db2acd 是什么，怎么关闭它？</a></li>
+<li><a href="#sql3006c-an-io-error-occurred-while-opening-the-message-file">SQL3006C An I/O error occurred while opening the message file. 如何处理</a></li>
+<li><a href="#db2-express-c">据说 db2 express-c 不支持分区表特性，怎么办？</a></li>
 </ul>
 </li>
 <li><a href="#mysql">MYSQL</a><ul>
@@ -168,27 +184,33 @@
 <li><a href="#mysql-except-or-minus">MYSQL 不支持 except or minus</a></li>
 <li><a href="#mysql-a">mysql -A 参数</a></li>
 <li><a href="#mysql-limit">mysql limit 的用法：</a></li>
-<li><a href="#_7">关联技巧:恢复空表</a></li>
+<li><a href="#_9">关联技巧:恢复空表</a></li>
 <li><a href="#mysqld">启动mysqld 的时候，一般加什么参数？</a></li>
 <li><a href="#mysql_1">mysql 远程连接</a></li>
 <li><a href="#except-minus-mysql">如果不能用 except , minus , mysql 如何比较两张表？</a></li>
 <li><a href="#mysql-row">mysql 使用 row() 实现 多列比较</a></li>
 <li><a href="#mysql-intersect">mysql 模拟 intersect  求差集</a></li>
-<li><a href="#_8">远程数据库连接配置</a></li>
+<li><a href="#_10">远程数据库连接配置</a></li>
 </ul>
 </li>
 <li><a href="#oracle">ORACLE</a><ul>
+<li><a href="#perl-sql">perl 中调用sql 空行导致的问题</a></li>
 <li><a href="#start-with-connect-by-prior">start with ... connect by prior ...  用法</a></li>
 <li><a href="#oracle-python">oracle 和 python 交互</a></li>
 <li><a href="#oracle-response">oracle response 文件安装方式是怎么回事？</a></li>
 <li><a href="#oracle-dml-escape-ampersand">oracle 在执行 dml的时候 escape &amp; (ampersand)符号？</a></li>
 </ul>
 </li>
-<li><a href="#_9">优秀博客</a><ul>
+<li><a href="#_11">方法论</a><ul>
+<li><a href="#_12">数据存储：分表与分区表</a></li>
+</ul>
+</li>
+<li><a href="#_13">架构学习</a></li>
+<li><a href="#_14">优秀博客</a><ul>
 <li><a href="#httpdb2commercecom">http://db2commerce.com/</a></li>
 </ul>
 </li>
-<li><a href="#_10">老牌论坛</a></li>
+<li><a href="#_15">老牌论坛</a></li>
 </ul>
 </div>
         </nav>
@@ -227,71 +249,93 @@ To silently uninstall DB2 database products, features, or languages in a DB2 cop
 ref: http://db2commerce.com/2012/06/25/installing-db2-using-a-response-file/</p>
 <h2 id="db2-ese">db2 ese 安装相关的几个问题</h2>
 <ol>
-<li>如何使用响应文件安装 db2 ese ?</li>
-</ol>
+<li>
+<p>如何使用响应文件安装 db2 ese ?</p>
 <p>db2setup -r /path/to/response_file</p>
-<ol>
-<li>response 文件模版哪里有？</li>
-</ol>
+</li>
+<li>
+<p>response 文件模版哪里有？</p>
 <p>安装包目录中有模版。</p>
-<ol>
-<li>ese 如何 添加 license ?</li>
-</ol>
+</li>
+<li>
+<p>ese 如何 添加 license ?</p>
 <p>db2licm -a /path/to/license ?</p>
-<ol>
-<li>一台机器是否可以按装多套不同版本的db2 产品？</li>
-</ol>
+</li>
+<li>
+<p>一台机器是否可以按装多套不同版本的db2 产品？</p>
 <p>可以。使用 db2ls 查看各个安装版本的安装情况。</p>
 <p>同时：同一个版本，可以创建多个instance，一个instance可以创建多个数据库。</p>
-<ol>
-<li>db2 安装前，要创建用户和组，为什么？ </li>
-</ol>
+</li>
+<li>
+<p>db2 安装前，要创建用户和组，为什么？ </p>
 <p>https://bytes.com/topic/db2/answers/181692-what-db2-users-db2fenc1-dasusr1</p>
+</li>
+</ol>
 <p>说说我自己的理解：</p>
+<p>a. 权限隔离－－什么的功能，就用什么样的用户来管理。隔离了权限，不至于混乱。否则一个文件谁都可以改，就乱套了。</p>
+<p>b. 安全考虑。 其实 1 也就是安全考虑。</p>
+<pre><code>http://www-01.ibm.com/support/knowledgecenter/?lang=en#!/SSEPGG_9.7.0/com.ibm.db2.luw.qb.server.doc/doc/c0011931.html
+
+http://www.ibm.com/developerworks/data/library/techarticle/dm-0508wasserman/
+
+https://www-01.ibm.com/support/knowledgecenter/#!/SSEPGG_9.5.0/com.ibm.db2.luw.admin.sec.doc/doc/c0005375.html
+</code></pre>
+<p>c. 如何创建的问题：</p>
+<pre><code>https://www-304.ibm.com/support/knowledgecenter/#!/SSEPGG_10.5.0/com.ibm.db2.luw.qb.server.doc/doc/t0007016.html
+</code></pre>
+<p>d. The fenced user is a user under which some stored procedures ("fenced"
+stored procedures) can run to have reduced operating system authority.
+This can help prevent fenced stored procedures from overwriting
+instance files since the OS will prevent it.</p>
+<pre><code>The DB2 administration server (DAS) user is the user under which the
+</code></pre>
+<p>DAS service runs. It is this service which you are really using with
+the Control Center. In this case, the service is set up for the
+opposite reasons from the fenced user: it's to prevent db2inst1 from
+overwriting your admin configuration.</p>
 <ol>
 <li>
-<p>权限隔离－－什么的功能，就用什么样的用户来管理。隔离了权限，不至于混乱。否则一个文件谁都可以改，就乱套了。</p>
-</li>
-<li>
-<p>安全考虑。 其实 1 也就是安全考虑。</p>
-</li>
-</ol>
-<p>http://www-01.ibm.com/support/knowledgecenter/?lang=en#!/SSEPGG_9.7.0/com.ibm.db2.luw.qb.server.doc/doc/c0011931.html</p>
-<p>http://www.ibm.com/developerworks/data/library/techarticle/dm-0508wasserman/</p>
-<p>https://www-01.ibm.com/support/knowledgecenter/#!/SSEPGG_9.5.0/com.ibm.db2.luw.admin.sec.doc/doc/c0005375.html</p>
-<ol>
-<li>如何创建的问题：</li>
-</ol>
-<p>https://www-304.ibm.com/support/knowledgecenter/#!/SSEPGG_10.5.0/com.ibm.db2.luw.qb.server.doc/doc/t0007016.html</p>
-<ol>
-<li>
-<p>强制重建 sample数据库：</p>
+<p>强制重建 sample (testdb) 数据库：</p>
 <p>db2sampl  -force -sql -verbose -name testdb</p>
+</li>
+<li>
+<p>有哪些值得参考的 best practice ?</p>
+<p>http://blog.csdn.net/reaper1022/article/details/16370135</p>
+<p>http://www.douapp.com/post/52762</p>
+<p>http://www.centoscn.com/CentosServer/sql/2015/0516/5452.html</p>
+<p>http://db2commerce.com/2012/06/25/installing-db2-using-a-response-file/</p>
 </li>
 </ol>
 <h2 id="_1">分页大小测试</h2>
 <h3 id="8k-pagesize">8k PAGESIZE 分页测试：</h3>
-<p>create table testvarchar( c1 varchar(30000) ,c2 varchar(2000) ,c3 varchar(662) ) 
-DB20000I  The SQL command completed successfully.</p>
+<pre><code>create table testvarchar( c1 varchar(30000) ,c2 varchar(2000) ,c3 varchar(662) ) 
+DB20000I  The SQL command completed successfully.
+</code></pre>
 <p>32662 is ok  !
 32663 is not ok !</p>
-<p>SQL0670N  The row length of the table exceeded a limit of "32677" bytes. </p>
+<pre><code>SQL0670N  The row length of the table exceeded a limit of "32677" bytes.
+</code></pre>
 <p>说明，还有一些字节被其他东西占用了。</p>
-<p>create table testvarchar( c1 varchar(30000) ,c2 varchar(2000) ,c3 varchar(660) ) in testtbs01
+<pre><code>create table testvarchar( c1 varchar(30000) ,c2 varchar(2000) ,c3 varchar(660) ) in testtbs01
+
 DB21034E  The command was processed as an SQL statement because it was not a 
 valid Command Line Processor command.  During SQL processing it returned:
 SQL0670N  The row length of the table exceeded a limit of "4005" bytes. (Table 
-space "TESTTBS01".)  SQLSTATE=54010</p>
+space "TESTTBS01".)  SQLSTATE=54010
+</code></pre>
 <h3 id="4k-pagesize">4K pagesize 分页测试：</h3>
-<p>CREATE BUFFERPOOL testbpool  SIZE 2000 PAGESIZE 4K ;</p>
-<p>CREATE TABLESPACE testtbs01 PAGESIZE 4K MANAGED BY DATABASE USING (FILE '/tmp/UMPSYS01.dms' 10M)  BUFFERPOOL testbpool;</p>
-<p>drop table testvarchar;</p>
-<p>create table testvarchar(
-     c1 varchar(4000)
-     ) in testtbs01;</p>
-<pre><code> 可见，
+<pre><code>CREATE BUFFERPOOL testbpool  SIZE 2000 PAGESIZE 4K ;
 
- 1.根据表空间分页大小的不同，对于行的存储大小也不同。这直接导致了varchar(n) 中 n 的大小限制。
+CREATE TABLESPACE testtbs01 PAGESIZE 4K MANAGED BY DATABASE USING (FILE '/tmp/UMPSYS01.dms' 10M)  BUFFERPOOL testbpool;
+
+drop table testvarchar;
+
+create table testvarchar(
+ c1 varchar(4000)
+ ) in testtbs01;
+</code></pre>
+<p>可见:</p>
+<pre><code> 1.根据表空间分页大小的不同，对于行的存储大小也不同。这直接导致了varchar(n) 中 n 的大小限制。
 
  2.所谓分页，其实就是表中每条纪录的总长度限制。不管字段多少，算的是总和。
 
@@ -300,20 +344,25 @@ space "TESTTBS01".)  SQLSTATE=54010</p>
 </code></pre>
 <h2 id="db2db2etldbadm-schema">在db2上授权一个用户db2etl，让这个用户具备dbadm &amp; schema创建权限。</h2>
 <p>2015-12-15 Tue 20:57 PM</p>
-<p>--db2 列出schema下所有的tables</p>
-<p>db2 list tables for schema syscat | grep -i auth</p>
-<p>user@localhost:~$ db2 list tables for schema metadata</p>
-<p>-- 指定当前schema 
-set current schema = 'KALIE'</p>
-<p>--database 已经默认为当前connect 的用户, 例如sample :</p>
-<p>GRANT DBADM ON DATABASE to db2admin  --- 是不行的，必须声明是 user , e.g:</p>
-<p>[db2inst1@localhost ~]$ db2 grant dbadm on database to db2etl</p>
+<h3 id="db2-schematables">db2 列出schema下所有的tables</h3>
+<pre><code>db2 list tables for schema syscat | grep -i auth
+
+db2 list tables for schema metadata
+</code></pre>
+<h3 id="schema">指定当前schema</h3>
+<pre><code>set current schema = 'KALIE'
+</code></pre>
+<h3 id="database-connect-sample">database 已经默认为当前connect 的用户, 例如sample :</h3>
+<pre><code>GRANT DBADM ON DATABASE to db2admin  --- 是不行的，必须声明是 user , e.g:
+
+
+db2 grant dbadm on database to db2etl
+</code></pre>
 <p>DB21034E  The command was processed as an SQL statement because it was not a 
 valid Command Line Processor command.  During SQL processing it returned:
 SQL0569N  Authorization ID "DB2ETL" does not uniquely identify a user, a group 
 or a role in the system.  SQLSTATE=56092</p>
-<p>--解释：</p>
-<p>SEPGG_9.5.0/com.ibm.db2.luw.messages.sql.doc/doc/msql00569n.html</p>
+<h4 id="_2">解释：</h4>
 <p>SQL0569N
 Authorization ID authorization-name does not uniquely identify a user, a group or a role in the system.</p>
 <p>Explanation</p>
@@ -321,44 +370,55 @@ Authorization ID authorization-name does not uniquely identify a user, a group o
 <p>User response</p>
 <p>Change the statement to explicitly specify the USER, GROUP or ROLE keyword to uniquely identify the specified authorization id.</p>
 <p>ref: http://www-01.ibm.com/support/knowledgecenter/#!/S</p>
-<p>--正确的姿势：使用db2inst1 ：</p>
-<p>[db2inst1@localhost ~]$ db2 grant dbadm on database to user db2etl</p>
-<p>DB20000I  The SQL command completed successfully.</p>
-<p>--具备dbadm权限的用户，就具备了创建 db2 schema 的权限：</p>
-<p>user@localhost:~$ db2 create schema skm1 AUTHORIZATION db2etl</p>
-<p>DB20000I  The SQL command completed successfully.</p>
-<p>---查看某schema 下的表名：</p>
-<p>user@localhost:~$ db2 "select TABSCHEMA,tabname from syscat.tables where tabschema = 'METADATA'"</p>
+<h4 id="db2inst1">正确的姿势：使用db2inst1 ：</h4>
+<pre><code>[db2inst1@localhost ~]$ db2 grant dbadm on database to user db2etl
+
+DB20000I  The SQL command completed successfully.
+</code></pre>
+<h4 id="dbadm-db2-schema">具备dbadm权限的用户，就具备了创建 db2 schema 的权限：</h4>
+<pre><code>db2 create schema skm1 AUTHORIZATION db2etl
+
+DB20000I  The SQL command completed successfully.
+</code></pre>
+<h4 id="schema_1">查看某schema 下的表名：</h4>
+<pre><code>db2 "select TABSCHEMA,tabname from syscat.tables where tabschema = 'METADATA'"
+</code></pre>
 <p>set current schema = 'METADATA'</p>
-<p>--db2look 是本地客户端的命令，如果客户端版本和服务器有差别，db2look 可能用不了哦：</p>
+<h4 id="db2look-db2look">db2look 是本地客户端的命令，如果客户端版本和服务器有差别，db2look 可能用不了哦：</h4>
 <p>db2look -d sample -e -l -x  -z metadata -i db2etl -w db2etlpassword</p>
-<p>--注意事项：</p>
-<p>CREATE TABLE "METADATA"."tmplst"  (
-          "TO_inst_id" VARCHAR(64) , 
-          "nLevel" INTEGER , 
-          "sCort" VARCHAR(8000) ) <br/>
-         IN "IBMDB2SAMPLEREL" ; </p>
-<pre><code>     这种建表语句是很坑人的，因为大小写混在一起了。请全部用大写。
+<h4 id="_3">注意事项：</h4>
+<pre><code>CREATE TABLE "METADATA"."tmplst"  (
+      "TO_inst_id" VARCHAR(64) , 
+      "nLevel" INTEGER , 
+      "sCort" VARCHAR(8000) )   
+     IN "IBMDB2SAMPLEREL" ;
+
+     这种建表语句是很坑人的，因为大小写混在一起了。请全部用大写。
 </code></pre>
 <p>如下：</p>
-<p>CREATE TABLE "METADATA"."TMPLST"  (
-          "TO_INST_ID" VARCHAR(64) , 
-          "NLEVEL" INTEGER , 
-          "SCORT" VARCHAR(8000) ) <br/>
-         IN "IBMDB2SAMPLEREL" </p>
+<pre><code>CREATE TABLE "METADATA"."TMPLST"  (
+      "TO_INST_ID" VARCHAR(64) , 
+      "NLEVEL" INTEGER , 
+      "SCORT" VARCHAR(8000) )   
+     IN "IBMDB2SAMPLEREL"
+</code></pre>
 <p>--- 现在 db2etl 已经具备了创建schema的权限&amp;建表权限。所以可以直接用db2etl来管理schema及其下的tables权限分配。</p>
-<p>user@localhost:~/sunline$ db2 -tvf db2.sql 
-CREATE TABLE "METADATA"."TMPLST"  ( "TO_INST_ID" VARCHAR(64) , "NLEVEL" INTEGER , "SCORT" VARCHAR(8000) ) IN "IBMDB2SAMPLEREL" 
-DB20000I  The SQL command completed successfully.</p>
-<p>user@localhost:~/sunline$ db2 grant select on METADATA.TMPLST to public
-DB20000I  The SQL command completed successfully.</p>
+<pre><code>user@localhost:~/sunline$ db2 -tvf db2.sql 
+CREATE TABLE "METADATA"."TMPLST"  ( "TO_INST_ID" VARCHAR(64) , "NLEVEL" INTEGER , "SCORT" VARCHAR(8000) ) IN "IBMDB2SAMPLEREL"
+
+DB20000I  The SQL command completed successfully.
+
+user@localhost:~/sunline$ db2 grant select on METADATA.TMPLST to public
+
+DB20000I  The SQL command completed successfully.
+</code></pre>
 <p>以上，除了给db2etl赋 dbadm 权限用到db2inst1，其他操作都不需要。 只需要用db2etl即可。</p>
-<h2 id="_2">启动&amp;连接&amp;测试</h2>
+<h2 id="_4">启动&amp;连接&amp;测试</h2>
 <p>su - db2inst1</p>
 <p>db2stop</p>
 <p>db2start</p>
 <p>db2 connect to sample</p>
-<h2 id="_3">密码带特殊字符时，如果连接</h2>
+<h2 id="_5">密码带特殊字符时，如果连接</h2>
 <p>db2 'connect to sample user db2etl using "db2etl!QAZ"'</p>
 <p>使用'' 包住connect 语句</p>
 <p>使用 "" 包住 密码串。</p>
@@ -366,7 +426,7 @@ DB20000I  The SQL command completed successfully.</p>
 <h2 id="sql3001c-an-io-error">SQL3001C  An I/O error</h2>
 <p>SQL3001C  An I/O error (reason = "sqlofopn -2079391743") occurred while  opening the output file.
 报这个错的原因是路径不存在或路径没有写入权限。</p>
-<h2 id="_4">统计表大小，用户空间大小</h2>
+<h2 id="_6">统计表大小，用户空间大小</h2>
 <p>从 SYSIBMADM.ADMINTABINFO  统计。</p>
 <h2 id="catalog">如何catalog 一个远程数据库</h2>
 <pre><code>Wills-MacBook-Pro:bin db2inst1$ db2 UNCATALOG DATABASE sample
@@ -482,7 +542,7 @@ DB20000I  The SQL command completed successfully.
 
 db2 -tvf grants.sql
 </code></pre>
-<h3 id="_5">更灵活的操作：</h3>
+<h3 id="_7">更灵活的操作：</h3>
 <pre><code>ksh grant_privs.ksh DB_X USER_X SCHEMA_X insert,delete,update,select
 </code></pre>
 <p>脚本如下：</p>
@@ -586,7 +646,7 @@ SQLSTATE values are designed so that application programs can test for specific 
 SQLSTATE classes that begin with the characters 0 through 6 or A through H are reserved for the database manager. Within these classes, subclasses that begin with the characters 0 through H are reserved for the database manager. Subclasses that begin with the characters I through Z can be defined.
 The class code of an SQLSTATE value indicates whether the SQL statement was executed successfully (class codes 00 and 01) or unsuccessfully (all other class codes).</p>
 <p>SQLSTATE is related to SQLCODE. Every SQLSTATE has one or more SQLCODEs associated with it. An SQLSTATE can refer to more than one SQLCODE.</p>
-<h4 id="_6">注意</h4>
+<h4 id="_8">注意</h4>
 <ol>
 <li>
 <p>SQLSTATE is related to SQLCODE. Every SQLSTATE has one or more SQLCODEs associated with it. An SQLSTATE can refer to more than one SQLCODE.</p>
@@ -729,6 +789,38 @@ CentOS release 6.5 (Final)</p>
 <h2 id="database-pagesize-tablespace-pagesize">database pagesize 和 tablespace pagesize 的关系：</h2>
 <p>类似继承关系：</p>
 <p>数据库的pagesize为创建数据库时作为缺省页大小的值，可能的取值包括4k，8k，16k和32k。当创建表空间或者是缓冲池的时候，如果不显式的指定pagesize的大小，创建的表空间将为缺省页的大小，如user1,syscat表空间等。因此从这个意义来说，数据库页大小在创建数据库时指定，之后就不能更改。</p>
+<h2 id="db2acd">db2acd 是什么，怎么关闭它？</h2>
+<p>安装db2 ese 时，如何在 response 文件中 指定了 DB2_FMP_COMM_HEAPSZ ， 那么在数据库安装完后，将会启动 db2acd进程。这个进程负责两项功能：</p>
+<p>health monitor</p>
+<p>automatic maintenance </p>
+<p>如何关闭？</p>
+<p>把 DB2_FMP_COMM_HEAPSZ  设置为0 。 </p>
+<p>http://www-01.ibm.com/support/docview.wss?uid=swg21259046</p>
+<h2 id="sql3006c-an-io-error-occurred-while-opening-the-message-file">SQL3006C An I/O error occurred while opening the message file. 如何处理</h2>
+<p>启发：</p>
+<p>Most likely this happens, when the DB2 Fenced user has no write permissions in $DIAGPATH</p>
+<p>解决办法： 查看db2diag.log ， 修改目录权限 ， </p>
+<p>切换到  /path/to/db2diag.log  所在目录</p>
+<p>创建 db2sampl_Import.msg</p>
+<p>修改权限：</p>
+<p>[root@dmp db2diag]# chown db2fenc2:db2fadm2 db2sampl_Import.msg </p>
+<p>[root@dmp db2diag]# chmod 760 db2sampl_Import.msg </p>
+<p>ref:</p>
+<p>https://www.ibm.com/developerworks/community/forums/html/topic?id=77777777-0000-0000-0000-000014852672</p>
+<h2 id="db2-express-c">据说 db2 express-c 不支持分区表特性，怎么办？</h2>
+<p>安装 db2 ese ！ </p>
+<p>分区表特性是要单独授权的。当然，是在法律上是这样。但是在功能上，只要装好，注册过了（db2licm -a) ， 就可以直接使用分区功能。</p>
+<p>````</p>
+<p>ibm is supporting the product if you have a valid license
+db partitioning has always been a separate product/feature to be paid for
+you need a specific license for this feature
+regards, guy </p>
+<p>DPF的licence其实只是商务上的事。 功能是可以用的，但是没有licence作为商用的话会有法律纠纷。</p>
+<p>````</p>
+<p>关于分区的使用方面，参考如下：</p>
+<p>http://bingotree.cn/?p=546</p>
+<p>http://www.ibm.com/developerworks/cn/data/dmmag/dbt15n3/DistributedDBA/</p>
+<p>http://www.ibm.com/developerworks/data/library/techarticle/dm-1005partitioningkeys/</p>
 <h1 id="mysql">MYSQL</h1>
 <h2 id="mysql-1040-too-many-connections">mysql : 1040 too many connections  的解决</h2>
 <ol>
@@ -762,7 +854,7 @@ RIGHT JOIN t2 ON t1.id = t2.id
 <p>limit m,n 解释:</p>
 <p>m(5) -- 表示偏移量。也就是要skip掉m行。</p>
 <p>n(10) --  表示从第m行之后，最大可以提取n行。</p>
-<h2 id="_7">关联技巧:恢复空表</h2>
+<h2 id="_9">关联技巧:恢复空表</h2>
 <pre><code>INSERT INTO ${PDM_SCH}.LI_COL
 SELECT B.*
 FROM ${PDM_SCH}.LI_COL_BAK B,
@@ -818,7 +910,7 @@ GROUP BY PK, column_list
 HAVING COUNT (*) = 1
 ORDER BY PK
 </code></pre>
-<h2 id="_8">远程数据库连接配置</h2>
+<h2 id="_10">远程数据库连接配置</h2>
 <ol>
 <li>db2 </li>
 </ol>
@@ -830,6 +922,12 @@ ORDER BY PK
 <p>连接远程的mysql，需要装本地mysql client 。 使用-h 参数指定远程服务器。使用-A 参数，降低连接时等待rehash的时间。</p>
 
 <h1 id="oracle">ORACLE</h1>
+<h2 id="perl-sql">perl 中调用sql 空行导致的问题</h2>
+<p>00933: sql command not properly ended </p>
+<p>就是说sql命令不完整，非正常结束。</p>
+<p>我把sql输出copy到 plsql 中执行，一点问题都没有。 但是在 perl sql 中， 就报这个错。</p>
+<p>经仔细检查，发现代码里有一空行。</p>
+<p>所以，请杜绝在sql代码中出现空行！</p>
 <h2 id="start-with-connect-by-prior">start with ... connect by prior ...  用法</h2>
 <p>表格式：sid|pid|level ; s for son , p for parent</p>
 <p>start with pid=[截取的根节点nodeA] connect by prior sid = pid</p>
@@ -864,11 +962,21 @@ start with pid=1 connect by prior id=pid;</p>
 SET ESCAPE ON;
 </code></pre>
 
-<h1 id="_9">优秀博客</h1>
+<h1 id="_11">方法论</h1>
+<h2 id="_12">数据存储：分表与分区表</h2>
+<p>以前做电信行业的数据仓库时，每个统计日期的数据都是分表存储的。也就是每月／每日一张表。（我称之为方案A）</p>
+<p>现在做银行数据仓库，采用的是分区表。也就是同一张表，不管有几天，都存放在一张表中。然后按日期分区存储。（我称之为方案B）</p>
+<p>这样的好处是，表量减少了。像db2，对于整个数据库中的表的数量是有限制的。如果按日期分表，就会每个主题表每天产生一张表，最后库中的表将越积累越多。</p>
+<p>当然，方案B建起索引来，应该要耗用更多的时间和存储。而方案A就会少些。</p>
+<p>其次，在编码时，日期参数的传递方式也略有不同。</p>
+<h1 id="_13">架构学习</h1>
+<p>General Relational Database Structure</p>
+<p>https://en.wikibooks.org/wiki/Oracle_and_DB2,_Comparison_and_Compatibility/Architecture/Overview</p>
+<h1 id="_14">优秀博客</h1>
 <h2 id="httpdb2commercecom">http://db2commerce.com/</h2>
 <p>ember crooks :</p>
 <p>In 2014, IBM named me as an IBM Gold Consultant.</p>
-<h1 id="_10">老牌论坛</h1>
+<h1 id="_15">老牌论坛</h1>
 <p>http://www.dbforums.com</p>
 
         <div class="sharethis-bottom">

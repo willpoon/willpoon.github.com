@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2015-12-22
+    on 2015-12-23
 
         |
         tags:         <a href="/tag/linux.html">linux</a>
@@ -150,6 +150,11 @@
 <li><a href="#_1">修改用户和修改用户组</a></li>
 <li><a href="#_2">添加用户和添加组</a></li>
 <li><a href="#_3">查看一个用户和一个组的归属关系</a></li>
+<li><a href="#ssh">查看ssh登陆日志</a><ul>
+<li><a href="#_4">最近登陆</a></li>
+<li><a href="#_5">历史登陆</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -323,6 +328,12 @@ imap &lt;F4&gt; &lt;C-R&gt;=strftime("%Y-%m-%d %I:%M")&lt;CR&gt;
 <p>useradd</p>
 <h2 id="_3">查看一个用户和一个组的归属关系</h2>
 <p>id user_name</p>
+<h2 id="ssh">查看ssh登陆日志</h2>
+<h3 id="_4">最近登陆</h3>
+<p>lastlog </p>
+<h3 id="_5">历史登陆</h3>
+<p>cat /var/log/secure </p>
+<p>works on centos 6.5</p>
 <p>[git] 2015-11-24 13:05 add git</p>
 
         <div class="sharethis-bottom">

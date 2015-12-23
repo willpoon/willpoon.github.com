@@ -2,8 +2,8 @@
 /archives.html
 /tags.html
 /categories.html
-/setup-and-config-my-github-blog-with-pelican.html
 /play-databases.html
+/setup-and-config-my-github-blog-with-pelican.html
 /work-on-linux.html
 /poons-talk.html
 /oracle-biee-develop.html
@@ -33,7 +33,7 @@
 /tag/mysql.html
 /tag/ri-zhi.html
 /tag/cheng-xu.html
-/tag/unix.html
+/tag/db2.html
 /tag/books.html
 /tag/tools.html
 /tag/linux.html
@@ -61,11 +61,11 @@
 /tag/wai-yu.html
 /tag/sheng-huo.html
 /tag/bi-ji.html
-/tag/disqus.html
+/tag/mac.html
 /tag/ye-wu.html
 /tag/xian-hua.html
 /tag/xie-zi.html
-/tag/db2.html
+/tag/disqus.html
 /tag/tou-ji.html
 /tag/me.html
 /tag/github.html
@@ -73,7 +73,7 @@
 /tag/database.html
 /tag/gu-piao.html
 /tag/tou-zi.html
-/tag/mac.html
+/tag/unix.html
 /tag/gong-zuo.html
 /tag/xing-fu.html
 /tag/jin-rong.html

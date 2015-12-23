@@ -269,4 +269,17 @@ useradd
 
 id user_name
 
+## 查看ssh登陆日志
+
+### 最近登陆
+
+lastlog 
+
+### 历史登陆
+
+cat /var/log/secure 
+
+works on centos 6.5
+
+
 [git] 2015-11-24 13:05 add git
