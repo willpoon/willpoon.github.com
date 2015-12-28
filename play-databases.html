@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2015-12-23
+    on 2015-12-28
 
         |
         tags:         <a href="/tag/db.html">DB</a>
@@ -148,12 +148,13 @@
 <li><a href="#_6">统计表大小，用户空间大小</a></li>
 <li><a href="#catalog">如何catalog 一个远程数据库</a></li>
 <li><a href="#db2-on-mac">DB2 on mac 很难找！</a></li>
+<li><a href="#db2_1">db2 查看数据库表空间情况</a></li>
 <li><a href="#db2-schema">db2 一个系统用户管理多个schema  .</a></li>
 <li><a href="#db2-grant-schema">DB2 grant 无法针对 schema 授权</a><ul>
 <li><a href="#_7">更灵活的操作：</a></li>
 </ul>
 </li>
-<li><a href="#db2_1">DB2 建表注意事项</a></li>
+<li><a href="#db2_2">DB2 建表注意事项</a></li>
 <li><a href="#db2-timestamp">DB2 如何对日期timestamp设置默认值</a></li>
 <li><a href="#db2-db2-sql1477n">db2 查报错方法： db2 ? SQL1477N</a><ul>
 <li><a href="#sqlcode">SQLCODE</a></li>
@@ -166,7 +167,7 @@
 </li>
 <li><a href="#sql-message-finder">SQL message finder</a></li>
 <li><a href="#db2-message-code">db2 message code 前缀的含义</a></li>
-<li><a href="#db2_2">db2 修改日志文件大小和数量</a></li>
+<li><a href="#db2_3">db2 修改日志文件大小和数量</a></li>
 </ul>
 </li>
 <li><a href="#distinct-clob-dbclob-blob-long-varchar-or-long-vargraphic">不能distinct 的几种数据类型：  CLOB, DBCLOB, BLOB, LONG VARCHAR, or LONG VARGRAPHIC</a></li>
@@ -497,6 +498,9 @@ with the current platform 'Darwin [x86_64]'.
 </code></pre>
 <p>进入，注册，然后按要求填写，就可以得到一个下载地址。</p>
 <p>还没安装，晚点再写安装&amp;使用体验。</p>
+<h2 id="db2_1">db2 查看数据库表空间情况</h2>
+<pre><code>$ db2 list tablespaces show detail
+</code></pre>
 <h2 id="db2-schema">db2 一个系统用户管理多个schema  .</h2>
 <p>-- 使用 db2inst1 操作</p>
 <pre><code>db2 =&gt; create schema skma AUTHORIZATION  db2etl
@@ -574,7 +578,7 @@ done
 <p>Grant privileges for a user or group on a specified schema</p>
 <pre><code>http://www.dbatodba.com/db2/scripts-db2/shell-scripts-to-db2/grant-privileges-for-a-user-or-group-on-a-specified-schema/
 </code></pre>
-<h2 id="db2_1">DB2 建表注意事项</h2>
+<h2 id="db2_2">DB2 建表注意事项</h2>
 <ol>
 <li>
 <p>尽量用大写</p>
@@ -673,7 +677,7 @@ http://www-01.ibm.com/support/knowledgecenter/api/content/SSEPGG_9.7.0/com.ibm.d
 <p>所有messages 大集合：</p>
 <pre><code>http://www-01.ibm.com/support/knowledgecenter/#!/SSEPGG_9.7.0/com.ibm.db2.luw.messages.sql.doc/doc/rsqlmsg.html?cp=SSEPGG_9.7.0%2F2-6-27
 </code></pre>
-<h2 id="db2_2">db2 修改日志文件大小和数量</h2>
+<h2 id="db2_3">db2 修改日志文件大小和数量</h2>
 <p>2015-12-18 09:26 </p>
 <p>针对： sqlcode -964, sqlstate 57011 </p>
 <p>db2 get db cfg for sample</p>

@@ -235,6 +235,9 @@ ajf- active job file 把它看作一个任务列表（队列）就可以了。
 
 http://www.ctmguru.com/2012/04/ajf-active-job-file.html
 
+### jobname ods_biee... not found in table xxx, or incorrect job sequence number.
+
+这个问题很可能是由于没有执行upload 操作导致的。 defjob －src 之后， 是需要在em中执行upload 的。 btw ， 有没有知道如何通过命令行方式执行upload操作的方法？似乎没有相关命令？
 
 ## stat 命令
 

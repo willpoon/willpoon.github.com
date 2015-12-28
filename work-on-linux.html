@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2015-12-23
+    on 2015-12-28
 
         |
         tags:         <a href="/tag/linux.html">linux</a>
@@ -143,6 +143,7 @@
 <li><a href="#date-yesterday-maclinux">date 命令 求 yesterday 的方法，mac和linux 不一样！</a></li>
 <li><a href="#control-m">control-m</a><ul>
 <li><a href="#control-m-ajf">什么是 control-m  的 ajf ?</a></li>
+<li><a href="#jobname-ods_biee-not-found-in-table-xxx-or-incorrect-job-sequence-number">jobname ods_biee... not found in table xxx, or incorrect job sequence number.</a></li>
 </ul>
 </li>
 <li><a href="#stat">stat 命令</a></li>
@@ -312,6 +313,8 @@ imap &lt;F4&gt; &lt;C-R&gt;=strftime("%Y-%m-%d %I:%M")&lt;CR&gt;
 <h3 id="control-m-ajf">什么是 control-m  的 ajf ?</h3>
 <p>ajf- active job file 把它看作一个任务列表（队列）就可以了。</p>
 <p>http://www.ctmguru.com/2012/04/ajf-active-job-file.html</p>
+<h3 id="jobname-ods_biee-not-found-in-table-xxx-or-incorrect-job-sequence-number">jobname ods_biee... not found in table xxx, or incorrect job sequence number.</h3>
+<p>这个问题很可能是由于没有执行upload 操作导致的。 defjob －src 之后， 是需要在em中执行upload 的。 btw ， 有没有知道如何通过命令行方式执行upload操作的方法？似乎没有相关命令？</p>
 <h2 id="stat">stat 命令</h2>
 <p>stat -x filename </p>
 <p>获取 文件的 ctime , mtime , atime  ; change , modified , access</p>

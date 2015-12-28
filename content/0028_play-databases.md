@@ -387,6 +387,11 @@ SQL3001C  An I/O error (reason = "sqlofopn -2079391743") occurred while  opening
 
 还没安装，晚点再写安装&使用体验。
 
+## db2 查看数据库表空间情况
+
+    $ db2 list tablespaces show detail
+
+
 
 ## db2 一个系统用户管理多个schema  . 
 
