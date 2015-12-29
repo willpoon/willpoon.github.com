@@ -2,11 +2,11 @@
 /archives.html
 /tags.html
 /categories.html
-/work-on-linux.html
 /poons-talk.html
-/english.html
-/programming.html
+/work-on-linux.html
 /play-databases.html
+/programming.html
+/english.html
 /work-on-Mac.html
 /setup-and-config-my-github-blog-with-pelican.html
 /oracle-biee-develop.html

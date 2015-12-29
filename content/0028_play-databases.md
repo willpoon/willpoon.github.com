@@ -310,6 +310,11 @@ SQL3001C  An I/O error (reason = "sqlofopn -2079391743") occurred while  opening
 从 SYSIBMADM.ADMINTABINFO  统计。
 
 
+## db2 V10.5 ， 表行大小不再跟 表空间pagesize 分页大小挂钩
+
+也就是说，一个 4k 的pagesize 表空间，也能创建 varchar(5000)字段。
+
+
 ##  如何catalog 一个远程数据库
 
     Wills-MacBook-Pro:bin db2inst1$ db2 UNCATALOG DATABASE sample

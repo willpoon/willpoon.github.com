@@ -144,4 +144,24 @@ ref : http://zhidao.baidu.com/link?url=IWykMh-QyGwHv3NoIzxch_rbF3ELrobJOEkQyvjDb
 
 
 
+# crb银行业务知识
+
+## 直销银行 
+
+### 流程 
+
+注册 － 开户 － 激活 － 实名验证
+
+
+注册： 填写手机号码，设置登录密码
+
+激活： 设置交易密码，绑定银联借记卡
+
+实名验证：购买理财和资金转出的前提。
+
+btw : 千万不要用官方网站pc端注册，推荐使用手机客户端和微信注册&激活。
+
+
+
+
 

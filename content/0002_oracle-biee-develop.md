@@ -59,6 +59,22 @@ with tab as（  ） 这样的子句放到物理表视图中，那么rpd将会让
 
 7. 默认值的设置，一定要正确。
 
+###  会话变量的使用 session variable usage
+
+#### 在rpd中
+
+
+VALUEOF(NQ_SESSION.VARNAME)
+
+#### 在analysis 中
+
+VALUEOF(NQ_SESSION.VARNAME)
+
+结论是：两个场合的用法都是一样的！
+
+
+
+
 #### 其他tips：
 
 1. 默认值的填写： 如果是服务器变量，直接填写 : var_name , 不需要 valueof , 也不需要 nq_session 

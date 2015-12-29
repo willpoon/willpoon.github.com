@@ -239,6 +239,19 @@ http://www.ctmguru.com/2012/04/ajf-active-job-file.html
 
 这个问题很可能是由于没有执行upload 操作导致的。 defjob －src 之后， 是需要在em中执行upload 的。 btw ， 有没有知道如何通过命令行方式执行upload操作的方法？似乎没有相关命令？
 
+### control-m / CTM 使用defjob的时候，报连接问题
+
+1. 需要先用control－m /desktop 连接到对应的服务器！
+
+2. 当有多台服务器的时候，请确认是否连接到了正确的服务器上
+
+### 如果使用命令行方式调起一个作业。(命令行order 作业)
+
+    ctmorder -TABLE TABLENAME -NAME jobname -ODATE YYYYMMDD -INTO_TABLE_ORDERID [newt|last] -FORCE y
+
+
+
+
 ## stat 命令
 
 stat -x filename 

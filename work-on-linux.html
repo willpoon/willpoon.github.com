@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2015-12-28
+    on 2015-12-29
 
         |
         tags:         <a href="/tag/linux.html">linux</a>
@@ -144,6 +144,8 @@
 <li><a href="#control-m">control-m</a><ul>
 <li><a href="#control-m-ajf">什么是 control-m  的 ajf ?</a></li>
 <li><a href="#jobname-ods_biee-not-found-in-table-xxx-or-incorrect-job-sequence-number">jobname ods_biee... not found in table xxx, or incorrect job sequence number.</a></li>
+<li><a href="#control-m-ctm-defjob">control-m / CTM 使用defjob的时候，报连接问题</a></li>
+<li><a href="#order">如果使用命令行方式调起一个作业。(命令行order 作业)</a></li>
 </ul>
 </li>
 <li><a href="#stat">stat 命令</a></li>
@@ -315,6 +317,18 @@ imap &lt;F4&gt; &lt;C-R&gt;=strftime("%Y-%m-%d %I:%M")&lt;CR&gt;
 <p>http://www.ctmguru.com/2012/04/ajf-active-job-file.html</p>
 <h3 id="jobname-ods_biee-not-found-in-table-xxx-or-incorrect-job-sequence-number">jobname ods_biee... not found in table xxx, or incorrect job sequence number.</h3>
 <p>这个问题很可能是由于没有执行upload 操作导致的。 defjob －src 之后， 是需要在em中执行upload 的。 btw ， 有没有知道如何通过命令行方式执行upload操作的方法？似乎没有相关命令？</p>
+<h3 id="control-m-ctm-defjob">control-m / CTM 使用defjob的时候，报连接问题</h3>
+<ol>
+<li>
+<p>需要先用control－m /desktop 连接到对应的服务器！</p>
+</li>
+<li>
+<p>当有多台服务器的时候，请确认是否连接到了正确的服务器上</p>
+</li>
+</ol>
+<h3 id="order">如果使用命令行方式调起一个作业。(命令行order 作业)</h3>
+<pre><code>ctmorder -TABLE TABLENAME -NAME jobname -ODATE YYYYMMDD -INTO_TABLE_ORDERID [newt|last] -FORCE y
+</code></pre>
 <h2 id="stat">stat 命令</h2>
 <p>stat -x filename </p>
 <p>获取 文件的 ctime , mtime , atime  ; change , modified , access</p>

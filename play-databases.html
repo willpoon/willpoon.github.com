@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2015-12-28
+    on 2015-12-29
 
         |
         tags:         <a href="/tag/db.html">DB</a>
@@ -146,6 +146,7 @@
 <li><a href="#_5">密码带特殊字符时，如果连接</a></li>
 <li><a href="#sql3001c-an-io-error">SQL3001C  An I/O error</a></li>
 <li><a href="#_6">统计表大小，用户空间大小</a></li>
+<li><a href="#db2-v105-pagesize">db2 V10.5 ， 表行大小不再跟 表空间pagesize 分页大小挂钩</a></li>
 <li><a href="#catalog">如何catalog 一个远程数据库</a></li>
 <li><a href="#db2-on-mac">DB2 on mac 很难找！</a></li>
 <li><a href="#db2_1">db2 查看数据库表空间情况</a></li>
@@ -429,6 +430,8 @@ DB20000I  The SQL command completed successfully.
 报这个错的原因是路径不存在或路径没有写入权限。</p>
 <h2 id="_6">统计表大小，用户空间大小</h2>
 <p>从 SYSIBMADM.ADMINTABINFO  统计。</p>
+<h2 id="db2-v105-pagesize">db2 V10.5 ， 表行大小不再跟 表空间pagesize 分页大小挂钩</h2>
+<p>也就是说，一个 4k 的pagesize 表空间，也能创建 varchar(5000)字段。</p>
 <h2 id="catalog">如何catalog 一个远程数据库</h2>
 <pre><code>Wills-MacBook-Pro:bin db2inst1$ db2 UNCATALOG DATABASE sample
 DB20000I  The UNCATALOG DATABASE command completed successfully.

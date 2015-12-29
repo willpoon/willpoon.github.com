@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2015-12-22
+    on 2015-12-29
 
         |
         tags:         <a href="/tag/oracle.html">oracle</a>
@@ -126,12 +126,17 @@
 <li><a href="#biee">利用biee的提示,将展示变量传递到会话变量</a><ul>
 <li><a href="#_3">背景：</a></li>
 <li><a href="#_4">设计：</a></li>
+</ul>
+</li>
+<li><a href="#session-variable-usage">会话变量的使用 session variable usage</a><ul>
+<li><a href="#rpd">在rpd中</a></li>
+<li><a href="#analysis">在analysis 中</a></li>
 <li><a href="#tips">其他tips：</a></li>
 </ul>
 </li>
 <li><a href="#biee_1">BIEE分析报表的格式套用/批量设置解答：</a></li>
 <li><a href="#oracle-biee">Oracle BIEE从开发迁移到生产时，如何处置修改配置这些麻烦事？</a><ul>
-<li><a href="#rpd">RPD 密码的修改</a></li>
+<li><a href="#rpd_1">RPD 密码的修改</a></li>
 </ul>
 </li>
 <li><a href="#weblogic-jndi-xml">weblogic －服务－数据源－中的 jndi 对应后台哪个xml配置文件？</a></li>
@@ -273,6 +278,12 @@ end</p>
 <p>默认值的设置，一定要正确。</p>
 </li>
 </ol>
+<h3 id="session-variable-usage">会话变量的使用 session variable usage</h3>
+<h4 id="rpd">在rpd中</h4>
+<p>VALUEOF(NQ_SESSION.VARNAME)</p>
+<h4 id="analysis">在analysis 中</h4>
+<p>VALUEOF(NQ_SESSION.VARNAME)</p>
+<p>结论是：两个场合的用法都是一样的！</p>
 <h4 id="tips">其他tips：</h4>
 <ol>
 <li>默认值的填写： 如果是服务器变量，直接填写 : var_name , 不需要 valueof , 也不需要 nq_session </li>
@@ -297,7 +308,7 @@ This functionality works best for views when attribute, measure, or hierarchical
 <li>如果列数不等，新报表列数多，那么新报表中不能匹配的列将重复最后一列。比如，4列老报表的列颜色设置为 红绿蓝黄，那么6列新报表的颜色为红绿蓝黄黄黄！</li>
 </ol>
 <h2 id="oracle-biee">Oracle BIEE从开发迁移到生产时，如何处置修改配置这些麻烦事？</h2>
-<h3 id="rpd">RPD 密码的修改</h3>
+<h3 id="rpd_1">RPD 密码的修改</h3>
 <p>连接池越多，要改的密码就越多！你愿意每次投产，都要做这种没有技术含量，而风险又大的活？of course not !
 通过使用 admintool.exe /command 命令，通过配置的方式，修改密码，只需要执行批处理即可！</p>
 <p>a. run.bat 批处理脚本： </p>

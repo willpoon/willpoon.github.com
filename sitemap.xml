@@ -5,49 +5,63 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2015-12-28T21:21:28-00:00</lastmod>
+<lastmod>2015-12-29T17:24:51-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2015-12-28T21:21:28-00:00</lastmod>
+<lastmod>2015-12-29T17:24:51-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2015-12-28T21:21:28-00:00</lastmod>
+<lastmod>2015-12-29T17:24:51-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2015-12-28T21:21:28-00:00</lastmod>
+<lastmod>2015-12-29T17:24:51-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/poons-talk.html</loc>
-<lastmod>2015-12-28T21:21:25+08:00</lastmod>
+<lastmod>2015-12-29T17:24:46+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/work-on-linux.html</loc>
-<lastmod>2015-12-28T14:43:59+08:00</lastmod>
+<loc>/oracle-biee-develop.html</loc>
+<lastmod>2015-12-29T17:22:05+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/play-databases.html</loc>
-<lastmod>2015-12-28T10:36:41+08:00</lastmod>
+<lastmod>2015-12-29T17:18:25+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/work-on-linux.html</loc>
+<lastmod>2015-12-29T14:35:58+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/banking-finance.html</loc>
+<lastmod>2015-12-29T11:43:29+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -81,13 +95,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/oracle-biee-develop.html</loc>
-<lastmod>2015-12-22T15:47:19+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>/read-some-books.html</loc>
 <lastmod>2015-12-20T21:52:13+08:00</lastmod>
 <changefreq>monthly</changefreq>
@@ -97,13 +104,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/about-design.html</loc>
 <lastmod>2015-12-17T11:43:46+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/banking-finance.html</loc>
-<lastmod>2015-12-17T10:51:58+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -180,7 +180,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/life.html</loc>
-<lastmod>2015-12-28T21:21:25+08:06</lastmod>
+<lastmod>2015-12-29T17:24:46+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -194,21 +194,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/tech.html</loc>
-<lastmod>2015-12-28T14:43:59+08:06</lastmod>
+<lastmod>2015-12-29T17:22:05+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/disqus.html</loc>
+<lastmod>2015-12-22T17:32:16+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/gan-wu.html</loc>
-<lastmod>2015-12-28T21:21:25+08:06</lastmod>
+<lastmod>2015-12-29T17:24:46+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/pan-tan.html</loc>
-<lastmod>2015-12-28T21:21:25+08:06</lastmod>
+<lastmod>2015-12-29T17:24:46+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -228,8 +235,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/linux.html</loc>
-<lastmod>2015-12-28T14:43:59+08:06</lastmod>
+<loc>/tag/mysql.html</loc>
+<lastmod>2015-12-29T17:18:25+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -270,8 +277,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/mysql.html</loc>
-<lastmod>2015-12-28T10:36:41+08:06</lastmod>
+<loc>/tag/linux.html</loc>
+<lastmod>2015-12-29T14:35:58+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -292,21 +299,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/yin-xing.html</loc>
-<lastmod>2015-12-17T10:51:58+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/tag/db2.html</loc>
-<lastmod>2015-12-28T10:36:41+08:06</lastmod>
+<lastmod>2015-12-29T11:43:29+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/git.html</loc>
-<lastmod>2015-12-28T14:43:59+08:06</lastmod>
+<lastmod>2015-12-29T14:35:58+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -369,7 +369,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/biee.html</loc>
-<lastmod>2015-12-22T15:47:19+08:06</lastmod>
+<lastmod>2015-12-29T17:22:05+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -383,7 +383,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/hu-che.html</loc>
-<lastmod>2015-12-28T21:21:25+08:06</lastmod>
+<lastmod>2015-12-29T17:24:46+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -404,7 +404,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/shu-ju-ku.html</loc>
-<lastmod>2015-12-28T10:36:41+08:06</lastmod>
+<lastmod>2015-12-29T17:18:25+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -418,14 +418,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/db.html</loc>
-<lastmod>2015-12-28T10:36:41+08:06</lastmod>
+<lastmod>2015-12-29T17:18:25+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/bi.html</loc>
-<lastmod>2015-12-22T15:47:19+08:06</lastmod>
+<lastmod>2015-12-29T17:22:05+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -453,14 +453,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/ye-wu.html</loc>
-<lastmod>2015-12-17T10:51:58+08:06</lastmod>
+<lastmod>2015-12-29T11:43:29+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/xian-hua.html</loc>
-<lastmod>2015-12-28T21:21:25+08:06</lastmod>
+<lastmod>2015-12-29T17:24:46+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -473,8 +473,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/disqus.html</loc>
-<lastmod>2015-12-22T17:32:16+08:06</lastmod>
+<loc>/tag/db2.html</loc>
+<lastmod>2015-12-29T17:18:25+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -502,7 +502,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/database.html</loc>
-<lastmod>2015-12-28T10:36:41+08:06</lastmod>
+<lastmod>2015-12-29T17:18:25+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -544,7 +544,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/jin-rong.html</loc>
-<lastmod>2015-12-17T10:51:58+08:06</lastmod>
+<lastmod>2015-12-29T11:43:29+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -558,7 +558,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/xin-ling.html</loc>
-<lastmod>2015-12-28T21:21:25+08:06</lastmod>
+<lastmod>2015-12-29T17:24:46+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -572,7 +572,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/oracle.html</loc>
-<lastmod>2015-12-28T10:36:41+08:06</lastmod>
+<lastmod>2015-12-29T17:22:05+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -607,7 +607,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/author/poon.html</loc>
-<lastmod>2015-12-28T21:21:25+08:06</lastmod>
+<lastmod>2015-12-29T17:24:46+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
