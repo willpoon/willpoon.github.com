@@ -5,56 +5,77 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2015-12-29T17:25:34-00:00</lastmod>
+<lastmod>2016-01-05T16:38:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2015-12-29T17:25:34-00:00</lastmod>
+<lastmod>2016-01-05T16:38:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2015-12-29T17:25:34-00:00</lastmod>
+<lastmod>2016-01-05T16:38:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2015-12-29T17:25:34-00:00</lastmod>
+<lastmod>2016-01-05T16:38:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/poons-talk.html</loc>
-<lastmod>2015-12-29T17:24:46+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/oracle-biee-develop.html</loc>
-<lastmod>2015-12-29T17:22:05+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>/play-databases.html</loc>
-<lastmod>2015-12-29T17:18:25+08:00</lastmod>
+<lastmod>2016-01-05T16:38:12+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/poons-talk.html</loc>
+<lastmod>2016-01-05T08:16:14+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/todo.html</loc>
+<lastmod>2016-01-05T08:07:10+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/think-about-happiness.html</loc>
+<lastmod>2016-01-05T04:48:45+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/english.html</loc>
+<lastmod>2016-01-04T10:04:10+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/work-on-linux.html</loc>
-<lastmod>2015-12-29T14:35:58+08:00</lastmod>
+<lastmod>2015-12-30T17:30:33+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/oracle-biee-develop.html</loc>
+<lastmod>2015-12-30T11:00:24+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -69,13 +90,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/programming.html</loc>
 <lastmod>2015-12-28T09:54:57+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/english.html</loc>
-<lastmod>2015-12-23T17:29:13+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -109,13 +123,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/think-about-happiness.html</loc>
-<lastmod>2015-12-14T22:52:05+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>/invest-notes.html</loc>
 <lastmod>2015-12-14T09:40:03+08:00</lastmod>
 <changefreq>monthly</changefreq>
@@ -125,13 +132,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/the-benifit-of-writing.html</loc>
 <lastmod>2015-12-11T08:39:50+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/todo.html</loc>
-<lastmod>2015-12-10T04:07:46+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -180,7 +180,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/life.html</loc>
-<lastmod>2015-12-29T17:24:46+08:06</lastmod>
+<lastmod>2016-01-05T08:16:14+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -194,7 +194,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/tech.html</loc>
-<lastmod>2015-12-29T17:22:05+08:06</lastmod>
+<lastmod>2016-01-05T16:38:12+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -208,14 +208,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/gan-wu.html</loc>
-<lastmod>2015-12-29T17:24:46+08:06</lastmod>
+<lastmod>2016-01-05T08:16:14+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/pan-tan.html</loc>
-<lastmod>2015-12-29T17:24:46+08:06</lastmod>
+<lastmod>2016-01-05T08:16:14+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -236,7 +236,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/mysql.html</loc>
-<lastmod>2015-12-29T17:18:25+08:06</lastmod>
+<lastmod>2016-01-05T16:38:12+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -278,7 +278,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/linux.html</loc>
-<lastmod>2015-12-29T14:35:58+08:06</lastmod>
+<lastmod>2015-12-30T17:30:33+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -292,7 +292,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/todo.html</loc>
-<lastmod>2015-12-10T04:07:46+08:06</lastmod>
+<lastmod>2016-01-05T08:07:10+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -306,21 +306,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/git.html</loc>
-<lastmod>2015-12-29T14:35:58+08:06</lastmod>
+<lastmod>2015-12-30T17:30:33+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/xiang-zuo.html</loc>
-<lastmod>2015-12-10T04:07:46+08:06</lastmod>
+<lastmod>2016-01-05T08:07:10+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/ji-hua.html</loc>
-<lastmod>2015-12-10T04:07:46+08:06</lastmod>
+<lastmod>2016-01-05T08:07:10+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -369,7 +369,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/biee.html</loc>
-<lastmod>2015-12-29T17:22:05+08:06</lastmod>
+<lastmod>2015-12-30T11:00:24+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -383,14 +383,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/hu-che.html</loc>
-<lastmod>2015-12-29T17:24:46+08:06</lastmod>
+<lastmod>2016-01-05T08:16:14+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/si-kao.html</loc>
-<lastmod>2015-12-14T22:52:05+08:06</lastmod>
+<loc>/tag/xin-ling.html</loc>
+<lastmod>2016-01-05T08:16:14+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -404,7 +404,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/shu-ju-ku.html</loc>
-<lastmod>2015-12-29T17:18:25+08:06</lastmod>
+<lastmod>2016-01-05T16:38:12+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -418,21 +418,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/db.html</loc>
-<lastmod>2015-12-29T17:18:25+08:06</lastmod>
+<lastmod>2016-01-05T16:38:12+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/bi.html</loc>
-<lastmod>2015-12-29T17:22:05+08:06</lastmod>
+<lastmod>2015-12-30T11:00:24+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/wai-yu.html</loc>
-<lastmod>2015-12-23T17:29:13+08:06</lastmod>
+<lastmod>2016-01-04T10:04:10+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -460,7 +460,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/xian-hua.html</loc>
-<lastmod>2015-12-29T17:24:46+08:06</lastmod>
+<lastmod>2016-01-05T08:16:14+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -474,7 +474,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/db2.html</loc>
-<lastmod>2015-12-29T17:18:25+08:06</lastmod>
+<lastmod>2016-01-05T16:38:12+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -502,7 +502,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/database.html</loc>
-<lastmod>2015-12-29T17:18:25+08:06</lastmod>
+<lastmod>2016-01-05T16:38:12+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -537,7 +537,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/xing-fu.html</loc>
-<lastmod>2015-12-14T22:52:05+08:06</lastmod>
+<lastmod>2016-01-05T04:48:45+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -557,8 +557,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/xin-ling.html</loc>
-<lastmod>2015-12-29T17:24:46+08:06</lastmod>
+<loc>/tag/si-kao.html</loc>
+<lastmod>2016-01-05T04:48:45+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -572,14 +572,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/oracle.html</loc>
-<lastmod>2015-12-29T17:22:05+08:06</lastmod>
+<lastmod>2016-01-05T16:38:12+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/kuai-le.html</loc>
-<lastmod>2015-12-14T22:52:05+08:06</lastmod>
+<lastmod>2016-01-05T04:48:45+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -607,7 +607,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/author/poon.html</loc>
-<lastmod>2015-12-29T17:24:46+08:06</lastmod>
+<lastmod>2016-01-05T16:38:12+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

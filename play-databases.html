@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2015-12-29
+    on 2016-01-05
 
         |
         tags:         <a href="/tag/db.html">DB</a>
@@ -142,17 +142,21 @@
 </li>
 </ul>
 </li>
-<li><a href="#_4">启动&amp;连接&amp;测试</a></li>
-<li><a href="#_5">密码带特殊字符时，如果连接</a></li>
+<li><a href="#union">一个union 语句引发的错误：</a><ul>
+<li><a href="#_4">解决办法</a></li>
+</ul>
+</li>
+<li><a href="#_5">启动&amp;连接&amp;测试</a></li>
+<li><a href="#_6">密码带特殊字符时，如果连接</a></li>
 <li><a href="#sql3001c-an-io-error">SQL3001C  An I/O error</a></li>
-<li><a href="#_6">统计表大小，用户空间大小</a></li>
+<li><a href="#_7">统计表大小，用户空间大小</a></li>
 <li><a href="#db2-v105-pagesize">db2 V10.5 ， 表行大小不再跟 表空间pagesize 分页大小挂钩</a></li>
 <li><a href="#catalog">如何catalog 一个远程数据库</a></li>
 <li><a href="#db2-on-mac">DB2 on mac 很难找！</a></li>
 <li><a href="#db2_1">db2 查看数据库表空间情况</a></li>
 <li><a href="#db2-schema">db2 一个系统用户管理多个schema  .</a></li>
 <li><a href="#db2-grant-schema">DB2 grant 无法针对 schema 授权</a><ul>
-<li><a href="#_7">更灵活的操作：</a></li>
+<li><a href="#_8">更灵活的操作：</a></li>
 </ul>
 </li>
 <li><a href="#db2_2">DB2 建表注意事项</a></li>
@@ -160,7 +164,7 @@
 <li><a href="#db2-db2-sql1477n">db2 查报错方法： db2 ? SQL1477N</a><ul>
 <li><a href="#sqlcode">SQLCODE</a></li>
 <li><a href="#sqlstate">SQLSTATE</a><ul>
-<li><a href="#_8">注意</a></li>
+<li><a href="#_9">注意</a></li>
 </ul>
 </li>
 <li><a href="#sql-message-concepts">SQL message concepts</a></li>
@@ -186,13 +190,13 @@
 <li><a href="#mysql-except-or-minus">MYSQL 不支持 except or minus</a></li>
 <li><a href="#mysql-a">mysql -A 参数</a></li>
 <li><a href="#mysql-limit">mysql limit 的用法：</a></li>
-<li><a href="#_9">关联技巧:恢复空表</a></li>
+<li><a href="#_10">关联技巧:恢复空表</a></li>
 <li><a href="#mysqld">启动mysqld 的时候，一般加什么参数？</a></li>
 <li><a href="#mysql_1">mysql 远程连接</a></li>
 <li><a href="#except-minus-mysql">如果不能用 except , minus , mysql 如何比较两张表？</a></li>
 <li><a href="#mysql-row">mysql 使用 row() 实现 多列比较</a></li>
 <li><a href="#mysql-intersect">mysql 模拟 intersect  求差集</a></li>
-<li><a href="#_10">远程数据库连接配置</a></li>
+<li><a href="#_11">远程数据库连接配置</a></li>
 </ul>
 </li>
 <li><a href="#oracle">ORACLE</a><ul>
@@ -201,18 +205,19 @@
 <li><a href="#oracle-python">oracle 和 python 交互</a></li>
 <li><a href="#oracle-response">oracle response 文件安装方式是怎么回事？</a></li>
 <li><a href="#oracle-dml-escape-ampersand">oracle 在执行 dml的时候 escape &amp; (ampersand)符号？</a></li>
+<li><a href="#oracle_1">oracle 匿名块</a></li>
 </ul>
 </li>
-<li><a href="#_11">方法论</a><ul>
-<li><a href="#_12">数据存储：分表与分区表</a></li>
+<li><a href="#_12">方法论</a><ul>
+<li><a href="#_13">数据存储：分表与分区表</a></li>
 </ul>
 </li>
-<li><a href="#_13">架构学习</a></li>
-<li><a href="#_14">优秀博客</a><ul>
+<li><a href="#_14">架构学习</a></li>
+<li><a href="#_15">优秀博客</a><ul>
 <li><a href="#httpdb2commercecom">http://db2commerce.com/</a></li>
 </ul>
 </li>
-<li><a href="#_15">老牌论坛</a></li>
+<li><a href="#_16">老牌论坛</a></li>
 </ul>
 </div>
         </nav>
@@ -415,12 +420,123 @@ user@localhost:~/sunline$ db2 grant select on METADATA.TMPLST to public
 DB20000I  The SQL command completed successfully.
 </code></pre>
 <p>以上，除了给db2etl赋 dbadm 权限用到db2inst1，其他操作都不需要。 只需要用db2etl即可。</p>
-<h2 id="_4">启动&amp;连接&amp;测试</h2>
+<h2 id="union">一个union 语句引发的错误：</h2>
+<p>SELECT CD_ID, COLUMN_NAME, COMMENT, TYPE_NAME, INTEGER_IDX, ' ' AS PDKFLAG
+FROM MPZ.DI_HIV_COLUMNS_V2
+WHERE F_STARTDATE &lt;= TO_DATE('20151202100600','YYYY-MM-DD HH24:MI:SS')
+          AND F_ENDDATE &gt; TO_DATE('20151202100600','YYYY-MM-DD HH24:MI:SS')
+          AND DB_ID = 'WWW'
+UNION
+SELECT SD1.CD_ID, PKEY_NAME AS COLUMN_NAME, PKEY_COMMENT AS COMMENT, PKEY_TYPE AS TYPE_NAME, (COLUMN_SUM + INTEGER_IDX) AS INTEGER_IDX, 'P' AS PDKFLAG
+FROM MPZ.DI_HIV_PARTITION_KEYS TPK
+LEFT JOIN (
+                SELECT TBL_ID, SD_ID
+                FROM MPZ.DI_HIV_TBLS
+                WHERE F_STARTDATE &lt;= TO_DATE('20151202100600','YYYY-MM-DD HH24:MI:SS')
+                      AND F_ENDDATE &gt; TO_DATE('20151202100600','YYYY-MM-DD HH24:MI:SS')
+                      AND DB_ID = 'WWW'
+    ) T1
+        ON TPK.TBL_ID = T1.TBL_ID
+LEFT JOIN (
+                SELECT SD_ID, CD_ID
+                FROM MPZ.DI_HIV_SDS
+                WHERE F_STARTDATE &lt;= TO_DATE('20151202100600','YYYY-MM-DD HH24:MI:SS')
+                      AND F_ENDDATE &gt; TO_DATE('20151202100600','YYYY-MM-DD HH24:MI:SS')
+                      AND DB_ID = 'WWW'
+    ) SD1
+    ON T1.SD_ID = SD1.SD_ID
+LEFT JOIN (
+                SELECT CD_ID, COUNT(*) AS COLUMN_SUM
+                FROM MPZ.DI_HIV_COLUMNS_V2
+                WHERE F_STARTDATE &lt;= TO_DATE('20151202100600','YYYY-MM-DD HH24:MI:SS')
+                      AND F_ENDDATE &gt; TO_DATE('20151202100600','YYYY-MM-DD HH24:MI:SS')
+                      AND DB_ID = 'WWW'
+                GROUP BY CD_ID
+        ) CS
+        ON SD1.CD_ID = CS.CD_ID
+WHERE F_STARTDATE &lt;= TO_DATE('20151202100600','YYYY-MM-DD HH24:MI:SS')
+          AND F_ENDDATE &gt; TO_DATE('20151202100600','YYYY-MM-DD HH24:MI:SS')
+          AND DB_ID = 'WWW'</p>
+<p>其中 union 前面的语句有一个 varchar(4000) 的字段 。</p>
+<p>union 后面 的 语句 有两个 varchar(4000) 字段。</p>
+<p>union 的使用，触发了system  TEMPORARY TABLESPACE  的使用。</p>
+<p>而使用 </p>
+<p>[db2inst2@dmp ~]$ db2 "SELECT CHAR(TBSP_NAME,20) TBSP_NAME, TBSP_CONTENT_TYPE, TBSP_PAGE_SIZE 
+     FROM SYSIBMADM.SNAPTBSP"</p>
+<p>TBSP_NAME            TBSP_CONTENT_TYPE TBSP_PAGE_SIZE      </p>
+<hr/>
+<p>SYSCATSPACE          ANY                               8192
+TEMPSPACE1           SYSTEMP                           8192
+USERSPACE1           LARGE                             8192
+IBMDB2SAMPLEREL      LARGE                             8192
+IBMDB2SAMPLEXML      LARGE                             8192
+SYSTOOLSPACE         LARGE                             8192
+US_METADATA          LARGE                            32768
+MY32KSPACE           SYSTEMP                          32768</p>
+<p>查询得知 TEMPSPACE1  是 8k 的表空间。执行union操作，需要使用 TEMPSPACE1 , 显然 对于有两个 varchar(4000) ＋ n个其他小字段的语句来说，8k不够。所以，要新增一个 pagesize 大一点的。如上，我新增了 MY32KSPACE 。 </p>
+<p>SQL1585N  A system temporary table space with sufficient page size does
+      not exist.</p>
+<pre><code>  Explanation:
+
+  One of the following conditions could have occurred:
+
+  1. The row length of the system temporary table exceeded the limit that
+     can be accommodated in the largest system temporary table space in
+        the database.
+        2. The number of columns required in a system temporary table exceeded
+           the limit that can be accommodated in the largest system temporary
+              table space in the database.
+
+              The system temporary table space limits depend on its page size. These
+              values are:
+
+              Max          Max   Page size of
+              Record       Cols  temporary
+              Length             table space
+              -----------  ----  ------------
+              4005  bytes  500   4K
+              8101  bytes  1012  8K
+              16293 bytes  1012  16K
+              32677 bytes  1012  32K
+
+              User response:
+
+              Create a system temporary table space of a larger page size supported,
+              if one does not already exist. If such a table space already exists,
+              eliminate one or more columns from the system temporary table. Create
+              separate tables or views, as required, to hold additional information
+              beyond the limit.
+
+               sqlcode: -1585
+
+                sqlstate: 54048
+</code></pre>
+<h3 id="_4">解决办法</h3>
+<p>--create bufferpool bpdefault32k IMMEDIATE  SIZE 5000 PAGESIZE 32 K;</p>
+<p>CREATE TEMPORARY TABLESPACE MY32KSPACE 
+  IN DATABASE PARTITION GROUP IBMTEMPGROUP 
+  PAGESIZE 32K 
+  MANAGED BY SYSTEM 
+  USING 
+  ('MY32KSPACE')
+  EXTENTSIZE 32 
+  PREFETCHSIZE 16 
+  BUFFERPOOL bpdefault32k 
+  OVERHEAD 24.10 
+  TRANSFERRATE 0.90 
+  DROPPED TABLE RECOVERY OFF; </p>
+<p>释疑1 ： 需要重新创建 tempspace1 吗？</p>
+<p>不需要。 只需要增加一个就行。 db2 会选择合适的临时表空间来使用。</p>
+<p>释疑2 ： tempspace1 能删除吗？</p>
+<p>可以，但是需要先建一个备用的 同类型表空间。</p>
+<p>释疑3 ： 不叫 tempspace1 的表空间，是否需要给它一个默认属性，以便执行查询的时候好匹配？</p>
+<p>系统自动选择合适的表空间来执行语句，无需特意指定默认，也无法指定，貌似。</p>
+<h2 id="_5">启动&amp;连接&amp;测试</h2>
 <p>su - db2inst1</p>
 <p>db2stop</p>
 <p>db2start</p>
 <p>db2 connect to sample</p>
-<h2 id="_5">密码带特殊字符时，如果连接</h2>
+<h2 id="_6">密码带特殊字符时，如果连接</h2>
 <p>db2 'connect to sample user db2etl using "db2etl!QAZ"'</p>
 <p>使用'' 包住connect 语句</p>
 <p>使用 "" 包住 密码串。</p>
@@ -428,7 +544,7 @@ DB20000I  The SQL command completed successfully.
 <h2 id="sql3001c-an-io-error">SQL3001C  An I/O error</h2>
 <p>SQL3001C  An I/O error (reason = "sqlofopn -2079391743") occurred while  opening the output file.
 报这个错的原因是路径不存在或路径没有写入权限。</p>
-<h2 id="_6">统计表大小，用户空间大小</h2>
+<h2 id="_7">统计表大小，用户空间大小</h2>
 <p>从 SYSIBMADM.ADMINTABINFO  统计。</p>
 <h2 id="db2-v105-pagesize">db2 V10.5 ， 表行大小不再跟 表空间pagesize 分页大小挂钩</h2>
 <p>也就是说，一个 4k 的pagesize 表空间，也能创建 varchar(5000)字段。</p>
@@ -549,7 +665,7 @@ DB20000I  The SQL command completed successfully.
 
 db2 -tvf grants.sql
 </code></pre>
-<h3 id="_7">更灵活的操作：</h3>
+<h3 id="_8">更灵活的操作：</h3>
 <pre><code>ksh grant_privs.ksh DB_X USER_X SCHEMA_X insert,delete,update,select
 </code></pre>
 <p>脚本如下：</p>
@@ -653,7 +769,7 @@ SQLSTATE values are designed so that application programs can test for specific 
 SQLSTATE classes that begin with the characters 0 through 6 or A through H are reserved for the database manager. Within these classes, subclasses that begin with the characters 0 through H are reserved for the database manager. Subclasses that begin with the characters I through Z can be defined.
 The class code of an SQLSTATE value indicates whether the SQL statement was executed successfully (class codes 00 and 01) or unsuccessfully (all other class codes).</p>
 <p>SQLSTATE is related to SQLCODE. Every SQLSTATE has one or more SQLCODEs associated with it. An SQLSTATE can refer to more than one SQLCODE.</p>
-<h4 id="_8">注意</h4>
+<h4 id="_9">注意</h4>
 <ol>
 <li>
 <p>SQLSTATE is related to SQLCODE. Every SQLSTATE has one or more SQLCODEs associated with it. An SQLSTATE can refer to more than one SQLCODE.</p>
@@ -861,7 +977,7 @@ RIGHT JOIN t2 ON t1.id = t2.id
 <p>limit m,n 解释:</p>
 <p>m(5) -- 表示偏移量。也就是要skip掉m行。</p>
 <p>n(10) --  表示从第m行之后，最大可以提取n行。</p>
-<h2 id="_9">关联技巧:恢复空表</h2>
+<h2 id="_10">关联技巧:恢复空表</h2>
 <pre><code>INSERT INTO ${PDM_SCH}.LI_COL
 SELECT B.*
 FROM ${PDM_SCH}.LI_COL_BAK B,
@@ -917,7 +1033,7 @@ GROUP BY PK, column_list
 HAVING COUNT (*) = 1
 ORDER BY PK
 </code></pre>
-<h2 id="_10">远程数据库连接配置</h2>
+<h2 id="_11">远程数据库连接配置</h2>
 <ol>
 <li>db2 </li>
 </ol>
@@ -968,22 +1084,23 @@ start with pid=1 connect by prior id=pid;</p>
 
 SET ESCAPE ON;
 </code></pre>
+<h2 id="oracle_1">oracle 匿名块</h2>
 
-<h1 id="_11">方法论</h1>
-<h2 id="_12">数据存储：分表与分区表</h2>
+<h1 id="_12">方法论</h1>
+<h2 id="_13">数据存储：分表与分区表</h2>
 <p>以前做电信行业的数据仓库时，每个统计日期的数据都是分表存储的。也就是每月／每日一张表。（我称之为方案A）</p>
 <p>现在做银行数据仓库，采用的是分区表。也就是同一张表，不管有几天，都存放在一张表中。然后按日期分区存储。（我称之为方案B）</p>
 <p>这样的好处是，表量减少了。像db2，对于整个数据库中的表的数量是有限制的。如果按日期分表，就会每个主题表每天产生一张表，最后库中的表将越积累越多。</p>
 <p>当然，方案B建起索引来，应该要耗用更多的时间和存储。而方案A就会少些。</p>
 <p>其次，在编码时，日期参数的传递方式也略有不同。</p>
-<h1 id="_13">架构学习</h1>
+<h1 id="_14">架构学习</h1>
 <p>General Relational Database Structure</p>
 <p>https://en.wikibooks.org/wiki/Oracle_and_DB2,_Comparison_and_Compatibility/Architecture/Overview</p>
-<h1 id="_14">优秀博客</h1>
+<h1 id="_15">优秀博客</h1>
 <h2 id="httpdb2commercecom">http://db2commerce.com/</h2>
 <p>ember crooks :</p>
 <p>In 2014, IBM named me as an IBM Gold Consultant.</p>
-<h1 id="_15">老牌论坛</h1>
+<h1 id="_16">老牌论坛</h1>
 <p>http://www.dbforums.com</p>
 
         <div class="sharethis-bottom">

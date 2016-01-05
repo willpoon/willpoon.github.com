@@ -279,7 +279,139 @@ db2look -d sample -e -l -x  -z metadata -i db2etl -w db2etlpassword
 
 
 
+##  一个union 语句引发的错误：
 
+SELECT CD_ID, COLUMN_NAME, COMMENT, TYPE_NAME, INTEGER_IDX, ' ' AS PDKFLAG
+FROM MPZ.DI_HIV_COLUMNS_V2
+WHERE F_STARTDATE <= TO_DATE('20151202100600','YYYY-MM-DD HH24:MI:SS')
+          AND F_ENDDATE > TO_DATE('20151202100600','YYYY-MM-DD HH24:MI:SS')
+          AND DB_ID = 'WWW'
+UNION
+SELECT SD1.CD_ID, PKEY_NAME AS COLUMN_NAME, PKEY_COMMENT AS COMMENT, PKEY_TYPE AS TYPE_NAME, (COLUMN_SUM + INTEGER_IDX) AS INTEGER_IDX, 'P' AS PDKFLAG
+FROM MPZ.DI_HIV_PARTITION_KEYS TPK
+LEFT JOIN (
+                SELECT TBL_ID, SD_ID
+                FROM MPZ.DI_HIV_TBLS
+                WHERE F_STARTDATE <= TO_DATE('20151202100600','YYYY-MM-DD HH24:MI:SS')
+                      AND F_ENDDATE > TO_DATE('20151202100600','YYYY-MM-DD HH24:MI:SS')
+                      AND DB_ID = 'WWW'
+    ) T1
+        ON TPK.TBL_ID = T1.TBL_ID
+LEFT JOIN (
+                SELECT SD_ID, CD_ID
+                FROM MPZ.DI_HIV_SDS
+                WHERE F_STARTDATE <= TO_DATE('20151202100600','YYYY-MM-DD HH24:MI:SS')
+                      AND F_ENDDATE > TO_DATE('20151202100600','YYYY-MM-DD HH24:MI:SS')
+                      AND DB_ID = 'WWW'
+    ) SD1
+    ON T1.SD_ID = SD1.SD_ID
+LEFT JOIN (
+                SELECT CD_ID, COUNT(*) AS COLUMN_SUM
+                FROM MPZ.DI_HIV_COLUMNS_V2
+                WHERE F_STARTDATE <= TO_DATE('20151202100600','YYYY-MM-DD HH24:MI:SS')
+                      AND F_ENDDATE > TO_DATE('20151202100600','YYYY-MM-DD HH24:MI:SS')
+                      AND DB_ID = 'WWW'
+                GROUP BY CD_ID
+        ) CS
+        ON SD1.CD_ID = CS.CD_ID
+WHERE F_STARTDATE <= TO_DATE('20151202100600','YYYY-MM-DD HH24:MI:SS')
+          AND F_ENDDATE > TO_DATE('20151202100600','YYYY-MM-DD HH24:MI:SS')
+          AND DB_ID = 'WWW'
+
+其中 union 前面的语句有一个 varchar(4000) 的字段 。
+
+union 后面 的 语句 有两个 varchar(4000) 字段。
+
+union 的使用，触发了system  TEMPORARY TABLESPACE  的使用。
+
+而使用 
+
+[db2inst2@dmp ~]$ db2 "SELECT CHAR(TBSP_NAME,20) TBSP_NAME, TBSP_CONTENT_TYPE, TBSP_PAGE_SIZE 
+     FROM SYSIBMADM.SNAPTBSP"
+
+TBSP_NAME            TBSP_CONTENT_TYPE TBSP_PAGE_SIZE      
+-------------------- ----------------- --------------------
+SYSCATSPACE          ANY                               8192
+TEMPSPACE1           SYSTEMP                           8192
+USERSPACE1           LARGE                             8192
+IBMDB2SAMPLEREL      LARGE                             8192
+IBMDB2SAMPLEXML      LARGE                             8192
+SYSTOOLSPACE         LARGE                             8192
+US_METADATA          LARGE                            32768
+MY32KSPACE           SYSTEMP                          32768
+
+查询得知 TEMPSPACE1  是 8k 的表空间。执行union操作，需要使用 TEMPSPACE1 , 显然 对于有两个 varchar(4000) ＋ n个其他小字段的语句来说，8k不够。所以，要新增一个 pagesize 大一点的。如上，我新增了 MY32KSPACE 。 
+
+
+SQL1585N  A system temporary table space with sufficient page size does
+      not exist.
+
+      Explanation: 
+
+      One of the following conditions could have occurred:
+
+      1. The row length of the system temporary table exceeded the limit that
+         can be accommodated in the largest system temporary table space in
+            the database.
+            2. The number of columns required in a system temporary table exceeded
+               the limit that can be accommodated in the largest system temporary
+                  table space in the database.
+
+                  The system temporary table space limits depend on its page size. These
+                  values are:
+
+                  Max          Max   Page size of
+                  Record       Cols  temporary
+                  Length             table space
+                  -----------  ----  ------------
+                  4005  bytes  500   4K
+                  8101  bytes  1012  8K
+                  16293 bytes  1012  16K
+                  32677 bytes  1012  32K
+
+                  User response: 
+
+                  Create a system temporary table space of a larger page size supported,
+                  if one does not already exist. If such a table space already exists,
+                  eliminate one or more columns from the system temporary table. Create
+                  separate tables or views, as required, to hold additional information
+                  beyond the limit.
+
+                   sqlcode: -1585
+
+                    sqlstate: 54048
+
+
+### 解决办法
+
+--create bufferpool bpdefault32k IMMEDIATE  SIZE 5000 PAGESIZE 32 K;
+
+CREATE TEMPORARY TABLESPACE MY32KSPACE 
+  IN DATABASE PARTITION GROUP IBMTEMPGROUP 
+  PAGESIZE 32K 
+  MANAGED BY SYSTEM 
+  USING 
+  ('MY32KSPACE')
+  EXTENTSIZE 32 
+  PREFETCHSIZE 16 
+  BUFFERPOOL bpdefault32k 
+  OVERHEAD 24.10 
+  TRANSFERRATE 0.90 
+  DROPPED TABLE RECOVERY OFF; 
+
+
+释疑1 ： 需要重新创建 tempspace1 吗？
+
+不需要。 只需要增加一个就行。 db2 会选择合适的临时表空间来使用。
+
+
+释疑2 ： tempspace1 能删除吗？
+
+可以，但是需要先建一个备用的 同类型表空间。
+
+释疑3 ： 不叫 tempspace1 的表空间，是否需要给它一个默认属性，以便执行查询的时候好匹配？
+
+系统自动选择合适的表空间来执行语句，无需特意指定默认，也无法指定，貌似。
 
 ## 启动&连接&测试
 
@@ -1028,7 +1160,7 @@ http://www.oracle.com/technetwork/articles/dsl/python-091105.html
 
     SET ESCAPE ON;
 
-
+## oracle 匿名块
 
 
 <!-- $ -->

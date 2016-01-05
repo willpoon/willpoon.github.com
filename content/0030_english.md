@@ -135,4 +135,19 @@ I want to know ...
 所以，很多东西，都是要分场合的！！
 
 
+# inclination
 
+A man ought to read just as inclination leads him; for what he reads as a task will do him little good.
+
+一个人应去读他想读的东西，因为被当作一种任务来读的东西对他增益甚小。
+
+
+# 论英语的一词多义！
+
+1. 简写演变
+
+2. 不同地区语种转化
+
+3. 动词／名词演变 ， 不同意思，但同型
+
+4. 

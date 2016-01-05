@@ -17,6 +17,8 @@ Authors: Poon
 
 ## 远期:
 
+### 虚拟机环境收集！
+
 ### datastructure datastructure datastructure  
 
 ### 学英语 2015-12-10 Thu 03:42 AM 为什么？想想俞敏洪的故事。这是一个硬指标！
