@@ -250,6 +250,23 @@ http://www.ctmguru.com/2012/04/ajf-active-job-file.html
     ctmorder -TABLE TABLENAME -NAME jobname -ODATE YYYYMMDD -INTO_TABLE_ORDERID [newt|last] -FORCE y
 
 
+### 通过定义变量，调整 数据日期( data date )  和 执行(order date)日期 
+
+%%DIR 路径变量
+
+.   字符串连接符号
+
+%%$ODATE builtin variable ,  order date
+
+变量和字符串之间，通过 '.' 来连接。
+
+变量引用一定要正确。
+
+如果报 ： 5749 smart table already includes an instance of the job. 可能是同一个job 重复order , 而且order 之后，没有正常执行所致。解决的办法是：
+
+在order 界面上，选择duplicate !
+
+
 
 
 ## stat 命令
@@ -310,6 +327,14 @@ centos流行的 有 6.x ～ 7.x 多个版本。
 按这么来说，6.x 相对我来说，比较稳定。
 
 但是如果某些软件对版本／内核有要求，那么低版本可能不兼容。比如，docker , 只能兼容 7.x 。
+
+
+## ip  a 
+
+centos 替代 ifconfig -a 
+
+如果Centos7系统minimal方式安装是没有ifconfig命令的，可以通过安装net-tools解决。
+
 
 
 
