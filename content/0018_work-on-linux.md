@@ -136,6 +136,15 @@ svn merge -c -2683 db_load_data_comm.sh
 
 # 6. linux shell builtin command 
 
+###  监控网络/网卡 流量的工具/命令
+
+1. watch more /proc/net/dev
+
+2. ifstat
+
+3. 还有很多第三方的工具
+
+
 添加组etl
     groupadd etl
 添加用户etl
@@ -336,6 +345,23 @@ centos 替代 ifconfig -a
 如果Centos7系统minimal方式安装是没有ifconfig命令的，可以通过安装net-tools解决。
 
 
+## 虚拟机知识
+
+### virtualbox的那个host-only链接是什么？有什么用？
+
+
+基本上，Host-only相当于虚拟机和宿主机通过交叉线相连；
+NAT，宿主机相当于虚拟机的路由器；
+桥接，相当于把宿主机和虚拟机同时接到交换机上，然后交换机接到外网。
+
+连接性上说，可参考下表：
+连接                宿主机和虚拟机        虚拟机对外网访问        外网对虚拟机访问
+Host-only              可以互访                不能直接访问                不能直接访问
+NAT             虚拟机可访问宿主机      可以(通过宿主机)            不能直接访问
+桥接                      可以互访                   直接访问                       直接访问
+
+
+http://zhidao.baidu.com/link?url=Q7QGXk0IKKYAjLskS29h1q09n6T6xo1ERQzrU-g6EvCSeB6ywpsl5w3ulv1Me_EMiC0439cjnmWb1EQ-wqrT3q
 
 
 [git] 2015-11-24 13:05 add git

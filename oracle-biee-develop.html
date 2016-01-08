@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2015-12-30
+    on 2016-01-08
 
         |
         tags:         <a href="/tag/oracle.html">oracle</a>
@@ -166,6 +166,9 @@
 <li><a href="#logical-hierarchy-column">物理层的多条件关联，也就是存在复合主键，是否影响逻辑层构建 logical hierarchy column ?</a></li>
 <li><a href="#structure-based-value-based">如何理解 structure based 和 value based ?</a></li>
 <li><a href="#logical-dimension">logical dimension 到底是什么？</a></li>
+<li><a href="#event-table">event table 是什么鬼 ？</a></li>
+<li><a href="#_8">物化视图</a></li>
+<li><a href="#cube">cube</a></li>
 <li><a href="#biee-logical-dimension">biee 报表中的逻辑维 (logical dimension ) 如何设置默认展开？</a></li>
 <li><a href="#biee_6">biee 透视图如何去除表头标题空行？</a></li>
 <li><a href="#biee_7">biee 数据透视图如何 单独设置每页的行数？</a></li>
@@ -182,18 +185,18 @@
 <li><a href="#nqserror43119-nqserror42039-report-by">nqserror:43119 nqserror:42039: report 总计函数的by子句中的列必须在选择列表中。</a></li>
 <li><a href="#biee-catalog_1">biee catalog 指向 不正确如何解决？</a></li>
 <li><a href="#rpd-repository-rpd">加载的rpd 不是我们想要的repository ， 怎么改成我们要的rpd?</a></li>
-<li><a href="#_8">仪表板报表爆表了怎么办？</a></li>
+<li><a href="#_9">仪表板报表爆表了怎么办？</a></li>
 <li><a href="#biee-111150-111155">求助：biee 11.1.1.5.0 打补丁到 11.1.1.5.5 之后，报表导出不再自动合并，如何解决？</a></li>
 <li><a href="#biee_9">求助： biee 创建用户后，无法登陆的问题？</a></li>
 <li><a href="#logical-dimension_1">logical dimension 父节点不能自动汇总？即子节点之和不等于父节点。</a></li>
 <li><a href="#logical-dimension_2">logical dimension 展开到最后一层报错。</a></li>
 </ul>
 </li>
-<li><a href="#_9">行业动态</a><ul>
+<li><a href="#_10">行业动态</a><ul>
 <li><a href="#biee-12c">biee 12c 发布啦!</a></li>
 </ul>
 </li>
-<li><a href="#_10">同行参考</a><ul>
+<li><a href="#_11">同行参考</a><ul>
 <li><a href="#httpgerardnicocom">http://gerardnico.com</a></li>
 <li><a href="#http123obicom">http://123obi.com</a></li>
 <li><a href="#httpwwwobiee247com">http://www.obiee247.com</a></li>
@@ -211,10 +214,10 @@
 <li><a href="#httpitconsultingjobsblogspotcom">http://itconsultingjobs.blogspot.com</a></li>
 </ul>
 </li>
-<li><a href="#_11">知己知彼</a><ul>
+<li><a href="#_12">知己知彼</a><ul>
 <li><a href="#tableau">tableau</a></li>
 <li><a href="#qlikview">qlikview</a></li>
-<li><a href="#_12">大家都卖多少钱？(时薪)</a><ul>
+<li><a href="#_13">大家都卖多少钱？(时薪)</a><ul>
 <li><a href="#oracle-consultants-blog">oracle consultants blog</a><ul>
 <li><a href="#httpiloveoraclecom">http://iloveoracle.com</a></li>
 <li><a href="#httpandrejusbblogspotsg">http://andrejusb.blogspot.sg</a></li>
@@ -517,6 +520,18 @@ http://docs.oracle.com/cd/E25054_01/fusionapps.1111/e20836/dimensions.htm</p>
 <p>实际上，我们是把 颜色－型号两列组合在一起作为一列了。 作为一列展示的时候，我们还是可以区分层次关系的。</p>
 <p>而且，既然我们可以组合两列，那我们还可以组合第三列、第四列.</p>
 <p>所以，所谓的logical dimension ， 其实只是对几个维度的合并。并且能够让我们区分层次。 我们可以把它当作一个维度看待。</p>
+<h2 id="event-table">event table 是什么鬼 ？</h2>
+<p>http://docs.oracle.com/cd/E25178_01/bi.1111/e10541/querycaching.htm</p>
+<p>http://gerardnico.com/wiki/dat/obiee/event_table</p>
+<p>http://gerardnico.com/wiki/dat/obiee/event_table#define_the_table_as_an_event_table</p>
+<h2 id="_8">物化视图</h2>
+<p>物化视图呢，用于OLAP系统中，当然部分OLTP系统的小部分功能未了提高性能会借鉴一点点，因为表关联的开销很大，所以在开发中很多人就像把这个代价交给定期转存来完成，ORACLE当然也提供了这个功能，就是将视图（或者一个大SQL）的信息转换为物理数据存储，然后提供不同的策略：定时刷还是及时刷、增量刷还是全局刷等等可以根据实际情况进行选择，总之你差的是表，不是视图。</p>
+<p>刷新:</p>
+<p>http://blog.csdn.net/joshua_peng1985/article/details/6213593</p>
+<h2 id="cube">cube</h2>
+<p>http://bbs.csdn.net/topics/390387960</p>
+<p>http://www.2cto.com/database/201206/134968.html</p>
+<p>http://blog.sina.com.cn/s/blog_70ba47f80100lhh5.html</p>
 <h2 id="biee-logical-dimension">biee 报表中的逻辑维 (logical dimension ) 如何设置默认展开？</h2>
 <ol>
 <li>
@@ -620,7 +635,7 @@ dim... 没有对应上！</p>
 <p>修改 NQSConfig.INI</p>
 <pre><code>Star = yourRPDname.rpd , DEAULT;
 </code></pre>
-<h3 id="_8">仪表板报表爆表了怎么办？</h3>
+<h3 id="_9">仪表板报表爆表了怎么办？</h3>
 <p>分析－结果－编辑视图－编辑图形属性－比例－比例和限制－最大值：把最大值调到最大业务实际值以上。</p>
 <p>如果rpd通过前端em上传的，通常会出现rpd名字被修改，导致引用不正确的情况。</p>
 <h3 id="biee-111150-111155">求助：biee 11.1.1.5.0 打补丁到 11.1.1.5.5 之后，报表导出不再自动合并，如何解决？</h3>
@@ -640,12 +655,12 @@ dim... 没有对应上！</p>
 <p>但在展示层中，我们可以只设置如下几层：</p>
 <p>lvl1 - lvl2 - lvl3 - lvl4 </p>
 <p>这样，当我们在前台点击 lvl4 时，就不会继续展开。</p>
-<h1 id="_9">行业动态</h1>
+<h1 id="_10">行业动态</h1>
 <h2 id="biee-12c">biee 12c 发布啦!</h2>
 <p>2015-12-15 17:07</p>
 <p>有虚拟机可以下载！ 详见:</p>
 <p>http://www.oracle.com/technetwork/middleware/bi-foundation/obiee-samples-167534.html</p>
-<h1 id="_10">同行参考</h1>
+<h1 id="_11">同行参考</h1>
 <h2 id="httpgerardnicocom">http://gerardnico.com</h2>
 <p>一个wiki，站长非常有经验。一度认为是oracle官方开发人员！</p>
 <h2 id="http123obicom">http://123obi.com</h2>
@@ -678,10 +693,10 @@ dim... 没有对应上！</p>
 <p>印度人 </p>
 <h2 id="httpitconsultingjobsblogspotcom">http://itconsultingjobs.blogspot.com</h2>
 <p>如题，猎头服务。 更新也比较及时。</p>
-<h1 id="_11">知己知彼</h1>
+<h1 id="_12">知己知彼</h1>
 <h2 id="tableau">tableau</h2>
 <h2 id="qlikview">qlikview</h2>
-<h2 id="_12">大家都卖多少钱？(时薪)</h2>
+<h2 id="_13">大家都卖多少钱？(时薪)</h2>
 <p>http://www.guru.com/d/freelancers/q/obiee/</p>
 <h3 id="oracle-consultants-blog">oracle consultants blog</h3>
 <p>keyword: obiee freelance  consultant site:blogspot.com</p>
