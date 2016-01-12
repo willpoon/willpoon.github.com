@@ -5,35 +5,35 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2016-01-12T09:01:49-00:00</lastmod>
+<lastmod>2016-01-12T09:03:35-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2016-01-12T09:01:49-00:00</lastmod>
+<lastmod>2016-01-12T09:03:35-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2016-01-12T09:01:49-00:00</lastmod>
+<lastmod>2016-01-12T09:03:35-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2016-01-12T09:01:49-00:00</lastmod>
+<lastmod>2016-01-12T09:03:35-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/about-design.html</loc>
-<lastmod>2016-01-12T09:01:41+08:00</lastmod>
+<lastmod>2016-01-12T09:03:30+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -201,7 +201,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/tech.html</loc>
-<lastmod>2016-01-12T09:01:41+08:06</lastmod>
+<lastmod>2016-01-12T09:03:30+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -257,7 +257,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/cheng-xu.html</loc>
-<lastmod>2016-01-12T09:01:41+08:06</lastmod>
+<lastmod>2016-01-12T09:03:30+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -376,7 +376,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/yi-zhu.html</loc>
-<lastmod>2016-01-12T09:01:41+08:06</lastmod>
+<lastmod>2016-01-12T09:03:30+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -607,14 +607,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/she-ji.html</loc>
-<lastmod>2016-01-12T09:01:41+08:06</lastmod>
+<lastmod>2016-01-12T09:03:30+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/jia-gou.html</loc>
-<lastmod>2016-01-12T09:01:41+08:06</lastmod>
+<lastmod>2016-01-12T09:03:30+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -628,7 +628,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/author/poon.html</loc>
-<lastmod>2016-01-12T09:01:41+08:06</lastmod>
+<lastmod>2016-01-12T09:03:30+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
