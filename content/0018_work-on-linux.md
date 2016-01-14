@@ -364,4 +364,5 @@ NAT             虚拟机可访问宿主机      可以(通过宿主机)        
 http://zhidao.baidu.com/link?url=Q7QGXk0IKKYAjLskS29h1q09n6T6xo1ERQzrU-g6EvCSeB6ywpsl5w3ulv1Me_EMiC0439cjnmWb1EQ-wqrT3q
 
 
-[git] 2015-11-24 13:05 add git
+
+

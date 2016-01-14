@@ -1586,3 +1586,528 @@ drwxr-xr-x  2 root  wheel     68 Jan 14 10:17 test2
 # NAT固定ip 不能 在host通过端口转发访问guest？
 
 
+
+
+
+# virtualbox 的端口转发 ， 要求guest 主机必须 设置为 dhcp 吗？
+
+/etc/sysconfig/network-scripts/ 下 ifcfg* 设置为 静态ip时，在host使用 ：
+
+sh root@127.0.0.1 -p 2223
+
+连接：
+
+报：
+
+ssh_exchange_identification: Connection closed by remote host
+
+
+# ifcfg-ethx 设置静态和动态的区别
+
+1. 静态，dhcp 都能访问外网，但是 static 不能用 端口转发来访问 guest.
+
+
+重启前：
+
+poon@Wills-MacBook-Pro:~/Git/gitblog_imx3/output/content$ ssh root@127.0.0.1 -p 2223
+
+ssh_exchange_identification: Connection closed by remote host
+poon@Wills-MacBook-Pro:~/Git/gitblog_imx3/output/content$ 
+添加 端口转发:
+poon@Wills-MacBook-Pro:~/Git/gitblog_imx3/output/content$ VBoxManage modifyvm "n01.kylin.hdp" --natpf1 "guestssh,tcp,,2223,10.0.2.11,22"
+
+重启后：
+
+poon@Wills-MacBook-Pro:~/Git/gitblog_imx3/output/content$ ssh root@127.0.0.1 -p 2223
+root@127.0.0.1's password: 
+Last login: Thu Jan 14 13:13:55 2016
+[root@n01 ~]# cat /etc/sysconfig/network-scripts/if
+ifcfg-eth0     ifdown-bnep    ifdown-ipv6    ifdown-ppp     ifdown-tunnel  ifup-bnep      ifup-ipv6      ifup-plusb     ifup-routes    ifup-wireless  
+ifcfg-lo       ifdown-eth     ifdown-isdn    ifdown-routes  ifup           ifup-eth       ifup-isdn      ifup-post      ifup-sit       
+ifdown         ifdown-ippp    ifdown-post    ifdown-sit     ifup-aliases   ifup-ippp      ifup-plip      ifup-ppp       ifup-tunnel    
+[root@n01 ~]# cat /etc/sysconfig/network-scripts/ifcfg-eth0 
+DEVICE="eth0"
+BOOTPROTO="none"
+#DHCP_HOSTNAME="n01.kylin.hdp"
+
+IPV6INIT="no"
+ONBOOT="yes"
+TYPE="Ethernet"
+
+NM_CONTROLLED=no
+PEERDNS=no
+
+NETMASK=255.255.255.0
+GATEWAY=10.0.2.2
+IPADDR=10.0.2.11
+DNS1="8.8.8.8"
+[root@n01 ~]# 
+
+
+ 结果：
+
+ 可以转发！但是不能上外网！
+
+[root@n01 ~]# exit
+logout
+Connection to 127.0.0.1 closed.
+poon@Wills-MacBook-Pro:~/Git/gitblog_imx3/output/content$ ssh root@127.0.0.1 -p 2223
+root@127.0.0.1's password: 
+Last login: Thu Jan 14 13:18:21 2016 from 10.0.2.2
+[root@n01 ~]# ping www.baidu.com
+PING www.a.shifen.com (112.80.248.73) 56(84) bytes of data.
+64 bytes from 112.80.248.73: icmp_seq=1 ttl=63 time=105 ms
+64 bytes from 112.80.248.73: icmp_seq=2 ttl=63 time=86.4 ms
+64 bytes from 112.80.248.73: icmp_seq=3 ttl=63 time=104 ms
+64 bytes from 112.80.248.73: icmp_seq=4 ttl=63 time=89.1 ms
+^C
+--- www.a.shifen.com ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3202ms
+rtt min/avg/max/mdev = 86.458/96.384/105.924/8.683 ms
+[root@n01 ~]# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue state UNKNOWN 
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP qlen 1000
+    link/ether 08:00:27:15:6b:b4 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.11/24 brd 10.0.2.255 scope global eth0
+    inet6 fe80::a00:27ff:fe15:6bb4/64 scope link 
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN qlen 1000
+    link/ether 08:00:27:ba:74:79 brd ff:ff:ff:ff:ff:ff
+[root@n01 ~]# cat /etc/sysconfig/network-scripts/ifcfg-eth0 
+DEVICE="eth0"
+BOOTPROTO="none"
+#DHCP_HOSTNAME="n01.kylin.hdp"
+
+IPV6INIT="no"
+ONBOOT="yes"
+TYPE="Ethernet"
+
+NM_CONTROLLED=no
+PEERDNS=no
+
+NETMASK=255.255.255.0
+GATEWAY=10.0.2.2
+IPADDR=10.0.2.11
+DNS1="8.8.8.8"
+[root@n01 ~]# ping 10.0.2.11
+PING 10.0.2.11 (10.0.2.11) 56(84) bytes of data.
+64 bytes from 10.0.2.11: icmp_seq=1 ttl=64 time=0.026 ms
+64 bytes from 10.0.2.11: icmp_seq=2 ttl=64 time=0.031 ms
+^C
+--- 10.0.2.11 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1566ms
+rtt min/avg/max/mdev = 0.026/0.028/0.031/0.005 ms
+[root@n01 ~]# 
+
+----- 上述日志说明，静态＋ip ＋ vboxmange port forward 能实现 host 到 guest 的访问！
+
+
+# 备份！！
+
+[root@n01 .ssh]# ssh poon@host 'mkdir ~/vm_n01'
+The authenticity of host 'host (192.168.1.222)' can't be established.
+RSA key fingerprint is a7:50:db:4c:3e:96:47:af:07:c8:dc:ef:be:34:ef:b7.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'host' (RSA) to the list of known hosts.
+[root@n01 .ssh]# ssh poon@host 'mkdir -p  ~/vm_n01/etc'
+[root@n01 .ssh]# ssh poon@host 'mkdir -p  ~/vm_n01/etc/a/b'
+[root@n01 .ssh]# ssh poon@host 'mkdir -p  ~/centos.hdp.kylin.n01/etc/'
+[root@n01 .ssh]# scp /etc/hosts poon@host:/Users/poon/centos.hdp.kylin.n01/etc/hosts
+hosts                                                                                                                                              100%  300     0.3KB/s   00:00    
+[root@n01 .ssh]# scp /etc/sysconfig/network poon@host:/Users/poon/centos.hdp.kylin.n01/etc/host^C
+[root@n01 .ssh]# ssh poon@host 'mkdir -p  ~/centos.hdp.kylin.n01/etc/sysconfig/'
+[root@n01 .ssh]# scp /etc/sysconfig/network poon@host:/Users/poon/centos.hdp.kylin.n01/etc/sysconfig/network
+network                                                                                                                                            100%   38     0.0KB/s   00:00    
+[root@n01 .ssh]# scp -r /etc/sysconfig/network-scripts/*ifcfg* poon@host:/Users/poon/centos.hdp.kylin.n01/etc/sysconfig/
+ifcfg-eth0                                                                                                                                         100%  207     0.2KB/s   00:00    
+_ifcfg-eth0.dhcp                                                                                                                                   100%  212     0.2KB/s   00:00    
+__ifcfg-eth0.static                                                                                                                                100%  206     0.2KB/s   00:00    
+_ifcfg-eth0.static                                                                                                                                 100%  208     0.2KB/s   00:00    
+_ifcfg-eth1.192.168                                                                                                                                100%  277     0.3KB/s   00:00    
+ifcfg-lo                                                                                                                                           100%  254     0.3KB/s   00:00    
+[root@n01 .ssh]# 
+
+
+
+# 无密码登录原理！
+
+请求登录的机器生产一条公钥。
+
+上传到要登录的服务器
+
+把公钥内容append到服务器的authorized_keys 字典文件中。
+
+设置 authorized_keys 字典文件的权限。这个相当于一个保险箱。所以权限要尽量小。
+
+退出服务器。
+
+重新请求登录。
+
+ref:
+
+http://be-evil.org/linux-ssh-login-without-using-password.html
+
+# host - guest 完美方案！
+
+host 直接通过 127.0.0.1 -p xxxx ssh 到 guest !
+
+guest 直接通过 192.168.1.x ssh 到 host !
+
+guest 可以访问外网！
+
+guest 拥有静态ip！
+
+guest 可以自定义域名！
+
+只要 host 能上网，所有虚拟机都能上网！
+
+# 安装 ntpd 
+
+yum -y install ntp  ( no D ) 
+
+
+# Name Service Caching Daemon (NSCD) 
+
+This daemon will cache host, user, and group lookups and provide better resolution performance, and reduced load on DNS infrastructure.
+
+
+# no internet access 和 temporary internet access 的区别
+
+• Setting Up a Local Repository with No Internet Access
+• Setting Up a Local Repository with Temporary Internet Access
+
+
+一个是要整个tar打包下载安装，一个是通过yum repo 下载安装 ！  第一个通过外部机器获取安装包。第二个通过本机临时上网拉取。
+
+
+
+#  If you are using a symlink, enable the followsymlinks on your web server.
+
+这个是一个很强大的功能！可以节约很多存储！
+
+
+# 什么是 mirror server  镜像服务器！
+
+这是一个相对概念。首先有一个实体的、主要的（原始的）服务器。
+
+镜像服务器就是对原始服务器的备份？
+
+为何要做镜像？是为了让不同网络环境的机器都能获取和原始服务器上一样的内容！
+
+
+# repo 
+
+http://public-repo-1.hortonworks.com/ambari/centos6/2.x/updates/2.2.0.0/ambari.repo
+
+# ambari 安装 centos 
+
+[root@n01 yum.repos.d]# yum repolist
+Loaded plugins: fastestmirror, priorities
+Loading mirror speeds from cached hostfile
+ * base: mirrors.yun-idc.com
+ * extras: mirrors.yun-idc.com
+ * updates: mirrors.yun-idc.com
+http://192.168.1.222:7777/ambari-2.2.0.0/centos6/repodata/repomd.xml: [Errno 14] PYCURL ERROR 22 - "The requested URL returned error: 404 Not Found"
+Trying other mirror.
+repo id                                                                                  repo name                                                                             status
+base                                                                                     CentOS-6 - Base                                                                       6,575
+extras                                                                                   CentOS-6 - Extras                                                                        50
+local-Updates-ambari-2.2.0.0                                                             ambari-2.2.0.0 - Updates                                                                  0
+updates                                                                                  CentOS-6 - Updates                                                                        0
+repolist: 6,625
+[root@n01 yum.repos.d]# 
+[root@n01 yum.repos.d]# 
+[root@n01 yum.repos.d]# yum repolist^C
+[root@n01 yum.repos.d]# yum install ambari-server
+Loaded plugins: fastestmirror, priorities
+Loading mirror speeds from cached hostfile
+ * base: mirrors.yun-idc.com
+ * extras: mirrors.yun-idc.com
+ * updates: mirrors.yun-idc.com
+http://192.168.1.222:7777/ambari-2.2.0.0/centos6/repodata/repomd.xml: [Errno 14] PYCURL ERROR 22 - "The requested URL returned error: 404 Not Found"
+Trying other mirror.
+Error: Cannot retrieve repository metadata (repomd.xml) for repository: local-Updates-ambari-2.2.0.0. Please verify its path and try again
+[root@n01 yum.repos.d]# ll^C
+[root@n01 yum.repos.d]# ll
+total 20
+-rw-r--r--. 1 root root  557 Jan 14 15:53 ambari.repo
+-rw-r--r--. 1 root root 1926 Nov 27  2013 CentOS-Base.repo
+-rw-r--r--. 1 root root  638 Nov 27  2013 CentOS-Debuginfo.repo
+-rw-r--r--. 1 root root  630 Nov 27  2013 CentOS-Media.repo
+-rw-r--r--. 1 root root 3664 Nov 27  2013 CentOS-Vault.repo
+[root@n01 yum.repos.d]# vi ambari.repo 
+[root@n01 yum.repos.d]# yum install ambari-server
+Loaded plugins: fastestmirror, priorities
+Loading mirror speeds from cached hostfile
+ * base: mirrors.yun-idc.com
+ * extras: mirrors.yun-idc.com
+ * updates: mirrors.yun-idc.com
+local-Updates-ambari-2.2.0.0                                                                                                                                  | 2.9 kB     00:00     
+local-Updates-ambari-2.2.0.0/primary_db                                                                                                                       | 5.8 kB     00:00     
+Setting up Install Process
+Resolving Dependencies
+--> Running transaction check
+---> Package ambari-server.x86_64 0:2.2.0.0-1310 will be installed
+--> Processing Dependency: postgresql-server >= 8.1 for package: ambari-server-2.2.0.0-1310.x86_64
+--> Running transaction check
+---> Package postgresql-server.x86_64 0:8.4.20-4.el6_7 will be installed
+--> Processing Dependency: postgresql-libs(x86-64) = 8.4.20-4.el6_7 for package: postgresql-server-8.4.20-4.el6_7.x86_64
+--> Processing Dependency: postgresql(x86-64) = 8.4.20-4.el6_7 for package: postgresql-server-8.4.20-4.el6_7.x86_64
+--> Processing Dependency: libpq.so.5()(64bit) for package: postgresql-server-8.4.20-4.el6_7.x86_64
+--> Running transaction check
+---> Package postgresql.x86_64 0:8.4.20-4.el6_7 will be installed
+---> Package postgresql-libs.x86_64 0:8.4.20-4.el6_7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================================================================================================================================
+ Package                                     Arch                             Version                                   Repository                                              Size
+=====================================================================================================================================================================================
+Installing:
+ ambari-server                               x86_64                           2.2.0.0-1310                              local-Updates-ambari-2.2.0.0                           406 M
+Installing for dependencies:
+ postgresql                                  x86_64                           8.4.20-4.el6_7                            updates                                                2.6 M
+ postgresql-libs                             x86_64                           8.4.20-4.el6_7                            updates                                                202 k
+ postgresql-server                           x86_64                           8.4.20-4.el6_7                            updates                                                3.4 M
+
+Transaction Summary
+=====================================================================================================================================================================================
+Install       4 Package(s)
+
+Total download size: 412 M
+Installed size: 461 M
+Is this ok [y/N]: y
+Downloading Packages:
+(1/4): ambari-server-2.2.0.0-1310.x86_64.rpm                                                                                                                  | 406 MB     00:10     
+(2/4): postgresql-8.4.20-4.el6_7.x86_64.rpm                                                                                                                   | 2.6 MB     00:04     
+(3/4): postgresql-libs-8.4.20-4.el6_7.x86_64.rpm                                                                                                              | 202 kB     00:00     
+(4/4): postgresql-server-8.4.20-4.el6_7.x86_64.rpm                                                                                                            | 3.4 MB     00:06     
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                 17 MB/s | 412 MB     00:24     
+warning: rpmts_HdrFromFdno: Header V4 RSA/SHA1 Signature, key ID 07513cad: NOKEY
+Retrieving key from http://192.168.1.222:7777/ambari-2.2.0.0/centos6/2.2.0.0-1310/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+Importing GPG key 0x07513CAD:
+ Userid: "Jenkins (HDP Builds) <jenkin@hortonworks.com>"
+ From  : http://192.168.1.222:7777/ambari-2.2.0.0/centos6/2.2.0.0-1310/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+Is this ok [y/N]: y
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing : postgresql-libs-8.4.20-4.el6_7.x86_64                                                                                                                             1/4 
+  Installing : postgresql-8.4.20-4.el6_7.x86_64                                                                                                                                  2/4 
+  Installing : postgresql-server-8.4.20-4.el6_7.x86_64                                                                                                                           3/4 
+  Installing : ambari-server-2.2.0.0-1310.x86_64                                                                                                                                 4/4 
+  Verifying  : postgresql-libs-8.4.20-4.el6_7.x86_64                                                                                                                             1/4 
+  Verifying  : postgresql-server-8.4.20-4.el6_7.x86_64                                                                                                                           2/4 
+  Verifying  : ambari-server-2.2.0.0-1310.x86_64                                                                                                                                 3/4 
+  Verifying  : postgresql-8.4.20-4.el6_7.x86_64                                                                                                                                  4/4 
+
+Installed:
+  ambari-server.x86_64 0:2.2.0.0-1310                                                                                                                                                
+
+Dependency Installed:
+  postgresql.x86_64 0:8.4.20-4.el6_7                      postgresql-libs.x86_64 0:8.4.20-4.el6_7                      postgresql-server.x86_64 0:8.4.20-4.el6_7                     
+
+Complete!
+[root@n01 yum.repos.d]# scp  -r /etc/yum.repos.d/  poon@host:/Users/poon/centos.hdp.kylin.n01/etc/
+CentOS-Debuginfo.repo                                                                                                                              100%  638     0.6KB/s   00:00    
+CentOS-Media.repo                                                                                                                                  100%  630     0.6KB/s   00:00    
+ambari.repo                                                                                                                                        100%  558     0.5KB/s   00:00    
+CentOS-Base.repo                                                                                                                                   100% 1926     1.9KB/s   00:00    
+CentOS-Vault.repo                                                                                                                                  100% 3664     3.6KB/s   00:00    
+[root@n01 yum.repos.d]# 
+
+
+# ambari-server 服务器配置！
+
+[root@n01 yum.repos.d]#         ambari-server setup
+Using python  /usr/bin/python2
+Setup ambari-server
+Checking SELinux...
+SELinux status is 'enabled'
+SELinux mode is 'permissive'
+WARNING: SELinux is set to 'permissive' mode and temporarily disabled.
+OK to continue [y/n] (y)? y
+Customize user account for ambari-server daemon [y/n] (n)? 
+Adjusting ambari-server permissions and ownership...
+Checking firewall status...
+Checking JDK...
+[1] Oracle JDK 1.8 + Java Cryptography Extension (JCE) Policy Files 8
+[2] Oracle JDK 1.7 + Java Cryptography Extension (JCE) Policy Files 7
+[3] Custom JDK
+==============================================================================
+Enter choice (1): 
+To download the Oracle JDK and the Java Cryptography Extension (JCE) Policy Files you must accept the license terms found at http://www.oracle.com/technetwork/java/javase/terms/license/index.html and not accepting will cancel the Ambari Server setup and you must install the JDK and JCE files manually.
+Do you accept the Oracle Binary Code License Agreement [y/n] (y)? 
+Downloading JDK from http://public-repo-1.hortonworks.com/ARTIFACTS/jdk-8u60-linux-x64.tar.gz to /var/lib/ambari-server/resources/jdk-8u60-linux-x64.tar.gz
+jdk-8u60-linux-x64.tar.gz... 100% (172.8 MB of 172.8 MB)
+Successfully downloaded JDK distribution to /var/lib/ambari-server/resources/jdk-8u60-linux-x64.tar.gz
+Installing JDK to /usr/jdk64/
+Successfully installed JDK to /usr/jdk64/
+Downloading JCE Policy archive from http://public-repo-1.hortonworks.com/ARTIFACTS/jce_policy-8.zip to /var/lib/ambari-server/resources/jce_policy-8.zip
+
+Successfully downloaded JCE Policy archive to /var/lib/ambari-server/resources/jce_policy-8.zip
+Installing JCE policy...
+Completing setup...
+Configuring database...
+Enter advanced database configuration [y/n] (n)? 
+input not recognized, please try again: 
+Enter advanced database configuration [y/n] (n)? n
+Configuring database...
+Default properties detected. Using built-in database.
+Configuring ambari database...
+Checking PostgreSQL...
+Running initdb: This may take upto a minute.
+Initializing database: [  OK  ]
+
+About to start PostgreSQL
+Configuring local database...
+Connecting to local database...done.
+Configuring PostgreSQL...
+Restarting PostgreSQL
+Extracting system views...
+ambari-admin-2.2.0.0.1310.jar
+......
+Adjusting ambari-server permissions and ownership...
+Ambari Server 'setup' completed successfully.
+[root@n01 yum.repos.d]# 
+
+
+# 先安装 perl 
+
+# 再安装mysql
+
+[root@n01 ~]# yum erase  MySQL-server-5.6.25-1.el6.x86_64
+
+
+[root@n01 ~]# rpm -ivh --force MySQL-server-5.6.25-1.el6.x86_64
+
+
+service mysql restart
+
+[root@n01 ~]# mysql_install_db --user=mysql
+Installing MySQL system tables...2016-01-14 18:54:02 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2016-01-14 18:54:02 0 [Note] /usr/sbin/mysqld (mysqld 5.6.25) starting as process 7905 ...
+2016-01-14 18:54:02 7905 [Note] InnoDB: Using atomics to ref count buffer pool pages
+2016-01-14 18:54:02 7905 [Note] InnoDB: The InnoDB memory heap is disabled
+2016-01-14 18:54:02 7905 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+2016-01-14 18:54:02 7905 [Note] InnoDB: Memory barrier is not used
+2016-01-14 18:54:02 7905 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2016-01-14 18:54:02 7905 [Note] InnoDB: Using Linux native AIO
+2016-01-14 18:54:02 7905 [Note] InnoDB: Using CPU crc32 instructions
+2016-01-14 18:54:02 7905 [Note] InnoDB: Initializing buffer pool, size = 128.0M
+2016-01-14 18:54:02 7905 [Note] InnoDB: Completed initialization of buffer pool
+2016-01-14 18:54:02 7905 [Note] InnoDB: Highest supported file format is Barracuda.
+2016-01-14 18:54:02 7905 [Note] InnoDB: 128 rollback segment(s) are active.
+2016-01-14 18:54:02 7905 [Note] InnoDB: Waiting for purge to start
+2016-01-14 18:54:02 7905 [Note] InnoDB: 5.6.25 started; log sequence number 1626163
+2016-01-14 18:54:02 7905 [Note] Binlog end
+2016-01-14 18:54:02 7905 [Note] InnoDB: FTS optimize thread exiting.
+2016-01-14 18:54:02 7905 [Note] InnoDB: Starting shutdown...
+2016-01-14 18:54:04 7905 [Note] InnoDB: Shutdown completed; log sequence number 1626173
+OK
+
+Filling help tables...2016-01-14 18:54:04 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2016-01-14 18:54:04 0 [Note] /usr/sbin/mysqld (mysqld 5.6.25) starting as process 7928 ...
+2016-01-14 18:54:04 7928 [Note] InnoDB: Using atomics to ref count buffer pool pages
+2016-01-14 18:54:04 7928 [Note] InnoDB: The InnoDB memory heap is disabled
+2016-01-14 18:54:04 7928 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+2016-01-14 18:54:04 7928 [Note] InnoDB: Memory barrier is not used
+2016-01-14 18:54:04 7928 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2016-01-14 18:54:04 7928 [Note] InnoDB: Using Linux native AIO
+2016-01-14 18:54:04 7928 [Note] InnoDB: Using CPU crc32 instructions
+2016-01-14 18:54:04 7928 [Note] InnoDB: Initializing buffer pool, size = 128.0M
+2016-01-14 18:54:04 7928 [Note] InnoDB: Completed initialization of buffer pool
+2016-01-14 18:54:04 7928 [Note] InnoDB: Highest supported file format is Barracuda.
+2016-01-14 18:54:04 7928 [Note] InnoDB: 128 rollback segment(s) are active.
+2016-01-14 18:54:04 7928 [Note] InnoDB: Waiting for purge to start
+2016-01-14 18:54:04 7928 [Note] InnoDB: 5.6.25 started; log sequence number 1626173
+2016-01-14 18:54:04 7928 [Note] Binlog end
+2016-01-14 18:54:04 7928 [Note] InnoDB: FTS optimize thread exiting.
+2016-01-14 18:54:04 7928 [Note] InnoDB: Starting shutdown...
+2016-01-14 18:54:06 7928 [Note] InnoDB: Shutdown completed; log sequence number 1626183
+OK
+
+To start mysqld at boot time you have to copy
+support-files/mysql.server to the right place for your system
+
+PLEASE REMEMBER TO SET A PASSWORD FOR THE MySQL root USER !
+To do so, start the server, then issue the following commands:
+
+  /usr/bin/mysqladmin -u root password 'new-password'
+  /usr/bin/mysqladmin -u root -h n01.kylin.hdp password 'new-password'
+
+Alternatively you can run:
+
+  /usr/bin/mysql_secure_installation
+
+which will also give you the option of removing the test
+databases and anonymous user created by default.  This is
+strongly recommended for production servers.
+
+See the manual for more instructions.
+
+You can start the MySQL daemon with:
+
+  cd /usr ; /usr/bin/mysqld_safe &
+
+You can test the MySQL daemon with mysql-test-run.pl
+
+  cd mysql-test ; perl mysql-test-run.pl
+
+Please report any problems at http://bugs.mysql.com/
+
+The latest information about MySQL is available on the web at
+
+  http://www.mysql.com
+
+Support MySQL by buying support/licenses at http://shop.mysql.com
+
+WARNING: Found existing config file /usr/my.cnf on the system.
+Because this file might be in use, it was not replaced,
+but was used in bootstrap (unless you used --defaults-file)
+and when you later start the server.
+The new default config file was created as /usr/my-new.cnf,
+please compare it with your file and take the changes you need.
+
+
+
+
+
+ 760  set password for `root`@`localhost` = password('RootIsDanger');
+  set password for `root`@`localhost` = password('root');
+不能执行，改用：
+
+
+ update user set password=PASSWORD('RootIsDanger') where user='root';
+
+mysql> update user set password=PASSWORD('mysql') where user='mysql';
+
+
+
+# 使用端口转发
+
+host ssh 访问 guest ： host的ip不用 指明。
+host http 访问 guest ： guest 的ip 要指明！
+
+
+# 复制虚拟机 节点 
+
+1. 该hosts
+
+2. 该 /etc/sysconfig/network 
+
+3. 改 ifcfg-eth0
+
+3. 该 mac !!
+
+
+# 为何 guest 用一张网卡 ， nat ， guest之间不能互访？ 
+
+解决办法： 加多一张网卡：host－only 
