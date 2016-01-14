@@ -214,4 +214,87 @@ ifunmac  , 有些要钱，有些不要钱。我有帐号，有需要的可以和
 
 过一会刷新，又可以了，完全搞不懂 。。。。
 
+
 # macbook pro 使用心得
+
+
+
+
+# HoRNDIS: USB tethering driver for Mac OS X 
+
+mac 平台下 的 usb 网络驱动 －－ 实现手机wifi通过usb分享
+
+http://joshuawise.com/horndis
+#
+
+# l=两条命令搞定 mac yosemite ntfs分区读写挂载问题
+
+1. 获取 uuid 
+
+diskutil info /Volumes/MACX | grep UUID
+
+
+2.  修改 fstab ( 请自行备份！）
+
+echo "UUID=EC9AB3F7-9AF6-F2EC-C4EC-F22419F32464 none ntfs rw,auto,nobrowse" | sudo tee -a /etc/fstab
+
+
+( 需要 root用户权限 )
+
+3. 重新插拔ntfs 移动硬盘
+
+ref: 
+http://www.macx.cn/forum.php?mod=viewthread&tid=2134889&highlight=ntfs
+
+
+
+# MAC 上 httpd 服务配置
+
+## 配置文件路径：
+
+/private/etc/apache2/httpd.conf
+
+
+## 配置 /etc/hosts : 
+
+127.0.0.1 poon.mac 
+
+## 配置 httpd.conf
+
+### 配置 documentRoot
+
+DocumentRoot "/Library/WebServer/Documents"
+
+
+### 配置 监听端口 
+
+
+Listen 7777
+
+
+### 配置服务名称
+
+
+ServerName poon.mac:7777
+
+
+### 配置服务器目录权限
+
+# Deny access to the entirety of your server's filesystem. You must
+# explicitly permit access to web content directories in other 
+# <Directory> blocks below.
+#
+<Directory />
+    AllowOverride none
+    Require all denied
+    Order allow,deny
+    Allow from all
+</Directory>
+
+# 配置web应用存放路径 
+DocumentRoot "/Library/WebServer/Documents"
+
+
+
+
+

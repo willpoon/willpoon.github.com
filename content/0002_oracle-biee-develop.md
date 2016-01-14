@@ -275,7 +275,6 @@ or
 
 3. 日期取年初：trunc(date,'Y')
 
-<!-- ^ -->
 
 ## biee 的logical dimension 中的 Ragged 的应用场景
 
@@ -379,7 +378,30 @@ parent - child 构建出来的 hierarchy colunm , 所有节点都是来自 父�
 
 而 level based 构建出来的 hierarchy colunm , 每一个层级都是来自不同的列（维度），展开的层次结构里面有几层，用以构建的维表就需要拿出多少列来构建。 所以说，他是基于（维表）结构来构建的。
 
+<!-- ^ -->
+
+## biee 多instance 环境 隔离问题 ！
+
+1. rpd 不是我们要的rpd 
+
+通过 NQSConfig.INI 配置！
+
+Start = TheOneYouWant.rpd
+
+2. catalog 不是我用的catalog 
+
+通过 instanceconfig.xml 配置 ！ 修改  表示目录！ 
+
+也就是 <CatalogPath> 标签！
+
 <!-- $ -->
+
+## pl/sql 版本差异导致的问题：
+
+1. 编码问题。 同一个脚本，如果plsql的客户端对编码处理不同，插进数据库的结果也可能不一样！
+
+2. 由于编码问题，对字符串的长度定义也不一样。同一个字符，不同编码，计算的长度也不同，有可能发生同一套编码，用不同版本的plsql插入，报长度错误等问题！
+
 
 ##  logical dimension 到底是什么？
 

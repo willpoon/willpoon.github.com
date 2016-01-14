@@ -165,9 +165,14 @@ httpd-2.0.48-x86_64-unknown-linux-gnu.tar.gz
 
 http://archive.apache.org/dist/httpd/binaries/linux/httpd-2.0.48-x86_64-unknown-linux-gnu.tar.gz
 
+# httpd 
+
+centos 7 不需要再网上找apache httpd 的包，只需要 执行如下命令即可！
+
 [root@hdp00 httpd-2.4.18]# yum -y install httpd
 
 
+## 启动 
 [root@hdp00 httpd-2.4.18]# /sbin/service httpd start
 Redirecting to /bin/systemctl start  httpd.service
 
@@ -829,12 +834,27 @@ service httpd restart
 
 2. 离线安装的也依赖在线的包！
 
+
+
 poon@Wills-MacBook-Pro:~/sunline$ VBoxManage modifyhd "/Users/poon/VirtualBox VMs/hdp01/hdp01.vdi" --resize 20000
 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
 poon@Wills-MacBook-Pro:~/sunline$ VBoxManage modifyhd "/Users/poon/VirtualBox VMs/hdp00/hdp00.vdi" --resize 20000
 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
 poon@Wills-MacBook-Pro:~/sunline$ VBoxManage modifyhd "/Users/poon/VirtualBox VMs/hdp02/hdp02.vdi" --resize 20000
 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+
+VBoxManage modifyhd "/Users/poon/VirtualBox VMs/hdp00--/hdp00--.vdi" --resize 30000
+VBoxManage modifyhd "/Users/poon/VirtualBox VMs/hdp01--/hdp01--.vdi" --resize 30000
+VBoxManage modifyhd "/Users/poon/VirtualBox VMs/hdp02--/hdp02--.vdi" --resize 30000
+
+poon@Wills-MacBook-Pro:~/sunline/img$ VBoxManage modifyhd "/Users/poon/VirtualBox VMs/hdp00--/hdp00.vdi" --resize 30000
+0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+poon@Wills-MacBook-Pro:~/sunline/img$ VBoxManage modifyhd "/Users/poon/VirtualBox VMs/hdp01--/hdp01.vdi" --resize 30000
+0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+poon@Wills-MacBook-Pro:~/sunline/img$ VBoxManage modifyhd "/Users/poon/VirtualBox VMs/hdp02--/hdp02.vdi" --resize 30000
+0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+
+
 
 
     virtualbox vdi 文件系统扩容！
@@ -1150,5 +1170,419 @@ Metrics Collector : n02.kylin.hdp
 Spark
 History Server : n00.kylin.hdp
 
+
+# 谈谈 hortonworks 和 cdh 
+
+这两个产品是目前开源大数据平台的两大阵营
+
+hdp 
+
+
+HDP-2.3.4.0 
+
+错误的地址：
+http://public-repo-1.hortonworks.com/HDP/centos7/2.x/updates/HDP-2.3.4.0-centos7-rpm.tar.gz
+
+
+正确的地址：
+
+http://public-repo-1.hortonworks.com/HDP/centos7/2.x/updates/2.3.4.0/HDP-2.3.4.0-centos7-rpm.tar.gz
+
+http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.20/repos/centos7/HDP-UTILS-1.1.0.20-centos7.tar.gz
+
+
+
+
+[root@sandbox network-scripts]# cat ifc*0
+DEVICE="eth0"
+BOOTPROTO="dhcp"
+DHCP_HOSTNAME="sandbox.hortonworks.com"
+DNS1="8.8.8.8"
+
+IPV6INIT="no"
+ONBOOT="yes"
+TYPE="Ethernet"
+
+NM_CONTROLLED=no
+PEERDNS=no
+[root@sandbox network-scripts]# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN 
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UNKNOWN qlen 1000
+    link/ether 08:00:27:64:bc:5b brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global eth0
+[root@sandbox network-scripts]# cat /etc/hosts
+# File is generated from /usr/lib/hue/tools/start_scripts/gen_hosts.sh
+# Do not remove the following line, or various programs
+# that require network functionality will fail.
+127.0.0.1       localhost.localdomain localhost
+10.0.2.15   sandbox.hortonworks.com sandbox ambari.hortonworks.com
+[root@sandbox network-scripts]# cat /etc/sysconfig/network
+NETWORKING=yes
+HOSTNAME=sandbox.hortonworks.com
+RES_OPTIONS="single-request-reopen"
+
+
+# 创建 repos
+
+[root@n00 html]# createrepo HDP/centos6/2.x/updates/2.3.4.0
+Spawning worker 0 with 175 pkgs
+Workers Finished
+Saving Primary metadata
+Saving file lists metadata
+Saving other metadata
+Generating sqlite DBs
+Sqlite DBs complete
+
+
+# reposync  根据.repo 文件 中定义的安装包地址，把安装包同步到 本地。
+
+# yum repolist
+
+# select stack !!!!!
+
+谨防被折叠！！
+
+http://192.168.1.105:8080/#/installer/step2
+
+# write: Connection reset by peer
+
+因为有一台同样的ip的虚拟机在开着！！！
+
+#  ambari-agent 日志  
+
+[root@n00 yum.repos.d]# tail -f /var/log/ambari-agent/ambari-agent.log
+
+
+
+# ambari-agent 和 ambari-server 
+
+[root@hdp00 ~]# ambari-agent status
+Found ambari-agent PID: 1521
+ambari-agent running.
+Agent PID at: /var/run/ambari-agent/ambari-agent.pid
+Agent out at: /var/log/ambari-agent/ambari-agent.out
+Agent log at: /var/log/ambari-agent/ambari-agent.log
+[root@hdp00 ~]# ambari-agent restart
+Restarting ambari-agent
+Verifying Python version compatibility...
+Using python  /usr/bin/python2.7
+Found ambari-agent PID: 1521
+Stopping ambari-agent
+Removing PID file at /var/run/ambari-agent/ambari-agent.pid
+ambari-agent successfully stopped
+Verifying Python version compatibility...
+Using python  /usr/bin/python2.7
+Checking for previously running Ambari Agent...
+Starting ambari-agent
+Verifying ambari-agent process status...
+Ambari Agent successfully started
+Agent PID at: /var/run/ambari-agent/ambari-agent.pid
+Agent out at: /var/log/ambari-agent/ambari-agent.out
+Agent log at: /var/log/ambari-agent/ambari-agent.log
+[root@hdp00 ~]# ambari-server restart
+Using python  /usr/bin/python2.7
+Restarting ambari-server
+Using python  /usr/bin/python2.7
+Stopping ambari-server
+Ambari Server is not running
+Using python  /usr/bin/python2.7
+Starting ambari-server
+Ambari Server running with administrator privileges.
+Running initdb: This may take upto a minute.
+About to start PostgreSQL
+Organizing resource files at /var/lib/ambari-server/resources...
+Server PID at: /var/run/ambari-server/ambari-server.pid
+Server out at: /var/log/ambari-server/ambari-server.out
+Server log at: /var/log/ambari-server/ambari-server.log
+Waiting for server start....................
+Ambari Server 'start' completed successfully.
+[root@hdp00 ~]# 
+
+
+# 首次默认使用 在线安装 的repo 路径：
+
+http://public-repo-1.hortonworks.com/HDP/centos7/2.x/updates/2.3.4.0
+
+http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.20/repos/centos7
+
+
+
+# baseurl
+
+
+[root@localhost ~]# cat /etc/yum.repos.d/ambari.repo 
+#VERSION_NUMBER=2.1.2-377
+[Updates-ambari-2.1.2]
+name=ambari-2.1.2 - Updates
+baseurl=http://192.168.1.110/ambari-2.2.0.0/centos7/2.2.0.0-1310
+gpgcheck=1
+enabled=1
+priority=1
+
+[HDP-2.3.4.0]
+name=HDP Version - HDP-2.3.4.0
+baseurl=http://192.168.1.110/HDP/centos6/2.x/updates/2.3.4.0
+gpgcheck=1
+enabled=1
+priority=1
+ 
+
+ [HDP-UTILS-1.1.0.20]
+ name=HDP Utils Version - HDP-UTILS-1.1.0.20
+ baseurl=http://192.168.1.110/HDP-UTILS-1.1.0.20/repos/centos7
+ gpgcheck=1
+ enabled=1
+ priority=1
+
+
+# 问题： 
+
+http://192.168.1.105:8080/#/installer/step3
+
+不能连接！
+
+可能是：
+
+ambari-server  没有启动，需要重启！
+
+httpd 没有启动！
+
+# 问题 ：
+
+节点不能注册
+
+Confirm Hosts
+Registering your hosts.
+Please confirm the host list and remove any hosts that you do not want to include in the cluster.
+
+暂时不清楚：可能跟服务器环境配置有关系！
+
+
+# 问题： 磁盘空间不够
+
+
+The following registered hosts have issues related to disk space
+Issues
+Not enough disk space   Exists on 3 hosts
+
+解决：对vdi文件扩容！
+
+
+
+
+# 问题： The following packages should be uninstalled
+Package
+ranger_2_3_4_0_3485-hdfs-plugin.x86_64  0.5.0.2.3.4.0-3485.el6  Installed on 3 hosts
+hive_2_3_4_0_3485-webhcat-server.noarch 1.2.1.2.3.4.0-3485.el6  Installed on 3 hosts
+hive_2_3_4_0_3485.noarch    1.2.1.2.3.4.0-3485.el6  Installed on 3 hosts
+ranger_2_3_4_0_3485-hive-plugin.x86_64  0.5.0.2.3.4.0-3485.el6  Installed on 3 hosts
+hive_2_3_4_0_3485-jdbc.noarch   1.2.1.2.3.4.0-3485.el6  Installed on 3 hosts
+hbase_2_3_4_0_3485-thrift2.noarch   1.1.2.2.3.4.0-3485.el6  Installed on 3 hosts
+hadoop_2_3_4_0_3485-client.x86_64   2.7.1.2.3.4.0-3485.el6  Installed on 3 hosts
+datafu_2_3_4_0_3485.noarch  1.3.0.2.3.4.0-3485.el6  Installed on 3 hosts
+hive_2_3_4_0_3485-server2.noarch    1.2.1.2.3.4.0-3485.el6  Installed on 3 hosts
+ranger_2_3_4_0_3485-hbase-plugin.x86_64 0.5.0.2.3.4.0-3485.el6  Installed on 3 hosts
+flume_2_3_4_0_3485-agent.noarch 1.5.2.2.3.4.0-3485.el6  Installed on 3 hosts
+hbase_2_3_4_0_3485-master.noarch    1.1.2.2.3.4.0-3485.el6  Installed on 3 hosts
+accumulo_2_3_4_0_3485.x86_64    1.7.0.2.3.4.0-3485.el6  Installed on 3 hosts
+falcon_2_3_4_0_3485-doc.noarch  0.6.1.2.3.4.0-3485.el6  Installed on 3 hosts
+bigtop-tomcat.noarch    6.0.44-1.el6    Installed on 3 hosts
+tez_2_3_4_0_3485.noarch 0.7.0.2.3.4.0-3485.el6  Installed on 3 hosts
+hive_2_3_4_0_3485-hcatalog-server.noarch    1.2.1.2.3.4.0-3485.el6  Installed on 3 hosts
+hbase_2_3_4_0_3485.noarch   1.1.2.2.3.4.0-3485.el6  Installed on 3 hosts
+flume_2_3_4_0_3485.noarch   1.5.2.2.3.4.0-3485.el6  Installed on 3 hosts
+hbase_2_3_4_0_3485-regionserver.noarch  1.1.2.2.3.4.0-3485.el6  Installed on 3 hosts
+knox_2_3_4_0_3485.noarch    0.6.0.2.3.4.0-3485.el6  Installed on 1 host
+accumulo_2_3_4_0_3485-conf-standalone.x86_64    1.7.0.2.3.4.0-3485.el6  Installed on 3 hosts
+ranger_2_3_4_0_3485-kafka-plugin.x86_64 0.5.0.2.3.4.0-3485.el6  Installed on 1 host
+phoenix_2_3_4_0_3485.noarch 4.4.0.2.3.4.0-3485.el6  Installed on 3 hosts
+hadoop_2_3_4_0_3485.x86_64  2.7.1.2.3.4.0-3485.el6  Installed on 3 hosts
+hive_2_3_4_0_3485-metastore.noarch  1.2.1.2.3.4.0-3485.el6  Installed on 3 hosts
+hadoop_2_3_4_0_3485-mapreduce.x86_64    2.7.1.2.3.4.0-3485.el6  Installed on 3 hosts
+mahout.noarch   0.9.0.2.3.4.0-3485.el6  Installed on 2 hosts
+extjs.noarch    2.2-1   Installed on 3 hosts
+ranger_2_3_4_0_3485-yarn-plugin.x86_64  0.5.0.2.3.4.0-3485.el6  Installed on 3 hosts
+hadoop_2_3_4_0_3485-libhdfs.x86_64  2.7.1.2.3.4.0-3485.el6  Installed on 3 hosts
+hive_2_3_4_0_3485-webhcat.noarch    1.2.1.2.3.4.0-3485.el6  Installed on 3 hosts
+accumulo_2_3_4_0_3485-source.x86_64 1.7.0.2.3.4.0-3485.el6  Installed on 3 hosts
+ranger_2_3_4_0_3485-knox-plugin.x86_64  0.5.0.2.3.4.0-3485.el6  Installed on 1 host
+hbase_2_3_4_0_3485-doc.noarch   1.1.2.2.3.4.0-3485.el6  Installed on 3 hosts
+hbase_2_3_4_0_3485-thrift.noarch    1.1.2.2.3.4.0-3485.el6  Installed on 3 hosts
+kafka_2_3_4_0_3485.noarch   0.9.0.2.3.4.0-3485.el6  Installed on 1 host
+accumulo_2_3_4_0_3485-test.x86_64   1.7.0.2.3.4.0-3485.el6  Installed on 3 hosts
+hdp-select.noarch   2.3.4.0-3485.el6    Installed on 3 hosts
+hadoop_2_3_4_0_3485-hdfs.x86_64 2.7.1.2.3.4.0-3485.el6  Installed on 3 hosts
+hive_2_3_4_0_3485-hcatalog.noarch   1.2.1.2.3.4.0-3485.el6  Installed on 3 hosts
+pig_2_3_4_0_3485.noarch 0.15.0.2.3.4.0-3485.el6 Installed on 3 hosts
+falcon_2_3_4_0_3485.noarch  0.6.1.2.3.4.0-3485.el6  Installed on 3 hosts
+atlas-metadata_2_3_4_0_3485-hive-plugin.noarch  0.5.0.2.3.4.0-3485.el6  Installed on 3 hosts
+atlas-metadata_2_3_4_0_3485.noarch  0.5.0.2.3.4.0-3485.el6  Installed on 1 host
+hive_2_3_4_0_3485-server.noarch 1.2.1.2.3.4.0-3485.el6  Installed on 3 hosts
+zookeeper_2_3_4_0_3485.noarch   3.4.6.2.3.4.0-3485.el6  Installed on 3 hosts
+mahout_2_3_4_0_3485.noarch  0.9.0.2.3.4.0-3485.el6  Installed on 2 hosts
+hbase_2_3_4_0_3485-rest.noarch  1.1.2.2.3.4.0-3485.el6  Installed on 3 hosts
+hadoop_2_3_4_0_3485-yarn.x86_64 2.7.1.2.3.4.0-3485.el6  Installed on 3 hosts
+bigtop-jsvc.x86_64  1.0.10.2.3.4.0-3485.el6 Installed on 3 hosts
+oozie_2_3_4_0_3485.noarch   4.2.0.2.3.4.0-3485.el6  Installed on 1 host
+oozie_2_3_4_0_3485-client.noarch    4.2.0.2.3.4.0-3485.el6  Installed on 1 host
+storm_2_3_4_0_3485.x86_64   0.10.0.2.3.4.0-3485.el6 Installed on 2 hosts
+slider_2_3_4_0_3485.noarch  0.80.0.2.3.4.0-3485.el6 Installed on 2 hosts
+ranger_2_3_4_0_3485-storm-plugin.x86_64 0.5.0.2.3.4.0-3485.el6  Installed on 2 hosts
+storm_2_3_4_0_3485-slider-client.x86_64 0.10.0.2.3.4.0-3485.el6 Installed on 2 hosts
+
+使用 yum erase  pkgname 移除！
+
+
+# The following services should be up
+Service
+ntpd    Not running on 2 hosts
+
+[root@hdp02 ~]# chkconfig ntpd on
+Note: Forwarding request to 'systemctl enable ntpd.service'.
+Created symlink from /etc/systemd/system/multi-user.target.wants/ntpd.service to /usr/lib/systemd/system/ntpd.service.
+[root@hdp02 ~]# service ntpd restart
+Redirecting to /bin/systemctl restart  ntpd.service
+[root@hdp02 ~]# 
+
+
+poon@Wills-MacBook-Pro:~/Git/gitblog_imx3/output/content$ VBoxManage list vms
+"<inaccessible>" {1dddfeac-e5d5-40e4-a7a2-ac02189098b8}
+"hdp00--" {3ae00f69-ee83-4f8a-af0c-5fc7f184d5ee}
+"hdp01-bak" {549effe9-922d-49f8-8e61-4d41d3dabf7b}
+"hdp02--" {f048e59a-2a75-4de0-b3bc-d0659ec7c173}
+"hdp01--" {1b7e0868-d99e-48f1-a109-47581b662271}
+"hdp00" {ca8782bb-adbf-4093-9ada-9bef9c9aa8b4}
+"hdp01" {65294a54-f2b9-48dd-80a4-8d1dc5099744}
+"hdp02" {e9e3c7fc-86de-4dd0-af83-c3962dd4d16b}
+"Hortonworks Sandbox with HDP 2.3.2" {265999b1-b52e-4e99-b39c-014a64a70682}
+
+# 生成移除清单
+
+poon@Wills-MacBook-Pro:~/sunline$ for pkg in `cat /tmp/list ` ; do echo "ssh hdp01 yum -y erase $pkg "; done 
+ssh hdp01 yum -y erase falcon_2_3_4_0_3485-doc.noarch 
+ssh hdp01 yum -y erase hbase_2_3_4_0_3485-doc.noarch 
+ssh hdp01 yum -y erase ranger_2_3_4_0_3485-hive-plugin.x86_64 
+ssh hdp01 yum -y erase bigtop-tomcat.noarch 
+ssh hdp01 yum -y erase kafka_2_3_4_0_3485.noarch 
+ssh hdp01 yum -y erase extjs.noarch 
+ssh hdp01 yum -y erase accumulo_2_3_4_0_3485-test.x86_64 
+ssh hdp01 yum -y erase hdp-select.noarch 
+ssh hdp01 yum -y erase atlas-metadata_2_3_4_0_3485-hive-plugin.noarch 
+ssh hdp01 yum -y erase ranger_2_3_4_0_3485-yarn-plugin.x86_64 
+ssh hdp01 yum -y erase knox_2_3_4_0_3485.noarch 
+ssh hdp01 yum -y erase accumulo_2_3_4_0_3485-source.x86_64 
+ssh hdp01 yum -y erase ranger_2_3_4_0_3485-hbase-plugin.x86_64 
+ssh hdp01 yum -y erase zookeeper_2_3_4_0_3485.noarch 
+ssh hdp01 yum -y erase ranger_2_3_4_0_3485-knox-plugin.x86_64 
+ssh hdp01 yum -y erase ranger_2_3_4_0_3485-kafka-plugin.x86_64 
+ssh hdp01 yum -y erase bigtop-jsvc.x86_64 
+ssh hdp01 yum -y erase storm_2_3_4_0_3485-slider-client.x86_64 
+ssh hdp01 yum -y erase oozie_2_3_4_0_3485-client.noarch 
+ssh hdp01 yum -y erase ranger_2_3_4_0_3485-storm-plugin.x86_64 
+ssh hdp01 yum -y erase slider_2_3_4_0_3485.noarch 
+ssh hdp01 yum -y erase storm_2_3_4_0_3485.x86_64 
+
+
+密码:
+password : 
+Oozie/Oozie
+
+
+
+yum info installed
+
+#   文档地址 ， 免提交 信息 
+http://docs.hortonworks.com/HDPDocuments/Ambari-2.2.0.0/bk_Installing_HDP_AMB/content/index.html
+
+
+# centos 6.5 hdp 安装 
+
+## 
+
+sandbox password:
+wtfWTFwtf 
+
+
+
+
+
+## DHCP 配置 
+
+
+[root@n01 network-scripts]# cat ifcfg-eth0 
+DEVICE="eth0"
+BOOTPROTO="dhcp"
+DHCP_HOSTNAME="n01.kylin.hdp"
+DNS1="8.8.8.8"
+
+IPV6INIT="no"
+ONBOOT="yes"
+TYPE="Ethernet"
+
+NM_CONTROLLED=no
+PEERDNS=no
+
+## 固定ip 不支持端口转发？？dhcp 才支持！？
+
+
+
+## 使用 scp 拷贝文件 
+
+poon@Wills-MacBook-Pro:~$ scp -P 2223 /Users/poon/t.py  root@127.0.0.1:/root/tt.py
+root@127.0.0.1's password: 
+t.py                                                                                                                                               100%  157     0.2KB/s   00:00    
+poon@Wills-MacBook-Pro:~$ 
+
+
+以期达到如下目标：
+
+1. 从host拷贝文件到远程机器
+
+2. 如果是虚拟机，走端口转发的方式； 如果是远程机器，走公网ip地址。
+
+3. 文件，目录都可以拷贝。
+
+
+
+poon@Wills-MacBook-Pro:~$ scp -r -P 2223 /Users/poon/lab/  root@127.0.0.1:/root/lab/
+root@127.0.0.1's password: 
+1.html                                                                                                                                             100%   32KB  31.6KB/s   00:00    
+goo.html                                                                                                                                           100%   19KB  18.9KB/s   00:00    
+hi                                                                                                                                                 100%    5     0.0KB/s   00:00    
+hitxt                                                                                                                                              100%    5     0.0KB/s   00:00    
+host.no                                                                                                                                            100% 1260KB   1.2MB/s   00:00    
+host.test                                                                                                                                          100% 1052KB   1.0MB/s   00:00    
+host.yes                                                                                                                                           100% 1260KB   1.2MB/s   00:00    
+ishadowsocks.com                                                                                                                                   100%   26KB  25.9KB/s   00:00    
+torrent.html                                                                                                                                       100%   51KB  51.2KB/s   00:00    
+poon@Wills-MacBook-Pro:~$ 
+
+
+# 通过端口转发，所有的虚拟机端口资源都映射到宿主机的某个端口上。实现资源同一个ip访问。
+
+127.0.0.1:2222 of host -> 127.0.0.1:22 of vm 
+
+
+
+
+# MAC 上的 httpd.conf 配置文件
+
+poon@Wills-MacBook-Pro:~/Git/gitblog_imx3/output/content$ find / -name httpd.conf 2>/dev/null
+/Applications/MAMP/conf/apache/httpd.conf
+/Applications/MAMP/conf/apache/original/httpd.conf
+/Applications/MAMP PRO/MAMP PRO.app/Contents/Resources/httpd.conf
+/private/etc/apache2/httpd.conf
+/private/etc/apache2/original/httpd.conf
+/Users/poon/Library/Application Support/appsolute/MAMP PRO/httpd.conf
+
+
+
+这两个目录权限不同，在服务器上的现实效果不同。 需要 x 权限！
+drwxr--r--  3 root  wheel    102 Jan 14 09:33 test
+drwxr-xr-x  2 root  wheel     68 Jan 14 10:17 test2
+
+# NAT固定ip 不能 在host通过端口转发访问guest？
 
 

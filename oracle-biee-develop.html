@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2016-01-08
+    on 2016-01-12
 
         |
         tags:         <a href="/tag/oracle.html">oracle</a>
@@ -165,6 +165,8 @@
 <li><a href="#hierarchy-column">如何默认展开层级列（hierarchy column) ?</a></li>
 <li><a href="#logical-hierarchy-column">物理层的多条件关联，也就是存在复合主键，是否影响逻辑层构建 logical hierarchy column ?</a></li>
 <li><a href="#structure-based-value-based">如何理解 structure based 和 value based ?</a></li>
+<li><a href="#biee-instance">biee 多instance 环境 隔离问题 ！</a></li>
+<li><a href="#plsql">pl/sql 版本差异导致的问题：</a></li>
 <li><a href="#logical-dimension">logical dimension 到底是什么？</a></li>
 <li><a href="#event-table">event table 是什么鬼 ？</a></li>
 <li><a href="#_8">物化视图</a></li>
@@ -435,7 +437,6 @@ or
 <p>日期取年初：trunc(date,'Y')</p>
 </li>
 </ol>
-
 <h2 id="biee-logical-dimension-ragged">biee 的logical dimension 中的 Ragged 的应用场景</h2>
 <p>今天配置一张报表，并非每一条记录的层级数都相同。
 就像这样：</p>
@@ -503,6 +504,27 @@ http://docs.oracle.com/cd/E25054_01/fusionapps.1111/e20836/dimensions.htm</p>
 <p>parent - child 构建出来的 hierarchy colunm , 所有节点都是来自 父子两列的记录值。 所以说他是基于（parent-son 两列的记录）值来构建的。</p>
 <p>而 level based 构建出来的 hierarchy colunm , 每一个层级都是来自不同的列（维度），展开的层次结构里面有几层，用以构建的维表就需要拿出多少列来构建。 所以说，他是基于（维表）结构来构建的。</p>
 
+<h2 id="biee-instance">biee 多instance 环境 隔离问题 ！</h2>
+<ol>
+<li>rpd 不是我们要的rpd </li>
+</ol>
+<p>通过 NQSConfig.INI 配置！</p>
+<p>Start = TheOneYouWant.rpd</p>
+<ol>
+<li>catalog 不是我用的catalog </li>
+</ol>
+<p>通过 instanceconfig.xml 配置 ！ 修改  表示目录！ </p>
+<p>也就是 <catalogpath> 标签！</catalogpath></p>
+
+<h2 id="plsql">pl/sql 版本差异导致的问题：</h2>
+<ol>
+<li>
+<p>编码问题。 同一个脚本，如果plsql的客户端对编码处理不同，插进数据库的结果也可能不一样！</p>
+</li>
+<li>
+<p>由于编码问题，对字符串的长度定义也不一样。同一个字符，不同编码，计算的长度也不同，有可能发生同一套编码，用不同版本的plsql插入，报长度错误等问题！</p>
+</li>
+</ol>
 <h2 id="logical-dimension">logical dimension 到底是什么？</h2>
 <p><img alt="逻辑维度" src="http://gerardnico.com/wiki/_media/dat/obiee/bi_server/design/dimension/obiee_multiple_dimension_hierarchie.jpg"/></p>
 <p>如图，既然叫逻辑维，那就把它看成是一个维度就好了！但为什么一个维度会有那么多层级？</p>

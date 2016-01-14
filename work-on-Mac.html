@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2015-12-23
+    on 2016-01-14
 
         |
         tags:         <a href="/tag/mac.html">Mac</a>
@@ -147,6 +147,26 @@
 </li>
 <li><a href="#mac-safari">mac 上safari 偶尔不能打开网页问题</a></li>
 <li><a href="#macbook-pro">macbook pro 使用心得</a></li>
+<li><a href="#horndis-usb-tethering-driver-for-mac-os-x">HoRNDIS: USB tethering driver for Mac OS X</a></li>
+<li><a href="#_7"></a></li>
+<li><a href="#l-mac-yosemite-ntfs">l=两条命令搞定 mac yosemite ntfs分区读写挂载问题</a></li>
+<li><a href="#mac-httpd">MAC 上 httpd 服务配置</a><ul>
+<li><a href="#_8">配置文件路径：</a></li>
+<li><a href="#etchosts">配置 /etc/hosts :</a></li>
+<li><a href="#httpdconf">配置 httpd.conf</a><ul>
+<li><a href="#documentroot">配置 documentRoot</a></li>
+<li><a href="#_9">配置 监听端口</a></li>
+<li><a href="#_10">配置服务名称</a></li>
+<li><a href="#_11">配置服务器目录权限</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#deny-access-to-the-entirety-of-your-servers-filesystem-you-must">Deny access to the entirety of your server's filesystem. You must</a></li>
+<li><a href="#explicitly-permit-access-to-web-content-directories-in-other">explicitly permit access to web content directories in other</a></li>
+<li><a href="#blocks-below"><directory> blocks below.</directory></a></li>
+<li><a href="#_12"></a></li>
+<li><a href="#web">配置web应用存放路径</a></li>
 </ul>
 </div>
         </nav>
@@ -285,6 +305,50 @@ date -v -1d +"%Y%m%d"</p>
 <p>补充：</p>
 <p>过一会刷新，又可以了，完全搞不懂 。。。。</p>
 <h1 id="macbook-pro">macbook pro 使用心得</h1>
+<h1 id="horndis-usb-tethering-driver-for-mac-os-x">HoRNDIS: USB tethering driver for Mac OS X</h1>
+<p>mac 平台下 的 usb 网络驱动 －－ 实现手机wifi通过usb分享</p>
+<p>http://joshuawise.com/horndis</p>
+<h1 id="_7"></h1>
+<h1 id="l-mac-yosemite-ntfs">l=两条命令搞定 mac yosemite ntfs分区读写挂载问题</h1>
+<ol>
+<li>获取 uuid </li>
+</ol>
+<p>diskutil info /Volumes/MACX | grep UUID</p>
+<ol>
+<li>修改 fstab ( 请自行备份！）</li>
+</ol>
+<p>echo "UUID=EC9AB3F7-9AF6-F2EC-C4EC-F22419F32464 none ntfs rw,auto,nobrowse" | sudo tee -a /etc/fstab</p>
+<p>( 需要 root用户权限 )</p>
+<ol>
+<li>重新插拔ntfs 移动硬盘</li>
+</ol>
+<p>ref: 
+http://www.macx.cn/forum.php?mod=viewthread&amp;tid=2134889&amp;highlight=ntfs</p>
+<h1 id="mac-httpd">MAC 上 httpd 服务配置</h1>
+<h2 id="_8">配置文件路径：</h2>
+<p>/private/etc/apache2/httpd.conf</p>
+<h2 id="etchosts">配置 /etc/hosts :</h2>
+<p>127.0.0.1 poon.mac </p>
+<h2 id="httpdconf">配置 httpd.conf</h2>
+<h3 id="documentroot">配置 documentRoot</h3>
+<p>DocumentRoot "/Library/WebServer/Documents"</p>
+<h3 id="_9">配置 监听端口</h3>
+<p>Listen 7777</p>
+<h3 id="_10">配置服务名称</h3>
+<p>ServerName poon.mac:7777</p>
+<h3 id="_11">配置服务器目录权限</h3>
+<h1 id="deny-access-to-the-entirety-of-your-servers-filesystem-you-must">Deny access to the entirety of your server's filesystem. You must</h1>
+<h1 id="explicitly-permit-access-to-web-content-directories-in-other">explicitly permit access to web content directories in other</h1>
+<h1 id="blocks-below"><directory> blocks below.</directory></h1>
+<h1 id="_12"></h1>
+<p><directory></directory>
+    AllowOverride none
+    Require all denied
+    Order allow,deny
+    Allow from all
+</p>
+<h1 id="web">配置web应用存放路径</h1>
+<p>DocumentRoot "/Library/WebServer/Documents"</p>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>
