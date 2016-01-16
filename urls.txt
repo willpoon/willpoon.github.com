@@ -3,12 +3,12 @@
 /tags.html
 /categories.html
 /big_data.html
+/work-on-linux.html
 /work-on-Mac.html
 /poons-talk.html
 /oracle-biee-develop.html
 /about-design.html
 /think-about-happiness.html
-/work-on-linux.html
 /play-databases.html
 /todo.html
 /english.html

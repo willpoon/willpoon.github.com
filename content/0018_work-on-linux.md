@@ -365,4 +365,19 @@ http://zhidao.baidu.com/link?url=Q7QGXk0IKKYAjLskS29h1q09n6T6xo1ERQzrU-g6EvCSeB6
 
 
 
+##  使用 wget 做整站下载
+
+wget \
+--recursive \
+--no-clobber \
+--page-requisites \
+--html-extension \
+--convert-links \
+--restrict-file-names=windows \
+--domains apache.org \
+--no-parent \
+http://kylin.apache.org/docs/
+
+
+
 

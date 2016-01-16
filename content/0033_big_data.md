@@ -12,6 +12,13 @@ Authors: Poon
 
 <!-- $ -->
 
+# 注意事项 
+
+1. 使用 ambari choose stack 来设置repo
+
+2. 虚拟机 一定要互通 ， 如果 nat不行，可用 host-only 方案！
+
+3. 
 
 # 我们面临什么问题？
 
@@ -2110,4 +2117,168 @@ host http 访问 guest ： guest 的ip 要指明！
 
 # 为何 guest 用一张网卡 ， nat ， guest之间不能互访？ 
 
+
 解决办法： 加多一张网卡：host－only 
+
+
+# ambari agent 无法注册 问题 
+
+
+INFO 2016-01-15 08:41:52,171 PingPortListener.py:50 - Ping port listener started on port: 8670
+INFO 2016-01-15 08:41:52,172 main.py:289 - Connecting to Ambari server at https://n01.kylin.hdp:8440 (10.0.2.11)
+INFO 2016-01-15 08:41:52,173 NetUtil.py:60 - Connecting to https://n01.kylin.hdp:8440/ca
+ERROR 2016-01-15 08:41:52,556 NetUtil.py:84 - [Errno 1] _ssl.c:492: error:100AE081:elliptic curve routines:EC_GROUP_new_by_curve_name:unknown group
+ERROR 2016-01-15 08:41:52,556 NetUtil.py:85 - SSLError: Failed to connect. Please check openssl library versions. 
+Refer to: https://bugzilla.redhat.com/show_bug.cgi?id=1022468 for more details.
+WARNING 2016-01-15 08:41:52,557 NetUtil.py:112 - Server at https://n01.kylin.hdp:8440 is not reachable, sleeping for 10 seconds...
+', None)
+
+
+
+yum -y upgrade openssl
+
+ambari-agent restart
+
+
+# THP 
+
+The following hosts have Transparent Huge Pages (THP) enabled. THP should be disabled to avoid potential Hadoop performance issues.
+
+
+
+[root@n01 ~]# ll  /sys/kernel/mm/transparent_hugepage/defrag
+-rw-r--r-- 1 root root 4096 Jan 15 09:26 /sys/kernel/mm/transparent_hugepage/defrag
+[root@n01 ~]# cat  /sys/kernel/mm/transparent_hugepage/defrag
+[always] madvise never
+[root@n01 ~]# cat /sys/kernel/mm/transparent_hugepage/enabled
+[always] madvise never
+[root@n01 ~]# cat /sys/kernel/mm/redhat_transparent_hugepage/enabled
+[always] madvise never
+[root@n01 ~]# cat /sys/kernel/mm/redhat_transparent_hugepage/defrag
+[always] madvise never
+[root@n01 ~]# echo never > /sys/kernel/mm/redhat_transparent_hugepage/defrag
+[root@n01 ~]# echo never > /sys/kernel/mm/redhat_transparent_hugepage/enabled
+[root@n01 ~]# echo never > /sys/kernel/mm/transparent_hugepage/enabled
+[root@n01 ~]# echo never > /sys/kernel/mm/transparent_hugepage/defrag
+[root@n01 ~]# 
+
+
+# 在这个目录下，可以查看到从repo下载的安装包和 repo同步的信息。 无论是在线还是离线的repo . 
+/var/cache/yum/x86_64/6
+ 
+
+
+  /var/lib/ambari-agent/data/output-66.txt
+
+
+
+
+resource_management.core.exceptions.Fail: Execution of '/usr/bin/yum -d 0 -e 0 -y install mysql-server' returned 1. Error: mysql-server conflicts with MySQL-server-5.6.25-1.el6.x86_64
+ You could try using --skip-broken to work around the problem
+  You could try running: rpm -Va --nofiles --nodigest
+
+
+
+本来打算 先把mysql 装好， 结果 报冲突了！！
+
+ambari 用的是这个版本！！
+
+
+[root@n02 cache]# find /var/cache -iname "*mysql*"|xargs ls -l
+-rw-r--r-- 1 root root  915640 Jun 22  2015 /var/cache/yum/x86_64/6/base/packages/mysql-5.1.73-5.el6_6.x86_64.rpm
+-rw-r--r-- 1 root root 1283296 Jun 22  2015 /var/cache/yum/x86_64/6/base/packages/mysql-libs-5.1.73-5.el6_6.x86_64.rpm
+-rw-r--r-- 1 root root 9033908 Jun 22  2015 /var/cache/yum/x86_64/6/base/packages/mysql-server-5.1.73-5.el6_6.x86_64.rpm
+-rw-r--r-- 1 root root  137008 Jul  3  2011 /var/cache/yum/x86_64/6/base/packages/perl-DBD-MySQL-4.013-3.el6.x86_64.rpm
+-rw-r--r-- 1 root root  937748 Dec  5 05:42 /var/cache/yum/x86_64/6/local-HDP-UTILS-1.1.0.20/packages/mysql-connector-java-5.1.37-1.noarch.rpm
+[root@n02 cache]# 
+
+# InnoDB: Error: log file ./ib_logfile0 is of different size 5242880 bytes
+
+https://www.percona.com/forums/questions-discussions/percona-xtrabackup/17446-got-ib_logfile0-is-of-different-size-when-doing-stream-backup
+
+
+# 
+
+Fatal error: Can't open and lock privilege tables: Table 'mysql.host' doesn't exist
+
+http://stackoverflow.com/questions/9083408/fatal-error-cant-open-and-lock-privilege-tables-table-mysql-host-doesnt-ex
+
+第一个答案！
+
+# mysql hive 用户登录：
+
+mysql hive@% 并不能 在服务器上登录， 需要 增加一条 hive@localhost 才能登录：
+CREATE USER 'hive'@'localhost' IDENTIFIED BY 'hive123';
+
+
+
+
+
+Traceback (most recent call last):
+  File "/var/lib/ambari-agent/cache/custom_actions/scripts/check_host.py", line 477, in <module>
+      CheckHost().execute()
+        File "/usr/lib/python2.6/site-packages/resource_management/libraries/script/script.py", line 219, in execute
+            method(env)
+              File "/var/lib/ambari-agent/cache/custom_actions/scripts/check_host.py", line 212, in actionexecute
+                  raise Fail(error_message)
+                  resource_management.core.exceptions.Fail: Check db_connection_check was unsuccessful. Exit code: 1. Message: Error: Ambari Server cannot download the database JDBC driver and is unable to test the database connection. You must run ambari-server setup --jdbc-db=mysql --jdbc-driver=/path/to/your/mysql/driver.jar on the Ambari Server host to make the JDBC driver available for download and to enable testing the database connection.
+                  HTTP Error 404: Not Found
+
+通过再创建如下 用户权限条目： 解决 access denied 的问题：
+
+CREATE USER 'hive'@'n02.kylin.hdp' IDENTIFIED BY 'hive123';
+
+
+wget -b "http://public-repo-1.hortonworks.com/ambari/centos6/2.x/updates/2.2.0.0/ambari-2.2.0.0-centos6.tar.gz" -o ambari2200centos6.log -O Dambari-2.2.0.0-centos6.tar.gz
+
+wget -b "http://public-repo-1.hortonworks.com/HDP/centos6/2.x/updates/2.3.4.0/HDP-2.3.4.0-centos6-rpm.tar.gz" -o hdp2340centos6.log -O HDP-2.3.4.0-centos6-rpm.tar.gz
+
+wget -b "http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.20/repos/centos6/HDP-UTILS-1.1.0.20-centos6.tar.gz" -o hdp2340centos6.log -O HDP-UTILS-1.1.0.20-centos6.tar.gz
+
+
+
+# hive 不能用 root 执行！
+用 hive !
+
+
+# REPO 问题！
+
+2016-01-15 15:48:17,051 - Repository['HDP-UTILS-1.1.0.20'] {'base_url': 'http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.20/repos/centos6', 'action': ['create'], 'components': ['HDP-UTILS', 'main'], 'repo_template': '[{{repo_id}}]\nname={{repo_id}}\n{% if mirror_list %}mirrorlist={{mirror_list}}{% else %}baseurl={{base_url}}{% endif %}\n\npath=/\nenabled=1\ngpgcheck=0', 'repo_file_name': 'HDP-UTILS', 'mirror_list': None}
+2016-01-15 15:48:17,095 - File['/etc/yum.repos.d/HDP-UTILS.repo'] {'content': '[HDP-UTILS-1.1.0.20]\nname=HDP-UTILS-1.1.0.20\nbaseurl=http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.20/repos/centos6\n\npath=/\nenabled=1\ngpgcheck=0'}
+2016-01-15 15:48:17,102 - Package['unzip'] {}
+2016-01-15 15:48:19,386 - Skipping installation of existing package unzip
+2016-01-15 15:48:19,414 - Package['curl'] {}
+2016-01-15 15:48:19,619 - Skipping installation of existing package curl
+2016-01-15 15:48:19,632 - Package['hdp-select'] {}
+2016-01-15 15:48:19,834 - Skipping installation of existing package hdp-select
+2016-01-15 15:48:22,515 - Package['ambari-metrics-monitor'] {}
+2016-01-15 15:48:25,354 - Installing package ambari-metrics-monitor ('/usr/bin/yum -d 0 -e 0 -y install ambari-metrics-monitor')
+
+
+
+# HDP-UTILS 
+
+2016-01-15 16:17:01,577 - File['/etc/yum.repos.d/HDP-UTILS.repo'] {'content': '[HDP-UTILS-1.1.0.20]\nname=HDP-UTILS-1.1.0.20\nbaseurl=http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.20/repos/centos6\n\npath=/\nenabled=1\ngpgcheck=0'}
+2016-01-15 16:17:01,577 - Writing File['/etc/yum.repos.d/HDP-UTILS.repo'] because contents don't match
+2016-01-15 16:17:01,577 - Package['unzip'] {}
+2016-01-15 16:17:01,916 - Skipping installation of existing package unzip
+2016-01-15 16:17:01,918 - Package['curl'] {}
+2016-01-15 16:17:01,961 - Skipping installation of existing package curl
+2016-01-15 16:17:01,965 - Package['hdp-select'] {}
+2016-01-15 16:17:02,169 - Skipping installation of existing package hdp-select
+2016-01-15 16:17:02,756 - Package['ambari-metrics-collector'] {}
+2016-01-15 16:17:02,916 - Installing package ambari-metrics-collector ('/usr/bin/yum -d 0 -e 0 -y install ambari-metrics-collector')
+
+
+# 通过杀python 进程 来中断 安装
+
+Python script has been killed due to timeout after waiting 1800 secs
+
+
+root      1195  1191  0 16:17 ?        00:00:00 /bin/bash /var/lib/ambari-agent/ambari-sudo.sh PATH=/usr/sbin:/sbin:/usr/lib/ambari-server/*:/usr/sbin:/sbin:/usr/lib/ambari-server/*:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin:/var/lib/ambari-agent:/var/lib/ambari-agent -H -E /usr/bin/yum -d 0 -e 0 -y install ambari-metrics-collector
+root      1196  1195  0 16:17 ?        00:00:01 /usr/bin/python /usr/bin/yum -d 0 -e 0 -y install ambari-metrics-collector
+
+
+
+
+
