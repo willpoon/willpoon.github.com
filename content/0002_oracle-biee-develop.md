@@ -533,6 +533,21 @@ pms 应用程序角色 -> system-jazn-data.xml 角色配置 -> catalog 报表和
 
 # 异常处理 exception handle
 
+### nQSError:46118 磁盘空间不足
+
+原因： biee 检测到 安装目录所在分区空间不足。
+
+解决： 清理磁盘空间。
+
+例如：
+
+缓存。
+
+日志。
+
+这些文件通常在 ./instance1/diagnostics , /instance1/tmp/ , user_projects/domains/ 下。
+
+
 ### bug report : biee analysis 创建报表内筛选的弊端：
 
 1. 加载速度慢－－因为需要一个数据加载和去重的过程。

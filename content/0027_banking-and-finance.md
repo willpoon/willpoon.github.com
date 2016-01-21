@@ -164,4 +164,10 @@ btw : 千万不要用官方网站pc端注册，推荐使用手机客户端和微
 
 
 
+# 采购文件中 RFI、RFQ、RFP、IFB的区别
+
+REF:
+
+http://www.douban.com/group/topic/23426427/?type=like
+
 

@@ -380,4 +380,32 @@ http://kylin.apache.org/docs/
 
 
 
+## stat 
+
+获取 文件 日期
+
+## 阿里云的使用
+
+
+ECS通过镜像快速创建新服务器
+
+https://help.aliyun.com/knowledge_detail/5988886.html?spm=5176.7618386.5.1.LJgYnN
+
+
+ECS云服务器自定义镜像FAQ
+
+https://help.aliyun.com/knowledge_detail/5974456.html#ECS云服务器自定义镜像FAQ
+
+
+Q：用于创建自定义镜像的云服务器到期或数据释放后（即用于快照的系统盘到期或释放），创建的自定义镜像是否受影响，使用自定义镜像开通的云服务器是否受影响？
+A：都不受影响
+
+
+
+
+ECS通过镜像快速创建新服务器
+
+
+https://help.aliyun.com/knowledge_detail/5988886.html?spm=5176.7618386.5.13.v4NlmT#ECS通过镜像快速创建新服务器
+
 

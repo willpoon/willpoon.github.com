@@ -489,6 +489,19 @@ SQL3001C  An I/O error (reason = "sqlofopn -2079391743") occurred while  opening
 
       1 record(s) selected.
 
+## db2 字段1 like 字段2 匹配 问题－－使用 locate() 函数。
+
+db2 like 不支持 函数。db2也不支持 || .  
+
+http://stackoverflow.com/questions/6807593/sql-like-column-value-plus-wildcard-db2
+https://bytes.com/topic/db2/answers/442801-how-compare-two-columns-db2-please-help
+你要的功能是：字段1  like 字段2 ； 而db2 不支持 ||  , 所以 你用 concat()   .  但是 db2 的 like  , 又不支持 concat  . 所以你可以参考上面url的方法。
+db2 ? SQL0132N 
+
+FYI    
+
+update: 新版db2 支持 ||  了。 但是还是不能用在 like 里。
+
 
 ## DB2 on mac 很难找！
 
@@ -1200,6 +1213,23 @@ In 2014, IBM named me as an IBM Gold Consultant.
 http://www.dbforums.com
 
 
+
+
+#  pgsql 
+
+
+## 连接 & 查询 
+-bash-4.1$ psql -U postgres ambari
+psql (8.4.20)
+Type "help" for help.
+
+ambari=# SET search_path = ambari;
+SET
+ambari=# select count(0) from hosts;
+ count 
+ -------
+      3
+      (1 row)
 
 
 

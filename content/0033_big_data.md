@@ -14,11 +14,11 @@ Authors: Poon
 
 # 注意事项 
 
-1. 使用 ambari choose stack 来设置repo
+1. 使用 ambari choose stack 来设置repo , 而且设置之后，也可以通过界面更改！
 
 2. 虚拟机 一定要互通 ， 如果 nat不行，可用 host-only 方案！
 
-3. 
+
 
 # 我们面临什么问题？
 
@@ -160,6 +160,8 @@ http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.2.0/bk_Installing_HDP_AMB/bk
 
 yum -y install yum-utils createrepo
 
+
+http://www.cnblogs.com/tynia/p/offline-ambari.html
 
 http://blog.csdn.net/poisonchry/article/details/37726663
 
@@ -861,6 +863,13 @@ poon@Wills-MacBook-Pro:~/sunline/img$ VBoxManage modifyhd "/Users/poon/VirtualBo
 poon@Wills-MacBook-Pro:~/sunline/img$ VBoxManage modifyhd "/Users/poon/VirtualBox VMs/hdp02--/hdp02.vdi" --resize 30000
 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
 
+
+
+VirtualBox虚拟机上网并主宿互访.md
+
+https://github.com/ajiexw/Ajiex.com/blob/master/VirtualBox%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8A%E7%BD%91%E5%B9%B6%E4%B8%BB%E5%AE%BF%E4%BA%92%E8%AE%BF.md
+
+http://askubuntu.com/questions/446183/how-to-set-up-nat-and-host-only-networking-with-static-ip-address-in-virtualbox
 
 
 
@@ -2211,6 +2220,15 @@ mysql hive@% 并不能 在服务器上登录， 需要 增加一条 hive@localho
 CREATE USER 'hive'@'localhost' IDENTIFIED BY 'hive123';
 
 
+起停方式：
+service mysqld stop 
+service mysqld start
+
+而非：
+
+service mysql stop/start
+
+
 
 
 
@@ -2279,6 +2297,401 @@ root      1195  1191  0 16:17 ?        00:00:00 /bin/bash /var/lib/ambari-agent/
 root      1196  1195  0 16:17 ?        00:00:01 /usr/bin/python /usr/bin/yum -d 0 -e 0 -y install ambari-metrics-collector
 
 
+
+
+#  POC 
+
+POC测试，即Proof of Concept，是业界流行的针对客户具体应用的验证性测试，根据用户对采用系统提出的性能要求和扩展需求的指标，在选用服务器上进行真实数据的运行，对承载用户数据量和运行时间进行实际测算，并根据用户未来业务扩展的需求加大数据量以验证系统和平台的承载能力和性能变化。
+特别是在应用系统选型阶段，一些大型企业的业务流程比较复杂，并非单一的功能性演示就能覆盖现实的业务需求，这时候需要事先划定一个小范围的实验对象（但是业务逻辑的复杂性要有典型性，有代表性），通过小范围的项目导入与实施，从真实业务的实践到战略意图的实现，来验证系统方案是否能满足用户的需求，从而作出更客观更准确的判断。
+
+
+# 修改 ambari stack 之后，选用了本地repo ! 
+
+
+菜单： admin - stack and versions - edit button 
+
+stdout:   /var/lib/ambari-agent/data/output-152.txt
+
+2016-01-15 23:19:45,054 - Repository['HDP-UTILS-1.1.0.20'] {'base_url': 'http://192.168.1.222:7777/HDP-UTILS-1.1.0.20/repos/centos6', 'action': ['create'], 'components': ['HDP-UTILS', 'main'], 'repo_template': '[{{repo_id}}]\nname={{repo_id}}\n{% if mirror_list %}mirrorlist={{mirror_list}}{% else %}baseurl={{base_url}}{% endif %}\n\npath=/\nenabled=1\ngpgcheck=0', 'repo_file_name': 'HDP-UTILS', 'mirror_list': None}
+2016-01-15 23:19:45,061 - File['/etc/yum.repos.d/HDP-UTILS.repo'] {'content': '[HDP-UTILS-1.1.0.20]\nname=HDP-UTILS-1.1.0.20\nbaseurl=http://192.168.1.222:7777/HDP-UTILS-1.1.0.20/repos/centos6\n\npath=/\nenabled=1\ngpgcheck=0'}
+2016-01-15 23:19:45,061 - Package['unzip'] {}
+2016-01-15 23:19:45,180 - Skipping installation of existing package unzip
+2016-01-15 23:19:45,181 - Package['curl'] {}
+2016-01-15 23:19:45,193 - Skipping installation of existing package curl
+2016-01-15 23:19:45,193 - Package['hdp-select'] {}
+2016-01-15 23:19:45,206 - Skipping installation of existing package hdp-select
+2016-01-15 23:19:45,388 - Package['ambari-metrics-collector'] {}
+2016-01-15 23:19:45,458 - Installing package ambari-metrics-collector ('/usr/bin/yum -d 0 -e 0 -y install ambari-metrics-collector')
+
+# ambari metrics 一直没法更新 , 解决办法
+
+1. 先重新 choose stack
+
+2. 重启ambari sever/agent 
+
+3. 将安装失败的 ambari collector 切换到维护模式
+
+4. 把 ambari collector move到其他节点
+
+
+#  stderr 
+
+stderr:   /var/lib/ambari-agent/data/errors-257.txt
+
+On host n01.kylin.hdp role METRICS_MONITOR in invalid state.
+Invalid transition. Invalid event: HOST_SVCCOMP_OP_IN_PROGRESS at INSTALL_FAILED
+
+On host n01.kylin.hdp role METRICS_COLLECTOR in invalid state.
+Invalid transition. Invalid event: HOST_SVCCOMP_OP_IN_PROGRESS at INIT
+
+
+
+I got this issue with ambari 2.1.0 where HCAT was stuck in INSTALL_FAILED despite being installed and a restart of ambari-agent didn't work for me.
+I did the following fix via the database so if anyone else needs a workaround until the code can handle it, this is what I did (mysql):
+use ambari;
+select host_id from hosts where host_name='HOSTNAME';
+this gives me the host_id I need e.g. HOSTID
+update hostcomponentstate set current_state='INSTALLED' where current_state='INSTALL_FAILED' and host_id=HOSTID;
+Afterwards I did an 'install clients' from the UI and 'refresh configs' to try to make sure the install state was reflected.
+
+
+
+
+# kylin 环境安装
+
+## HCAT_HOME not found, try to find hcatalog path from hadoop home
+
+
+## WARNING: Use "yarn jar" to launch YARN applications.
+
+
+
+## /usr/share/java/ojdbc6.jar 是啥 
+
+java.io.FileNotFoundException: /usr/hdp/2.3.4.0-3485/hbase/lib/ojdbc6.jar (No such file or directory)
+
+jdbc for oracle 
+
+
+解决：到官方网站下载，拷贝到相应目录，让  soft link  可以引用到。
+
+-rw-r--r-- 1 root root 3692096 Jan 16 10:20 /usr/share/java/ojdbc6.jar
+
+
+
+## SEVERE: contextConfig.jarFile
+java.io.FileNotFoundException: /opt/apache-kylin-1.2-bin/bin/mysql-connector-java.jar (No such file or directory)
+        at java.util.zip.ZipFile.open(Native Method)
+        at java.util.zip.ZipFile.<init>(ZipFile.java:219)
+        at java.util.zip.ZipFile.<init>(ZipFile.java:149)
+        at java.util.jar.JarFile.<init>(JarFile.java:166)
+        at java.util.jar.JarFile.<init>(JarFile.java:103)
+ 
+
+解决：
+
+https://ambari.apache.org/1.2.5/installing-hadoop-using-ambari/content/ambari-chaplast-2.html
+
+# kylin 
+
+对环境设置的描述不够详细。
+
+##  Constructor threw exception; nested exception is java.lang.NoSuchMethodError: org.apache.hadoop.hbase.client.HBaseAdmin.<init>(Lorg/apa
+che/hadoop/hbase/client/HConnection;)V
+
+原因 ： hbase 版本问题！ 
+
+解决： 使用 snapshot 版本 ！ 
+drwxr-xr-x 8 hive hadoop     4096 Jan 16 12:10 apache-kylin-1.2-bin
+drwxr-xr-x 8 hive hadoop     4096 Jan 16 12:16 apache-kylin-1.3-HBase-1.1-SNAPSHOT-bin
+
+
+https://issues.apache.org/jira/browse/KYLIN-892
+
+
+http://stackoverflow.com/questions/24670017/hbase-not-running-in-pseudo-distributed-mode
+
+
+# sample.sh
+
+
+[hive@n01 bin]$ ./sample.sh 
+KYLIN_HOME is set to /opt/apache-kylin-1.3-HBase-1.1-SNAPSHOT-bin
+Going to create sample tables in hive...
+WARNING: Use "yarn jar" to launch YARN applications.
+
+Logging initialized using configuration in file:/etc/hive/2.3.4.0-3485/0/hive-log4j.properties
+OK
+Time taken: 2.474 seconds
+OK
+Time taken: 1.941 seconds
+OK
+Time taken: 0.055 seconds
+OK
+Time taken: 0.381 seconds
+OK
+Time taken: 0.046 seconds
+OK
+Time taken: 0.505 seconds
+Loading data to table default.kylin_sales
+Table default.kylin_sales stats: [numFiles=1, totalSize=504788]
+OK
+Time taken: 1.935 seconds
+Loading data to table default.kylin_cal_dt
+Table default.kylin_cal_dt stats: [numFiles=1, totalSize=512997]
+OK
+Time taken: 1.491 seconds
+Loading data to table default.kylin_category_groupings
+Table default.kylin_category_groupings stats: [numFiles=1, totalSize=49634]
+OK
+Time taken: 1.573 seconds
+Sample hive tables are created successfully; Going to create sample cube...
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.4.0-3485/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.4.0-3485/zookeeper/lib/slf4j-log4j12-1.6.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+2016-01-16 12:27:49,540 INFO  [main] common.KylinConfig: The URI /opt/apache-kylin-1.3-HBase-1.1-SNAPSHOT-bin/sample_cube/metadata is recognized as LOCAL_FOLDER
+2016-01-16 12:27:49,627 WARN  [main] common.KylinConfig: KYLIN_CONF property was not set, will seek KYLIN_HOME env variable
+2016-01-16 12:27:49,696 INFO  [main] persistence.ResourceStore: Using metadata url /opt/apache-kylin-1.3-HBase-1.1-SNAPSHOT-bin/sample_cube/metadata for resource store
+2016-01-16 12:27:49,697 INFO  [main] persistence.ResourceStore: Using metadata url kylin_metadata@hbase for resource store
+2016-01-16 12:27:51,797 INFO  [main] zookeeper.RecoverableZooKeeper: Process identifier=hconnection-0x59096b66 connecting to ZooKeeper ensemble=n02.kylin.hdp:2181,n03.kylin.hdp:2181,n01.kylin.hdp:2181
+2016-01-16 12:27:51,814 INFO  [main] zookeeper.ZooKeeper: Client environment:zookeeper.version=3.4.6-3485--1, built on 12/16/2015 02:35 GMT
+2016-01-16 12:27:51,814 INFO  [main] zookeeper.ZooKeeper: Client environment:host.name=n01.kylin.hdp
+2016-01-16 12:27:51,814 INFO  [main] zookeeper.ZooKeeper: Client environment:java.version=1.8.0_60
+2016-01-16 12:27:51,814 INFO  [main] zookeeper.ZooKeeper: Client environment:java.vendor=Oracle Corporation
+2016-01-16 12:27:51,814 INFO  [main] zookeeper.ZooKeeper: Client environment:java.home=/usr/jdk64/jdk1.8.0_60/jre
+2016-01-16 12:27:51,814 INFO  [main] zookeeper.ZooKeeper: Client environment:java.class.path=/usr/hdp/2.3.4.0-3485/hbase/conf:/usr/jdk64/jdk1.8.0_60/lib/tools.jar:/usr/hdp/2.3.4.0-3485/hbase:/usr/hdp/2.3.4.0-3485/hbase/lib/activation-1.1.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/aopalliance-1.0.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/apacheds-i18n-2.0.0-M15.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/apacheds-kerberos-codec-2.0.0-M15.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/api-asn1-api-1.0.0-M20.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/api-util-1.0.0-M20.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/asm-3.1.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/avro-1.7.4.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/commons-beanutils-1.7.0.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/commons-beanutils-core-1.8.0.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/commons-cli-1.2.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/commons-codec-1.9.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/commons-collections-3.2.2.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/commons-compress-1.4.1.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/commons-configuration-1.6.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/commons-daemon-1.0.13.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/commons-digester-1.8.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/commons-el-1.0.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/commons-httpclient-3.1.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/commons-io-2.4.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/commons-lang-2.6.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/commons-logging-1.2.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/commons-math-2.2.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/commons-math3-3.1.1.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/commons-net-3.1.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/curator-client-2.7.1.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/curator-framework-2.7.1.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/curator-recipes-2.7.1.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/disruptor-3.3.0.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/findbugs-annotations-1.3.9-1.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/gson-2.2.4.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/guava-12.0.1.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/guice-3.0.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/guice-servlet-3.0.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-annotations-1.1.2.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-annotations-1.1.2.2.3.4.0-3485-tests.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-annotations.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-client-1.1.2.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-client.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-common-1.1.2.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-common-1.1.2.2.3.4.0-3485-tests.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-common.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-examples-1.1.2.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-examples.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-hadoop2-compat-1.1.2.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-hadoop2-compat.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-hadoop-compat-1.1.2.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-hadoop-compat.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-it-1.1.2.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-it-1.1.2.2.3.4.0-3485-tests.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-it.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-prefix-tree-1.1.2.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-prefix-tree.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-procedure-1.1.2.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-procedure.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-protocol-1.1.2.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-protocol.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-resource-bundle-1.1.2.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-resource-bundle.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-rest-1.1.2.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-rest.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-server-1.1.2.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-server-1.1.2.2.3.4.0-3485-tests.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-server.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-shell-1.1.2.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-shell.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-thrift-1.1.2.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/hbase-thrift.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/htrace-core-3.1.0-incubating.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/httpclient-4.2.5.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/httpcore-4.2.5.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jackson-core-2.2.3.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jackson-core-asl-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jackson-jaxrs-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jackson-mapper-asl-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jackson-xc-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jamon-runtime-2.3.1.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jasper-compiler-5.5.23.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jasper-runtime-5.5.23.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/javax.inject-1.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/java-xmlbuilder-0.4.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jaxb-api-2.2.2.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jaxb-impl-2.2.3-1.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jcodings-1.0.8.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jersey-client-1.9.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jersey-core-1.9.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jersey-guice-1.9.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jersey-json-1.9.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jersey-server-1.9.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jets3t-0.9.0.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jettison-1.3.3.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jetty-6.1.26.hwx.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jetty-sslengine-6.1.26.hwx.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jetty-util-6.1.26.hwx.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/joni-2.1.2.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jruby-complete-1.6.8.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jsch-0.1.42.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jsp-2.1-6.1.14.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jsp-api-2.1-6.1.14.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/jsr305-1.3.9.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/junit-4.11.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/leveldbjni-all-1.8.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/libthrift-0.9.0.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/log4j-1.2.17.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/metrics-core-2.2.0.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/microsoft-windowsazure-storage-sdk-0.6.0.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/netty-3.2.4.Final.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/netty-all-4.0.23.Final.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/ojdbc6.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/okhttp-2.4.0.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/okio-1.4.0.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/paranamer-2.3.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/protobuf-java-2.5.0.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/ranger-hbase-plugin-shim-0.5.0.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/ranger-plugin-classloader-0.5.0.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/servlet-api-2.5-6.1.14.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/servlet-api-2.5.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/slf4j-api-1.7.7.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/snappy-java-1.0.4.1.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/spymemcached-2.11.6.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/xercesImpl-2.9.1.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/xml-apis-1.3.04.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/xmlenc-0.52.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/xz-1.0.jar:/usr/hdp/2.3.4.0-3485/hbase/lib/zookeeper.jar:/usr/hdp/2.3.4.0-3485/hadoop/conf:/usr/hdp/2.3.4.0-3485/hadoop/lib/httpclient-4.2.5.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/ranger-plugin-classloader-0.5.0.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/mockito-all-1.8.5.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-compress-1.4.1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/gson-2.2.4.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/snappy-java-1.0.4.1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jsr305-3.0.0.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/api-util-1.0.0-M20.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jackson-jaxrs-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jsp-api-2.1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/microsoft-windowsazure-storage-sdk-0.6.0.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/guava-11.0.2.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/xmlenc-0.52.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-io-2.4.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/paranamer-2.3.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/htrace-core-3.1.0-incubating.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-configuration-1.6.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jackson-annotations-2.2.3.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/aws-java-sdk-1.7.4.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jsch-0.1.42.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jersey-json-1.9.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/curator-framework-2.7.1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/xz-1.0.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/junit-4.11.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/servlet-api-2.5.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jackson-core-asl-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/ojdbc6.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-digester-1.8.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/apacheds-kerberos-codec-2.0.0-M15.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-beanutils-1.7.0.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jetty-6.1.26.hwx.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/api-asn1-api-1.0.0-M20.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/activation-1.1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jersey-core-1.9.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/stax-api-1.0-2.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-beanutils-core-1.8.0.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-math3-3.1.1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jackson-core-2.2.3.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jets3t-0.9.0.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jersey-server-1.9.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/protobuf-java-2.5.0.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/azure-storage-2.2.0.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-net-3.1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/asm-3.2.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/curator-client-2.7.1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/avro-1.7.4.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-codec-1.4.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/java-xmlbuilder-0.4.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/ranger-hdfs-plugin-shim-0.5.0.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jetty-util-6.1.26.hwx.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/netty-3.6.2.Final.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/curator-recipes-2.7.1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-cli-1.2.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jackson-mapper-asl-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/httpcore-4.2.5.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jaxb-impl-2.2.3-1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jaxb-api-2.2.2.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/zookeeper-3.4.6.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/log4j-1.2.17.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/apacheds-i18n-2.0.0-M15.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jackson-xc-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/ranger-yarn-plugin-shim-0.5.0.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-lang-2.6.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jackson-databind-2.2.3.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jettison-1.1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/slf4j-log4j12-1.7.10.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-httpclient-3.1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-collections-3.2.2.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/slf4j-api-1.7.10.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-logging-1.1.3.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/hamcrest-core-1.3.jar:/usr/hdp/2.3.4.0-3485/hadoop/.//hadoop-annotations.jar:/usr/hdp/2.3.4.0-3485/hadoop/.//hadoop-common-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop/.//hadoop-auth.jar:/usr/hdp/2.3.4.0-3485/hadoop/.//hadoop-nfs-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop/.//hadoop-nfs.jar:/usr/hdp/2.3.4.0-3485/hadoop/.//hadoop-azure-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop/.//hadoop-azure.jar:/usr/hdp/2.3.4.0-3485/hadoop/.//hadoop-auth-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop/.//hadoop-aws.jar:/usr/hdp/2.3.4.0-3485/hadoop/.//hadoop-common-2.7.1.2.3.4.0-3485-tests.jar:/usr/hdp/2.3.4.0-3485/hadoop/.//hadoop-annotations-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop/.//hadoop-aws-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop/.//hadoop-common.jar:/usr/hdp/2.3.4.0-3485/hadoop/.//hadoop-common-tests.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/./:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/okhttp-2.4.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/jsr305-3.0.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/guava-11.0.2.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/xmlenc-0.52.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/xercesImpl-2.9.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/commons-io-2.4.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/htrace-core-3.1.0-incubating.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/servlet-api-2.5.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/jackson-core-asl-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/netty-all-4.0.23.Final.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/jetty-6.1.26.hwx.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/okio-1.4.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/jersey-core-1.9.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/jersey-server-1.9.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/protobuf-java-2.5.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/asm-3.2.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/commons-codec-1.4.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/xml-apis-1.3.04.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/leveldbjni-all-1.8.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/jetty-util-6.1.26.hwx.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/netty-3.6.2.Final.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/commons-cli-1.2.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/jackson-mapper-asl-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/log4j-1.2.17.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/commons-lang-2.6.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/commons-daemon-1.0.13.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/lib/commons-logging-1.1.3.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/.//hadoop-hdfs-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/.//hadoop-hdfs-nfs-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/.//hadoop-hdfs-2.7.1.2.3.4.0-3485-tests.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/.//hadoop-hdfs-nfs.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/.//hadoop-hdfs.jar:/usr/hdp/2.3.4.0-3485/hadoop-hdfs/.//hadoop-hdfs-tests.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/httpclient-4.2.5.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/zookeeper-3.4.6.2.3.4.0-3485-tests.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/aopalliance-1.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/commons-compress-1.4.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/gson-2.2.4.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/snappy-java-1.0.4.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/javassist-3.18.1-GA.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/jsr305-3.0.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/api-util-1.0.0-M20.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/jackson-jaxrs-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/jsp-api-2.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/microsoft-windowsazure-storage-sdk-0.6.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/guava-11.0.2.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/xmlenc-0.52.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/commons-io-2.4.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/paranamer-2.3.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/htrace-core-3.1.0-incubating.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/commons-configuration-1.6.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/guice-3.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/jackson-annotations-2.2.3.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/jsch-0.1.42.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/jersey-json-1.9.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/curator-framework-2.7.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/xz-1.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/guice-servlet-3.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/servlet-api-2.5.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/jackson-core-asl-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/commons-digester-1.8.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/apacheds-kerberos-codec-2.0.0-M15.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/commons-beanutils-1.7.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/jetty-6.1.26.hwx.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/api-asn1-api-1.0.0-M20.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/activation-1.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/jersey-core-1.9.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/stax-api-1.0-2.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/commons-beanutils-core-1.8.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/commons-math3-3.1.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/jackson-core-2.2.3.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/jets3t-0.9.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/jersey-server-1.9.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/protobuf-java-2.5.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/jersey-client-1.9.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/commons-net-3.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/asm-3.2.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/curator-client-2.7.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/avro-1.7.4.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/commons-codec-1.4.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/leveldbjni-all-1.8.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/javax.inject-1.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/java-xmlbuilder-0.4.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/jetty-util-6.1.26.hwx.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/netty-3.6.2.Final.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/curator-recipes-2.7.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/commons-cli-1.2.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/jackson-mapper-asl-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/httpcore-4.2.5.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/fst-2.24.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/jaxb-impl-2.2.3-1.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/jaxb-api-2.2.2.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/zookeeper-3.4.6.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/jersey-guice-1.9.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/log4j-1.2.17.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/apacheds-i18n-2.0.0-M15.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/jackson-xc-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/objenesis-2.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/commons-lang-2.6.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/jackson-databind-2.2.3.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/jettison-1.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/commons-httpclient-3.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/commons-collections-3.2.2.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/lib/commons-logging-1.1.3.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-server-web-proxy-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-applications-unmanaged-am-launcher-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-server-timeline-plugins.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-server-resourcemanager-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-server-web-proxy.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-applications-unmanaged-am-launcher.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-server-timeline-plugins-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-server-common-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-applications-distributedshell.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-client-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-common-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-api-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-server-nodemanager-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-server-sharedcachemanager-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-server-applicationhistoryservice-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-server-tests-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-server-nodemanager.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-registry.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-server-common.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-server-applicationhistoryservice.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-server-sharedcachemanager.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-registry-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-api.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-server-tests.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-client.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-common.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-applications-distributedshell-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-yarn/.//hadoop-yarn-server-resourcemanager.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/lib/aopalliance-1.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/lib/commons-compress-1.4.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/lib/snappy-java-1.0.4.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/lib/commons-io-2.4.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/lib/paranamer-2.3.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/lib/guice-3.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/lib/xz-1.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/lib/junit-4.11.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/lib/guice-servlet-3.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/lib/jackson-core-asl-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/lib/jersey-core-1.9.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/lib/jersey-server-1.9.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/lib/protobuf-java-2.5.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/lib/asm-3.2.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/lib/avro-1.7.4.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/lib/leveldbjni-all-1.8.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/lib/javax.inject-1.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/lib/netty-3.6.2.Final.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/lib/jackson-mapper-asl-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/lib/jersey-guice-1.9.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/lib/log4j-1.2.17.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/lib/hamcrest-core-1.3.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//httpclient-4.2.5.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//mockito-all-1.8.5.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-auth.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-rumen-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//commons-compress-1.4.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//gson-2.2.4.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//commons-lang3-3.3.2.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//snappy-java-1.0.4.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//jsr305-3.0.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-sls-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-extras-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//api-util-1.0.0-M20.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//jackson-jaxrs-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//jsp-api-2.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-openstack-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-mapreduce-client-jobclient-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//microsoft-windowsazure-storage-sdk-0.6.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//guava-11.0.2.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//xmlenc-0.52.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//joda-time-2.9.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-mapreduce-client-hs-plugins-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-mapreduce-client-hs-plugins.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//commons-io-2.4.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//metrics-core-3.0.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//paranamer-2.3.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-mapreduce-examples.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//htrace-core-3.1.0-incubating.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//commons-configuration-1.6.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-extras.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//jsch-0.1.42.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//jersey-json-1.9.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//curator-framework-2.7.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//xz-1.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//junit-4.11.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-auth-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-mapreduce-client-jobclient.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-datajoin-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-ant.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//servlet-api-2.5.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-archives.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//jackson-core-asl-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-distcp.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//commons-digester-1.8.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//apacheds-kerberos-codec-2.0.0-M15.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//commons-beanutils-1.7.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//jetty-6.1.26.hwx.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//api-asn1-api-1.0.0-M20.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//activation-1.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//jersey-core-1.9.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-distcp-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//stax-api-1.0-2.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//commons-beanutils-core-1.8.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//commons-math3-3.1.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-gridmix.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-mapreduce-examples-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-mapreduce-client-common.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//jackson-core-2.2.3.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-datajoin.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//jets3t-0.9.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//jersey-server-1.9.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//protobuf-java-2.5.0.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-mapreduce-client-core.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-mapreduce-client-hs-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-ant-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-streaming-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//commons-net-3.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//asm-3.2.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//curator-client-2.7.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//avro-1.7.4.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//commons-codec-1.4.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-mapreduce-client-shuffle-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-openstack.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//java-xmlbuilder-0.4.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-mapreduce-client-jobclient-2.7.1.2.3.4.0-3485-tests.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-mapreduce-client-core-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-sls.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//jetty-util-6.1.26.hwx.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//netty-3.6.2.Final.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-gridmix-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-mapreduce-client-jobclient-tests.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//curator-recipes-2.7.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//commons-cli-1.2.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-archives-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-mapreduce-client-hs.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-mapreduce-client-common-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//jackson-mapper-asl-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-streaming.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//httpcore-4.2.5.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-mapreduce-client-shuffle.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//jaxb-impl-2.2.3-1.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//jaxb-api-2.2.2.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//zookeeper-3.4.6.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//log4j-1.2.17.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//apacheds-i18n-2.0.0-M15.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-mapreduce-client-app.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//jackson-xc-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-mapreduce-client-app-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//commons-lang-2.6.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//jettison-1.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//commons-httpclient-3.1.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//commons-collections-3.2.2.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hadoop-rumen.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//commons-logging-1.1.3.jar:/usr/hdp/2.3.4.0-3485/hadoop-mapreduce/.//hamcrest-core-1.3.jar::jdbc-mysql.jar:mysql-connector-java-5.1.37.jar:mysql-connector-java.jar:ojdbc6.jar:/usr/hdp/2.3.4.0-3485/tez/tez-yarn-timeline-cache-plugin-0.7.0.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/tez/tez-runtime-internals-0.7.0.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/tez/tez-yarn-timeline-history-with-acls-0.7.0.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/tez/tez-yarn-timeline-history-0.7.0.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/tez/tez-examples-0.7.0.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/tez/tez-runtime-library-0.7.0.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/tez/tez-yarn-timeline-history-with-fs-0.7.0.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/tez/tez-dag-0.7.0.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/tez/tez-common-0.7.0.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/tez/tez-tests-0.7.0.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/tez/tez-api-0.7.0.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/tez/tez-history-parser-0.7.0.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/tez/tez-mapreduce-0.7.0.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/tez/lib/hadoop-yarn-server-web-proxy-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/tez/lib/hadoop-azure-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/tez/lib/guava-11.0.2.jar:/usr/hdp/2.3.4.0-3485/tez/lib/commons-io-2.4.jar:/usr/hdp/2.3.4.0-3485/tez/lib/jersey-json-1.9.jar:/usr/hdp/2.3.4.0-3485/tez/lib/hadoop-yarn-server-timeline-plugins-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/tez/lib/servlet-api-2.5.jar:/usr/hdp/2.3.4.0-3485/tez/lib/jetty-6.1.26.hwx.jar:/usr/hdp/2.3.4.0-3485/tez/lib/jettison-1.3.4.jar:/usr/hdp/2.3.4.0-3485/tez/lib/commons-math3-3.1.1.jar:/usr/hdp/2.3.4.0-3485/tez/lib/protobuf-java-2.5.0.jar:/usr/hdp/2.3.4.0-3485/tez/lib/jersey-client-1.9.jar:/usr/hdp/2.3.4.0-3485/tez/lib/hadoop-annotations-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/tez/lib/commons-codec-1.4.jar:/usr/hdp/2.3.4.0-3485/tez/lib/commons-collections4-4.1.jar:/usr/hdp/2.3.4.0-3485/tez/lib/hadoop-aws-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/tez/lib/hadoop-mapreduce-client-core-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/tez/lib/jetty-util-6.1.26.hwx.jar:/usr/hdp/2.3.4.0-3485/tez/lib/commons-cli-1.2.jar:/usr/hdp/2.3.4.0-3485/tez/lib/hadoop-mapreduce-client-common-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/tez/lib/jsr305-2.0.3.jar:/usr/hdp/2.3.4.0-3485/tez/lib/commons-lang-2.6.jar:/usr/hdp/2.3.4.0-3485/tez/lib/commons-collections-3.2.2.jar:/usr/hdp/2.3.4.0-3485/tez/lib/slf4j-api-1.7.5.jar:/usr/hdp/2.3.4.0-3485/tez/conf:/usr/hdp/2.3.4.0-3485/hadoop/conf:/usr/hdp/2.3.4.0-3485/hadoop/hadoop-annotations.jar:/usr/hdp/2.3.4.0-3485/hadoop/hadoop-common-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop/hadoop-auth.jar:/usr/hdp/2.3.4.0-3485/hadoop/hadoop-nfs-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop/hadoop-nfs.jar:/usr/hdp/2.3.4.0-3485/hadoop/hadoop-azure-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop/hadoop-azure.jar:/usr/hdp/2.3.4.0-3485/hadoop/hadoop-auth-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop/hadoop-aws.jar:/usr/hdp/2.3.4.0-3485/hadoop/hadoop-common-2.7.1.2.3.4.0-3485-tests.jar:/usr/hdp/2.3.4.0-3485/hadoop/hadoop-annotations-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop/hadoop-aws-2.7.1.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop/hadoop-common.jar:/usr/hdp/2.3.4.0-3485/hadoop/hadoop-common-tests.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/httpclient-4.2.5.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/ranger-plugin-classloader-0.5.0.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/mockito-all-1.8.5.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-compress-1.4.1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/gson-2.2.4.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/snappy-java-1.0.4.1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jsr305-3.0.0.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/api-util-1.0.0-M20.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jackson-jaxrs-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jsp-api-2.1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/microsoft-windowsazure-storage-sdk-0.6.0.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/guava-11.0.2.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/xmlenc-0.52.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-io-2.4.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/paranamer-2.3.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/htrace-core-3.1.0-incubating.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-configuration-1.6.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jackson-annotations-2.2.3.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/aws-java-sdk-1.7.4.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jsch-0.1.42.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jersey-json-1.9.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/curator-framework-2.7.1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/xz-1.0.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/junit-4.11.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/servlet-api-2.5.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jackson-core-asl-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/ojdbc6.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-digester-1.8.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/apacheds-kerberos-codec-2.0.0-M15.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-beanutils-1.7.0.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jetty-6.1.26.hwx.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/api-asn1-api-1.0.0-M20.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/activation-1.1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jersey-core-1.9.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/stax-api-1.0-2.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-beanutils-core-1.8.0.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-math3-3.1.1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jackson-core-2.2.3.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jets3t-0.9.0.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jersey-server-1.9.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/protobuf-java-2.5.0.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/azure-storage-2.2.0.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-net-3.1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/asm-3.2.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/curator-client-2.7.1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/avro-1.7.4.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-codec-1.4.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/java-xmlbuilder-0.4.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/ranger-hdfs-plugin-shim-0.5.0.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jetty-util-6.1.26.hwx.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/netty-3.6.2.Final.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/curator-recipes-2.7.1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-cli-1.2.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jackson-mapper-asl-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/httpcore-4.2.5.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jaxb-impl-2.2.3-1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jaxb-api-2.2.2.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/zookeeper-3.4.6.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/log4j-1.2.17.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/apacheds-i18n-2.0.0-M15.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jackson-xc-1.9.13.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/ranger-yarn-plugin-shim-0.5.0.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-lang-2.6.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jackson-databind-2.2.3.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/jettison-1.1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/slf4j-log4j12-1.7.10.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-httpclient-3.1.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-collections-3.2.2.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/slf4j-api-1.7.10.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/commons-logging-1.1.3.jar:/usr/hdp/2.3.4.0-3485/hadoop/lib/hamcrest-core-1.3.jar:/usr/hdp/2.3.4.0-3485/zookeeper/zookeeper.jar:/usr/hdp/2.3.4.0-3485/zookeeper/zookeeper-3.4.6.2.3.4.0-3485.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/xercesMinimal-1.9.6.2.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/wagon-provider-api-2.4.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/classworlds-1.1-alpha-2.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/ant-1.8.0.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/maven-profile-2.2.1.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/maven-error-diagnostics-2.2.1.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/ant-launcher-1.8.0.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/jline-0.9.94.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/commons-logging-1.1.1.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/plexus-utils-3.0.8.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/maven-artifact-2.2.1.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/plexus-container-default-1.0-alpha-9-stable-1.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/maven-ant-tasks-2.1.3.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/maven-artifact-manager-2.2.1.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/maven-repository-metadata-2.2.1.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/backport-util-concurrent-3.1.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/netty-3.7.0.Final.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/slf4j-log4j12-1.6.1.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/commons-io-2.2.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/plexus-interpolation-1.11.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/wagon-http-shared-1.0-beta-6.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/slf4j-api-1.6.1.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/maven-plugin-registry-2.2.1.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/jsoup-1.7.1.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/wagon-file-1.0-beta-6.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/httpcore-4.2.3.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/commons-codec-1.6.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/maven-project-2.2.1.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/nekohtml-1.9.6.2.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/wagon-http-2.4.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/wagon-http-lightweight-1.0-beta-6.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/maven-model-2.2.1.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/wagon-http-shared4-2.4.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/log4j-1.2.16.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/maven-settings-2.2.1.jar:/usr/hdp/2.3.4.0-3485/zookeeper/lib/httpclient-4.2.3.jar:
+2016-01-16 12:27:51,827 INFO  [main] zookeeper.ZooKeeper: Client environment:java.library.path=:/usr/hdp/2.3.4.0-3485/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.3.4.0-3485/hadoop/lib/native
+2016-01-16 12:27:51,827 INFO  [main] zookeeper.ZooKeeper: Client environment:java.io.tmpdir=/tmp
+2016-01-16 12:27:51,827 INFO  [main] zookeeper.ZooKeeper: Client environment:java.compiler=<NA>
+2016-01-16 12:27:51,827 INFO  [main] zookeeper.ZooKeeper: Client environment:os.name=Linux
+2016-01-16 12:27:51,827 INFO  [main] zookeeper.ZooKeeper: Client environment:os.arch=amd64
+2016-01-16 12:27:51,827 INFO  [main] zookeeper.ZooKeeper: Client environment:os.version=2.6.32-431.el6.x86_64
+2016-01-16 12:27:51,827 INFO  [main] zookeeper.ZooKeeper: Client environment:user.name=hive
+2016-01-16 12:27:51,827 INFO  [main] zookeeper.ZooKeeper: Client environment:user.home=/home/hive
+2016-01-16 12:27:51,827 INFO  [main] zookeeper.ZooKeeper: Client environment:user.dir=/opt/apache-kylin-1.3-HBase-1.1-SNAPSHOT-bin
+2016-01-16 12:27:51,828 INFO  [main] zookeeper.ZooKeeper: Initiating client connection, connectString=n02.kylin.hdp:2181,n03.kylin.hdp:2181,n01.kylin.hdp:2181 sessionTimeout=90000 watcher=hconnection-0x59096b660x0, quorum=n02.kylin.hdp:2181,n03.kylin.hdp:2181,n01.kylin.hdp:2181, baseZNode=/hbase-unsecure
+2016-01-16 12:27:51,914 INFO  [main-SendThread(n02.kylin.hdp:2181)] zookeeper.ClientCnxn: Opening socket connection to server n02.kylin.hdp/192.168.56.102:2181. Will not attempt to authenticate using SASL (unknown error)
+2016-01-16 12:27:52,012 INFO  [main-SendThread(n02.kylin.hdp:2181)] zookeeper.ClientCnxn: Socket connection established to n02.kylin.hdp/192.168.56.102:2181, initiating session
+2016-01-16 12:27:52,036 INFO  [main-SendThread(n02.kylin.hdp:2181)] zookeeper.ClientCnxn: Session establishment complete on server n02.kylin.hdp/192.168.56.102:2181, sessionid = 0x2524645d5cb0009, negotiated timeout = 40000
+2016-01-16 12:27:55,807 INFO  [Thread-1] client.ConnectionManager$HConnectionImplementation: Closing master protocol: MasterService
+2016-01-16 12:27:55,811 INFO  [Thread-1] client.ConnectionManager$HConnectionImplementation: Closing zookeeper sessionid=0x2524645d5cb0009
+2016-01-16 12:27:55,817 INFO  [Thread-1] zookeeper.ZooKeeper: Session: 0x2524645d5cb0009 closed
+2016-01-16 12:27:55,818 INFO  [main-EventThread] zookeeper.ClientCnxn: EventThread shut down
+Sample cube is created successfully in project 'learn_kylin'; Restart Kylin server or reload the metadata from web UI to see the change.
+
+# KYLIN_DEBUG_SETTINGS
+
+[hive@n01 bin]$ cat setenv.sh  |grep -i export
+export KYLIN_JVM_SETTINGS="-Xms1024M -Xmx4096M -XX:MaxPermSize=128M"
+# export KYLIN_JVM_SETTINGS="-Xms16g -Xmx16g -XX:MaxPermSize=512m -XX:NewSize=3g -XX:MaxNewSize=3g -XX:SurvivorRatio=4 -XX:+CMSClassUnloadingEnabled -XX:+CMSParallelRemarkEnabled -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:CMSInitiatingOccupancyFraction=70 -XX:+DisableExplicitGC"
+# export KYLIN_DEBUG_SETTINGS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -javaagent:${KYLIN_HOME}/lib/CustomAgent.jar -Dcom.ebay.lnp.rmiagent.port=8080"
+# export KYLIN_LD_LIBRARY_SETTINGS="-Djava.library.path=/apache/hadoop/lib/native/Linux-amd64-64"
+export KYLIN_EXTRA_START_OPTS=""
+
+
+
+# 
+
+
+
+[pool-6-thread-1]:[2016-01-16 14:16:13,014][INFO][org.apache.kylin.job.impl.threadpool.DefaultScheduler$FetcherRunner.run(DefaultScheduler.java:112)] - Job Fetcher: 1 running, 1 actual running, 0 ready, 1 others
+[pool-6-thread-1]:[2016-01-16 14:17:13,017][INFO][org.apache.kylin.job.impl.threadpool.DefaultScheduler$FetcherRunner.run(DefaultScheduler.java:112)] - Job Fetcher: 1 running, 1 actual running, 0 ready, 1 others
+[pool-6-thread-1]:[2016-01-16 14:18:13,026][INFO][org.apache.kylin.job.impl.threadpool.DefaultScheduler$FetcherRunner.run(DefaultScheduler.java:112)] - Job Fetcher: 1 running, 1 actual running, 0 ready, 1 others
+[pool-6-thread-1]:[2016-01-16 14:19:13,013][INFO][org.apache.kylin.job.impl.threadpool.DefaultScheduler$FetcherRunner.run(DefaultScheduler.java:112)] - Job Fetcher: 1 running, 1 actual running, 0 ready, 1 others
+[http-bio-7070-exec-1]:[2016-01-16 14:19:54,035][DEBUG][org.apache.kylin.rest.filter.KylinApiFilter.logRequest(KylinApiFilter.java:120)] - REQUEST: REQUESTER=ADMIN;REQ_TIME=GMT-08:00 2016-01-15 22:19:54;URI=/kylin/api/projects;METHOD=GET;QUERY_STRING=null;PAYLOAD=;RESP_STATUS=200;
+[http-bio-7070-exec-10]:[2016-01-16 14:19:54,040][DEBUG][org.apache.kylin.rest.filter.KylinApiFilter.logRequest(KylinApiFilter.java:120)] - REQUEST: REQUESTER=ADMIN;REQ_TIME=GMT-08:00 2016-01-15 22:19:54;URI=/kylin/api/user/authentication;METHOD=GET;QUERY_STRING=null;PAYLOAD=;RESP_STATUS=200;
+[http-bio-7070-exec-6]:[2016-01-16 14:19:54,047][DEBUG][org.apache.kylin.rest.service.AdminService.getConfigAsString(AdminService.java:90)] - Get Kylin Runtime Config
+[http-bio-7070-exec-6]:[2016-01-16 14:19:54,107][DEBUG][org.apache.kylin.rest.filter.KylinApiFilter.logRequest(KylinApiFilter.java:120)] - REQUEST: REQUESTER=ADMIN;REQ_TIME=GMT-08:00 2016-01-15 22:19:54;URI=/kylin/api/admin/config;METHOD=GET;QUERY_STRING=null;PAYLOAD=;RESP_STATUS=200;
+[http-bio-7070-exec-2]:[2016-01-16 14:19:54,205][DEBUG][org.apache.kylin.rest.filter.KylinApiFilter.logRequest(KylinApiFilter.java:120)] - REQUEST: REQUESTER=ADMIN;REQ_TIME=GMT-08:00 2016-01-15 22:19:54;URI=/kylin/api/jobs;METHOD=GET;QUERY_STRING=limit=15&offset=0&projectName=learn_kylin;PAYLOAD=;RESP_STATUS=200;
+[pool-6-thread-1]:[2016-01-16 14:20:13,042][INFO][org.apache.kylin.job.impl.threadpool.DefaultScheduler$FetcherRunner.run(DefaultScheduler.java:112)] - Job Fetcher: 1 running, 1 actual running, 0 ready, 1 others
+[pool-7-thread-1]:[2016-01-16 14:20:14,450][ERROR][org.apache.kylin.job.common.ShellExecutable.doWork(ShellExecutable.java:56)] - job:88b47594-51ad-4247-b609-d29ca9e8d255-00 execute finished with exception
+java.io.IOException: OS command error exit with 1 -- hive  -e "USE default;
+DROP TABLE IF EXISTS kylin_intermediate_kylin_sales_cube_desc_20120101000000_20140101000000_88b47594_51ad_4247_b609_d29ca9e8d255;
+
+CREATE EXTERNAL TABLE IF NOT EXISTS kylin_intermediate_kylin_sales_cube_desc_20120101000000_20140101000000_88b47594_51ad_4247_b609_d29ca9e8d255
+(
+DEFAULT_KYLIN_SALES_PART_DT date
+,DEFAULT_KYLIN_SALES_LEAF_CATEG_ID bigint
+,DEFAULT_KYLIN_SALES_LSTG_SITE_ID int
+,DEFAULT_KYLIN_CATEGORY_GROUPINGS_META_CATEG_NAME string
+,DEFAULT_KYLIN_CATEGORY_GROUPINGS_CATEG_LVL2_NAME string
+,DEFAULT_KYLIN_CATEGORY_GROUPINGS_CATEG_LVL3_NAME string
+,DEFAULT_KYLIN_SALES_LSTG_FORMAT_NAME string
+,DEFAULT_KYLIN_SALES_PRICE decimal(19,4)
+,DEFAULT_KYLIN_SALES_SELLER_ID bigint
+)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\177'
+STORED AS SEQUENCEFILE
+LOCATION '/kylin/kylin_metadata/kylin-88b47594-51ad-4247-b609-d29ca9e8d255/kylin_intermediate_kylin_sales_cube_desc_20120101000000_20140101000000_88b47594_51ad_4247_b609_d29ca9e8d255';
+
+SET mapreduce.job.split.metainfo.maxsize=-1;
+SET mapred.compress.map.output=true;
+SET mapred.map.output.compression.codec=org.apache.hadoop.io.compress.SnappyCodec;
+SET mapred.output.compress=true;
+SET mapred.output.compression.codec=org.apache.hadoop.io.compress.SnappyCodec;
+SET mapred.output.compression.type=BLOCK;
+SET mapreduce.job.max.split.locations=2000;
+SET dfs.replication=2;
+SET hive.merge.mapfiles=true;
+SET hive.merge.mapredfiles=true;
+SET hive.merge.size.per.task=268435456;
+SET hive.support.concurrency=false;
+SET hive.exec.compress.output=true;
+SET hive.auto.convert.join.noconditionaltask = true;
+SET hive.auto.convert.join.noconditionaltask.size = 300000000;
+INSERT OVERWRITE TABLE kylin_intermediate_kylin_sales_cube_desc_20120101000000_20140101000000_88b47594_51ad_4247_b609_d29ca9e8d255 SELECT
+KYLIN_SALES.PART_DT
+,KYLIN_SALES.LEAF_CATEG_ID
+,KYLIN_SALES.LSTG_SITE_ID
+,KYLIN_CATEGORY_GROUPINGS.META_CATEG_NAME
+,KYLIN_CATEGORY_GROUPINGS.CATEG_LVL2_NAME
+,KYLIN_CATEGORY_GROUPINGS.CATEG_LVL3_NAME
+,KYLIN_SALES.LSTG_FORMAT_NAME
+,KYLIN_SALES.PRICE
+,KYLIN_SALES.SELLER_ID
+FROM DEFAULT.KYLIN_SALES as KYLIN_SALES 
+INNER JOIN DEFAULT.KYLIN_CAL_DT as KYLIN_CAL_DT
+ON KYLIN_SALES.PART_DT = KYLIN_CAL_DT.CAL_DT
+INNER JOIN DEFAULT.KYLIN_CATEGORY_GROUPINGS as KYLIN_CATEGORY_GROUPINGS
+ON KYLIN_SALES.LEAF_CATEG_ID = KYLIN_CATEGORY_GROUPINGS.LEAF_CATEG_ID AND KYLIN_SALES.LSTG_SITE_ID = KYLIN_CATEGORY_GROUPINGS.SITE_ID
+WHERE (KYLIN_SALES.PART_DT >= '2012-01-01' AND KYLIN_SALES.PART_DT < '2014-01-01')
+;
+
+"
+WARNING: Use "yarn jar" to launch YARN applications.
+
+Logging initialized using configuration in file:/etc/hive/2.3.4.0-3485/0/hive-log4j.properties
+OK
+Time taken: 2.818 seconds
+OK
+Time taken: 0.226 seconds
+FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.DDLTask. MetaException(message:java.security.AccessControlException: Permission denied: user=hive, access=WRITE, inode="/kylin":hdfs:hdfs:drwxr-xr-x
+    at org.apache.hadoop.hdfs.server.namenode.FSPermissionChecker.check(FSPermissionChecker.java:319)
+    at org.apache.hadoop.hdfs.server.namenode.FSPermissionChecker.checkPermission(FSPermissionChecker.java:219)
+    at org.apache.hadoop.hdfs.server.namenode.FSPermissionChecker.checkPermission(FSPermissionChecker.java:190)
+    at org.apache.hadoop.hdfs.server.namenode.FSDirectory.checkPermission(FSDirectory.java:1771)
+    at org.apache.hadoop.hdfs.server.namenode.FSDirectory.checkPermission(FSDirectory.java:1755)
+    at org.apache.hadoop.hdfs.server.namenode.FSDirectory.checkPathAccess(FSDirectory.java:1729)
+    at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkAccess(FSNamesystem.java:8348)
+    at org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.checkAccess(NameNodeRpcServer.java:1978)
+    at org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.checkAccess(ClientNamenodeProtocolServerSideTranslatorPB.java:1443)
+    at org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+    at org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:616)
+    at org.apache.hadoop.ipc.RPC$Server.call(RPC.java:969)
+    at org.apache.hadoop.ipc.Server$Handler$1.run(Server.java:2151)
+    at org.apache.hadoop.ipc.Server$Handler$1.run(Server.java:2147)
+    at java.security.AccessController.doPrivileged(Native Method)
+    at javax.security.auth.Subject.doAs(Subject.java:422)
+    at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+    at org.apache.hadoop.ipc.Server$Handler.run(Server.java:2145)
+
+
+
+
+FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.DDLTask. MetaException(message:java.security.AccessControlException: Permission denied: user=hive, access=WRITE, inode="/kylin":hdfs:hdfs:drwxr-xr-x
+
+
+
+解决：
+
+使用 hdfs 用户，而非 hive 用户！！
+
+
+
+# cube 跑到 #4 Step Name: Build Base Cuboid Data
+Duration: 1.79 mins
+
+ 2016-01-16 16:15:39,353 INFO  [pool-7-thread-5] mapred.ClientServiceDelegate: Application state is completed. FinalApplicationStatus=FAILED. Redirecting to job history server
+ [pool-7-thread-5]:[2016-01-16 16:15:39,495][WARN][org.apache.kylin.job.common.HadoopCmdOutput.updateJobCounter(HadoopCmdOutput.java:89)] - no counters for job job_1452878162418_0046
+ [pool-7-thread-5]:[2016-01-16 16:15:39,515][DEBUG][org.apache.kylin.common.persistence.ResourceStore.putResource(ResourceStore.java:200)] - Saving resource /execute_output/35a73a4b-bd25-4ee0-beca-e5363f54656f-03 (Store kylin_metadata@hbase)
+
+
+
+ Container [pid=12433,containerID=container_e02_1452878162418_0045_01_000005] is running beyond physical memory limits. Current usage: 206.8 MB of 170 MB physical memory used; 1.9 GB of 357.0 MB virtual memory used. Killing container. Dump of the process-tree for container_e02_1452878162418_0045_01_000005 : |- PID PPID PGRPID SESSID CMD_NAME USER_MODE_TIME(MILLIS) SYSTEM_TIME(MILLIS) VMEM_USAGE(BYTES) RSSMEM_USAGE(PAGES) FULL_CMD_LINE |- 12439 12433 12433 12433 (java) 575 59 1902309376 52581 /usr/jdk64/jdk1.8.0_60/bin/java -server -XX:NewRatio=8 -Djava.net.preferIPv4Stack=true -Dhdp.version=2.3.4.0-3485 -Xmx136m -Djava.io.tmpdir=/hadoop/yarn/local/usercache/hdfs/appcache/application_1452878162418_0045/container_e02_1452878162418_0045_01_000005/tmp -Dlog4j.configuration=container-log4j.properties -Dyarn.app.container.log.dir=/hadoop/yarn/log/application_1452878162418_0045/container_e02_1452878162418_0045_01_000005 -Dyarn.app.container.log.filesize=0 -Dhadoop.root.logger=INFO,CLA -Dhadoop.root.logfile=syslog org.apache.hadoop.mapred.YarnChild 192.168.56.101 59591 attempt_1452878162418_0045_m_000000_3 2199023255557 |- 12433 12431 12433 12433 (bash) 0 0 108621824 349 /bin/bash -c /usr/jdk64/jdk1.8.0_60/bin/java -server -XX:NewRatio=8 -Djava.net.preferIPv4Stack=true -Dhdp.version=2.3.4.0-3485 -Xmx136m -Djava.io.tmpdir=/hadoop/yarn/local/usercache/hdfs/appcache/application_1452878162418_0045/container_e02_1452878162418_0045_01_000005/tmp -Dlog4j.configuration=container-log4j.properties -Dyarn.app.container.log.dir=/hadoop/yarn/log/application_1452878162418_0045/container_e02_1452878162418_0045_01_000005 -Dyarn.app.container.log.filesize=0 -Dhadoop.root.logger=INFO,CLA -Dhadoop.root.logfile=syslog org.apache.hadoop.mapred.YarnChild 192.168.56.101 59591 attempt_1452878162418_0045_m_000000_3 2199023255557 1>/hadoop/yarn/log/application_1452878162418_0045/container_e02_1452878162418_0045_01_000005/stdout 2>/hadoop/yarn/log/application_1452878162418_0045/container_e02_1452878162418_0045_01_000005/stderr Container killed on request. Exit code is 143 Container exited with a non-zero exit code 143
+
+
+
+
+n02 / n03 的 mysql 版本不同！
+
+[root@n03 ~]# service mysql stop
+Shutting down MySQL..                                      [  OK  ]
+[root@n03 ~]# ps -ef|grep -i mysql
+root     22507 22465  0 03:21 pts/0    00:00:00 grep -i mysql
+[root@n03 ~]# type mysql
+mysql is /usr/bin/mysql
+[root@n03 ~]# service mysqld stop
+mysqld: unrecognized service
+[root@n03 ~]# 
+[root@n03 ~]# exit
+logout
+Connection to n03.kylin.hdp closed.
+[root@n02 ~]# service mysql stop
+mysql: unrecognized service
+[root@n02 ~]# service mysqld stop
+Stopping mysqld:                                           [  OK  ]
+[root@n02 ~]# ps -ef|grep -i mysql
+root     23246 22667  0 03:22 pts/1    00:00:00 grep -i mysql
+
+
+ambari 增加节点：
+
+http://hortonworks.com/hadoop-tutorial/using-apache-ambari-add-new-nodes-existing-cluster/
+
+
+
+# CDH 安装 
+
+### CDH 有几种安装方式？
+
+
+# CDH 安装 
+
+### CDH 有几种安装方式？
+
+1. cloudera manager 方式安装，类似 windows update  , 需要稳定的外网访问。
+
+#### Impala
+
+是Cloudera公司主导开发的新型查询系统，它提供SQL语义，能查询存储在Hadoop的HDFS和HBase中的PB级大数据。已有的Hive系统虽然也提供了SQL语义，但由于Hive底层执行使用的是MapReduce引擎，仍然是一个批处理过程，难以满足查询的交互性。相比之下，Impala的最大特点也是最大卖点就是它的快速。
+
+#### Hue
+
+是一个开源的Apache Hadoop UI系统，由Cloudera Desktop演化而来，最后Cloudera公司将其贡献给Apache基金会的Hadoop社区，它是基于Python Web框架Django实现的。通过使用Hue我们可以在浏览器端的Web控制台上与Hadoop集群进行交互来分析处理数据，例如操作HDFS上的数据，运行MapReduce Job，执行Hive的SQL语句，浏览HBase数据库等等
+
+
+2. parcel 安装 
+
+下载 parcel ，通过 cm 界面 安装。
+
+http://www.superwu.cn/2015/05/15/2235
+
+
+3. yum 本地安装 
+
+通过 下载 yum 源 (tarball) ， 配置repo的 baseurl 方式来安装。组件可以通过yum 命令方式 逐个安装配置。应该是最灵活的安装方式。
+http://blog.chinaunix.net/uid-33797-id-4912855.html
+
+
+http://www.cloudera.com/documentation/enterprise/latest/topics/cdh_ig_cdh5_install.html
+
+1，2 两种方式，都需要用到cm , 还是用cm管理最方便。
+
+cm 下载安装地址：
+
+http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/topics/cm_vd.html#cmvd_topic_1
+
+
+#### . cloudera 离线包下载
+https://archive.cloudera.com/cm5/redhat/6/x86_64/cm/5/
+
+本页详细介绍了 cdh 的 三种 安装方式：path a,b,c : 
+
+http://www.cloudera.com/content/www/en-us/downloads/cdh/5-5-1.html
+
+http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/topics/cm_ig_install_path_c.html#cmig_topic_6_7
 
 
 
