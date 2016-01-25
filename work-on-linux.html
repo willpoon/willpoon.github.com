@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2016-01-14
+    on 2016-01-20
 
         |
         tags:         <a href="/tag/linux.html">linux</a>
@@ -166,6 +166,9 @@
 <li><a href="#virtualboxhost-only">virtualbox的那个host-only链接是什么？有什么用？</a></li>
 </ul>
 </li>
+<li><a href="#wget">使用 wget 做整站下载</a></li>
+<li><a href="#stat_1">stat</a></li>
+<li><a href="#_8">阿里云的使用</a></li>
 </ul>
 </li>
 </ul>
@@ -400,6 +403,28 @@ Host-only              可以互访                不能直接访问           
 NAT             虚拟机可访问宿主机      可以(通过宿主机)            不能直接访问
 桥接                      可以互访                   直接访问                       直接访问</p>
 <p>http://zhidao.baidu.com/link?url=Q7QGXk0IKKYAjLskS29h1q09n6T6xo1ERQzrU-g6EvCSeB6ywpsl5w3ulv1Me_EMiC0439cjnmWb1EQ-wqrT3q</p>
+<h2 id="wget">使用 wget 做整站下载</h2>
+<p>wget \
+--recursive \
+--no-clobber \
+--page-requisites \
+--html-extension \
+--convert-links \
+--restrict-file-names=windows \
+--domains apache.org \
+--no-parent \
+http://kylin.apache.org/docs/</p>
+<h2 id="stat_1">stat</h2>
+<p>获取 文件 日期</p>
+<h2 id="_8">阿里云的使用</h2>
+<p>ECS通过镜像快速创建新服务器</p>
+<p>https://help.aliyun.com/knowledge_detail/5988886.html?spm=5176.7618386.5.1.LJgYnN</p>
+<p>ECS云服务器自定义镜像FAQ</p>
+<p>https://help.aliyun.com/knowledge_detail/5974456.html#ECS云服务器自定义镜像FAQ</p>
+<p>Q：用于创建自定义镜像的云服务器到期或数据释放后（即用于快照的系统盘到期或释放），创建的自定义镜像是否受影响，使用自定义镜像开通的云服务器是否受影响？
+A：都不受影响</p>
+<p>ECS通过镜像快速创建新服务器</p>
+<p>https://help.aliyun.com/knowledge_detail/5988886.html?spm=5176.7618386.5.13.v4NlmT#ECS通过镜像快速创建新服务器</p>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>

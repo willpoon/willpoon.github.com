@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2016-01-05
+    on 2016-01-25
 
         |
         tags:         <a href="/tag/db.html">DB</a>
@@ -121,6 +121,7 @@
         <div class="toc">
 <ul>
 <li><a href="#db2">DB2</a><ul>
+<li><a href="#udf-pl-clp">UDF 和 Pl 的小区别 ，兼clp 执行的问题</a></li>
 <li><a href="#response-db2-ese-v97">使用response文件安装 db2 ese v9.7</a></li>
 <li><a href="#db2-ese">db2 ese 安装相关的几个问题</a></li>
 <li><a href="#_1">分页大小测试</a><ul>
@@ -152,6 +153,7 @@
 <li><a href="#_7">统计表大小，用户空间大小</a></li>
 <li><a href="#db2-v105-pagesize">db2 V10.5 ， 表行大小不再跟 表空间pagesize 分页大小挂钩</a></li>
 <li><a href="#catalog">如何catalog 一个远程数据库</a></li>
+<li><a href="#db2-1-like-2-locate">db2 字段1 like 字段2 匹配 问题－－使用 locate() 函数。</a></li>
 <li><a href="#db2-on-mac">DB2 on mac 很难找！</a></li>
 <li><a href="#db2_1">db2 查看数据库表空间情况</a></li>
 <li><a href="#db2-schema">db2 一个系统用户管理多个schema  .</a></li>
@@ -185,18 +187,19 @@
 </ul>
 </li>
 <li><a href="#mysql">MYSQL</a><ul>
+<li><a href="#_10">千万级数据去重检验</a></li>
 <li><a href="#mysql-1040-too-many-connections">mysql : 1040 too many connections  的解决</a></li>
 <li><a href="#mysql-full-outer-join">MYSQL 不支持 full outer join</a></li>
 <li><a href="#mysql-except-or-minus">MYSQL 不支持 except or minus</a></li>
 <li><a href="#mysql-a">mysql -A 参数</a></li>
 <li><a href="#mysql-limit">mysql limit 的用法：</a></li>
-<li><a href="#_10">关联技巧:恢复空表</a></li>
+<li><a href="#_11">关联技巧:恢复空表</a></li>
 <li><a href="#mysqld">启动mysqld 的时候，一般加什么参数？</a></li>
 <li><a href="#mysql_1">mysql 远程连接</a></li>
 <li><a href="#except-minus-mysql">如果不能用 except , minus , mysql 如何比较两张表？</a></li>
 <li><a href="#mysql-row">mysql 使用 row() 实现 多列比较</a></li>
 <li><a href="#mysql-intersect">mysql 模拟 intersect  求差集</a></li>
-<li><a href="#_11">远程数据库连接配置</a></li>
+<li><a href="#_12">远程数据库连接配置</a></li>
 </ul>
 </li>
 <li><a href="#oracle">ORACLE</a><ul>
@@ -208,16 +211,20 @@
 <li><a href="#oracle_1">oracle 匿名块</a></li>
 </ul>
 </li>
-<li><a href="#_12">方法论</a><ul>
-<li><a href="#_13">数据存储：分表与分区表</a></li>
+<li><a href="#_13">方法论</a><ul>
+<li><a href="#_14">数据存储：分表与分区表</a></li>
 </ul>
 </li>
-<li><a href="#_14">架构学习</a></li>
-<li><a href="#_15">优秀博客</a><ul>
+<li><a href="#_15">架构学习</a></li>
+<li><a href="#_16">优秀博客</a><ul>
 <li><a href="#httpdb2commercecom">http://db2commerce.com/</a></li>
 </ul>
 </li>
-<li><a href="#_16">老牌论坛</a></li>
+<li><a href="#_17">老牌论坛</a></li>
+<li><a href="#pgsql">pgsql</a><ul>
+<li><a href="#_18">连接 &amp; 查询</a></li>
+</ul>
+</li>
 </ul>
 </div>
         </nav>
@@ -225,6 +232,44 @@
         <p>记录数据库 安装、维护、开发与管理 的各种操作&amp;技巧。包含但不仅限于db2,oracle , mysql , sqlite...</p>
 
 <h1 id="db2">DB2</h1>
+<h2 id="udf-pl-clp">UDF 和 Pl 的小区别 ，兼clp 执行的问题</h2>
+<p>CREATE FUNCTION currval(seq_name VARCHAR(64)) 
+RETURNS INTEGER
+LANGUAGE SQL
+BEGIN ATOMIC<br/>
+  DECLARE value INT;<br/>
+  SET value = 0;<br/>
+  SELECT current_value INTO value<br/>
+  FROM metadata.t_me_sequence<br/>
+  WHERE name = seq_name ;<br/>
+  RETURN value;<br/>
+END
+;</p>
+<p>以上代码，使用:</p>
+<pre><code>db2 -tvf script.sql
+</code></pre>
+<p>执行, 将报unexpected 字符 问题，分析如下：</p>
+<ol>
+<li>udf 中的 ; 和 语句结尾的 ; 让 db2 傻傻分不清，两个分号各自的作用。</li>
+</ol>
+<p>正确的执行方法是：</p>
+<p>db2 -td@ -vf script.sql , 当然代码最后的结束符号也要改成 @ 。</p>
+<p>即便这样，还是报错：</p>
+<p>DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0104N  An unexpected token "VAL" was found following "T CURRENT_VALUE 
+INTO".  Expected tokens may include:  "<space>".  LINE NUMBER=8.<br/>
+SQLSTATE=42601</space></p>
+<p>因为 udf 不支持 select into . </p>
+<p>把select into 改成 set 即可：</p>
+<p>CREATE or replace FUNCTION currval(seq_name VARCHAR(64)) 
+RETURNS INTEGER
+LANGUAGE SQL
+BEGIN ATOMIC<br/>
+  DECLARE VAL INT;<br/>
+    SET VAL = (SELECT CURRENT_VALUE FROM METADATA.T_ME_SEQUENCE  where NAME = seq_name ) ;
+          RETURN VAL ;<br/>
+          END@</p>
 <h2 id="response-db2-ese-v97">使用response文件安装 db2 ese v9.7</h2>
 <p>Response file installation of DB2 overview (Linux and UNIX)
 This task describes how to perform response file installations on Linux or UNIX. You can use the response file to install additional components or products after an initial installation. A response file installation might also be referred to as a silent installation or an unattended installation.</p>
@@ -589,6 +634,14 @@ Wills-MacBook-Pro:bin db2inst1$ db2 "select count(0) from syscat.tables"
 
   1 record(s) selected.
 </code></pre>
+<h2 id="db2-1-like-2-locate">db2 字段1 like 字段2 匹配 问题－－使用 locate() 函数。</h2>
+<p>db2 like 不支持 函数。db2也不支持 || .  </p>
+<p>http://stackoverflow.com/questions/6807593/sql-like-column-value-plus-wildcard-db2
+https://bytes.com/topic/db2/answers/442801-how-compare-two-columns-db2-please-help
+你要的功能是：字段1  like 字段2 ； 而db2 不支持 ||  , 所以 你用 concat()   .  但是 db2 的 like  , 又不支持 concat  . 所以你可以参考上面url的方法。
+db2 ? SQL0132N </p>
+<p>FYI    </p>
+<p>update: 新版db2 支持 ||  了。 但是还是不能用在 like 里。</p>
 <h2 id="db2-on-mac">DB2 on mac 很难找！</h2>
 <p>我找mac版的艰辛过程：
 本来我打算在mac上安装一个client版的就行了，然后远程到云服务器上。google了半天，发现了一个v9.5版本的，但我的mac是10.10 ， 报错，不支持。</p>
@@ -945,6 +998,14 @@ regards, guy </p>
 <p>http://www.ibm.com/developerworks/cn/data/dmmag/dbt15n3/DistributedDBA/</p>
 <p>http://www.ibm.com/developerworks/data/library/techarticle/dm-1005partitioningkeys/</p>
 <h1 id="mysql">MYSQL</h1>
+<h2 id="_10">千万级数据去重检验</h2>
+<p>select count(0) from (select distinct * from pmt_kpi_mer_cust_mid_olap) as a;</p>
+<p>[root@dmp ~]# cat mysql.out 
+nohup: ignoring input
+Warning: Using a password on the command line interface can be insecure.
+ERROR 1317 (70100) at line 1: Query execution was interrupted
+Terminal close -- sending "KILL QUERY 4151507" to server ...
+Terminal close -- query aborted.</p>
 <h2 id="mysql-1040-too-many-connections">mysql : 1040 too many connections  的解决</h2>
 <ol>
 <li>修改 /etc/my.cnf ( 因系统安装环境而异 )</li>
@@ -977,7 +1038,7 @@ RIGHT JOIN t2 ON t1.id = t2.id
 <p>limit m,n 解释:</p>
 <p>m(5) -- 表示偏移量。也就是要skip掉m行。</p>
 <p>n(10) --  表示从第m行之后，最大可以提取n行。</p>
-<h2 id="_10">关联技巧:恢复空表</h2>
+<h2 id="_11">关联技巧:恢复空表</h2>
 <pre><code>INSERT INTO ${PDM_SCH}.LI_COL
 SELECT B.*
 FROM ${PDM_SCH}.LI_COL_BAK B,
@@ -1033,7 +1094,7 @@ GROUP BY PK, column_list
 HAVING COUNT (*) = 1
 ORDER BY PK
 </code></pre>
-<h2 id="_11">远程数据库连接配置</h2>
+<h2 id="_12">远程数据库连接配置</h2>
 <ol>
 <li>db2 </li>
 </ol>
@@ -1086,22 +1147,35 @@ SET ESCAPE ON;
 </code></pre>
 <h2 id="oracle_1">oracle 匿名块</h2>
 
-<h1 id="_12">方法论</h1>
-<h2 id="_13">数据存储：分表与分区表</h2>
+<h1 id="_13">方法论</h1>
+<h2 id="_14">数据存储：分表与分区表</h2>
 <p>以前做电信行业的数据仓库时，每个统计日期的数据都是分表存储的。也就是每月／每日一张表。（我称之为方案A）</p>
 <p>现在做银行数据仓库，采用的是分区表。也就是同一张表，不管有几天，都存放在一张表中。然后按日期分区存储。（我称之为方案B）</p>
 <p>这样的好处是，表量减少了。像db2，对于整个数据库中的表的数量是有限制的。如果按日期分表，就会每个主题表每天产生一张表，最后库中的表将越积累越多。</p>
 <p>当然，方案B建起索引来，应该要耗用更多的时间和存储。而方案A就会少些。</p>
 <p>其次，在编码时，日期参数的传递方式也略有不同。</p>
-<h1 id="_14">架构学习</h1>
+<h1 id="_15">架构学习</h1>
 <p>General Relational Database Structure</p>
 <p>https://en.wikibooks.org/wiki/Oracle_and_DB2,_Comparison_and_Compatibility/Architecture/Overview</p>
-<h1 id="_15">优秀博客</h1>
+<h1 id="_16">优秀博客</h1>
 <h2 id="httpdb2commercecom">http://db2commerce.com/</h2>
 <p>ember crooks :</p>
 <p>In 2014, IBM named me as an IBM Gold Consultant.</p>
-<h1 id="_16">老牌论坛</h1>
+<h1 id="_17">老牌论坛</h1>
 <p>http://www.dbforums.com</p>
+<h1 id="pgsql">pgsql</h1>
+<h2 id="_18">连接 &amp; 查询</h2>
+<p>-bash-4.1$ psql -U postgres ambari
+psql (8.4.20)
+Type "help" for help.</p>
+<p>ambari=# SET search_path = ambari;
+SET
+ambari=# select count(0) from hosts;
+ count </p>
+<hr/>
+<pre><code>  3
+  (1 row)
+</code></pre>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>

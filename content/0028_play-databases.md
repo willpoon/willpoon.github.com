@@ -10,6 +10,67 @@ Authors: Poon
 
 # DB2
 
+## UDF 和 Pl 的小区别 ，兼clp 执行的问题
+
+CREATE FUNCTION currval(seq_name VARCHAR(64)) 
+RETURNS INTEGER
+LANGUAGE SQL
+BEGIN ATOMIC  
+  DECLARE value INT;  
+  SET value = 0;  
+  SELECT current_value INTO value  
+  FROM metadata.t_me_sequence  
+  WHERE name = seq_name ;  
+  RETURN value;  
+END
+;
+
+以上代码，使用:
+
+    db2 -tvf script.sql
+
+执行, 将报unexpected 字符 问题，分析如下：
+
+1. udf 中的 ; 和 语句结尾的 ; 让 db2 傻傻分不清，两个分号各自的作用。
+
+正确的执行方法是：
+
+db2 -td@ -vf script.sql , 当然代码最后的结束符号也要改成 @ 。
+
+即便这样，还是报错：
+
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0104N  An unexpected token "VAL" was found following "T CURRENT_VALUE 
+INTO".  Expected tokens may include:  "<space>".  LINE NUMBER=8.  
+SQLSTATE=42601
+
+
+因为 udf 不支持 select into . 
+
+
+把select into 改成 set 即可：
+
+CREATE or replace FUNCTION currval(seq_name VARCHAR(64)) 
+RETURNS INTEGER
+LANGUAGE SQL
+BEGIN ATOMIC  
+  DECLARE VAL INT;  
+    SET VAL = (SELECT CURRENT_VALUE FROM METADATA.T_ME_SEQUENCE  where NAME = seq_name ) ;
+          RETURN VAL ;  
+          END@
+
+
+
+
+
+
+
+
+
+
+
+
 ## 使用response文件安装 db2 ese v9.7 
 
 Response file installation of DB2 overview (Linux and UNIX)
@@ -972,6 +1033,19 @@ http://www.ibm.com/developerworks/data/library/techarticle/dm-1005partitioningke
 
 # MYSQL 
 
+##  千万级数据去重检验
+
+select count(0) from (select distinct * from pmt_kpi_mer_cust_mid_olap) as a;
+
+[root@dmp ~]# cat mysql.out 
+nohup: ignoring input
+Warning: Using a password on the command line interface can be insecure.
+ERROR 1317 (70100) at line 1: Query execution was interrupted
+Terminal close -- sending "KILL QUERY 4151507" to server ...
+Terminal close -- query aborted.
+
+
+
 ## mysql : 1040 too many connections  的解决
 
 1. 修改 /etc/my.cnf ( 因系统安装环境而异 )
@@ -1230,6 +1304,7 @@ ambari=# select count(0) from hosts;
  -------
       3
       (1 row)
+
 
 
 

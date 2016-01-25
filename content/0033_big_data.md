@@ -869,6 +869,7 @@ VirtualBox虚拟机上网并主宿互访.md
 
 https://github.com/ajiexw/Ajiex.com/blob/master/VirtualBox%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8A%E7%BD%91%E5%B9%B6%E4%B8%BB%E5%AE%BF%E4%BA%92%E8%AE%BF.md
 
+
 http://askubuntu.com/questions/446183/how-to-set-up-nat-and-host-only-networking-with-static-ip-address-in-virtualbox
 
 
@@ -2694,4 +2695,620 @@ http://www.cloudera.com/content/www/en-us/downloads/cdh/5-5-1.html
 http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/topics/cm_ig_install_path_c.html#cmig_topic_6_7
 
 
+# ambari + hdp + kylin 断电重启测试 
 
+服务重启后，各个组件都能正常工作。
+
+断电重启的主要问题是：
+
+1. 事务中断。
+
+2. 记录了失败状态。
+
+3. 数据未获得保存。
+
+直接断电关机是不推荐的。
+
+但如果数据不重要，任务状态也不重要，只需要快速开关机，就可以直接断电。
+
+关于ambari 上的services的启动顺序，最好编排好顺序。
+
+比如 zookeeper 应该 先于 hive 等组件启动。
+
+否则有些服务需要重启多次才能完全启动。
+
+
+# ambari metric collector install pending ... 状态处理：
+
+1. 切换到维护模式
+
+2. 选择reinstall 选项
+
+3. 重新安装后，服务是默认停止的，需要手工start 。
+
+
+select * from information_schema.tables where table_name like '%olap%';
+
+
+
+
+
+
+从今天开始，写点关于kylin的事情。kylin是什么？没错，麒麟，是极具中国特色的虚构动物，但它在这里不是代表某个操作系统，而是一个OLAP计算引擎!一个具有PB级数据处理能力的计算引擎。所以
+
+# 大纲
+
+1. 打通网络环境
+2. 安装操作系统和节点环境初始化
+3. 准备repo和安装包
+4. 安装ambari
+5. 安装HDP
+6. apache kylin 部署
+7. cube运行测试
+
+
+
+
+    mysql -h127.0.0.1 -uroot -p000000 -e"select * from a into outfile '1.txt' fields terminated by ',' lines terminated by '\r\n'" test
+    如果不想输出列名信息：
+
+mysql -uroot -p  -D datafactory -N -e "select distinct * from pmt_kpi_mer_cust_mid_olap into outfile 'pmt_kpi_mer_cust_mid_olap.txt' fields terminated by ',' "
+
+lines terminated by '\r\n'"
+
+
+
+select count(0) from (select distinct * from  pmt_kpi_mer_cust_mid_olap_bak ) as a;
+
+
+# mysql 样本数据去重导出
+
+rm /tmp/pmt_kpi_mer_cust_mid_olap.txt
+
+nohup time mysql -uroot -pxxx  -D datafactory -N -e "select distinct * from pmt_kpi_mer_cust_mid_olap into outfile '/tmp/pmt_kpi_mer_cust_mid_olap.txt' fields terminated by ',' " > /tmp/mysql.pmt.out 2>&1 &
+
+
+# 基于kylin 和 hive的查询测试语句 
+select part_dt, sum(price) as total_selled, count(distinct seller_id) as sellers from kylin_sales group by part_dt order by part_dt
+
+
+
+rm /tmp/yes_no.txt
+nohup time mysql -uroot -pSL2015bi07@  -D datafactory  -e "select distinct * from yes_no into outfile '/tmp/yes_no.txt' fields terminated by ',' " > /tmp/mysql.yesno.out 2>&1 &
+
+
+
+＃ ambari 启动顺序：
+
+hdfs zookeeper hbase mapreduce2 hive yarn
+
+
+
+
+./ambari-agent.log.1:ERROR 2016-01-20 08:39:26,885 script_alert.py:112 - [Alert][hive_server_process] Failed with result CRITICAL: ['Connection failed on host n02.kylin.hdp:10000 (Traceback (most recent call last):\n  File "/var/lib/ambari-agent/cache/common-services/HIVE/0.12.0.2.0/package/alerts/alert_hive_thrift_port.py", line 192, in execute\n    ssl_keystore=hive_ssl_keystore_path, ssl_password=hive_ssl_keystore_password)\n  File "/usr/lib/python2.6/site-packages/resource_management/libraries/functions/hive_check.py", line 69, in check_thrift_port_sasl\n    timeout=beeline_check_timeout\n  File "/usr/lib/python2.6/site-packages/resource_management/core/base.py", line 154, in __init__\n    self.env.run()\n  File "/usr/lib/python2.6/site-packages/resource_management/core/environment.py", line 158, in run\n    self.run_action(resource, action)\n  File "/usr/lib/python2.6/site-packages/resource_management/core/environment.py", line 121, in run_action\n    provider_action()\n  File "/usr/lib/python2.6/site-packages/resource_management/core/providers/system.py", line 238, in action_run\n    tries=self.resource.tries, try_sleep=self.resource.try_sleep)\n  File "/usr/lib/python2.6/site-packages/resource_management/core/shell.py", line 70, in inner\n    result = function(command, **kwargs)\n  File "/usr/lib/python2.6/site-packages/resource_management/core/shell.py", line 92, in checked_call\n    tries=tries, try_sleep=try_sleep)\n  File "/usr/lib/python2.6/site-packages/resource_management/core/shell.py", line 140, in _call_wrapper\n    result = _call(command, **kwargs_copy)\n  File "/usr/lib/python2.6/site-packages/resource_management/core/shell.py", line 285, in _call\n    raise ExecuteTimeoutException(err_msg)\nExecuteTimeoutException: Execution of \'ambari-sudo.sh su ambari-qa -l -s /bin/bash -c \'export  PATH=\'"\'"\'/usr/sbin:/sbin:/usr/lib/ambari-server/*:/sbin:/usr/sbin:/bin:/usr/bin:/var/lib/ambari-agent:/bin/:/usr/bin/:/usr/lib/hive/bin/:/usr/sbin/\'"\'"\' ; ! beeline -u \'"\'"\'jdbc:hive2://n02.kylin.hdp:10000/;transportMode=binary\'"\'"\' -e \'"\'"\'\'"\'"\' 2>&1| awk \'"\'"\'{print}\'"\'"\'|grep -i -e \'"\'"\'Connection refused\'"\'"\' -e \'"\'"\'Invalid URL\'"\'"\'\'\' was killed due timeout after 30 seconds\n)']
+
+
+
+
+
+./ambari-agent.log.1:ERROR 2016-01-21 12:34:40,942 script_alert.py:112 - [Alert][hive_server_process] Failed with result CRITICAL: ['Connection failed on host n02.kylin.hdp:10000 (Traceback (most recent call last):\n  File "/var/lib/ambari-agent/cache/common-services/HIVE/0.12.0.2.0/package/alerts/alert_hive_thrift_port.py", line 192, in execute\n    ssl_keystore=hive_ssl_keystore_path, ssl_password=hive_ssl_keystore_password)\n  File "/usr/lib/python2.6/site-packages/resource_management/libraries/functions/hive_check.py", line 69, in check_thrift_port_sasl\n    timeout=beeline_check_timeout\n  File "/usr/lib/python2.6/site-packages/resource_management/core/base.py", line 154, in __init__\n    self.env.run()\n  File "/usr/lib/python2.6/site-packages/resource_management/core/environment.py", line 158, in run\n    self.run_action(resource, action)\n  File "/usr/lib/python2.6/site-packages/resource_management/core/environment.py", line 121, in run_action\n    provider_action()\n  File "/usr/lib/python2.6/site-packages/resource_management/core/providers/system.py", line 238, in action_run\n    tries=self.resource.tries, try_sleep=self.resource.try_sleep)\n  File "/usr/lib/python2.6/site-packages/resource_management/core/shell.py", line 70, in inner\n    result = function(command, **kwargs)\n  File "/usr/lib/python2.6/site-packages/resource_management/core/shell.py", line 92, in checked_call\n    tries=tries, try_sleep=try_sleep)\n  File "/usr/lib/python2.6/site-packages/resource_management/core/shell.py", line 140, in _call_wrapper\n    result = _call(command, **kwargs_copy)\n  File "/usr/lib/python2.6/site-packages/resource_management/core/shell.py", line 291, in _call\n    raise Fail(err_msg)\nFail: Execution of \'! beeline -u \'jdbc:hive2://n02.kylin.hdp:10000/;transportMode=binary\' -e \'\' 2>&1| awk \'{print}\'|grep -i -e \'Connection refused\' -e \'Invalid URL\'\' returned 1. Error: Could not open client transport with JDBC Uri: jdbc:hive2://n02.kylin.hdp:10000/;transportMode=binary: java.net.ConnectException: Connection refused (state=08S01,code=0)\nError: Could not open client transport with JDBC Uri: jdbc:hive2://n02.kylin.hdp:10000/;transportMode=binary: java.net.ConnectException: Connection refused (state=08S01,code=0)\n)']
+
+
+
+该异常可能的原因：
+
+1. 组件启动顺序不对
+2. /etc/hosts 域名-IP映射关系
+
+
+老的设置：
+
+10.0.2.11 n01.kylin.hdp
+10.0.2.12 n02.kylin.hdp
+10.0.2.13 n03.kylin.hdp
+
+192.168.1.222 mac
+192.168.1.222 poon
+192.168.1.222 host
+
+
+192.168.56.101 n01.kylin.hdp
+192.168.56.102 n02.kylin.hdp
+192.168.56.103 n03.kylin.hdp
+
+
+新的设置：
+
+10.0.2.11 n01.kylin.hdp
+10.0.2.12 n02.kylin.hdp
+10.0.2.13 n03.kylin.hdp
+
+192.168.1.222 mac
+192.168.1.222 poon
+192.168.1.222 host
+
+
+#192.168.56.101 n01.kylin.hdp
+#192.168.56.102 n02.kylin.hdp
+#192.168.56.103 n03.kylin.hdp
+
+
+
+## 问题：如果在ambari界面重新安装 ambari metric monitor ？ 发现 metrics 启动的时候，有些依赖的文件找不到。
+
+
+
+
+
+
+./ambari-agent.log.1:INFO 2016-01-21 12:34:25,702 logger.py:67 - Execute['! beeline -u 'jdbc:hive2://n02.kylin.hdp:10000/;transportMode=binary' -e '' 2>&1| awk '{print}'|grep -i -e 'Connection refused' -e 'Invalid URL''] {'path': ['/bin/', '/usr/bin/', '/usr/lib/hive/bin/', '/usr/sbin/'], 'user': 'ambari-qa', 'timeout': 30}
+
+
+
+/usr/hdp/2.3.4.0-3485/hadoop/conf/yarn-site.xml
+
+
+
+[root@n02 2.3.4.0-3485]# ll /usr/hdp/2.3.4.0-3485/hadoop/conf/yarn-site.xml
+-rw-r--r-- 1 yarn hadoop 15445 Jan 19 12:02 /usr/hdp/2.3.4.0-3485/hadoop/conf/yarn-site.xml
+
+
+
+# 补充安装 ambari-metrics-monitor 
+
+
+[1]+  Killed                  yum install ambari-metrics-monitor-2.2.0.0-1310
+[root@n02 ~]# pwd
+/root
+[root@n02 ~]# yum install ambari-metrics-monitor-2.2.0.0-1310
+Loaded plugins: fastestmirror, priorities
+Loading mirror speeds from cached hostfile
+ * base: centos.ustc.edu.cn
+ * extras: centos.ustc.edu.cn
+ * updates: centos.ustc.edu.cn
+HDP-2.3                                                                                                                                                       | 2.9 kB     00:00     
+HDP-UTILS-1.1.0.20                                                                                                                                            | 2.9 kB     00:00     
+local-HDP-2.3.4.0                                                                                                                                             | 2.9 kB     00:00     
+local-HDP-UTILS-1.1.0.20                                                                                                                                      | 2.9 kB     00:00     
+local-Updates-ambari-2.2.0.0                                                                                                                                  | 2.9 kB     00:00     
+236 packages excluded due to repository priority protections
+Setting up Install Process
+Resolving Dependencies
+--> Running transaction check
+---> Package ambari-metrics-monitor.x86_64 0:2.2.0.0-1310 will be installed
+--> Processing Dependency: python-devel for package: ambari-metrics-monitor-2.2.0.0-1310.x86_64
+--> Processing Dependency: gcc for package: ambari-metrics-monitor-2.2.0.0-1310.x86_64
+--> Running transaction check
+---> Package gcc.x86_64 0:4.4.7-16.el6 will be installed
+--> Processing Dependency: cpp = 4.4.7-16.el6 for package: gcc-4.4.7-16.el6.x86_64
+--> Processing Dependency: libgcc >= 4.4.7-16.el6 for package: gcc-4.4.7-16.el6.x86_64
+--> Processing Dependency: cloog-ppl >= 0.15 for package: gcc-4.4.7-16.el6.x86_64
+---> Package python-devel.x86_64 0:2.6.6-64.el6 will be installed
+--> Processing Dependency: python-libs(x86-64) = 2.6.6-64.el6 for package: python-devel-2.6.6-64.el6.x86_64
+--> Processing Dependency: python = 2.6.6-64.el6 for package: python-devel-2.6.6-64.el6.x86_64
+--> Running transaction check
+---> Package cloog-ppl.x86_64 0:0.15.7-1.2.el6 will be installed
+--> Processing Dependency: libppl_c.so.2()(64bit) for package: cloog-ppl-0.15.7-1.2.el6.x86_64
+--> Processing Dependency: libppl.so.7()(64bit) for package: cloog-ppl-0.15.7-1.2.el6.x86_64
+---> Package cpp.x86_64 0:4.4.7-16.el6 will be installed
+--> Processing Dependency: libmpfr.so.1()(64bit) for package: cpp-4.4.7-16.el6.x86_64
+---> Package libgcc.x86_64 0:4.4.7-4.el6 will be updated
+---> Package libgcc.x86_64 0:4.4.7-16.el6 will be an update
+---> Package python.x86_64 0:2.6.6-51.el6 will be updated
+---> Package python.x86_64 0:2.6.6-64.el6 will be an update
+---> Package python-libs.x86_64 0:2.6.6-51.el6 will be updated
+---> Package python-libs.x86_64 0:2.6.6-64.el6 will be an update
+--> Running transaction check
+---> Package mpfr.x86_64 0:2.4.1-6.el6 will be installed
+---> Package ppl.x86_64 0:0.10.2-11.el6 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================================================================================================================================
+ Package                                         Arch                            Version                                 Repository                                             Size
+=====================================================================================================================================================================================
+Installing:
+ ambari-metrics-monitor                          x86_64                          2.2.0.0-1310                            local-Updates-ambari-2.2.0.0                          172 k
+Installing for dependencies:
+ cloog-ppl                                       x86_64                          0.15.7-1.2.el6                          base                                                   93 k
+ cpp                                             x86_64                          4.4.7-16.el6                            base                                                  3.7 M
+ gcc                                             x86_64                          4.4.7-16.el6                            base                                                   10 M
+ mpfr                                            x86_64                          2.4.1-6.el6                             base                                                  157 k
+ ppl                                             x86_64                          0.10.2-11.el6                           base                                                  1.3 M
+ python-devel                                    x86_64                          2.6.6-64.el6                            base                                                  172 k
+Updating for dependencies:
+ libgcc                                          x86_64                          4.4.7-16.el6                            base                                                  103 k
+ python                                          x86_64                          2.6.6-64.el6                            base                                                   76 k
+ python-libs                                     x86_64                          2.6.6-64.el6                            base                                                  5.3 M
+
+Transaction Summary
+=====================================================================================================================================================================================
+Install       7 Package(s)
+Upgrade       3 Package(s)
+
+Total download size: 21 M
+Is this ok [y/N]: y
+Downloading Packages:
+(1/10): ambari-metrics-monitor-2.2.0.0-1310.x86_64.rpm                                                                                                        | 172 kB     00:00     
+(2/10): cloog-ppl-0.15.7-1.2.el6.x86_64.rpm                                                                                                                   |  93 kB     00:00     
+(3/10): cpp-4.4.7-16.el6.x86_64.rpm                                                                                                                           | 3.7 MB     00:03     
+(4/10): gcc-4.4.7-16.el6.x86_64.rpm                                                                                                                           |  10 MB     00:08     
+(5/10): libgcc-4.4.7-16.el6.x86_64.rpm                                                                                                                        | 103 kB     00:00     
+(6/10): mpfr-2.4.1-6.el6.x86_64.rpm                                                                                                                           | 157 kB     00:00     
+(7/10): ppl-0.10.2-11.el6.x86_64.rpm                                                                                                                          | 1.3 MB     00:01     
+(8/10): python-2.6.6-64.el6.x86_64.rpm                                                                                                                        |  76 kB     00:00     
+(9/10): python-devel-2.6.6-64.el6.x86_64.rpm                                                                                                                  | 172 kB     00:00     
+(10/10): python-libs-2.6.6-64.el6.x86_64.rpm                                                                                                                  | 5.3 MB     00:04     
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                1.0 MB/s |  21 MB     00:20     
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Updating   : python-2.6.6-64.el6.x86_64                                                                                                                                       1/13 
+  Updating   : python-libs-2.6.6-64.el6.x86_64                                                                                                                                  2/13 
+  Updating   : libgcc-4.4.7-16.el6.x86_64                                                                                                                                       3/13 
+  Installing : ppl-0.10.2-11.el6.x86_64                                                                                                                                         4/13 
+  Installing : cloog-ppl-0.15.7-1.2.el6.x86_64                                                                                                                                  5/13 
+  Installing : python-devel-2.6.6-64.el6.x86_64                                                                                                                                 6/13 
+  Installing : mpfr-2.4.1-6.el6.x86_64                                                                                                                                          7/13 
+  Installing : cpp-4.4.7-16.el6.x86_64                                                                                                                                          8/13 
+  Installing : gcc-4.4.7-16.el6.x86_64                                                                                                                                          9/13 
+  Installing : ambari-metrics-monitor-2.2.0.0-1310.x86_64                                                                                                                      10/13 
+  Cleanup    : python-2.6.6-51.el6.x86_64                                                                                                                                      11/13 
+  Cleanup    : python-libs-2.6.6-51.el6.x86_64                                                                                                                                 12/13 
+  Cleanup    : libgcc-4.4.7-4.el6.x86_64                                                                                                                                       13/13 
+  Verifying  : python-devel-2.6.6-64.el6.x86_64                                                                                                                                 1/13 
+  Verifying  : gcc-4.4.7-16.el6.x86_64                                                                                                                                          2/13 
+  Verifying  : ambari-metrics-monitor-2.2.0.0-1310.x86_64                                                                                                                       3/13 
+  Verifying  : python-libs-2.6.6-64.el6.x86_64                                                                                                                                  4/13 
+  Verifying  : mpfr-2.4.1-6.el6.x86_64                                                                                                                                          5/13 
+  Verifying  : cloog-ppl-0.15.7-1.2.el6.x86_64                                                                                                                                  6/13 
+  Verifying  : python-2.6.6-64.el6.x86_64                                                                                                                                       7/13 
+  Verifying  : cpp-4.4.7-16.el6.x86_64                                                                                                                                          8/13 
+  Verifying  : ppl-0.10.2-11.el6.x86_64                                                                                                                                         9/13 
+  Verifying  : libgcc-4.4.7-16.el6.x86_64                                                                                                                                      10/13 
+  Verifying  : python-libs-2.6.6-51.el6.x86_64                                                                                                                                 11/13 
+  Verifying  : libgcc-4.4.7-4.el6.x86_64                                                                                                                                       12/13 
+  Verifying  : python-2.6.6-51.el6.x86_64                                                                                                                                      13/13 
+
+Installed:
+  ambari-metrics-monitor.x86_64 0:2.2.0.0-1310                                                                                                                                       
+
+Dependency Installed:
+  cloog-ppl.x86_64 0:0.15.7-1.2.el6  cpp.x86_64 0:4.4.7-16.el6  gcc.x86_64 0:4.4.7-16.el6  mpfr.x86_64 0:2.4.1-6.el6  ppl.x86_64 0:0.10.2-11.el6  python-devel.x86_64 0:2.6.6-64.el6 
+
+Dependency Updated:
+  libgcc.x86_64 0:4.4.7-16.el6                              python.x86_64 0:2.6.6-64.el6                              python-libs.x86_64 0:2.6.6-64.el6                             
+
+Complete!
+[root@n02 ~]# ssh n03.kylin.hdp 
+Last login: Mon Jan 25 11:22:29 2016 from n01.kylin.hdp
+[root@n03 ~]#  yum install ambari-metrics-monitor-2.2.0.0-1310
+Loaded plugins: fastestmirror, priorities
+Determining fastest mirrors
+ * base: centos.ustc.edu.cn
+ * extras: mirrors.cqu.edu.cn
+ * updates: centos.ustc.edu.cn
+HDP-2.3                                                                                                                                                       | 2.9 kB     00:00     
+HDP-UTILS-1.1.0.20                                                                                                                                            | 2.9 kB     00:00     
+base                                                                                                                                                          | 3.7 kB     00:00     
+extras                                                                                                                                                        | 3.4 kB     00:00     
+local-HDP-2.3.4.0                                                                                                                                             | 2.9 kB     00:00     
+local-HDP-UTILS-1.1.0.20                                                                                                                                      | 2.9 kB     00:00     
+local-Updates-ambari-2.2.0.0                                                                                                                                  | 2.9 kB     00:00     
+updates                                                                                                                                                       | 3.4 kB     00:00     
+updates/primary_db                                                                                                                                            | 3.3 MB     00:04     
+236 packages excluded due to repository priority protections
+Setting up Install Process
+Resolving Dependencies
+--> Running transaction check
+---> Package ambari-metrics-monitor.x86_64 0:2.2.0.0-1310 will be installed
+--> Processing Dependency: python-devel for package: ambari-metrics-monitor-2.2.0.0-1310.x86_64
+--> Processing Dependency: gcc for package: ambari-metrics-monitor-2.2.0.0-1310.x86_64
+--> Running transaction check
+---> Package gcc.x86_64 0:4.4.7-16.el6 will be installed
+--> Processing Dependency: cpp = 4.4.7-16.el6 for package: gcc-4.4.7-16.el6.x86_64
+--> Processing Dependency: libgcc >= 4.4.7-16.el6 for package: gcc-4.4.7-16.el6.x86_64
+--> Processing Dependency: cloog-ppl >= 0.15 for package: gcc-4.4.7-16.el6.x86_64
+---> Package python-devel.x86_64 0:2.6.6-64.el6 will be installed
+--> Processing Dependency: python-libs(x86-64) = 2.6.6-64.el6 for package: python-devel-2.6.6-64.el6.x86_64
+--> Processing Dependency: python = 2.6.6-64.el6 for package: python-devel-2.6.6-64.el6.x86_64
+--> Running transaction check
+---> Package cloog-ppl.x86_64 0:0.15.7-1.2.el6 will be installed
+--> Processing Dependency: libppl_c.so.2()(64bit) for package: cloog-ppl-0.15.7-1.2.el6.x86_64
+--> Processing Dependency: libppl.so.7()(64bit) for package: cloog-ppl-0.15.7-1.2.el6.x86_64
+---> Package cpp.x86_64 0:4.4.7-16.el6 will be installed
+--> Processing Dependency: libmpfr.so.1()(64bit) for package: cpp-4.4.7-16.el6.x86_64
+---> Package libgcc.x86_64 0:4.4.7-4.el6 will be updated
+---> Package libgcc.x86_64 0:4.4.7-16.el6 will be an update
+---> Package python.x86_64 0:2.6.6-51.el6 will be updated
+---> Package python.x86_64 0:2.6.6-64.el6 will be an update
+---> Package python-libs.x86_64 0:2.6.6-51.el6 will be updated
+---> Package python-libs.x86_64 0:2.6.6-64.el6 will be an update
+--> Running transaction check
+---> Package mpfr.x86_64 0:2.4.1-6.el6 will be installed
+---> Package ppl.x86_64 0:0.10.2-11.el6 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================================================================================================================================
+ Package                                         Arch                            Version                                 Repository                                             Size
+=====================================================================================================================================================================================
+Installing:
+ ambari-metrics-monitor                          x86_64                          2.2.0.0-1310                            local-Updates-ambari-2.2.0.0                          172 k
+Installing for dependencies:
+ cloog-ppl                                       x86_64                          0.15.7-1.2.el6                          base                                                   93 k
+ cpp                                             x86_64                          4.4.7-16.el6                            base                                                  3.7 M
+ gcc                                             x86_64                          4.4.7-16.el6                            base                                                   10 M
+ mpfr                                            x86_64                          2.4.1-6.el6                             base                                                  157 k
+ ppl                                             x86_64                          0.10.2-11.el6                           base                                                  1.3 M
+ python-devel                                    x86_64                          2.6.6-64.el6                            base                                                  172 k
+Updating for dependencies:
+ libgcc                                          x86_64                          4.4.7-16.el6                            base                                                  103 k
+ python                                          x86_64                          2.6.6-64.el6                            base                                                   76 k
+ python-libs                                     x86_64                          2.6.6-64.el6                            base                                                  5.3 M
+
+Transaction Summary
+=====================================================================================================================================================================================
+Install       7 Package(s)
+Upgrade       3 Package(s)
+
+Total download size: 21 M
+Is this ok [y/N]: y
+Downloading Packages:
+(1/10): ambari-metrics-monitor-2.2.0.0-1310.x86_64.rpm                                                                                                        | 172 kB     00:00     
+(2/10): cloog-ppl-0.15.7-1.2.el6.x86_64.rpm                                                                                                                   |  93 kB     00:00     
+(3/10): cpp-4.4.7-16.el6.x86_64.rpm                                                                                                                           | 3.7 MB     00:03     
+(4/10): gcc-4.4.7-16.el6.x86_64.rpm                                                                                                                           |  10 MB     00:08     
+(5/10): libgcc-4.4.7-16.el6.x86_64.rpm                                                                                                                        | 103 kB     00:00     
+(6/10): mpfr-2.4.1-6.el6.x86_64.rpm                                                                                                                           | 157 kB     00:00     
+(7/10): ppl-0.10.2-11.el6.x86_64.rpm                                                                                                                          | 1.3 MB     00:01     
+(8/10): python-2.6.6-64.el6.x86_64.rpm                                                                                                                        |  76 kB     00:00     
+(9/10): python-devel-2.6.6-64.el6.x86_64.rpm                                                                                                                  | 172 kB     00:00     
+(10/10): python-libs-2.6.6-64.el6.x86_64.rpm                                                                                                                  | 5.3 MB     00:04     
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                1.1 MB/s |  21 MB     00:18     
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Updating   : python-2.6.6-64.el6.x86_64                                                                                                                                       1/13 
+  Updating   : python-libs-2.6.6-64.el6.x86_64                                                                                                                                  2/13 
+  Updating   : libgcc-4.4.7-16.el6.x86_64                                                                                                                                       3/13 
+  Installing : ppl-0.10.2-11.el6.x86_64                                                                                                                                         4/13 
+  Installing : cloog-ppl-0.15.7-1.2.el6.x86_64                                                                                                                                  5/13 
+  Installing : python-devel-2.6.6-64.el6.x86_64                                                                                                                                 6/13 
+  Installing : mpfr-2.4.1-6.el6.x86_64                                                                                                                                          7/13 
+  Installing : cpp-4.4.7-16.el6.x86_64                                                                                                                                          8/13 
+  Installing : gcc-4.4.7-16.el6.x86_64                                                                                                                                          9/13 
+  Installing : ambari-metrics-monitor-2.2.0.0-1310.x86_64                                                                                                                      10/13 
+  Cleanup    : python-2.6.6-51.el6.x86_64                                                                                                                                      11/13 
+  Cleanup    : python-libs-2.6.6-51.el6.x86_64                                                                                                                                 12/13 
+  Cleanup    : libgcc-4.4.7-4.el6.x86_64                                                                                                                                       13/13 
+  Verifying  : python-devel-2.6.6-64.el6.x86_64                                                                                                                                 1/13 
+  Verifying  : gcc-4.4.7-16.el6.x86_64                                                                                                                                          2/13 
+  Verifying  : ambari-metrics-monitor-2.2.0.0-1310.x86_64                                                                                                                       3/13 
+  Verifying  : python-libs-2.6.6-64.el6.x86_64                                                                                                                                  4/13 
+  Verifying  : mpfr-2.4.1-6.el6.x86_64                                                                                                                                          5/13 
+  Verifying  : cloog-ppl-0.15.7-1.2.el6.x86_64                                                                                                                                  6/13 
+  Verifying  : python-2.6.6-64.el6.x86_64                                                                                                                                       7/13 
+  Verifying  : cpp-4.4.7-16.el6.x86_64                                                                                                                                          8/13 
+  Verifying  : ppl-0.10.2-11.el6.x86_64                                                                                                                                         9/13 
+  Verifying  : libgcc-4.4.7-16.el6.x86_64                                                                                                                                      10/13 
+  Verifying  : python-libs-2.6.6-51.el6.x86_64                                                                                                                                 11/13 
+  Verifying  : libgcc-4.4.7-4.el6.x86_64                                                                                                                                       12/13 
+  Verifying  : python-2.6.6-51.el6.x86_64                                                                                                                                      13/13 
+
+Installed:
+  ambari-metrics-monitor.x86_64 0:2.2.0.0-1310                                                                                                                                       
+
+Dependency Installed:
+  cloog-ppl.x86_64 0:0.15.7-1.2.el6  cpp.x86_64 0:4.4.7-16.el6  gcc.x86_64 0:4.4.7-16.el6  mpfr.x86_64 0:2.4.1-6.el6  ppl.x86_64 0:0.10.2-11.el6  python-devel.x86_64 0:2.6.6-64.el6 
+
+Dependency Updated:
+  libgcc.x86_64 0:4.4.7-16.el6                              python.x86_64 0:2.6.6-64.el6                              python-libs.x86_64 0:2.6.6-64.el6                             
+
+Complete!
+
+
+
+# disk usage 只有当metric monitor 服务启动之后，才能统计得到。
+
+
+
+times2(){
+  
+  orig_file=$1
+  tmp_file=/tmp/$$
+
+  cat $orig_file $orig_file > $tmp_file
+  mv $tmp_file $orig_file
+}
+
+
+
+
+
+
+CREATE TABLE `pmt_kpi_mer_cust_mid_olap` (
+  `nat_adr_prvv` varchar(50) DEFAULT NULL COMMENT '户籍地址所在省份',
+  `nat_adr_sub_center` varchar(50) DEFAULT NULL COMMENT '户籍地址所在分中心',
+  `nat_adr_cty` varchar(50) DEFAULT NULL COMMENT '户籍地址所在城市',
+  `nat_adr_ara` varchar(50) DEFAULT NULL COMMENT '户籍地址所在区县',
+  `mail_adr_prv` varchar(50) DEFAULT NULL COMMENT '账单地址所在省份',
+  `mail_adr_sub_center` varchar(50) DEFAULT NULL COMMENT '账单地址所在分中心',
+  `mail_adr_sub_center_l2` varchar(50) DEFAULT NULL COMMENT '账单地址所在二级分中心',
+  `mail_adr_cty` varchar(50) DEFAULT NULL COMMENT '账单地址所在城市',
+  `sale_chnl1_nme` varchar(80) DEFAULT NULL COMMENT '销售渠道1',
+  `sale_chnl2_nme` varchar(80) DEFAULT NULL COMMENT '销售渠道2',
+  `bus_type1_desc` varchar(80) DEFAULT NULL COMMENT '大行业',
+  `bus_type2_desc` varchar(80) DEFAULT NULL COMMENT '小行业',
+  `bus_spec_type` varchar(80) DEFAULT NULL COMMENT '特殊行业类型',
+  `pos_desc` varchar(80) DEFAULT NULL COMMENT '职位',
+  `main_cust_grp` varchar(80) DEFAULT NULL COMMENT '主要人群',
+  `cust_sex` varchar(1) DEFAULT NULL COMMENT '性别',
+  `cust_qualification` varchar(2) DEFAULT NULL COMMENT '学历',
+  `cust_age_grp` varchar(2) DEFAULT NULL COMMENT '申请室年龄段',
+  `cust_age_grp_new` varchar(2) DEFAULT NULL COMMENT '申请室年龄段（new）',
+  `card_fj_year` varchar(10) DEFAULT NULL COMMENT '发卡年份',
+  `card_fj_quat` varchar(10) DEFAULT NULL COMMENT '发卡季度',
+  `card_fj_month` varchar(10) DEFAULT NULL COMMENT '发卡月份',
+  `card_open_mths_grp` varchar(2) DEFAULT NULL COMMENT '账龄区间段',
+  `card_open_mths_grp_new` varchar(2) DEFAULT NULL COMMENT '账龄区间段(新)',
+  `cust_perm_crlimit_grp` varchar(2) DEFAULT NULL COMMENT '当前客户永久额度段',
+  `cust_perm_crlimit_grp_new` varchar(2) DEFAULT NULL COMMENT '当前客户永久额度段(new)',
+  `top_card_level` varchar(2) DEFAULT NULL COMMENT '最高卡级别',
+  `tgt_cust_grp_flg` varchar(1) DEFAULT NULL COMMENT '是否目标人群',
+  `m_h_qualification_flg` varchar(1) DEFAULT NULL COMMENT '中高学历标识',
+  `main_urban_native_flg` varchar(1) DEFAULT NULL COMMENT '中大城市土著标识',
+  `prof_white_collar_flg` varchar(1) DEFAULT NULL COMMENT '职业白领标识',
+  `m_h_prp_owner_flg` varchar(1) DEFAULT NULL COMMENT '中高端小区业主标识',
+  `rvlv_flg` varchar(1) DEFAULT NULL COMMENT '当前循环标识',
+  `cash_flg` varchar(1) DEFAULT NULL COMMENT '当前取现标识',
+  `installment_flg` varchar(1) DEFAULT NULL COMMENT '当前分期标识',
+  `installment_type` varchar(20) DEFAULT NULL COMMENT '分期类型',
+  `cust_valid_flg` varchar(1) DEFAULT NULL COMMENT '有效客户标识',
+  `cust_active_ind` varchar(1) DEFAULT NULL COMMENT '客户活跃度',
+  `mord_cash_flg` varchar(1) DEFAULT NULL COMMENT '是否现金分期(含转呆)',
+  `mord_xkx_flg` varchar(1) DEFAULT NULL COMMENT '是否新快现分期(含转呆)',
+  `mord_xinjb_flg` varchar(1) DEFAULT NULL COMMENT '是否信金宝分期(含转呆)',
+  `mord_ymj_flg` varchar(1) DEFAULT NULL COMMENT '是否圆梦金分期(含转呆)',
+  `mord_bill_flg` varchar(1) DEFAULT NULL COMMENT '是否账单分期(含转呆)',
+  `mord_single_flg` varchar(1) DEFAULT NULL COMMENT '是否单笔分期(含转呆)',
+  `sale_nbr_l1` varchar(6) DEFAULT NULL COMMENT '销售人员代码',
+  `rlnship_due_m2_up_flg` varchar(1) DEFAULT NULL COMMENT '直系亲属逾期M2+标识',
+  `cust_bf_due_grp` varchar(2) DEFAULT NULL COMMENT '逾期金额段',
+  `cust_marital_st` varchar(1) DEFAULT NULL COMMENT '婚姻状况',
+  `kpi_cnt_apm_fnfj` decimal(15,0) DEFAULT NULL COMMENT '终审量',
+  `kpi_cnt_apm_aprv` decimal(15,0) DEFAULT NULL COMMENT '核准量',
+  `kpi_cnt_apm_cncl` decimal(15,0) DEFAULT NULL COMMENT '取消量',
+  `kpi_cnt_apm_fnfi_mtd` decimal(15,0) DEFAULT NULL COMMENT '当月终身量',
+  `kpi_cnt_apm_aprv_mtd` decimal(15,0) DEFAULT NULL COMMENT '当月核准量',
+  `kpi_cnt_apm_cncl_mtd` decimal(15,0) DEFAULT NULL COMMENT '当月取消量',
+  `kpi_cnt_apm_main_mtd` decimal(15,0) DEFAULT NULL COMMENT '当月开户主账户量',
+  `kpi_amt_cst_bf` decimal(18,2) DEFAULT NULL COMMENT '贷款金额',
+  `kpi_cnt_cst_bf` decimal(15,0) DEFAULT NULL COMMENT '贷款人数',
+  `kpi_amt_cst_fq` decimal(18,2) DEFAULT NULL COMMENT '分期贷款本金',
+  `kpi_cnt_cst_fq` decimal(15,0) DEFAULT NULL COMMENT '分期贷款客户数',
+  `kpi_amt_cst_bj_cash` decimal(18,2) DEFAULT NULL COMMENT '现金贷款本金',
+  `kpi_cnt_cst_bj_cash` decimal(15,0) DEFAULT NULL COMMENT '现金贷款客户数',
+  `kpi_amt_cst_yf` decimal(18,2) DEFAULT NULL COMMENT '贷款余额(含POS)',
+  `kpi_amt_cst_rvlv_cur` decimal(18,2) DEFAULT NULL COMMENT '循环贷款本金',
+  `kpi_cnt_cst_rvlv_cur` decimal(15,0) DEFAULT NULL COMMENT '循环贷款客户数',
+  `kpi_amt_cst_txn` decimal(18,2) DEFAULT NULL COMMENT '交易金额',
+  `kpi_cnt_cst_txn` decimal(15,0) DEFAULT NULL COMMENT '交易人数',
+  `kpi_amt_cst_cash` decimal(18,2) DEFAULT NULL COMMENT '取现金额',
+  `kpi_cnt_cst_cash` decimal(15,0) DEFAULT NULL COMMENT '取现人数',
+  `kpi_amt_cst_cashout` decimal(18,2) DEFAULT NULL COMMENT '套现金额',
+  `kpi_cnt_cst_cashout` decimal(15,0) DEFAULT NULL COMMENT '套现人数',
+  `kpi_amt_cst_bf_due` decimal(18,2) DEFAULT NULL COMMENT '逾期金额',
+  `kpi_cnt_cst_bf_due` decimal(15,0) DEFAULT NULL COMMENT '逾期人数',
+  `kpi_amt_cst_crlimit` decimal(18,2) DEFAULT NULL COMMENT '客户授信额度金额',
+  `kpi_amt_cst_avail_crlimit` decimal(18,2) DEFAULT NULL COMMENT '客户可用额度金额',
+  `kpi_amt_cst_bf_m0` decimal(18,2) DEFAULT NULL COMMENT 'M0金额(本金含OPS)',
+  `kpi_amt_cst_bf_m1` decimal(18,2) DEFAULT NULL COMMENT 'M1金额(本金含OPS)',
+  `kpi_amt_cst_bf_m2` decimal(18,2) DEFAULT NULL COMMENT 'M2金额(本金含OPS)',
+  `kpi_amt_cst_bf_m3` decimal(18,2) DEFAULT NULL COMMENT 'M3金额(本金含OPS)',
+  `kpi_amt_cst_bf_m4` decimal(18,2) DEFAULT NULL COMMENT 'M4金额(本金含OPS)',
+  `kpi_amt_cst_bf_m5` decimal(18,2) DEFAULT NULL COMMENT 'M5金额(本金含OPS)',
+  `kpi_amt_cst_bf_m6` decimal(18,2) DEFAULT NULL COMMENT 'M6金额(本金含OPS)',
+  `kpi_amt_cst_bf_m7` decimal(18,2) DEFAULT NULL COMMENT 'M7金额(本金含OPS)',
+  `kpi_amt_cst_bf_m8` decimal(18,2) DEFAULT NULL COMMENT 'M8金额(本金含OPS)',
+  `kpi_amt_cst_bf_mh` decimal(18,2) DEFAULT NULL COMMENT '历史挂账损失(本金含OPS)',
+  `kpi_amt_cst_bf_hx` decimal(18,2) DEFAULT NULL COMMENT '核销金额',
+  `kpi_cnt_cst_bf_hx` decimal(15,0) DEFAULT NULL COMMENT '核销客户数',
+  `kpi_amt_cst_risk5_zc` decimal(18,2) DEFAULT NULL COMMENT '正常类贷款本金',
+  `kpi_amt_cst_risk5_gz` decimal(18,2) DEFAULT NULL COMMENT '关注类贷款本金',
+  `kpi_amt_cst_risk5_cj` decimal(18,2) DEFAULT NULL COMMENT '次级类贷款本金',
+  `kpi_amt_cst_risk5_ky` decimal(18,2) DEFAULT NULL COMMENT '可疑类贷款本金',
+  `kpi_amt_cst_risk5_ss` decimal(18,2) DEFAULT NULL COMMENT '损失类贷款本金',
+  `kpi_cnt_cst_risk5_zc` decimal(15,0) DEFAULT NULL COMMENT '正常类贷款客户数',
+  `kpi_cnt_cst_risk5_gz` decimal(15,0) DEFAULT NULL COMMENT '关注类贷款客户数',
+  `kpi_cnt_cst_risk5_cj` decimal(15,0) DEFAULT NULL COMMENT '次级类贷款客户数',
+  `kpi_cnt_cst_risk5_ky` decimal(15,0) DEFAULT NULL COMMENT '可疑类贷款客户数',
+  `kpi_cnt_cst_risk5_ss` decimal(15,0) DEFAULT NULL COMMENT '损失类贷款客户数',
+  `kpi_amt_cst_bf_m2_up` decimal(18,2) DEFAULT NULL COMMENT 'M2+贷款本金',
+  `kpi_cnt_cst_bf_m2_up` decimal(15,0) DEFAULT NULL COMMENT 'M2+贷款客户数',
+  `kpi_amt_cst_npl_bf` decimal(18,2) DEFAULT NULL COMMENT '不良贷款本金',
+  `kpi_cnt_cst_npl_bf` decimal(15,0) DEFAULT NULL COMMENT '不良贷款客户数',
+  `kpi_cnt_apm_aprv_cur` decimal(15,0) DEFAULT NULL COMMENT '当日发卡量',
+  `kpi_amt_cst_pym_cur` decimal(18,2) DEFAULT NULL COMMENT '当日还款金额',
+  `kpi_amt_cst_rtl_out` decimal(18,2) DEFAULT NULL COMMENT '境外消费金额',
+  `kpi_cnt_rtl_out` decimal(15,0) DEFAULT NULL COMMENT '境外消费笔数',
+  `kpi_amt_cst_cash_out` decimal(18,2) DEFAULT NULL COMMENT '境外取现金额',
+  `kpi_cnt_cash_out` decimal(15,0) DEFAULT NULL COMMENT '境外取现笔数',
+  `kpi_cnt_act_open_due` decimal(15,0) DEFAULT NULL COMMENT '开户及逾期账户数',
+  `kpi_cnt_rtl_act_susp_rsk` decimal(15,0) DEFAULT NULL COMMENT '疑是风险账户数',
+  `kpi_amt_rtl_act_susp_frd` decimal(18,2) DEFAULT NULL COMMENT '疑是欺诈金额',
+  `kpi_amt_act_open_6m_m2_up` decimal(18,2) DEFAULT NULL COMMENT '发卡后第七个月为M2+金额',
+  `kpi_cnt_act_open_6m_m2_up` decimal(15,0) DEFAULT NULL COMMENT '发卡后第七个月为M2+户数',
+  `kpi_cnt_cst_susp_de_warn` decimal(15,0) DEFAULT NULL COMMENT '疑是大二报警户数',
+  `kpi_cnt_cst_act_30d` decimal(15,0) DEFAULT NULL COMMENT '30天活跃客户数',
+  `kpi_cnt_cst_act_60d` decimal(15,0) DEFAULT NULL COMMENT '60天活跃客户数',
+  `kpi_cnt_cst_act_90d` decimal(15,0) DEFAULT NULL COMMENT '90天活跃客户数',
+  `kpi_cnt_cst_cif` decimal(15,0) DEFAULT NULL COMMENT '有效客户数',
+  `kpi_cnt_cst_int` decimal(15,0) DEFAULT NULL COMMENT '生息客户数',
+  `kpi_cnt_cst` decimal(15,0) DEFAULT NULL COMMENT '总客户数',
+  `kpi_amt_act_bf_open_6m` decimal(18,2) DEFAULT NULL COMMENT '账龄为6个月的账户贷款本金',
+  `kpi_amt_cst_bf_m1_mtd` decimal(18,2) DEFAULT NULL COMMENT '当月新增M1贷款本金',
+  `kpi_amt_cst_npl_bf_ytd` decimal(18,2) DEFAULT NULL COMMENT '当年新增不良贷款本金',
+  `kpi_amt_cst_cash_limit` decimal(18,2) DEFAULT NULL COMMENT '现金授信额度',
+  `kpi_amt_cst_avail_cash` decimal(18,2) DEFAULT NULL COMMENT '可用现金额度',
+  `kpi_cnt_cst_cif_cashout` decimal(15,0) DEFAULT NULL COMMENT '有效套现客户数',
+  `kpi_cnt_cst_yf_grw_6m` decimal(15,0) DEFAULT NULL COMMENT '近6期贷款金额持续增长客户数',
+  `kpi_cnt_cst_bf_grw_4m` decimal(15,0) DEFAULT NULL COMMENT '近4期贷款本金持续增长客户数',
+  `kpi_cnt_cst_vntage_ge_6m` decimal(15,0) DEFAULT NULL COMMENT '账龄大于等于6个月客户数',
+  `kpi_cnt_cst_actn_src_dwn_m` decimal(15,0) DEFAULT NULL COMMENT '月度行为评分等级下降客户数',
+  `kpi_cnt_cst_actn_src_dwn_q` decimal(15,0) DEFAULT NULL COMMENT '季度行为评分等级下降客户数',
+  `kpi_cnt_cst_yf` decimal(15,0) DEFAULT NULL COMMENT '余额大于0客户数',
+  `kpi_amt_cst_cc` decimal(18,2) DEFAULT NULL COMMENT '超存金额(不含核销)',
+  `kpi_cnt_cst_cc` decimal(15,0) DEFAULT NULL COMMENT '超存客户数',
+  `kpi_amt_cst_bf_m0_lst_lm` decimal(18,2) DEFAULT NULL COMMENT '上月M0金额(本金含OPS)',
+  `kpi_amt_cst_bf_m1_lst_lm` decimal(18,2) DEFAULT NULL COMMENT '上月M1金额(本金含OPS)',
+  `kpi_amt_cst_bf_m2_lst_lm` decimal(18,2) DEFAULT NULL COMMENT '上月M2金额(本金含OPS)',
+  `kpi_amt_cst_bf_m3_lst_lm` decimal(18,2) DEFAULT NULL COMMENT '上月M3金额(本金含OPS)',
+  `kpi_amt_cst_bf_m4_lst_lm` decimal(18,2) DEFAULT NULL COMMENT '上月M4金额(本金含OPS)',
+  `kpi_amt_cst_bf_m5_lst_lm` decimal(18,2) DEFAULT NULL COMMENT '上月M5金额(本金含OPS)',
+  `kpi_amt_cst_bf_m6_lst_lm` decimal(18,2) DEFAULT NULL COMMENT '上月M6金额(本金含OPS)',
+  `kpi_amt_cst_bf_m7_lst_lm` decimal(18,2) DEFAULT NULL COMMENT '上月M7金额(本金含OPS)',
+  `kpi_amt_cst_bf_m8_lst_lm` decimal(18,2) DEFAULT NULL COMMENT '上月M8金额(本金含OPS)',
+  `kpi_amt_cst_bf_mh_lst_lm` decimal(18,2) DEFAULT NULL COMMENT '上月历史挂账金额(本金含OPS))S)',
+  `kpi_amt_cst_bf_hx_lst_lm` decimal(18,2) DEFAULT NULL COMMENT '上月核销金额(本金含OPS)',
+  `kpi_cnt_act_main_lst_1m` decimal(15,0) DEFAULT NULL COMMENT '上月当月新增主账户数',
+  `kpi_cnt_act_main_lst_2m` decimal(15,0) DEFAULT NULL COMMENT '2个月前当月新增主账户数',
+  `kpi_cnt_act_main_lst_5m` decimal(15,0) DEFAULT NULL COMMENT '5个月前当月新增主账户数',
+  `kpi_cnt_act_main_lst_6m` decimal(15,0) DEFAULT NULL COMMENT '6个月前当月新增主账户数',
+  `kpi_amt_cst_bf_hx_ytd` decimal(18,2) DEFAULT NULL COMMENT '当年核销账户贷款本金',
+  `kpi_amt_cst_bf_hx_mtd` decimal(18,2) DEFAULT NULL COMMENT '当月核销账户贷款本金',
+  `kpi_cnt_cst_bf_m0` decimal(15,0) DEFAULT NULL COMMENT 'M0客户数',
+  `kpi_cnt_cst_bf_m1` decimal(15,0) DEFAULT NULL COMMENT 'M1客户数',
+  `kpi_cnt_cst_bf_m2` decimal(15,0) DEFAULT NULL COMMENT 'M2客户数',
+  `kpi_cnt_cst_bf_m3` decimal(15,0) DEFAULT NULL COMMENT 'M3客户数',
+  `kpi_cnt_cst_bf_m4` decimal(15,0) DEFAULT NULL COMMENT 'M4客户数',
+  `kpi_cnt_cst_bf_m5` decimal(15,0) DEFAULT NULL COMMENT 'M5客户数',
+  `kpi_cnt_cst_bf_m6` decimal(15,0) DEFAULT NULL COMMENT 'M6客户数',
+  `kpi_cnt_cst_bf_m7_up` decimal(15,0) DEFAULT NULL COMMENT 'M7+客户数',
+  `kpi_cnt_cst_bf_hx_mtd` decimal(15,0) DEFAULT NULL COMMENT '当月核销客户数',
+  `kpi_cnt_cst_bf_m0_lst_lm` decimal(15,0) DEFAULT NULL COMMENT '上月0客户数',
+  `kpi_cnt_cst_bf_m1_lst_lm` decimal(15,0) DEFAULT NULL COMMENT '上月1客户数',
+  `kpi_cnt_cst_bf_m2_lst_lm` decimal(15,0) DEFAULT NULL COMMENT '上月2客户数',
+  `kpi_cnt_cst_bf_m3_lst_lm` decimal(15,0) DEFAULT NULL COMMENT '上月3客户数',
+  `kpi_cnt_cst_bf_m4_lst_lm` decimal(15,0) DEFAULT NULL COMMENT '上月4客户数',
+  `kpi_cnt_cst_bf_m5_lst_lm` decimal(15,0) DEFAULT NULL COMMENT '上月5客户数',
+  `kpi_cnt_cst_bf_m6_lst_lm` decimal(15,0) DEFAULT NULL COMMENT '上月6客户数',
+  `kpi_cnt_cst_bf_m7_up_lst_lm` decimal(15,0) DEFAULT NULL COMMENT '上月7+客户数',
+  `kpi_cnt_cst_bf_m1_up` decimal(15,0) DEFAULT NULL COMMENT 'M1+客户数',
+  `kpi_amt_cst_bf_m1_up` decimal(18,2) DEFAULT NULL COMMENT 'M1+贷款本金',
+  `kpi_cnt_cst_bf_m4_up` decimal(15,0) DEFAULT NULL COMMENT 'M4+客户数',
+  `kpi_amt_cst_bf_m4_up` decimal(18,2) DEFAULT NULL COMMENT 'M4+贷款本金',
+  `kpi_amt_cst_bf_m7_up` decimal(18,2) DEFAULT NULL COMMENT 'M7+贷款本金',
+  `dw_etl_date` varchar(20) DEFAULT NULL COMMENT '数据日期'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='风险维度监控指标维度整合层多维分析表'
+
+
+
+
+}

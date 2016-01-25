@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2016-01-12
+    on 2016-01-18
 
         |
         tags:         <a href="/tag/oracle.html">oracle</a>
@@ -182,6 +182,7 @@
 </ul>
 </li>
 <li><a href="#exception-handle">异常处理 exception handle</a><ul>
+<li><a href="#nqserror46118">nQSError:46118 磁盘空间不足</a></li>
 <li><a href="#bug-report-biee-analysis">bug report : biee analysis 创建报表内筛选的弊端：</a></li>
 <li><a href="#ora-32034unsupported-use-of-with-clause-at-oci-call-ocistmtexecute">ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.</a></li>
 <li><a href="#nqserror43119-nqserror42039-report-by">nqserror:43119 nqserror:42039: report 总计函数的by子句中的列必须在选择列表中。</a></li>
@@ -635,6 +636,13 @@ http://docs.oracle.com/cd/E25054_01/fusionapps.1111/e20836/dimensions.htm</p>
 </li>
 </ol>
 <h1 id="exception-handle">异常处理 exception handle</h1>
+<h3 id="nqserror46118">nQSError:46118 磁盘空间不足</h3>
+<p>原因： biee 检测到 安装目录所在分区空间不足。</p>
+<p>解决： 清理磁盘空间。</p>
+<p>例如：</p>
+<p>缓存。</p>
+<p>日志。</p>
+<p>这些文件通常在 ./instance1/diagnostics , /instance1/tmp/ , user_projects/domains/ 下。</p>
 <h3 id="bug-report-biee-analysis">bug report : biee analysis 创建报表内筛选的弊端：</h3>
 <ol>
 <li>
