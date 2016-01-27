@@ -10,7 +10,7 @@ Authors: Poon
 
 # DB2
 
-## UDF 和 Pl 的小区别 ，兼clp 执行的问题
+## UDF 和 PL 的小区别 ，兼clp 执行的问题
 
 CREATE FUNCTION currval(seq_name VARCHAR(64)) 
 RETURNS INTEGER
@@ -47,6 +47,12 @@ SQLSTATE=42601
 
 
 因为 udf 不支持 select into . 
+
+ref:
+DB2 SQL Procedural Language for Linux, UNIX, and Windows page200
+https://books.google.com/books?id=_t7bvc-ihVwC&pg=PA200&lpg=PA200&dq=difference+between+set+and+select+into+of++db2&source=bl&ots=JSbK5KH0LH&sig=rXc7QvEwfOQXv9s9Re-7DPkgFhc&hl=en&sa=X&ved=0ahUKEwjK44_S6MTKAhWGUZQKHW-NA7gQ6AEIUjAJ#v=onepage&q=difference%20between%20set%20and%20select%20into%20of%20%20db2&f=false
+
+
 
 
 把select into 改成 set 即可：

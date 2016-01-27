@@ -312,3 +312,12 @@ ip写死后，还有一个好处：当你在公众场所的时候，不会乱连
 如果上网只是聊天刷新闻和网页，还不如看看书，做些方案。
 
 
+# 7z  
+poon@Wills-MacBook-Pro:/Volumes/TOURO/biee12c$ brew install p7zip
+==> Downloading https://homebrew.bintray.com/bottles/p7zip-15.09.yosemite.bottle.tar.gz
+######################################################################## 100.0%
+==> Pouring p7zip-15.09.yosemite.bottle.tar.gz
+🍺  /usr/local/Cellar/p7zip/15.09: 100 files, 4.9M
+
+
+
