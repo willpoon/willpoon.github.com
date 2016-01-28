@@ -121,7 +121,7 @@
         <div class="toc">
 <ul>
 <li><a href="#db2">DB2</a><ul>
-<li><a href="#udf-pl-clp">UDF 和 Pl 的小区别 ，兼clp 执行的问题</a></li>
+<li><a href="#udf-pl-clp">UDF 和 PL 的小区别 ，兼clp 执行的问题</a></li>
 <li><a href="#response-db2-ese-v97">使用response文件安装 db2 ese v9.7</a></li>
 <li><a href="#db2-ese">db2 ese 安装相关的几个问题</a></li>
 <li><a href="#_1">分页大小测试</a><ul>
@@ -232,7 +232,7 @@
         <p>记录数据库 安装、维护、开发与管理 的各种操作&amp;技巧。包含但不仅限于db2,oracle , mysql , sqlite...</p>
 
 <h1 id="db2">DB2</h1>
-<h2 id="udf-pl-clp">UDF 和 Pl 的小区别 ，兼clp 执行的问题</h2>
+<h2 id="udf-pl-clp">UDF 和 PL 的小区别 ，兼clp 执行的问题</h2>
 <p>CREATE FUNCTION currval(seq_name VARCHAR(64)) 
 RETURNS INTEGER
 LANGUAGE SQL
@@ -261,6 +261,9 @@ SQL0104N  An unexpected token "VAL" was found following "T CURRENT_VALUE
 INTO".  Expected tokens may include:  "<space>".  LINE NUMBER=8.<br/>
 SQLSTATE=42601</space></p>
 <p>因为 udf 不支持 select into . </p>
+<p>ref:
+DB2 SQL Procedural Language for Linux, UNIX, and Windows page200
+https://books.google.com/books?id=_t7bvc-ihVwC&amp;pg=PA200&amp;lpg=PA200&amp;dq=difference+between+set+and+select+into+of++db2&amp;source=bl&amp;ots=JSbK5KH0LH&amp;sig=rXc7QvEwfOQXv9s9Re-7DPkgFhc&amp;hl=en&amp;sa=X&amp;ved=0ahUKEwjK44_S6MTKAhWGUZQKHW-NA7gQ6AEIUjAJ#v=onepage&amp;q=difference%20between%20set%20and%20select%20into%20of%20%20db2&amp;f=false</p>
 <p>把select into 改成 set 即可：</p>
 <p>CREATE or replace FUNCTION currval(seq_name VARCHAR(64)) 
 RETURNS INTEGER
