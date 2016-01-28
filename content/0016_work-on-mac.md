@@ -320,4 +320,13 @@ poon@Wills-MacBook-Pro:/Volumes/TOURO/biee12c$ brew install p7zip
 🍺  /usr/local/Cellar/p7zip/15.09: 100 files, 4.9M
 
 
+分卷压缩的文件解压：只需要针对需要最小的：001 就可以了。
+7z e  SampleAppv511p-appliance.zip.001  
+
+
+# md5  命令
+
+poon@Wills-MacBook-Pro:/Volumes/TOURO/biee12c$ md5 SampleAppv511p-appliance.zip.00* > md5.chksum.txt &
+
+
 
