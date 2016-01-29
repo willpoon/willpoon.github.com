@@ -3512,4 +3512,10 @@ https://docs.hortonworks.com/HDPDocuments/Ambari-2.1.2.0/bk_ambari_views_guide/c
 
 
 
+# kylin 
+
+## Exception: Non-standard token 'NaN': enable JsonParser.Feature.ALLOW_NON_NUMERIC_NUMBERS to allow
+ at [Source: java.io.StringReader@e0190f; line: 1, column: 520]
+
+
 

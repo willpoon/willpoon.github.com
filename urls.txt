@@ -2,13 +2,13 @@
 /archives.html
 /tags.html
 /categories.html
-/play-databases.html
-/big_data.html
 /poons-talk.html
-/work-on-linux.html
 /oracle-biee-develop.html
-/banking-finance.html
 /work-on-Mac.html
+/big_data.html
+/play-databases.html
+/work-on-linux.html
+/banking-finance.html
 /programming.html
 /about-design.html
 /think-about-happiness.html

@@ -329,4 +329,9 @@ poon@Wills-MacBook-Pro:/Volumes/TOURO/biee12c$ brew install p7zip
 poon@Wills-MacBook-Pro:/Volumes/TOURO/biee12c$ md5 SampleAppv511p-appliance.zip.00* > md5.chksum.txt &
 
 
+# sudo umount /Volumes/TOURO/
+Password:
+poon@Wills-MacBook-Pro:~/sunline$ 
+
+
 
