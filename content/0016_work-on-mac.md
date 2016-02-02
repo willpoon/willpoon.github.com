@@ -334,4 +334,14 @@ Password:
 poon@Wills-MacBook-Pro:~/sunline$ 
 
 
+# virtual box nat network 和 nat 比较
+
+nwtwork 的好处，可以统一设置端口转发。
+
+而 nat 则要每台机器都设置端口转发。
+
+nat guest 和 guest 之间是不通的。
+
+
+
 

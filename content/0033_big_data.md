@@ -2614,6 +2614,21 @@ Duration: 1.79 mins
 
 
 
+#2 Step Name: Extract Fact Table Distinct Columns
+
+
+
+no counters for job job_1454250386966_0023
+
+我怀疑是内存不够！
+解决办法：重启各节点 ！
+
+所以各节点的内存要尽量均衡、充足！
+2016-02-01 20:48
+
+
+可能是内存不足！！
+
 
 n02 / n03 的 mysql 版本不同！
 
@@ -3517,5 +3532,198 @@ https://docs.hortonworks.com/HDPDocuments/Ambari-2.1.2.0/bk_ambari_views_guide/c
 ## Exception: Non-standard token 'NaN': enable JsonParser.Feature.ALLOW_NON_NUMERIC_NUMBERS to allow
  at [Source: java.io.StringReader@e0190f; line: 1, column: 520]
 
+
+## #10 Step Name: Build N-Dimension Cuboid Data : 43-Dimension
+
+
+Exception: Non-standard token 'NaN': enable JsonParser.Feature.ALLOW_NON_NUMERIC_NUMBERS to allow
+ at [Source: java.io.StringReader@36c803ee; line: 1, column: 519]
+
+## hdfs 清理
+
+使用 hdfs账号操作：
+
+KYLIN_HOME=/opt/apache-kylin-1.3-HBase-1.1-SNAPSHOT-bin
+hbase org.apache.hadoop.util.RunJar ${KYLIN_HOME}/lib/kylin-job-1.3-SNAPSHOT.jar org.apache.kylin.job.hadoop.cube.StorageCleanupJob --delete true
+
+
+
+
+
+
+
+# hadoop fs 
+[hdfs@n01 hadoop]$ hadoop fs -du sh /kylin/ /user /tmp/ /mr-history  /mapred /hdp /ats /apps /app-logs
+
+
+# hadoop fs 
+[hdfs@n01 hadoop]$ hadoop fs -rm -r /kylin/kylin_metadata/kylin-174a883c-7817-49da-80cd-fee6d78313b6
+16/02/01 10:16:22 INFO fs.TrashPolicyDefault: Namenode trash configuration: Deletion interval = 360 minutes, Emptier interval = 0 minutes.
+Moved: 'hdfs://n01.kylin.hdp:8020/kylin/kylin_metadata/kylin-174a883c-7817-49da-80cd-fee6d78313b6' to trash at: hdfs://n01.kylin.hdp:8020/user/hdfs/.Trash/Current
+
+
+
+
+# hadoop fs 
+
+[hdfs@n01 hadoop]$ hadoop fs -du -h /
+5.1 M    /app-logs
+10.7 G   /apps
+3.7 M    /ats
+443.0 M  /hdp
+5.5 M    /kylin
+0        /mapred
+17.8 M   /mr-history
+570.9 K  /tmp
+8.4 G    /user
+[hdfs@n01 hadoop]$ hadoop fs -du -h /user
+95.5 K  /user/ambari-qa
+0       /user/hcat
+8.4 G   /user/hdfs
+19.8 M  /user/hive
+[hdfs@n01 hadoop]$ hadoop fs -du -h /user/hdfs
+8.3 G   /user/hdfs/.Trash
+19.8 M  /user/hdfs/.hiveJars
+79.7 M  /user/hdfs/.staging
+[hdfs@n01 hadoop]$ hadoop fs -du -h /user/hdfs/.Trash
+8.3 G  /user/hdfs/.Trash/Current
+[hdfs@n01 hadoop]$ hadoop fs -expunge
+16/02/01 10:56:33 INFO fs.TrashPolicyDefault: Namenode trash configuration: Deletion interval = 360 minutes, Emptier interval = 0 minutes.
+16/02/01 10:56:33 INFO fs.TrashPolicyDefault: Created trash checkpoint: /user/hdfs/.Trash/160201105633
+[hdfs@n01 hadoop]$ hadoop fs -du -h /user/hdfs/.Trash
+8.3 G  /user/hdfs/.Trash/160201105633
+[hdfs@n01 hadoop]$ 
+
+
+
+[hdfs@n01 hadoop]$ hdfs dfsadmin -report
+Configured Capacity: 133661270016 (124.48 GB)
+Present Capacity: 104527372540 (97.35 GB)
+DFS Remaining: 49782731004 (46.36 GB)
+DFS Used: 54744641536 (50.98 GB)
+DFS Used%: 52.37%
+Under replicated blocks: 42
+Blocks with corrupt replicas: 0
+Missing blocks: 0
+Missing blocks (with replication factor 1): 0
+
+-------------------------------------------------
+Live datanodes (3):
+
+Name: 10.0.2.12:50010 (n02.kylin.hdp)
+Hostname: n02.kylin.hdp
+Decommission Status : Normal
+Configured Capacity: 40781819904 (37.98 GB)
+DFS Used: 16988676096 (15.82 GB)
+Non DFS Used: 9643020204 (8.98 GB)
+DFS Remaining: 14150123604 (13.18 GB)
+DFS Used%: 41.66%
+DFS Remaining%: 34.70%
+Configured Cache Capacity: 0 (0 B)
+Cache Used: 0 (0 B)
+Cache Remaining: 0 (0 B)
+Cache Used%: 100.00%
+Cache Remaining%: 0.00%
+Xceivers: 6
+Last contact: Mon Feb 01 11:07:12 CST 2016
+
+
+Name: 10.0.2.11:50010 (n01.kylin.hdp)
+Hostname: n01.kylin.hdp
+Decommission Status : Normal
+Configured Capacity: 56260349952 (52.40 GB)
+DFS Used: 21258522624 (19.80 GB)
+Non DFS Used: 11218243500 (10.45 GB)
+DFS Remaining: 23783583828 (22.15 GB)
+DFS Used%: 37.79%
+DFS Remaining%: 42.27%
+Configured Cache Capacity: 0 (0 B)
+Cache Used: 0 (0 B)
+Cache Remaining: 0 (0 B)
+Cache Used%: 100.00%
+Cache Remaining%: 0.00%
+Xceivers: 6
+Last contact: Mon Feb 01 11:07:12 CST 2016
+
+
+Name: 10.0.2.13:50010 (n03.kylin.hdp)
+Hostname: n03.kylin.hdp
+Decommission Status : Normal
+Configured Capacity: 36619100160 (34.10 GB)
+DFS Used: 16497442816 (15.36 GB)
+Non DFS Used: 8272633772 (7.70 GB)
+DFS Remaining: 11849023572 (11.04 GB)
+DFS Used%: 45.05%
+DFS Remaining%: 32.36%
+Configured Cache Capacity: 0 (0 B)
+Cache Used: 0 (0 B)
+Cache Remaining: 0 (0 B)
+Cache Used%: 100.00%
+Cache Remaining%: 0.00%
+Xceivers: 6
+Last contact: Mon Feb 01 11:07:12 CST 2016
+
+
+
+
+# compress hive table hive 表 压缩
+
+http://stackoverflow.com/questions/31867875/setting-compression-on-hive-table
+
+
+## 创建带压缩的表。
+
+[hdfs@n01 bin]$ hive
+WARNING: Use "yarn jar" to launch YARN applications.
+
+Logging initialized using configuration in file:/etc/hive/2.3.4.0-3485/0/hive-log4j.properties
+hive> 
+    > SET hive.exec.compress.intermediate=true;
+    hive> SET hive.exec.compress.output=true;
+    hive> SET mapred.output.compression.type=BLOCK;
+    hive> show tables;
+    OK
+    kylin_cal_dt
+    kylin_category_groupings
+    kylin_intermediate_fullcubetest7alldimandmeasure_clone_19700101000000_2922789940817071255_174a883c_7817_49da_80cd_fee6d78313b6
+    kylin_sales
+    pmt_kpi_mer_cust_mid_olap
+    Time taken: 2.302 seconds, Fetched: 5 row(s)
+    hive> 
+        > 
+            > create table pmt_olap_snappy
+                >   stored as orc
+                    >   tblproperties ("orc.compress"="SNAPPY")
+                        >   as
+                            > select * from pmt_kpi_mer_cust_mid_olap ;
+                            Query ID = hdfs_20160201124603_10a1ff66-b764-40d8-8659-add33dbbb540
+                            Total jobs = 1
+                            Launching Job 1 out of 1
+
+
+                            Status: Running (Executing on YARN cluster with App id application_1454250386966_0019)
+
+                            --------------------------------------------------------------------------------
+                                    VERTICES      STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED
+                                    --------------------------------------------------------------------------------
+                                    Map 1                RUNNING     13          0        2       11       0       0
+                                    --------------------------------------------------------------------------------
+                                    VERTICES: 00/01  [>>--------------------------] 0%    ELAPSED TIME: 189.63 s   
+                                    --------------------------------------------------------------------------------
+
+
+
+
+# 为什么kylin 使用 hive 作为输入数据存储， 使用 hbase作为输出数据存储？
+
+因为 hive 可以通过sql方式存储分布式数据，进行分布式计算。可以并行。
+
+而采用hbase 存储输出数据，是因为hbase是列式存储，适合olap。
+
+
+
+# 自律，坚持，耐心
+
+https://www.zhihu.com/question/37167038
 
 
