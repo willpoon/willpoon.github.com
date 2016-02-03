@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2016-01-28
+    on 2016-02-03
 
         |
         tags:         <a href="/tag/oracle.html">oracle</a>
@@ -202,6 +202,10 @@
 </ul>
 </li>
 <li><a href="#exception-handle">异常处理 exception handle</a><ul>
+<li><a href="#cannot-read-property-itemsinfos-of-null">Cannot read property 'itemsinfos' of null</a></li>
+<li><a href="#ldap-7001">ldap 7001 端口无法访问的问题！</a></li>
+<li><a href="#nqserror-73006">[nQSError: 73006</a><ul>
+<li><a href="#bieeipbieeweblogicbiserver">biee服务器主机ip变更后，biee服务（weblogic、biserver） 无法启动。</a></li>
 <li><a href="#nqserror46118">nQSError:46118 磁盘空间不足</a></li>
 <li><a href="#bug-report-biee-analysis">bug report : biee analysis 创建报表内筛选的弊端：</a></li>
 <li><a href="#ora-32034unsupported-use-of-with-clause-at-oci-call-ocistmtexecute">ora-32034:unsupported use of with clause at OCI call OCIstmtExecute.</a></li>
@@ -213,6 +217,8 @@
 <li><a href="#biee_9">求助： biee 创建用户后，无法登陆的问题？</a></li>
 <li><a href="#logical-dimension_1">logical dimension 父节点不能自动汇总？即子节点之和不等于父节点。</a></li>
 <li><a href="#logical-dimension_2">logical dimension 展开到最后一层报错。</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_20">行业动态</a><ul>
@@ -247,6 +253,10 @@
 <li><a href="#httpsrichardfootewordpresscom">https://richardfoote.wordpress.com</a></li>
 <li><a href="#httpsblogsoraclecomcertification">https://blogs.oracle.com/certification/</a></li>
 <li><a href="#httpsrichardfootewordpresscom_1">https://richardfoote.wordpress.com</a></li>
+</ul>
+</li>
+<li><a href="#_24">业内人物推荐</a><ul>
+<li><a href="#andrew-c-oliver">Andrew C. Oliver</a></li>
 </ul>
 </li>
 </ul>
@@ -710,6 +720,56 @@ http://docs.oracle.com/cd/E25054_01/fusionapps.1111/e20836/dimensions.htm</p>
 </li>
 </ol>
 <h1 id="exception-handle">异常处理 exception handle</h1>
+<h2 id="cannot-read-property-itemsinfos-of-null">Cannot read property 'itemsinfos' of null</h2>
+<p>http://www.rittmanmead.com/2012/08/obiee-fmw-and-networking-on-dhcp-hosts/</p>
+<p>现象： mac 下 chrome 无法访问 catalog 共享目录， 浏览器弹出窗口报这个错误。</p>
+<p>解决： 这时浏览器兼容性的问题。网上建议: chrome 使用 ie tab 插件（我怀疑不行，因为mac下没有ie dll 之类的驱动。） 。或者：  firefox ， 我测试过，非常好，非常快！ </p>
+<p>ref: </p>
+<p>https://community.oracle.com/thread/2589688?start=0&amp;tstart=0</p>
+<h2 id="ldap-7001">ldap 7001 端口无法访问的问题！</h2>
+<p><feb 2016="" 3,="" 9:25:10="" am="" cet=""> <error> <oracle.ods.virtualization.engine.backend.jndi.defaultauthenticator.backendjndi> <ovd-60143> &lt;[#DefaultAuthenticator]  Unable to create connection to ldap://[10.0.2.15]:7001 as null.
+javax.naming.CommunicationException: 10.0.2.15:7001 [Root exception is java.net.ConnectException: Connection refused]
+    at com.sun.jndi.ldap.Connection.<init>(Connection.java:200)
+        at com.sun.jndi.ldap.LdapClient.<init>(LdapClient.java:118)
+            at com.sun.jndi.ldap.LdapClient.getInstance(LdapClient.java:1580)
+                at com.sun.jndi.ldap.LdapCtx.connect(LdapCtx.java:2652)
+                    at com.sun.jndi.ldap.LdapCtx.<init>(LdapCtx.java:293)</init></init></init></ovd-60143></oracle.ods.virtualization.engine.backend.jndi.defaultauthenticator.backendjndi></error></feb></p>
+<p>起因：</p>
+<p>我把原来桥接的 192.168.56.101 ip 改成了 nat ip ： 10.0.2.15 ！ 同时修改了hosts的ip －fqdn 映射关系！ 而 网卡是 dhcp 。 </p>
+<p>解决：</p>
+<ol>
+<li>
+<p>把虚拟网卡设置为固定ip , 网卡重启一下！</p>
+</li>
+<li>
+<p>重启biee所有服务：ldap服务，weblogic 服务 ，biee opmn 服务！</p>
+</li>
+<li>
+<p>不行的话，直接重启服务，重新来一遍！</p>
+</li>
+</ol>
+<p>我一开始只重启了网卡和biee opmn服务，没有效果。后来把机器重启了就好了！</p>
+<h2 id="nqserror-73006">[nQSError: 73006</h2>
+<p>Type: ERROR
+Severity: 10
+Time: Sat May 31 02:18:48 2014 
+File: project/websecurity/odbcuserpoploaderimpl.cpp Line: 300
+Properties: ecid-
+Location:
+    saw.security.odbcuserpopulationimpl.initialize
+        saw.catalog.local.loadCatalog
+            saw.catalogcrawler.main</p>
+<pre><code>        Odbc driver returned an error (SQLDriverConnectW).
+        State: HY000.  Code: 10058.  [NQODBC] [SQL_STATE: HY000] [nQSError: 10058] A general error has occurred.
+        [nQSError: 73006] Cannot obtain Oracle BI Servers from either the primary Cluster Controller (demo.us.oracle.com) or the secondary Cluster Controller () specified for the clustered DSN. (HY000)
+</code></pre>
+<h3 id="bieeipbieeweblogicbiserver">biee服务器主机ip变更后，biee服务（weblogic、biserver） 无法启动。</h3>
+<p>2016-02-03 11:33</p>
+<ol>
+<li>检查/etc/hosts 的ip－域名 对应关系。</li>
+<li>把ip－域名 关系update成最新的ip，域名不变</li>
+<li>重启服务器</li>
+</ol>
 <h3 id="nqserror46118">nQSError:46118 磁盘空间不足</h3>
 <p>原因： biee 检测到 安装目录所在分区空间不足。</p>
 <p>解决： 清理磁盘空间。</p>
@@ -813,6 +873,8 @@ dim... 没有对应上！</p>
 <p>oracle 官方认证 的博客</p>
 <h4 id="httpsrichardfootewordpresscom_1">https://richardfoote.wordpress.com</h4>
 <p>很干货、很务实的博客。 从2007年一直以来都有更新</p>
+<h3 id="_24">业内人物推荐</h3>
+<h4 id="andrew-c-oliver">Andrew C. Oliver</h4>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>

@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2016-01-26
+    on 2016-02-01
 
         |
         tags:         <a href="/tag/da-shu-ju.html">大数据</a>
@@ -232,6 +232,7 @@
 <li><a href="#export-kylin_ld_library_settings-djavalibrarypathapachehadooplibnativelinux-amd64-64">export KYLIN_LD_LIBRARY_SETTINGS="-Djava.library.path=/apache/hadoop/lib/native/Linux-amd64-64"</a></li>
 <li><a href="#_17"></a></li>
 <li><a href="#cube-4-step-name-build-base-cuboid-data">cube 跑到 #4 Step Name: Build Base Cuboid Data</a></li>
+<li><a href="#2-step-name-extract-fact-table-distinct-columns">2 Step Name: Extract Fact Table Distinct Columns</a></li>
 <li><a href="#cdh">CDH 安装</a><ul>
 <li><a href="#cdh_1">CDH 有几种安装方式？</a></li>
 </ul>
@@ -262,6 +263,21 @@
 <li><a href="#disk-usage-metric-monitor">disk usage 只有当metric monitor 服务启动之后，才能统计得到。</a></li>
 <li><a href="#connection-failed-errno-111-connection-refused-to-00006188">Connection failed: [Errno 111] Connection refused to 0.0.0.0:6188</a></li>
 <li><a href="#ambari-web-user-root-is-not-allowed-to-impersonate-admin">ambari web :  User: root is not allowed to impersonate admin</a></li>
+<li><a href="#kylin_2">kylin</a><ul>
+<li><a href="#exception-non-standard-token-nan-enable-jsonparserfeatureallow_non_numeric_numbers-to-allow">Exception: Non-standard token 'NaN': enable JsonParser.Feature.ALLOW_NON_NUMERIC_NUMBERS to allow</a></li>
+<li><a href="#10-step-name-build-n-dimension-cuboid-data-43-dimension">#10 Step Name: Build N-Dimension Cuboid Data : 43-Dimension</a></li>
+<li><a href="#hdfs">hdfs 清理</a></li>
+</ul>
+</li>
+<li><a href="#hadoop-fs">hadoop fs</a></li>
+<li><a href="#hadoop-fs_1">hadoop fs</a></li>
+<li><a href="#hadoop-fs_2">hadoop fs</a></li>
+<li><a href="#compress-hive-table-hive">compress hive table hive 表 压缩</a><ul>
+<li><a href="#_19">创建带压缩的表。</a></li>
+</ul>
+</li>
+<li><a href="#kylin-hive-hbase">为什么kylin 使用 hive 作为输入数据存储， 使用 hbase作为输出数据存储？</a></li>
+<li><a href="#_20">自律，坚持，耐心</a></li>
 </ul>
 </div>
         </nav>
@@ -2243,6 +2259,13 @@ FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.DDLTa
  [pool-7-thread-5]:[2016-01-16 16:15:39,495][WARN][org.apache.kylin.job.common.HadoopCmdOutput.updateJobCounter(HadoopCmdOutput.java:89)] - no counters for job job_1452878162418_0046
  [pool-7-thread-5]:[2016-01-16 16:15:39,515][DEBUG][org.apache.kylin.common.persistence.ResourceStore.putResource(ResourceStore.java:200)] - Saving resource /execute_output/35a73a4b-bd25-4ee0-beca-e5363f54656f-03 (Store kylin_metadata@hbase)</p>
 <p>Container [pid=12433,containerID=container_e02_1452878162418_0045_01_000005] is running beyond physical memory limits. Current usage: 206.8 MB of 170 MB physical memory used; 1.9 GB of 357.0 MB virtual memory used. Killing container. Dump of the process-tree for container_e02_1452878162418_0045_01_000005 : |- PID PPID PGRPID SESSID CMD_NAME USER_MODE_TIME(MILLIS) SYSTEM_TIME(MILLIS) VMEM_USAGE(BYTES) RSSMEM_USAGE(PAGES) FULL_CMD_LINE |- 12439 12433 12433 12433 (java) 575 59 1902309376 52581 /usr/jdk64/jdk1.8.0_60/bin/java -server -XX:NewRatio=8 -Djava.net.preferIPv4Stack=true -Dhdp.version=2.3.4.0-3485 -Xmx136m -Djava.io.tmpdir=/hadoop/yarn/local/usercache/hdfs/appcache/application_1452878162418_0045/container_e02_1452878162418_0045_01_000005/tmp -Dlog4j.configuration=container-log4j.properties -Dyarn.app.container.log.dir=/hadoop/yarn/log/application_1452878162418_0045/container_e02_1452878162418_0045_01_000005 -Dyarn.app.container.log.filesize=0 -Dhadoop.root.logger=INFO,CLA -Dhadoop.root.logfile=syslog org.apache.hadoop.mapred.YarnChild 192.168.56.101 59591 attempt_1452878162418_0045_m_000000_3 2199023255557 |- 12433 12431 12433 12433 (bash) 0 0 108621824 349 /bin/bash -c /usr/jdk64/jdk1.8.0_60/bin/java -server -XX:NewRatio=8 -Djava.net.preferIPv4Stack=true -Dhdp.version=2.3.4.0-3485 -Xmx136m -Djava.io.tmpdir=/hadoop/yarn/local/usercache/hdfs/appcache/application_1452878162418_0045/container_e02_1452878162418_0045_01_000005/tmp -Dlog4j.configuration=container-log4j.properties -Dyarn.app.container.log.dir=/hadoop/yarn/log/application_1452878162418_0045/container_e02_1452878162418_0045_01_000005 -Dyarn.app.container.log.filesize=0 -Dhadoop.root.logger=INFO,CLA -Dhadoop.root.logfile=syslog org.apache.hadoop.mapred.YarnChild 192.168.56.101 59591 attempt_1452878162418_0045_m_000000_3 2199023255557 1&gt;/hadoop/yarn/log/application_1452878162418_0045/container_e02_1452878162418_0045_01_000005/stdout 2&gt;/hadoop/yarn/log/application_1452878162418_0045/container_e02_1452878162418_0045_01_000005/stderr Container killed on request. Exit code is 143 Container exited with a non-zero exit code 143</p>
+<h1 id="2-step-name-extract-fact-table-distinct-columns">2 Step Name: Extract Fact Table Distinct Columns</h1>
+<p>no counters for job job_1454250386966_0023</p>
+<p>我怀疑是内存不够！
+解决办法：重启各节点 ！</p>
+<p>所以各节点的内存要尽量均衡、充足！
+2016-02-01 20:48</p>
+<p>可能是内存不足！！</p>
 <p>n02 / n03 的 mysql 版本不同！</p>
 <p>[root@n03 ~]# service mysql stop
 Shutting down MySQL..                                      [  OK  ]
@@ -2977,6 +3000,153 @@ LOAD DATA LOCAL INPATH 'DEFAULT.KYLIN_CATEGORY_GROUPINGS.csv' OVERWRITE INTO TAB
 <p>HDFS has not been configured for Ambari as a proxy user. Refer to Setup HDFS Proxy User.</p>
 <p>https://docs.hortonworks.com/HDPDocuments/Ambari-2.1.2.0/bk_ambari_views_guide/content/_setup_HDFS_proxy_user.html</p>
 <p>未解决。</p>
+<h1 id="kylin_2">kylin</h1>
+<h2 id="exception-non-standard-token-nan-enable-jsonparserfeatureallow_non_numeric_numbers-to-allow">Exception: Non-standard token 'NaN': enable JsonParser.Feature.ALLOW_NON_NUMERIC_NUMBERS to allow</h2>
+<p>at [Source: java.io.StringReader@e0190f; line: 1, column: 520]</p>
+<h2 id="10-step-name-build-n-dimension-cuboid-data-43-dimension">#10 Step Name: Build N-Dimension Cuboid Data : 43-Dimension</h2>
+<p>Exception: Non-standard token 'NaN': enable JsonParser.Feature.ALLOW_NON_NUMERIC_NUMBERS to allow
+ at [Source: java.io.StringReader@36c803ee; line: 1, column: 519]</p>
+<h2 id="hdfs">hdfs 清理</h2>
+<p>使用 hdfs账号操作：</p>
+<p>KYLIN_HOME=/opt/apache-kylin-1.3-HBase-1.1-SNAPSHOT-bin
+hbase org.apache.hadoop.util.RunJar ${KYLIN_HOME}/lib/kylin-job-1.3-SNAPSHOT.jar org.apache.kylin.job.hadoop.cube.StorageCleanupJob --delete true</p>
+<h1 id="hadoop-fs">hadoop fs</h1>
+<p>[hdfs@n01 hadoop]$ hadoop fs -du sh /kylin/ /user /tmp/ /mr-history  /mapred /hdp /ats /apps /app-logs</p>
+<h1 id="hadoop-fs_1">hadoop fs</h1>
+<p>[hdfs@n01 hadoop]$ hadoop fs -rm -r /kylin/kylin_metadata/kylin-174a883c-7817-49da-80cd-fee6d78313b6
+16/02/01 10:16:22 INFO fs.TrashPolicyDefault: Namenode trash configuration: Deletion interval = 360 minutes, Emptier interval = 0 minutes.
+Moved: 'hdfs://n01.kylin.hdp:8020/kylin/kylin_metadata/kylin-174a883c-7817-49da-80cd-fee6d78313b6' to trash at: hdfs://n01.kylin.hdp:8020/user/hdfs/.Trash/Current</p>
+<h1 id="hadoop-fs_2">hadoop fs</h1>
+<p>[hdfs@n01 hadoop]$ hadoop fs -du -h /
+5.1 M    /app-logs
+10.7 G   /apps
+3.7 M    /ats
+443.0 M  /hdp
+5.5 M    /kylin
+0        /mapred
+17.8 M   /mr-history
+570.9 K  /tmp
+8.4 G    /user
+[hdfs@n01 hadoop]$ hadoop fs -du -h /user
+95.5 K  /user/ambari-qa
+0       /user/hcat
+8.4 G   /user/hdfs
+19.8 M  /user/hive
+[hdfs@n01 hadoop]$ hadoop fs -du -h /user/hdfs
+8.3 G   /user/hdfs/.Trash
+19.8 M  /user/hdfs/.hiveJars
+79.7 M  /user/hdfs/.staging
+[hdfs@n01 hadoop]$ hadoop fs -du -h /user/hdfs/.Trash
+8.3 G  /user/hdfs/.Trash/Current
+[hdfs@n01 hadoop]$ hadoop fs -expunge
+16/02/01 10:56:33 INFO fs.TrashPolicyDefault: Namenode trash configuration: Deletion interval = 360 minutes, Emptier interval = 0 minutes.
+16/02/01 10:56:33 INFO fs.TrashPolicyDefault: Created trash checkpoint: /user/hdfs/.Trash/160201105633
+[hdfs@n01 hadoop]$ hadoop fs -du -h /user/hdfs/.Trash
+8.3 G  /user/hdfs/.Trash/160201105633
+[hdfs@n01 hadoop]$ </p>
+<p>[hdfs@n01 hadoop]$ hdfs dfsadmin -report
+Configured Capacity: 133661270016 (124.48 GB)
+Present Capacity: 104527372540 (97.35 GB)
+DFS Remaining: 49782731004 (46.36 GB)
+DFS Used: 54744641536 (50.98 GB)
+DFS Used%: 52.37%
+Under replicated blocks: 42
+Blocks with corrupt replicas: 0
+Missing blocks: 0
+Missing blocks (with replication factor 1): 0</p>
+<hr/>
+<p>Live datanodes (3):</p>
+<p>Name: 10.0.2.12:50010 (n02.kylin.hdp)
+Hostname: n02.kylin.hdp
+Decommission Status : Normal
+Configured Capacity: 40781819904 (37.98 GB)
+DFS Used: 16988676096 (15.82 GB)
+Non DFS Used: 9643020204 (8.98 GB)
+DFS Remaining: 14150123604 (13.18 GB)
+DFS Used%: 41.66%
+DFS Remaining%: 34.70%
+Configured Cache Capacity: 0 (0 B)
+Cache Used: 0 (0 B)
+Cache Remaining: 0 (0 B)
+Cache Used%: 100.00%
+Cache Remaining%: 0.00%
+Xceivers: 6
+Last contact: Mon Feb 01 11:07:12 CST 2016</p>
+<p>Name: 10.0.2.11:50010 (n01.kylin.hdp)
+Hostname: n01.kylin.hdp
+Decommission Status : Normal
+Configured Capacity: 56260349952 (52.40 GB)
+DFS Used: 21258522624 (19.80 GB)
+Non DFS Used: 11218243500 (10.45 GB)
+DFS Remaining: 23783583828 (22.15 GB)
+DFS Used%: 37.79%
+DFS Remaining%: 42.27%
+Configured Cache Capacity: 0 (0 B)
+Cache Used: 0 (0 B)
+Cache Remaining: 0 (0 B)
+Cache Used%: 100.00%
+Cache Remaining%: 0.00%
+Xceivers: 6
+Last contact: Mon Feb 01 11:07:12 CST 2016</p>
+<p>Name: 10.0.2.13:50010 (n03.kylin.hdp)
+Hostname: n03.kylin.hdp
+Decommission Status : Normal
+Configured Capacity: 36619100160 (34.10 GB)
+DFS Used: 16497442816 (15.36 GB)
+Non DFS Used: 8272633772 (7.70 GB)
+DFS Remaining: 11849023572 (11.04 GB)
+DFS Used%: 45.05%
+DFS Remaining%: 32.36%
+Configured Cache Capacity: 0 (0 B)
+Cache Used: 0 (0 B)
+Cache Remaining: 0 (0 B)
+Cache Used%: 100.00%
+Cache Remaining%: 0.00%
+Xceivers: 6
+Last contact: Mon Feb 01 11:07:12 CST 2016</p>
+<h1 id="compress-hive-table-hive">compress hive table hive 表 压缩</h1>
+<p>http://stackoverflow.com/questions/31867875/setting-compression-on-hive-table</p>
+<h2 id="_19">创建带压缩的表。</h2>
+<p>[hdfs@n01 bin]$ hive
+WARNING: Use "yarn jar" to launch YARN applications.</p>
+<p>Logging initialized using configuration in file:/etc/hive/2.3.4.0-3485/0/hive-log4j.properties
+hive&gt; 
+    &gt; SET hive.exec.compress.intermediate=true;
+    hive&gt; SET hive.exec.compress.output=true;
+    hive&gt; SET mapred.output.compression.type=BLOCK;
+    hive&gt; show tables;
+    OK
+    kylin_cal_dt
+    kylin_category_groupings
+    kylin_intermediate_fullcubetest7alldimandmeasure_clone_19700101000000_2922789940817071255_174a883c_7817_49da_80cd_fee6d78313b6
+    kylin_sales
+    pmt_kpi_mer_cust_mid_olap
+    Time taken: 2.302 seconds, Fetched: 5 row(s)
+    hive&gt; 
+        &gt; 
+            &gt; create table pmt_olap_snappy
+                &gt;   stored as orc
+                    &gt;   tblproperties ("orc.compress"="SNAPPY")
+                        &gt;   as
+                            &gt; select * from pmt_kpi_mer_cust_mid_olap ;
+                            Query ID = hdfs_20160201124603_10a1ff66-b764-40d8-8659-add33dbbb540
+                            Total jobs = 1
+                            Launching Job 1 out of 1</p>
+<pre><code>                        Status: Running (Executing on YARN cluster with App id application_1454250386966_0019)
+
+                        --------------------------------------------------------------------------------
+                                VERTICES      STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED
+                                --------------------------------------------------------------------------------
+                                Map 1                RUNNING     13          0        2       11       0       0
+                                --------------------------------------------------------------------------------
+                                VERTICES: 00/01  [&gt;&gt;--------------------------] 0%    ELAPSED TIME: 189.63 s   
+                                --------------------------------------------------------------------------------
+</code></pre>
+<h1 id="kylin-hive-hbase">为什么kylin 使用 hive 作为输入数据存储， 使用 hbase作为输出数据存储？</h1>
+<p>因为 hive 可以通过sql方式存储分布式数据，进行分布式计算。可以并行。</p>
+<p>而采用hbase 存储输出数据，是因为hbase是列式存储，适合olap。</p>
+<h1 id="_20">自律，坚持，耐心</h1>
+<p>https://www.zhihu.com/question/37167038</p>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>

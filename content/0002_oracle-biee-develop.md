@@ -603,7 +603,76 @@ pms 应用程序角色 -> system-jazn-data.xml 角色配置 -> catalog 报表和
 2. 如果一个目录权限被设置为 遍历，那么不管目录内的项目是何种权限，都不能打开查看。但是可以被程序调用。
 
 
+
+
 # 异常处理 exception handle
+
+## Cannot read property 'itemsinfos' of null
+
+http://www.rittmanmead.com/2012/08/obiee-fmw-and-networking-on-dhcp-hosts/
+
+
+
+现象： mac 下 chrome 无法访问 catalog 共享目录， 浏览器弹出窗口报这个错误。
+
+解决： 这时浏览器兼容性的问题。网上建议: chrome 使用 ie tab 插件（我怀疑不行，因为mac下没有ie dll 之类的驱动。） 。或者：  firefox ， 我测试过，非常好，非常快！ 
+
+
+
+ref: 
+
+https://community.oracle.com/thread/2589688?start=0&tstart=0
+
+
+
+
+## ldap 7001 端口无法访问的问题！
+
+<Feb 3, 2016 9:25:10 AM CET> <Error> <oracle.ods.virtualization.engine.backend.jndi.DefaultAuthenticator.BackendJNDI> <OVD-60143> <[#DefaultAuthenticator]  Unable to create connection to ldap://[10.0.2.15]:7001 as null.
+javax.naming.CommunicationException: 10.0.2.15:7001 [Root exception is java.net.ConnectException: Connection refused]
+    at com.sun.jndi.ldap.Connection.<init>(Connection.java:200)
+        at com.sun.jndi.ldap.LdapClient.<init>(LdapClient.java:118)
+            at com.sun.jndi.ldap.LdapClient.getInstance(LdapClient.java:1580)
+                at com.sun.jndi.ldap.LdapCtx.connect(LdapCtx.java:2652)
+                    at com.sun.jndi.ldap.LdapCtx.<init>(LdapCtx.java:293)
+
+起因：
+
+我把原来桥接的 192.168.56.101 ip 改成了 nat ip ： 10.0.2.15 ！ 同时修改了hosts的ip －fqdn 映射关系！ 而 网卡是 dhcp 。 
+
+解决：
+
+1. 把虚拟网卡设置为固定ip , 网卡重启一下！
+
+2. 重启biee所有服务：ldap服务，weblogic 服务 ，biee opmn 服务！
+
+3. 不行的话，直接重启服务，重新来一遍！
+
+我一开始只重启了网卡和biee opmn服务，没有效果。后来把机器重启了就好了！
+
+## [nQSError: 73006 
+Type: ERROR
+Severity: 10
+Time: Sat May 31 02:18:48 2014 
+File: project/websecurity/odbcuserpoploaderimpl.cpp Line: 300
+Properties: ecid-
+Location:
+    saw.security.odbcuserpopulationimpl.initialize
+        saw.catalog.local.loadCatalog
+            saw.catalogcrawler.main
+
+            Odbc driver returned an error (SQLDriverConnectW).
+            State: HY000.  Code: 10058.  [NQODBC] [SQL_STATE: HY000] [nQSError: 10058] A general error has occurred.
+            [nQSError: 73006] Cannot obtain Oracle BI Servers from either the primary Cluster Controller (demo.us.oracle.com) or the secondary Cluster Controller () specified for the clustered DSN. (HY000)
+
+
+### biee服务器主机ip变更后，biee服务（weblogic、biserver） 无法启动。
+
+2016-02-03 11:33
+
+1. 检查/etc/hosts 的ip－域名 对应关系。
+2. 把ip－域名 关系update成最新的ip，域名不变
+3. 重启服务器
 
 ### nQSError:46118 磁盘空间不足
 
@@ -808,5 +877,8 @@ oracle 官方认证 的博客
 ### 业内人物推荐 
 
 ####  Andrew C. Oliver
+
+
+
 
 
