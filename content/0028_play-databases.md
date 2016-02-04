@@ -1255,6 +1255,19 @@ http://www.oracle.com/technetwork/articles/dsl/python-091105.html
 
 ## oracle 匿名块
 
+## ORA-01722 invalid number
+
+biee 上有一张报表，底层涉及手工数据，每月更新一次。这个月有张报表突然报 ora-01722 错误。经核查，是 一个字段中的数字转指定格式的字符的时候 to_char（xxx,'000') ， 有非数字内容。
+
+该字段本来就是字符型，
+
+to_char('23','000') 没问题，
+但是 to_char('社区','000') 就会有问题！
+
+
+
+
+
 
 <!-- $ -->
 

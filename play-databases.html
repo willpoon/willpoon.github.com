@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2016-01-25
+    on 2016-02-04
 
         |
         tags:         <a href="/tag/db.html">DB</a>
@@ -209,6 +209,7 @@
 <li><a href="#oracle-response">oracle response 文件安装方式是怎么回事？</a></li>
 <li><a href="#oracle-dml-escape-ampersand">oracle 在执行 dml的时候 escape &amp; (ampersand)符号？</a></li>
 <li><a href="#oracle_1">oracle 匿名块</a></li>
+<li><a href="#ora-01722-invalid-number">ORA-01722 invalid number</a></li>
 </ul>
 </li>
 <li><a href="#_13">方法论</a><ul>
@@ -1149,6 +1150,11 @@ start with pid=1 connect by prior id=pid;</p>
 SET ESCAPE ON;
 </code></pre>
 <h2 id="oracle_1">oracle 匿名块</h2>
+<h2 id="ora-01722-invalid-number">ORA-01722 invalid number</h2>
+<p>biee 上有一张报表，底层涉及手工数据，每月更新一次。这个月有张报表突然报 ora-01722 错误。经核查，是 一个字段中的数字转指定格式的字符的时候 to_char（xxx,'000') ， 有非数字内容。</p>
+<p>该字段本来就是字符型，</p>
+<p>to_char('23','000') 没问题，
+但是 to_char('社区','000') 就会有问题！</p>
 
 <h1 id="_13">方法论</h1>
 <h2 id="_14">数据存储：分表与分区表</h2>

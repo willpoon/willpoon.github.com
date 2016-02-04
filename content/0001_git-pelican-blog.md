@@ -395,6 +395,11 @@ toc class 不用自己添加，当然如果你想目录好看一点，可以自�
 
 4. 最后，还不如直接换一个模版！
 
+### pelicanconf.py 中的配置对编译的影响
+
+GOOGLE_SERVICE_ACCOUNT = '580413976832-l9g......stpran1jg8rsjm6k@developer.gserviceaccount.com'
+
+由于被墙，这个配置可能导致编译无法通过！！
 
 # 点评
 ## 优点1: pelican 修改标题和更新文章不会影响原文章的链接引用。

@@ -5,29 +5,43 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2016-02-04T07:25:20-00:00</lastmod>
+<lastmod>2016-02-04T12:35:20-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2016-02-04T07:25:20-00:00</lastmod>
+<lastmod>2016-02-04T12:35:20-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2016-02-04T07:25:20-00:00</lastmod>
+<lastmod>2016-02-04T12:35:20-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2016-02-04T07:25:20-00:00</lastmod>
+<lastmod>2016-02-04T12:35:20-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/play-databases.html</loc>
+<lastmod>2016-02-04T12:35:18+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/setup-and-config-my-github-blog-with-pelican.html</loc>
+<lastmod>2016-02-04T07:27:52+08:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -55,13 +69,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/work-on-Mac.html</loc>
 <lastmod>2016-01-29T15:10:15+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/play-databases.html</loc>
-<lastmod>2016-01-25T21:28:54+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -111,13 +118,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/english.html</loc>
 <lastmod>2016-01-04T10:04:10+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/setup-and-config-my-github-blog-with-pelican.html</loc>
-<lastmod>2015-12-22T17:32:16+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -201,21 +201,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/tech.html</loc>
-<lastmod>2016-02-03T17:13:45+08:06</lastmod>
+<lastmod>2016-02-04T12:35:18+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/disqus.html</loc>
-<lastmod>2015-12-22T17:32:16+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/tag/gan-wu.html</loc>
-<lastmod>2016-02-04T07:16:01+08:06</lastmod>
+<loc>/tag/pelican.html</loc>
+<lastmod>2016-02-04T07:27:52+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -242,8 +235,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/mysql.html</loc>
-<lastmod>2016-01-25T21:28:54+08:06</lastmod>
+<loc>/tag/linux.html</loc>
+<lastmod>2016-01-20T11:11:40+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -284,8 +277,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/linux.html</loc>
-<lastmod>2016-01-20T11:11:40+08:06</lastmod>
+<loc>/tag/mysql.html</loc>
+<lastmod>2016-02-04T12:35:18+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -312,8 +305,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/git.html</loc>
-<lastmod>2016-01-20T11:11:40+08:06</lastmod>
+<loc>/tag/db2.html</loc>
+<lastmod>2016-02-04T12:35:18+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -355,7 +348,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/blog.html</loc>
-<lastmod>2015-12-22T17:32:16+08:06</lastmod>
+<lastmod>2016-02-04T07:27:52+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -418,7 +411,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/shu-ju-ku.html</loc>
-<lastmod>2016-01-25T21:28:54+08:06</lastmod>
+<lastmod>2016-02-04T12:35:18+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -432,7 +425,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/db.html</loc>
-<lastmod>2016-01-25T21:28:54+08:06</lastmod>
+<lastmod>2016-02-04T12:35:18+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -466,6 +459,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>/tag/git.html</loc>
+<lastmod>2016-01-20T11:11:40+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/gan-wu.html</loc>
+<lastmod>2016-02-04T07:16:01+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>/tag/ye-wu.html</loc>
 <lastmod>2016-01-17T09:08:34+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -487,8 +494,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/db2.html</loc>
-<lastmod>2016-01-25T21:28:54+08:06</lastmod>
+<loc>/tag/disqus.html</loc>
+<lastmod>2016-02-04T07:27:52+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -509,14 +516,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/github.html</loc>
-<lastmod>2015-12-22T17:32:16+08:06</lastmod>
+<lastmod>2016-02-04T07:27:52+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/database.html</loc>
-<lastmod>2016-01-25T21:28:54+08:06</lastmod>
+<lastmod>2016-02-04T12:35:18+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -593,7 +600,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/oracle.html</loc>
-<lastmod>2016-02-03T17:13:45+08:06</lastmod>
+<lastmod>2016-02-04T12:35:18+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -620,15 +627,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/pelican.html</loc>
-<lastmod>2015-12-22T17:32:16+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>/author/poon.html</loc>
-<lastmod>2016-02-04T07:16:01+08:06</lastmod>
+<lastmod>2016-02-04T12:35:18+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
