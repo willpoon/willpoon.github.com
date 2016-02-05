@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2016-02-03
+    on 2016-02-04
 
         |
         tags:         <a href="/tag/oracle.html">oracle</a>
@@ -187,6 +187,7 @@
 <li><a href="#logical-dimension">logical dimension 到底是什么？</a></li>
 <li><a href="#event-table">event table 是什么鬼 ？</a></li>
 <li><a href="#_18">物化视图</a></li>
+<li><a href="#biee-rpd">biee RPD 表关联的概念</a></li>
 <li><a href="#cube">cube</a></li>
 </ul>
 </li>
@@ -632,6 +633,29 @@ http://docs.oracle.com/cd/E25054_01/fusionapps.1111/e20836/dimensions.htm</p>
 <p>物化视图呢，用于OLAP系统中，当然部分OLTP系统的小部分功能未了提高性能会借鉴一点点，因为表关联的开销很大，所以在开发中很多人就像把这个代价交给定期转存来完成，ORACLE当然也提供了这个功能，就是将视图（或者一个大SQL）的信息转换为物理数据存储，然后提供不同的策略：定时刷还是及时刷、增量刷还是全局刷等等可以根据实际情况进行选择，总之你差的是表，不是视图。</p>
 <p>刷新:</p>
 <p>http://blog.csdn.net/joshua_peng1985/article/details/6213593</p>
+<h2 id="biee-rpd">biee RPD 表关联的概念</h2>
+<p>driving table : small table ,  一般小于千行, 用于biee 跨库查询的场合和 complex join 场合. driving table 适用于inner join,outer join。但不适用于full join 。当做inner join 时，driving table 的位置不区分。当做 left outer join 时，driving 应做左表。right outer join 时， 应做右表。我认为这只是业务无关,调优相关的情况下才这样指定。</p>
+<p>lookup table : </p>
+<p>base table : 又叫 fact table.</p>
+<p>complex join :  所有非 pk-fk 方式关联 joins ， 都是 complex join 。 </p>
+<p>Complex joins are joins which have following diffrences 
+from a PK-FK joins???.
+Complex joins can have conditional mappings like </p>
+<blockquote>
+<p>,&lt;,&gt;=,NOT,AND,etc apart from '=' whereas the PK-FK joins 
+are always '='</p>
+</blockquote>
+<p>PK-FK joins are always (1-N), whereas complex joins can 
+have (1 - 0,1) and (0,1 - N) kind of relationships.</p>
+<p>Complex join:- complex join are used in physical layer in 
+between two tables where ever that do not involved primary 
+key and foreign key relationship. </p>
+<p>Cardinality : In SQL (Structured Query Language), the term cardinality refers to the uniqueness of data values contained in a particular column (attribute) of a database table. The lower the cardinality, the more duplicated elements in a column. Thus, a column with the lowest possible cardinality would have the same value for every row. SQL databases use cardinality to help determine the optimal query plan for a given query.</p>
+<p>另外： one - many 的意思是 1 行 对应 0行或1行或多行 这3种情况，而不只是多行。</p>
+<p>biee中，cardinality 仅针对 complex join 。因为 PK－Fk 关联 ， 其 cardinality 是很明确的。</p>
+<p>complex join 和 driving table 的使用有什么联系？</p>
+<p>complex join 和 cardinality 的联系 ？</p>
+<p>https://en.wikipedia.org/wiki/Cardinality_%28SQL_statements%29</p>
 <h2 id="cube">cube</h2>
 <p>http://bbs.csdn.net/topics/390387960</p>
 <p>http://www.2cto.com/database/201206/134968.html</p>

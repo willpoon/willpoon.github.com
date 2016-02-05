@@ -519,6 +519,49 @@ http://gerardnico.com/wiki/dat/obiee/event_table#define_the_table_as_an_event_ta
 
 http://blog.csdn.net/joshua_peng1985/article/details/6213593
 
+##  biee RPD 表关联的概念
+
+driving table : small table ,  一般小于千行, 用于biee 跨库查询的场合和 complex join 场合. driving table 适用于inner join,outer join。但不适用于full join 。当做inner join 时，driving table 的位置不区分。当做 left outer join 时，driving 应做左表。right outer join 时， 应做右表。我认为这只是业务无关,调优相关的情况下才这样指定。
+
+lookup table : 
+
+base table : 又叫 fact table.
+
+complex join :  所有非 pk-fk 方式关联 joins ， 都是 complex join 。 
+
+Complex joins are joins which have following diffrences 
+from a PK-FK joins???.
+Complex joins can have conditional mappings like 
+>,<,>=,NOT,AND,etc apart from '=' whereas the PK-FK joins 
+are always '='
+
+PK-FK joins are always (1-N), whereas complex joins can 
+have (1 - 0,1) and (0,1 - N) kind of relationships.
+
+Complex join:- complex join are used in physical layer in 
+between two tables where ever that do not involved primary 
+key and foreign key relationship. 
+
+
+
+Cardinality : In SQL (Structured Query Language), the term cardinality refers to the uniqueness of data values contained in a particular column (attribute) of a database table. The lower the cardinality, the more duplicated elements in a column. Thus, a column with the lowest possible cardinality would have the same value for every row. SQL databases use cardinality to help determine the optimal query plan for a given query.
+
+另外： one - many 的意思是 1 行 对应 0行或1行或多行 这3种情况，而不只是多行。
+
+biee中，cardinality 仅针对 complex join 。因为 PK－Fk 关联 ， 其 cardinality 是很明确的。
+
+
+complex join 和 driving table 的使用有什么联系？
+
+
+complex join 和 cardinality 的联系 ？
+
+
+
+
+https://en.wikipedia.org/wiki/Cardinality_%28SQL_statements%29
+
+
 
 ## cube 
 

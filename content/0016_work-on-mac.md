@@ -344,4 +344,8 @@ nat guest 和 guest 之间是不通的。
 
 
 
+# 获得 字符串的md5值
+poon@Wills-MacBook-Pro:~/Snippets/python$ echo -n 'passwordStr' | openssl md5
+bffc5e18cd9cf8d7a18c341ac0d163bc
+
 
