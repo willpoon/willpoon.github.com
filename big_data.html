@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2016-02-01
+    on 2016-02-08
 
         |
         tags:         <a href="/tag/da-shu-ju.html">大数据</a>
@@ -278,6 +278,7 @@
 </li>
 <li><a href="#kylin-hive-hbase">为什么kylin 使用 hive 作为输入数据存储， 使用 hbase作为输出数据存储？</a></li>
 <li><a href="#_20">自律，坚持，耐心</a></li>
+<li><a href="#ambarirepo-ambari-web-stack">为什么 ambari.repo 的内容，就算再ambari web 前台修改stack 之后，还是没有变化？</a></li>
 </ul>
 </div>
         </nav>
@@ -3147,6 +3148,42 @@ hive&gt;
 <p>而采用hbase 存储输出数据，是因为hbase是列式存储，适合olap。</p>
 <h1 id="_20">自律，坚持，耐心</h1>
 <p>https://www.zhihu.com/question/37167038</p>
+<p>==========================
+Creating target directory...
+==========================</p>
+<p>Command start time 2016-02-06 18:12:56</p>
+<p>Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).
+SSH command execution finished
+host=n04.kylin.hdp, exitcode=255
+Command end time 2016-02-06 18:12:56</p>
+<p>ERROR: Bootstrap of host n04.kylin.hdp fails because previous action finished with non-zero exit code (255)
+ERROR MESSAGE: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).</p>
+<p>STDOUT: 
+Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).</p>
+<h1 id="ambarirepo-ambari-web-stack">为什么 ambari.repo 的内容，就算再ambari web 前台修改stack 之后，还是没有变化？</h1>
+<p>Connection to n04.kylin.hdp closed.
+SSH command execution finished
+host=n04.kylin.hdp, exitcode=0
+Command end time 2016-02-08 15:23:03</p>
+<p>==========================
+Copying repo file to 'tmp' folder...
+==========================</p>
+<p>Command start time 2016-02-08 15:23:03</p>
+<p>/etc/yum.repos.d/ambari.repo: No such file or directory
+scp /etc/yum.repos.d/ambari.repo
+host=n04.kylin.hdp, exitcode=1
+Command end time 2016-02-08 15:23:03</p>
+<p>==========================
+Moving file to repo dir...
+==========================</p>
+<p>Command start time 2016-02-08 15:23:03
+mv: cannot stat `/var/lib/ambari-agent/tmp/ambari1454916183.repo': No such file or directory</p>
+<p>Connection to n04.kylin.hdp closed.
+SSH command execution finished
+host=n04.kylin.hdp, exitcode=1
+Command end time 2016-02-08 15:23:03</p>
+<p>==========================</p>
+<p>根据错误日志，有一个复制过程！ 文件要从 n01 复制到 n04 , 所以修改 repo的路径，不能只修改 n04， 还要修改n01！！</p>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>

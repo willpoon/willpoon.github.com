@@ -2,12 +2,12 @@
 /archives.html
 /tags.html
 /categories.html
+/poons-talk.html
+/work-on-Mac.html
+/oracle-biee-develop.html
 /play-databases.html
 /setup-and-config-my-github-blog-with-pelican.html
-/poons-talk.html
-/oracle-biee-develop.html
 /big_data.html
-/work-on-Mac.html
 /work-on-linux.html
 /banking-finance.html
 /programming.html
@@ -27,7 +27,7 @@
 /category/life.html
 /category/misc.html
 /category/tech.html
-/tag/pelican.html
+/tag/gan-wu.html
 /tag/pan-tan.html
 /tag/osx.html
 /tag/list.html
@@ -64,7 +64,6 @@
 /tag/sheng-huo.html
 /tag/mac.html
 /tag/git.html
-/tag/gan-wu.html
 /tag/ye-wu.html
 /tag/xian-hua.html
 /tag/xie-zi.html
@@ -87,4 +86,5 @@
 /tag/kuai-le.html
 /tag/she-ji.html
 /tag/jia-gou.html
+/tag/pelican.html
 /author/poon.html

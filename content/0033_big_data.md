@@ -3727,3 +3727,63 @@ hive>
 https://www.zhihu.com/question/37167038
 
 
+
+
+==========================
+Creating target directory...
+==========================
+
+Command start time 2016-02-06 18:12:56
+
+Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).
+SSH command execution finished
+host=n04.kylin.hdp, exitcode=255
+Command end time 2016-02-06 18:12:56
+
+ERROR: Bootstrap of host n04.kylin.hdp fails because previous action finished with non-zero exit code (255)
+ERROR MESSAGE: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).
+
+STDOUT: 
+Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).
+
+
+
+
+
+# 为什么 ambari.repo 的内容，就算再ambari web 前台修改stack 之后，还是没有变化？
+
+
+Connection to n04.kylin.hdp closed.
+SSH command execution finished
+host=n04.kylin.hdp, exitcode=0
+Command end time 2016-02-08 15:23:03
+
+==========================
+Copying repo file to 'tmp' folder...
+==========================
+
+Command start time 2016-02-08 15:23:03
+
+/etc/yum.repos.d/ambari.repo: No such file or directory
+scp /etc/yum.repos.d/ambari.repo
+host=n04.kylin.hdp, exitcode=1
+Command end time 2016-02-08 15:23:03
+
+==========================
+Moving file to repo dir...
+==========================
+
+Command start time 2016-02-08 15:23:03
+mv: cannot stat `/var/lib/ambari-agent/tmp/ambari1454916183.repo': No such file or directory
+
+Connection to n04.kylin.hdp closed.
+SSH command execution finished
+host=n04.kylin.hdp, exitcode=1
+Command end time 2016-02-08 15:23:03
+
+==========================
+
+
+
+根据错误日志，有一个复制过程！ 文件要从 n01 复制到 n04 , 所以修改 repo的路径，不能只修改 n04， 还要修改n01！！
+

@@ -5,35 +5,42 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2016-02-05T09:07:05-00:00</lastmod>
+<lastmod>2016-02-08T15:37:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2016-02-05T09:07:05-00:00</lastmod>
+<lastmod>2016-02-08T15:37:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2016-02-05T09:07:05-00:00</lastmod>
+<lastmod>2016-02-08T15:37:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2016-02-05T09:07:05-00:00</lastmod>
+<lastmod>2016-02-08T15:37:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
+<loc>/big_data.html</loc>
+<lastmod>2016-02-08T15:37:16+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>/poons-talk.html</loc>
-<lastmod>2016-02-05T09:07:02+08:00</lastmod>
+<lastmod>2016-02-06T09:43:11+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -62,13 +69,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/setup-and-config-my-github-blog-with-pelican.html</loc>
 <lastmod>2016-02-04T07:27:52+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/big_data.html</loc>
-<lastmod>2016-02-01T21:48:26+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -187,7 +187,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/life.html</loc>
-<lastmod>2016-02-05T09:07:02+08:06</lastmod>
+<lastmod>2016-02-06T09:43:11+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -201,21 +201,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/tech.html</loc>
-<lastmod>2016-02-04T18:23:25+08:06</lastmod>
+<lastmod>2016-02-08T15:37:16+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/gan-wu.html</loc>
-<lastmod>2016-02-05T09:07:02+08:06</lastmod>
+<lastmod>2016-02-06T09:43:11+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/pan-tan.html</loc>
-<lastmod>2016-02-05T09:07:02+08:06</lastmod>
+<lastmod>2016-02-06T09:43:11+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -264,7 +264,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/da-shu-ju.html</loc>
-<lastmod>2016-02-01T21:48:26+08:06</lastmod>
+<lastmod>2016-02-08T15:37:16+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -341,7 +341,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/hadoop.html</loc>
-<lastmod>2016-02-01T21:48:26+08:06</lastmod>
+<lastmod>2016-02-08T15:37:16+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -390,7 +390,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/hu-che.html</loc>
-<lastmod>2016-02-05T09:07:02+08:06</lastmod>
+<lastmod>2016-02-06T09:43:11+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -474,7 +474,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/xian-hua.html</loc>
-<lastmod>2016-02-05T09:07:02+08:06</lastmod>
+<lastmod>2016-02-06T09:43:11+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -579,7 +579,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/xin-ling.html</loc>
-<lastmod>2016-02-05T09:07:02+08:06</lastmod>
+<lastmod>2016-02-06T09:43:11+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -628,7 +628,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/author/poon.html</loc>
-<lastmod>2016-02-05T09:07:02+08:06</lastmod>
+<lastmod>2016-02-08T15:37:16+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
