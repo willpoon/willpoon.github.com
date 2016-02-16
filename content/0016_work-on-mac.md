@@ -349,3 +349,8 @@ poon@Wills-MacBook-Pro:~/Snippets/python$ echo -n 'passwordStr' | openssl md5
 bffc5e18cd9cf8d7a18c341ac0d163bc
 
 
+# ambari agent  的安装过程中，依赖配置文件：/etc/ambari-server/conf/ambari.properties
+导致agent 安装失败。
+手工安装 server 和 metrics ， 再次启动 agent ， ok！
+
+

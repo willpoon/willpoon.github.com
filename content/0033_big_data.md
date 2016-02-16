@@ -155,7 +155,7 @@ os环境配置完后，使用官方文档步骤安装
 
 http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.2.0/bk_Installing_HDP_AMB/bk_Installing_HDP_AMB-20150930.pdf
 
-1.5.2. Setting Up a Local Repository
+1.5.2. Setting Up a Local Repository
 
 
 yum -y install yum-utils createrepo
@@ -3787,3 +3787,175 @@ Command end time 2016-02-08 15:23:03
 
 根据错误日志，有一个复制过程！ 文件要从 n01 复制到 n04 , 所以修改 repo的路径，不能只修改 n04， 还要修改n01！！
 
+
+# Exception: Couldn't load 'os_family.json' file
+新增节点的时候，报这个错误！
+
+
+
+
+==========================
+Running setup agent script...
+==========================
+
+Command start time 2016-02-08 18:53:19
+('', None)
+('', None)
+
+Connection to n04.kylin.hdp closed.
+SSH command execution finished
+host=n04.kylin.hdp, exitcode=255
+Command end time 2016-02-08 18:53:24
+
+ERROR: Bootstrap of host n04.kylin.hdp fails because previous action finished with non-zero exit code (255)
+ERROR MESSAGE: tcgetattr: Invalid argument
+Connection to n04.kylin.hdp closed.
+
+STDOUT: tput: unknown terminal "unknown"
+('', None)
+('', None)
+
+Connection to n04.kylin.hdp closed.
+
+
+ raise Fail(err_msg)
+ resource_management.core.exceptions.Fail: Execution of '/usr/bin/yum -d 0 -e 0 -y install 'hive_2_3_*'' returned 1. Error Downloading Packages:
+   hive_2_3_4_0_3485-1.2.1.2.3.4.0-3485.el6.noarch: failure: hive/hive_2_3_4_0_3485-1.2.1.2.3.4.0-3485.el6.noarch.rpm from local-HDP-2.3.4.0: [Errno 256] No more mirrors to try.
+
+下载失败
+
+
+# 如何查看hadoop 集群中各个节点 的运行日志
+
+[root@n01 ~]# find / -name "*n0*log"
+/var/log/hadoop/hdfs/hadoop-hdfs-namenode-n01.kylin.hdp.log
+/var/log/hadoop/hdfs/hadoop-hdfs-datanode-n01.kylin.hdp.log
+/var/log/ambari-metrics-collector/hbase-ams-master-n01.kylin.hdp.log
+/var/log/ambari-metrics-collector/hbase-root-master-n01.kylin.hdp.log
+/var/log/hbase/hbase-hbase-master-n01.kylin.hdp.log
+/var/log/hbase/hbase-hbase-regionserver-n01.kylin.hdp.log
+/var/log/hadoop-yarn/yarn/yarn-yarn-nodemanager-n01.kylin.hdp.log
+[root@n01 ~]# ssh n02.kylin.hdp 'find / -name "*n0*log"'
+/var/log/hadoop/hdfs/hadoop-hdfs-secondarynamenode-n02.kylin.hdp.log
+/var/log/hadoop/hdfs/hadoop-hdfs-datanode-n02.kylin.hdp.log
+/var/log/hadoop-yarn/yarn/yarn-yarn-timelineserver-n02.kylin.hdp.log
+/var/log/hadoop-yarn/yarn/yarn-yarn-resourcemanager-n02.kylin.hdp.log
+/var/log/hadoop-mapreduce/mapred/mapred-mapred-historyserver-n02.kylin.hdp.log
+[root@n01 ~]# ssh n03.kylin.hdp 'find / -name "*n0*log"'
+/var/log/hadoop/hdfs/hadoop-hdfs-datanode-n03.kylin.hdp.log
+[root@n01 ~]# ssh n04.kylin.hdp 'find / -name "*n0*log"'
+/var/log/hadoop/hdfs/hadoop-hdfs-datanode-n04.kylin.hdp.log
+/var/log/hadoop/hdfs/hadoop-hdfs-datanode-n03.kylin.hdp.log
+/var/log/hadoop/root/hadoop-hdfs-nfs3-n04.kylin.hdp.log
+/var/log/hbase/hbase-hbase-regionserver-n04.kylin.hdp.log
+/var/log/hadoop-yarn/yarn/yarn-yarn-nodemanager-n04.kylin.hdp.log
+
+
+
+# 如何解决节点冲突
+
+n03 和 n04 冲突！ 因为 n04 是从 n03 复制过来的。
+
+
+
+# 如何高效利用阿里云计算？
+
+
+#  hdfs  命令
+
+sudo -u hdfs hdfs dfsadmin -report -dead 
+
+# 博客推荐  http://bradhedlund.com/about/
+
+
+# calculated column
+
+
+# 添加节点n04 不显示 live 的原因
+
+[root@n04 ~]# find / -name "*.xml" | xargs grep -i n03
+/etc/hadoop/2.3.4.0-3485/0/yarn-site.xml:      <value>n02.kylin.hdp:2181,n03.kylin.hdp:2181,n01.kylin.hdp:2181</value>
+/etc/hadoop/2.3.4.0-3485/0/yarn-site.xml:      <value>n02.kylin.hdp:2181,n03.kylin.hdp:2181,n01.kylin.hdp:2181</value>
+/etc/hive/conf.backup/hive-site.xml:      <value>n02.kylin.hdp:2181,n03.kylin.hdp:2181,n01.kylin.hdp:2181</value>
+/etc/hive/conf.backup/hive-site.xml:      <value>n02.kylin.hdp:2181,n03.kylin.hdp:2181,n01.kylin.hdp:2181</value>
+/etc/hive/2.3.4.0-3485/0/hive-site.xml:      <value>n02.kylin.hdp:2181,n03.kylin.hdp:2181,n01.kylin.hdp:2181</value>
+/etc/hive/2.3.4.0-3485/0/hive-site.xml:      <value>n02.kylin.hdp:2181,n03.kylin.hdp:2181,n01.kylin.hdp:2181</value>
+/etc/hbase/conf.backup/hbase-site.xml:      <value>n02.kylin.hdp,n03.kylin.hdp,n01.kylin.hdp</value>
+/etc/hbase/2.3.4.0-3485/0/hbase-site.xml:      <value>n02.kylin.hdp,n03.kylin.hdp,n01.kylin.hdp</value>
+/usr/share/foomatic/db/source/printer/DEC-LN03.xml:<printer id="printer/DEC-LN03">
+/usr/share/foomatic/db/source/printer/DEC-LN03.xml:  <model>LN03</model>
+/usr/share/foomatic/db/source/printer/DEC-LN03.xml:  <driver>ln03</driver>
+/usr/share/foomatic/db/source/opt/2.xml:      <driver>ln03</driver>
+/usr/share/foomatic/db/source/driver/ln03.xml:<driver id="driver/ln03">
+/usr/share/foomatic/db/source/driver/ln03.xml: <name>ln03</name>
+/usr/share/foomatic/db/source/driver/ln03.xml:  <prototype>gs -q -dBATCH -dPARANOIDSAFER -dQUIET -dNOPAUSE -sDEVICE=ln03%A%Z -sOutputFile=- -</prototype>
+/usr/share/foomatic/db/source/driver/ln03.xml:   <id>printer/DEC-LN03</id><!-- DEC LN03 -->
+[root@n04 ~]# find / -name "*.xml" | xargs grep -i n04
+
+
+
+# CHANGE namenode 
+
+Manual commands
+Copy the contents of /hadoop/hdfs/namenode on the source host n01.kylin.hdp to /hadoop/hdfs/namenode on the target host n04.kylin.hdp.
+Login to the target host n04.kylin.hdp and change permissions for the NameNode dirs by running:
+chown -R hdfs:hadoop /hadoop/hdfs/namenode
+Create marker directory by running:
+mkdir -p /var/lib/hdfs/namenode/formatted
+
+
+# 解决ambari namenode 不能 move 的问题
+
+1. 修改 web 前台 stack version 的 http repo 地址 , 这个地址影响的是 /etc/yum.repos.d/HDP*repo 文件。
+
+2. 修改 后台 /etc/yum.repos.d/ 地址。
+
+3. 不仅仅是 n01 要改，其他节点也可能要改。
+
+4. 节点移动中出现的问题：
+
+4.1. http 连接不上的情况： 重启 ambari server / agent 
+
+4.2. 重启服务检查失败：不断重试！
+
+# 节点添加遇到的问题
+
+1. 节点添加，可以检测到datanode ， 但是不是alive
+
+2. 由于我添加节点是基于上一个节点的虚拟机添加的，很可能有配置冲突或者缺失的问题。
+
+
+
+# 全新添加节点需要做的事情：
+
+
+
+
+
+
+# 全新添加节点需要做的事情：
+
+
+1. 调通网络
+
+2. 复制配置
+
+3. 修改配置 
+
+# exception: 
+
+/usr/hdp/current/hadoop-hdfs-namenode/bin/hdfs dfsadmin -fs hdfs://n01.kylin.hdp:8020 -safemode get
+safemode: Call From n01.kylin.hdp/10.0.2.11 to n01.kylin.hdp:8020 failed on connection exception: java.net.ConnectException: Connection refused; For more details see:  http://wiki.apache.org/hadoop/ConnectionRefused
+
+/usr/hdp/current/hadoop-hdfs-namenode/bin/hdfs dfsadmin -fs hdfs://n01.kylin.hdp:8020 -safemode get
+safemode: Call From 8020 failed on connection exception: java.net.ConnectException: Connection refused; For more details see:  http://wiki.apache.org/hadoop/ConnectionRefused
+
+
+# 
+Python script has been killed due to timeout after waiting 300 secs
+
+2016-02-16 17:20:46,757 ERROR [main] client.AsyncProcess: Failed to get region location 
+
+
+
+/usr/hdp/current/hbase-client/bin/hbase --config /usr/hdp/current/hbase-client/conf shell /var/lib/ambari-agent/tmp/hbase-smoke.sh && /var/lib/ambari-agent/tmp/hbaseSmokeVerify.sh /usr/hdp/current/hbase-client/conf id000a0e02_date311616 /usr/hdp/current/hbase-client/bin/hbase

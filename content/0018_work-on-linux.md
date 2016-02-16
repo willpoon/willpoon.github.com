@@ -408,4 +408,8 @@ ECS通过镜像快速创建新服务器
 
 https://help.aliyun.com/knowledge_detail/5988886.html?spm=5176.7618386.5.13.v4NlmT#ECS通过镜像快速创建新服务器
 
+## curl 
+
+curl http..../ 结尾有 / 和 没有 / 的效果是不一样的！
+
 

@@ -2,12 +2,12 @@
 /archives.html
 /tags.html
 /categories.html
+/big_data.html
 /poons-talk.html
 /work-on-Mac.html
 /oracle-biee-develop.html
 /play-databases.html
 /setup-and-config-my-github-blog-with-pelican.html
-/big_data.html
 /work-on-linux.html
 /banking-finance.html
 /programming.html

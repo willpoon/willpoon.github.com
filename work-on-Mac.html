@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2016-02-04
+    on 2016-02-08
 
         |
         tags:         <a href="/tag/mac.html">Mac</a>
@@ -176,6 +176,7 @@
 <li><a href="#sudo-umount-volumestouro">sudo umount /Volumes/TOURO/</a></li>
 <li><a href="#virtual-box-nat-network-nat">virtual box nat network 和 nat 比较</a></li>
 <li><a href="#md5_1">获得 字符串的md5值</a></li>
+<li><a href="#ambari-agent-etcambari-serverconfambariproperties">ambari agent  的安装过程中，依赖配置文件：/etc/ambari-server/conf/ambari.properties</a></li>
 </ul>
 </div>
         </nav>
@@ -385,6 +386,9 @@ poon@Wills-MacBook-Pro:~/sunline$ </p>
 <h1 id="md5_1">获得 字符串的md5值</h1>
 <p>poon@Wills-MacBook-Pro:~/Snippets/python$ echo -n 'passwordStr' | openssl md5
 bffc5e18cd9cf8d7a18c341ac0d163bc</p>
+<h1 id="ambari-agent-etcambari-serverconfambariproperties">ambari agent  的安装过程中，依赖配置文件：/etc/ambari-server/conf/ambari.properties</h1>
+<p>导致agent 安装失败。
+手工安装 server 和 metrics ， 再次启动 agent ， ok！</p>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>
