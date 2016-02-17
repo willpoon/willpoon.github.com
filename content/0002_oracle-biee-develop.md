@@ -654,6 +654,15 @@ pms 应用程序角色 -> system-jazn-data.xml 角色配置 -> catalog 报表和
 
 http://www.rittmanmead.com/2012/08/obiee-fmw-and-networking-on-dhcp-hosts/
 
+## 视图设计原则：
+
+1. 视图放在rpd
+
+2. 视图放在db
+
+如何取舍？
+
+如果涉及变量传递（会话变量），则放rpd，否则尽量放db。
 
 
 现象： mac 下 chrome 无法访问 catalog 共享目录， 浏览器弹出窗口报这个错误。
@@ -920,7 +929,6 @@ oracle 官方认证 的博客
 ### 业内人物推荐 
 
 ####  Andrew C. Oliver
-
 
 
 

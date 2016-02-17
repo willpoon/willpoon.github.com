@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2016-02-16
+    on 2016-02-17
 
         |
         tags:         <a href="/tag/da-shu-ju.html">大数据</a>
@@ -294,6 +294,14 @@
 <li><a href="#_25">全新添加节点需要做的事情：</a></li>
 <li><a href="#exception">exception:</a></li>
 <li><a href="#_26"></a></li>
+<li><a href="#namenode">namenode 安装问题解决：</a><ul>
+<li><a href="#_27">背景</a></li>
+<li><a href="#_28">问题：</a></li>
+<li><a href="#_29">解决：</a></li>
+</ul>
+</li>
+<li><a href="#hbase">解决hbase 不能启动的问题：</a></li>
+<li><a href="#_30">各节点对时</a></li>
 </ul>
 </div>
         </nav>
@@ -3326,6 +3334,29 @@ safemode: Call From 8020 failed on connection exception: java.net.ConnectExcepti
 <p>Python script has been killed due to timeout after waiting 300 secs</p>
 <p>2016-02-16 17:20:46,757 ERROR [main] client.AsyncProcess: Failed to get region location </p>
 <p>/usr/hdp/current/hbase-client/bin/hbase --config /usr/hdp/current/hbase-client/conf shell /var/lib/ambari-agent/tmp/hbase-smoke.sh &amp;&amp; /var/lib/ambari-agent/tmp/hbaseSmokeVerify.sh /usr/hdp/current/hbase-client/conf id000a0e02_date311616 /usr/hdp/current/hbase-client/bin/hbase</p>
+<h1 id="namenode">namenode 安装问题解决：</h1>
+<h2 id="_27">背景</h2>
+<p>更改了namenode所在的节点</p>
+<h2 id="_28">问题：</h2>
+<p>报 8020 n01 端口 connection refused </p>
+<h2 id="_29">解决：</h2>
+<p>把hbase.site.xml 中的 n01 改成n02 : </p>
+<p><property>
+<name>hbase.rootdir</name>
+<value>hdfs://n02.kylin.hdp:8020/apps/hbase/data</value>
+</property></p>
+<p>2016-02-17 00:12:50,157 INFO  [n01:16000.activeMasterManager] zookeeper.MetaTableLocator: Failed verification of hbase:meta,,1 at address=n01.kylin.hdp,16020,1455635936835, exception=org.apache.hadoop.hbase.NotServingRegionException: Region hbase:meta,,1 is not online on n01.kylin.hdp,16020,1455639158319</p>
+<p>java.net.ConnectException: Call From n01.kylin.hdp/10.0.2.11 to n01.kylin.hdp:8020 failed on connection exception: java.net.ConnectException: Connection refused; For more details see:  http://wiki.apache.org/hadoop/ConnectionRefused</p>
+<p>[root@n02 ~]# find / -name "*.xml" | xargs grep -i "n01.kylin.hdp\:8020"
+/etc/hadoop/conf.backup/core-site.xml:      <value>hdfs://n01.kylin.hdp:8020</value>
+/etc/hbase/conf.backup/core-site.xml:      <value>hdfs://n01.kylin.hdp:8020</value>
+/etc/hbase/conf.backup/hdfs-site.xml:      <value>n01.kylin.hdp:8020</value>
+/etc/hbase/conf.backup/hbase-site.xml:      <value>hdfs://n01.kylin.hdp:8020/apps/hbase/data</value></p>
+<p>2016-02-17 00:29:54,754 ERROR [RS_OPEN_REGION-n01:16020-1] coprocessor.CoprocessorHost: The coprocessor org.apache.kylin.storage.hbase.coprocessor.endpoint.IIEndpoint threw java.net.ConnectException: Call From n01.kylin.hdp/10.0.2.11 to n01.kylin.hdp:8020 failed on connection exception: java.net.ConnectException: Connection refused; For more details see:  http://wiki.apache.org/hadoop/ConnectionRefused</p>
+<h1 id="hbase">解决hbase 不能启动的问题：</h1>
+<p>先添加一个 hbase master ， 然后再 删除不能启动的 hbase master 。 </p>
+<h1 id="_30">各节点对时</h1>
+<p>ssh n01.kylin.hdp date ; ssh n02.kylin.hdp date; ssh n03.kylin.hdp date ; ssh n04.kylin.hdp date</p>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>

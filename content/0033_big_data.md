@@ -3959,3 +3959,59 @@ Python script has been killed due to timeout after waiting 300 secs
 
 
 /usr/hdp/current/hbase-client/bin/hbase --config /usr/hdp/current/hbase-client/conf shell /var/lib/ambari-agent/tmp/hbase-smoke.sh && /var/lib/ambari-agent/tmp/hbaseSmokeVerify.sh /usr/hdp/current/hbase-client/conf id000a0e02_date311616 /usr/hdp/current/hbase-client/bin/hbase
+
+
+
+# namenode 安装问题解决：
+
+## 背景
+
+更改了namenode所在的节点
+
+## 问题：
+
+报 8020 n01 端口 connection refused 
+
+## 解决： 
+
+
+把hbase.site.xml 中的 n01 改成n02 : 
+
+<property>
+      <name>hbase.rootdir</name>
+      <value>hdfs://n02.kylin.hdp:8020/apps/hbase/data</value>
+    </property>
+
+
+
+
+2016-02-17 00:12:50,157 INFO  [n01:16000.activeMasterManager] zookeeper.MetaTableLocator: Failed verification of hbase:meta,,1 at address=n01.kylin.hdp,16020,1455635936835, exception=org.apache.hadoop.hbase.NotServingRegionException: Region hbase:meta,,1 is not online on n01.kylin.hdp,16020,1455639158319
+
+
+
+java.net.ConnectException: Call From n01.kylin.hdp/10.0.2.11 to n01.kylin.hdp:8020 failed on connection exception: java.net.ConnectException: Connection refused; For more details see:  http://wiki.apache.org/hadoop/ConnectionRefused
+
+
+
+
+[root@n02 ~]# find / -name "*.xml" | xargs grep -i "n01\.kylin\.hdp\:8020"
+/etc/hadoop/conf.backup/core-site.xml:      <value>hdfs://n01.kylin.hdp:8020</value>
+/etc/hbase/conf.backup/core-site.xml:      <value>hdfs://n01.kylin.hdp:8020</value>
+/etc/hbase/conf.backup/hdfs-site.xml:      <value>n01.kylin.hdp:8020</value>
+/etc/hbase/conf.backup/hbase-site.xml:      <value>hdfs://n01.kylin.hdp:8020/apps/hbase/data</value>
+
+
+2016-02-17 00:29:54,754 ERROR [RS_OPEN_REGION-n01:16020-1] coprocessor.CoprocessorHost: The coprocessor org.apache.kylin.storage.hbase.coprocessor.endpoint.IIEndpoint threw java.net.ConnectException: Call From n01.kylin.hdp/10.0.2.11 to n01.kylin.hdp:8020 failed on connection exception: java.net.ConnectException: Connection refused; For more details see:  http://wiki.apache.org/hadoop/ConnectionRefused
+
+
+# 解决hbase 不能启动的问题：
+
+先添加一个 hbase master ， 然后再 删除不能启动的 hbase master 。 
+
+
+# 各节点对时
+
+ssh n01.kylin.hdp date ; ssh n02.kylin.hdp date; ssh n03.kylin.hdp date ; ssh n04.kylin.hdp date
+
+
+

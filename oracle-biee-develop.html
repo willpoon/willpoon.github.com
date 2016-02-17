@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2016-02-04
+    on 2016-02-17
 
         |
         tags:         <a href="/tag/oracle.html">oracle</a>
@@ -204,6 +204,7 @@
 </li>
 <li><a href="#exception-handle">异常处理 exception handle</a><ul>
 <li><a href="#cannot-read-property-itemsinfos-of-null">Cannot read property 'itemsinfos' of null</a></li>
+<li><a href="#_19">视图设计原则：</a></li>
 <li><a href="#ldap-7001">ldap 7001 端口无法访问的问题！</a></li>
 <li><a href="#nqserror-73006">[nQSError: 73006</a><ul>
 <li><a href="#bieeipbieeweblogicbiserver">biee服务器主机ip变更后，biee服务（weblogic、biserver） 无法启动。</a></li>
@@ -213,7 +214,7 @@
 <li><a href="#nqserror43119-nqserror42039-report-by">nqserror:43119 nqserror:42039: report 总计函数的by子句中的列必须在选择列表中。</a></li>
 <li><a href="#biee-catalog_1">biee catalog 指向 不正确如何解决？</a></li>
 <li><a href="#rpd-repository-rpd">加载的rpd 不是我们想要的repository ， 怎么改成我们要的rpd?</a></li>
-<li><a href="#_19">仪表板报表爆表了怎么办？</a></li>
+<li><a href="#_20">仪表板报表爆表了怎么办？</a></li>
 <li><a href="#biee-111150-111155">求助：biee 11.1.1.5.0 打补丁到 11.1.1.5.5 之后，报表导出不再自动合并，如何解决？</a></li>
 <li><a href="#biee_9">求助： biee 创建用户后，无法登陆的问题？</a></li>
 <li><a href="#logical-dimension_1">logical dimension 父节点不能自动汇总？即子节点之和不等于父节点。</a></li>
@@ -222,11 +223,11 @@
 </li>
 </ul>
 </li>
-<li><a href="#_20">行业动态</a><ul>
+<li><a href="#_21">行业动态</a><ul>
 <li><a href="#biee-12c">biee 12c 发布啦!</a></li>
 </ul>
 </li>
-<li><a href="#_21">同行参考</a><ul>
+<li><a href="#_22">同行参考</a><ul>
 <li><a href="#httpgerardnicocom">http://gerardnico.com</a></li>
 <li><a href="#http123obicom">http://123obi.com</a></li>
 <li><a href="#httpwwwobiee247com">http://www.obiee247.com</a></li>
@@ -244,10 +245,10 @@
 <li><a href="#httpitconsultingjobsblogspotcom">http://itconsultingjobs.blogspot.com</a></li>
 </ul>
 </li>
-<li><a href="#_22">知己知彼</a><ul>
+<li><a href="#_23">知己知彼</a><ul>
 <li><a href="#tableau">tableau</a></li>
 <li><a href="#qlikview">qlikview</a></li>
-<li><a href="#_23">大家都卖多少钱？(时薪)</a><ul>
+<li><a href="#_24">大家都卖多少钱？(时薪)</a><ul>
 <li><a href="#oracle-consultants-blog">oracle consultants blog</a><ul>
 <li><a href="#httpiloveoraclecom">http://iloveoracle.com</a></li>
 <li><a href="#httpandrejusbblogspotsg">http://andrejusb.blogspot.sg</a></li>
@@ -256,7 +257,7 @@
 <li><a href="#httpsrichardfootewordpresscom_1">https://richardfoote.wordpress.com</a></li>
 </ul>
 </li>
-<li><a href="#_24">业内人物推荐</a><ul>
+<li><a href="#_25">业内人物推荐</a><ul>
 <li><a href="#andrew-c-oliver">Andrew C. Oliver</a></li>
 </ul>
 </li>
@@ -746,6 +747,17 @@ key and foreign key relationship. </p>
 <h1 id="exception-handle">异常处理 exception handle</h1>
 <h2 id="cannot-read-property-itemsinfos-of-null">Cannot read property 'itemsinfos' of null</h2>
 <p>http://www.rittmanmead.com/2012/08/obiee-fmw-and-networking-on-dhcp-hosts/</p>
+<h2 id="_19">视图设计原则：</h2>
+<ol>
+<li>
+<p>视图放在rpd</p>
+</li>
+<li>
+<p>视图放在db</p>
+</li>
+</ol>
+<p>如何取舍？</p>
+<p>如果涉及变量传递（会话变量），则放rpd，否则尽量放db。</p>
 <p>现象： mac 下 chrome 无法访问 catalog 共享目录， 浏览器弹出窗口报这个错误。</p>
 <p>解决： 这时浏览器兼容性的问题。网上建议: chrome 使用 ie tab 插件（我怀疑不行，因为mac下没有ie dll 之类的驱动。） 。或者：  firefox ， 我测试过，非常好，非常快！ </p>
 <p>ref: </p>
@@ -823,7 +835,7 @@ dim... 没有对应上！</p>
 <p>修改 NQSConfig.INI</p>
 <pre><code>Star = yourRPDname.rpd , DEAULT;
 </code></pre>
-<h3 id="_19">仪表板报表爆表了怎么办？</h3>
+<h3 id="_20">仪表板报表爆表了怎么办？</h3>
 <p>分析－结果－编辑视图－编辑图形属性－比例－比例和限制－最大值：把最大值调到最大业务实际值以上。</p>
 <p>如果rpd通过前端em上传的，通常会出现rpd名字被修改，导致引用不正确的情况。</p>
 <h3 id="biee-111150-111155">求助：biee 11.1.1.5.0 打补丁到 11.1.1.5.5 之后，报表导出不再自动合并，如何解决？</h3>
@@ -843,12 +855,12 @@ dim... 没有对应上！</p>
 <p>但在展示层中，我们可以只设置如下几层：</p>
 <p>lvl1 - lvl2 - lvl3 - lvl4 </p>
 <p>这样，当我们在前台点击 lvl4 时，就不会继续展开。</p>
-<h1 id="_20">行业动态</h1>
+<h1 id="_21">行业动态</h1>
 <h2 id="biee-12c">biee 12c 发布啦!</h2>
 <p>2015-12-15 17:07</p>
 <p>有虚拟机可以下载！ 详见:</p>
 <p>http://www.oracle.com/technetwork/middleware/bi-foundation/obiee-samples-167534.html</p>
-<h1 id="_21">同行参考</h1>
+<h1 id="_22">同行参考</h1>
 <h2 id="httpgerardnicocom">http://gerardnico.com</h2>
 <p>一个wiki，站长非常有经验。一度认为是oracle官方开发人员！</p>
 <h2 id="http123obicom">http://123obi.com</h2>
@@ -881,10 +893,10 @@ dim... 没有对应上！</p>
 <p>印度人 </p>
 <h2 id="httpitconsultingjobsblogspotcom">http://itconsultingjobs.blogspot.com</h2>
 <p>如题，猎头服务。 更新也比较及时。</p>
-<h1 id="_22">知己知彼</h1>
+<h1 id="_23">知己知彼</h1>
 <h2 id="tableau">tableau</h2>
 <h2 id="qlikview">qlikview</h2>
-<h2 id="_23">大家都卖多少钱？(时薪)</h2>
+<h2 id="_24">大家都卖多少钱？(时薪)</h2>
 <p>http://www.guru.com/d/freelancers/q/obiee/</p>
 <h3 id="oracle-consultants-blog">oracle consultants blog</h3>
 <p>keyword: obiee freelance  consultant site:blogspot.com</p>
@@ -897,7 +909,7 @@ dim... 没有对应上！</p>
 <p>oracle 官方认证 的博客</p>
 <h4 id="httpsrichardfootewordpresscom_1">https://richardfoote.wordpress.com</h4>
 <p>很干货、很务实的博客。 从2007年一直以来都有更新</p>
-<h3 id="_24">业内人物推荐</h3>
+<h3 id="_25">业内人物推荐</h3>
 <h4 id="andrew-c-oliver">Andrew C. Oliver</h4>
 
         <div class="sharethis-bottom">

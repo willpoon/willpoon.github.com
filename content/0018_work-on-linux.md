@@ -412,4 +412,9 @@ https://help.aliyun.com/knowledge_detail/5988886.html?spm=5176.7618386.5.13.v4Nl
 
 curl http..../ 结尾有 / 和 没有 / 的效果是不一样的！
 
+## 手工同步服务器时间
+
+ ntpdate 202.118.1.47
+
+
 
