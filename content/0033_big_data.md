@@ -2151,7 +2151,6 @@ ambari-agent restart
 
 
 # THP 
-
 The following hosts have Transparent Huge Pages (THP) enabled. THP should be disabled to avoid potential Hadoop performance issues.
 
 
@@ -2171,6 +2170,12 @@ The following hosts have Transparent Huge Pages (THP) enabled. THP should be dis
 [root@n01 ~]# echo never > /sys/kernel/mm/transparent_hugepage/enabled
 [root@n01 ~]# echo never > /sys/kernel/mm/transparent_hugepage/defrag
 [root@n01 ~]# 
+
+echo never > /sys/kernel/mm/redhat_transparent_hugepage/defrag
+echo never > /sys/kernel/mm/redhat_transparent_hugepage/enabled
+echo never > /sys/kernel/mm/transparent_hugepage/enabled
+echo never > /sys/kernel/mm/transparent_hugepage/defrag
+
 
 
 # 在这个目录下，可以查看到从repo下载的安装包和 repo同步的信息。 无论是在线还是离线的repo . 
@@ -4008,10 +4013,488 @@ java.net.ConnectException: Call From n01.kylin.hdp/10.0.2.11 to n01.kylin.hdp:80
 
 先添加一个 hbase master ， 然后再 删除不能启动的 hbase master 。 
 
+最终发现其实是ntp同步的问题。
 
 # 各节点对时
 
 ssh n01.kylin.hdp date ; ssh n02.kylin.hdp date; ssh n03.kylin.hdp date ; ssh n04.kylin.hdp date
 
+
+# 
+
+tail: cannot open `/var/log/ambari-agent/ambari-agent.log' for reading: No such file or directory
+
+
+直接 touch !
+
+# 通过AMBARI 手工添加节点，根本上要解决的是依赖的问题！
+
+1. 数据库依赖 ： postgre 
+
+2. ambari server/agent : 需要手工安装！！
+
+3. 旧的配置需要手工清理！  host cleanup ! 
+
+
+
+
+# 
+
+
+iTraceback (most recent call last):
+  File "/var/lib/ambari-agent/cache/common-services/AMBARI_METRICS/0.1.0/package/scripts/metrics_monitor.py", line 58, in <module>
+    AmsMonitor().execute()
+  File "/usr/lib/python2.6/site-packages/resource_management/libraries/script/script.py", line 219, in execute
+    method(env)
+  File "/var/lib/ambari-agent/cache/common-services/AMBARI_METRICS/0.1.0/package/scripts/metrics_monitor.py", line 40, in start
+    action = 'start'
+  File "/usr/lib/python2.6/site-packages/ambari_commons/os_family_impl.py", line 89, in thunk
+    return fn(*args, **kwargs)
+  File "/var/lib/ambari-agent/cache/common-services/AMBARI_METRICS/0.1.0/package/scripts/ams_service.py", line 90, in ams_service
+    user=params.ams_user
+  File "/usr/lib/python2.6/site-packages/resource_management/core/base.py", line 154, in __init__
+    self.env.run()
+  File "/usr/lib/python2.6/site-packages/resource_management/core/environment.py", line 158, in run
+    self.run_action(resource, action)
+  File "/usr/lib/python2.6/site-packages/resource_management/core/environment.py", line 121, in run_action
+    provider_action()
+  File "/usr/lib/python2.6/site-packages/resource_management/core/providers/system.py", line 238, in action_run
+    tries=self.resource.tries, try_sleep=self.resource.try_sleep)
+  File "/usr/lib/python2.6/site-packages/resource_management/core/shell.py", line 70, in inner
+    result = function(command, **kwargs)
+  File "/usr/lib/python2.6/site-packages/resource_management/core/shell.py", line 92, in checked_call
+    tries=tries, try_sleep=try_sleep)
+  File "/usr/lib/python2.6/site-packages/resource_management/core/shell.py", line 140, in _call_wrapper
+    result = _call(command, **kwargs_copy)
+  File "/usr/lib/python2.6/site-packages/resource_management/core/shell.py", line 291, in _call
+    raise Fail(err_msg)
+resource_management.core.exceptions.Fail: Execution of '/usr/sbin/ambari-metrics-monitor --config /etc/ambari-metrics-monitor/conf/ start' returned 255. psutil build directory is not empty, continuing...
+Verifying Python version compatibility...
+Using python  /usr/bin/python2.6
+Checking for previously running Metric Monitor...
+Starting ambari-metrics-monitor
+/usr/sbin/ambari-metrics-monitor: line 148: /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out: Permission denied
+Verifying ambari-metrics-monitor process status...
+ERROR: ambari-metrics-monitor start failed. For more details, see /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out:
+====================
+2016-02-16 19:38:23,880 [INFO] emitter.py:91 - server: http://n01.kylin.hdp:6188/ws/v1/timeline/metrics
+2016-02-16 19:39:23,894 [INFO] emitter.py:91 - server: http://n01.kylin.hdp:6188/ws/v1/timeline/metrics
+2016-02-16 19:40:23,906 [INFO] emitter.py:91 - server: http://n01.kylin.hdp:6188/ws/v1/timeline/metrics
+2016-02-16 19:41:23,925 [INFO] emitter.py:91 - server: http://n01.kylin.hdp:6188/ws/v1/timeline/metrics
+2016-02-16 19:42:23,943 [INFO] emitter.py:91 - server: http://n01.kylin.hdp:6188/ws/v1/timeline/metrics
+2016-02-16 19:43:23,958 [INFO] emitter.py:91 - server: http://n01.kylin.hdp:6188/ws/v1/timeline/metrics
+2016-02-16 19:44:23,971 [INFO] emitter.py:91 - server: http://n01.kylin.hdp:6188/ws/v1/timeline/metrics
+2016-02-16 19:45:23,990 [INFO] emitter.py:91 - server: http://n01.kylin.hdp:6188/ws/v1/timeline/metrics
+2016-02-16 19:46:24,002 [INFO] emitter.py:91 - server: http://n01.kylin.hdp:6188/ws/v1/timeline/metrics
+2016-02-16 19:47:24,017 [INFO] emitter.py:91 - server: http://n01.kylin.hdp:6188/ws/v1/timeline/metrics
+====================
+Monitor out at: /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out
+
+
+# ambari hbase : connection failed: error 111 connection refused to 16030
+
+
+http://stackoverflow.com/questions/33866576/connection-issue-when-using-hbase-in-ambari
+
+
+
+I have fix this issue. I read the log file in /var/log/hbase/*.log of my region servers ,and find that it's clock is not sync with the master's. So I make all the servers to sync it's clock to the master's using ntpd. Then I restart the ambari components and no alert showed up!!! Think this may help those with the problem.
+
+
+hbase region server 不能启动的原因： 各节点之间的时间不同步！
+
+
+# ambari 
+
+./log/ambari-agent/ambari-alerts.log:ERROR 2016-02-18 09:23:27,783 script_alert.py:112 - [Alert][hive_server_process] Failed with result CRITICAL: ['Connection failed on host n02.kylin.hdp:10000 (Traceback (most recent call last):\n  File "/var/lib/ambari-agent/cache/common-services/HIVE/0.12.0.2.0/package/alerts/alert_hive_thrift_port.py", line 192, in execute\n    ssl_keystore=hive_ssl_keystore_path, ssl_password=hive_ssl_keystore_password)\n  File "/usr/lib/python2.6/site-packages/resource_management/libraries/functions/hive_check.py", line 69, in check_thrift_port_sasl\n    timeout=beeline_check_timeout\n  File "/usr/lib/python2.6/site-packages/resource_management/core/base.py", line 154, in __init__\n    self.env.run()\n  File "/usr/lib/python2.6/site-packages/resource_management/core/environment.py", line 158, in run\n    self.run_action(resource, action)\n  File "/usr/lib/python2.6/site-packages/resource_management/core/environment.py", line 121, in run_action\n    provider_action()\n  File "/usr/lib/python2.6/site-packages/resource_management/core/providers/system.py", line 238, in action_run\n    tries=self.resource.tries, try_sleep=self.resource.try_sleep)\n  File "/usr/lib/python2.6/site-packages/resource_management/core/shell.py", line 70, in inner\n    result = function(command, **kwargs)\n  File "/usr/lib/python2.6/site-packages/resource_management/core/shell.py", line 92, in checked_call\n    tries=tries, try_sleep=try_sleep)\n  File "/usr/lib/python2.6/site-packages/resource_management/core/shell.py", line 140, in _call_wrapper\n    result = _call(command, **kwargs_copy)\n  File "/usr/lib/python2.6/site-packages/resource_management/core/shell.py", line 291, in _call\n    raise Fail(err_msg)\nFail: Execution of \'! beeline -u \'jdbc:hive2://n02.kylin.hdp:10000/;transportMode=binary\' -e \'\' 2>&1| awk \'{print}\'|grep -i -e \'Connection refused\' -e \'Invalid URL\'\' returned 1. Error: Could not open client transport with JDBC Uri: jdbc:hive2://n02.kylin.hdp:10000/;transportMode=binary: java.net.ConnectException: Connection refused (state=08S01,code=0)\nError: Could not open client transport with JDBC Uri: jdbc:hive2://n02.kylin.hdp:10000/;transportMode=binary: java.net.ConnectException: Connection refused (state=08S01,code=0)\n)']
+
+重启 hiveServer2 即可！
+
+
+
+# 平衡hdfs 节点 存储 
+
+
+[hdfs@n01 bin]$  hadoop balancer 
+DEPRECATED: Use of this script to execute hdfs command is deprecated.
+Instead use the hdfs command for it.
+
+16/02/18 11:00:01 INFO balancer.Balancer: namenodes  = [hdfs://n01.kylin.hdp:8020]
+16/02/18 11:00:01 INFO balancer.Balancer: parameters = Balancer.BalancerParameters [BalancingPolicy.Node, threshold = 10.0, max idle iteration = 5, #excluded nodes = 0, #included nodes = 0, #source nodes = 0, #blockpools = 0, run during upgrade = false]
+16/02/18 11:00:01 INFO balancer.Balancer: included nodes = []
+16/02/18 11:00:01 INFO balancer.Balancer: excluded nodes = []
+16/02/18 11:00:01 INFO balancer.Balancer: source nodes = []
+Time Stamp               Iteration#  Bytes Already Moved  Bytes Left To Move  Bytes Being Moved
+16/02/18 11:00:04 INFO balancer.KeyManager: Block token params received from NN: update interval=10hrs, 0sec, token lifetime=10hrs, 0sec
+16/02/18 11:00:04 INFO block.BlockTokenSecretManager: Setting block keys
+16/02/18 11:00:04 INFO balancer.KeyManager: Update block keys every 2hrs, 30mins, 0sec
+16/02/18 11:00:05 INFO balancer.Balancer: dfs.balancer.movedWinWidth = 5400000 (default=5400000)
+16/02/18 11:00:05 INFO balancer.Balancer: dfs.balancer.moverThreads = 1000 (default=1000)
+16/02/18 11:00:05 INFO balancer.Balancer: dfs.balancer.dispatcherThreads = 200 (default=200)
+16/02/18 11:00:05 INFO balancer.Balancer: dfs.datanode.balance.max.concurrent.moves = 5 (default=5)
+16/02/18 11:00:05 INFO balancer.Balancer: dfs.balancer.getBlocks.size = 2147483648 (default=2147483648)
+16/02/18 11:00:05 INFO balancer.Balancer: dfs.balancer.getBlocks.min-block-size = 10485760 (default=10485760)
+16/02/18 11:00:05 INFO block.BlockTokenSecretManager: Setting block keys
+16/02/18 11:00:05 INFO balancer.Balancer: dfs.balancer.max-size-to-move = 10737418240 (default=10737418240)
+16/02/18 11:00:05 INFO balancer.Balancer: dfs.blocksize = 134217728 (default=134217728)
+16/02/18 11:00:05 INFO net.NetworkTopology: Adding a new node: /default-rack/10.0.2.13:50010
+16/02/18 11:00:05 INFO net.NetworkTopology: Adding a new node: /default-rack/10.0.2.12:50010
+16/02/18 11:00:05 INFO net.NetworkTopology: Adding a new node: /default-rack/10.0.2.14:50010
+16/02/18 11:00:05 INFO net.NetworkTopology: Adding a new node: /default-rack/10.0.2.11:50010
+16/02/18 11:00:05 INFO balancer.Balancer: 0 over-utilized: []
+16/02/18 11:00:05 INFO balancer.Balancer: 1 underutilized: [10.0.2.14:50010:DISK]
+16/02/18 11:00:05 INFO balancer.Balancer: Need to move 3.29 GB to make the cluster balanced.
+16/02/18 11:00:05 INFO balancer.Balancer: chooseStorageGroups for SAME_RACK: overUtilized => underUtilized
+16/02/18 11:00:05 INFO balancer.Balancer: chooseStorageGroups for SAME_RACK: overUtilized => belowAvgUtilized
+16/02/18 11:00:05 INFO balancer.Balancer: chooseStorageGroups for SAME_RACK: underUtilized => aboveAvgUtilized
+16/02/18 11:00:05 INFO balancer.Balancer: Decided to move 475.67 MB bytes from 10.0.2.13:50010:DISK to 10.0.2.14:50010:DISK
+16/02/18 11:00:05 INFO balancer.Balancer: Decided to move 3.38 GB bytes from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK
+16/02/18 11:00:05 INFO balancer.Balancer: Decided to move 2.86 GB bytes from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK
+16/02/18 11:00:05 INFO balancer.Balancer: chooseStorageGroups for ANY_OTHER: overUtilized => underUtilized
+16/02/18 11:00:05 INFO balancer.Balancer: chooseStorageGroups for ANY_OTHER: overUtilized => belowAvgUtilized
+16/02/18 11:00:05 INFO balancer.Balancer: chooseStorageGroups for ANY_OTHER: underUtilized => aboveAvgUtilized
+16/02/18 11:00:05 INFO balancer.Balancer: Will move 6.70 GB in this iteration
+16/02/18 11:00:05 INFO balancer.Dispatcher: Start moving blk_1073749664_8879 with size=72614176 from 10.0.2.13:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.11:50010
+16/02/18 11:00:05 INFO balancer.Dispatcher: Start moving blk_1073749404_8619 with size=91326717 from 10.0.2.13:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.11:50010
+16/02/18 11:00:05 INFO balancer.Dispatcher: Start moving blk_1073749339_8554 with size=21432503 from 10.0.2.13:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.11:50010
+16/02/18 11:00:05 INFO balancer.Dispatcher: Start moving blk_1073741826_1002 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:00:05 INFO balancer.Dispatcher: Start moving blk_1073749337_8552 with size=134217728 from 10.0.2.13:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.11:50010
+16/02/18 11:00:23 INFO balancer.Dispatcher: Successfully moved blk_1073749339_8554 with size=21432503 from 10.0.2.13:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.11:50010
+16/02/18 11:00:23 INFO balancer.Dispatcher: Start moving blk_1073749272_8487 with size=118401068 from 10.0.2.13:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.11:50010
+16/02/18 11:01:01 INFO balancer.Dispatcher: Successfully moved blk_1073749664_8879 with size=72614176 from 10.0.2.13:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.11:50010
+16/02/18 11:01:01 INFO balancer.Dispatcher: Start moving blk_1073749271_8486 with size=134217728 from 10.0.2.13:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.11:50010
+16/02/18 11:01:20 INFO balancer.Dispatcher: Successfully moved blk_1073749404_8619 with size=91326717 from 10.0.2.13:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.11:50010
+16/02/18 11:01:20 INFO balancer.Dispatcher: Start moving blk_1073750001_9216 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:01:43 INFO balancer.Dispatcher: Successfully moved blk_1073741826_1002 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:01:43 INFO balancer.Dispatcher: Start moving blk_1073750000_9215 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:01:55 INFO balancer.Dispatcher: Successfully moved blk_1073749337_8552 with size=134217728 from 10.0.2.13:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.11:50010
+16/02/18 11:01:55 INFO balancer.Dispatcher: Start moving blk_1073749935_9150 with size=107481476 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:01:58 INFO balancer.Dispatcher: Successfully moved blk_1073749272_8487 with size=118401068 from 10.0.2.13:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.11:50010
+16/02/18 11:01:58 INFO balancer.Dispatcher: Start moving blk_1073749934_9149 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:02:51 INFO balancer.Dispatcher: Successfully moved blk_1073749271_8486 with size=134217728 from 10.0.2.13:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.11:50010
+16/02/18 11:02:51 INFO balancer.Dispatcher: Start moving blk_1073749933_9148 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:03:07 INFO balancer.Dispatcher: Successfully moved blk_1073750001_9216 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:03:07 INFO balancer.Dispatcher: Start moving blk_1073749932_9147 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:03:17 INFO balancer.Dispatcher: Successfully moved blk_1073749935_9150 with size=107481476 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:03:17 INFO balancer.Dispatcher: Start moving blk_1073749867_9082 with size=40505780 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:03:31 INFO balancer.Dispatcher: Successfully moved blk_1073750000_9215 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:03:31 INFO balancer.Dispatcher: Start moving blk_1073749866_9081 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:03:47 INFO balancer.Dispatcher: Successfully moved blk_1073749934_9149 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:03:47 INFO balancer.Dispatcher: Start moving blk_1073749865_9080 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:03:50 INFO balancer.Dispatcher: Successfully moved blk_1073749867_9082 with size=40505780 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:03:50 INFO balancer.Dispatcher: Start moving blk_1073749864_9079 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:04:37 INFO balancer.Dispatcher: Successfully moved blk_1073749933_9148 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:04:37 INFO balancer.Dispatcher: Start moving blk_1073749863_9078 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:04:51 INFO balancer.Dispatcher: Successfully moved blk_1073749932_9147 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:04:51 INFO balancer.Dispatcher: Start moving blk_1073749798_9013 with size=26737915 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:05:14 INFO balancer.Dispatcher: Successfully moved blk_1073749798_9013 with size=26737915 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:05:14 INFO balancer.Dispatcher: Start moving blk_1073749797_9012 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:05:17 INFO balancer.Dispatcher: Successfully moved blk_1073749866_9081 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:05:17 INFO balancer.Dispatcher: Start moving blk_1073749796_9011 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:05:34 INFO balancer.Dispatcher: Successfully moved blk_1073749864_9079 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:05:34 INFO balancer.Dispatcher: Start moving blk_1073749795_9010 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:05:36 INFO balancer.Dispatcher: Successfully moved blk_1073749865_9080 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:05:36 INFO balancer.Dispatcher: Start moving blk_1073749730_8945 with size=82671416 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:06:21 INFO balancer.Dispatcher: Successfully moved blk_1073749863_9078 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:06:21 INFO balancer.Dispatcher: Start moving blk_1073749729_8944 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:06:50 INFO balancer.Dispatcher: Successfully moved blk_1073749730_8945 with size=82671416 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:06:50 INFO balancer.Dispatcher: Start moving blk_1073741830_1006 with size=98340772 from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:07:04 INFO balancer.Dispatcher: Successfully moved blk_1073749796_9011 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:07:04 INFO balancer.Dispatcher: Start moving blk_1073741829_1005 with size=97380893 from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:07:06 INFO balancer.Dispatcher: Successfully moved blk_1073749797_9012 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:07:06 INFO balancer.Dispatcher: Start moving blk_1073741828_1004 with size=58504680 from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:07:10 INFO balancer.Dispatcher: Successfully moved blk_1073749795_9010 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:07:10 INFO balancer.Dispatcher: Start moving blk_1073741827_1003 with size=75996718 from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:07:57 INFO balancer.Dispatcher: Successfully moved blk_1073741828_1004 with size=58504680 from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:07:57 INFO balancer.Dispatcher: Start moving blk_1073751012_10242 with size=15830286 from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:08:07 INFO balancer.Dispatcher: Successfully moved blk_1073741830_1006 with size=98340772 from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:08:07 INFO balancer.Dispatcher: Start moving blk_1073748932_8147 with size=14698276 from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:08:07 INFO balancer.Dispatcher: Successfully moved blk_1073749729_8944 with size=134217728 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:08:07 INFO balancer.Dispatcher: Start moving blk_1073749599_8814 with size=14572978 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:08:13 INFO balancer.Dispatcher: Successfully moved blk_1073751012_10242 with size=15830286 from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:08:13 INFO balancer.Dispatcher: Start moving blk_1073749469_8684 with size=15730621 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:08:14 INFO balancer.Dispatcher: Successfully moved blk_1073741827_1003 with size=75996718 from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:08:14 INFO balancer.Dispatcher: Start moving blk_1073748532_7741 with size=98258470 from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:08:19 INFO balancer.Dispatcher: Successfully moved blk_1073748932_8147 with size=14698276 from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:08:19 INFO balancer.Dispatcher: Start moving blk_1073748530_7739 with size=106574765 from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:08:21 INFO balancer.Dispatcher: Successfully moved blk_1073749599_8814 with size=14572978 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:08:21 INFO balancer.Dispatcher: Start moving blk_1073748529_7738 with size=106793890 from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:08:24 INFO balancer.Dispatcher: Successfully moved blk_1073741829_1005 with size=97380893 from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:08:24 INFO balancer.Dispatcher: Start moving blk_1073748528_7737 with size=268435456 from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:08:25 INFO balancer.Dispatcher: Successfully moved blk_1073749469_8684 with size=15730621 from 10.0.2.11:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:08:25 INFO balancer.Dispatcher: Start moving blk_1073748526_7735 with size=268435456 from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:09:34 INFO balancer.Dispatcher: Successfully moved blk_1073748532_7741 with size=98258470 from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:09:43 INFO balancer.Dispatcher: Successfully moved blk_1073748530_7739 with size=106574765 from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:09:44 INFO balancer.Dispatcher: Successfully moved blk_1073748529_7738 with size=106793890 from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:10:37 INFO balancer.Dispatcher: Successfully moved blk_1073748528_7737 with size=268435456 from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+16/02/18 11:10:38 INFO balancer.Dispatcher: Successfully moved blk_1073748526_7735 with size=268435456 from 10.0.2.12:50010:DISK to 10.0.2.14:50010:DISK through 10.0.2.12:50010
+Feb 18, 2016 11:10:39 AM          0              3.68 GB             3.29 GB            6.70 GB
+16/02/18 11:10:48 INFO balancer.Balancer: dfs.balancer.movedWinWidth = 5400000 (default=5400000)
+16/02/18 11:10:48 INFO balancer.Balancer: dfs.balancer.moverThreads = 1000 (default=1000)
+16/02/18 11:10:48 INFO balancer.Balancer: dfs.balancer.dispatcherThreads = 200 (default=200)
+16/02/18 11:10:48 INFO balancer.Balancer: dfs.datanode.balance.max.concurrent.moves = 5 (default=5)
+16/02/18 11:10:48 INFO balancer.Balancer: dfs.balancer.getBlocks.size = 2147483648 (default=2147483648)
+16/02/18 11:10:48 INFO balancer.Balancer: dfs.balancer.getBlocks.min-block-size = 10485760 (default=10485760)
+16/02/18 11:10:48 INFO balancer.Balancer: dfs.balancer.max-size-to-move = 10737418240 (default=10737418240)
+16/02/18 11:10:48 INFO balancer.Balancer: dfs.blocksize = 134217728 (default=134217728)
+16/02/18 11:10:48 INFO net.NetworkTopology: Adding a new node: /default-rack/10.0.2.11:50010
+16/02/18 11:10:48 INFO net.NetworkTopology: Adding a new node: /default-rack/10.0.2.12:50010
+16/02/18 11:10:48 INFO net.NetworkTopology: Adding a new node: /default-rack/10.0.2.14:50010
+16/02/18 11:10:48 INFO net.NetworkTopology: Adding a new node: /default-rack/10.0.2.13:50010
+16/02/18 11:10:48 INFO balancer.Balancer: 0 over-utilized: []
+16/02/18 11:10:48 INFO balancer.Balancer: 0 underutilized: []
+The cluster is balanced. Exiting...
+Feb 18, 2016 11:10:48 AM          1              3.68 GB                 0 B               -1 B
+Feb 18, 2016 11:10:48 AM Balancing took 10.783266666666666 minutes
+
+
+
+# 使用ambari 添加计算节点的经历
+
+大年初一，在家闲得慌，于是打算为本地vbox 上的hadoop集群尝试增加一个节点，为阿里云节点扩展测试做准备。
+
+## 背景
+
+1. 本地virtualBox 上有一套3个节点(n01,n02,n03)的ambari hadoop 集群环境, 需要添加n04. 
+2. 阿里云上有一台单节点的ambari hadoop 集群环境 n01,  需要添加 n02,n03,n04
+3. 阿里云按时计费，而我经费有限。所以要在最短的时间内做好节点扩展，花最少的钱做最多的事情。
+4. 所以所有的准备工作，我都要在本地virtualBox上做好，把可能出现的异常都排除掉。保证在阿里云上的部署一次性成功完成！
+
+
+## 过程
+
+1. 新增主机
+为了减少新增节点主机的配置，我直接复制了邻近节点的主机镜像
+2. 修改ip/mac/hostname 
+不能与现有的冲突
+3. host cleanup
+我一开始没有做hostcleanup ， 而是直接把 ambari server / agent 都卸载了 ， 而还残留了很多配置文件，导致 在 ambari web 上register host的时候失败。
+然后我吧 ambari server 和 agent 都装上，register 成功，但是 节点3和节点4（新增节点）冲突，具体表现为：
+
+只要节点3和节点4同时启动，那么hdfs中统计到的：
+
+    DataNodes Status    3 live / 0 dead / 0 decommissioning
+
+只有3个 live ！
+
+但我明明有4个节点起来了啊！
+
+    DataNodes   4/4 Started
+
+也是显示 4个节点启动了！
+
+
+应该是4个live 才对！
+
+网上说是namenode和新的datanode通信有问题，于是我把namenode移动到新的节点上，问题依旧！
+
+而把namenode移动回来的过程中，又发生了很多异常问题！
+
+1. namenode无法启动 --  hbase.site.xml 中的n0? 错乱，修改之！
+2. hbase无法启动 -- 时间不同步
+3. region server 无法启动 -- 时间不同步
+
+
+我先排除了namenode的问题， 打算暂时把 hbase 的问题放一放，先添加节点。
+
+被无法register 的问题折腾了几天之后，我打算把新节点的环境还原到最干净的状态,就连mysql , postgres 都删除了。但是发现报各种目录缺失的异常。于是我就把postgres , ambari server 和 agent 手工装回去。
+
+竟然就注册通过了！
+
+注册通过之后，就好办了。
+
+
+# 使用ambari为hdp集群添加节点的若干问题
+
+### ambari add host 时，为何不能register 节点？老是报找不目录，文件没有权限之类的问题？返回值不为0 的情况？
+
+如果host来自其他节点的复制，不是全新的host ， 那么需要先做host cleanup。
+
+然后再在新节点上安装ambari server 和 agent 。 
+
+### 如何做host cleanup ?
+
+删除旧的目录，旧的配置文件。删除已经安装了的插件.
+
+注意： ambari server / agent / postgre 可以卸载重组，也可以不卸载，但可能需要reinitialize . 
+
+参考：
+
+http://clarkupdike.blogspot.com/2014/09/resetting-deleting-and-cleaning-out.html
+
+https://cwiki.apache.org/confluence/display/AMBARI/Host+Cleanup+for+Ambari+and+Stack
+
+
+
+### host cleanup 的时候，如何批量卸载节点上的组件？
+
+生成列表：
+
+    yum list installed | grep HDP|awk -F" " '{print "yum -erase -y",  $1}'
+
+串行移除：
+
+clean(){
+yum erase -y @local-HDP-2.3.4.0
+yum erase -y datafu_2_3_4_0_3485.noarch
+yum erase -y hadoop_2_3_4_0_3485.x86_64
+yum erase -y hadoop_2_3_4_0_3485-client.x86_64
+yum erase -y hadoop_2_3_4_0_3485-conf-pseudo.x86_64
+yum erase -y hadoop_2_3_4_0_3485-doc.x86_64
+yum erase -y hadoop_2_3_4_0_3485-hdfs.x86_64
+yum erase -y 2.7.1.2.3.4.0-3485.el6
+yum erase -y hadoop_2_3_4_0_3485-hdfs-fuse.x86_64
+yum erase -y 2.7.1.2.3.4.0-3485.el6
+yum erase -y 2.7.1.2.3.4.0-3485.el6
+yum erase -y 2.7.1.2.3.4.0-3485.el6
+yum erase -y hadoop_2_3_4_0_3485-hdfs-zkfc.x86_64
+yum erase -y 2.7.1.2.3.4.0-3485.el6
+yum erase -y hadoop_2_3_4_0_3485-libhdfs.x86_64
+yum erase -y hadoop_2_3_4_0_3485-mapreduce.x86_64
+yum erase -y 2.7.1.2.3.4.0-3485.el6
+yum erase -y hadoop_2_3_4_0_3485-source.x86_64
+yum erase -y hadoop_2_3_4_0_3485-yarn.x86_64
+yum erase -y 2.7.1.2.3.4.0-3485.el6
+yum erase -y 2.7.1.2.3.4.0-3485.el6
+yum erase -y 2.7.1.2.3.4.0-3485.el6
+yum erase -y 2.7.1.2.3.4.0-3485.el6
+yum erase -y hbase_2_3_4_0_3485.noarch
+yum erase -y hbase_2_3_4_0_3485-doc.noarch
+yum erase -y hbase_2_3_4_0_3485-master.noarch
+yum erase -y hbase_2_3_4_0_3485-regionserver.noarch
+yum erase -y hbase_2_3_4_0_3485-rest.noarch
+yum erase -y hbase_2_3_4_0_3485-thrift.noarch
+yum erase -y hbase_2_3_4_0_3485-thrift2.noarch
+yum erase -y hdp-select.noarch
+yum erase -y hive_2_3_4_0_3485.noarch
+yum erase -y hive_2_3_4_0_3485-hcatalog.noarch
+yum erase -y 1.2.1.2.3.4.0-3485.el6
+yum erase -y hive_2_3_4_0_3485-jdbc.noarch
+yum erase -y hive_2_3_4_0_3485-metastore.noarch
+yum erase -y hive_2_3_4_0_3485-server.noarch
+yum erase -y hive_2_3_4_0_3485-server2.noarch
+yum erase -y hive_2_3_4_0_3485-webhcat.noarch
+yum erase -y 1.2.1.2.3.4.0-3485.el6
+yum erase -y mysql-connector-java.noarch
+yum erase -y @local-HDP-2.3.4.0
+yum erase -y 0.5.0.2.3.4.0-3485.el6
+yum erase -y ranger_2_3_4_0_3485-hdfs-plugin.x86_64
+yum erase -y ranger_2_3_4_0_3485-hive-plugin.x86_64
+yum erase -y ranger_2_3_4_0_3485-yarn-plugin.x86_64
+yum erase -y snappy.x86_64
+yum erase -y snappy-devel.x86_64
+yum erase -y sqoop_2_3_4_0_3485.noarch
+yum erase -y sqoop_2_3_4_0_3485-metastore.noarch
+yum erase -y tez_2_3_4_0_3485.noarch
+yum erase -y zookeeper_2_3_4_0_3485.noarch
+}
+
+执行：
+    clean
+
+即可！
+
+### datanode  n04 复制自另外的节点n03，并已经添加成功，但是节点不是live , 为什么？
+
+n04 的配置跟n03 冲突！ 只能识别其中的一个为live！ 这就是对于复制节点要做host cleanup 的原因。
+
+### hdfs  8020  端口 connection refused 如何解决？
+确认 hdfs 的 hbase.rootdir 是否配置了正确的节点。
+
+例如，我尝试把hbase.site.xml 中的 n01 改成n02 :
+
+ <property>
+      <name>hbase.rootdir</name>
+      <value>hdfs://n02.kylin.hdp:8020/apps/hbase/data</value>
+ </property>
+
+再做namenode移动的时候，可以通过节点检查。
+
+
+### 如何查看节点同步情况：
+
+    ssh n01.kylin.hdp date ; ssh n02.kylin.hdp date; ssh n03.kylin.hdp date ; ssh n04.kylin.hdp date
+
+### 如何同步各个节点的时间：
+
+1. 保证ntpd 服务已经安装
+
+2. /etc/init.d/ntpd restart
+
+hbase region server 不能启动的原因可能就是 时间不同步。
+
+###  [Alert][hive_server_process] Failed with result CRITICAL: ['Connection failed on host n     02.kylin.hdp:10000 
+
+重启 hiveServer2 即可！
+
+### 如何平衡hdfs各节点的存储 ？
+
+    hadoop balancer 
+
+命令，可以均衡各个节点上的存储。但注意均衡后也不是绝对平均的！
+
+
+
+
+
+
+
+### 为什么添加节点过程中会报各种异常？
+
+归根结底，是系统中的依赖条件不满足。当然还有配置错误。所以按手册流程来操作就非常重要。
+
+
+
+# 通过复制／修改cubename.json 内容，可以构建一个新的cube。
+
+# 通过 rebalance 可以平衡各个节点的存储分布！
+
+# 注册节点的时候遇到的各种问题，都与ambari server/agent 没有安装好, 以及 host 没有 cleanup 有关系！
+
+例如这个：
+
+ERROR 2016-02-16 19:51:48,558 main.py:315 - Fatal exception occurred:
+Traceback (most recent call last):
+  File "/usr/lib/python2.6/site-packages/ambari_agent/main.py", line 312, in <module>
+    main(heartbeat_stop_callback)
+  File "/usr/lib/python2.6/site-packages/ambari_agent/main.py", line 248, in main
+    stop_agent()
+  File "/usr/lib/python2.6/site-packages/ambari_agent/main.py", line 195, in stop_agent
+    sys.exit(1)
+SystemExit: 1
+INFO 2016-02-16 19:51:48,565 ExitHelper.py:53 - Performing cleanup before exiting...
+', None)
+
+Connection to n04.kylin.hdp closed.
+
+
+#ambari  rest api 
+
+[hdfs@n01 ~]$ curl --user admin:admin http://10.0.2.11:8080/api/v1/clusters
+{
+  "href" : "http://10.0.2.11:8080/api/v1/clusters",
+  "items" : [
+    {
+      "href" : "http://10.0.2.11:8080/api/v1/clusters/kylinCluster",
+      "Clusters" : {
+        "cluster_name" : "kylinCluster",
+        "version" : "HDP-2.3"
+      }
+    }
+  ]
+}[hdfs@n01 ~]$ 
+
+
+# 让数据翻番的方法：
+## times2(){      orig_file=$1;   tmp_file=/tmp/$$;    cat $orig_file $orig_file > $tmp_file;   mv $tmp_file $orig_file; }
+
+
+times2 () 
+{ 
+    orig_file=$1;
+    tmp_file=/tmp/$$;
+    cat $orig_file $orig_file > $tmp_file;
+    mv $tmp_file $orig_file
+}
 
 

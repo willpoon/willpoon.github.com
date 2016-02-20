@@ -1,0 +1,361 @@
+阿里云上快速扩展节点步骤：
+
+# 复制节点镜像
+
+购买实例时的参数选择：
+
+地域：青岛 (如果卖完了，就只能选其他地区了！而问题是，自定义镜像是跟随区域的！所以，购买服务器，要挑选一个好时候！由于我有自定义镜像在青岛，就不能选其他区域了，只能等别人释放之后再买！)
+可用区：青岛可用区B  
+安全组名称：n/a
+I/O优化：选上
+实例规格：4core16g
+公网带宽：100mbps （不影响单价）
+镜像类型：自定义镜像
+系统盘：100G （影响单价，差别不大，直接上500G顶配）
+设置密码：Root...ger123!@#
+实例名称：n01.kylin.hdp
+数量：1台 （逐渐增加到2台，3台，4台）
+
+
+配置费用：3.95/HR
+公网流量费：0.72/GB
+
+# 修改ip hostname hosts 
+
+涉及的配置文件：
+
+```
+/etc/hosts
+/etc/sysconfig/network
+/etc/sysconfig/network-scripts/ifcfg-eth0 
+```
+
+重启网卡：
+
+  /etc/init.d/network restart
+
+
+
+#  host cleanup 
+
+
+ambari-server reset
+
+python /usr/lib/python2.6/site-packages/ambari_agent/HostCleanup.py
+
+rm -rf /usr/sbin/ambari-server /usr/lib/ambari-server /var/run/ambari-server /var/log/ambari-server /var/lib/ambari-server /etc/rc.d/init.d/ambari-server /etc/ambari-server
+
+
+rm -rf /usr/sbin/ambari-agent /usr/lib/ambari-agent /var/run/ambari-agent /var/log/ambari-agent /var/lib/ambari-agent /etc/rc.d/init.d/ambari-agent /etc/ambari-agent
+
+
+rm /etc/yum.repos.d/HDP*
+
+
+yum list installed  的结果可能要在terminal上 copy 到文件！ 不能重定向。因为有特殊字符！
+
+
+cat /file | awk -F" " '{print "yum erase -y",  $1}'
+
+
+rm -rf /etc/hadoop,/etc/hbase,/etc/hcatalog,/etc/hive,/etc/ganglia,/etc/nagios,/etc/oozie,/etc/sqoop,/etc/zookeeper,/var/run/hadoop,/var/run/hbase,/var/run/hive,/var/run/ganglia,/var/run/nagios,/var/run/oozie,/var/log/hadoop,/var/log/hbase,/var/log/hive,/var/log/nagios,/var/log/oozie,/var/log/zookeeper,/usr/lib/hbase,/usr/lib/hcatalog,/usr/lib/hive,/usr/lib/oozie,/usr/lib/sqoop,/usr/lib/zookeeper,/var/lib/hive,/var/lib/ganglia,/var/lib/oozie,/var/lib/zookeeper,/var/tmp/oozie,/tmp/hive,/tmp/nagios,/tmp/ambari-qa,/tmp/sqoop-ambari-qa,/var/nagios,/hadoop/oozie,/hadoop/zookeeper,/hadoop/mapred,/hadoop/hdfs,/tmp/hadoop-hive,/tmp/hadoop-nagios,/tmp/hadoop-hcat,/tmp/hadoop-ambari-qa,/tmp/hsperfdata_hbase,/tmp/hsperfdata_hive,/tmp/hsperfdata_nagios,/tmp/hsperfdata_oozie,/tmp/hsperfdata_zookeeper,/tmp/hsperfdata_mapred,/tmp/hsperfdata_hdfs,/tmp/hsperfdata_hcat,/tmp/hsperfdata_ambari-qa
+
+cd /tmp/ ; rm -rf ./*
+
+# 安装 ambari server/agent 
+
+yum install ambari-server.x86_64
+yum install ambari-agent.x86_64 
+yum install ambari-metrics-collector.x86_64
+yum install ambari-metrics-monitor-2.2.0.0-1310
+
+# 通过web方式添加host节点
+
+add host:
+
+# 检查节点是否正常
+
+http://127.0.0.1:50070/dfshealth.html#tab-datanode
+
+替换ip  127.0.0.1为你的服务器ip.
+
+
+# rebalance hdfs 
+
+hadoop balancer 
+
+
+
+# 安装 kylin (done)
+
+done
+
+##  加载测试数据
+
+/tmp/pmt_kpi_mer_cust_mid_olap.txt
+/tmp/pmt_kpi_mer_cust_mid_olap.txt.tar.gz
+
+## 从dev机器复制测试数据:
+
+scp /tmp/pmt_kpi_mer_cust_mid_olap.txt.tar.gz ip.addr:/tmp/
+
+
+## 让数据翻倍的简单命令：
+
+times2 () 
+{ 
+    orig_file=$1;
+    tmp_file=/tmp/$$;
+    cat $orig_file $orig_file > $tmp_file;
+    mv $tmp_file $orig_file
+}
+
+
+## 凑够1000W ： 
+
+head -568960 pmt_kpi_mer_cust_mid_olap.txt >> pmt_kpi_mer_cust_mid_olap.txt
+
+
+## 建表：
+
+CREATE TABLE DEFAULT.PMT_KPI_MER_CUST_MID_OLAP (
+  NAT_ADR_PRVV STRING  COMMENT '户籍地址所在省份',
+  NAT_ADR_SUB_CENTER STRING  COMMENT '户籍地址所在分中心',
+  NAT_ADR_CTY STRING  COMMENT '户籍地址所在城市',
+  NAT_ADR_ARA STRING  COMMENT '户籍地址所在区县',
+  MAIL_ADR_PRV STRING  COMMENT '账单地址所在省份',
+  MAIL_ADR_SUB_CENTER STRING  COMMENT '账单地址所在分中心',
+  MAIL_ADR_SUB_CENTER_L2 STRING  COMMENT '账单地址所在二级分中心',
+  MAIL_ADR_CTY STRING  COMMENT '账单地址所在城市',
+  SALE_CHNL1_NME STRING  COMMENT '销售渠道1',
+  SALE_CHNL2_NME STRING  COMMENT '销售渠道2',
+  BUS_TYPE1_DESC STRING  COMMENT '大行业',
+  BUS_TYPE2_DESC STRING  COMMENT '小行业',
+  BUS_SPEC_TYPE STRING  COMMENT '特殊行业类型',
+  POS_DESC STRING  COMMENT '职位',
+  MAIN_CUST_GRP STRING  COMMENT '主要人群',
+  CUST_SEX STRING  COMMENT '性别',
+  CUST_QUALIFICATION STRING  COMMENT '学历',
+  CUST_AGE_GRP STRING  COMMENT '申请室年龄段',
+  CUST_AGE_GRP_NEW STRING  COMMENT '申请室年龄段（NEW）',
+  CARD_FJ_YEAR STRING  COMMENT '发卡年份',
+  CARD_FJ_QUAT STRING  COMMENT '发卡季度',
+  CARD_FJ_MONTH STRING  COMMENT '发卡月份',
+  CARD_OPEN_MTHS_GRP STRING  COMMENT '账龄区间段',
+  CARD_OPEN_MTHS_GRP_NEW STRING  COMMENT '账龄区间段(新)',
+  CUST_PERM_CRLIMIT_GRP STRING  COMMENT '当前客户永久额度段',
+  CUST_PERM_CRLIMIT_GRP_NEW STRING  COMMENT '当前客户永久额度段(NEW)',
+  TOP_CARD_LEVEL STRING  COMMENT '最高卡级别',
+  TGT_CUST_GRP_FLG STRING  COMMENT '是否目标人群',
+  M_H_QUALIFICATION_FLG STRING  COMMENT '中高学历标识',
+  MAIN_URBAN_NATIVE_FLG STRING  COMMENT '中大城市土著标识',
+  PROF_WHITE_COLLAR_FLG STRING  COMMENT '职业白领标识',
+  M_H_PRP_OWNER_FLG STRING  COMMENT '中高端小区业主标识',
+  RVLV_FLG STRING  COMMENT '当前循环标识',
+  CASH_FLG STRING  COMMENT '当前取现标识',
+  INSTALLMENT_FLG STRING  COMMENT '当前分期标识',
+  INSTALLMENT_TYPE STRING  COMMENT '分期类型',
+  CUST_VALID_FLG STRING  COMMENT '有效客户标识',
+  CUST_ACTIVE_IND STRING  COMMENT '客户活跃度',
+  MORD_CASH_FLG STRING  COMMENT '是否现金分期(含转呆)',
+  MORD_XKX_FLG STRING  COMMENT '是否新快现分期(含转呆)',
+  MORD_XINJB_FLG STRING  COMMENT '是否信金宝分期(含转呆)',
+  MORD_YMJ_FLG STRING  COMMENT '是否圆梦金分期(含转呆)',
+  MORD_BILL_FLG STRING  COMMENT '是否账单分期(含转呆)',
+  MORD_SINGLE_FLG STRING  COMMENT '是否单笔分期(含转呆)',
+  SALE_NBR_L1 STRING  COMMENT '销售人员代码',
+  RLNSHIP_DUE_M2_UP_FLG STRING  COMMENT '直系亲属逾期M2+标识',
+  CUST_BF_DUE_GRP STRING  COMMENT '逾期金额段',
+  CUST_MARITAL_ST STRING  COMMENT '婚姻状况',
+  KPI_CNT_APM_FNFJ DOUBLE  COMMENT '终审量',
+  KPI_CNT_APM_APRV DOUBLE  COMMENT '核准量',
+  KPI_CNT_APM_CNCL DOUBLE  COMMENT '取消量',
+  KPI_CNT_APM_FNFI_MTD DOUBLE  COMMENT '当月终身量',
+  KPI_CNT_APM_APRV_MTD DOUBLE  COMMENT '当月核准量',
+  KPI_CNT_APM_CNCL_MTD DOUBLE  COMMENT '当月取消量',
+  KPI_CNT_APM_MAIN_MTD DOUBLE  COMMENT '当月开户主账户量',
+  KPI_AMT_CST_BF DOUBLE  COMMENT '贷款金额',
+  KPI_CNT_CST_BF DOUBLE  COMMENT '贷款人数',
+  KPI_AMT_CST_FQ DOUBLE  COMMENT '分期贷款本金',
+  KPI_CNT_CST_FQ DOUBLE  COMMENT '分期贷款客户数',
+  KPI_AMT_CST_BJ_CASH DOUBLE  COMMENT '现金贷款本金',
+  KPI_CNT_CST_BJ_CASH DOUBLE  COMMENT '现金贷款客户数',
+  KPI_AMT_CST_YF DOUBLE  COMMENT '贷款余额(含POS)',
+  KPI_AMT_CST_RVLV_CUR DOUBLE  COMMENT '循环贷款本金',
+  KPI_CNT_CST_RVLV_CUR DOUBLE  COMMENT '循环贷款客户数',
+  KPI_AMT_CST_TXN DOUBLE  COMMENT '交易金额',
+  KPI_CNT_CST_TXN DOUBLE  COMMENT '交易人数',
+  KPI_AMT_CST_CASH DOUBLE  COMMENT '取现金额',
+  KPI_CNT_CST_CASH DOUBLE  COMMENT '取现人数',
+  KPI_AMT_CST_CASHOUT DOUBLE  COMMENT '套现金额',
+  KPI_CNT_CST_CASHOUT DOUBLE  COMMENT '套现人数',
+  KPI_AMT_CST_BF_DUE DOUBLE  COMMENT '逾期金额',
+  KPI_CNT_CST_BF_DUE DOUBLE  COMMENT '逾期人数',
+  KPI_AMT_CST_CRLIMIT DOUBLE  COMMENT '客户授信额度金额',
+  KPI_AMT_CST_AVAIL_CRLIMIT DOUBLE  COMMENT '客户可用额度金额',
+  KPI_AMT_CST_BF_M0 DOUBLE  COMMENT 'M0金额(本金含OPS)',
+  KPI_AMT_CST_BF_M1 DOUBLE  COMMENT 'M1金额(本金含OPS)',
+  KPI_AMT_CST_BF_M2 DOUBLE  COMMENT 'M2金额(本金含OPS)',
+  KPI_AMT_CST_BF_M3 DOUBLE  COMMENT 'M3金额(本金含OPS)',
+  KPI_AMT_CST_BF_M4 DOUBLE  COMMENT 'M4金额(本金含OPS)',
+  KPI_AMT_CST_BF_M5 DOUBLE  COMMENT 'M5金额(本金含OPS)',
+  KPI_AMT_CST_BF_M6 DOUBLE  COMMENT 'M6金额(本金含OPS)',
+  KPI_AMT_CST_BF_M7 DOUBLE  COMMENT 'M7金额(本金含OPS)',
+  KPI_AMT_CST_BF_M8 DOUBLE  COMMENT 'M8金额(本金含OPS)',
+  KPI_AMT_CST_BF_MH DOUBLE  COMMENT '历史挂账损失(本金含OPS)',
+  KPI_AMT_CST_BF_HX DOUBLE  COMMENT '核销金额',
+  KPI_CNT_CST_BF_HX DOUBLE  COMMENT '核销客户数',
+  KPI_AMT_CST_RISK5_ZC DOUBLE  COMMENT '正常类贷款本金',
+  KPI_AMT_CST_RISK5_GZ DOUBLE  COMMENT '关注类贷款本金',
+  KPI_AMT_CST_RISK5_CJ DOUBLE  COMMENT '次级类贷款本金',
+  KPI_AMT_CST_RISK5_KY DOUBLE  COMMENT '可疑类贷款本金',
+  KPI_AMT_CST_RISK5_SS DOUBLE  COMMENT '损失类贷款本金',
+  KPI_CNT_CST_RISK5_ZC DOUBLE  COMMENT '正常类贷款客户数',
+  KPI_CNT_CST_RISK5_GZ DOUBLE  COMMENT '关注类贷款客户数',
+  KPI_CNT_CST_RISK5_CJ DOUBLE  COMMENT '次级类贷款客户数',
+  KPI_CNT_CST_RISK5_KY DOUBLE  COMMENT '可疑类贷款客户数',
+  KPI_CNT_CST_RISK5_SS DOUBLE  COMMENT '损失类贷款客户数',
+  KPI_AMT_CST_BF_M2_UP DOUBLE  COMMENT 'M2+贷款本金',
+  KPI_CNT_CST_BF_M2_UP DOUBLE  COMMENT 'M2+贷款客户数',
+  KPI_AMT_CST_NPL_BF DOUBLE  COMMENT '不良贷款本金',
+  KPI_CNT_CST_NPL_BF DOUBLE  COMMENT '不良贷款客户数',
+  KPI_CNT_APM_APRV_CUR DOUBLE  COMMENT '当日发卡量',
+  KPI_AMT_CST_PYM_CUR DOUBLE  COMMENT '当日还款金额',
+  KPI_AMT_CST_RTL_OUT DOUBLE  COMMENT '境外消费金额',
+  KPI_CNT_RTL_OUT DOUBLE  COMMENT '境外消费笔数',
+  KPI_AMT_CST_CASH_OUT DOUBLE  COMMENT '境外取现金额',
+  KPI_CNT_CASH_OUT DOUBLE  COMMENT '境外取现笔数',
+  KPI_CNT_ACT_OPEN_DUE DOUBLE  COMMENT '开户及逾期账户数',
+  KPI_CNT_RTL_ACT_SUSP_RSK DOUBLE  COMMENT '疑是风险账户数',
+  KPI_AMT_RTL_ACT_SUSP_FRD DOUBLE  COMMENT '疑是欺诈金额',
+  KPI_AMT_ACT_OPEN_6M_M2_UP DOUBLE  COMMENT '发卡后第七个月为M2+金额',
+  KPI_CNT_ACT_OPEN_6M_M2_UP DOUBLE  COMMENT '发卡后第七个月为M2+户数',
+  KPI_CNT_CST_SUSP_DE_WARN DOUBLE  COMMENT '疑是大二报警户数',
+  KPI_CNT_CST_ACT_30D DOUBLE  COMMENT '30天活跃客户数',
+  KPI_CNT_CST_ACT_60D DOUBLE  COMMENT '60天活跃客户数',
+  KPI_CNT_CST_ACT_90D DOUBLE  COMMENT '90天活跃客户数',
+  KPI_CNT_CST_CIF DOUBLE  COMMENT '有效客户数',
+  KPI_CNT_CST_INT DOUBLE  COMMENT '生息客户数',
+  KPI_CNT_CST DOUBLE  COMMENT '总客户数',
+  KPI_AMT_ACT_BF_OPEN_6M DOUBLE  COMMENT '账龄为6个月的账户贷款本金',
+  KPI_AMT_CST_BF_M1_MTD DOUBLE  COMMENT '当月新增M1贷款本金',
+  KPI_AMT_CST_NPL_BF_YTD DOUBLE  COMMENT '当年新增不良贷款本金',
+  KPI_AMT_CST_CASH_LIMIT DOUBLE  COMMENT '现金授信额度',
+  KPI_AMT_CST_AVAIL_CASH DOUBLE  COMMENT '可用现金额度',
+  KPI_CNT_CST_CIF_CASHOUT DOUBLE  COMMENT '有效套现客户数',
+  KPI_CNT_CST_YF_GRW_6M DOUBLE  COMMENT '近6期贷款金额持续增长客户数',
+  KPI_CNT_CST_BF_GRW_4M DOUBLE  COMMENT '近4期贷款本金持续增长客户数',
+  KPI_CNT_CST_VNTAGE_GE_6M DOUBLE  COMMENT '账龄大于等于6个月客户数',
+  KPI_CNT_CST_ACTN_SRC_DWN_M DOUBLE  COMMENT '月度行为评分等级下降客户数',
+  KPI_CNT_CST_ACTN_SRC_DWN_Q DOUBLE  COMMENT '季度行为评分等级下降客户数',
+  KPI_CNT_CST_YF DOUBLE  COMMENT '余额大于0客户数',
+  KPI_AMT_CST_CC DOUBLE  COMMENT '超存金额(不含核销)',
+  KPI_CNT_CST_CC DOUBLE  COMMENT '超存客户数',
+  KPI_AMT_CST_BF_M0_LST_LM DOUBLE  COMMENT '上月M0金额(本金含OPS)',
+  KPI_AMT_CST_BF_M1_LST_LM DOUBLE  COMMENT '上月M1金额(本金含OPS)',
+  KPI_AMT_CST_BF_M2_LST_LM DOUBLE  COMMENT '上月M2金额(本金含OPS)',
+  KPI_AMT_CST_BF_M3_LST_LM DOUBLE  COMMENT '上月M3金额(本金含OPS)',
+  KPI_AMT_CST_BF_M4_LST_LM DOUBLE  COMMENT '上月M4金额(本金含OPS)',
+  KPI_AMT_CST_BF_M5_LST_LM DOUBLE  COMMENT '上月M5金额(本金含OPS)',
+  KPI_AMT_CST_BF_M6_LST_LM DOUBLE  COMMENT '上月M6金额(本金含OPS)',
+  KPI_AMT_CST_BF_M7_LST_LM DOUBLE  COMMENT '上月M7金额(本金含OPS)',
+  KPI_AMT_CST_BF_M8_LST_LM DOUBLE  COMMENT '上月M8金额(本金含OPS)',
+  KPI_AMT_CST_BF_MH_LST_LM DOUBLE  COMMENT '上月历史挂账金额(本金含OPS))S)',
+  KPI_AMT_CST_BF_HX_LST_LM DOUBLE  COMMENT '上月核销金额(本金含OPS)',
+  KPI_CNT_ACT_MAIN_LST_1M DOUBLE  COMMENT '上月当月新增主账户数',
+  KPI_CNT_ACT_MAIN_LST_2M DOUBLE  COMMENT '2个月前当月新增主账户数',
+  KPI_CNT_ACT_MAIN_LST_5M DOUBLE  COMMENT '5个月前当月新增主账户数',
+  KPI_CNT_ACT_MAIN_LST_6M DOUBLE  COMMENT '6个月前当月新增主账户数',
+  KPI_AMT_CST_BF_HX_YTD DOUBLE  COMMENT '当年核销账户贷款本金',
+  KPI_AMT_CST_BF_HX_MTD DOUBLE  COMMENT '当月核销账户贷款本金',
+  KPI_CNT_CST_BF_M0 DOUBLE  COMMENT 'M0客户数',
+  KPI_CNT_CST_BF_M1 DOUBLE  COMMENT 'M1客户数',
+  KPI_CNT_CST_BF_M2 DOUBLE  COMMENT 'M2客户数',
+  KPI_CNT_CST_BF_M3 DOUBLE  COMMENT 'M3客户数',
+  KPI_CNT_CST_BF_M4 DOUBLE  COMMENT 'M4客户数',
+  KPI_CNT_CST_BF_M5 DOUBLE  COMMENT 'M5客户数',
+  KPI_CNT_CST_BF_M6 DOUBLE  COMMENT 'M6客户数',
+  KPI_CNT_CST_BF_M7_UP DOUBLE  COMMENT 'M7+客户数',
+  KPI_CNT_CST_BF_HX_MTD DOUBLE  COMMENT '当月核销客户数',
+  KPI_CNT_CST_BF_M0_LST_LM DOUBLE  COMMENT '上月0客户数',
+  KPI_CNT_CST_BF_M1_LST_LM DOUBLE  COMMENT '上月1客户数',
+  KPI_CNT_CST_BF_M2_LST_LM DOUBLE  COMMENT '上月2客户数',
+  KPI_CNT_CST_BF_M3_LST_LM DOUBLE  COMMENT '上月3客户数',
+  KPI_CNT_CST_BF_M4_LST_LM DOUBLE  COMMENT '上月4客户数',
+  KPI_CNT_CST_BF_M5_LST_LM DOUBLE  COMMENT '上月5客户数',
+  KPI_CNT_CST_BF_M6_LST_LM DOUBLE  COMMENT '上月6客户数',
+  KPI_CNT_CST_BF_M7_UP_LST_LM DOUBLE  COMMENT '上月7+客户数',
+  KPI_CNT_CST_BF_M1_UP DOUBLE  COMMENT 'M1+客户数',
+  KPI_AMT_CST_BF_M1_UP DOUBLE  COMMENT 'M1+贷款本金',
+  KPI_CNT_CST_BF_M4_UP DOUBLE  COMMENT 'M4+客户数',
+  KPI_AMT_CST_BF_M4_UP DOUBLE  COMMENT 'M4+贷款本金',
+  KPI_AMT_CST_BF_M7_UP DOUBLE  COMMENT 'M7+贷款本金',
+  DW_ETL_DATE STRING COMMENT '数据日期'
+) 
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
+
+
+## 建压缩表
+
+SET hive.exec.compress.intermediate=true;
+SET hive.exec.compress.output=true;
+SET mapred.output.compression.type=BLOCK;
+create table pmt_olap_snappy
+stored as orc
+tblproperties ("orc.compress"="SNAPPY")
+as   
+select * from pmt_kpi_mer_cust_mid_olap ;
+
+
+##导入数据
+
+-- LOAD DATA LOCAL INPATH 'pmt_kpi_mer_cust_mid_olap.txt' OVERWRITE INTO TABLE DEFAULT.PMT_KPI_MER_CUST_MID_OLAP;
+ LOAD DATA LOCAL INPATH 'pmt_kpi_mer_cust_mid_olap.txt' OVERWRITE INTO TABLE DEFAULT.pmt_olap_snappy;
+
+
+
+把数据加载到hive:
+
+
+export KYLIN_HOME=/opt/apache-kylin-1.3-HBase-1.1-SNAPSHOT-bin
+export HCAT_HOME=/usr/hdp/2.3.4.0-3485/hive-hcatalog
+
+#dir=$(dirname ${0})
+dir=${KYLIN_HOME}/bin
+source ${dir}/check-env.sh
+job_jar=`find -L ${KYLIN_HOME}/lib/ -name kylin-job*.jar`
+echo "Going to create sample tables in hive..."
+#cd ${KYLIN_HOME}/sample_cube/data
+cd /tmp/
+#LOAD DATA LOCAL INPATH 'pmt_kpi_mer_cust_mid_olap.txt' OVERWRITE INTO TABLE DEFAULT.PMT_KPI_MER_CUST_MID_OLAP;
+hive -f ~/my.sql  || { exit 1; }
+echo "done"
+
+
+
+
+
+9. 创建新CUBE project 
+
+
+
+10. 创建新cube ， 根据原有的复制。注意timestamp时间、cube name、uuid的修改
+
+
+Cube5.json
+
+
+11. 对新增节点拍照！做保存用！
+
+
+
+13. 按两个节点，三个节点来执行cube 。 
+
+
+
+
+
+
+
+阿里云密码：RootIsDanger123!@#
