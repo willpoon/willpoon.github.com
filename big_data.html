@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2016-02-19
+    on 2016-02-23
 
         |
         tags:         <a href="/tag/da-shu-ju.html">大数据</a>
@@ -304,13 +304,16 @@
 <li><a href="#_30">各节点对时</a></li>
 <li><a href="#_31"></a></li>
 <li><a href="#ambari">通过AMBARI 手工添加节点，根本上要解决的是依赖的问题！</a></li>
-<li><a href="#_32"></a></li>
+<li><a href="#_32"></a><ul>
+<li><a href="#_33">解决：</a></li>
+</ul>
+</li>
 <li><a href="#ambari-hbase-connection-failed-error-111-connection-refused-to-16030">ambari hbase : connection failed: error 111 connection refused to 16030</a></li>
 <li><a href="#ambari_1">ambari</a></li>
 <li><a href="#hdfs_2">平衡hdfs 节点 存储</a></li>
 <li><a href="#ambari_2">使用ambari 添加计算节点的经历</a><ul>
-<li><a href="#_33">背景</a></li>
-<li><a href="#_34">过程</a></li>
+<li><a href="#_34">背景</a></li>
+<li><a href="#_35">过程</a></li>
 </ul>
 </li>
 <li><a href="#ambarihdp">使用ambari为hdp集群添加节点的若干问题</a><ul>
@@ -319,18 +322,18 @@
 <li><a href="#host-cleanup_1">host cleanup 的时候，如何批量卸载节点上的组件？</a></li>
 <li><a href="#datanode-n04-n03live">datanode  n04 复制自另外的节点n03，并已经添加成功，但是节点不是live , 为什么？</a></li>
 <li><a href="#hdfs-8020-connection-refused">hdfs  8020  端口 connection refused 如何解决？</a></li>
-<li><a href="#_35">如何查看节点同步情况：</a></li>
-<li><a href="#_36">如何同步各个节点的时间：</a></li>
+<li><a href="#_36">如何查看节点同步情况：</a></li>
+<li><a href="#_37">如何同步各个节点的时间：</a></li>
 <li><a href="#alerthive_server_process-failed-with-result-critical-connection-failed-on-host-n-02kylinhdp10000">[Alert][hive_server_process] Failed with result CRITICAL: ['Connection failed on host n     02.kylin.hdp:10000</a></li>
 <li><a href="#hdfs_3">如何平衡hdfs各节点的存储 ？</a></li>
-<li><a href="#_37">为什么添加节点过程中会报各种异常？</a></li>
+<li><a href="#_38">为什么添加节点过程中会报各种异常？</a></li>
 </ul>
 </li>
 <li><a href="#cubenamejson-cube">通过复制／修改cubename.json 内容，可以构建一个新的cube。</a></li>
 <li><a href="#rebalance">通过 rebalance 可以平衡各个节点的存储分布！</a></li>
 <li><a href="#ambari-serveragent-host-cleanup">注册节点的时候遇到的各种问题，都与ambari server/agent 没有安装好, 以及 host 没有 cleanup 有关系！</a></li>
 <li><a href="#ambari-rest-api">ambari  rest api</a></li>
-<li><a href="#_38">让数据翻番的方法：</a><ul>
+<li><a href="#_39">让数据翻番的方法：</a><ul>
 <li><a href="#times2-orig_file1-tmp_filetmp-cat-orig_file-orig_file-tmp_file-mv-tmp_file-orig_file">times2(){      orig_file=$1;   tmp_file=/tmp/$$;    cat $orig_file $orig_file &gt; $tmp_file;   mv $tmp_file $orig_file; }</a></li>
 </ul>
 </li>
@@ -3458,6 +3461,47 @@ ERROR: ambari-metrics-monitor start failed. For more details, see /var/log/ambar
 2016-02-16 19:47:24,017 [INFO] emitter.py:91 - server: http://n01.kylin.hdp:6188/ws/v1/timeline/metrics
 ====================
 Monitor out at: /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out</module></p>
+<h2 id="_33">解决：</h2>
+<p>[root@n02 ~]# su - ams 
+[ams@n02 ~]$ /usr/sbin/ambari-metrics-monitor --config /etc/ambari-metrics-monitor/conf/ start
+psutil build directory is not empty, continuing...
+Verifying Python version compatibility...
+Using python  /usr/bin/python2.6
+Checking for previously running Metric Monitor...
+/var/run/ambari-metrics-monitor/ambari-metrics-monitor.pid found with no process. Removing 17925...
+Starting ambari-metrics-monitor
+/usr/sbin/ambari-metrics-monitor: line 148: /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out: Permission denied
+Verifying ambari-metrics-monitor process status...
+ERROR: ambari-metrics-monitor start failed. For more details, see /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out:
+====================
+2016-02-23 19:09:06,003 [INFO] host_info.py:291 - hostname_script: None
+2016-02-23 19:09:06,016 [INFO] host_info.py:303 - Cached hostname: n02.kylin.hdp
+2016-02-23 19:09:06,017 [INFO] controller.py:102 - Adding event to cache, all : {u'metrics': [{u'value_threshold': u'128', u'name': u'bytes_out'}], u'collect_every': u'10'}
+2016-02-23 19:09:06,017 [INFO] controller.py:110 - Adding event to cache,  : {u'metrics': [], u'collect_every': u'15'}
+2016-02-23 19:09:06,017 [INFO] main.py:65 - Starting Server RPC Thread: /usr/lib/python2.6/site-packages/resource_monitoring/main.py start
+2016-02-23 19:09:06,018 [INFO] controller.py:57 - Running Controller thread: Thread-1
+2016-02-23 19:09:06,018 [INFO] emitter.py:45 - Running Emitter thread: Thread-2
+2016-02-23 19:09:06,019 [INFO] emitter.py:65 - Nothing to emit, resume waiting.
+====================
+Monitor out at: /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out
+[ams@n02 ~]$ ll /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out
+-rw-r--r-- 1 zookeeper hadoop 830 Feb 23 19:09 /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out
+[ams@n02 ~]$ exit
+logout
+[root@n02 ~]# ssh n01.kylin.hdp ls -l /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out
+-rw-r--r-- 1 ams hadoop 13952 Feb 23 22:35 /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out
+[root@n02 ~]# chown ams:hadoop /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out
+[root@n02 ~]# su - ams
+[ams@n02 ~]$ /usr/sbin/ambari-metrics-monitor --config /etc/ambari-metrics-monitor/conf/ start
+psutil build directory is not empty, continuing...
+Verifying Python version compatibility...
+Using python  /usr/bin/python2.6
+Checking for previously running Metric Monitor...
+/var/run/ambari-metrics-monitor/ambari-metrics-monitor.pid found with no process. Removing 18072...
+Starting ambari-metrics-monitor
+Verifying ambari-metrics-monitor process status...
+Metric Monitor successfully started
+Server log at: /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out</p>
 <h1 id="ambari-hbase-connection-failed-error-111-connection-refused-to-16030">ambari hbase : connection failed: error 111 connection refused to 16030</h1>
 <p>http://stackoverflow.com/questions/33866576/connection-issue-when-using-hbase-in-ambari</p>
 <p>I have fix this issue. I read the log file in /var/log/hbase/*.log of my region servers ,and find that it's clock is not sync with the master's. So I make all the servers to sync it's clock to the master's using ntpd. Then I restart the ambari components and no alert showed up!!! Think this may help those with the problem.</p>
@@ -3598,14 +3642,14 @@ Feb 18, 2016 11:10:48 AM          1              3.68 GB                 0 B    
 Feb 18, 2016 11:10:48 AM Balancing took 10.783266666666666 minutes</p>
 <h1 id="ambari_2">使用ambari 添加计算节点的经历</h1>
 <p>大年初一，在家闲得慌，于是打算为本地vbox 上的hadoop集群尝试增加一个节点，为阿里云节点扩展测试做准备。</p>
-<h2 id="_33">背景</h2>
+<h2 id="_34">背景</h2>
 <ol>
 <li>本地virtualBox 上有一套3个节点(n01,n02,n03)的ambari hadoop 集群环境, 需要添加n04. </li>
 <li>阿里云上有一台单节点的ambari hadoop 集群环境 n01,  需要添加 n02,n03,n04</li>
 <li>阿里云按时计费，而我经费有限。所以要在最短的时间内做好节点扩展，花最少的钱做最多的事情。</li>
 <li>所以所有的准备工作，我都要在本地virtualBox上做好，把可能出现的异常都排除掉。保证在阿里云上的部署一次性成功完成！</li>
 </ol>
-<h2 id="_34">过程</h2>
+<h2 id="_35">过程</h2>
 <ol>
 <li>新增主机
 为了减少新增节点主机的配置，我直接复制了邻近节点的主机镜像</li>
@@ -3717,10 +3761,10 @@ yum erase -y zookeeper_2_3_4_0_3485.noarch
 <value>hdfs://n02.kylin.hdp:8020/apps/hbase/data</value>
 </property></p>
 <p>再做namenode移动的时候，可以通过节点检查。</p>
-<h3 id="_35">如何查看节点同步情况：</h3>
+<h3 id="_36">如何查看节点同步情况：</h3>
 <pre><code>ssh n01.kylin.hdp date ; ssh n02.kylin.hdp date; ssh n03.kylin.hdp date ; ssh n04.kylin.hdp date
 </code></pre>
-<h3 id="_36">如何同步各个节点的时间：</h3>
+<h3 id="_37">如何同步各个节点的时间：</h3>
 <ol>
 <li>
 <p>保证ntpd 服务已经安装</p>
@@ -3736,7 +3780,7 @@ yum erase -y zookeeper_2_3_4_0_3485.noarch
 <pre><code>hadoop balancer
 </code></pre>
 <p>命令，可以均衡各个节点上的存储。但注意均衡后也不是绝对平均的！</p>
-<h3 id="_37">为什么添加节点过程中会报各种异常？</h3>
+<h3 id="_38">为什么添加节点过程中会报各种异常？</h3>
 <p>归根结底，是系统中的依赖条件不满足。当然还有配置错误。所以按手册流程来操作就非常重要。</p>
 <h1 id="cubenamejson-cube">通过复制／修改cubename.json 内容，可以构建一个新的cube。</h1>
 <h1 id="rebalance">通过 rebalance 可以平衡各个节点的存储分布！</h1>
@@ -3768,7 +3812,7 @@ INFO 2016-02-16 19:51:48,565 ExitHelper.py:53 - Performing cleanup before exitin
     }
   ]
 }[hdfs@n01 ~]$ </p>
-<h1 id="_38">让数据翻番的方法：</h1>
+<h1 id="_39">让数据翻番的方法：</h1>
 <h2 id="times2-orig_file1-tmp_filetmp-cat-orig_file-orig_file-tmp_file-mv-tmp_file-orig_file">times2(){      orig_file=$1;   tmp_file=/tmp/$$;    cat $orig_file $orig_file &gt; $tmp_file;   mv $tmp_file $orig_file; }</h2>
 <p>times2 () 
 { 

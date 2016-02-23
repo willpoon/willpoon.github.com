@@ -4091,6 +4091,51 @@ ERROR: ambari-metrics-monitor start failed. For more details, see /var/log/ambar
 Monitor out at: /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out
 
 
+## 解决：
+
+[root@n02 ~]# su - ams 
+[ams@n02 ~]$ /usr/sbin/ambari-metrics-monitor --config /etc/ambari-metrics-monitor/conf/ start
+psutil build directory is not empty, continuing...
+Verifying Python version compatibility...
+Using python  /usr/bin/python2.6
+Checking for previously running Metric Monitor...
+/var/run/ambari-metrics-monitor/ambari-metrics-monitor.pid found with no process. Removing 17925...
+Starting ambari-metrics-monitor
+/usr/sbin/ambari-metrics-monitor: line 148: /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out: Permission denied
+Verifying ambari-metrics-monitor process status...
+ERROR: ambari-metrics-monitor start failed. For more details, see /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out:
+====================
+2016-02-23 19:09:06,003 [INFO] host_info.py:291 - hostname_script: None
+2016-02-23 19:09:06,016 [INFO] host_info.py:303 - Cached hostname: n02.kylin.hdp
+2016-02-23 19:09:06,017 [INFO] controller.py:102 - Adding event to cache, all : {u'metrics': [{u'value_threshold': u'128', u'name': u'bytes_out'}], u'collect_every': u'10'}
+2016-02-23 19:09:06,017 [INFO] controller.py:110 - Adding event to cache,  : {u'metrics': [], u'collect_every': u'15'}
+2016-02-23 19:09:06,017 [INFO] main.py:65 - Starting Server RPC Thread: /usr/lib/python2.6/site-packages/resource_monitoring/main.py start
+2016-02-23 19:09:06,018 [INFO] controller.py:57 - Running Controller thread: Thread-1
+2016-02-23 19:09:06,018 [INFO] emitter.py:45 - Running Emitter thread: Thread-2
+2016-02-23 19:09:06,019 [INFO] emitter.py:65 - Nothing to emit, resume waiting.
+====================
+Monitor out at: /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out
+[ams@n02 ~]$ ll /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out
+-rw-r--r-- 1 zookeeper hadoop 830 Feb 23 19:09 /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out
+[ams@n02 ~]$ exit
+logout
+[root@n02 ~]# ssh n01.kylin.hdp ls -l /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out
+-rw-r--r-- 1 ams hadoop 13952 Feb 23 22:35 /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out
+[root@n02 ~]# chown ams:hadoop /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out
+[root@n02 ~]# su - ams
+[ams@n02 ~]$ /usr/sbin/ambari-metrics-monitor --config /etc/ambari-metrics-monitor/conf/ start
+psutil build directory is not empty, continuing...
+Verifying Python version compatibility...
+Using python  /usr/bin/python2.6
+Checking for previously running Metric Monitor...
+/var/run/ambari-metrics-monitor/ambari-metrics-monitor.pid found with no process. Removing 18072...
+Starting ambari-metrics-monitor
+Verifying ambari-metrics-monitor process status...
+Metric Monitor successfully started
+Server log at: /var/log/ambari-metrics-monitor/ambari-metrics-monitor.out
+
+
+
 # ambari hbase : connection failed: error 111 connection refused to 16030
 
 
