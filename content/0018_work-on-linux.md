@@ -417,4 +417,19 @@ curl http..../ 结尾有 / 和 没有 / 的效果是不一样的！
  ntpdate 202.118.1.47
 
 
+# 挂载内存读写区域
+
+If your operating system is aiming for POSIX compliance, you probably already have an tmpfs filesystem that you can write to at /dev/shm.
+
+$ >/dev/shm/foo
+$ df /dev/shm/foo
+Filesystem           1K-blocks      Used Available Use% Mounted on
+tmpfs                   224088         0    224088   0% /dev/shm
+This may use swap, however. For a true ramdisk (that won't swap), you need to use the ramfs filesystem.
+
+mount ramfs -t ramfs /mountpoint
+
+
+
+http://unix.stackexchange.com/questions/59300/how-to-place-store-a-file-in-memory-on-linux
 

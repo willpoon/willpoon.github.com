@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2016-02-17
+    on 2016-02-28
 
         |
         tags:         <a href="/tag/linux.html">linux</a>
@@ -173,6 +173,7 @@
 <li><a href="#_9">手工同步服务器时间</a></li>
 </ul>
 </li>
+<li><a href="#_10">挂载内存读写区域</a></li>
 </ul>
 </div>
         </nav>
@@ -431,6 +432,15 @@ A：都不受影响</p>
 <p>curl http..../ 结尾有 / 和 没有 / 的效果是不一样的！</p>
 <h2 id="_9">手工同步服务器时间</h2>
 <p>ntpdate 202.118.1.47</p>
+<h1 id="_10">挂载内存读写区域</h1>
+<p>If your operating system is aiming for POSIX compliance, you probably already have an tmpfs filesystem that you can write to at /dev/shm.</p>
+<p>$ &gt;/dev/shm/foo
+$ df /dev/shm/foo
+Filesystem           1K-blocks      Used Available Use% Mounted on
+tmpfs                   224088         0    224088   0% /dev/shm
+This may use swap, however. For a true ramdisk (that won't swap), you need to use the ramfs filesystem.</p>
+<p>mount ramfs -t ramfs /mountpoint</p>
+<p>http://unix.stackexchange.com/questions/59300/how-to-place-store-a-file-in-memory-on-linux</p>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>

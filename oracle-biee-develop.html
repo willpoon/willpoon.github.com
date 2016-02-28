@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2016-02-17
+    on 2016-02-26
 
         |
         tags:         <a href="/tag/oracle.html">oracle</a>
@@ -263,6 +263,13 @@
 </li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#_26">疑问和学习</a><ul>
+<li><a href="#double-column">double column</a></li>
+<li><a href="#measure-labels">measure labels</a></li>
+<li><a href="#calculated-items">calculated items</a></li>
+<li><a href="#biee_10">biee 创建透视图的几个问题记录</a></li>
 </ul>
 </li>
 </ul>
@@ -911,6 +918,17 @@ dim... 没有对应上！</p>
 <p>很干货、很务实的博客。 从2007年一直以来都有更新</p>
 <h3 id="_25">业内人物推荐</h3>
 <h4 id="andrew-c-oliver">Andrew C. Oliver</h4>
+<h1 id="_26">疑问和学习</h1>
+<h2 id="double-column">double column</h2>
+<h2 id="measure-labels">measure labels</h2>
+<h2 id="calculated-items">calculated items</h2>
+<h2 id="biee_10">biee 创建透视图的几个问题记录</h2>
+<ol>
+<li>没有sum() , count() 等聚合函数作用到度量的表，生成的透视图，会把所有字段的都当作维度处理。一旦度量列被拖到度量标签区域，数据无法展示。为空。这时，要对度量列添加聚合函数。</li>
+<li>透视图和表的区别：
+透视图严格区分维度和度量。
+透视图可以把维度列值作为表头。也就是纵表转横表。</li>
+</ol>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>
