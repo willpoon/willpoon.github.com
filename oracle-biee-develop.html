@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2016-02-26
+    on 2016-03-04
 
         |
         tags:         <a href="/tag/oracle.html">oracle</a>
@@ -151,6 +151,7 @@
 <li><a href="#_6">方案</a></li>
 </ul>
 </li>
+<li><a href="#biee-filter-using">biee filter( using ) 的使用！</a></li>
 <li><a href="#bieesession-variable">BIEE使用SESSION VARIABLE 根据柜员自动判断该展示哪些机构数据</a><ul>
 <li><a href="#_7">背景</a></li>
 <li><a href="#_8">可选方案</a><ul>
@@ -269,9 +270,14 @@
 <li><a href="#double-column">double column</a></li>
 <li><a href="#measure-labels">measure labels</a></li>
 <li><a href="#calculated-items">calculated items</a></li>
+<li><a href="#collector">收集器 collector</a></li>
 <li><a href="#biee_10">biee 创建透视图的几个问题记录</a></li>
 </ul>
 </li>
+<li><a href="#_27">将百度经验和百度百科作为微信公众号的宣传窗口&amp;渠道！</a></li>
+<li><a href="#biee-ab">BIEE 对字段A自定义多个格式，并以字段B作为条件，只能定义一次，如果解决？</a></li>
+<li><a href="#biee_11">biee 透视图，小记／总计 标签 的修改 ！ 使用 @ 符号！</a></li>
+<li><a href="#_28"></a></li>
 </ul>
 </div>
         </nav>
@@ -432,6 +438,11 @@ slc02oka fail</p>
 or 
 目录a管理员角色
 目录a用户角色</p>
+<h2 id="biee-filter-using">biee filter( using ) 的使用！</h2>
+<ol>
+<li>需要字段在rpd做过聚合。</li>
+<li>如果表在rpd层没聚合，在biee前台将无法使用filter，体现为：不sum就报错，sum了也体现不出效果, 跟直接sum，不用filter是一样的效果。</li>
+</ol>
 <h2 id="bieesession-variable">BIEE使用SESSION VARIABLE 根据柜员自动判断该展示哪些机构数据</h2>
 <h3 id="_7">背景</h3>
 <p>业务员要求柜员登录BIEE平台后，自动根据柜员身份判断哪些机构数据应该展示，哪些不让展示。具体如下：</p>
@@ -922,6 +933,7 @@ dim... 没有对应上！</p>
 <h2 id="double-column">double column</h2>
 <h2 id="measure-labels">measure labels</h2>
 <h2 id="calculated-items">calculated items</h2>
+<h2 id="collector">收集器 collector</h2>
 <h2 id="biee_10">biee 创建透视图的几个问题记录</h2>
 <ol>
 <li>没有sum() , count() 等聚合函数作用到度量的表，生成的透视图，会把所有字段的都当作维度处理。一旦度量列被拖到度量标签区域，数据无法展示。为空。这时，要对度量列添加聚合函数。</li>
@@ -929,6 +941,16 @@ dim... 没有对应上！</p>
 透视图严格区分维度和度量。
 透视图可以把维度列值作为表头。也就是纵表转横表。</li>
 </ol>
+<h1 id="_27">将百度经验和百度百科作为微信公众号的宣传窗口&amp;渠道！</h1>
+<p>内容尽量基础、简单、易懂。</p>
+<h1 id="biee-ab">BIEE 对字段A自定义多个格式，并以字段B作为条件，只能定义一次，如果解决？</h1>
+<ol>
+<li>复制字段B，生成多个一模一样的字段B1，B2，B3...</li>
+<li>不要添加B1,b2,b3..到排查列表</li>
+<li>以以b1,b2,b3...为条件，定义A的格式...</li>
+</ol>
+<h1 id="biee_11">biee 透视图，小记／总计 标签 的修改 ！ 使用 @ 符号！</h1>
+<h1 id="_28"></h1>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>

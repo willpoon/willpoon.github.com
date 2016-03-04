@@ -2,10 +2,10 @@
 /archives.html
 /tags.html
 /categories.html
-/big_data.html
-/poons-talk.html
-/oracle-biee-develop.html
 /work-on-linux.html
+/oracle-biee-develop.html
+/poons-talk.html
+/big_data.html
 /cites_memory.html
 /work-on-Mac.html
 /play-databases.html
