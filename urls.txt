@@ -2,9 +2,9 @@
 /archives.html
 /tags.html
 /categories.html
-/work-on-linux.html
 /oracle-biee-develop.html
 /poons-talk.html
+/work-on-linux.html
 /big_data.html
 /cites_memory.html
 /work-on-Mac.html
