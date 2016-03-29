@@ -4543,3 +4543,28 @@ times2 ()
 }
 
 
+
+# Apache Kylin: Intermediate table not found
+
+http://stackoverflow.com/questions/35075276/apache-kylin-intermediate-table-not-found
+
+
+java.io.IOException: NoSuchObjectException(message:default.kylin_intermediate_kylin_sales_cube_desc_19700101000000_20160101000000_38b1539f_1f69_406d_89ed_96f3ca776841 table not found)
+
+
+
+——————hive-site.xml——————————
+
+<property>
+  <name>hive.metastore.uris</name>
+  <value>thrift://localhost:9083</value>
+  <description>Thrift URI for the remote metastore. Used by metastore client to connect to remote metastore.</description>
+</property>
+——————hive-site.xml——————————
+
+然后启动： nohup hive —service metastore -p 9083 &
+
+http://stackoverflow.com/questions/35075276/apache-kylin-intermediate-table-not-found
+
+
+

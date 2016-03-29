@@ -94,7 +94,7 @@
 
     in <a href="/category/tech.html">Tech</a>
 
-    on 2016-02-23
+    on 2016-03-25
 
         |
         tags:         <a href="/tag/da-shu-ju.html">大数据</a>
@@ -337,6 +337,7 @@
 <li><a href="#times2-orig_file1-tmp_filetmp-cat-orig_file-orig_file-tmp_file-mv-tmp_file-orig_file">times2(){      orig_file=$1;   tmp_file=/tmp/$$;    cat $orig_file $orig_file &gt; $tmp_file;   mv $tmp_file $orig_file; }</a></li>
 </ul>
 </li>
+<li><a href="#apache-kylin-intermediate-table-not-found">Apache Kylin: Intermediate table not found</a></li>
 </ul>
 </div>
         </nav>
@@ -3821,6 +3822,18 @@ INFO 2016-02-16 19:51:48,565 ExitHelper.py:53 - Performing cleanup before exitin
     cat $orig_file $orig_file &gt; $tmp_file;
     mv $tmp_file $orig_file
 }</p>
+<h1 id="apache-kylin-intermediate-table-not-found">Apache Kylin: Intermediate table not found</h1>
+<p>http://stackoverflow.com/questions/35075276/apache-kylin-intermediate-table-not-found</p>
+<p>java.io.IOException: NoSuchObjectException(message:default.kylin_intermediate_kylin_sales_cube_desc_19700101000000_20160101000000_38b1539f_1f69_406d_89ed_96f3ca776841 table not found)</p>
+<p>——————hive-site.xml——————————</p>
+<p><property>
+<name>hive.metastore.uris</name>
+<value>thrift://localhost:9083</value>
+<description>Thrift URI for the remote metastore. Used by metastore client to connect to remote metastore.</description>
+</property>
+——————hive-site.xml——————————</p>
+<p>然后启动： nohup hive —service metastore -p 9083 &amp;</p>
+<p>http://stackoverflow.com/questions/35075276/apache-kylin-intermediate-table-not-found</p>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>
