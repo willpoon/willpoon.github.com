@@ -928,7 +928,15 @@ oracle 官方认证 的博客
 
 #### https://richardfoote.wordpress.com
 
+
 很干货、很务实的博客。 从2007年一直以来都有更新
+
+#### http://www.redstk.com/
+
+该博客有很多关于biee 12c 方面的教程。
+
+
+
 
 
 ### 业内人物推荐 
