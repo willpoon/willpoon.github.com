@@ -1,14 +1,14 @@
 <!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta name="author" content="Poon" />
     <meta name="robots" content="index, follow"/>
 
-    <meta property="og:title" content="梦呓"/>
-    <meta property="og:url" content="/drafts/happydream.html"/>
+    <meta property="og:title" content="[翻译]OBIEE 11g – 如何让biee下载excel报表时不合并单元格？"/>
+    <meta property="og:url" content="/biee_excel_merging_cells.html"/>
     <meta property="og:site_name" content="仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖"/>
     <meta property="og:type" content="article"/>
 
-    <link rel="canonical" href="/drafts/happydream.html" />
+    <link rel="canonical" href="/biee_excel_merging_cells.html" />
 
-    <title>梦呓 | 仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</title>
+    <title>[翻译]OBIEE 11g – 如何让biee下载excel报表时不合并单元格？ | 仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
@@ -83,8 +83,8 @@
     <article>
       <header>
         <h1 class="entry-title">
-          <a href="/drafts/happydream.html" rel="bookmark"
-             title="Permalink to 梦呓">梦呓</a></h1>
+          <a href="/biee_excel_merging_cells.html" rel="bookmark"
+             title="Permalink to [翻译]OBIEE 11g – 如何让biee下载excel报表时不合并单元格？">[翻译]OBIEE 11g – 如何让biee下载excel报表时不合并单元格？</a></h1>
       </header>
       <div class="entry-content">
 <footer class="post-info">
@@ -94,12 +94,12 @@
 
     in <a href="/category/misc.html">misc</a>
 
-    on 2016-04-02
+    on 2016-04-03
 
 
 
         |
-        <a href="/drafts/happydream.html#disqus_thread">comments</a>
+        <a href="/biee_excel_merging_cells.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->
@@ -113,28 +113,69 @@
         <nav class="toc">
         <div class="toc">
 <ul>
-<li><a href="#2015-12-04-0829">2015-12-04 08:29</a></li>
-<li><a href="#2015-12-27-2029">2015-12-27 20:29</a></li>
-<li><a href="#_1">追求</a></li>
-<li><a href="#2016-01-06-1911">2016-01-06 19:11</a></li>
+<li><a href="#_1">中文译文</a></li>
+<li><a href="#_2">英文原文</a></li>
 </ul>
 </div>
         </nav>
 
         
-<h1 id="2015-12-04-0829">2015-12-04 08:29</h1>
-<p>昨晚，迁徙很足的一次梦呓，和一个带有瘟神的。群的。</p>
-<p>关键是，体验很真实。</p>
-<p>来了好几个不同的侗族。后来还被人告举重。</p>
-<p>这难道就是现实中缺什么，就来什么？</p>
-<p>跟最近锻炼下蹲有没有关系？是这个的功劳吗？</p>
-<p>天道如此？按此节律如何？</p>
-<h1 id="2015-12-27-2029">2015-12-27 20:29</h1>
-<h1 id="_1">追求</h1>
-<p>我要去杭州找你了。</p>
-<p>我喜欢你。</p>
-<h1 id="2016-01-06-1911">2016-01-06 19:11</h1>
-<p>again !</p>
+<h1 id="_1">中文译文</h1>
+<p>很多用户喜欢把biee报表导出到excel。但是，却被excel的自动合并单元格问题搞得头大。</p>
+<p>For example, the OBIEE report is doing a group sort by year, brand and then a sum by individual office.   With this group sort, the year and brand value are not repeated in each row and only display when the brand or year changes as shown in the screen shot below:</p>
+<p><img alt="1" src="https://mmbiz.qlogo.cn/mmbiz/sfKia69cLy1yRcLEKR4kcy0feSrXjiaJuUOKw67HkJZr6EsEia5TYMSNHQDSyChghTicvB0HBr9kEe7nFibKLoMibgPA/0?wx_fmt=png"/></p>
+<p>When  exported to Excel, it retains the distinct group sort look of the OBIEE  report, as shown below, but the preferred Excel display is to repeat the group sort columns in every row so that every cell in every row has a value.</p>
+<p><img alt="2" src="https://mmbiz.qlogo.cn/mmbiz/sfKia69cLy1yRcLEKR4kcy0feSrXjiaJuU89NAWWLiae7sCCYWRibuEQQ3T3h2NrEc9TkKoSoiaMgpm0n5I0sanCDSA/0?wx_fmt=png"/></p>
+<p>In the instanceconfig.xml file located in </p>
+<p><code>&lt;EXALYTICS/OBIEE_HOME&gt;/\Middleware\instances\instance1\config\OracleBIPresentationServicesComponent\coreapplication_obips1</code>
+ change the following:</p>
+<p>From:</p>
+<p><code>&lt;WebConfig xmlns=”oracle.bi.presentation.services/config/v1.1″&gt;</code></p>
+<p>To:</p>
+<p>```xml</p>
+<p><webconfig xmlns="”oracle.bi.presentation.services/config/v1.1″" xmlns:xsi="”http://www.w3.org/2001/XMLSchema-instance”"></webconfig></p>
+<p>And add the following lines anywhere in between <serverinstance> and </serverinstance></p>
+<p><download>
+<export xsi:type="”excel”">
+<datavalue>UseFormattedValue</datavalue>
+<repeatrows>true</repeatrows>
+</export>
+</download></p>
+<p>```</p>
+<p>Restart OBIEE.</p>
+<p>After making these changes, the OBIEE report format will remain in group sort (merged cells) format, but the Excel report will show repeating values for the group sort as shown below:</p>
+<p><img alt="3" src="https://mmbiz.qlogo.cn/mmbiz/sfKia69cLy1yRcLEKR4kcy0feSrXjiaJuU96dgcmJYrN9wtv7vXic2pCLw5qXJBQonjcAibLuUymm1hj4nJZvd11mg/0?wx_fmt=png"/></p>
+<p>Reference: Doc ID 1930660.1</p>
+<h1 id="_2">英文原文</h1>
+<p>Title: OBIEE 11g – Unmerge Cells When Downloading OBI Reports to Excel
+Slug: biee_excel_merging_cells
+Authors: Poon
+Status: draft</p>
+<p>Many users of OBI like the functionality of being to export OBI reports into excel. However, it can be frustrating for the user when excel automatically merges cells for them.</p>
+<p>For example, the OBIEE report is doing a group sort by year, brand and then a sum by individual office.   With this group sort, the year and brand value are not repeated in each row and only display when the brand or year changes as shown in the screen shot below:</p>
+<p><img alt="1" src="https://mmbiz.qlogo.cn/mmbiz/sfKia69cLy1yRcLEKR4kcy0feSrXjiaJuUOKw67HkJZr6EsEia5TYMSNHQDSyChghTicvB0HBr9kEe7nFibKLoMibgPA/0?wx_fmt=png"/></p>
+<p>When  exported to Excel, it retains the distinct group sort look of the OBIEE  report, as shown below, but the preferred Excel display is to repeat the group sort columns in every row so that every cell in every row has a value.</p>
+<p><img alt="2" src="https://mmbiz.qlogo.cn/mmbiz/sfKia69cLy1yRcLEKR4kcy0feSrXjiaJuU89NAWWLiae7sCCYWRibuEQQ3T3h2NrEc9TkKoSoiaMgpm0n5I0sanCDSA/0?wx_fmt=png"/></p>
+<p>In the instanceconfig.xml file located in </p>
+<p><code>&lt;EXALYTICS/OBIEE_HOME&gt;/\Middleware\instances\instance1\config\OracleBIPresentationServicesComponent\coreapplication_obips1</code>
+ change the following:</p>
+<p>From:</p>
+<p><code>&lt;WebConfig xmlns=”oracle.bi.presentation.services/config/v1.1″&gt;</code></p>
+<p>To:</p>
+<p>```xml</p>
+<p><webconfig xmlns="”oracle.bi.presentation.services/config/v1.1″" xmlns:xsi="”http://www.w3.org/2001/XMLSchema-instance”"></webconfig></p>
+<p>And add the following lines anywhere in between <serverinstance> and </serverinstance></p>
+<p><download>
+<export xsi:type="”excel”">
+<datavalue>UseFormattedValue</datavalue>
+<repeatrows>true</repeatrows>
+</export>
+</download></p>
+<p>```</p>
+<p>Restart OBIEE.</p>
+<p>After making these changes, the OBIEE report format will remain in group sort (merged cells) format, but the Excel report will show repeating values for the group sort as shown below:</p>
+<p><img alt="3" src="https://mmbiz.qlogo.cn/mmbiz/sfKia69cLy1yRcLEKR4kcy0feSrXjiaJuU96dgcmJYrN9wtv7vXic2pCLw5qXJBQonjcAibLuUymm1hj4nJZvd11mg/0?wx_fmt=png"/></p>
+<p>Reference: Doc ID 1930660.1</p>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>
@@ -147,7 +188,7 @@
         <h2>Comments</h2>
         <div id="disqus_thread"></div>
         <script type="text/javascript">
-          var disqus_identifier = "drafts/happydream.html";
+          var disqus_identifier = "biee_excel_merging_cells.html";
           (function() {
           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
           dsq.src = '//gitwillpoonimx3.disqus.com/embed.js';

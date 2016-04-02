@@ -5,29 +5,36 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2016-04-02T09:49:53-00:00</lastmod>
+<lastmod>2016-04-03T07:37:13-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2016-04-02T09:49:53-00:00</lastmod>
+<lastmod>2016-04-03T07:37:13-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2016-04-02T09:49:53-00:00</lastmod>
+<lastmod>2016-04-03T07:37:13-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2016-04-02T09:49:53-00:00</lastmod>
+<lastmod>2016-04-03T07:37:13-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/biee_excel_merging_cells.html</loc>
+<lastmod>2016-04-03T07:37:02+08:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -194,7 +201,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/misc.html</loc>
-<lastmod>2016-01-15T20:28:31+08:06</lastmod>
+<lastmod>2016-04-03T07:37:02+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -628,7 +635,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/author/poon.html</loc>
-<lastmod>2016-04-02T09:49:49+08:06</lastmod>
+<lastmod>2016-04-03T07:37:02+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
