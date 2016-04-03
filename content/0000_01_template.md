@@ -1,5 +1,5 @@
 Title: 01博客模版
-Slug: blog_template
+Slug: blog_template01
 Authors: Poon
 Status: draft
 

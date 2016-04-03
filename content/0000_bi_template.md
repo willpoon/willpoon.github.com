@@ -1,5 +1,5 @@
 Title: BI博客模版
-Slug: blog_template
+Slug: blog_template_bi
 Authors: Poon
 Status: draft
 
