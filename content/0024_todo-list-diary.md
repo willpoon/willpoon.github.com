@@ -3,6 +3,7 @@ Category: Life
 Tags: todo,想做,计划
 Slug: todo
 Authors: Poon
+Status:draft
 
 <!-- ^ -->
 
@@ -137,3 +138,8 @@ db2...
 
 
 
+2016-04-03 16:54
+
+1. 写01， 关于游戏
+2. 看视频
+3. 微信：你可能喜欢...

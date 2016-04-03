@@ -2,6 +2,7 @@
 /archives.html
 /tags.html
 /categories.html
+/biee_excel_merging_cells.html
 /poons-talk.html
 /oracle-biee-develop.html
 /big_data.html

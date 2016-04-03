@@ -877,6 +877,9 @@ obiee siebel 领域的人才市场情况、询价。工作机会等。
 
 内容丰富翔实。
 
+## https://bicoach.wordpress.com
+
+虽然更新不怎么频繁，但是有意外惊喜。
 
 ## http://obiee-freelancer.blogspot.com
 
