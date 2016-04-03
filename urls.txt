@@ -2,9 +2,10 @@
 /archives.html
 /tags.html
 /categories.html
+/educate_yourself.html
+/poons-talk.html
 /game_is_good_but_consume_time.html
 /oracle-biee-develop.html
-/poons-talk.html
 /blog_template.html
 /big_data.html
 /work-on-linux.html
