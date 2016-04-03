@@ -1,5 +1,5 @@
-Title: 01博客模版
-Slug: blog_template
+Title: 游戏虽好玩，但是花时间
+Slug: game_is_good_but_consume_time
 Authors: Poon
 
 
