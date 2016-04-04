@@ -2,6 +2,7 @@
 /archives.html
 /tags.html
 /categories.html
+/hadoop_blocksize_vs_splitsize.html
 /words_to_get_reward.html
 /educate_yourself.html
 /game_is_good_but_consume_time.html

@@ -1,4 +1,4 @@
-Title: Hadoop的block Size和split Size是什么关系？
+Title: Hadoop的block Size和split Size是什么关系
 Slug: hadoop_blocksize_vs_splitsize
 Authors: Poon
 

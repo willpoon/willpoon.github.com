@@ -74,9 +74,6 @@ xmlns:xsi=”http://www.w3.org/2001/XMLSchema-instance”>
 
 #  english version
 
-Title: OBIEE 11g – Unmerge Cells When Downloading OBI Reports to Excel
-Slug: biee_excel_merging_cells
-Authors: Poon
 
 
 Many users of OBI like the functionality of being to export OBI reports into excel. However, it can be frustrating for the user when excel automatically merges cells for them.
