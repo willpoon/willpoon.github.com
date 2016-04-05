@@ -1,5 +1,5 @@
 Title: 搞那么多
-Slug: balance_is_the_truth
+Slug: everything_we_do_for_happiness
 Authors: Poon
 
 今天，学习shuffle过程，里面采用partition来平衡reduce过程中的数据倾斜问题。 大意是，如果数据分布分布不均，就会出现计算问题：计算速度慢，节点资源负载不均匀，导致过载或浪费。 反正就是没有好结果。

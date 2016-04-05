@@ -5,49 +5,56 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2016-04-04T12:06:58-00:00</lastmod>
+<lastmod>2016-04-05T13:49:08-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2016-04-04T12:06:58-00:00</lastmod>
+<lastmod>2016-04-05T13:49:08-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2016-04-04T12:06:58-00:00</lastmod>
+<lastmod>2016-04-05T13:49:08-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2016-04-04T12:06:58-00:00</lastmod>
+<lastmod>2016-04-05T13:49:08-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/biee_excel_merging_cells.html</loc>
-<lastmod>2016-04-04T12:06:05+08:00</lastmod>
+<loc>/everything_we_do_for_happiness.html</loc>
+<lastmod>2016-04-05T13:49:02+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/balance_is_the_truth.html</loc>
+<lastmod>2016-04-04T19:32:52+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/hadoop_blocksize_vs_splitsize.html</loc>
-<lastmod>2016-04-04T12:04:46+08:00</lastmod>
+<lastmod>2016-04-04T12:32:46+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/words_to_get_reward.html</loc>
-<lastmod>2016-04-03T20:01:03+08:00</lastmod>
+<loc>/biee_excel_merging_cells.html</loc>
+<lastmod>2016-04-04T12:06:05+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -222,7 +229,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/misc.html</loc>
-<lastmod>2016-04-04T12:06:05+08:06</lastmod>
+<lastmod>2016-04-05T13:49:02+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -600,7 +607,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/author/poon.html</loc>
-<lastmod>2016-04-04T12:06:05+08:06</lastmod>
+<lastmod>2016-04-05T13:49:02+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

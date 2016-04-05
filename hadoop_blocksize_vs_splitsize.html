@@ -168,6 +168,18 @@ In HDFS architecture there is a concept of blocks. A typical block size used by 
 <p>dfs.block.size </p>
 </blockquote>
 <p>注意，请不要轻易更改 block size,因为这个是影响整个hdfs的。</p>
+<h4 id="split-size_1">split size 计算规则：</h4>
+<p>针对 ：
+mapreduce.input.fileinputformat.split.maxsize
+mapreduce.input.fileinputformat.split.minsize
+FileInputFormat.computeSplitSize()</p>
+<p>按如下规则取 split size : </p>
+<p>Math.max(minSize, Math.min(maxSize, blockSize))</p>
+<h4 id="_8">性能</h4>
+<ol>
+<li>一般来说，block size 和 split size 设置成一致，性能较好。</li>
+<li>FileInputFormat generates splits in such a way that each split is all or part of a single file. 所以 hadoop处理大文件比处理小文件来得效率高得多。</li>
+</ol>
 <p><img alt="bottom求关注" src="https://mmbiz.qlogo.cn/mmbiz/sfKia69cLy1yGH30FHU6SYaJPqvibh7Wib9Pg2V6rc7zjaPJ7aKk9NcpQb9IIhZLCIG8CB4b0QV2vKWopevlhvafw/0?wx_fmt=png" /></p>
 
         <div class="sharethis-bottom">
