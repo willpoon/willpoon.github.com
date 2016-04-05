@@ -89,6 +89,23 @@ ref: http://stackoverflow.com/questions/30549261/split-size-vs-block-size-in-had
 
 注意，请不要轻易更改 block size,因为这个是影响整个hdfs的。
 
+####  split size 计算规则：
+针对 ：
+mapreduce.input.fileinputformat.split.maxsize
+mapreduce.input.fileinputformat.split.minsize
+FileInputFormat.computeSplitSize()
+
+按如下规则取 split size : 
+
+Math.max(minSize, Math.min(maxSize, blockSize))
+
+#### 性能
+
+1. 一般来说，block size 和 split size 设置成一致，性能较好。
+2.  FileInputFormat generates splits in such a way that each split is all or part of a single file. 所以 hadoop处理大文件比处理小文件来得效率高得多。
+
+
+
 
 ![bottom求关注](https://mmbiz.qlogo.cn/mmbiz/sfKia69cLy1yGH30FHU6SYaJPqvibh7Wib9Pg2V6rc7zjaPJ7aKk9NcpQb9IIhZLCIG8CB4b0QV2vKWopevlhvafw/0?wx_fmt=png)
 

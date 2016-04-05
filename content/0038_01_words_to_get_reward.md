@@ -1,6 +1,7 @@
 Title: 那些没有节操的讨饭术语
 Slug: words_to_get_reward
 Authors: Poon
+Status: draft
 
 不值莫赏 赏莫过贰 图开心而已
 
