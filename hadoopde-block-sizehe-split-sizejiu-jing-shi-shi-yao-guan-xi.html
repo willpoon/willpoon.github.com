@@ -1,0 +1,694 @@
+<!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta name="author" content="Poon" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="Hadoop的block Size和split Size究竟是什么关系?"/>
+    <meta property="og:url" content="/hadoopde-block-sizehe-split-sizejiu-jing-shi-shi-yao-guan-xi.html"/>
+    <meta property="og:site_name" content="仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="/hadoopde-block-sizehe-split-sizejiu-jing-shi-shi-yao-guan-xi.html" />
+
+    <title>Hadoop的block Size和split Size究竟是什么关系? | 仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">
+        stLight.options({
+            publisher: "7470bcd0-1833-4a2b-a25f-c4a233bdfced",
+            doNotHash: false,
+            doNotCopy: false,
+            hashAddressBar: false
+        });
+    </script>
+</head>
+
+<body id="index">
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h2>
+                        <a href="/"> 仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 </a> 
+<!-- /# 
+ 
+                        <strong>
+                            <span style="font-size:12px;vertical-align:bottom">Be a Coder,Lifehacker,Storyteller </span>
+                        </strong>
+ -->
+                </h2>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li ><a href="tags.html">Tags</a></li>
+                            <li ><a href="about.html">About</a></li>
+                        </ul>
+
+<script>
+  (function() {
+    var cx = '005973619447881484970:jf4jwrpc3tg';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<div id="google-custom-search" class="nav">
+    <gcse:search></gcse:search>
+</div>
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="/hadoopde-block-sizehe-split-sizejiu-jing-shi-shi-yao-guan-xi.html" rel="bookmark"
+             title="Permalink to Hadoop的block Size和split Size究竟是什么关系?">Hadoop的block Size和split Size究竟是什么关系?</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/poon.html">Poon</a>
+    </address>
+
+    in <a href="/category/pdf.html">pdf</a>
+
+    on 2016-04-05
+
+
+
+        |
+        <a href="/hadoopde-block-sizehe-split-sizejiu-jing-shi-shi-yao-guan-xi.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+        <div class="sharethis-top">
+          <span class='st_fblike_hcount' displayText='Facebook Like'></span>
+          <span class='st_plusone_hcount' displayText='Google +1'></span>
+          <span class='st_twitter_hcount' displayText='Tweet'></span>
+          <span class='st_email_hcount' displayText='Email'></span>
+        </div>
+
+
+        
+        
+    <script type="text/javascript">
+        var write_sceen_time = (+new Date());
+    </script>
+    
+    <div id="js_cmt_mine" class="discuss_container editing access" style="display:none;">
+        <div class="discuss_container_inner">
+            <h2 class="rich_media_title">Hadoop的block Size和split Size究竟是什么关系?</h2>
+            <span id="log"></span>
+            <div class="frm_textarea_box_wrp">
+                <span class="frm_textarea_box">
+                    <textarea id="js_cmt_input" class="frm_textarea" placeholder="留言将由公众号筛选后显示，对所有人可见。"></textarea>
+                    <div class="emotion_tool">
+                        <span class="emotion_switch" style="display:none;"></span>
+                        <span id="js_emotion_switch" class="pic_emotion_switch_wrp">
+                            <img class="pic_default" src="http://res.wx.qq.com/mmbizwap/en_US/htmledition/images/icon/appmsg/emotion/icon_emotion_switch.2x278965.png" alt="">
+                            <img class="pic_active" src="http://res.wx.qq.com/mmbizwap/en_US/htmledition/images/icon/appmsg/emotion/icon_emotion_switch_active.2x278965.png" alt="">
+                        </span>
+                        <div class="emotion_panel" id="js_emotion_panel">
+                            <span class="emotion_panel_arrow_wrp" id="js_emotion_panel_arrow_wrp">
+                                <i class="emotion_panel_arrow arrow_out"></i>
+                                <i class="emotion_panel_arrow arrow_in"></i>
+                            </span>
+                            <div class="emotion_list_wrp" id="js_slide_wrapper">
+                                
+                                
+                            </div>
+                            <ul class="emotion_navs" id="js_navbar">
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </span>
+            </div>
+            <div class="discuss_btn_wrp"><a id="js_cmt_submit" class="btn btn_primary btn_discuss btn_disabled" href="javascript:;">提交</a></div>
+            <div class="discuss_list_wrp" style="display:none">
+                <div class="rich_tips with_line title_tips discuss_title_line">
+                    <span class="tips">我的留言</span>
+                </div>
+                <ul class="discuss_list" id="js_cmt_mylist"></ul>
+            </div>
+            <div class="rich_tips tips_global loading_tips" id="js_mycmt_loading">
+                <img src="http://res.wx.qq.com/mmbizwap/en_US/htmledition/images/icon/common/icon_loading_white2805ea.gif" class="rich_icon icon_loading_white" alt="">
+                <span class="tips">加载中</span>
+            </div>
+            <div class="wx_poptips" id="js_cmt_toast" style="display:none;">
+                <img alt="" class="icon_toast" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGoAAABqCAYAAABUIcSXAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3NpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoyMTUxMzkxZS1jYWVhLTRmZTMtYTY2NS0xNTRkNDJiOGQyMWIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTA3QzM2RTg3N0UwMTFFNEIzQURGMTQzNzQzMDAxQTUiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTA3QzM2RTc3N0UwMTFFNEIzQURGMTQzNzQzMDAxQTUiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NWMyOGVjZTMtNzllZS00ODlhLWIxZTYtYzNmM2RjNzg2YjI2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjIxNTEzOTFlLWNhZWEtNGZlMy1hNjY1LTE1NGQ0MmI4ZDIxYiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pmvxj1gAAAVrSURBVHja7J15rF1TFMbXk74q1ZKHGlMkJVIhIgg1FH+YEpEQJCKmGBpThRoSs5jVVNrSQUvEEENIhGiiNf9BiERICCFIRbUiDa2qvudbOetF3Tzv7XWGffa55/uS7593977n3vO7e5+199p7v56BgQGh0tcmvAUERREUQVEERREUQVEERREUQVEERREUQVEERREUQVEERREUQVEERVAUQVEERVAUQbVYk+HdvZVG8b5F0xj4RvhouB+eCy8KrdzDJc1RtAX8ILxvx98V1GyCSkN98Cx4z/95/Wn4fj6j6tUEeN4wkFSnw1MJqj5NhBfAuwaUHREUg4lqNMmePVsHll/HFhVfe1t3FwpJI8DXCCquDrCWNN4B6Tb4M3Z98aTPmTvh0YHl18PXw29yZiKejoPvcUD6E74yFBJbVDk6Bb7K8aP/Hb4c/tRzEYIqprPhSxzlf4Uvhb/0Xoig8qnHAJ3lqPMzfDH8XZ4LEpRf2sVdA5/sqPO9Qfop70UJyn+/boaPddT5yrq7VUUvTIVJI7q74MMddXR8NB1eXcYvhBpZm0s2w72/o86HFoKvLau/pYaXzjLMdUJ6y0LwtWV9CIIaXtvA8+G9HHV03u5q+K+yH47U0NoRngPv7KjzHDwTLj0bS1BDazfJJlcnOOostC6ysnCT+q80G/sIvFVgeW09D8FPVT0uoP7VfvAD8NjA8pqmuAN+OcYAjso0RbIZ8DGB5TVNcRO8JMaHY9SXSdfa3eeANJimWBLrA7JFiZwIXye+NMUV8CcxP2SRFjXefok7NRjSGZJlWUPvw2/wtNiQirSoXWyMsR28wR7AzzYM0oXw+Y7yK+CLJGeaoqjyrJSdZJD6Ov4+z5y6NJc0Az7NUecHydIUy+v60KNyQHoM3nKI1y7YCFiq0i7uBvgER52vDdKqWn9djhY1Dn4G3n6Ecqm2rF74dvgoR53S0hQxW9RJAZAGW5bSn58QJA27dQ7uIEedjywEX5NKVxCqsY6y+qA+LxFI4+yZ6oH0trWkNan80jygtIUsc5SflgAsDXgehfdx1KkkTRE76tN+Xue2jnTU0Ru1oIbvpt30bBtKhOp5yaaRkts0lic8V1i6dPcIRx2d/l8Y8XtNNEg7OOo8bl1kmmOKnDsO88CaYzejau0hWZqiL7C83oCH4SeTHvwV2BqqsHRVztSEYOmWF80NeXZT6Hd4KflResE9vCnBOlCyGfDNAstHTVPUDWoQ1t3iW+9WNizvlhfd4aerXd+ThqiMfNR6+9LvOOro5OY5JX2H4+F7HZD+kGzlamMgldWiirQsjcwWFbjmqZJteekJLK9pisvgL6RhKvuciZiwzrWWGapfrPy30kBVcSBIrw0aD3PU0XB6cehntq7rTMf7/2iQlktDVdXJLXlg6VjmiYBn6rWSTRCH6hvJ0hQrpcGq8oidsmHpTP8t8DGO9/vcWt9qabiqPgup1yKyQwvC2tSefZ73SSpNkUJ4PlLorlHZ+446nc8f3fIyywlJhwrTuwVSjBa1ccvSxN0hjjoK5xVrYZMd9V6XbFfgBukixTwGLg8sDam3dZR/wZ6L/dJlin1en8LS+bgpFbz3Ygvzu1J1HKxYNqxGpCmaCEo12rrBorD6LRp8UbpcdR5VWhTW35KlKd6QFqjuM2XzwlpnMxTvSkuUwuG/Xlg6NtPjbT6WFimF/VG6LEvXgn8QGDjMbBukVECFwhpoS+CQatfX2Q1q6H7wENHdrfCr0lKleEB9JyxNneus+VJpsVL9TwI6W65LovWIGl3KtVJaLv7LBwYTFEERFEVQFEERFEVQFEERFEVQFEERFEVQFEERFEVQFEERFFWq/hFgADUMN4RzT6/OAAAAAElFTkSuQmCC">
+                <p class="toast_content">已留言</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="js_article" class="rich_media">
+        
+        <div id="js_top_ad_area" class="top_banner">
+ 
+        </div>
+                
+
+        <div class="rich_media_inner">
+            <div id="page-content">
+                <div id="img-content" class="rich_media_area_primary">
+                    <h2 class="rich_media_title" id="activity-name">
+                        Hadoop的block Size和split Size究竟是什么关系? 
+                    </h2>
+                    <div class="rich_media_meta_list">
+                                                <span id="copyright_logo" class="rich_media_meta meta_original_tag">原创</span>
+                        						                        <em id="post-date" class="rich_media_meta rich_media_meta_text">2016-04-04</em>
+
+                                                <em class="rich_media_meta rich_media_meta_text">poon</em>
+                                                <a class="rich_media_meta rich_media_meta_link rich_media_meta_nickname" href="javascript:void(0);" id="post-user">BI实验室</a>
+                        <span class="rich_media_meta rich_media_meta_text rich_media_meta_nickname">BI实验室</span>
+
+                        <div id="js_profile_qrcode" class="profile_container" style="display:none;">
+                            <div class="profile_inner">
+                                <strong class="profile_nickname">BI实验室</strong>
+                                <img class="profile_avatar" id="js_profile_qrcode_img" src="" alt="">
+
+                                <p class="profile_meta">
+                                <label class="profile_meta_label">微信号</label>
+                                <span class="profile_meta_value">BIDataLab</span>
+                                </p>
+
+                                <p class="profile_meta">
+                                <label class="profile_meta_label">功能介绍</label>
+                                <span class="profile_meta_value">谨以此号，记录本人在商业智能解决方案方面的探索与实践。本号的文章评论功能已开通，欢迎一起探讨BI技术和行业问题!&nbsp;期待你的留言&nbsp;!</span>
+                                </p>
+                                
+                            </div>
+                            <span class="profile_arrow_wrp" id="js_profile_arrow_wrp">
+                                <i class="profile_arrow arrow_out"></i>
+                                <i class="profile_arrow arrow_in"></i>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                                                            
+                                        <div class="rich_media_thumb_wrp" id="media">
+                        
+                                                <script>
+                            (function(){
+                                var cover = "http://mmbiz.qpic.cn/mmbiz/sfKia69cLy1wVWIC3xsBR5McgNEbKBJJYR2oPyGa39haCeQHQmfxpQ15me40EVGxjY7ZRickaUspeUHBTpo9nG6A/0?wx_fmt=jpeg";
+                                document.write('<img class="rich_media_thumb" id="js_cover" onerror="this.parentNode.removeChild(this)" data-backsrc='+ cover +'  data-src="' + cover + '" />');
+                            })();
+                        </script>
+                                            </div>
+                                        
+                    
+                    <div class="rich_media_content " id="js_content">
+                        
+                        <div class="markdown-here-wrapper" data-md-url="https://mp.weixin.qq.com/cgi-bin/appmsg?t=media/appmsg_edit&amp;action=edit&amp;type=10&amp;appmsgid=502864021&amp;token=165025666&amp;lang=zh_CN" markdown-here-wrapper-content-modified="true"><p style="margin: 0px 0px 1.2em !important;"><span style="line-height: 1.6;">学习hadoop map reduce过程的时候，第一步就是split。我们知道，hdfs中的数据是按block来存储的。问题来了，那么split和block之间是什么关系呢？我google到了stackoverflow上的这篇文章，我觉得这个帖子应该把关系说清楚了，翻译出来，欢迎大家批评指正！以下：</span><br /></p><h2 style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(238, 238, 238);">问题</h2><p style="margin: 0px 0px 1.2em !important;">hadoop的split size 和 block size 是什么关系？ 是否 split size 应该 n倍于 block size ?</p><h2 style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(238, 238, 238);">概念</h2><p style="margin: 0px 0px 1.2em !important;">在 hdfs 架构中，存在 blocks 的概念。 通常来说，hdfs中的一个block 是 64MB 。 当我们把一个大文件导入hdfs中的时候，文件会按 64MB 每个block来分割（如果按默认配置）。<br />如果你有1GB的文件要存入HDFS中， 1GB/64MB = 1024MB / 64MB &nbsp;= 16 个blocks 会被分割到不同的datanode上。</p><h2 style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(238, 238, 238);">目的</h2><p style="margin: 0px 0px 1.2em !important;">数据分割(data splitting )策略是基于文件偏移进行的。文件分割的目的是 有利于数据并行处理 ，以及 便于数据容灾恢复。</p><h2 style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(238, 238, 238);">区别</h2><p style="margin: 0px 0px 1.2em !important;">split 是逻辑意义上的split。 通常在 M/R 程序或者其他数据处理技术上用到。根据你处理的数据量的情况，split size是允许用户自定义的。</p><p style="margin: 0px 0px 1.2em !important;">split size 定义好了之后，可以控制 M/R 中 Mapper 的数量。如果M/R中没有定义 split size ， 就用 默认的HDFS配置作为 input split。</p><h2 style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(238, 238, 238);">举例</h2><p style="margin: 0px 0px 1.2em !important;">你有个100MB的文件，block size 是 64MB ， 那么就会被split成 2 块。这时如果你你没有指定 input split ， 你的M/R程序就会按2个input split 来处理 ， 并分配两个mapper来完成这个job。</p><p style="margin: 0px 0px 1.2em !important;">但如果你把 split size 指定为 100MB，那么M/R程序就会把数据处理成一个 split，这时只用分配一个mapper 就可以了。</p><p style="margin: 0px 0px 1.2em !important;">但如果你把split size 指定为 25MB，M/R就会将数据分成4个split，分配4个mapper来处理这个job。</p><h2 style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(238, 238, 238);">总结</h2><ol style="margin: 1.2em 0px;padding-left: 2em;"><li style="margin: 0.5em 0px;">block是物理上的数据分割，而split是逻辑上的分割。</li><li style="margin: 0.5em 0px;">如果没有特别指定，split size 就等于 HDFS 的 block size 。</li><li style="margin: 0.5em 0px;">用户可以在M/R 程序中自定义split size。</li><li style="margin: 0.5em 0px;">一个split 可以包含多个blocks，也可以把一个block应用多个split操作。</li><li style="margin: 0.5em 0px;">有多少个split，就有多少个mapper。</li></ol><p style="margin: 0px 0px 1.2em !important;">原文：</p><pre style="font-size: 0.85em; font-family: Consolas, Inconsolata, Courier, monospace;font-size: 1em; line-height: 1.2em;margin: 1.2em 0px;"><code style="font-size: 0.85em; font-family: Consolas, Inconsolata, Courier, monospace;margin: 0px 0.15em; padding: 0px 0.3em; white-space: pre-wrap; border: 1px solid rgb(234, 234, 234); border-radius: 3px; display: inline; background-color: rgb(248, 248, 248);white-space: pre; overflow: auto; border-radius: 3px; border: 1px solid rgb(204, 204, 204); padding: 0.5em 0.7em; display: block !important;">Q: What is relationship between split size and block size in Hadoop? As I read in this, split size must be n-times of block size (n is an integer and n &gt; 0), is this correct? Is there any must in relationship between split size and block size? **
+
+A:
+In HDFS architecture there is a concept of blocks. A typical block size used by HDFS is 64 MB. When we place a large file into HDFS it chopped up into 64 MB chunks(based on default configuration of blocks), Suppose you have a file of 1GB and you want to place that file in HDFS,then there will be 1GB/64MB = 16 split/blocks and these block will be distribute across the DataNodes. These blocks/chunk will reside on a different DataNode based on your cluster configuration.
+
+Data splitting happens based on file offsets.The goal of splitting of file and store it into different blocks is parallel processing and fail over of data.
+
+Difference between block size and split size.
+
+Split is logical split of your data, basically used during data processing using Map/Reduce program or other processing techniques. Split size is user defined and you can choose your split size based on your data(How much data you are processing).
+
+Split is basically used to control number of Mapper in Map/Reduce program. If you have not defined any input split size in Map/Reduce program then default HDFS block split will be considered as input split.
+
+Example:
+
+Suppose you have a file of 100MB and HDFS default block configuration is 64MB then it will chopped in 2 split and occupy 2 blocks. Now you have a Map/Reduce program to process this data but you have not specified any input split then based on the number of blocks(2 block) input split will be considered for the Map/Reduce processing and 2 mapper will get assigned for this job.
+
+But suppose,you have specified the split size(say 100MB) in your Map/Reduce program then both blocks(2 block) will be considered as a single split for the Map/Reduce processing and 1 Mapper will get assigned for this job.
+
+Suppose,you have specified the split size(say 25MB) in your Map/Reduce program then there will be 4 input split for the Map/Reduce program and 4 Mapper will get assigned for the job.
+
+Conclusion:
+
+1. Split is a logical division of the input data while block is a physical division of data.
+2. HDFS default block size is default split size if input split is not specified.
+3. Split is user defined and user can control split size in his Map/Reduce program.
+4. One split can be mapping to multiple blocks and there can be multiple split of one block.
+5. The number of map tasks (Mapper) are equal to the number of splits.
+
+ref: http://stackoverflow.com/questions/30549261/split-size-vs-block-size-in-hadoop</code></pre><h2 style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(238, 238, 238);">补充</h2><h3 style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.3em;">hdfs中如何设置参数</h3><h4 style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.2em;">split size 配置：</h4><blockquote style="margin: 1.2em 0px;border-left-width: 4px; border-left-style: solid; border-left-color: rgb(221, 221, 221); padding: 0px 1em; color: rgb(119, 119, 119); quotes: none;"><p style="margin: 0px 0px 1.2em !important;">mapred.max.split.size</p></blockquote><h4 style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.2em;">block size 配置：</h4><blockquote style="margin: 1.2em 0px;border-left-width: 4px; border-left-style: solid; border-left-color: rgb(221, 221, 221); padding: 0px 1em; color: rgb(119, 119, 119); quotes: none;"><p style="margin: 0px 0px 1.2em !important;">dfs.block.size</p></blockquote><p style="margin: 0px 0px 1.2em !important;">注意，请不要轻易更改 block size,因为这个是影响整个hdfs的。</p><h4 style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.2em;">split size 计算规则：</h4><p style="margin: 0px 0px 1.2em !important;">针对 ：<br />mapreduce.input.fileinputformat.split.maxsize<br />mapreduce.input.fileinputformat.split.minsize<br />FileInputFormat.computeSplitSize()</p><p style="margin: 0px 0px 1.2em !important;">按如下规则取 split size :</p><p style="margin: 0px 0px 1.2em !important;">Math.max(minSize, Math.min(maxSize, blockSize))</p><h4 style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.2em;">性能</h4><ol style="margin: 1.2em 0px;padding-left: 2em;"><li style="margin: 0.5em 0px;">一般来说，block size 和 split size 设置成一致，性能较好。</li><li style="margin: 0.5em 0px;">FileInputFormat generates splits in such a way that each split is all or part of a single file. 所以 hadoop处理大文件比处理小文件来得效率高得多。</li></ol><p style="margin: 0px 0px 1.2em !important;"><img data-src="http://mmbiz.qpic.cn/mmbiz/sfKia69cLy1yGH30FHU6SYaJPqvibh7Wib9Pg2V6rc7zjaPJ7aKk9NcpQb9IIhZLCIG8CB4b0QV2vKWopevlhvafw/0?wx_fmt=png" data-ratio="0.69" data-w="400" /></p><div title="MDH:PHA+VGl0bGU6IEhhZG9vcOeahGJsb2NrIFNpemXlkoxzcGxpdCBTaXpl5piv5LuA5LmI5YWz57O7
+PC9wPjxwPlNsdWc6IGhhZG9vcF9ibG9ja3NpemVfdnNfc3BsaXRzaXplPC9wPjxwPkF1dGhvcnM6
+IFBvb248L3A+PHA+PGJyPjwvcD48cD7lrabkuaBoYWRvb3AgbWFwIHJlZHVjZei/h+eoi+eahOaX
+tuWAme+8jOesrOS4gOatpeWwseaYr3NwbGl044CC5oiR5Lus55+l6YGT77yMaGRmc+S4reeahOaV
+sOaNruaYr+aMiWJsb2Nr5p2l5a2Y5YKo55qE44CC6Zeu6aKY5p2l5LqG77yM6YKj5LmIc3BsaXTl
+koxibG9ja+S5i+mXtOaYr+S7gOS5iOWFs+ezu+WRou+8n+aIkWdvb2dsZeWIsOS6hnN0YWNrb3Zl
+cmZsb3fkuIrnmoTov5nnr4fmlofnq6DvvIzmiJHop4nlvpfov5nkuKrluJblrZDlupTor6Xmiorl
+hbPns7vor7TmuIXmpZrkuobvvIznv7vor5Hlh7rmnaXvvIzmrKLov47lpKflrrbmibnor4TmjIfm
+raPvvIHku6XkuIvvvJo8L3A+PHA+PGJyPjwvcD48cD4jIyAmbmJzcDvpl67popg8L3A+PHA+PGJy
+PjwvcD48cD5oYWRvb3DnmoRzcGxpdCBzaXplIOWSjCBibG9jayBzaXplIOaYr+S7gOS5iOWFs+ez
+u++8nyDmmK/lkKYgc3BsaXQgc2l6ZSDlupTor6UgbuWAjeS6jiBibG9jayBzaXplID8mbmJzcDs8
+L3A+PHA+PGJyPjwvcD48cD4jIyDmpoLlv7U8L3A+PHA+PGJyPjwvcD48cD7lnKggaGRmcyDmnrbm
+noTkuK3vvIzlrZjlnKggYmxvY2tzIOeahOamguW/teOAgiDpgJrluLjmnaXor7TvvIxoZGZz5Lit
+55qE5LiA5LiqYmxvY2sg5pivIDY0TUIg44CCIOW9k+aIkeS7rOaKiuS4gOS4quWkp+aWh+S7tuWv
+vOWFpWhkZnPkuK3nmoTml7blgJnvvIzmlofku7bkvJrmjIkgNjRNQiDmr4/kuKpibG9ja+adpeWI
+huWJsu+8iOWmguaenOaMiem7mOiupOmFjee9ru+8ieOAgjwvcD48cD7lpoLmnpzkvaDmnIkxR0Ln
+moTmlofku7bopoHlrZjlhaVIREZT5Lit77yMIDFHQi82NE1CID0gMTAyNE1CIC8gNjRNQiAmbmJz
+cDs9IDE2IOS4qmJsb2NrcyDkvJrooqvliIblibLliLDkuI3lkIznmoRkYXRhbm9kZeS4iuOAgjwv
+cD48cD48YnI+PC9wPjxwPiMjIOebrueahDwvcD48cD7mlbDmja7liIblibIoZGF0YSBzcGxpdHRp
+bmcgKeetlueVpeaYr+WfuuS6juaWh+S7tuWBj+enu+i/m+ihjOeahOOAguaWh+S7tuWIhuWJsuea
+hOebrueahOaYryDmnInliKnkuo7mlbDmja7lubbooYzlpITnkIYg77yM5Lul5Y+KIOS+v+S6juaV
+sOaNruWuueeBvuaBouWkjeOAgjwvcD48cD48YnI+PC9wPjxwPiMjIOWMuuWIqzwvcD48cD48YnI+
+PC9wPjxwPnNwbGl0IOaYr+mAu+i+keaEj+S5ieS4iueahHNwbGl044CCIOmAmuW4uOWcqCBNL1Ig
+56iL5bqP5oiW6ICF5YW25LuW5pWw5o2u5aSE55CG5oqA5pyv5LiK55So5Yiw44CC5qC55o2u5L2g
+5aSE55CG55qE5pWw5o2u6YeP55qE5oOF5Ya177yMc3BsaXQgc2l6ZeaYr+WFgeiuuOeUqOaIt+iH
+quWumuS5ieeahOOAgjwvcD48cD48YnI+PC9wPjxwPnNwbGl0IHNpemUg5a6a5LmJ5aW95LqG5LmL
+5ZCO77yM5Y+v5Lul5o6n5Yi2IE0vUiDkuK0gTWFwcGVyIOeahOaVsOmHj+OAguWmguaenE0vUuS4
+reayoeacieWumuS5iSBzcGxpdCBzaXplIO+8jCDlsLHnlKgg6buY6K6k55qESERGU+mFjee9ruS9
+nOS4uiBpbnB1dCBzcGxpdOOAgjwvcD48cD48YnI+PC9wPjxwPiMjIOS4vuS+izwvcD48cD48YnI+
+PC9wPjxwPuS9oOacieS4qjEwME1C55qE5paH5Lu277yMYmxvY2sgc2l6ZSDmmK8gNjRNQiDvvIwg
+6YKj5LmI5bCx5Lya6KKrc3BsaXTmiJAgMiDlnZfjgILov5nml7blpoLmnpzkvaDkvaDmsqHmnInm
+jIflrpogaW5wdXQgc3BsaXQg77yMIOS9oOeahE0vUueoi+W6j+WwseS8muaMiTLkuKppbnB1dCBz
+cGxpdCDmnaXlpITnkIYg77yMIOW5tuWIhumFjeS4pOS4qm1hcHBlcuadpeWujOaIkOi/meS4qmpv
+YuOAgjwvcD48cD48YnI+PC9wPjxwPuS9huWmguaenOS9oOaKiiBzcGxpdCBzaXplIOaMh+WumuS4
+uiAxMDBNQu+8jOmCo+S5iE0vUueoi+W6j+WwseS8muaKiuaVsOaNruWkhOeQhuaIkOS4gOS4qiBz
+cGxpdO+8jOi/meaXtuWPqueUqOWIhumFjeS4gOS4qm1hcHBlciDlsLHlj6/ku6XkuobjgII8L3A+
+PHA+PGJyPjwvcD48cD7kvYblpoLmnpzkvaDmiopzcGxpdCBzaXplIOaMh+WumuS4uiAyNU1C77yM
+TS9S5bCx5Lya5bCG5pWw5o2u5YiG5oiQNOS4qnNwbGl077yM5YiG6YWNNOS4qm1hcHBlcuadpeWk
+hOeQhui/meS4qmpvYuOAgjwvcD48cD48YnI+PC9wPjxwPiMjIOaAu+e7kzwvcD48cD4xLiBibG9j
+a+aYr+eJqeeQhuS4iueahOaVsOaNruWIhuWJsu+8jOiAjHNwbGl05piv6YC76L6R5LiK55qE5YiG
+5Ymy44CCPC9wPjxwPjIuIOWmguaenOayoeacieeJueWIq+aMh+Wumu+8jHNwbGl0IHNpemUg5bCx
+562J5LqOIEhERlMg55qEIGJsb2NrIHNpemUg44CCPC9wPjxwPjMuIOeUqOaIt+WPr+S7peWcqE0v
+UiDnqIvluo/kuK3oh6rlrprkuYlzcGxpdCBzaXpl44CCPC9wPjxwPjQuIOS4gOS4qnNwbGl0IOWP
+r+S7peWMheWQq+WkmuS4qmJsb2Nrc++8jOS5n+WPr+S7peaKiuS4gOS4qmJsb2Nr5bqU55So5aSa
+5Liqc3BsaXTmk43kvZzjgII8L3A+PHA+NS4g5pyJ5aSa5bCR5Liqc3BsaXTvvIzlsLHmnInlpJrl
+sJHkuKptYXBwZXLjgII8L3A+PHA+PGJyPjwvcD48cD7ljp/mlofvvJo8L3A+PHA+PGJyPjwvcD48
+cD5gYGA8L3A+PHA+PGJyPjwvcD48cD5ROiBXaGF0IGlzIHJlbGF0aW9uc2hpcCBiZXR3ZWVuIHNw
+bGl0IHNpemUgYW5kIGJsb2NrIHNpemUgaW4gSGFkb29wPyBBcyBJIHJlYWQgaW4gdGhpcywgc3Bs
+aXQgc2l6ZSBtdXN0IGJlIG4tdGltZXMgb2YgYmxvY2sgc2l6ZSAobiBpcyBhbiBpbnRlZ2VyIGFu
+ZCBuICZndDsgMCksIGlzIHRoaXMgY29ycmVjdD8gSXMgdGhlcmUgYW55IG11c3QgaW4gcmVsYXRp
+b25zaGlwIGJldHdlZW4gc3BsaXQgc2l6ZSBhbmQgYmxvY2sgc2l6ZT8gKio8L3A+PHA+PGJyPjwv
+cD48cD48YnI+PC9wPjxwPkE6PC9wPjxwPkluIEhERlMgYXJjaGl0ZWN0dXJlIHRoZXJlIGlzIGEg
+Y29uY2VwdCBvZiBibG9ja3MuIEEgdHlwaWNhbCBibG9jayBzaXplIHVzZWQgYnkgSERGUyBpcyA2
+NCBNQi4gV2hlbiB3ZSBwbGFjZSBhIGxhcmdlIGZpbGUgaW50byBIREZTIGl0IGNob3BwZWQgdXAg
+aW50byA2NCBNQiBjaHVua3MoYmFzZWQgb24gZGVmYXVsdCBjb25maWd1cmF0aW9uIG9mIGJsb2Nr
+cyksIFN1cHBvc2UgeW91IGhhdmUgYSBmaWxlIG9mIDFHQiBhbmQgeW91IHdhbnQgdG8gcGxhY2Ug
+dGhhdCBmaWxlIGluIEhERlMsdGhlbiB0aGVyZSB3aWxsIGJlIDFHQi82NE1CID0gMTYgc3BsaXQv
+YmxvY2tzIGFuZCB0aGVzZSBibG9jayB3aWxsIGJlIGRpc3RyaWJ1dGUgYWNyb3NzIHRoZSBEYXRh
+Tm9kZXMuIFRoZXNlIGJsb2Nrcy9jaHVuayB3aWxsIHJlc2lkZSBvbiBhIGRpZmZlcmVudCBEYXRh
+Tm9kZSBiYXNlZCBvbiB5b3VyIGNsdXN0ZXIgY29uZmlndXJhdGlvbi48L3A+PHA+PGJyPjwvcD48
+cD5EYXRhIHNwbGl0dGluZyBoYXBwZW5zIGJhc2VkIG9uIGZpbGUgb2Zmc2V0cy5UaGUgZ29hbCBv
+ZiBzcGxpdHRpbmcgb2YgZmlsZSBhbmQgc3RvcmUgaXQgaW50byBkaWZmZXJlbnQgYmxvY2tzIGlz
+IHBhcmFsbGVsIHByb2Nlc3NpbmcgYW5kIGZhaWwgb3ZlciBvZiBkYXRhLjwvcD48cD48YnI+PC9w
+PjxwPkRpZmZlcmVuY2UgYmV0d2VlbiBibG9jayBzaXplIGFuZCBzcGxpdCBzaXplLjwvcD48cD48
+YnI+PC9wPjxwPlNwbGl0IGlzIGxvZ2ljYWwgc3BsaXQgb2YgeW91ciBkYXRhLCBiYXNpY2FsbHkg
+dXNlZCBkdXJpbmcgZGF0YSBwcm9jZXNzaW5nIHVzaW5nIE1hcC9SZWR1Y2UgcHJvZ3JhbSBvciBv
+dGhlciBwcm9jZXNzaW5nIHRlY2huaXF1ZXMuIFNwbGl0IHNpemUgaXMgdXNlciBkZWZpbmVkIGFu
+ZCB5b3UgY2FuIGNob29zZSB5b3VyIHNwbGl0IHNpemUgYmFzZWQgb24geW91ciBkYXRhKEhvdyBt
+dWNoIGRhdGEgeW91IGFyZSBwcm9jZXNzaW5nKS48L3A+PHA+PGJyPjwvcD48cD5TcGxpdCBpcyBi
+YXNpY2FsbHkgdXNlZCB0byBjb250cm9sIG51bWJlciBvZiBNYXBwZXIgaW4gTWFwL1JlZHVjZSBw
+cm9ncmFtLiBJZiB5b3UgaGF2ZSBub3QgZGVmaW5lZCBhbnkgaW5wdXQgc3BsaXQgc2l6ZSBpbiBN
+YXAvUmVkdWNlIHByb2dyYW0gdGhlbiBkZWZhdWx0IEhERlMgYmxvY2sgc3BsaXQgd2lsbCBiZSBj
+b25zaWRlcmVkIGFzIGlucHV0IHNwbGl0LjwvcD48cD48YnI+PC9wPjxwPkV4YW1wbGU6PC9wPjxw
+Pjxicj48L3A+PHA+U3VwcG9zZSB5b3UgaGF2ZSBhIGZpbGUgb2YgMTAwTUIgYW5kIEhERlMgZGVm
+YXVsdCBibG9jayBjb25maWd1cmF0aW9uIGlzIDY0TUIgdGhlbiBpdCB3aWxsIGNob3BwZWQgaW4g
+MiBzcGxpdCBhbmQgb2NjdXB5IDIgYmxvY2tzLiBOb3cgeW91IGhhdmUgYSBNYXAvUmVkdWNlIHBy
+b2dyYW0gdG8gcHJvY2VzcyB0aGlzIGRhdGEgYnV0IHlvdSBoYXZlIG5vdCBzcGVjaWZpZWQgYW55
+IGlucHV0IHNwbGl0IHRoZW4gYmFzZWQgb24gdGhlIG51bWJlciBvZiBibG9ja3MoMiBibG9jaykg
+aW5wdXQgc3BsaXQgd2lsbCBiZSBjb25zaWRlcmVkIGZvciB0aGUgTWFwL1JlZHVjZSBwcm9jZXNz
+aW5nIGFuZCAyIG1hcHBlciB3aWxsIGdldCBhc3NpZ25lZCBmb3IgdGhpcyBqb2IuPC9wPjxwPjxi
+cj48L3A+PHA+QnV0IHN1cHBvc2UseW91IGhhdmUgc3BlY2lmaWVkIHRoZSBzcGxpdCBzaXplKHNh
+eSAxMDBNQikgaW4geW91ciBNYXAvUmVkdWNlIHByb2dyYW0gdGhlbiBib3RoIGJsb2NrcygyIGJs
+b2NrKSB3aWxsIGJlIGNvbnNpZGVyZWQgYXMgYSBzaW5nbGUgc3BsaXQgZm9yIHRoZSBNYXAvUmVk
+dWNlIHByb2Nlc3NpbmcgYW5kIDEgTWFwcGVyIHdpbGwgZ2V0IGFzc2lnbmVkIGZvciB0aGlzIGpv
+Yi48L3A+PHA+PGJyPjwvcD48cD5TdXBwb3NlLHlvdSBoYXZlIHNwZWNpZmllZCB0aGUgc3BsaXQg
+c2l6ZShzYXkgMjVNQikgaW4geW91ciBNYXAvUmVkdWNlIHByb2dyYW0gdGhlbiB0aGVyZSB3aWxs
+IGJlIDQgaW5wdXQgc3BsaXQgZm9yIHRoZSBNYXAvUmVkdWNlIHByb2dyYW0gYW5kIDQgTWFwcGVy
+IHdpbGwgZ2V0IGFzc2lnbmVkIGZvciB0aGUgam9iLjwvcD48cD48YnI+PC9wPjxwPkNvbmNsdXNp
+b246PC9wPjxwPjxicj48L3A+PHA+MS4gU3BsaXQgaXMgYSBsb2dpY2FsIGRpdmlzaW9uIG9mIHRo
+ZSBpbnB1dCBkYXRhIHdoaWxlIGJsb2NrIGlzIGEgcGh5c2ljYWwgZGl2aXNpb24gb2YgZGF0YS48
+L3A+PHA+Mi4gSERGUyBkZWZhdWx0IGJsb2NrIHNpemUgaXMgZGVmYXVsdCBzcGxpdCBzaXplIGlm
+IGlucHV0IHNwbGl0IGlzIG5vdCBzcGVjaWZpZWQuPC9wPjxwPjMuIFNwbGl0IGlzIHVzZXIgZGVm
+aW5lZCBhbmQgdXNlciBjYW4gY29udHJvbCBzcGxpdCBzaXplIGluIGhpcyBNYXAvUmVkdWNlIHBy
+b2dyYW0uPC9wPjxwPjQuIE9uZSBzcGxpdCBjYW4gYmUgbWFwcGluZyB0byBtdWx0aXBsZSBibG9j
+a3MgYW5kIHRoZXJlIGNhbiBiZSBtdWx0aXBsZSBzcGxpdCBvZiBvbmUgYmxvY2suPC9wPjxwPjUu
+IFRoZSBudW1iZXIgb2YgbWFwIHRhc2tzIChNYXBwZXIpIGFyZSBlcXVhbCB0byB0aGUgbnVtYmVy
+IG9mIHNwbGl0cy48L3A+PHA+PGJyPjwvcD48cD5yZWY6IGh0dHA6Ly9zdGFja292ZXJmbG93LmNv
+bS9xdWVzdGlvbnMvMzA1NDkyNjEvc3BsaXQtc2l6ZS12cy1ibG9jay1zaXplLWluLWhhZG9vcDwv
+cD48cD48YnI+PC9wPjxwPmBgYDwvcD48cD48YnI+PC9wPjxwPiMjIOihpeWFhTwvcD48cD48YnI+
+PC9wPjxwPiMjIyBoZGZz5Lit5aaC5L2V6K6+572u5Y+C5pWwPC9wPjxwPjxicj48L3A+PHA+IyMj
+IyBzcGxpdCBzaXplIOmFjee9ru+8mjwvcD48cD48YnI+PC9wPjxwPiZndDsgbWFwcmVkLm1heC5z
+cGxpdC5zaXplJm5ic3A7PC9wPjxwPjxicj48L3A+PHA+IyMjIyBibG9jayBzaXplIOmFjee9ru+8
+mjwvcD48cD48YnI+PC9wPjxwPiZndDsgZGZzLmJsb2NrLnNpemUmbmJzcDs8L3A+PHA+PGJyPjwv
+cD48cD7ms6jmhI/vvIzor7fkuI3opoHovbvmmJPmm7TmlLkgYmxvY2sgc2l6ZSzlm6DkuLrov5nk
+uKrmmK/lvbHlk43mlbTkuKpoZGZz55qE44CCPC9wPjxwPjxicj48L3A+PHA+IyMjIyAmbmJzcDtz
+cGxpdCBzaXplIOiuoeeul+inhOWIme+8mjwvcD48cD7pkojlr7kg77yaPC9wPjxwPm1hcHJlZHVj
+ZS5pbnB1dC5maWxlaW5wdXRmb3JtYXQuc3BsaXQubWF4c2l6ZTwvcD48cD5tYXByZWR1Y2UuaW5w
+dXQuZmlsZWlucHV0Zm9ybWF0LnNwbGl0Lm1pbnNpemU8L3A+PHA+RmlsZUlucHV0Rm9ybWF0LmNv
+bXB1dGVTcGxpdFNpemUoKTwvcD48cD48YnI+PC9wPjxwPuaMieWmguS4i+inhOWImeWPliBzcGxp
+dCBzaXplIDombmJzcDs8L3A+PHA+PGJyPjwvcD48cD5NYXRoLm1heChtaW5TaXplLCBNYXRoLm1p
+bihtYXhTaXplLCBibG9ja1NpemUpKTwvcD48cD48YnI+PC9wPjxwPiMjIyMg5oCn6IO9PC9wPjxw
+Pjxicj48L3A+PHA+MS4g5LiA6Iis5p2l6K+077yMYmxvY2sgc2l6ZSDlkowgc3BsaXQgc2l6ZSDo
+rr7nva7miJDkuIDoh7TvvIzmgKfog73ovoPlpb3jgII8L3A+PHA+Mi4gJm5ic3A7RmlsZUlucHV0
+Rm9ybWF0IGdlbmVyYXRlcyBzcGxpdHMgaW4gc3VjaCBhIHdheSB0aGF0IGVhY2ggc3BsaXQgaXMg
+YWxsIG9yIHBhcnQgb2YgYSBzaW5nbGUgZmlsZS4g5omA5LulIGhhZG9vcOWkhOeQhuWkp+aWh+S7
+tuavlOWkhOeQhuWwj+aWh+S7tuadpeW+l+aViOeOh+mrmOW+l+WkmuOAgjwvcD48cD48YnI+PC9w
+PjxwPjxicj48L3A+PHA+PGJyPjwvcD48cD48YnI+PC9wPjxwPiFbYm90dG9t5rGC5YWz5rOoXSho
+dHRwczovL21tYml6LnFsb2dvLmNuL21tYml6L3NmS2lhNjljTHkxeUdIMzBGSFU2U1lhSlBxdmli
+aDdXaWI5UGcyVjZyYzd6amFQSjdhS2s5TmNwUWI5SUloWkxDSUc4Q0I0YjBRVjJ2S1dvcGV2bGh2
+YWZ3LzA/d3hfZm10PXBuZyk8L3A+PHA+PGJyPjwvcD4=" style="height:0;width:0;max-height:0;max-width:0;overflow:hidden;font-size:0em;padding:0;margin:0;"></div></div>
+                    </div>
+                    <script type="text/javascript">
+                        var first_sceen__time = (+new Date());
+
+                        if ("" == 1 && document.getElementById('js_content'))
+                            document.getElementById('js_content').addEventListener("selectstart",function(e){ e.preventDefault(); });
+
+                                        (function(){
+                            if (navigator.userAgent.indexOf("WindowsWechat") != -1){
+                                var link = document.createElement('link');
+                                var head = document.getElementsByTagName('head')[0];
+                                link.rel = 'stylesheet';
+                                link.type = 'text/css';
+                                link.href = "http://res.wx.qq.com/mmbizwap/en_US/htmledition/style/page/appmsg/page_mp_article_improve_winwx2c9cd7.css";
+                                head.appendChild(link);
+                            }
+                        })();
+                    </script>
+                    <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/mmbizwap/en_US/htmledition/style/page/appmsg/page_mp_article_improve_combo2c9cd7.css">
+                    
+                    
+                                        
+                                        
+                                        <div class="rich_media_tool" id="js_toobar3">
+                                                                    <a class="media_tool_meta meta_primary" id="js_view_source" href="javascript:void(0);">Read more</a>
+                                                <div id="js_read_area3" class="media_tool_meta tips_global meta_primary" style="display:none;">Pageview <span id="readNum3"></span></div>
+
+                        <span style="display:none;" class="media_tool_meta meta_primary tips_global meta_praise" id="like3">
+                            <i class="icon_praise_gray"></i><span class="praise_num" id="likeNum3"></span>
+                        </span>
+
+                        <a id="js_report_article3" style="display:none;" class="media_tool_meta tips_global meta_extra" href="javascript:void(0);">投诉</a>
+
+                    </div>
+
+
+
+                                    </div>
+
+                <div class="rich_media_area_primary sougou" id="sg_tj" style="display:none">
+
+                </div>
+
+                <div class="rich_media_area_extra">
+
+                    
+                                        <div class="mpda_bottom_container" id="js_bottom_ad_area">
+                        
+                    </div>
+                                        
+                    <div id="js_iframetest" style="display:none;"></div>
+                                        
+                                        <div class="rich_media_extra" id="js_cmt_area" style="display:none">
+
+                        <div class="discuss_container" id="js_cmt_main" style="display:none">
+                            <div class="rich_tips with_line title_tips discuss_title_line">
+                                <span class="tips">精选留言</span>
+                            </div>
+                            <p class="tips_global tc title_bottom_tips" id="js_cmt_nofans1" style="display:none;">关注该公众号可参与留言</p>
+                            <p class="discuss_icon_tips title_bottom_tips tr" id="js_cmt_addbtn1" style="display:none">
+                                
+                                                                <a href="#comment">写留言<img class="icon_edit" src="http://res.wx.qq.com/mmbizwap/en_US/htmledition/images/icon/appmsg/icon_edit25decf.png" alt=""></a>
+                                                            </p>
+                            <ul class="discuss_list" id="js_cmt_list"></ul>
+                        </div>
+
+
+                        <div class="tips_global rich_split_tips tc" id="js_cmt_nofans2" style="display:none;">
+                            关注该公众号可参与留言
+                        </div>
+
+                        <p class="discuss_icon_tips rich_split_tips tr" id="js_cmt_addbtn2" style="display:none">
+                            
+                                                        <a href="#comment">写留言<img class="icon_edit" src="http://res.wx.qq.com/mmbizwap/en_US/htmledition/images/icon/appmsg/icon_edit25decf.png" alt=""></a>
+                                                    </p>
+
+                        <p class="rich_split_tips tc tips_global" id="js_cmt_tips" style="display:none;"></p>
+
+
+                        <div class="rich_tips tips_global loading_tips" id="js_cmt_loading">
+                            <img src="http://res.wx.qq.com/mmbizwap/en_US/htmledition/images/icon/common/icon_loading_white2805ea.gif" class="rich_icon icon_loading_white" alt="">
+                            <span class="tips">加载中</span>
+                        </div>
+
+                        <div class="rich_tips with_line tips_global" id="js_cmt_statement" style="display:none">
+                            <span class="tips">以上留言由公众号筛选后显示</span>
+                        </div>
+
+                        <p class="rich_split_tips tc" id="js_cmt_qa" style="display:none;">
+                            <a href="http://kf.qq.com/touch/sappfaq/150211YfyMVj150313qmMbyi.html?scene_id=kf264">
+                                了解留言功能详情
+                            </a>
+                        </p>
+
+                    </div>
+                                    </div>
+               
+            </div>
+            <div id="js_pc_qr_code" class="qr_code_pc_outer" style="display:none;">
+                <div class="qr_code_pc_inner">
+                    <div class="qr_code_pc">
+                        <img id="js_pc_qr_code_img" class="qr_code_pc_img">
+                        <p>微信扫一扫<br>关注该公众号</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+        
+        <script>
+    var __DEBUGINFO = {
+        debug_js : "http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_wap/debug/console2ca724.js",
+        safe_js : "http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_wap/safe/moonsafe2c5484.js",
+        res_list: []
+    };
+</script>
+        <script>window.moon_map = {"appmsg/emotion/caret.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/emotion/caret278965.js","biz_wap/jsapi/cardticket.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_wap/jsapi/cardticket275627.js","appmsg/emotion/map.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/emotion/map278965.js","appmsg/emotion/textarea.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/emotion/textarea27cdc5.js","appmsg/emotion/nav.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/emotion/nav278965.js","appmsg/emotion/common.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/emotion/common278965.js","appmsg/emotion/slide.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/emotion/slide2a9cd9.js","pages/report.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/pages/report2c9cd7.js","pages/music_player.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/pages/music_player2b674c.js","pages/loadscript.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/pages/loadscript2c9cd7.js","appmsg/emotion/dom.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/emotion/dom278965.js","biz_wap/utils/hashrouter.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_wap/utils/hashrouter2805ea.js","a/gotoappdetail.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/a/gotoappdetail2a2c13.js","a/ios.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/a/ios275627.js","a/android.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/a/android2c5484.js","a/profile.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/a/profile29b1f9.js","a/card.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/a/card2c5484.js","biz_wap/utils/position.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_wap/utils/position29b1f9.js","appmsg/a_report.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/a_report2b6c15.js","biz_common/utils/respTypes.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_common/utils/respTypes2c57d0.js","appmsg/cmt_tpl.html.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/cmt_tpl.html2a2c13.js","sougou/a_tpl.html.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/sougou/a_tpl.html2c6e7c.js","appmsg/emotion/emotion.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/emotion/emotion2a9cd9.js","biz_common/utils/report.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_common/utils/report275627.js","biz_common/utils/huatuo.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_common/utils/huatuo293afc.js","biz_common/utils/cookie.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_common/utils/cookie275627.js","pages/voice_component.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/pages/voice_component2c5484.js","new_video/ctl.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/new_video/ctl2933be.js","biz_common/utils/monitor.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_common/utils/monitor2a30ee.js","biz_common/utils/spin.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_common/utils/spin275627.js","biz_wap/jsapi/pay.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_wap/jsapi/pay275627.js","appmsg/reward_entry.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/reward_entry2b1291.js","appmsg/comment.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/comment2c5484.js","appmsg/like.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/like2b5583.js","appmsg/a.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/a2b6c8f.js","pages/version4video.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/pages/version4video2c7544.js","rt/appmsg/getappmsgext.rt.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/rt/appmsg/getappmsgext.rt2c21f7.js","biz_wap/utils/storage.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_wap/utils/storage2a74ab.js","biz_common/tmpl.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_common/tmpl2b357a.js","appmsg/img_copyright_tpl.html.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/img_copyright_tpl.html2a2c13.js","appmsg/a_tpl.html.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/a_tpl.html2c7544.js","biz_common/ui/imgonepx.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_common/ui/imgonepx275627.js","biz_common/dom/attr.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_common/dom/attr275627.js","biz_wap/utils/ajax.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_wap/utils/ajax2c7a90.js","biz_common/utils/string/html.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_common/utils/string/html29f4e9.js","sougou/index.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/sougou/index2c7544.js","biz_wap/safe/mutation_observer_report.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_wap/safe/mutation_observer_report2cc953.js","appmsg/report.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/report2cd05e.js","biz_common/dom/class.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_common/dom/class275627.js","appmsg/report_and_source.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/report_and_source2c0ff9.js","appmsg/page_pos.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/page_pos2c7629.js","appmsg/cdn_speed_report.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/cdn_speed_report2c57d0.js","appmsg/voice.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/voice2ab8bd.js","appmsg/qqmusic.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/qqmusic2ab8bd.js","appmsg/iframe.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/iframe2cc9e4.js","appmsg/review_image.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/review_image2a5395.js","appmsg/outer_link.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/outer_link275627.js","biz_wap/jsapi/core.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_wap/jsapi/core2c30c1.js","biz_common/dom/event.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_common/dom/event275627.js","appmsg/copyright_report.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/copyright_report2c57d0.js","appmsg/cache.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/cache2a74ab.js","appmsg/pay_for_reading.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/pay_for_reading2c5484.js","appmsg/async.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/async2cc953.js","biz_wap/ui/lazyload_img.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_wap/ui/lazyload_img2b18f7.js","biz_common/log/jserr.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_common/log/jserr2805ea.js","appmsg/share.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/share2b5583.js","biz_wap/utils/mmversion.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_wap/utils/mmversion275627.js","appmsg/cdn_img_lib.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/cdn_img_lib275627.js","biz_common/utils/url/parse.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_common/utils/url/parse275627.js","biz_wap/utils/device.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_wap/utils/device2b3aae.js","biz_wap/jsapi/a8key.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_wap/jsapi/a8key2a30ee.js","appmsg/index.js":"http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/appmsg/index2cca7d.js"};window.moon_crossorigin = true;</script><script type="text/javascript" src="http://res.wx.qq.com/mmbizwap/en_US/htmledition/js/biz_wap/moon2c7b0a.js" crossorigin></script>
+    <script id="voice_tpl" type="text/html">        
+        <span id="voice_main_<#=voiceid#>_<#=posIndex#>" class="db audio_area <#if(!musicSupport){#> unsupport<#}#>">
+            <span class="tc tips_global unsupport_tips" <#if(show_not_support!==true){#>style="display:none;"<#}#>>
+            当前浏览器不支持播放音乐或语音，请在微信或其他浏览器中播放            </span>
+            <span class="audio_wrp db">
+                <span id="voice_play_<#=voiceid#>_<#=posIndex#>" class="audio_play_area">
+                    <i class="icon_audio_default"></i>
+                    <i class="icon_audio_playing"></i>
+                    <img src="http://res.wx.qq.com/mmbizwap/en_US/htmledition/images/icon/appmsg/audio/icon_audio_unread26f1f1.png" alt="" class="pic_audio_default">
+                </span>
+                <span class="audio_length tips_global"><#=duration_str#></span>
+                <span class="db audio_info_area">
+                    <strong class="db audio_title"><#=title#></strong>
+                    <span class="audio_source tips_global"><#if(window.nickname){#>来自<#=window.nickname#><#}#></span>
+                </span>
+                <span id="voice_progress_<#=voiceid#>_<#=posIndex#>" class="progress_bar" style="width:0px;"></span>
+            </span>
+        </span>
+    </script>
+
+    <script id="qqmusic_tpl" type="text/html">        
+        <span id="qqmusic_main_<#=comment_id#>_<#=posIndex#>" class="db qqmusic_area <#if(!musicSupport){#> unsupport<#}#>">
+            <span class="tc tips_global unsupport_tips" <#if(show_not_support!==true){#>style="display:none;"<#}#>>
+            当前浏览器不支持播放音乐或语音，请在微信或其他浏览器中播放            </span>
+            <span class="db qqmusic_wrp">
+                <span class="db qqmusic_bd">
+                    <span id="qqmusic_play_<#=musicid#>_<#=posIndex#>" class="play_area">
+                        <i class="icon_qqmusic_switch"></i>
+                        <img src="http://res.wx.qq.com/mmbizwap/en_US/htmledition/images/icon/appmsg/qqmusic/icon_qqmusic_default.2x26f1f1.png" alt="" class="pic_qqmusic_default">
+                        <img src="<#=music_img#>" data-autourl="<#=audiourl#>" data-musicid="<#=musicid#>" class="qqmusic_thumb" alt="">
+                    </span>
+                                        <a id="qqmusic_home_<#=musicid#>_<#=posIndex#>" href="javascript:void(0);" class="access_area">
+                        <span class="qqmusic_songname"><#=music_name#></span>
+                        <span class="qqmusic_singername"><#=singer#></span>
+                        <span class="qqmusic_source"><img src="http://res.wx.qq.com/mmbizwap/en_US/htmledition/images/icon/appmsg/qqmusic/icon_qqmusic_source263727.png" alt=""></span>
+                    </a>
+                </span>
+            </span>       
+        </span>
+    </script>
+  <script type="text/javascript">
+      var not_in_mm_css = "http://res.wx.qq.com/mmbizwap/en_US/htmledition/style/page/appmsg/not_in_mm2c9cd7.css";
+      var windowwx_css = "http://res.wx.qq.com/mmbizwap/en_US/htmledition/style/page/appmsg/page_mp_article_improve_winwx2c9cd7.css";
+      var tid = "";
+      var aid = "";
+      var clientversion = "0";
+      var appuin = "MzAwMDgwMDAyOA=="||"";
+
+      var source = "6";
+      var scene = 75;
+      
+      var itemidx = "";
+
+      var _copyright_stat = "1";
+      var _ori_article_type = "科技互联网";
+
+      var nickname = "BI实验室";
+      var appmsg_type = "9";
+      var ct = "1459748505";
+      var publish_time = "2016-04-04" || "";
+      var user_name = "gh_4d02daccf7d2";
+      var user_name_new = "";
+      var fakeid   = "";
+      var version   = "";
+      var is_limit_user   = "0";
+      var msg_title = "Hadoop的block&nbsp;Size和split&nbsp;Size究竟是什么关系?";
+      var msg_desc = "学习hadoop&nbsp;map&nbsp;reduce过程的时候，第一步就是split。我们知道，hdfs中的数据是按blo";
+      var msg_cdn_url = "http://mmbiz.qpic.cn/mmbiz/sfKia69cLy1wVWIC3xsBR5McgNEbKBJJYR2oPyGa39haCeQHQmfxpQ15me40EVGxjY7ZRickaUspeUHBTpo9nG6A/0?wx_fmt=jpeg";
+      var msg_link = "http://mp.weixin.qq.com/s?__biz=MzAwMDgwMDAyOA==&amp;mid=2650347670&amp;idx=1&amp;sn=d3535fd9093fbb2e38e5f414f01dae09#rd";
+      var user_uin = "0"*1;
+      var msg_source_url = 'http://mp.weixin.qq.com/s?__biz=MzAwMDgwMDAyOA==&amp;mid=502864021&amp;idx=1&amp;sn=57997adc1089fe62ed9a890afdf70f33#rd';
+      var img_format = 'jpeg';
+      var srcid = '';
+      var networkType;
+      var appmsgid = '' || '2650347670'|| "";
+      var comment_id = "431812720" * 1;
+      var comment_enabled = "" * 1;
+      var is_need_reward = "0" * 1;
+      var is_https_res = ("" * 1) && (location.protocol == "https:");
+
+      var devicetype = "";
+      var source_username = "";  
+      var profile_ext_signature = "" || "";
+      var reprint_ticket = "";
+      var source_mid = "";
+      var source_idx = "";
+
+      var show_comment = "";
+      var __appmsgCgiData = {
+            can_use_page : "0"*1,
+            is_wxg_stuff_uin : "0"*1,
+            card_pos : "",
+            copyright_stat : "1",
+            source_biz : "",
+            hd_head_img : "http://wx.qlogo.cn/mmhead/Q3auHgzwzM7gKzDlvibLZyOicRrpM3dZg6Pu7Pf38pE7aYHoSPXPIFOQ/0"||(window.location.protocol+"//"+window.location.host + "http://res.wx.qq.com/mmbizwap/en_US/htmledition/images/pic/appmsg/pic_rumor_link.2x264e77.jpg")
+      };
+      var _empty_v = "http://res.wx.qq.com/mmbizwap/en_US/htmledition/images/pic/pages/voice/empty26f1f1.mp3";
+
+      var copyright_stat = "1" * 1;
+
+      var pay_fee = "" * 1;
+      var pay_timestamp = "";
+      var need_pay = "" * 1;
+
+      var need_report_cost = "0" * 1;
+      var use_tx_video_player = "0" * 1;
+      
+            window.wxtoken = "";
+          if(!!window.__initCatch){
+        window.__initCatch({
+            idkey : 27613,
+            startKey : 0,
+            limit : 128,
+            reportOpt : {
+                uin : uin,
+                biz : biz,
+                mid : mid,
+                idx : idx,
+                sn  : sn
+            },
+            extInfo : {
+                network_rate : 0.01    
+            }
+        });
+    }
+  </script>
+  <script type="text/javascript">
+          seajs.use('appmsg/index.js');
+  </script>
+
+    
+
+        <div class="sharethis-bottom">
+          <span class='st_fblike_hcount' displayText='Facebook Like'></span>
+          <span class='st_plusone_hcount' displayText='Google +1'></span>
+          <span class='st_twitter_hcount' displayText='Tweet'></span>
+          <span class='st_email_hcount' displayText='Email'></span>
+        </div>
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "hadoopde-block-sizehe-split-sizejiu-jing-shi-shi-yao-guan-xi.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//gitwillpoonimx3.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                    </p>
+                    <p>
+                        <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-69868761-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'gitwillpoonimx3';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+</body>
+</html>
