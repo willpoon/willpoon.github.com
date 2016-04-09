@@ -3,7 +3,6 @@
 /tags.html
 /categories.html
 /walk_at_my_own_pace.html
-/hadoopde-block-sizehe-split-sizejiu-jing-shi-shi-yao-guan-xi.html
 /everything_we_do_for_happiness.html
 /balance_is_the_truth.html
 /hadoop_blocksize_vs_splitsize.html
@@ -33,7 +32,6 @@
 /category/job.html
 /category/life.html
 /category/misc.html
-/category/pdf.html
 /category/tech.html
 /tag/osx.html
 /tag/pelican.html
