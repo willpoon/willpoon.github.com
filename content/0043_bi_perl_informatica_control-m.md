@@ -2,6 +2,8 @@ Title: control-m和informatica如何和perl/python搭配让干活不累
 Slug: perl_control-m_informatica
 Authors: Poon
 
+（点击上方**`BI实验室`**↑↑，可快速关注）
+
 # 引言
 
 今天聊聊BI中的著名调度工具control-m和著名抽数工具informatica. 这两个工具都有一个共同的特点，支持以xml方式配置作业。

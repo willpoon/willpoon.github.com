@@ -1,14 +1,14 @@
 <!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta name="author" content="Poon" />
     <meta name="robots" content="index, follow"/>
 
-    <meta property="og:title" content="control-m和informatica如何和perl/python搭配让干活不累"/>
-    <meta property="og:url" content="/perl_control-m_informatica.html"/>
+    <meta property="og:title" content="给自己画个饼"/>
+    <meta property="og:url" content="/we_need_to_step_forward.html"/>
     <meta property="og:site_name" content="仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖"/>
     <meta property="og:type" content="article"/>
 
-    <link rel="canonical" href="/perl_control-m_informatica.html" />
+    <link rel="canonical" href="/we_need_to_step_forward.html" />
 
-    <title>control-m和informatica如何和perl/python搭配让干活不累 | 仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</title>
+    <title>给自己画个饼 | 仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
@@ -83,8 +83,8 @@
     <article>
       <header>
         <h1 class="entry-title">
-          <a href="/perl_control-m_informatica.html" rel="bookmark"
-             title="Permalink to control-m和informatica如何和perl/python搭配让干活不累">control-m和informatica如何和perl/python搭配让干活不累</a></h1>
+          <a href="/we_need_to_step_forward.html" rel="bookmark"
+             title="Permalink to 给自己画个饼">给自己画个饼</a></h1>
       </header>
       <div class="entry-content">
 <footer class="post-info">
@@ -99,7 +99,7 @@
 
 
         |
-        <a href="/perl_control-m_informatica.html#disqus_thread">comments</a>
+        <a href="/we_need_to_step_forward.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->
@@ -111,38 +111,45 @@
         </div>
 
 
-        <p>（点击上方<strong><code>BI实验室</code></strong>↑↑，可快速关注）</p>
-<h1 id="_1">引言</h1>
-<p>今天聊聊BI中的著名调度工具control-m和著名抽数工具informatica. 这两个工具都有一个共同的特点，支持以xml方式配置作业。</p>
-<p>做个小调查，用到 control-m 或者 informatica 的朋友，你们是怎么开发调度作业和接口抽取配置的？是采用可视化原厂提供的可视化配置工具，还是另有捷径？</p>
-<p>我所在的项目，采用excel + perl+xml+control-m/informatica 命令行来开发/配置 control-m调度作业和抽数作业配置。</p>
-<p>为甚么用perl ? 因为perl 有excel工具包，还有 xml 工具包。而perl的作用，是把 配置在excel中的调度信息解析成xml，然后利用 control-m 的命令行工具，把 xml格式的 job任务配置写入到control-m/EM 服务器中，最后通过 control-m/desktop 上传到control-m server 。</p>
-<h1 id="_2">优势</h1>
-<p>这样做的好处是什么呢？ </p>
+        <p>（点击上方 <strong><code>零壹</code></strong> ↑↑↑，可快速关注）</p>
+<p>周末醒来，不用加班，也没有特别重要的事情，于是就窝在床上，刷微信，上网，堕落去了，然后就真的一直这样堕落了两个小时。</p>
+<p>还给自己堕落找了个借口：要平衡作息。工作了几天，要适当休息！正如寒江雪老师说的，要坚持不是说一定要每天都去做一件事情，而是做几天，放一下，再做几天，如此循环。</p>
+<p>道理说得真好。正好给我当堕落的借口。</p>
+<p>好吧，既然我都认为自己堕落了，那就真堕落了。堕落时间不在乎长短，而在乎你的内心是否觉得愧疚。</p>
+<p>本来我可以8点钟醒来之后，立马起床洗漱，立马下去楼下做几十个仰卧起坐，然后回来给自己煮个早餐，吃完之后就去旁边咖啡厅坐坐写写聊聊或者看看视频教程的。</p>
+<p>但是我却被起床之后的无聊和空虚感绑架了，我刷微朋友圈，我刷公众号，我点击那些让人想入非非的标题...</p>
+<p>不知不觉2个小时过去了。我就在床上荒废了两个小时。什么都没干，还错过了健身的时间，错过了看几个视频，研究一下系统，背一下单词，或者练一下口语的时间。</p>
+<p>怎么破？</p>
+<p>首先，我要分析我为什么会选择荒废这两个小时？</p>
 <ol>
-<li>所有jobs的配置都可以通过excel来配置&amp;维护。</li>
-<li>不需要通过频繁点control-m/desktop上的菜单／窗口，就能添加作业信息。</li>
-<li>可以批量。这是最最最最重要的一点。</li>
-<li>可以批量增删改。</li>
+<li>我感到无聊和空虚。这是一种心情、状态、感觉。</li>
+<li>我当时没有时间上的压力逼着我去完成一件事情。比如，如果我周末要上班，那么我就没空发呆睡懒觉或者窝在床上不起来了。</li>
+<li>我没有足够的动力让我去做我想做的事情。比如，如果有人跟我说，早点起来可以吃到丰富的早餐；或者楼下有一大波美女在做早操，我就会立马从床上弹起来了。</li>
+<li>缺少一个让我积极上进的环境。同住的人，起来不会看书学习练习英语，而只会打游戏。</li>
 </ol>
-<p>...</p>
-<h1 id="_3">关键</h1>
-<p>那这样做的难点又是什么呢？</p>
+<p>对于情形1，我相信每个人都会有，但是如果有情形2/3/4的驱使，我想我就不会感到无聊了。所以眼前的压力和足够的动力，是可以让我摆脱无聊，努力向上的。</p>
+<p>一个人一天只有24小时，</p>
+<p>如果我们花来学习，生活就报以我们成功；如果我们用来堕落，生活就报以我们失败。</p>
+<p>如果被空虚无聊占满，人生就如秋风落叶；如果被希望进取占满，人生就阳光普照。</p>
+<p>但问题是，我们不能时时刻刻都能保持一种积极进取的心态。所以，很多时候，我们需要一些外界的诱因来逼迫、引导我们前进。</p>
+<p>正如有正当工作的人，比闲散人员，生活来的健康、规律。从最起码的层面上讲，因为有工作的压力，逼迫着我们，按步就班地前进。</p>
+<p>而相比外在的压力，内在的动力和愿景，更能催人奋进。 千里马之所以能成千里马，因为它志在千里。而驴子之能接受被人用鞭子抽打着推磨的命运。</p>
+<p>当我们有梦想，就会为自己的梦想而努力。比如：</p>
+<p>小到买一部好的手机，再大一下，买一套房子，再再大一点，拥有自己的公司，赚几个亿。如果你真的很想要这个东西，你就会想办法、做点事情来得到它。</p>
+<p>所以，我说，有时候，画饼并不是一件坏事。但为什么我们不喜欢被别人画饼？因为有种被人利用的感觉。别人给你画饼，有可能是别人对你别有用心。比如，让你多干活，少拿钱。这种情况下，就勾起了人的抵触情绪：我才不给你多干活，我拿多少钱，干多少事！ 这句话是对的。如果你能利用好省下来的时间给自己增值，做点有益身心的话。否者，还不如帮给你画饼的人多干点活吧。</p>
+<p>但是如果你自己给自己画饼，是不无裨益的。我们称之为<code>梦想</code>.</p>
+<p>人要有情怀，要有梦想。周星驰说，人没有梦想，和咸鱼有什么差别？</p>
+<p>所以，给自己画个饼吧，不光是为了最终到达理想的彼岸，更重要的是，它能帮助你走好脚下的每一步，让你不堕落。</p>
+<p>下面说说我的一些饼吧：</p>
 <ol>
-<li>perl程序的开发。(当然，这里不仅限于用perl，比如python也可以，如果你熟悉)。 perl程序的主要功能是从excel中把作业的配置信息解析出来，然后转换成xml格式的文件。</li>
-<li>依赖关系的确定。一个作业的执行，有可能依赖很多其他上游作业。要把这些作业都梳理出来，是细活，很花时间。不要紧，因为我们有perl/python 。 我们可以用perl来解析存储过程，然后把里面依赖的表都抓出来，然后建立表和作业之间的依赖关系。最终形成  <code>当前作业－ 上游作业</code> 之间的映射关系，填到excel配置中。</li>
+<li>我想买一台suzuki Jimmy.</li>
+<li>我想找一个有气质的妹子当老婆.</li>
+<li>我想找一份可以出国的工作。</li>
+<li>我想趁年轻让自己多赚点钱，然后把房贷还清，让自己和家人活得更自由、压力更小一点。</li>
+<li>我想去东欧看美女，去东南亚吃水果，去拉美抽雪茄，去北美呼吸自由的空气...</li>
 </ol>
-<p>所以，其实我们不但用perl/python 来帮我们把excel转成xml , 还用 perl/python 来输出 作业之间的依赖关系，更进一步， 还可以 输出 每个作业的其他各种信息，比如：所在层次，调度方式，调度id，作业名称,变量设置...等等。</p>
-<p>最终，我们实际上只用执行两个脚本：</p>
-<ol>
-<li>辅助excel配置的perl脚本</li>
-<li>把excel转成xml的perl脚本</li>
-</ol>
-<p>就完成整个control-m / informatica 的作业配置。</p>
-<p>然后再写一个加载脚本，就把作业加载到中央服务器中了。</p>
-<h1 id="_4">总结</h1>
-<p>使用perl/python 配置的最重要意义，是减少手工操作，实现批量作业的增删改。降低了开发难度，同时提高了生产效率。试想，你是找一个懂excel的容易，还是找一个懂control-m/informatica的人容易捏？</p>
-<p><img alt="bottom求关注" src="https://mmbiz.qlogo.cn/mmbiz/sfKia69cLy1yGH30FHU6SYaJPqvibh7Wib9Pg2V6rc7zjaPJ7aKk9NcpQb9IIhZLCIG8CB4b0QV2vKWopevlhvafw/0?wx_fmt=png" /></p>
+<p>嗯，这些饼，再就着这碗鸡汤，好吃！</p>
+<p><img alt="bottom求关注" src="https://mmbiz.qlogo.cn/mmbiz/4nvtcdfOq5YlCGvb34PQjdBC22yOGTOBVC52yRcjkVicxnJ7YcWXQulc8icUB124wxprq0nY4ULiaZffT4P5AGLcg/0?wx_fmt=png" /></p>
 
         <div class="sharethis-bottom">
           <span class='st_fblike_hcount' displayText='Facebook Like'></span>
@@ -155,7 +162,7 @@
         <h2>Comments</h2>
         <div id="disqus_thread"></div>
         <script type="text/javascript">
-          var disqus_identifier = "perl_control-m_informatica.html";
+          var disqus_identifier = "we_need_to_step_forward.html";
           (function() {
           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
           dsq.src = '//gitwillpoonimx3.disqus.com/embed.js';

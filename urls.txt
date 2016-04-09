@@ -2,6 +2,7 @@
 /archives.html
 /tags.html
 /categories.html
+/perl_control-m_informatica.html
 /walk_at_my_own_pace.html
 /everything_we_do_for_happiness.html
 /balance_is_the_truth.html
