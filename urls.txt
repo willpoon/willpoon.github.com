@@ -2,6 +2,7 @@
 /archives.html
 /tags.html
 /categories.html
+/we_need_to_step_forward.html
 /perl_control-m_informatica.html
 /walk_at_my_own_pace.html
 /everything_we_do_for_happiness.html
