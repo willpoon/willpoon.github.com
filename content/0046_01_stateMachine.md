@@ -1,9 +1,10 @@
 Title: 主要看状态
-Slug: makeItRight
+Slug: emotion
 Authors: Poon
 
 （点击上方 **`零壹`** ↑↑↑，可快速关注）
 
+状态，就是情绪。
 
 人不思想，和石头没有什么区别。
 
