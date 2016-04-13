@@ -2,6 +2,7 @@
 /archives.html
 /tags.html
 /categories.html
+/emotion.html
 /makeItRight.html
 /we_need_to_step_forward.html
 /perl_control-m_informatica.html

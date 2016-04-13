@@ -5,35 +5,49 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2016-04-12T22:04:09-00:00</lastmod>
+<lastmod>2016-04-13T11:14:04-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2016-04-12T22:04:09-00:00</lastmod>
+<lastmod>2016-04-13T11:14:04-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2016-04-12T22:04:09-00:00</lastmod>
+<lastmod>2016-04-13T11:14:04-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2016-04-12T22:04:09-00:00</lastmod>
+<lastmod>2016-04-13T11:14:04-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
+<loc>/keepondoing.html</loc>
+<lastmod>2016-04-13T11:14:06+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/whatIsTheWorstThing.html</loc>
+<lastmod>2016-04-13T10:09:27+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>/emotion.html</loc>
-<lastmod>2016-04-12T22:04:05+08:00</lastmod>
+<lastmod>2016-04-12T22:15:45+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -264,7 +278,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/misc.html</loc>
-<lastmod>2016-04-12T22:04:05+08:06</lastmod>
+<lastmod>2016-04-13T11:14:06+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -642,7 +656,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/author/poon.html</loc>
-<lastmod>2016-04-12T22:04:05+08:06</lastmod>
+<lastmod>2016-04-13T11:14:06+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
