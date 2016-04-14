@@ -2,6 +2,8 @@
 /archives.html
 /tags.html
 /categories.html
+/docker_gfw_hadoop.html
+/smokeTest.html
 /keepondoing.html
 /whatIsTheWorstThing.html
 /emotion.html

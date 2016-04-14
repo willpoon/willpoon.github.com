@@ -1,4 +1,4 @@
-Title: 继续做
+Title: 继续做，坚持做
 Slug: keepondoing
 Authors: Poon
 

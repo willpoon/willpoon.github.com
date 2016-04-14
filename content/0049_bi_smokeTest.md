@@ -23,7 +23,7 @@ Smoke testing refers to various classes of tests of systems, usually intended to
 
 硬件系统不冒烟，软件能够正常运行，才能进一步测试更加高级的功能。
 
-
+就像你刚去电脑城装了一台电脑，你要先通电看能不能用，如果一通电就烧掉了，说明没装好。至少把电脑启动之后，能够看到熟悉的windows桌面，你才能进一步测试电脑的性能：玩游戏玩得卡不卡，画面是否逼真...等等。
 
 
 ![bottom求关注](https://mmbiz.qlogo.cn/mmbiz/sfKia69cLy1yGH30FHU6SYaJPqvibh7Wib9Pg2V6rc7zjaPJ7aKk9NcpQb9IIhZLCIG8CB4b0QV2vKWopevlhvafw/0?wx_fmt=png)
