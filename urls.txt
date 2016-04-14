@@ -2,10 +2,13 @@
 /archives.html
 /tags.html
 /categories.html
-/docker_gfw_hadoop.html
-/smokeTest.html
-/keepondoing.html
+/ProblemOnAttitude.html
+/thatRelationship04.html
+/notenough.html
 /whatIsTheWorstThing.html
+/keepondoing.html
+/smokeTest.html
+/docker_gfw_hadoop.html
 /emotion.html
 /makeItRight.html
 /we_need_to_step_forward.html
