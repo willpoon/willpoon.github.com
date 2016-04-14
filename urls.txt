@@ -2,6 +2,8 @@
 /archives.html
 /tags.html
 /categories.html
+/keepondoing.html
+/whatIsTheWorstThing.html
 /emotion.html
 /makeItRight.html
 /we_need_to_step_forward.html

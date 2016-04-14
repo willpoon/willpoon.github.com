@@ -1,0 +1,407 @@
+<!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta name="author" content="Poon" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="翻山涉水:使用docker快速构建hadoop运行环境"/>
+    <meta property="og:url" content="/docker_gfw_hadoop.html"/>
+    <meta property="og:site_name" content="仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="/docker_gfw_hadoop.html" />
+
+    <title>翻山涉水:使用docker快速构建hadoop运行环境 | 仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">
+        stLight.options({
+            publisher: "7470bcd0-1833-4a2b-a25f-c4a233bdfced",
+            doNotHash: false,
+            doNotCopy: false,
+            hashAddressBar: false
+        });
+    </script>
+</head>
+
+<body id="index">
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h2>
+                        <a href="/"> 仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 </a> 
+<!-- /# 
+ 
+                        <strong>
+                            <span style="font-size:12px;vertical-align:bottom">Be a Coder,Lifehacker,Storyteller </span>
+                        </strong>
+ -->
+                </h2>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li ><a href="tags.html">Tags</a></li>
+                            <li ><a href="about.html">About</a></li>
+                        </ul>
+
+<script>
+  (function() {
+    var cx = '005973619447881484970:jf4jwrpc3tg';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<div id="google-custom-search" class="nav">
+    <gcse:search></gcse:search>
+</div>
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="/docker_gfw_hadoop.html" rel="bookmark"
+             title="Permalink to 翻山涉水:使用docker快速构建hadoop运行环境">翻山涉水:使用docker快速构建hadoop运行环境</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/poon.html">Poon</a>
+    </address>
+
+    in <a href="/category/misc.html">misc</a>
+
+    on 2016-04-14
+
+
+
+        |
+        <a href="/docker_gfw_hadoop.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+        <div class="sharethis-top">
+          <span class='st_fblike_hcount' displayText='Facebook Like'></span>
+          <span class='st_plusone_hcount' displayText='Google +1'></span>
+          <span class='st_twitter_hcount' displayText='Tweet'></span>
+          <span class='st_email_hcount' displayText='Email'></span>
+        </div>
+
+
+        <p>（点击上方<strong><code>BI实验室</code></strong>↑↑，可快速关注）</p>
+<h1 id="_1">摘要</h1>
+<p>本文将介绍如果使用docker快速获取一个hadoop运行环境的。特别针对国内无法直接pull取docker容器的问题提供了翻墙解决方案。所谓翻山：这里指使用shadowsocks翻过GFW访问被墙的网络；所谓涉水，是指使用privoxy把socks代理转成http/https代理，让terminal命令行工具也可以借助socks代理来翻墙，达到命令行和GUI都能借助shadowsocks同步翻墙的效果。让命令行和GUI能够共享socks代理网络，达到融通状态。</p>
+<h1 id="docker">什么是docker</h1>
+<p>docker , 一个基于 LXC 虚拟机技术的容器引擎。为应用部署而生。</p>
+<h1 id="docker_1">为什么选docker</h1>
+<p>传统的硬件服务器或者虚拟机方案有如下弊端：</p>
+<ol>
+<li>每台服务器只运行一套应用程序/服务，导致计算资源浪费</li>
+<li>要为每台服务器购置相应的硬件，导致成本太高</li>
+<li>每次部署一台服务器，都要从头开始，部署流程和时间太长，效率低</li>
+<li>为了保证性能／环境一致性，扩展时常常受限于硬件供应商</li>
+<li>不易于扩展</li>
+</ol>
+<p>docker 的出现，能解决上述问题。</p>
+<h1 id="docker_2">我为何要和docker发生关系？</h1>
+<p>我的痛点主要是我的笔记本cpu/内存/空间资源有限，所以需要一个轻量级一点的方案，可以让我专注于 应用和方案本身，而不是每次都为系统资源捉急，甚至操碎了心，最后连做事的心情都没有了。</p>
+<p>所以我打算借docker来为我解决这些问题。</p>
+<h1 id="docker_3">使用docker遇到的问题</h1>
+<h2 id="macdocker-linux-docker">mac下docker 和 linux 下docker架构不一样</h2>
+<p>docker 为linux 而生， docker在mac下的架构与在linux下的架构有所不同，需要额外的linux虚拟机支持。
+这个问题好办，只要在mac下安装virtualbox , 之后在mac版 docker的安装过程中，会自动为你创建linux虚拟机。所以，当你发现你的virtualbox中无缘无故多出一台linux虚拟机，就不要大惊小怪了。</p>
+<h2 id="docker-pull">docker 容器pull不下来的问题</h2>
+<p>docker的容器，来自docker hub . </p>
+<p>网上有一句话，人生中最好的东西，都是免费的。
+我也有一句话，互联网上最好的东西，都被墙掉了。</p>
+<p>docker hub 也不例外。在普通的公网环境下，你无法通过docker pull 的方式来下载一个容器，就连最简单的hello-world都不行。</p>
+<p>那么问题来了，怎么搭通天地线，让docker容器能够顺利pull下来？ 毕竟docker装了不能白装，要用起来。</p>
+<p>有一个叫kitematic的工具，可以通过可视化界面的方式，pull到一部分容器，但是大部分容器，都无法弄下来。 会报404 、 500 之类莫名奇妙的错误。 我怀疑其后台也是调用命令行方式来pull的。</p>
+<p>所以，我要解决的是，让terminal能够执行docker pull ，直接通过docker提供的命令把容器拖下来。</p>
+<h1 id="_2">思路</h1>
+<p>我的想法很简单，就是让terminal 下执行的命令能够走代理访问被墙掉的网站。</p>
+<p>比如 wget / curl 这些命令，如果能够通过某种配置，让它们能够直接访问google.com  ， facebook.com 等站点，那么 docker pull 同理也可以访问了。</p>
+<p>目前 我的情况是：</p>
+<ol>
+<li>通过 shadowsocks 我可以通过浏览器访问 google.com 之类的网站。</li>
+<li>但是无法通过terminal wget / curl 来访问 google.com 之类的网站。</li>
+<li>kitematic 能够打开docker hub repo ， 但是无法下载容器。</li>
+</ol>
+<p>所以，我要做的，是让 terminal 支持 docer pull 命令方式来 pull 容器。</p>
+<h2 id="_3">步骤</h2>
+<h3 id="privoxy">首先安装 privoxy</h3>
+<p>假定你已经有了shadowsocks环境，那接下来我们就来安装 privoxy。　</p>
+<p>这个工具可以让 socks 代理转成 http 代理， 并且支持命令方式配置。</p>
+<pre><code>brew install privoxy
+</code></pre>
+<p>无需人工干预，自动安装。</p>
+<h3 id="privoxy-config">修改 privoxy config</h3>
+<p>修改配置文件</p>
+<pre><code>vim /usr/local/etc/privoxy/config
+</code></pre>
+<p>```</p>
+<p>forward-socks5   /  127.0.0.1:1080 .</p>
+<h1 id="_4">下面这条可能默认就有，如果没有，请加上</h1>
+<h1 id="listen-address-localhost8118">listen-address  localhost:8118</h1>
+<h1 id="local-network-do-not-use-proxy">local network do not use proxy</h1>
+<p>forward         192.168.<em>.</em>/     .
+forward            10.<em>.</em>.<em>/     .
+forward           127.</em>.<em>.</em>/     .</p>
+<p>```</p>
+<p>完了 :wq 保存即可。</p>
+<h3 id="privoxy_1">启动privoxy</h3>
+<pre><code>/usr/local/sbin/privoxy
+</code></pre>
+<p>执行这个命令，直接就在后台启动了。</p>
+<p>如果你不想再后台启动，可以执行：</p>
+<p>/usr/local/sbin/privoxy --no-daemon</p>
+<p>这样，privoxy将挂起。作用是便于调试。</p>
+<h3 id="docker_4">设置 docker运行环境：</h3>
+<p>如果你的terminal shell环境没有特别设置，很可能无法正常执行docker , 因此，执行docker之前，要先把环境设置好。方法有两种：</p>
+<ol>
+<li>
+<p>通过kitematic左下角的 <code>CLI</code> 图标打开。</p>
+</li>
+<li>
+<p>通过命令行配置</p>
+<p>bash -c "clear &amp;&amp; DOCKER_HOST=tcp://192.168.99.100:2376 DOCKER_CERT_PATH=/Users/poon/.docker/machine/machines/default DOCKER_TLS_VERIFY=1 /bin/bash"</p>
+</li>
+</ol>
+<p>相当于对环境初始化一下。功能与 kitematic 等同。</p>
+<p>如果没有初始化环境，将会报如下错误：</p>
+<p>```
+$ docker pull sequenceiq/hadoop-docker:2.7.1
+Warning: failed to get default registry endpoint from daemon (Cannot connect to the Docker daemon. Is the docker daemon running on this host?). Using system default: https://index.docker.io/v1/
+Cannot connect to the Docker daemon. Is the docker daemon running on this host?</p>
+<p>```</p>
+<h3 id="_5">设置环境变量</h3>
+<p>mac下的环境变量名和linux的环境变量名的区别是：大小写不一样！</p>
+<pre><code>export http_proxy='http://127.0.0.1:8118'
+export https_proxy='http://127.0.0.1:8118'
+</code></pre>
+<p>如果要取消设置：</p>
+<pre><code>unset http_proxy
+unset https_proxy
+</code></pre>
+<h3 id="pull">执行pull 操作</h3>
+<pre><code>docker pull sequenceiq/hadoop-docker:2.7.0
+</code></pre>
+<p>结果如下：</p>
+<p>```</p>
+<p>bash-3.2$ docker pull sequenceiq/hadoop-docker:2.7.1</p>
+<p>2.7.1: Pulling from sequenceiq/hadoop-docker
+b253335dcf03: Downloading [===========================&gt;                       ]  28.3 MB/50.9 MB
+a3ed95caeb02: Download complete 
+69623ef05416: Download complete 
+8d2023764774: Downloading [===============&gt;                                   ] 27.55 MB/88.09 MB
+0c3c0ff61963: Download complete 
+ff0696749bf6: Downloading [&gt;                                                  ] 2.702 MB/153.4 MB
+72accdc282f3: Waiting 
+5298ddb3b339: Waiting 
+f252bbba6bda: Waiting 
+3984257f0553: Waiting 
+26343a20fa29: Waiting 
+f3e272e0e801: Waiting 
+ad78a593ca62: Waiting 
+673712aa7667: Waiting 
+aaf06cd0aa6e: Waiting 
+fed9c9377250: Waiting 
+d4385c519f63: Waiting 
+49ca93868354: Waiting 
+98e62c38a660: Waiting 
+3679d1cf91a0: Waiting 
+31ae294be02b: Waiting 
+13605254d8c3: Waiting 
+a54805751dfa: Waiting 
+38537e9c387f: Waiting 
+dc639853e053: Waiting 
+e267620cd7fd: Waiting 
+93990a6b26ca: Waiting 
+11ffe2baf32d: Waiting 
+c91b10bf3a44: Waiting 
+adede6edfea0: Waiting 
+4afb2f219fa7: Waiting 
+0335bc4000de: Waiting 
+e6c5265506dc: Waiting 
+3bb2b06400be: Waiting 
+d9665143ac9a: Waiting 
+2a1a28b12647: Waiting 
+5c175609cbf3: Waiting 
+e2a7d6798159: Waiting 
+88d87e462c71: Waiting 
+3a404fc6437e: Waiting 
+5517052ef612: Waiting 
+fa61c616ddd1: Waiting 
+d4ab0c19cb91: Waiting 
+9aa826a9ca93: Waiting 
+b2ecd44f6d78: Waiting 
+824658b0b14c: Waiting 
+e5c31d8cbbce: Waiting </p>
+<p>```</p>
+<p>剩下的就是等待容器下载完毕。</p>
+<h1 id="docker_5">docker 容器测试</h1>
+<pre><code>$ docker run -it sequenceiq/hadoop-docker:2.7.1 /etc/bootstrap.sh -bash
+</code></pre>
+<p>运行结果:</p>
+<p>```</p>
+<p>/
+Starting sshd:                                             [  OK  ]
+16/04/13 22:25:55 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Starting namenodes on [af4d640b141e]
+af4d640b141e: starting namenode, logging to /usr/local/hadoop/logs/hadoop-root-namenode-af4d640b141e.out
+localhost: starting datanode, logging to /usr/local/hadoop/logs/hadoop-root-datanode-af4d640b141e.out
+Starting secondary namenodes [0.0.0.0]
+0.0.0.0: starting secondarynamenode, logging to /usr/local/hadoop/logs/hadoop-root-secondarynamenode-af4d640b141e.out
+16/04/13 22:26:13 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+starting yarn daemons
+starting resourcemanager, logging to /usr/local/hadoop/logs/yarn--resourcemanager-af4d640b141e.out
+localhost: starting nodemanager, logging to /usr/local/hadoop/logs/yarn-root-nodemanager-af4d640b141e.out
+bash-4.1# pwd
+/</p>
+<p>```</p>
+<h1 id="hadoop-map-reduce">测试 hadoop map / reduce 任务执行：</h1>
+<p>命令：</p>
+<pre><code># bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.1.jar grep input output 'dfs[a-z.]+'
+</code></pre>
+<p>结果输出：</p>
+<p>``` </p>
+<p>16/04/13 22:39:04 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+16/04/13 22:39:05 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+16/04/13 22:39:06 INFO input.FileInputFormat: Total input paths to process : 31
+16/04/13 22:39:06 INFO mapreduce.JobSubmitter: number of splits:31
+16/04/13 22:39:07 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1460600778025_0001
+16/04/13 22:39:07 INFO impl.YarnClientImpl: Submitted application application_1460600778025_0001
+16/04/13 22:39:07 INFO mapreduce.Job: The url to track the job: http://af4d640b141e:8088/proxy/application_1460600778025_0001/
+16/04/13 22:39:07 INFO mapreduce.Job: Running job: job_1460600778025_0001
+16/04/13 22:39:17 INFO mapreduce.Job: Job job_1460600778025_0001 running in uber mode : false
+16/04/13 22:39:17 INFO mapreduce.Job:  map 0% reduce 0%
+16/04/13 22:39:46 INFO mapreduce.Job:  map 10% reduce 0%
+16/04/13 22:39:47 INFO mapreduce.Job:  map 19% reduce 0%
+16/04/13 22:40:09 INFO mapreduce.Job:  map 23% reduce 0%
+16/04/13 22:40:12 INFO mapreduce.Job:  map 26% reduce 0%
+16/04/13 22:40:13 INFO mapreduce.Job:  map 39% reduce 0%
+16/04/13 22:40:36 INFO mapreduce.Job:  map 42% reduce 0%
+16/04/13 22:40:37 INFO mapreduce.Job:  map 45% reduce 0%
+16/04/13 22:40:38 INFO mapreduce.Job:  map 55% reduce 15%
+16/04/13 22:40:41 INFO mapreduce.Job:  map 55% reduce 18%
+16/04/13 22:41:01 INFO mapreduce.Job:  map 68% reduce 18%
+16/04/13 22:41:02 INFO mapreduce.Job:  map 71% reduce 20%
+16/04/13 22:41:05 INFO mapreduce.Job:  map 71% reduce 24%
+16/04/13 22:41:25 INFO mapreduce.Job:  map 81% reduce 24%
+16/04/13 22:41:26 INFO mapreduce.Job:  map 87% reduce 24%
+16/04/13 22:41:27 INFO mapreduce.Job:  map 87% reduce 28%
+16/04/13 22:41:30 INFO mapreduce.Job:  map 87% reduce 29%
+16/04/13 22:41:47 INFO mapreduce.Job:  map 100% reduce 29%
+16/04/13 22:41:48 INFO mapreduce.Job:  map 100% reduce 31%
+16/04/13 22:41:49 INFO mapreduce.Job:  map 100% reduce 100%
+16/04/13 22:41:49 INFO mapreduce.Job: Job job_1460600778025_0001 completed successfully
+16/04/13 22:41:49 INFO mapreduce.Job: Counters: 50</p>
+<p>```</p>
+<h1 id="_6">常见问题</h1>
+<h2 id="bash-32-docker-pull-sequenceiqhadoop-docker270">bash-3.2$ docker pull sequenceiq/hadoop-docker:2.7.0</h2>
+<p>```</p>
+<p>Error response from daemon: Get https://registry-1.docker.io/v2/sequenceiq/hadoop-docker/manifests/2.7.0: Get https://auth.docker.io/token?scope=repository%3Asequenceiq%2Fhadoop-docker%3Apull&amp;service=registry.docker.io: net/http: request canceled (Client.Timeout exceeded while awaiting headers)</p>
+<p>```</p>
+<h2 id="bash-32-docker-pull-sequenceiqhadoop-docker271">bash-3.2$ docker pull sequenceiq/hadoop-docker:2.7.1</h2>
+<p><code>Pulling repository docker.io/sequenceiq/hadoop-docker
+Network timed out while trying to connect to https://index.docker.io/v1/repositories/sequenceiq/hadoop-docker/images. You may want to check your internet connection or if you are behind a proxy.</code></p>
+<p>这些都是由于网络没有打通导致的，可以尝试如下操作重新设置网络：</p>
+<ol>
+<li>开启 shadowsocks 并确认可以上google等网站。</li>
+<li>确认 privoxy 下的 config 文件已经正确设置端口转发</li>
+<li>启动 privoxy </li>
+<li>设置 http_proxy , https_proxy</li>
+<li>重新执行 docker pull</li>
+</ol>
+<p>后续将给大家介绍 hadoop 在docker中的配置和实际应用方面的经验，例如伪分布式环境，敬请期待。</p>
+<p><img alt="bottom求关注" src="https://mmbiz.qlogo.cn/mmbiz/sfKia69cLy1yGH30FHU6SYaJPqvibh7Wib9Pg2V6rc7zjaPJ7aKk9NcpQb9IIhZLCIG8CB4b0QV2vKWopevlhvafw/0?wx_fmt=png" /></p>
+
+        <div class="sharethis-bottom">
+          <span class='st_fblike_hcount' displayText='Facebook Like'></span>
+          <span class='st_plusone_hcount' displayText='Google +1'></span>
+          <span class='st_twitter_hcount' displayText='Tweet'></span>
+          <span class='st_email_hcount' displayText='Email'></span>
+        </div>
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "docker_gfw_hadoop.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//gitwillpoonimx3.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                    </p>
+                    <p>
+                        <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-69868761-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'gitwillpoonimx3';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+</body>
+</html>

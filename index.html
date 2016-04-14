@@ -85,6 +85,95 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="/docker_gfw_hadoop.html" rel="bookmark" title="Permalink to 翻山涉水:使用docker快速构建hadoop运行环境">
+                                       翻山涉水:使用docker快速构建hadoop运行环境
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/poon.html">Poon</a>
+    </address>
+
+    in <a href="/category/misc.html">misc</a>
+
+    on 2016-04-14
+
+
+
+        |
+        <a href="/docker_gfw_hadoop.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>（点击上方<strong><code>BI实验室</code></strong>↑↑，可快速关注）</p>
+<h1 id="_1">摘要</h1>
+<p>本文将介绍如果使用docker快速获取一个hadoop运行环境的。特别针对国内无法直接pull取docker容器的问题提供了翻墙解决方案。所谓翻山：这里指使用shadowsocks翻过GFW访问被墙的网络；所谓涉水，是指使用privoxy把socks代理转成http/https代理，让terminal命令行工具也可以借助socks代理来翻墙，达到命令行和GUI都能借助shadowsocks同步翻墙的效果。让命令行和GUI能够共享socks代理网络，达到融通状态。</p>
+<h1 id="docker">什么是docker</h1>
+<p>docker , 一个基于 LXC 虚拟机技术的容器引擎。为应用部署而生。</p>
+<h1 id="docker_1">为什么选docker</h1>
+<p>传统的硬件服务器或者虚拟机方案有如下弊端：</p>
+<ol>
+<li>每台服务器只运行一套应用程序/服务，导致计算资源浪费</li>
+<li>要为每台服务器购置相应的硬件，导致成本太高</li>
+<li>每次部署一台服务器，都要从头开始，部署流程和时间太长，效率低</li>
+<li>为了保证性能／环境一致性，扩展时常常受限于硬件供应商</li>
+<li>不易于扩展</li>
+</ol>
+<p>docker 的出现，能解决上述问题。</p>
+<h1 id="docker_2">我为何要和docker发生关系？</h1>
+<p>我的痛点主要是我的笔记本cpu/内存/空间资源有限，所以需要一个轻量级一点的方案，可以让我专注于 应用和方案本身，而不是每次都为系统资源捉急，甚至操碎了心，最后连做事的心情都没有了。</p>
+<p>所以我打算借docker来为我解决这些问题 ...</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="/docker_gfw_hadoop.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="/smokeTest.html" rel="bookmark" title="Permalink to smoke test 是什么鬼">
+                                       smoke test 是什么鬼
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/poon.html">Poon</a>
+    </address>
+
+    in <a href="/category/misc.html">misc</a>
+
+    on 2016-04-13
+
+
+
+        |
+        <a href="/smokeTest.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>（点击上方<strong><code>BI实验室</code></strong>↑↑，可快速关注）</p>
+<h1 id="_1">学术解释</h1>
+<p>一术语源自硬件行业。对一个硬件或硬件组件进行更改或修复后，直接给设备加电。如果没有冒烟，则该组件就通过了测试。在软件中，“冒烟测试”这一术语描述的是在将代码更改嵌入到产品的源树中之前对这些更改进行验证的过程。在检查了代码后，冒烟测试是确定和修复软件缺陷的最经济有效的方法。冒烟测试设计用于确认代码中的更改会按预期运行，且不会破坏整个版本的稳定性。</p>
+<ul>
+<li>百度百科</li>
+</ul>
+<p>Smoke testing refers to various classes of tests of systems, usually intended to determine whether they are ready for more robust testing. The expression probably was first used in plumbing in referring to ...</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="/smokeTest.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="/keepondoing.html" rel="bookmark" title="Permalink to 继续做">
                                        继续做
                                     </a>
@@ -442,87 +531,6 @@
                             <hr/>
                         </article>
                     </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="/balance_is_the_truth.html" rel="bookmark" title="Permalink to 平衡才是宇宙真理">
-                                       平衡才是宇宙真理
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="/author/poon.html">Poon</a>
-    </address>
-
-    in <a href="/category/misc.html">misc</a>
-
-    on 2016-04-04
-
-
-
-        |
-        <a href="/balance_is_the_truth.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>今天，学习shuffle过程，里面采用partition来平衡reduce过程中的数据倾斜问题。 大意是，如果数据分布分布不均，就会出现计算问题：计算速度慢，节点资源负载不均匀，导致过载或浪费。 反正就是没有好结果。</p>
-<p>简单来说：不均衡，就会产生问题。</p>
-<p>恍然大悟！</p>
-<p>世间很多问题，不都是因为各种不均衡、平衡被打破了而导致的吗？</p>
-<p>阴阳失衡、生态失衡、收支失衡、酸碱失衡、男女比例失衡、劳逸失衡...都会产生各种各样的问题。</p>
-<p>就拿我自己来说，有一段时间，睡觉睡得晚，导致早上起来没有精神。这就是作息不规律，导致精神状态失衡。
-还有，比如两个人的关系，如果没有摆到一个大家相互感到舒服的位置，这种情况下，也容易导致关系破裂。
-再有，如果你的工作量（或者你创造的效益）和老板给你的待遇不匹配，劳资双方也会出现问题。
-过多的付出却得不到回报，将会导致心理失衡。当然同时也有句话叫：拿人手短。
-所谓的从不利己，专门利人，无私奉献...都是bullshit.
-正所谓：因势利导 ...</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="/balance_is_the_truth.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="/hadoop_blocksize_vs_splitsize.html" rel="bookmark" title="Permalink to Hadoop的block Size和split Size是什么关系">
-                                       Hadoop的block Size和split Size是什么关系
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="/author/poon.html">Poon</a>
-    </address>
-
-    in <a href="/category/misc.html">misc</a>
-
-    on 2016-04-04
-
-
-
-        |
-        <a href="/hadoop_blocksize_vs_splitsize.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>学习hadoop map reduce过程的时候，第一步就是split。我们知道，hdfs中的数据是按block来存储的。问题来了，那么split和block之间是什么关系呢？我google到了stackoverflow上的这篇文章，我觉得这个帖子应该把关系说清楚了，翻译出来，欢迎大家批评指正！以下：</p>
-<h2 id="_1">问题</h2>
-<p>hadoop的split size 和 block size 是什么关系？ 是否 split size 应该 n倍于 block size ? </p>
-<h2 id="_2">概念</h2>
-<p>在 hdfs 架构中，存在 blocks 的概念。 通常来说，hdfs中的一个block 是 64MB 。 当我们把一个大文件导入hdfs中的时候，文件会按 64MB 每个block来分割（如果按默认配置）。
-如果你有1GB的文件要存入HDFS中， 1GB/64MB = 1024MB / 64MB  = 16 个blocks ...</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="/hadoop_blocksize_vs_splitsize.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
                     </ol><!-- /#posts-list -->
 <p class="paginator">
     Page 1 / 4
@@ -562,58 +570,58 @@
             <div>
                 <h2>Tags</h2>
                 <ul id="cloud">
-                     <li class="tag-4"><a href="/tag/chi-fan-gong-ju.html">吃饭工具</a></li>
-                     <li class="tag-4"><a href="/tag/learn.html">learn</a></li>
-                     <li class="tag-4"><a href="/tag/ye-wu.html">业务</a></li>
-                     <li class="tag-4"><a href="/tag/mac.html">Mac</a></li>
-                     <li class="tag-4"><a href="/tag/yi-zhu.html">艺术</a></li>
-                     <li class="tag-4"><a href="/tag/pelican.html">pelican</a></li>
-                     <li class="tag-4"><a href="/tag/kuai-le.html">快乐</a></li>
-                     <li class="tag-4"><a href="/tag/db.html">DB</a></li>
-                     <li class="tag-4"><a href="/tag/biee.html">biee</a></li>
-                     <li class="tag-4"><a href="/tag/database.html">database</a></li>
-                     <li class="tag-4"><a href="/tag/osx.html">OSX</a></li>
+                     <li class="tag-4"><a href="/tag/shi-lu.html">实录</a></li>
+                     <li class="tag-4"><a href="/tag/github.html">github</a></li>
+                     <li class="tag-4"><a href="/tag/wai-yu.html">外语</a></li>
+                     <li class="tag-4"><a href="/tag/bi-ji.html">笔记</a></li>
+                     <li class="tag-4"><a href="/tag/tools.html">tools</a></li>
                      <li class="tag-4"><a href="/tag/travel.html">travel</a></li>
+                     <li class="tag-4"><a href="/tag/list.html">list</a></li>
+                     <li class="tag-4"><a href="/tag/tou-ji.html">投机</a></li>
+                     <li class="tag-4"><a href="/tag/sheng-huo.html">生活</a></li>
+                     <li class="tag-4"><a href="/tag/learn.html">learn</a></li>
+                     <li class="tag-4"><a href="/tag/db.html">DB</a></li>
+                     <li class="tag-4"><a href="/tag/ri-zhi.html">日志</a></li>
+                     <li class="tag-4"><a href="/tag/osx.html">OSX</a></li>
+                     <li class="tag-4"><a href="/tag/memory.html">memory</a></li>
+                     <li class="tag-4"><a href="/tag/cheng-xu.html">程序</a></li>
+                     <li class="tag-4"><a href="/tag/ji-jin.html">基金</a></li>
+                     <li class="tag-4"><a href="/tag/disqus.html">disqus</a></li>
+                     <li class="tag-4"><a href="/tag/books.html">books</a></li>
+                     <li class="tag-4"><a href="/tag/mysql.html">mysql</a></li>
+                     <li class="tag-4"><a href="/tag/biee.html">biee</a></li>
+                     <li class="tag-4"><a href="/tag/reading.html">reading</a></li>
+                     <li class="tag-4"><a href="/tag/bi.html">BI</a></li>
+                     <li class="tag-4"><a href="/tag/yi-zhu.html">艺术</a></li>
                      <li class="tag-4"><a href="/tag/si-kao.html">思考</a></li>
                      <li class="tag-4"><a href="/tag/she-ji.html">设计</a></li>
-                     <li class="tag-4"><a href="/tag/db2.html">db2</a></li>
-                     <li class="tag-4"><a href="/tag/gong-zuo.html">工作</a></li>
-                     <li class="tag-4"><a href="/tag/blog.html">blog</a></li>
-                     <li class="tag-4"><a href="/tag/xing-fu.html">幸福</a></li>
-                     <li class="tag-4"><a href="/tag/hadoop.html">hadoop</a></li>
-                     <li class="tag-4"><a href="/tag/github.html">github</a></li>
-                     <li class="tag-4"><a href="/tag/da-shu-ju.html">大数据</a></li>
-                     <li class="tag-4"><a href="/tag/ji-jin.html">基金</a></li>
-                     <li class="tag-4"><a href="/tag/zhuan-qian.html">赚钱</a></li>
-                     <li class="tag-4"><a href="/tag/yin-xing.html">银行</a></li>
-                     <li class="tag-4"><a href="/tag/disqus.html">disqus</a></li>
-                     <li class="tag-4"><a href="/tag/bi.html">BI</a></li>
-                     <li class="tag-4"><a href="/tag/unix.html">Unix</a></li>
-                     <li class="tag-4"><a href="/tag/linux.html">linux</a></li>
-                     <li class="tag-4"><a href="/tag/shi-lu.html">实录</a></li>
                      <li class="tag-1"><a href="/tag/oracle.html">oracle</a></li>
-                     <li class="tag-4"><a href="/tag/du-bo.html">赌博</a></li>
-                     <li class="tag-4"><a href="/tag/ri-zhi.html">日志</a></li>
-                     <li class="tag-4"><a href="/tag/tou-zi.html">投资</a></li>
-                     <li class="tag-4"><a href="/tag/xie-zi.html">写字</a></li>
-                     <li class="tag-4"><a href="/tag/gu-piao.html">股票</a></li>
-                     <li class="tag-4"><a href="/tag/jia-gou.html">架构</a></li>
-                     <li class="tag-4"><a href="/tag/wai-yu.html">外语</a></li>
                      <li class="tag-4"><a href="/tag/jin-rong.html">金融</a></li>
-                     <li class="tag-4"><a href="/tag/sheng-huo.html">生活</a></li>
-                     <li class="tag-4"><a href="/tag/list.html">list</a></li>
-                     <li class="tag-4"><a href="/tag/tools.html">tools</a></li>
-                     <li class="tag-4"><a href="/tag/me.html">Me</a></li>
-                     <li class="tag-4"><a href="/tag/mysql.html">mysql</a></li>
-                     <li class="tag-4"><a href="/tag/git.html">git</a></li>
+                     <li class="tag-4"><a href="/tag/unix.html">Unix</a></li>
+                     <li class="tag-4"><a href="/tag/jia-gou.html">架构</a></li>
+                     <li class="tag-4"><a href="/tag/database.html">database</a></li>
+                     <li class="tag-4"><a href="/tag/du-bo.html">赌博</a></li>
+                     <li class="tag-4"><a href="/tag/db2.html">db2</a></li>
+                     <li class="tag-4"><a href="/tag/chi-fan-gong-ju.html">吃饭工具</a></li>
+                     <li class="tag-4"><a href="/tag/zhuan-qian.html">赚钱</a></li>
                      <li class="tag-4"><a href="/tag/city.html">city</a></li>
-                     <li class="tag-4"><a href="/tag/tou-ji.html">投机</a></li>
+                     <li class="tag-4"><a href="/tag/gong-zuo.html">工作</a></li>
+                     <li class="tag-4"><a href="/tag/ye-wu.html">业务</a></li>
+                     <li class="tag-4"><a href="/tag/mac.html">Mac</a></li>
+                     <li class="tag-4"><a href="/tag/tou-zi.html">投资</a></li>
+                     <li class="tag-4"><a href="/tag/linux.html">linux</a></li>
+                     <li class="tag-4"><a href="/tag/xie-zi.html">写字</a></li>
+                     <li class="tag-4"><a href="/tag/hadoop.html">hadoop</a></li>
+                     <li class="tag-4"><a href="/tag/xing-fu.html">幸福</a></li>
+                     <li class="tag-4"><a href="/tag/kuai-le.html">快乐</a></li>
+                     <li class="tag-4"><a href="/tag/pelican.html">pelican</a></li>
+                     <li class="tag-4"><a href="/tag/me.html">Me</a></li>
+                     <li class="tag-4"><a href="/tag/yin-xing.html">银行</a></li>
                      <li class="tag-4"><a href="/tag/shu-ju-ku.html">数据库</a></li>
-                     <li class="tag-4"><a href="/tag/cheng-xu.html">程序</a></li>
-                     <li class="tag-4"><a href="/tag/bi-ji.html">笔记</a></li>
-                     <li class="tag-4"><a href="/tag/memory.html">memory</a></li>
-                     <li class="tag-4"><a href="/tag/books.html">books</a></li>
-                     <li class="tag-4"><a href="/tag/reading.html">reading</a></li>
+                     <li class="tag-4"><a href="/tag/blog.html">blog</a></li>
+                     <li class="tag-4"><a href="/tag/git.html">git</a></li>
+                     <li class="tag-4"><a href="/tag/da-shu-ju.html">大数据</a></li>
+                     <li class="tag-4"><a href="/tag/gu-piao.html">股票</a></li>
                 </ul>
              </div>
 <!-- /.Tags -->
