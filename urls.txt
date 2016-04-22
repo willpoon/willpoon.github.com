@@ -2,6 +2,10 @@
 /archives.html
 /tags.html
 /categories.html
+/oracle-biee-develop.html
+/unsubscribe.html
+/obiee_centralconfiguration.html
+/keepAngry.html
 /ProblemOnAttitude.html
 /thatRelationship04.html
 /notenough.html
@@ -20,7 +24,6 @@
 /biee_excel_merging_cells.html
 /educate_yourself.html
 /game_is_good_but_consume_time.html
-/oracle-biee-develop.html
 /blog_template.html
 /big_data.html
 /work-on-linux.html
