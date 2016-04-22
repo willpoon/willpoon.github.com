@@ -113,7 +113,7 @@
 
         <p>（点击上方<strong><code>BI实验室</code></strong>↑↑，可快速关注）</p>
 <h1 id="_1">问题</h1>
-<p>开发人员通过ftp把最新的RPD上传到后台目录，重启OBIEE后发现RPD并没有更新。同时发现现有的主题区域也有差异。</p>
+<p>开发人员通过ftp把最新的RPD上传到后台目录，重启OBIEE后发现RPD并没有更新。同时发现现有的主题区域和最新的也有差异。</p>
 <h1 id="_2">分析</h1>
 <p>我们知道，主题区域是跟随RPD的presentation层的。这说明biee在用的RPD不是我们上传的rpd。</p>
 <h1 id="_3">核查</h1>
@@ -128,6 +128,7 @@
 Star = abc_xxx.rpd </p>
 </blockquote>
 <p>中，abc_xxx并非是我们上传的名字，xxx 是一串数字。这说明rpd 是通过 em 前端更新的，并且带了xxx作为自动递增版本号。</p>
+<p>如果有人通过em前端更新rpd，em就会自动修改rpd名称，并修改 NQSConfig.INI .</p>
 <p>要改回来也很简单，只需要把 abc_xxx.rpd 改成 你ftp上传的名字，比如abc.rpd 就行了。</p>
 <h1 id="_4">解决</h1>
 <p>如何 防止 em 自动 更新 [repository] 配置？</p>

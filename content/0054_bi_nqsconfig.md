@@ -7,7 +7,7 @@ Authors: Poon
 
 # 问题
 
-开发人员通过ftp把最新的RPD上传到后台目录，重启OBIEE后发现RPD并没有更新。同时发现现有的主题区域也有差异。
+开发人员通过ftp把最新的RPD上传到后台目录，重启OBIEE后发现RPD并没有更新。同时发现现有的主题区域和最新的也有差异。
 
 # 分析
 
@@ -27,6 +27,8 @@ rpd 文件的配置在：
 > Star = abc_xxx.rpd 
 
 中，abc_xxx并非是我们上传的名字，xxx 是一串数字。这说明rpd 是通过 em 前端更新的，并且带了xxx作为自动递增版本号。
+
+如果有人通过em前端更新rpd，em就会自动修改rpd名称，并修改 NQSConfig.INI .
 
 要改回来也很简单，只需要把 abc_xxx.rpd 改成 你ftp上传的名字，比如abc.rpd 就行了。
 
