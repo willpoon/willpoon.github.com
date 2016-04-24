@@ -1,5 +1,5 @@
-Title:  bi_template
-Slug:  template_bi
+Title:  kylin: 快速的多维分析工具
+Slug:  kylinMeetup
 Authors: Poon
 Status: draft
 

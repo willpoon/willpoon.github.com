@@ -2,7 +2,7 @@
 <html lang="">	
 <head>
 	<meta charset="utf-8"/>
-	<title>取关 - 仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</title>	
+	<title>biee:topN的本质 - 仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</title>	
 	<meta name="author" content="Poon">
 	
 	<meta name="HandheldFriendly" content="True">
@@ -30,18 +30,59 @@
 <div role="main" class="content clearfix">	
 	<article>
 		<div class="post wrapper">
-			<h1>取关</h1>
-			<p>（点击上方 <strong><code>零壹</code></strong> ↑↑↑，可快速关注）</p>
-<p>最近取关了一批公众号，说是取关，其实只是屏蔽消息而已，就是暂停接收消息推送。</p>
-<p>我为什么要这样做？</p>
-<p>因为我感觉到有点信息过载了。我希望专注于某一领域的公众号，为自己创造一个纯净的学习环境。</p>
-<p>比如我最近在学英语。我打算只保留几个英语相关的公号推送，而屏蔽其他，这样能保证我自己有比较干净的环境来学习英语，而不会让注意力被其他英语无关的消息转移。</p>
-<p>Recently I unsubscribed a batch of Wechat Channels. </p>
-<p>Why did I do this ?</p>
-<p>Because I felt that there is too much infomation offered than I want. I need a cleaner  envrionment of information for learning .</p>
-<p>for instance, I 'm learning english these days. and I want to keep only some Wechat Channel about english , and block others Channel's messages pushing.</p>
-<p>So that my attention will not being distracted by other irrelevant information.</p>
-<p><img alt="bottom求关注" src="https://mmbiz.qlogo.cn/mmbiz/4nvtcdfOq5YlCGvb34PQjdBC22yOGTOBVC52yRcjkVicxnJ7YcWXQulc8icUB124wxprq0nY4ULiaZffT4P5AGLcg/0?wx_fmt=png" /></p>
+			<h1>biee:topN的本质</h1>
+			<p>在使用biee取前N条数据的时候，我很好奇，为什么一个topN函数，就能把记录按指定列排序，并且过滤出来。于是我做了如下测试，看看obiee是怎么实现的：</p>
+<h2 id="sql">逻辑sql</h2>
+<p>```sql</p>
+<p>SET VARIABLE PREFERRED_CURRENCY='USD';SELECT
+   0 s_0,
+   "A - Sample Sales"."Julian Cal"."T50 Julian Day Num" s_1,
+   topN("A - Sample Sales"."Julian Cal"."T50 Julian Day Num",12) s_2
+FROM "A - Sample Sales"
+ORDER BY 1, 2 ASC NULLS LAST
+FETCH FIRST 5000001 ROWS ONLY</p>
+<p>```</p>
+<h2 id="sql_1">物理sql</h2>
+<p>```SQL</p>
+<p>WITH 
+SAWITH0 AS (select T42404.Julian_Day_Num as c1,
+     Rank() OVER ( ORDER BY T42404.Julian_Day_Num DESC NULLS LAST ) as c2
+from 
+     BISAMPLE.SAMP_TIME_DAY_D T42404 /<em> D01 Time Day Grain </em>/ ),
+SAWITH1 AS (select D1.c1 as c1
+from 
+     SAWITH0 D1
+where  ( case  when D1.c2 &lt;= 12 then D1.c2 end  &lt;= 12 ) ),
+SAWITH2 AS (select D1.c1 as c1,
+     D1.c2 as c2,
+     D1.c3 as c3
+from 
+     (select 0 as c1,
+               D1.c1 as c2,
+               case  when Rank() OVER ( ORDER BY D1.c1 DESC NULLS LAST ) &lt;= 12 then Rank() OVER ( ORDER BY D1.c1 DESC NULLS LAST ) end  as c3,
+               ROW_NUMBER() OVER (PARTITION BY D1.c1 ORDER BY D1.c1 ASC) as c4
+          from 
+               SAWITH1 D1
+     ) D1
+where  ( D1.c4 = 1 ) )
+select D1.c1 as c1, D1.c2 as c2, D1.c3 as c3 from ( select distinct D1.c1 as c1,
+     D1.c2 as c2,
+     D1.c3 as c3
+from 
+     SAWITH2 D1
+order by c1, c2 ) D1 where rownum &lt;= 5000001</p>
+<p>```</p>
+<h1 id="_1">分析</h1>
+<p>SAWITH0: 使用rank()为列值排序，添加序号
+SAWITH1: 使用where过滤序号，取topN 的。
+SAWITH2: 使用partition分组，使用 where D1.c4 = 1 去重。</p>
+<p>总的来说，topN() 也就是把取数逻辑封装了一下而已。而且是显式封装：通过日志可以查到详细代码。</p>
+<h1 id="_2">总结</h1>
+<ol>
+<li>如果不清楚biee内置函数是怎么实现的，可以通过日志查其实现过程。加深对biee的理解。</li>
+</ol>
+<p>本文首发于微信公众号： <strong><code>BI实验室</code></strong> ，微信搜索 <strong><code>BI实验室</code></strong> 或 <strong><code>magicof01</code></strong> ，也可以扫描下方二维码快速关注哦！</p>
+<p><img alt="求关注forIMX3" src="http://www.imx3.com/img/weixin_bi_common/sdr_code_tree.png" /></p>
 			
 			<a href="https://twitter.com/share" class="twitter-share-button" data-via="" data-lang="en" data-size="large" data-related="">Tweet</a>
 			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
@@ -50,7 +91,7 @@
 			<h2>Comments !</h2>
 			    <div id="disqus_thread"></div>
 			    <script type="text/javascript">
-			       var disqus_identifier = "unsubscribe.html";
+			       var disqus_identifier = "obiee_topN.html";
 			       (function() {
 			       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 			       dsq.src = '//gitwillpoonimx3.disqus.com/embed.js';
@@ -62,7 +103,7 @@
 		</div>
 	
 <div class="meta wrapper">
-	<time datetime="2016-04-22T11:18:37+08:00" pubdate>Fri 22 April 2016</time>
+	<time datetime="2016-04-23T11:31:51+08:00" pubdate>Sat 23 April 2016</time>
 	<ul class="tag clearfix">
 		<li><a href="/category/misc.html">misc</a></li>
 	</ul>
