@@ -2,6 +2,7 @@
 /archives.html
 /tags.html
 /categories.html
+/lineup.html
 /callForward.html
 /obiee_topN.html
 /unsubscribe.html

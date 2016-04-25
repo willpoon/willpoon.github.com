@@ -3254,3 +3254,13 @@ Money never sleep.
 小众、小众、坚持小众！
 
 
+# 2016-04-25 17:06
+
+https://github.com/druid-io/druid
+
+Druid已基于Apache License 2.0协议开源，代码托管在GitHub，其当前最新稳定版本是0.7.1.1。当前，Druid已有63个代码贡献者和将近2000个关注。Druid的主要贡献者包括广告分析创业公司Metamarkets、电影流媒体网站Netflix、Yahoo等公司。Druid官方还对Druid同Shark、Vertica、Cassandra、Hadoop、Spark、Elasticsearch等在容错能力、灵活性、查询性能等方便进行了对比说明。更多关于Druid的信息，大家还可以参考官方提供的入门教程、白皮书 、设计文档等。
+
+
+
+
+
