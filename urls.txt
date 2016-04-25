@@ -2,8 +2,10 @@
 /archives.html
 /tags.html
 /categories.html
-/oracle-biee-develop.html
+/callForward.html
+/obiee_topN.html
 /unsubscribe.html
+/oracle-biee-develop.html
 /obiee_centralconfiguration.html
 /keepAngry.html
 /ProblemOnAttitude.html
