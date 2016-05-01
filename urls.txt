@@ -2,11 +2,13 @@
 /archives.html
 /tags.html
 /categories.html
+/tableau_user_experience.html
+/oracle-biee-develop.html
+/kylin_fast_olap_Engine.html
 /lineup.html
 /callForward.html
 /obiee_topN.html
 /unsubscribe.html
-/oracle-biee-develop.html
 /obiee_centralconfiguration.html
 /keepAngry.html
 /ProblemOnAttitude.html
