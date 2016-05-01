@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="">	
+<head>
+	<meta charset="utf-8"/>
+	<title>kylin:提升业务分析人员的幸福指数的大数据OLAP引擎 - 仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</title>	
+	<meta name="author" content="Poon">
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0">
+	
+	<link href='http://fonts.googleapis.com/css?family=Droid+Sans:700,400|Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+		
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+	
+	<link href="/" type="application/atom+xml" rel="alternate" title="仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 ATOM Feed" />
+</head>
+	
+<body>		
+	<header class="clearfix" role="banner">
+		<div class="wrapper">
+			<h1 class="huge"><a href="">仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</a></h1>
+		</div>
+	</header>
+	
+<div role="main" class="content clearfix">	
+	<article>
+		<div class="post wrapper">
+			<h1>kylin:提升业务分析人员的幸福指数的大数据OLAP引擎</h1>
+			<p>（点击上方 <strong><code>BI实验室</code></strong> ↑↑，可快速关注）</p>
+<h1 id="_1">前言</h1>
+<pre><code>2016.04.24 去北京参加了 kylin 2nd Meetup , 进一步了解了kylin在各行各业、不同业务场景中的应用实践。我印象比较深的是中移动哥们的一个提法：
+造轮子的人-&gt;基于轮子二次开发的人-&gt;用户。
+想想大部分的产品，都是这么一个模式。
+科技就是这样，少数的人造了轮子，然后另外一部分基于这个轮子结合用户的需求，定制别的产品，然后给一大群用户使用。
+这种层次的划分，不但让我们早到了产品演变的路向，同时一下就让我们找准了自己的定位。这种有内而外的分层思想很值得借鉴。
+
+kylin确实是一个不错的OLAP工具。以下是关于kylin的功能介绍，译自官方，比较粗略，不当之处，还请多多指正！如果你对kylin感兴趣，可以到 kylin.apache.org 官方网站了解跟进。
+</code></pre>
+<h1 id="apache-kylin">apache kylin 概览</h1>
+<p>Apache Kylin™  是一个源自eBay公司的，基于Hadoop之上的，支持超大数据集的，提供SQL查询界面的开源多维分析(OLAP)引擎。</p>
+<p>只用简单的3步，Apache Kylin™ 就可以让你以亚秒级速度查询Hive中的大表：</p>
+<ol>
+<li>以星型模型构建Hive中表与表之间的关系。</li>
+<li>通过离线批处理对Hive表做处理，生成cube</li>
+<li>通过 Rest API, ODBC , JDBC等接口，用sql查询 Hive tables . </li>
+</ol>
+<h1 id="kylin">什么是kylin</h1>
+<ul>
+<li>可扩展的、超快速的OLAP引擎
+kylin是为降低Hadoop上数据查询延迟而生，支持100亿行＋的数据</li>
+<li>支持ansi sql on Hadoop: 
+kylin为hadoop提供了大量的ansi sql查询语法支持</li>
+<li>交互查询能力
+用户可以通过Kylin的亚秒级查询来与Hadoop上的数据做交互查询，速度比用Hive查询快得多！</li>
+<li>MOLAP Cube
+用户可以在kylin中定义Cube数据模型并支持超过100亿条记录的Cube构建。</li>
+<li>与BI工具无缝整合
+Kylin目前提供了对诸如Tableau,PowerBI和Excel等工具的整合能力.对Microstrategy的整合能力也即将推出。</li>
+<li>其他亮点:</li>
+<li>任务管理和监控</li>
+<li>压缩和编码支持</li>
+<li>Cube的增量刷新</li>
+<li>Leverage HBase Coprocessor for query latency </li>
+<li>使用HyperLogLog估算count(distinct)</li>
+<li>为Cube提供简易的管理、构建、监控和查询界面</li>
+<li>通过ACL权限管理保障Cube/Project的安全性</li>
+<li>支持LDAP集成</li>
+</ul>
+<h4 id="apache-kylintm-overview">APACHE KYLIN™ OVERVIEW</h4>
+<p>Apache Kylin™ is an open source Distributed Analytics Engine designed to provide SQL interface and multi-dimensional analysis (OLAP) on Hadoop supporting extremely large datasets, original contributed from eBay Inc.
+Apache Kylin™ lets you query big Hive tables at sub-second latency in 3 simple steps.
+Identify a set of Hive tables in star schema.
+Build a cube from the Hive tables in an offline batch process.
+Query the Hive tables using SQL and get results in sub-seconds, via Rest API, ODBC, or JDBC.</p>
+<h4 id="what-is-kylin">WHAT IS KYLIN?</h4>
+<ul>
+<li>Extremely Fast OLAP Engine at Scale: 
+Kylin is designed to reduce query latency on Hadoop for 10+ billions of rows of data</li>
+<li>ANSI SQL Interface on Hadoop: 
+Kylin offers ANSI SQL on Hadoop and supports most ANSI SQL query functions</li>
+<li>Interactive Query Capability: 
+Users can interact with Hadoop data via Kylin at sub-second latency, better than Hive queries for the same dataset</li>
+<li>MOLAP Cube:
+User can define a data model and pre-build in Kylin with more than 10+ billions of raw data records</li>
+<li>Seamless Integration with BI Tools:
+Kylin currently offers integration capability with BI Tools like Tableau, PowerBI and Excel. Integration with Microstrategy is coming soon</li>
+<li>Other Highlights: </li>
+<li>Job Management and Monitoring </li>
+<li>Compression and Encoding Support </li>
+<li>Incremental Refresh of Cubes </li>
+<li>Leverage HBase Coprocessor for query latency </li>
+<li>Approximate Query Capability for distinct Count (HyperLogLog) </li>
+<li>Easy Web interface to manage, build, monitor and query cubes </li>
+<li>Security capability to set ACL at Cube/Project Level </li>
+<li>Support LDAP Integration</li>
+</ul>
+<p>本文首发于微信公众号： <strong><code>BI实验室</code></strong> ，微信搜索 <strong><code>BI实验室</code></strong> 或 <strong><code>magicof01</code></strong> ，也可以扫描下方二维码快速关注哦！</p>
+<p><img alt="求关注forIMX3" src="http://www.imx3.com/img/weixin_bi_common/sdr_code_tree.png" /></p>
+<p><img alt="求关注forWeChat" src="https://mmbiz.qlogo.cn/mmbiz/sfKia69cLy1yGH30FHU6SYaJPqvibh7Wib9Pg2V6rc7zjaPJ7aKk9NcpQb9IIhZLCIG8CB4b0QV2vKWopevlhvafw/0?wx_fmt=png" /></p>
+			
+			<a href="https://twitter.com/share" class="twitter-share-button" data-via="" data-lang="en" data-size="large" data-related="">Tweet</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+						
+			<div class="comments">
+			<h2>Comments !</h2>
+			    <div id="disqus_thread"></div>
+			    <script type="text/javascript">
+			       var disqus_identifier = "kylin_fast_olap_Engine.html";
+			       (function() {
+			       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			       dsq.src = '//gitwillpoonimx3.disqus.com/embed.js';
+			       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			      })();
+			    </script>
+			</div>
+			
+		</div>
+	
+<div class="meta wrapper">
+	<time datetime="2016-04-26T23:41:52+08:00" pubdate>Tue 26 April 2016</time>
+	<ul class="tag clearfix">
+		<li><a href="/category/misc.html">misc</a></li>
+	</ul>
+</div>	</article>	
+</div>
+	
+		
+<footer class="clearfix">
+	<div class="wrapper pages">
+		<ul class="nav">
+			<li><a href="/archives.html">Archive</a></li>
+		</ul>
+	</div>
+	
+	<div class="copy wrapper">
+		<ul class="social">
+			<li><a href="http://weibo.com/poooon">See me on Sina WeiBo</a></li>
+			<li><a href="http://github.com/willpoon">See me on GitHub</a></li>
+		</ul>
+	
+		<p role="contentinfo">© 2012 Poon<br>
+		Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">Pelican</a>.</p>
+	</div>
+</footer>
+	
+	<script>
+	  var _gaq=[['_setAccount','UA-69868761-1'],['_trackPageview']];
+	  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+	  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+	  s.parentNode.insertBefore(g,s)}(document,'script'));
+	</script>
+</body>
+</html>

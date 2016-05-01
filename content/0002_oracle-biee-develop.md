@@ -989,4 +989,21 @@ oracle 官方认证 的博客
 ## http://sigmajs.org/
 
 
+# NQSESSION 在rpd 中无法获取默认值。
+
+采用 nvl!
+
+# 物理层 的 with 不能放在开头，但是可以嵌入在中间
+
+但这仅仅在物理层可以，在biee前台analysis中就不行了！报  with 使用不当！
+
+# 物理层自动选择 connection pool 
+
+#  biee 数据源选择
+
+
+# biee前端 根据 current_date 求 T-1 
+
+select TIMESTAMPADD(SQL_TSI_DAY,-1,CURRENT_DATE) FROM "YOURSUBJECTAREA"
+
 
