@@ -2,6 +2,7 @@
 /archives.html
 /tags.html
 /categories.html
+/jobVSlife.html
 /night_run.html
 /tableau_user_experience.html
 /oracle-biee-develop.html

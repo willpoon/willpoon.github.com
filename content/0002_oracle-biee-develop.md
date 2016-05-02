@@ -1006,4 +1006,9 @@ oracle 官方认证 的博客
 
 select TIMESTAMPADD(SQL_TSI_DAY,-1,CURRENT_DATE) FROM "YOURSUBJECTAREA"
 
+# WINDOWS 休眠命令
+
+rundll32.exe powrprof.dll,SetSuspendState
+
+
 
