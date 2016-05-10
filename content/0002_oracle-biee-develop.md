@@ -1011,4 +1011,21 @@ select TIMESTAMPADD(SQL_TSI_DAY,-1,CURRENT_DATE) FROM "YOURSUBJECTAREA"
 rundll32.exe powrprof.dll,SetSuspendState
 
 
+# 2016-05-03 19:06
+
+活在别人的期望里，太傻！
+
+# 2016-05-09 09:29
+
+条形图
+
+分组方式：
+
+单月／累计
+月名
+X轴yyyymm
+
+X轴的顺序很重要，
+
+
 

@@ -30,37 +30,39 @@
 <div role="main" class="content clearfix">
 
 	<article class="wrapper main">
-		<h1><a href="/obieeDefaultValue.html">OBIEE:从一次报表性能调优谈提示的默认值设置技巧</a></h1>
-		<h1 id="_1">缘起</h1>
-<p>有一张报表，打开非常慢。我查了一下，问题出在提示的默认值设置上：</p>
-<p>该提示把 sql 结果 作为默认值，而这段sql 是: </p>
-<blockquote>
-<p>select max(报表.统计日期) from “主题报表”</p>
-</blockquote>
-<p>正常来说，对于一般的表，这段sql没有什么问题。但是如果该报表对应的物理层是一个张很大的表，或者是封装出来的复杂的视图，就会出现性能问题。恰好，在本例子中，报表恰好调用的是视图，同时还调用了一张大表。因此，套用聚合函数 max()的时候，出现了查询很久才能出结果的情况。</p>
-<p>因此，在本例中，不能用 sql 结果作为默认值。</p>
-<h1 id="_2">默认值的选择</h1>
-<p>biee提供了好几种设置默认值的方式：</p>
-<p>特定值
-变量表达式
-服务器变量
-SQL结果</p>
-<p>其中 “特定值” 是不可动态变化的。而其他的3个，都可以根据变量的取值，或者 SQL的取数结果而动态变化 ...</p> <a class="btn" href="/obieeDefaultValue.html">read more →</a>
+		<h1><a href="/makeOppotunitiesForYourself.html">努力是为了给自己创造更多选择和机会</a></h1>
+		<p>最近老板打算把我从Z城撤出，调到未知的其他城市，进入未知的其他项目。</p>
+<p>在这件事上，我是不乐意的。因为Z城是我从小生活习惯了的地方。</p>
+<p>再加上老板们在这件事上没有体现出对我个人意愿的尊重，以及对我的职业发展的考虑，所以让我更不爽。</p>
+<p>公司就这样，只追逐利润。</p>
+<p>资本是没有人性的。有感情的资本就无法利益最大化。</p>
+<p>这件是看似是老板的不对，但归根结底其实是自己的问题。</p>
+<p>如果自己再努力一点，掌握有更多的知识和技能，就可以跳出现在这个怪圈了。</p>
+<p>不断努力，不停学习，才是唯一的出路。</p>
+<p>风物长宜放眼量。</p>
+<p>无论如何，留得青山在，不怕没柴烧。</p>
+<p>（本文首发于微信公众号： <strong><code>零壹</code></strong> ，微信搜索 <strong><code>零壹</code></strong> 或 <strong><code>magicof01</code></strong> ，也可以扫描文章底部二维码快速关注）</p>
+<p><img alt="bottom求关注forIMX3" src="http://www.imx3.com/img/weixin_bi_common/sdr_code_tree_01.png" /></p> <a class="btn" href="/makeOppotunitiesForYourself.html">read more →</a>
 	</article>
 
 	<div class="wrapper main">		
 		<h3>More posts</h3>
 		<ol class="archive">
 
-			<li class="clearfix"><a href="/oracle-biee-develop.html" rel="bookmark" title="Permalink to Oracle BIEE 经验总结"><time datetime="2016-05-02T14:56:58+08:00" pubdate>Mon 02 May 2016</time> Oracle BIEE 经验总结</a></li>
+			<li class="clearfix"><a href="/liveOutLoud.html" rel="bookmark" title="Permalink to 活出自己"><time datetime="2016-05-10T20:23:01+08:00" pubdate>Tue 10 May 2016</time> 活出自己</a></li>
 
-			<li class="clearfix"><a href="/jobVSlife.html" rel="bookmark" title="Permalink to 工作VS生活"><time datetime="2016-05-01T14:29:39+08:00" pubdate>Sun 01 May 2016</time> 工作VS生活</a></li>
+			<li class="clearfix"><a href="/fmcg.html" rel="bookmark" title="Permalink to 快消面经"><time datetime="2016-05-10T20:18:23+08:00" pubdate>Tue 10 May 2016</time> 快消面经</a></li>
 
-			<li class="clearfix"><a href="/night_run.html" rel="bookmark" title="Permalink to 夜跑"><time datetime="2016-05-01T13:09:55+08:00" pubdate>Sun 01 May 2016</time> 夜跑</a></li>
+			<li class="clearfix"><a href="/keepHealthy.html" rel="bookmark" title="Permalink to 养生"><time datetime="2016-05-10T20:17:37+08:00" pubdate>Tue 10 May 2016</time> 养生</a></li>
 
-			<li class="clearfix"><a href="/tableau_user_experience.html" rel="bookmark" title="Permalink to tableau使用心得"><time datetime="2016-05-01T13:05:54+08:00" pubdate>Sun 01 May 2016</time> tableau使用心得</a></li>
+			<li class="clearfix"><a href="/oracle-biee-develop.html" rel="bookmark" title="Permalink to Oracle BIEE 经验总结"><time datetime="2016-05-09T09:31:21+08:00" pubdate>Mon 09 May 2016</time> Oracle BIEE 经验总结</a></li>
 
-			<li class="clearfix"><a href="/kylin_fast_olap_Engine.html" rel="bookmark" title="Permalink to kylin:提升业务分析人员的幸福指数的大数据OLAP引擎"><time datetime="2016-04-26T23:41:52+08:00" pubdate>Tue 26 April 2016</time> kylin:提升业务分析人员的幸福指数的大数据OLAP引擎</a></li>
+			<li class="clearfix"><a href="/sleepVShiberation.html" rel="bookmark" title="Permalink to windows:休眠和睡眠的区别你知道吗"><time datetime="2016-05-03T19:34:22+08:00" pubdate>Tue 03 May 2016</time> windows:休眠和睡眠的区别你知道吗</a></li>
+
+
+
+
+
 
 
 

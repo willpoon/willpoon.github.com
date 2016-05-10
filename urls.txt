@@ -2,10 +2,11 @@
 /archives.html
 /tags.html
 /categories.html
+/obieeDefaultValue.html
+/oracle-biee-develop.html
 /jobVSlife.html
 /night_run.html
 /tableau_user_experience.html
-/oracle-biee-develop.html
 /kylin_fast_olap_Engine.html
 /lineup.html
 /callForward.html
