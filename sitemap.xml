@@ -5,29 +5,43 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2016-05-10T20:24:19-00:00</lastmod>
+<lastmod>2016-05-11T20:27:13-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2016-05-10T20:24:19-00:00</lastmod>
+<lastmod>2016-05-11T20:27:13-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2016-05-10T20:24:19-00:00</lastmod>
+<lastmod>2016-05-11T20:27:13-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2016-05-10T20:24:19-00:00</lastmod>
+<lastmod>2016-05-11T20:27:13-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/dream_20160511.html</loc>
+<lastmod>2016-05-11T20:19:41+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/obiee_loginAgetB.html</loc>
+<lastmod>2016-05-11T08:56:04+08:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -425,7 +439,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/misc.html</loc>
-<lastmod>2016-05-10T20:24:09+08:06</lastmod>
+<lastmod>2016-05-11T20:19:41+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -803,7 +817,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/author/poon.html</loc>
-<lastmod>2016-05-10T20:24:09+08:06</lastmod>
+<lastmod>2016-05-11T20:19:41+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

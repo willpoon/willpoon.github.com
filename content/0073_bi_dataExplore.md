@@ -1,5 +1,5 @@
 Title:  从数据可视化谈数据探索
-Slug:  template_bi
+Slug:  dataExplore
 Authors: Poon
 Status: draft
 
