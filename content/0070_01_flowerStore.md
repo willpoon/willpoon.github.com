@@ -1,5 +1,5 @@
-Title:  template
-Slug:  template01
+Title:  开花店？
+Slug:  flowerStore
 Authors: Poon
 Status: draft
 
