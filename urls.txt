@@ -2,8 +2,13 @@
 /archives.html
 /tags.html
 /categories.html
-/obieeDefaultValue.html
+/makeOppotunitiesForYourself.html
+/liveOutLoud.html
+/fmcg.html
+/keepHealthy.html
 /oracle-biee-develop.html
+/sleepVShiberation.html
+/obieeDefaultValue.html
 /jobVSlife.html
 /night_run.html
 /tableau_user_experience.html
