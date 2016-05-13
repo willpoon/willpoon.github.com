@@ -2,6 +2,8 @@
 /archives.html
 /tags.html
 /categories.html
+/dream_20160511.html
+/obiee_loginAgetB.html
 /makeOppotunitiesForYourself.html
 /liveOutLoud.html
 /fmcg.html
