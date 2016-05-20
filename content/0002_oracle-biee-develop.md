@@ -1027,5 +1027,11 @@ X轴yyyymm
 
 X轴的顺序很重要，
 
+# 如何锁定中央配置？
+
+fmwconfig 目录下 ， 使用：
+
+centralConfigurationEnabled = "false" 
+
 
 

@@ -2,6 +2,8 @@
 /archives.html
 /tags.html
 /categories.html
+/position20160517.html
+/01_contract.html
 /dream_20160511.html
 /obiee_loginAgetB.html
 /makeOppotunitiesForYourself.html
