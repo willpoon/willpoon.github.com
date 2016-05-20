@@ -1,5 +1,5 @@
-Title:  bi_template
-Slug:  template_bi
+Title:  eclipse学习记录(001)
+Slug:  learn_eclipse_001
 Authors: Poon
 Status: draft
 
