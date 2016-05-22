@@ -2,6 +2,7 @@
 /archives.html
 /tags.html
 /categories.html
+/RUN_WITH_TEAR.html
 /flowerStore.html
 /oracle-biee-develop.html
 /01_contract.html
