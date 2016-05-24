@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="">	
+<head>
+	<meta charset="utf-8"/>
+	<title>Macro(宏)：让excel处理化繁为简 - 仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</title>	
+	<meta name="author" content="Poon">
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0">
+	
+	<link href='http://fonts.googleapis.com/css?family=Droid+Sans:700,400|Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+		
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+	
+	<link href="/" type="application/atom+xml" rel="alternate" title="仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 ATOM Feed" />
+</head>
+	
+<body>		
+	<header class="clearfix" role="banner">
+		<div class="wrapper">
+			<h1 class="huge"><a href="">仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</a></h1>
+		</div>
+	</header>
+	
+<div role="main" class="content clearfix">	
+	<article>
+		<div class="post wrapper">
+			<h1>Macro(宏)：让excel处理化繁为简</h1>
+			<p>请通过以下链接查看图文版本：</p>
+<p>http://mp.weixin.qq.com/s?__biz=MzAwMDgwMDAyOA==&amp;mid=502864067&amp;idx=1&amp;sn=b3dfbc8a73268f599547d5fbd3bf3581#rd</p>
+<p>今天向大家介绍 excel 的 宏。</p>
+<h1 id="_1">问题背景</h1>
+<p>做bi数据处理，免不了经常处理excel的数据。</p>
+<p>当通过excel提供的数据不符合我们的要求的时候，我们常常要调整格式、布局等等。</p>
+<p>当要调整的表格只有一两个的时候，我们只要手工调整即可。</p>
+<p>但是如果要调整的数据有几十份上百份，你还手工调吗？</p>
+<p>作为程序员，我第一时间考虑是否能够通过编程的方式，做批量处理。</p>
+<p>幸运的是，对于excel，有vba可以用于程序化计算和处理。</p>
+<p>但问题来了，我对excel vba 并不熟悉，虽然知道vba很强大，能完成很多工作，但是我却不知道从哪里入手！</p>
+<p>在这种情况下，很可能我只是想写一个很简单的批处理功能，但由于对语法、类库、方法函数等不熟悉，就要耗费大量的时间来google语法和函数功能，调用方法。</p>
+<p>怎么破？</p>
+<p>这时，我想起了excel有宏的功能。</p>
+<h1 id="_2">宏</h1>
+<p>宏，这个名字，听起来给人很高深莫测的感觉，让人以为是什么高大上的东西。其实 它只是 英文 macro的中文翻译。macro 就是 ‘巨大’ ，‘宏大’的意思。</p>
+<p>macro 是一种脚本语言。称之为 宏，表示 该 脚本功能强大，能够实现excel普通情况下不能实现的功能。</p>
+<p>宏的本质是一种脚本，也就是vbs (visual basic script) . 但是却不需要我们自己编写。它可以通过excel自动生成。</p>
+<h1 id="_3">宏的录制</h1>
+<p>宏脚本是通过录制来生成的。</p>
+<p>所谓录制，就是excel 把一系列的操作 用 vbs 语言表示出来，然后组合成一个过程，又或者说一段可在excel中执行的程序，从而达到批处理的效果。</p>
+<h2 id="view-record-macro">view -&gt; record macro  点击录制按钮</h2>
+<h2 id="store-macro-in">store macro in ... 指定宏的位置：可以是当前工作簿，也可以自己建一个专门保存宏的工作簿。</h2>
+<h2 id="shortcut-key">shortcut key 为宏设置执行的快捷键</h2>
+<h2 id="_4">录制过程</h2>
+<p>点击ok开始录制之后，excel就会将你的操作通过vba脚本按顺序记录起来。直到你结束宏的录制为止。</p>
+<p>比如我对3个sheet页，每个sheet页都做了一次文本复制，生成的宏脚本如下：</p>
+<p><code>vba
+Sub Macro9()
+'
+' Macro9 Macro
+'
+' Keyboard Shortcut: Option+Cmd+j
+'
+    Sheets("Sheet1").Select
+    Range("A1:B1").Select
+    Selection.Copy
+    Range("B3").Select
+    ActiveSheet.Paste
+    Sheets("Sheet2").Select
+    Range("A1:B1").Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Range("B3").Select
+    ActiveSheet.Paste
+'
+    Sheets("Sheet3").Select
+    Range("A1:B1").Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Range("B3").Select
+    ActiveSheet.Paste
+    Application.CutCopyMode = False
+    ActiveWorkbook.Save
+End Sub</code></p>
+<p>同时，这段脚本也是可以编辑的。</p>
+<h2 id="_5">结束录制</h2>
+<p>只要点击 stop Record(停止按钮的位置和开始录制一样) ， 就可以停止录制宏。</p>
+<h1 id="_6">宏的好处</h1>
+<ol>
+<li>一次录制，多次执行。</li>
+<li>把多个重复繁琐的操作，封装成一键操作。</li>
+<li>可以保存操作。</li>
+<li>可以自定义和修改。</li>
+<li>可以分发和复用。</li>
+</ol>
+<p>...</p>
+<p>注意：由于我的电脑不是windows，用的是mac版的excel，所以界面和windows有所差异。</p>
+<p>本文首发于微信公众号： <strong><code>BI实验室</code></strong> ，微信搜索 <strong><code>BI实验室</code></strong> 或 <strong><code>magicof01</code></strong> ，也可以扫描下方二维码快速关注哦！</p>
+<p><img alt="求关注forIMX3" src="http://www.imx3.com/img/weixin_bi_common/sdr_code_tree.png" /></p>
+			
+			<a href="https://twitter.com/share" class="twitter-share-button" data-via="" data-lang="en" data-size="large" data-related="">Tweet</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+						
+			<div class="comments">
+			<h2>Comments !</h2>
+			    <div id="disqus_thread"></div>
+			    <script type="text/javascript">
+			       var disqus_identifier = "excelMacro.html";
+			       (function() {
+			       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			       dsq.src = '//gitwillpoonimx3.disqus.com/embed.js';
+			       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			      })();
+			    </script>
+			</div>
+			
+		</div>
+	
+<div class="meta wrapper">
+	<time datetime="2016-05-24T21:59:41+08:00" pubdate>Tue 24 May 2016</time>
+	<ul class="tag clearfix">
+		<li><a href="/category/misc.html">misc</a></li>
+	</ul>
+</div>	</article>	
+</div>
+	
+		
+<footer class="clearfix">
+	<div class="wrapper pages">
+		<ul class="nav">
+			<li><a href="/archives.html">Archive</a></li>
+		</ul>
+	</div>
+	
+	<div class="copy wrapper">
+		<ul class="social">
+			<li><a href="http://weibo.com/poooon">See me on Sina WeiBo</a></li>
+			<li><a href="http://github.com/willpoon">See me on GitHub</a></li>
+		</ul>
+	
+		<p role="contentinfo">© 2012 Poon<br>
+		Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">Pelican</a>.</p>
+	</div>
+</footer>
+	
+	<script>
+	  var _gaq=[['_setAccount','UA-69868761-1'],['_trackPageview']];
+	  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+	  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+	  s.parentNode.insertBefore(g,s)}(document,'script'));
+	</script>
+</body>
+</html>

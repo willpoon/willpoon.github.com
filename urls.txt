@@ -2,7 +2,7 @@
 /archives.html
 /tags.html
 /categories.html
-/software_vs_real_estate.html
+/shareWifiWithMBP.html
 /RUN_WITH_TEAR.html
 /flowerStore.html
 /oracle-biee-develop.html

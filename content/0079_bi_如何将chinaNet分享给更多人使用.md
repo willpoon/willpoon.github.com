@@ -3,8 +3,13 @@ Slug:  shareWifiWithMBP
 Authors: Poon
 
 
+(
 
-[点击上方 BI实验室 ↑↑↑，可快速关注]
+由于微信公众平台的图片不能做外链，所以本文没有图片，请通过以下地址查看图文版本：
+
+http://mp.weixin.qq.com/s?__biz=MzAwMDgwMDAyOA==&mid=502864062&idx=1&sn=dcbe82d4572d4be2d7e125a12a1b541f#rd
+
+)
 
 # 目的
 
@@ -36,12 +41,10 @@ Authors: Poon
 
 5. 通过sharing 分享网络：
 
-（注意：通过）
 
 本文首发于微信公众号： **`BI实验室`** ，微信搜索 **`BI实验室`** 或 **`magicof01`** ，也可以扫描下方二维码快速关注哦！
 
 ![求关注forIMX3](http://www.imx3.com/img/weixin_bi_common/sdr_code_tree.png)
 
-![求关注forWeChat](https://mmbiz.qlogo.cn/mmbiz/sfKia69cLy1yGH30FHU6SYaJPqvibh7Wib9Pg2V6rc7zjaPJ7aKk9NcpQb9IIhZLCIG8CB4b0QV2vKWopevlhvafw/0?wx_fmt=png)
 
 
