@@ -2,6 +2,7 @@
 /archives.html
 /tags.html
 /categories.html
+/excelMacro.html
 /shareWifiWithMBP.html
 /RUN_WITH_TEAR.html
 /flowerStore.html
