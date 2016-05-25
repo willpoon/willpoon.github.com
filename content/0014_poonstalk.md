@@ -3635,4 +3635,18 @@ A:
 年龄增大，配置下降。
 
 
+# 2016-05-25 13:01
+
+需要掌握的几件工具：
+
+excel vba macro
+
+tableau qlikview
+
+oralce biee & database 
+
+linux os 
+
+network 
+
 
