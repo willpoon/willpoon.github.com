@@ -730,6 +730,47 @@ X轴yyyymm</p>
 <h1 id="_30">如何锁定中央配置？</h1>
 <p>fmwconfig 目录下 ， 使用：</p>
 <p>centralConfigurationEnabled = "false" </p>
+<h1 id="biee_13">在biee的 逻辑维中 ， 为什么想展示层级名称的时候，最后却展示成了层级编码?</h1>
+<p>2016-05-26 10:02 </p>
+<p>在 rpd presentation 层，双击 带层级 设置的 维表。 切换到 display columns , 把 名称列提前即可。</p>
+<h1 id="_31">为何我无法实现 类似 这篇文章中的小计？</h1>
+<p>http://obieetraining11.blogspot.com/2012/06/calculating-grand-total-as-column-in.html</p>
+<p>答案：
+https://community.oracle.com/thread/1062272?tstart=0</p>
+<p>Aggregation Rule for Facts needs to be set in order to get the grand totals in Table or Pivot Table View . If set to None , you cannot get the grand totals .</p>
+<h1 id="biee_14">biee 开发的几条经验</h1>
+<p>11.1.1.5.5</p>
+<ol>
+<li>evaluate(  ' to_char( %1,%2) ' as char , current_date , 'yyyymmdd')</li>
+</ol>
+<p>current_date 无法通过语法 , 只能用字段。</p>
+<ol>
+<li>
+<p>date 型的提示，设置默认值的时候，可以使用 NQ_SESSION.DT_NAME 服务器变量，而 DT_NAME 可以通过rpd 初始化块设置。 这样的可以省却各种 日期函数转换。</p>
+</li>
+<li>
+<p>TIMESTAMPADD(SQL_TSI_DAY,-1,CURRENT_DATE) 作为 T－1 的计算.</p>
+</li>
+<li>
+<p>analysis中，使用变量为字段赋值，代替｀基于提示` , 能够获得更好的灵活性。</p>
+</li>
+<li>
+<p>当采用通用的日期提示时，如果把日期提示设置为date型，但若报表中的日期类型为非date型，可以在rpd层通过雪花模型关联维表来实现日期类型的转换。</p>
+</li>
+<li>
+<p>提示设计：默认值设计： 使用 服务器变量 nq_session.variablename 和 使用 select valueof(nq_session.variablename )  from subjectArea 是不同的。主要是格式的不同。前者 调用的是服务器默认日期格式。 而后者调用的是biee前端设置的日期格式。</p>
+</li>
+</ol>
+<h1 id="2016-05-27-1407">2016-05-27 14:07</h1>
+<p>隐藏提示的两种方法：</p>
+<ol>
+<li>
+<p>仪表盘属性－》 过滤器和变量。</p>
+</li>
+<li>
+<p>区域 隐藏 ： 条件 always false</p>
+</li>
+</ol>
 			
 			<a href="https://twitter.com/share" class="twitter-share-button" data-via="" data-lang="en" data-size="large" data-related="">Tweet</a>
 			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
@@ -750,7 +791,7 @@ X轴yyyymm</p>
 		</div>
 	
 <div class="meta wrapper">
-	<time datetime="2016-05-18T16:14:53+08:00" pubdate>Wed 18 May 2016</time>
+	<time datetime="2016-05-27T14:08:56+08:00" pubdate>Fri 27 May 2016</time>
 	<ul class="tag clearfix">
 		<li><a href="/category/tech.html">Tech</a></li>
 		<li><a href="/tag/oracle.html">oracle</a></li>

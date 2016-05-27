@@ -1034,4 +1034,47 @@ fmwconfig 目录下 ， 使用：
 centralConfigurationEnabled = "false" 
 
 
+#  在biee的 逻辑维中 ， 为什么想展示层级名称的时候，最后却展示成了层级编码?
+ 2016-05-26 10:02 
+
+ 在 rpd presentation 层，双击 带层级 设置的 维表。 切换到 display columns , 把 名称列提前即可。
+
+# 为何我无法实现 类似 这篇文章中的小计？
+http://obieetraining11.blogspot.com/2012/06/calculating-grand-total-as-column-in.html
+
+答案：
+https://community.oracle.com/thread/1062272?tstart=0
+
+Aggregation Rule for Facts needs to be set in order to get the grand totals in Table or Pivot Table View . If set to None , you cannot get the grand totals .
+
+
+
+# biee 开发的几条经验
+
+11.1.1.5.5
+
+1. evaluate(  ' to_char( %1,%2) ' as char , current_date , 'yyyymmdd')
+
+current_date 无法通过语法 , 只能用字段。
+
+
+1. date 型的提示，设置默认值的时候，可以使用 NQ_SESSION.DT_NAME 服务器变量，而 DT_NAME 可以通过rpd 初始化块设置。 这样的可以省却各种 日期函数转换。
+
+1. TIMESTAMPADD(SQL_TSI_DAY,-1,CURRENT_DATE) 作为 T－1 的计算.
+
+1. analysis中，使用变量为字段赋值，代替｀基于提示` , 能够获得更好的灵活性。
+
+1. 当采用通用的日期提示时，如果把日期提示设置为date型，但若报表中的日期类型为非date型，可以在rpd层通过雪花模型关联维表来实现日期类型的转换。
+
+1.  提示设计：默认值设计： 使用 服务器变量 nq_session.variablename 和 使用 select valueof(nq_session.variablename )  from subjectArea 是不同的。主要是格式的不同。前者 调用的是服务器默认日期格式。 而后者调用的是biee前端设置的日期格式。
+
+
+
+# 2016-05-27 14:07
+
+隐藏提示的两种方法：
+
+1. 仪表盘属性－》 过滤器和变量。
+
+2. 区域 隐藏 ： 条件 always false
 
