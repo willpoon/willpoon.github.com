@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="">	
+<head>
+	<meta charset="utf-8"/>
+	<title>biee 12c : windows上安装12.2.1.0.160419 补丁 - 仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</title>	
+	<meta name="author" content="Poon">
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0">
+	
+	<link href='http://fonts.googleapis.com/css?family=Droid+Sans:700,400|Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+		
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+	
+	<link href="/" type="application/atom+xml" rel="alternate" title="仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 ATOM Feed" />
+</head>
+	
+<body>		
+	<header class="clearfix" role="banner">
+		<div class="wrapper">
+			<h1 class="huge"><a href="">仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</a></h1>
+		</div>
+	</header>
+	
+<div role="main" class="content clearfix">	
+	<article>
+		<div class="post wrapper">
+			<h1>biee 12c : windows上安装12.2.1.0.160419 补丁</h1>
+			<p>[点击上方 BI实验室 ↑↑↑，可快速关注]</p>
+<p>首先下载补丁文件，然后安装里面的readme文件进行操作。</p>
+<p>readme.txt 可参见： </p>
+<blockquote>
+<p>https://updates.oracle.com/Orion/Services/download?type=readme&amp;aru=20111444</p>
+</blockquote>
+<p>我的obi 安装在 ：</p>
+<blockquote>
+<p>D:\MWHOME12 </p>
+</blockquote>
+<p>并且已经设置为环境变量 Oracle_Home  的值。</p>
+<p>不过，通常的安装路径是：<code>Oracle/Middleware/Oracle_Home</code></p>
+<h1 id="1-obi">步骤1: 停止 OBI服务，例如：</h1>
+<blockquote>
+<p><ORACLE_HOME>\user_projects\domains\<domain_name>\bitools\bin </p>
+</blockquote>
+<p>执行： </p>
+<blockquote>
+<p>stop.cmd</p>
+</blockquote>
+<p>对于我来说，是：</p>
+<blockquote>
+<p>D:\MWHOME12\user_projects\domains\bi\bitools\bin\  </p>
+</blockquote>
+<p>然后：</p>
+<blockquote>
+<p>stop.cmd</p>
+</blockquote>
+<h1 id="2">步骤2:</h1>
+<p>解压patch 补丁文件到 ： oracle_home目录下：</p>
+<p>比如：</p>
+<blockquote>
+<p>d:\MWHOME12\22734181 </p>
+</blockquote>
+<h1 id="3">步骤3:</h1>
+<p>在命令行环境中设置环境变量：</p>
+<p>cd Oracle\Middleware\Oracle_Home
+set ORACLE_HOME=C:\Oracle\Middleware\Oracle_Home
+set PATH=%ORACLE_HOME%\bin;%PATH%
+set JAVA_HOME=%ORACLE_HOME%\oracle_common\jdk<br />
+set PATH=%JAVA_HOME%\bin;%PATH%
+set PATH=%ORACLE_HOME%\OPatch;%PATH%</p>
+<p>请注意根据实际情况修改，比如JAVA_HOME 变量。跟readme中的可能不一样哦。</p>
+<p>比如我的：</p>
+<p>```
+cd D:\MWHOME12
+set ORACLE_HOME=D:\MWHOME12
+set PATH=%ORACLE_HOME%\bin;%PATH%
+set JAVA_HOME=%ORACLE_HOME%\oracle_common\jdk<br />
+set PATH=%JAVA_HOME%\bin;%PATH%
+set PATH=%ORACLE_HOME%\OPatch;%PATH%</p>
+<p>```</p>
+<p>unix 下 ， 如果你的是 c shell , 要这么设置：</p>
+<p>```
+setenv ORACLE_HOME $PWD
+setenv PATH $ORACLE_HOME/bin:$PATH
+setenv JAVA_HOME $ORACLE_HOME/oracle_common/jdk
+setenv PATH $JAVA_HOME/bin:$PATH
+setenv PATH $ORACLE_HOME/OPatch:$PATH</p>
+<p>```</p>
+<h1 id="4">步骤4:执行冲突检查：</h1>
+<blockquote>
+<p>opatch prereq CheckConflictAgainstOHWithDetail -ph .\22734181  </p>
+</blockquote>
+<p><img alt="defaultName" src="img/bi_201606/obipatch01.jpg" /></p>
+<p>在这里我们假设通过检查。然后执行后续。(如果不通过，请具体问题具体分析！)</p>
+<h1 id="5">步骤5: 安装补丁</h1>
+<p>```</p>
+<p>cd 22734181
+opatch apply </p>
+<p>```</p>
+<p>根据提示回答 yes </p>
+<p><img alt="defaultName" src="img/bi_201606/obipatch02.jpg" /></p>
+<h1 id="6">步骤6: 启动服务</h1>
+<blockquote>
+<p><ORACLE_HOME>\user_projects\domains\<domain_name>\bitools\bin </p>
+<p>start.cmd</p>
+</blockquote>
+<p>以我的为例：</p>
+<blockquote>
+<p>CD  D:\MWHOME12\user_projects\domains\bi\bitools\bin\  </p>
+<p>start.cmd</p>
+</blockquote>
+<p>注意事项：</p>
+<ol>
+<li>这个补丁不针对 admin tool 的问题提供补丁方案。</li>
+<li>应用补丁之后， obi 版本号似乎没有变化。</li>
+</ol>
+<p>本文首发于微信公众号： <strong><code>BI实验室</code></strong> ，微信搜索 <strong><code>BI实验室</code></strong> 或 <strong><code>magicof01</code></strong> ，也可以扫描下方二维码快速关注哦！</p>
+<p><img alt="求关注forIMX3" src="http://www.imx3.com/img/weixin_bi_common/sdr_code_tree.png" /></p>
+<p><img alt="求关注forWeChat" src="https://mmbiz.qlogo.cn/mmbiz/sfKia69cLy1yGH30FHU6SYaJPqvibh7Wib9Pg2V6rc7zjaPJ7aKk9NcpQb9IIhZLCIG8CB4b0QV2vKWopevlhvafw/0?wx_fmt=png" /></p>
+			
+			<a href="https://twitter.com/share" class="twitter-share-button" data-via="" data-lang="en" data-size="large" data-related="">Tweet</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+						
+			<div class="comments">
+			<h2>Comments !</h2>
+			    <div id="disqus_thread"></div>
+			    <script type="text/javascript">
+			       var disqus_identifier = "biee12cpatchOnWindows.html";
+			       (function() {
+			       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			       dsq.src = '//gitwillpoonimx3.disqus.com/embed.js';
+			       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			      })();
+			    </script>
+			</div>
+			
+		</div>
+	
+<div class="meta wrapper">
+	<time datetime="2016-06-02T21:58:37+08:00" pubdate>Thu 02 June 2016</time>
+	<ul class="tag clearfix">
+		<li><a href="/category/misc.html">misc</a></li>
+	</ul>
+</div>	</article>	
+</div>
+	
+		
+<footer class="clearfix">
+	<div class="wrapper pages">
+		<ul class="nav">
+			<li><a href="/archives.html">Archive</a></li>
+		</ul>
+	</div>
+	
+	<div class="copy wrapper">
+		<ul class="social">
+			<li><a href="http://weibo.com/poooon">See me on Sina WeiBo</a></li>
+			<li><a href="http://github.com/willpoon">See me on GitHub</a></li>
+		</ul>
+	
+		<p role="contentinfo">© 2012 Poon<br>
+		Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">Pelican</a>.</p>
+	</div>
+</footer>
+	
+	<script>
+	  var _gaq=[['_setAccount','UA-69868761-1'],['_trackPageview']];
+	  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+	  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+	  s.parentNode.insertBefore(g,s)}(document,'script'));
+	</script>
+</body>
+</html>

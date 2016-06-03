@@ -30,25 +30,39 @@
 <div role="main" class="content clearfix">
 
 	<article class="wrapper main">
-		<h1><a href="/oracle-biee-develop.html">Oracle BIEE 经验总结</a></h1>
-		
-<h2 id="biee-instance">biee 多instance 环境 隔离问题 ！</h2>
-<ol>
-<li>rpd 不是我们要的rpd </li>
-</ol>
-<p>通过 NQSConfig.INI 配置！</p>
-<p>Start = TheOneYouWant.rpd</p>
-<ol>
-<li>catalog 不是我用的catalog </li>
-</ol>
-<p>通过 instanceconfig.xml 配置 ！ 修改  表示目录！ </p>
-<p>也就是 <catalogpath> 标签！</catalogpath></p>
- <a class="btn" href="/oracle-biee-develop.html">read more →</a>
+		<h1><a href="/biee12cpatchOnWindows.html">biee 12c : windows上安装12.2.1.0.160419 补丁</a></h1>
+		<p>[点击上方 BI实验室 ↑↑↑，可快速关注]</p>
+<p>首先下载补丁文件，然后安装里面的readme文件进行操作。</p>
+<p>readme.txt 可参见： </p>
+<blockquote>
+<p>https://updates.oracle.com/Orion/Services/download?type=readme&amp;aru=20111444</p>
+</blockquote>
+<p>我的obi 安装在 ：</p>
+<blockquote>
+<p>D:\MWHOME12 </p>
+</blockquote>
+<p>并且已经设置为环境变量 Oracle_Home  的值。</p>
+<p>不过，通常的安装路径是：<code>Oracle/Middleware/Oracle_Home</code></p>
+<h1 id="1-obi">步骤1: 停止 OBI服务，例如：</h1>
+<blockquote>
+<p><ORACLE_HOME>\user_projects\domains\<domain_name>\bitools\bin </p>
+</blockquote>
+<p>执行： </p>
+<blockquote>
+<p>stop.cmd</p>
+</blockquote>
+<p>对于我来说，是：</p>
+<blockquote>
+<p>D:\MWHOME12\user_projects\domains\bi\bitools ...</p></blockquote> <a class="btn" href="/biee12cpatchOnWindows.html">read more →</a>
 	</article>
 
 	<div class="wrapper main">		
 		<h3>More posts</h3>
 		<ol class="archive">
+
+			<li class="clearfix"><a href="/lastWord.html" rel="bookmark" title="Permalink to 临终遗言"><time datetime="2016-06-01T23:28:42+08:00" pubdate>Wed 01 June 2016</time> 临终遗言</a></li>
+
+			<li class="clearfix"><a href="/oracle-biee-develop.html" rel="bookmark" title="Permalink to Oracle BIEE 经验总结"><time datetime="2016-05-27T14:08:56+08:00" pubdate>Fri 27 May 2016</time> Oracle BIEE 经验总结</a></li>
 
 			<li class="clearfix"><a href="/whenWildcardMeetSpace.html" rel="bookmark" title="Permalink to bash:当通配符(*)遇上文件名的空格(Space)"><time datetime="2016-05-27T09:53:56+08:00" pubdate>Fri 27 May 2016</time> bash:当通配符(*)遇上文件名的空格(Space)</a></li>
 
@@ -56,9 +70,7 @@
 
 			<li class="clearfix"><a href="/wayToMakeMoney.html" rel="bookmark" title="Permalink to 赚钱大法"><time datetime="2016-05-24T22:28:16+08:00" pubdate>Tue 24 May 2016</time> 赚钱大法</a></li>
 
-			<li class="clearfix"><a href="/excelMacro.html" rel="bookmark" title="Permalink to Macro(宏)：让excel处理化繁为简"><time datetime="2016-05-24T21:59:41+08:00" pubdate>Tue 24 May 2016</time> Macro(宏)：让excel处理化繁为简</a></li>
 
-			<li class="clearfix"><a href="/shareWifiWithMBP.html" rel="bookmark" title="Permalink to 有网同享：将手机wifi网络分享给更多人使用"><time datetime="2016-05-24T21:12:31+08:00" pubdate>Tue 24 May 2016</time> 有网同享：将手机wifi网络分享给更多人使用</a></li>
 
 
 
