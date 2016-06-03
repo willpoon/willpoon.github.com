@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="">	
+<head>
+	<meta charset="utf-8"/>
+	<title>BI系统的任务调度 - 仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</title>	
+	<meta name="author" content="Poon">
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0">
+	
+	<link href='http://fonts.googleapis.com/css?family=Droid+Sans:700,400|Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+		
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+	
+	<link href="/" type="application/atom+xml" rel="alternate" title="仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 ATOM Feed" />
+</head>
+	
+<body>		
+	<header class="clearfix" role="banner">
+		<div class="wrapper">
+			<h1 class="huge"><a href="">仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</a></h1>
+		</div>
+	</header>
+	
+<div role="main" class="content clearfix">	
+	<article>
+		<div class="post wrapper">
+			<h1>BI系统的任务调度</h1>
+			<p>[点击上方 BI实验室 ↑↑↑，可快速关注]</p>
+<p>有很多公司，尤其是初创公司，或者规模不大的公司，都是采用手工的方式来生成每日、每周、每月、甚至每年的报表的。</p>
+<p>当他们意识到这种方式的低效、容易出错之后，就希望通过数据仓库这种BI手段来规范化、自动化报表的生成。甚至更进一步的数据探索、可视化和数据价值的挖掘。</p>
+<p>而在BI实施过程中，实现自动化的最基本方法，就是调度任务。</p>
+<p>什么是定时任务？ </p>
+<p>定时任务就是调闹钟。 你调7:00唤醒。闹钟就7点把你唤醒。</p>
+<p>调度任务就是这样的一个东西，你可以指定一个任务在什么条件下执行。</p>
+<p>常见调度任务分两种：定时执行任务和依赖执行任务。</p>
+<p>定时执行任务，就是 让闹钟7点钟把你闹醒。
+依赖执行任务，就是 你妈醒了之后，把你叫醒。当然，前提是你永远比你妈醒得晚。 你依赖你妈把你唤醒。</p>
+<h1 id="_1">定时执行任务</h1>
+<p>在windows中，可以通过任务计划程序来配置定时任务。</p>
+<p>在linux / unix 中，可以通过crontab 配置定时任务。</p>
+<h1 id="_2">依赖执行任务</h1>
+<p>操作系统层面没有提供现成的根据依赖执行的工具。但是其实依赖执行的实现并不复杂。其原理是根据一个或者多个前置任务的输出，来决定后续任务是否执行。</p>
+<p>比较出名的任务调度工具有：control-m ， taskctl ，还有一些其他厂商开发的，就不一一介绍了。</p>
+<p>流行的任务调度工具，已经不只是解决 任务定时、依赖执行那么简单。还提供了很多其他附加功能，比如任务配置，任务监控等等。</p>
+<p>我现在工作中使用的是control－m 作为作业调度工具。很强大。但也很贵。</p>
+<p>各单位应该根据自己的实际情况来选用任务调度工具。平衡成本和效益。</p>
+<p>任务不多，可以自己写一个凑合着用。如果任务太多太复杂，还是建议采用商用软件来管理。</p>
+<p>本文首发于微信公众号： <strong><code>BI实验室</code></strong> ，微信搜索 <strong><code>BI实验室</code></strong> 或 <strong><code>magicof01</code></strong> ，也可以扫描下方二维码快速关注哦！</p>
+<p><img alt="求关注forIMX3" src="http://www.imx3.com/img/weixin_bi_common/sdr_code_tree.png" /></p>
+<p><img alt="求关注forWeChat" src="https://mmbiz.qlogo.cn/mmbiz/sfKia69cLy1yGH30FHU6SYaJPqvibh7Wib9Pg2V6rc7zjaPJ7aKk9NcpQb9IIhZLCIG8CB4b0QV2vKWopevlhvafw/0?wx_fmt=png" /></p>
+			
+			<a href="https://twitter.com/share" class="twitter-share-button" data-via="" data-lang="en" data-size="large" data-related="">Tweet</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+						
+			<div class="comments">
+			<h2>Comments !</h2>
+			    <div id="disqus_thread"></div>
+			    <script type="text/javascript">
+			       var disqus_identifier = "drafts/biTaskSchedule.html";
+			       (function() {
+			       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			       dsq.src = '//gitwillpoonimx3.disqus.com/embed.js';
+			       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			      })();
+			    </script>
+			</div>
+			
+		</div>
+	
+<div class="meta wrapper">
+	<time datetime="2016-06-03T17:02:26+08:00" pubdate>Fri 03 June 2016</time>
+	<ul class="tag clearfix">
+		<li><a href="/category/misc.html">misc</a></li>
+	</ul>
+</div>	</article>	
+</div>
+	
+		
+<footer class="clearfix">
+	<div class="wrapper pages">
+		<ul class="nav">
+			<li><a href="/archives.html">Archive</a></li>
+		</ul>
+	</div>
+	
+	<div class="copy wrapper">
+		<ul class="social">
+			<li><a href="http://weibo.com/poooon">See me on Sina WeiBo</a></li>
+			<li><a href="http://github.com/willpoon">See me on GitHub</a></li>
+		</ul>
+	
+		<p role="contentinfo">© 2012 Poon<br>
+		Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">Pelican</a>.</p>
+	</div>
+</footer>
+	
+	<script>
+	  var _gaq=[['_setAccount','UA-69868761-1'],['_trackPageview']];
+	  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+	  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+	  s.parentNode.insertBefore(g,s)}(document,'script'));
+	</script>
+</body>
+</html>

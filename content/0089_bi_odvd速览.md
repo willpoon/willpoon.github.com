@@ -1,5 +1,5 @@
-Title:  bi_template
-Slug:  template_bi
+Title:  OBI:Oracle Data Visualization Desktop 速览
+Slug:  odvd_express
 Authors: Poon
 Status: draft
 
