@@ -2,6 +2,8 @@
 /archives.html
 /tags.html
 /categories.html
+/newyorker_lastWord.html
+/newyorkerLastWord02.html
 /biee12cpatchOnWindows.html
 /lastWord.html
 /oracle-biee-develop.html
