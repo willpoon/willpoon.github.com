@@ -49,45 +49,6 @@
 
 
             <article>
-                <a href="/obiee_centralconfiguration.html"><h3 class="article-title">OBIEE: 为什么通过后台FTP更新的RPD没有生效？</h3></a>
-<h6 class="subheader" title="2016-04-20T21:31:44+08:00">Wed 20 April 2016
-</h6>
-
-
-<p>（点击上方<strong><code>BI实验室</code></strong>↑↑，可快速关注）</p>
-<h1 id="_1">问题</h1>
-<p>开发人员通过ftp把最新的RPD上传到后台目录，重启OBIEE后发现RPD并没有更新。同时发现现有的主题区域和最新的也有差异。</p>
-<h1 id="_2">分析</h1>
-<p>我们知道，主题区域是跟随RPD的presentation层的。这说明biee在用的RPD不是我们上传的rpd。</p>
-<h1 id="_3">核查</h1>
-<p>rpd 文件的配置在：</p>
-<blockquote>
-<p>NQSConfig.INI</p>
-</blockquote>
-<p>文件中。</p>
-<p>我们发现配置 rpd  的参数：</p>
-<blockquote>
-<p>[REPOSITORY]
-Star = abc_xxx.rpd </p>
-</blockquote>
-<p>中，abc_xxx并非是我们上传的名字，xxx 是一串数字。这说明rpd 是通过 em 前端更新的，并且带了xxx作为自动递增版本号。</p>
-<p>如果有人通过em前端更新rpd，em就会自动修改rpd名称，并修改 NQSConfig.INI .</p>
-<p>要改回来也很简单，只需要把 abc_xxx.rpd 改成 你ftp上传的名字，比如abc.rpd 就行了。</p>
-<h1 id="_4">解决</h1>
-<p>如何 防止 ...</p><p class="subheader">Category: <a href="/category/misc.html">misc</a>
-
-</p>
-
-
-
-<p><a href="/obiee_centralconfiguration.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/obiee_centralconfiguration.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
                 <a href="/keepAngry.html"><h3 class="article-title">保持愤怒</h3></a>
 <h6 class="subheader" title="2016-04-15T14:19:15+08:00">Fri 15 April 2016
 </h6>
@@ -399,6 +360,38 @@ Star = abc_xxx.rpd </p>
 
 
 <p><a href="/emotion.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/emotion.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="/makeItRight.html"><h3 class="article-title">见好就收，才能全身而退</h3></a>
+<h6 class="subheader" title="2016-04-10T23:20:58+08:00">Sun 10 April 2016
+</h6>
+
+
+<p>（点击上方 <strong><code>零壹</code></strong> ↑↑↑，可快速关注）</p>
+<p>晚上和同事聊起股市，他说房地产股不行了。</p>
+<p>想想也是，现在是珠海市区的房子都动不动就2～3万的。历史新高。感觉是最后的疯狂了。</p>
+<p>再看看股市。已经从5200点跌到现在3000点不到。</p>
+<p>但话又说回来，在中国，市场受政策面影响太大了。说白了，市场要整成什么样，还是政府说了算。指数是涨是跌，政府都赚钱。</p>
+<p>我在想，像股票这么坑的东西，为啥还那么多人趟这趟浑水？比如我。</p>
+<p>说白了，皆因一个利字。或者说，皆因一个贪字。</p>
+<p>坐庄的，释放 <code>有利</code> 的信号， 而我们 <code>贪念</code> 一动，就自然掉坑里了。</p>
+<p>股票怎么赚钱？ 低吸高抛，大家都懂。</p>
+<p>那庄家如何赚钱？ 也是低吸高抛。 </p>
+<p>问题的关键是：庄家如何诱使散户接盘？在庄家抛出的时候，散户高位接盘？</p>
+<p>答案是，大家都疯狂起来了的时候。大家都失去了理智的时候。</p>
+<p>正如楼市的疯狂一样。</p>
+<p>接盘侠都是不理性的 ...</p><p class="subheader">Category: <a href="/category/misc.html">misc</a>
+
+</p>
+
+
+
+<p><a href="/makeItRight.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/makeItRight.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 

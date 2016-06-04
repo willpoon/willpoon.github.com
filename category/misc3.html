@@ -49,31 +49,6 @@
 
 
             <article>
-                <a href="/sleepVShiberation.html"><h3 class="article-title">windows:休眠和睡眠的区别你知道吗</h3></a>
-<h6 class="subheader" title="2016-05-03T19:34:22+08:00">Tue 03 May 2016
-</h6>
-
-
-<p>（点击上方 <strong><code>BI实验室</code></strong> ↑↑，可快速关注）</p>
-<p>商业智能(BI)领域，任务调度是重要一环。调度工作做得好不好，能体现出BI水平的高低。 如果使用操作系统自带的工具做任务调度，linux有crontab , 而windows有计划任务(task scheduler)。
-最近我们需要通过计划任务来调度计算机的开关机和休眠睡眠问题。其中休眠和睡眠着实让我们困惑了一下。那么：</p>
-<h1 id="_1">睡眠、休眠和混合睡眠之间有什么区别？</h1>
-<p>“睡眠”是一种节能状态，当您希望再次开始工作时，可使计算机快速恢复全功率工作（通常在几秒钟之内）。让计算机进入睡眠状态就像暂停 DVD 播发机一样：计算机会立即停止当前操作，并做好在您要继续工作时重新启动的准备。</p>
-<p>“休眠”是一种主要为笔记本电脑设计的电源节能状态。睡眠通常会将工作和设置保存在内存中并消耗少量的电量，而休眠则将打开的文档和程序保存到硬盘中，然后关闭计算机。在 Windows 使用的所有节能状态中，休眠使用的电量最少。对于笔记本电脑，如果您知道将有很长一段时间不使用它，并且在那段时间不可能给电池充电，则您应使用休眠模式。</p>
-<p>“混合睡眠”主要是为台式计算机设计的。混合睡眠是睡眠和休眠的组合 - 它将所有打开的文档和程序保存到内存和硬盘中，然后让计算机进入低耗能状态，以便可以快速恢复工作。这样，如果发生电源故障 ...</p><p class="subheader">Category: <a href="/category/misc.html">misc</a>
-
-</p>
-
-
-
-<p><a href="/sleepVShiberation.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/sleepVShiberation.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
                 <a href="/obieeDefaultValue.html"><h3 class="article-title">OBIEE:从一次报表性能调优谈提示的默认值设置技巧</h3></a>
 <h6 class="subheader" title="2016-05-02T16:44:22+08:00">Mon 02 May 2016
 </h6>
@@ -343,6 +318,45 @@ FETCH ...</p><p class="subheader">Category: <a href="/category/misc.html">misc</
 
 
 <p><a href="/unsubscribe.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/unsubscribe.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="/obiee_centralconfiguration.html"><h3 class="article-title">OBIEE: 为什么通过后台FTP更新的RPD没有生效？</h3></a>
+<h6 class="subheader" title="2016-04-20T21:31:44+08:00">Wed 20 April 2016
+</h6>
+
+
+<p>（点击上方<strong><code>BI实验室</code></strong>↑↑，可快速关注）</p>
+<h1 id="_1">问题</h1>
+<p>开发人员通过ftp把最新的RPD上传到后台目录，重启OBIEE后发现RPD并没有更新。同时发现现有的主题区域和最新的也有差异。</p>
+<h1 id="_2">分析</h1>
+<p>我们知道，主题区域是跟随RPD的presentation层的。这说明biee在用的RPD不是我们上传的rpd。</p>
+<h1 id="_3">核查</h1>
+<p>rpd 文件的配置在：</p>
+<blockquote>
+<p>NQSConfig.INI</p>
+</blockquote>
+<p>文件中。</p>
+<p>我们发现配置 rpd  的参数：</p>
+<blockquote>
+<p>[REPOSITORY]
+Star = abc_xxx.rpd </p>
+</blockquote>
+<p>中，abc_xxx并非是我们上传的名字，xxx 是一串数字。这说明rpd 是通过 em 前端更新的，并且带了xxx作为自动递增版本号。</p>
+<p>如果有人通过em前端更新rpd，em就会自动修改rpd名称，并修改 NQSConfig.INI .</p>
+<p>要改回来也很简单，只需要把 abc_xxx.rpd 改成 你ftp上传的名字，比如abc.rpd 就行了。</p>
+<h1 id="_4">解决</h1>
+<p>如何 防止 ...</p><p class="subheader">Category: <a href="/category/misc.html">misc</a>
+
+</p>
+
+
+
+<p><a href="/obiee_centralconfiguration.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/obiee_centralconfiguration.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
