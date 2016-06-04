@@ -2,6 +2,7 @@
 /archives.html
 /tags.html
 /categories.html
+/odvd_express.html
 /newyorker_lastWord.html
 /newyorkerLastWord02.html
 /biee12cpatchOnWindows.html

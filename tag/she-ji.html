@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 - 设计</title>
+
+    <link rel="stylesheet" href="/theme/css/normalize.css" />
+    <link rel="stylesheet" href="/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="stylesheet" href="/theme/css/pygments.css" />	
+    <script src="/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="">仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+    <li><a href="tags.html" class="button secondary small">Tags</a></li>
+    <li><a href="about.html" class="button secondary small">About</a></li>
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="/about-design.html"><h3 class="article-title">设计相关思考</h3></a>
+<h6 class="subheader" title="2016-01-12T09:03:30+08:00">Tue 12 January 2016
+</h6>
+
+
+<p>设计，是知识的运用，更是创意的发挥。设计因功底深厚而实用，因独特创意而有味。</p>
+
+<h1 id="_1">关于架构</h1>
+<p>“架构这个过程，是架构师洞见系统内在结构、规律、原则和逻辑的过程。真正的架构师是可以将自己放在系统中去的（例如作为系统中的任何一个角色），只有清晰地理解系统，才能简洁地描述它。而当架构师拿出了他所描述的“作品”的时候，架构这一过程就已经结束了。”</p>
+<p>--周爱民 序 。Excerpt From: (美)郭西奥斯(Gousios,G.)； (美)斯宾耐立思(Spinellis）；John Viega；奥拉姆(Andy Oram) ；Jeff Hammerbacher； (美)Toby Segaran. “程序之美系列（架构之美、安全之美、数据之美）.” iBooks. </p>
+<h1 id="_2">需求越细、越明确越好</h1>
+<p>2015-11-18 11:39</p>
+<p>今天谈谈系统设计上的一些细节问题。我发现，要做一个让客户满意的系统，花60% 以上的时间去了解需求，搞清楚客户想要什么，不想要什么，比盲目开发更重要。如果需求清楚，就可以省去很多编写代码的时间，也省去很多后期修改和维护的时间。</p>
+<p>最近开发了一个功能(业务量)，客户给的需求不够细，我们的需求人员也没有考虑到，导致很多问题异常情况没有考虑到，很多细节需要修改代码来处理。</p>
+<p>所以，软件与系统，是由很多细节决定的。细节决定成败。能把事做细，离成功不远了！</p>
+<h1 id="_3">调度设计</h1>
+<p>task scheduler , 调度设计，分两种：</p>
+<ol>
+<li>
+<p>定时执行</p>
+</li>
+<li>
+<p>依赖执行</p>
+</li>
+</ol>
+<p>定时执行很简单。在crontab中配置即可，到点执行。</p>
+<p>依赖执行，需要针对每一个任务的返回值作判断，只有都为 完成状态的时候，才执行下一个任务。所以对于依赖条件是否满足的判断，是调度的核心。</p>
+<p>在设计上，就是要将依赖关系转换为任务条件，将任务列表转换为要执行任务的队列。</p>
+<p>一般来说，对于多任务多依赖，还是用数据库来管理比较好。所以如果用shell来写简单作业，定时执行就很简单，但是依赖执行，由于操作数据库没有python等方便，所以开发效率也不会很高。</p>
+<p>2015-11-13 12:55  关于架构
+2015-11-27 09:09 调度设计</p>
+<h1 id="_4">类&amp;抽象</h1>
+<p>在设计多张类似报表的时候，先抽象出公共特性，然后再单独设置各自的特性。</p>
+<p>有点像类的设计，父类，子类。</p>
+
+<h1 id="_5">高度与学历</h1>
+<p>2016-01-12 09:02</p>
+<p>为什么研究院、设计院、政府单位、公司核心岗位喜欢招名校、高学历的人才？</p>
+<p>因为书读得多，看的远。可以从架构层面、全局来看问题。</p>
+<p>而学历不够的、说明：</p>
+<ol>
+<li>
+<p>不好学习。或者学习力不够。</p>
+</li>
+<li>
+<p>懂得少。眼界不够开阔。</p>
+</li>
+</ol>
+<p>所以，高学历的人，领导低学历的人。格局大的人，领导格局小的人。太过专业，注定成不了大事。但是每个人都应该有自己专业的东西，以此为基础，作为晋升的台阶。</p>
+<p class="subheader">Category: <a href="/category/tech.html">Tech</a>
+
+    Tagged: 
+    <a href="/tag/she-ji.html">设计 </a>
+    <a href="/tag/cheng-xu.html">程序 </a>
+    <a href="/tag/yi-zhu.html">艺术 </a>
+    <a href="/tag/jia-gou.html">架构 </a>
+</p>
+
+
+
+<p><a href="/about-design.html#disqus_thread">comments</a></p>            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="/archives.html">Archives</a>
+            <li><a href="/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="/category/about.html">About</a></li>
+            <li><a href="/category/job.html">Job</a></li>
+            <li><a href="/category/life.html">Life</a></li>
+            <li><a href="/category/misc.html">misc</a></li>
+            <li><a href="/category/tech.html">Tech</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://www.linkedin.com">LinkedIn</a></li>
+            <li><a href="http://www.slideshare.net">SlideShare</a></li>
+            <li><a href="https://www.github.com">Github</a></li>
+            <li><a href="http://www.zhihu.com">知乎(ZhiHu)</a></li>
+            <li><a href="https://www.quora.com">Quora</a></li>
+            <li><a href="#">欢迎交换链接</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/poooon">See me on Sina WeiBo</a></li>
+            <li><a href="http://github.com/willpoon">See me on GitHub</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 by Poon</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

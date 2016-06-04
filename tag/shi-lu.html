@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 - 实录</title>
+
+    <link rel="stylesheet" href="/theme/css/normalize.css" />
+    <link rel="stylesheet" href="/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="stylesheet" href="/theme/css/pygments.css" />	
+    <script src="/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="">仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+    <li><a href="tags.html" class="button secondary small">Tags</a></li>
+    <li><a href="about.html" class="button secondary small">About</a></li>
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="/employment.html"><h3 class="article-title">tasks , jobs , careers</h3></a>
+<h6 class="subheader" title="2015-12-03T15:47:33+08:00">Thu 03 December 2015
+</h6>
+
+
+
+<p>东家,西家,不如自己当家.</p>
+<p>记录工作点点滴滴。方法、经验、流程、设计、架构、抽象、总结。</p>
+
+
+<h1 id="_1">版本测试</h1>
+<h2 id="uat">uat测试</h2>
+<p>原则:</p>
+<p>操作系统环境变量要保持一致,减少路径比对烦恼</p>
+<p>配置文件引用保持一致，减少文件替换烦劳</p>
+<p>能封装的步骤，尽量封装到一起</p>
+<p>一定要把执行命令的各种可能的情况都要考虑全面，做好异常处理。</p>
+<p>按操作手册操作,并及时更新操作手册</p>
+<h1 id="r-cbrc-r-smp">r-cbrc r-smp 的部署：</h1>
+<p>2015-11-13 11:37 </p>
+<p>r-smp 的部署，直接从cc抽取后，根据部署手册，放到开发、测试、uat环境即可。</p>
+<p>要让r-smp 正常运作，需要：</p>
+<ol>
+<li>
+<p>安装excel模版</p>
+</li>
+<li>
+<p>weblogic 激活应用</p>
+</li>
+<li>
+<p>数据源配置要正确。</p>
+</li>
+</ol>
+<h1 id="db2">db2 元数据抽取与自定义报表 ，仓库做拉链</h1>
+<p>2015-11-24 16:11 </p>
+<p>对于拉链，我想说说我的看法：</p>
+<p>以前做电信项目，移动公司很任性，财大气粗，没有用拉链表来存数据，每天一个全量。要看什么时候的状态，只要到对应的日期的全量里查就可以了。</p>
+<p>后来，做集团全国系统项目，由于省份多，要传明细话单等数据，采用了拉链表。当时我还不知道这种存数方式是拉链表，一直管这叫增量表。</p>
+<p>什么情况下要用到拉链表呢？通常，在记录状态的表中使用。比如：</p>
+<p>id|status 这样结构的表。</p>
+<p>设计拉链的时候，我们可以设计成：</p>
+<p>id|status|start_dt|end_dt</p>
+<p>这样就可以完整记录每一个状态的变化。</p>
+<p>为了简单起见，我们假设该表只有1个id,个这个id每天的状态都发生变化。
+那么就有：</p>
+<p>id001|a|20151101|20991231 # 开链
+id001|d|20151102|20991231 # 开链
+id001|a|20151101|20151102 # 关链</p>
+<p>拉链表为何叫拉链表，我的理解是：正如拉链一样，通过滑动拉链，可以把链条锁定到不同的位置(位置)。对于表来说，可以通过指定日期，获取不同时期的拍照状态。</p>
+<p>根据上面的类比：我们继续想像：</p>
+<ol>
+<li>
+<p>开链： 就是把拉链拉到最开始的状态，也就是我们衣服刚搭上扣子的时候，这时候，所有的数据都有一个最新的全量，所有的状态都是当前有效的。所以，开链，就是把一张拉链表按日期往前推，取一个我们需要的日期的有效拍照。</p>
+</li>
+<li>
+<p>关链/闭链： 当我们拉链往上拉的时候，合起来的部分，都是有状态的，而且状态时在对应的时间轴上有效的。没有合上的部分，则是一直到20991231都有效的部分。当我们做闭链操作时，就是给状态置一个有效时间，说明该状态在该时间点之前有效，之后无效。</p>
+</li>
+</ol>
+<p>大致就是这个意思。</p>
+<p>简单来说，对于一个： 用户｜状态｜状态时间｜生效日期｜实效日期 这样的一个模型，处在拉链闭合位置，说明 该用户的状态都有确切的历史生效和失效时间。如果完全开链，说明该状态一直没有变化并一直有效；如果拉链越拉越多，说明用户的状态变化越来越多，越来越频繁；拉链有多长，用户状态的变化就有多长历史。</p>
+<p>如果一个用户的状态变化用一条拉链来表示，那么1000个用户，就要用1000条拉链来表示其用户状态的变化。</p>
+<h1 id="_2">集成自己的开发环境</h1>
+<p>有时侯图省事，在远程服务器上开发，发现有如下弊端：</p>
+<ol>
+<li>
+<p>不好同步，最后会把自己搞乱。</p>
+</li>
+<li>
+<p>开发效率容易受网速拖累,用crt ls一下，就有1，2秒的滞后，这太难受了。</p>
+</li>
+</ol>
+<p>所以集成自己的开发环境很重要。在 <a href="http://www.imx3.com/play-databases.html">这里</a>  , 
+我讨论了mysql 和 db2 集成到本地工作平台的一些相关内容。</p>
+<h1 id="_3">强化理论知识</h1>
+<p>今天听前同事在群里聊天，offer年薪30w，但是电话面试就被鄙视了。很多基础理论知识不了解，答不上来。
+理论和实践是相互促进的，理论不足，看问题的高度就不够。很多问题，如果能上升到理论高度，逼格就满满的了！</p>
+<h1 id="-">用户－应用程序角色 管理异常处理一例</h1>
+<p>case : </p>
+<p>p27用户权限，不跟着st环境走，而是跟着dev环境走。</p>
+<p>数据源的问题。st调用的是dev的数据库设置。</p>
+<p>在console中一查，果然。</p>
+<p>解决方案：</p>
+<p>weblogic console -&gt; 服务 -&gt; 数据源-&gt; 点击数据源名称-&gt;连接池-&gt;锁定并编辑-&gt; URL , 修改最后的数据源sid 。 </p>
+<p>该配置激活更改后，就会写到系统xml中。但是若要生效，则需要重启服务。</p>
+<p>该配置将存放在：</p>
+<pre><code>./user_projects/domains/bifoundation_domain/config/jdbc/bieeds-jdbc.xml
+</code></pre>
+<p>旧的配置将存放在：</p>
+<pre><code>./user_projects/domains/bifoundation_domain/servers/domain_bak/config_prev/jdbc/bieeds-jdbc.xml
+</code></pre>
+<p>bieeds- 为数据源名称。随着我们起的名字不同而不同。</p>
+<p>另外，用户访问报表catalog目录的权限，是跟rpd中用户的ldap验证有关的，而ldap用户的数据源，是在rpd的物理层的连接池中配置的。所以，要让用户－权限同步，需要修改连接池对应的库，该用dev还是st对应的数据库。</p>
+<p>总结： </p>
+<ol>
+<li>
+<p>修改console 连接池</p>
+</li>
+<li>
+<p>修改rpd连接池</p>
+</li>
+</ol>
+<h1 id="_4">日志</h1>
+<p>2015-11-13 20:54  例行工作记录</p>
+<p>2015-11-24 09:24  拉链设计</p>
+<p>2015-11-27 09:25  环境部署</p><p class="subheader">Category: <a href="/category/job.html">Job</a>
+
+    Tagged: 
+    <a href="/tag/ri-zhi.html">日志 </a>
+    <a href="/tag/bi-ji.html">笔记 </a>
+    <a href="/tag/gong-zuo.html">工作 </a>
+    <a href="/tag/shi-lu.html">实录 </a>
+</p>
+
+
+
+<p><a href="/employment.html#disqus_thread">comments</a></p>            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="/archives.html">Archives</a>
+            <li><a href="/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="/category/about.html">About</a></li>
+            <li><a href="/category/job.html">Job</a></li>
+            <li><a href="/category/life.html">Life</a></li>
+            <li><a href="/category/misc.html">misc</a></li>
+            <li><a href="/category/tech.html">Tech</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://www.linkedin.com">LinkedIn</a></li>
+            <li><a href="http://www.slideshare.net">SlideShare</a></li>
+            <li><a href="https://www.github.com">Github</a></li>
+            <li><a href="http://www.zhihu.com">知乎(ZhiHu)</a></li>
+            <li><a href="https://www.quora.com">Quora</a></li>
+            <li><a href="#">欢迎交换链接</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/poooon">See me on Sina WeiBo</a></li>
+            <li><a href="http://github.com/willpoon">See me on GitHub</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 by Poon</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>
