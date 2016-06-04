@@ -132,6 +132,3 @@ opatch apply
 
 ![求关注forIMX3](http://www.imx3.com/img/weixin_bi_common/sdr_code_tree.png)
 
-![求关注forWeChat](https://mmbiz.qlogo.cn/mmbiz/sfKia69cLy1yGH30FHU6SYaJPqvibh7Wib9Pg2V6rc7zjaPJ7aKk9NcpQb9IIhZLCIG8CB4b0QV2vKWopevlhvafw/0?wx_fmt=png)
-
-

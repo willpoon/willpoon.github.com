@@ -3984,6 +3984,7 @@ trade  !!!!
 
 niche ： 迪卡侬！！ affiliate
 
+
 starbarks coffee !!!
 
 or only coffee !!
@@ -4006,6 +4007,8 @@ beers !!!
 
 强迫症
 
+艺术类：读后感，观后感，影评，书评！
+畅销书、经典书、影评、书评！！
 
 上班？就是不想被人牵着鼻子走!
 
@@ -4110,4 +4113,16 @@ come on , make some fun ! 别太正经
 # 2016-06-03 15:45
 
 
+# 2016-06-04 09:57
+
+Q: why do you read ?
+
+A: because I want to expand my mind.
+
+
+# 2016-06-04 10:07
+
+code code code !!!  write write write !!!
+code code code !!!  write write write !!!
+code code code !!!  write write write !!!
 
