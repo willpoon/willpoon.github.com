@@ -2,6 +2,11 @@
 /archives.html
 /tags.html
 /categories.html
+/01_0092.html
+/01_0096.html
+/01_0094.html
+/01_0095.html
+/newyorker03.html
 /odvd_express.html
 /newyorker_lastWord.html
 /newyorkerLastWord02.html
