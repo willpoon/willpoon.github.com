@@ -49,6 +49,130 @@
 
 
             <article>
+                <a href="/keepondoing.html"><h3 class="article-title">继续做，坚持做</h3></a>
+<h6 class="subheader" title="2016-04-14T14:32:14+08:00">Thu 14 April 2016
+</h6>
+
+
+<p>（点击上方 <strong><code>零壹</code></strong> ↑↑↑，可快速关注）</p>
+<p>之前的帖子中，我谈到我要锻炼身体，将一块腹肌变成六块。还要提升自己的精!气!神! ... 还要注重自己的穿着打扮,体现自己的品味和气质...</p>
+<p>这些事都做得怎样了呢？</p>
+<p>先说说练腹肌这回事：</p>
+<p>我几乎每天早晚借助 sit-up bench 来做sit-up练习。早晚一练。 虽然自然状态下还看不到腹肌，但是还是能看到进步：</p>
+<ol>
+<li>我能够从一开始只能坚持二三十个，到现在可以坚持六七十个。每次练习做两组，60+40+n 个， n 是看心情送的，哈哈，所以我每次联系都能做上100个以上。（怎么能做那么多？因为我做的不是你们理解的标准意义上的仰卧起坐，我先从简单一点的动作入手）</li>
+<li>因为坚持着做，现在不会出现做的时候出现乳酸胀痛的情况。有时即使过量，第二天还能定量做。</li>
+</ol>
+<p>同时，我还关注了一些健身号，比如“男士健康MensHealth” , 从上面学习一些健身方法。</p>
+<p>再说说如何提升精气神：</p>
+<p>上面说的健身，是其中一项。如果能练出六块腹肌，精神也不会差到哪去吧。</p>
+<p>还有就是睡眠。睡眠方面 ...</p><p class="subheader">Category: <a href="/category/misc.html">misc</a>
+
+</p>
+
+
+
+<p><a href="/keepondoing.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/keepondoing.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="/smokeTest.html"><h3 class="article-title">smoke test 是什么鬼</h3></a>
+<h6 class="subheader" title="2016-04-14T13:10:20+08:00">Thu 14 April 2016
+</h6>
+
+
+<p>（点击上方<strong><code>BI实验室</code></strong>↑↑，可快速关注）</p>
+<h1 id="_1">学术解释</h1>
+<p>一术语源自硬件行业。对一个硬件或硬件组件进行更改或修复后，直接给设备加电。如果没有冒烟，则该组件就通过了测试。在软件中，“冒烟测试”这一术语描述的是在将代码更改嵌入到产品的源树中之前对这些更改进行验证的过程。在检查了代码后，冒烟测试是确定和修复软件缺陷的最经济有效的方法。冒烟测试设计用于确认代码中的更改会按预期运行，且不会破坏整个版本的稳定性。</p>
+<ul>
+<li>百度百科</li>
+</ul>
+<p>Smoke testing refers to various classes of tests of systems, usually intended to determine whether they are ready for more robust testing. The expression probably was first used in plumbing in referring to ...</p><p class="subheader">Category: <a href="/category/misc.html">misc</a>
+
+</p>
+
+
+
+<p><a href="/smokeTest.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/smokeTest.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="/docker_gfw_hadoop.html"><h3 class="article-title">翻山涉水:使用docker快速构建hadoop运行环境</h3></a>
+<h6 class="subheader" title="2016-04-14T13:06:55+08:00">Thu 14 April 2016
+</h6>
+
+
+<p>（点击上方<strong><code>BI实验室</code></strong>↑↑，可快速关注）</p>
+<h1 id="_1">摘要</h1>
+<p>本文将介绍如果使用docker快速获取一个hadoop运行环境的。特别针对国内无法直接pull取docker容器的问题提供了翻墙解决方案。所谓翻山：这里指使用shadowsocks翻过GFW访问被墙的网络；所谓涉水，是指使用privoxy把socks代理转成http/https代理，让terminal命令行工具也可以借助socks代理来翻墙，达到命令行和GUI都能借助shadowsocks同步翻墙的效果。让命令行和GUI能够共享socks代理网络，达到融通状态。</p>
+<h1 id="docker">什么是docker</h1>
+<p>docker , 一个基于 LXC 虚拟机技术的容器引擎。为应用部署而生。</p>
+<h1 id="docker_1">为什么选docker</h1>
+<p>传统的硬件服务器或者虚拟机方案有如下弊端：</p>
+<ol>
+<li>每台服务器只运行一套应用程序/服务，导致计算资源浪费</li>
+<li>要为每台服务器购置相应的硬件，导致成本太高</li>
+<li>每次部署一台服务器，都要从头开始，部署流程和时间太长，效率低</li>
+<li>为了保证性能／环境一致性，扩展时常常受限于硬件供应商</li>
+<li>不易于扩展</li>
+</ol>
+<p>docker 的出现，能解决上述问题。</p>
+<h1 id="docker_2">我为何要和docker发生关系？</h1>
+<p>我的痛点主要是我的笔记本cpu/内存/空间资源有限，所以需要一个轻量级一点的方案，可以让我专注于 应用和方案本身，而不是每次都为系统资源捉急，甚至操碎了心，最后连做事的心情都没有了。</p>
+<p>所以我打算借docker来为我解决这些问题 ...</p><p class="subheader">Category: <a href="/category/misc.html">misc</a>
+
+</p>
+
+
+
+<p><a href="/docker_gfw_hadoop.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/docker_gfw_hadoop.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="/emotion.html"><h3 class="article-title">主要看状态</h3></a>
+<h6 class="subheader" title="2016-04-12T22:15:45+08:00">Tue 12 April 2016
+</h6>
+
+
+<p>（点击上方 <strong><code>零壹</code></strong> ↑↑↑，可快速关注）</p>
+<p>状态，就是情绪。</p>
+<p>人不思想，和石头没有什么区别。</p>
+<p>人无情绪，人生也没有任何意义。人活着，折腾来折腾去，不就为了让自己开心，让爱的人开心吗？ 不就是为了尊严，为了荣耀，为了满足欲望而活着吗？ 
+所有这些，说白了，就是为了照顾自己的情绪而已。</p>
+<p>人就是情绪的动物。有人说，女人是情绪化的动物。我不同意，其实不论男人女人，都是情绪化的。只是女人在亲近的人面前表现得更明显一些罢了。</p>
+<p>情绪真可怕，因为它控制了我们一辈子。</p>
+<p>到底是我们控制了情绪，还是情绪控制了我们？</p>
+<p>很多时候，我们会被情绪控制。比如开心，我们会乐一整天。失恋，我们会低迷几个月。</p>
+<p>而往往开心的情绪，是无法持续太久的，反而悲伤的情绪，能够经久不褪，挥之不去。</p>
+<p>所以，就有人提出，要对负面情绪进行管理。</p>
+<p>那么，情绪是否可以管理？</p>
+<p>没有什么不可以的，只是难易程度上的区别罢了。</p>
+<p>比如：如果你失恋 ...</p><p class="subheader">Category: <a href="/category/misc.html">misc</a>
+
+</p>
+
+
+
+<p><a href="/emotion.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/emotion.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="/makeItRight.html"><h3 class="article-title">见好就收，才能全身而退</h3></a>
 <h6 class="subheader" title="2016-04-10T23:20:58+08:00">Sun 10 April 2016
 </h6>
@@ -222,147 +346,9 @@
                 <hr  class="gradient"/>
             </article>
 
-        
-
-
-            <article>
-                <a href="/hadoop_blocksize_vs_splitsize.html"><h3 class="article-title">Hadoop的block Size和split Size是什么关系</h3></a>
-<h6 class="subheader" title="2016-04-04T12:32:46+08:00">Mon 04 April 2016
-</h6>
-
-
-<p>学习hadoop map reduce过程的时候，第一步就是split。我们知道，hdfs中的数据是按block来存储的。问题来了，那么split和block之间是什么关系呢？我google到了stackoverflow上的这篇文章，我觉得这个帖子应该把关系说清楚了，翻译出来，欢迎大家批评指正！以下：</p>
-<h2 id="_1">问题</h2>
-<p>hadoop的split size 和 block size 是什么关系？ 是否 split size 应该 n倍于 block size ? </p>
-<h2 id="_2">概念</h2>
-<p>在 hdfs 架构中，存在 blocks 的概念。 通常来说，hdfs中的一个block 是 64MB 。 当我们把一个大文件导入hdfs中的时候，文件会按 64MB 每个block来分割（如果按默认配置）。
-如果你有1GB的文件要存入HDFS中， 1GB/64MB = 1024MB / 64MB  = 16 个blocks ...</p><p class="subheader">Category: <a href="/category/misc.html">misc</a>
-
-</p>
-
-
-
-<p><a href="/hadoop_blocksize_vs_splitsize.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/hadoop_blocksize_vs_splitsize.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="/biee_excel_merging_cells.html"><h3 class="article-title">OBIEE 11g – 如何让biee下载excel报表时不合并单元格？</h3></a>
-<h6 class="subheader" title="2016-04-04T12:06:05+08:00">Mon 04 April 2016
-</h6>
-
-
-<p><img alt="0" src="https://mmbiz.qlogo.cn/mmbiz/sfKia69cLy1xdOC12ZtaIrtlvJDzE49yT6zEoSJa6onbuzklkAGcCu7mXIzbakspj0a8icQdYRaUUSVkffuZGwDw/0?wx_fmt=gif"/></p>
-
-<h1 id="_1">中文译文</h1>
-<p>很多用户喜欢把biee报表导出到excel。但是，却被excel的自动合并单元格问题搞得头大。
-例如，下图中的obiee 分析，先按 year,brand 分组、排序，然后按 office 汇总 revenue 。由于在 不同的office 之间有着相同的 year, brand ,结果 year , brand 列的列值就自动合并，没有一行行repeat出来：</p>
-<p><img alt="1" src="https://mmbiz.qlogo.cn/mmbiz/sfKia69cLy1yRcLEKR4kcy0feSrXjiaJuUOKw67HkJZr6EsEia5TYMSNHQDSyChghTicvB0HBr9kEe7nFibKLoMibgPA/0?wx_fmt=png"/></p>
-<p>当导出到excel的时候，结果中保留了在obiee报表中的原貌：被排序之后，相同列值会自动合并，而没有对每一行的每一个单元格作填充。如何解除这种导出到excel 时，单元格自动合并的问题呢？</p>
-<p><img alt="2" src="https://mmbiz.qlogo.cn/mmbiz/sfKia69cLy1yRcLEKR4kcy0feSrXjiaJuU89NAWWLiae7sCCYWRibuEQQ3T3h2NrEc9TkKoSoiaMgpm0n5I0sanCDSA/0?wx_fmt=png"/></p>
-<p>在 instanceconfig.xml 文件中：</p>
-<p><code>&lt;EXALYTICS/OBIEE_HOME&gt;/\Middleware\instances\instance1\config\OracleBIPresentationServicesComponent\coreapplication_obips1</code>
-将设置从：</p>
-<p><code>&lt;WebConfig xmlns=”oracle ...</code></p><p class="subheader">Category: <a href="/category/misc.html">misc</a>
-
-</p>
-
-
-
-<p><a href="/biee_excel_merging_cells.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/biee_excel_merging_cells.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="/educate_yourself.html"><h3 class="article-title">这年头还需要去学校才能学习吗？</h3></a>
-<h6 class="subheader" title="2016-04-03T19:58:03+08:00">Sun 03 April 2016
-</h6>
-
-
-<h1 id="_1">一</h1>
-<p>最近打算学学大数据，于是在网上找了很多大数据方面的视频来看。</p>
-<p>视频将得很好，很清晰明了。所以我学到了很多大数据方面的知识，对大数据的历史、发展、框架也有了比较清楚的认识。</p>
-<p>于是我在想，我们真的需要再花时间把自己、把孩子送到学校，才能学习吗？现在学习的途径是那么的容易！</p>
-<h1 id="_2">二</h1>
-<p>只要你能上网，你能学到任何你想学习的东西， 包括在学校学得到的，还有在学校学不到的：</p>
-<ol>
-<li>各种基础课程：语数英... </li>
-<li>各种专业课程：计算机，天文地理，艺术哲学宗教...</li>
-<li>各种旁门左道：请参见QQ群里面的各种小广告。</li>
-</ol>
-<p>网上有很多牛人讲的课，比大部分学校老师讲得都好。(如果讲得不好，人家也不敢录视频啊) 而且视频一次录制，可以N次使用。</p>
-<h1 id="_3">三</h1>
-<p>我很好奇，学校里的老师，一本书讲上好几年，不会觉得厌烦吗？而录制成视频，只需要一次，把知识点覆盖进去了，就不需要人为再讲第二遍了。多么节约资源！</p>
-<p>有人说，视频有这样的问题：</p>
-<ol>
-<li>无法互动。</li>
-<li>不具备社交属性。</li>
-</ol>
-<p>我也是这么觉得的。但是所谓互动，无非就是提问 ...</p><p class="subheader">Category: <a href="/category/misc.html">misc</a>
-
-</p>
-
-
-
-<p><a href="/educate_yourself.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/educate_yourself.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="/game_is_good_but_consume_time.html"><h3 class="article-title">游戏虽好玩，但是花时间</h3></a>
-<h6 class="subheader" title="2016-04-03T18:33:53+08:00">Sun 03 April 2016
-</h6>
-
-
-<p><img alt="top求关注" src="https://mmbiz.qlogo.cn/mmbiz/4nvtcdfOq5YlCGvb34PQjdBC22yOGTOBvmRoIXqGicuLG633bZuscFSNZSFRHS8HmoVzrHX4niaLCwmycgjHrfGw/0?wx_fmt=gif"/></p>
-
-<p>清明假期前，还担心不回去拜山不知道干什么。还打算好了，研究biee 的 ejb 技术。</p>
-<p>谁料清明假期第一天，就各种约。</p>
-<p>这个假期，朋友推荐了一款手游 － 皇室战争。</p>
-<p>游戏很好玩，根本停不下来。</p>
-<p>但正是因为太好玩了，所以我决定不玩了。</p>
-<p>因为好玩的游戏，容易沉迷；一旦沉迷，时间就被偷走了。</p>
-<p>游戏是怎么把时间偷走的呢？</p>
-<ol>
-<li>
-<p>完成一场战役大概要花3分钟。玩10把就是半个小时。</p>
-</li>
-<li>
-<p>等待一个宝箱的解锁：短的3个小时，长的8个小时。</p>
-</li>
-<li>
-<p>升级机制：要不花钱升；要不通过花时间打战役一点点升。我不是土豪，所以只能按部就班打战役升级。</p>
-</li>
-<li>
-<p>升级包括：级别的提升；装备的提升；战斗力的提升...都是需要时间来换取。</p>
-</li>
-<li>
-<p>学习成本：你如果想打得好一点，你需要研究技术参数，研究攻略。</p>
-</li>
-</ol>
-<p>但玩游戏也不是一无是处，比如能够接触一些新的事物、新的设计思路，也是好事。同时也能达到一定程度的放松身心的效果（但如果沉迷了，我想应该是反效果）。</p>
-<p>总的来说，玩游戏是一件挺奢侈的事情，需要有钱有闲 ...</p><p class="subheader">Category: <a href="/category/misc.html">misc</a>
-
-</p>
-
-
-
-<p><a href="/game_is_good_but_consume_time.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/game_is_good_but_consume_time.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 5 of 7</h6>
+<h6 class="subheader">Page 5 of 8</h6>
 
 <p>
             <a href="/index4.html">&laquo; Prev</a>

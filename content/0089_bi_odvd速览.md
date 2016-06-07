@@ -4,10 +4,6 @@ Authors: Poon
 
 
 
-
-
-Oracle Corp has just launched Oracle Data Visualization Desktop (DVDesktop), first impression was very promising, was able to install very quick (not even 5mins), it was simple and easy steps. Was able to create first project with various beautiful chats in less than 30mins or so, was very easy to learn. Has many varieties of views and chart types. On overall experience was very good. Looks like majority of tableau desktop features are available on this version and it resembles same as Tableau. 
-
 oracle 公司 在不久前发布了 Oracle Data Visualization Desktop (DVDesktop) 。 第一感觉是：很有前景。
 
 # 特点

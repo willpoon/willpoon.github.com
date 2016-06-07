@@ -4012,6 +4012,10 @@ beers !!!
 
 上班？就是不想被人牵着鼻子走!
 
+把死亡、临终关怀 作为话题，研究，探索！
+
+
+
 
 
 
@@ -4125,4 +4129,102 @@ A: because I want to expand my mind.
 code code code !!!  write write write !!!
 code code code !!!  write write write !!!
 code code code !!!  write write write !!!
+# 2016-06-04 11:07
+
+心肾不交。左手臂敲键盘很累！
+
+我要走digital nomand 之路，为何偏偏打字还感觉累？
+
+我要解决这个问题，而不是逃避问题！
+
+每天 跑步 ！ 站桩！！
+
+
+# 2016-06-04 11:14
+
+只要你不想获得更多，你就不会被人利用，被人牵制。获得其所。
+
+
+# 如何理解 每周工作4小时 中的 DEAL 中的 A：automation ？
+
+自动化，如果把事情交给计算机处理，这样的自动化我们很好理解，但是其实交给人，也叫自动化。还有一个词，叫 外包。
+
+
+# 2016-06-04 12:14
+
+一个危险的、错误的观念： 财富不应要通过hardwork 才能获得！
+
+财富的积累不一定是做得越多、越辛苦，才能获得越多。
+
+
+# 2016-06-05 09:49
+
+前进的动力：
+
+1. 愤怒
+2. 差距压力
+3. 利益
+4. 自绝后路
+5. 不满
+
+# 2016-06-05 11:46
+
+既然google 不能爬微信，就让微信的内容同步到blogspot中！
+
+# 2016-06-05 11:59
+todo :
+1. 同步本地文章到微信 & 博客
+
+2. 同步微信文章到 blogspot
+
+
+tell application "Google Chrome" to reload active tab of window 1
+
+
+
+opennew () {
+osascript <<EOF
+tell application "Safari"
+activate
+make new document at beginning of documents
+end tell
+EOF
+sleep 5
+}
+
+
+
+        ##--execute JavaScript "$('a[data-id="10014"]').click()"
+
+
+
+# 2016-06-05 20:20
+
+通过邮件发blogspot！！ 同步 粤识男女！
+
+
+# 什么是人性？
+
+人性是自然流露出来的东西！
+不要被道德法律约束，导致产生恐惧！
+
+# 2016-06-06 08:57
+
+要建一套系统，让它为你工作！
+
+
+# 2016-06-06 12:40
+
+当你的心变开阔，胆子变大，思维更活跃，更宽广，你会发现世界更有趣，更美妙！
+
+
+
+# 2016-06-07 11:16
+
+模型设计漫谈： 纬度字段纬度值设计的重要性。
+
+
+# 2016-06-07 11:49
+
+bi是根基，就是副业繁华似锦，也不能丢了bi，不再积累。
 

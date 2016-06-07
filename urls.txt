@@ -9,7 +9,6 @@
 /lastWord.html
 /oracle-biee-develop.html
 /whenWildcardMeetSpace.html
-/yangjiang.html
 /wayToMakeMoney.html
 /excelMacro.html
 /shareWifiWithMBP.html
