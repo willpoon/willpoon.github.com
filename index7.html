@@ -1,568 +1,159 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="">	
 <head>
-    <meta charset="utf-8" />
-    <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width" />
-
-    <title>仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</title>
-
-    <link rel="stylesheet" href="/theme/css/normalize.css" />
-    <link rel="stylesheet" href="/theme/css/foundation.min.css" />
-    <link rel="stylesheet" href="/theme/css/style.css" />
-    <link rel="stylesheet" href="/theme/css/pygments.css" />	
-    <script src="/theme/js/modernizr.js"></script>
+	<meta charset="utf-8"/>
+	<title>仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</title>	
+	<meta name="author" content="Poon">
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0">
+	
+	<link href='http://fonts.googleapis.com/css?family=Droid+Sans:700,400|Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+		
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+	
+	<link href="/" type="application/atom+xml" rel="alternate" title="仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 ATOM Feed" />
 </head>
+	
+<body>		
+	<header class="clearfix" role="banner">
+		<div class="wrapper">
+			<h1 class="huge"><a href="">仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</a></h1>
+		</div>
+	</header>
+	
+<div role="main" class="content clearfix">
 
-<body>
-
-<!-- Nav Bar -->
-<nav>
-<div class="top-bar">
-<div class="row">
-    <div class="large-9 large-centered columns">
-	    <h1><a href="">仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</a></h1>
-    </div>
-</div>
-</div>
-
-<!-- Show menu items and pages -->
-<div class="row">
-<div class="large-9 columns">
-    <ul class="button-group navigation">
-    <li><a href="tags.html" class="button secondary small">Tags</a></li>
-    <li><a href="about.html" class="button secondary small">About</a></li>
-
-    </ul>
-</div>
-</div>
-</nav>
-<!-- End Nav -->
-
-
-<!-- Main Page Content and Sidebar -->
-<div class="row">
-
-    <!-- Main Blog Content -->
-    <div class="large-9 columns">
-        
-        
-
-
-            <article>
-                <a href="/play-databases.html"><h3 class="article-title">主流数据库安装、维护、开发与管理</h3></a>
-<h6 class="subheader" title="2016-02-04T12:35:18+08:00">Thu 04 February 2016
-</h6>
-
-
-
-<h1 id="oracle">ORACLE</h1>
-<h2 id="perl-sql">perl 中调用sql 空行导致的问题</h2>
-<p>00933: sql command not properly ended </p>
-<p>就是说sql命令不完整，非正常结束。</p>
-<p>我把sql输出copy到 plsql 中执行，一点问题都没有。 但是在 perl sql 中， 就报这个错。</p>
-<p>经仔细检查，发现代码里有一空行。</p>
-<p>所以，请杜绝在sql代码中出现空行！</p>
-<h2 id="start-with-connect-by-prior">start with ... connect by prior ...  用法</h2>
-<p>表格式：sid|pid|level ; s for son , p for parent</p>
-<p>start with pid=[截取的根节点nodeA] connect by prior sid = pid</p>
-<p>[截取的根节点] : 当我们需要从哪个节点nodeA开始，就是让 pid 取为该开始节点值nodeA。</p>
-<p>从 nodeA 开始， 取 [树的子节点son] 字段 ， 通过 prior 字段，取得son节点的祖先， 让 prior sid = pid ; 即 prior son = father ; 意思是 son的祖先＝father 。 更近一步：</p>
-<p>prior sunzi = fuqin</p>
-<p>prior fuqin = yeye</p>
-<p>这样sunzi - fuqin - yeye 都关联起来了。</p>
-<p><a href="http://mengya520.blog.51cto.com/1506880/334621">例子</a> ：</p>
-<p>select ID, NAME, SYS_CONNECT_BY_PATH(pid,'/') as pid_path, SYS_CONNECT_BY_PATH(parent_name,'/') as parent_name
-from test_parent1
-start with pid=1 connect by prior id=pid;</p>
-<p>如果 你写成 connect by prior pid = id , 那是不行的。 如果pid 还要取祖先，prior pid 的结果，就是爷爷了。 爷爷 ＝ 孙子 怎么行呢？乱套了！</p>
-<h2 id="oracle-python">oracle 和 python 交互</h2>
-<p>如何在 python 中 操纵 oracle ?</p>
-<p>http://www.oracle.com/technetwork/articles/dsl/python-091105.html</p>
-<h2 id="oracle-response">oracle response 文件安装方式是怎么回事？</h2>
+	<article class="wrapper main">
+		<h1><a href="/01_0092.html">星巴克联合营销之奔驰</a></h1>
+		<p>星巴克在上周六日(6.4,6.5) 联合奔驰举办奔驰试驾活动。</p>
+<p>现场：美女接待，借用星巴克场地，星巴克新品促销等。</p>
+<p>真是一个双赢的项目！</p>
 <ol>
-<li>
-<p>response 文件安装 也叫响应文件安装方式。</p>
-</li>
-<li>
-<p>response 文件有特定格式。</p>
-</li>
-<li>
-<p>response 文件设定好之后，就不需要再用图形界面方式，通过鼠标点击和键盘输入进行下一步了。</p>
-</li>
+<li>奔驰锁定了高端消费群体。</li>
+<li>星巴克提升了新品销量。</li>
+<li>美女销售提到了两者档次。</li>
+<li>场地人气更加旺。</li>
 </ol>
-<h2 id="oracle-dml-escape-ampersand">oracle 在执行 dml的时候 escape &amp; (ampersand)符号？</h2>
-<pre><code>set define off
-
-SET ESCAPE ON;
-</code></pre>
-<h2 id="oracle_1">oracle 匿名块</h2>
-<h2 id="ora-01722-invalid-number">ORA-01722 invalid number</h2>
-<p>biee 上有一张报表，底层涉及手工数据，每月更新一次。这个月有张报表突然报 ora-01722 错误。经核查，是 一个字段中的数字转指定格式的字符的时候 to_char（xxx,'000') ， 有非数字内容。</p>
-<p>该字段本来就是字符型，</p>
-<p>to_char('23','000') 没问题，
-但是 to_char('社区','000') 就会有问题！</p>
-<p class="subheader">Category: <a href="/category/tech.html">Tech</a>
-
-    Tagged: 
-    <a href="/tag/db.html">DB </a>
-    <a href="/tag/database.html">database </a>
-    <a href="/tag/shu-ju-ku.html">数据库 </a>
-    <a href="/tag/db2.html">db2 </a>
-    <a href="/tag/oracle.html">oracle </a>
-    <a href="/tag/mysql.html">mysql </a>
-</p>
+<p>本文首发于微信公众号： <strong><code>零壹</code></strong> ，微信搜索公众号: <strong><code>magicof01</code></strong> ，也可以扫描文章底部二维码快速关注.</p>
+<p><img alt="bottom求关注forIMX3" src="http://www.imx3.com/img/weixin_bi_common/sdr_code_tree_01.png" /></p> <a class="btn" href="/01_0092.html">read more →</a>
+	</article>
 
+	<div class="wrapper main">		
+		<h3>More posts</h3>
+		<ol class="archive">
 
+			<li class="clearfix"><a href="/01_0096.html" rel="bookmark" title="Permalink to 孤身走我路"><time datetime="2016-06-07T22:25:24+08:00" pubdate>Tue 07 June 2016</time> 孤身走我路</a></li>
 
-<p><a href="/play-databases.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/play-databases.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="/setup-and-config-my-github-blog-with-pelican.html"><h3 class="article-title">使用github+pelican搭建我的博客</h3></a>
-<h6 class="subheader" title="2016-02-04T07:27:52+08:00">Thu 04 February 2016
-</h6>
-
-
-
-<h3 id="14-bing-sitemap">14. 为 <a href="http://www.imx3.com">小站</a> 添加 bing sitemap 支持</h3>
-<ol>
-<li>
-<p>登陆 https://www.bing.com/webmaster  , microsoft、bing、msn账号都是通用的。</p>
-</li>
-<li>
-<p>填入你的网站信息 , 同时会有一个框让你提交sitemap地址。 你可以先不填写。</p>
-</li>
-<li>
-<p>填入你的个人资料</p>
-</li>
-<li>
-<p>验证这个网站是不是你的，有几种途径：</p>
-</li>
-</ol>
-<p>4.1 上传文件</p>
-<p>4.2 修改html</p>
-<p>4.3 修改cname</p>
-<p>我选择了上传文件，最方便。</p>
-<ol>
-<li>通过验证之后，就可以提交sitemap 了。支持很多种格式的sitemap提交，因为担心bing不认识我的sitemap.xml ， 我同时提交了urls.txt 和 sitemap.xml，双保险。</li>
-</ol>
-<p>刚提交，静观其变。－－2015-12-02 09:43</p>
-<h3 id="14-yahoo">问题14. 提交给yahoo</h3>
-<p>yahoo 的sitemap提交服务已经托管给 微软小冰了 bing.com :</p>
-<p>```</p>
-<p>Submit Site to Yahoo!</p>
-<p>Since 2010, Yahoo search has been powered by Microsoft's Bing search engine. When you submit your site to Bing you will also show up in Yahoo's search results. See below on how to submit your site to Bing.  Yahoo! had a paid submission process in the past, although Yahoo! Directory is no longer available.</p>
-<p>```</p>
-<p class="subheader">Category: <a href="/category/tech.html">Tech</a>
-
-    Tagged: 
-    <a href="/tag/github.html">github </a>
-    <a href="/tag/blog.html">blog </a>
-    <a href="/tag/pelican.html">pelican </a>
-    <a href="/tag/disqus.html">disqus </a>
-</p>
-
-
-
-<p><a href="/setup-and-config-my-github-blog-with-pelican.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/setup-and-config-my-github-blog-with-pelican.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="/banking-finance.html"><h3 class="article-title">银行金融业务知识学习</h3></a>
-<h6 class="subheader" title="2016-01-17T09:08:34+08:00">Sun 17 January 2016
-</h6>
-
-
-
-<h1 id="_5">收付实现制和权责发生制</h1>
-<p>2015-12-13 11:07</p>
-<p>权责发生制：既有现金项目，又有非现金项目;允许信用的存在。收付可以提前或发生在将来。</p>
-<p>收付实现制：只有现金项目; 一手交钱，一手交货。</p>
-<p>其实是收付时间、权责发生时间、核算时间存在着时间差！ 要把账做明白，让人看懂，必须要有合理的会计方法，于是就导出了收付实现制和权责发生制。</p>
-<p class="subheader">Category: <a href="/category/tech.html">Tech</a>
+			<li class="clearfix"><a href="/01_0094.html" rel="bookmark" title="Permalink to 我真的想辞职休息半年"><time datetime="2016-06-06T19:55:22+08:00" pubdate>Mon 06 June 2016</time> 我真的想辞职休息半年</a></li>
 
-    Tagged: 
-    <a href="/tag/yin-xing.html">银行 </a>
-    <a href="/tag/jin-rong.html">金融 </a>
-    <a href="/tag/ye-wu.html">业务 </a>
-</p>
+			<li class="clearfix"><a href="/01_0095.html" rel="bookmark" title="Permalink to 模版测试贴"><time datetime="2016-06-06T19:49:29+08:00" pubdate>Mon 06 June 2016</time> 模版测试贴</a></li>
 
+			<li class="clearfix"><a href="/newyorker03.html" rel="bookmark" title="Permalink to 纽约客的临终遗言感想03"><time datetime="2016-06-05T22:41:00+08:00" pubdate>Sun 05 June 2016</time> 纽约客的临终遗言感想03</a></li>
 
+			<li class="clearfix"><a href="/odvd_express.html" rel="bookmark" title="Permalink to OBI:Oracle Data Visualization Desktop 速览"><time datetime="2016-06-04T11:06:10+08:00" pubdate>Sat 04 June 2016</time> OBI:Oracle Data Visualization Desktop 速览</a></li>
 
-<p><a href="/banking-finance.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/banking-finance.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
 
-        
 
 
-            <article>
-                <a href="/programming.html"><h3 class="article-title">Code Code Code!</h3></a>
-<h6 class="subheader" title="2016-01-15T20:28:31+08:00">Fri 15 January 2016
-</h6>
-
-
-
-<h1 id="python">python</h1>
-<h2 id="__">__ 双下划线开头的</h2>
-<p>__ 两根下划线开头的，表示类私有的，不能直接调用。只能在类的内部访问。</p>
-<h2 id="self">self 关键字</h2>
-<ol>
-<li>
-<p>self 是一个指针 </p>
-</li>
-<li>
-<p>self 和 this 可以替换着用。但是用了self就要一直用self，用了this就一直用this，不能混用。</p>
-</li>
-<li>
-<p>self代表的是这个类的实例。 </p>
-</li>
-<li>
-<p>self 不是关键字，作为参数，不能省略。即，如果函数里有对self的调用，就要先列在函数参数里头。</p>
-</li>
-</ol>
-<h2 id="__class__"><code>__class__</code></h2>
-<p>is a built-in attribute of every class instance (of every class). It is a reference to the class that self is an ...</p><p class="subheader">Category: <a href="/category/misc.html">misc</a>
-
-</p>
-
-
-
-<p><a href="/programming.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/programming.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="/about-design.html"><h3 class="article-title">设计相关思考</h3></a>
-<h6 class="subheader" title="2016-01-12T09:03:30+08:00">Tue 12 January 2016
-</h6>
-
-
-
-<h1 id="_5">高度与学历</h1>
-<p>2016-01-12 09:02</p>
-<p>为什么研究院、设计院、政府单位、公司核心岗位喜欢招名校、高学历的人才？</p>
-<p>因为书读得多，看的远。可以从架构层面、全局来看问题。</p>
-<p>而学历不够的、说明：</p>
-<ol>
-<li>
-<p>不好学习。或者学习力不够。</p>
-</li>
-<li>
-<p>懂得少。眼界不够开阔。</p>
-</li>
-</ol>
-<p>所以，高学历的人，领导低学历的人。格局大的人，领导格局小的人。太过专业，注定成不了大事。但是每个人都应该有自己专业的东西，以此为基础，作为晋升的台阶。</p>
-<p class="subheader">Category: <a href="/category/tech.html">Tech</a>
-
-    Tagged: 
-    <a href="/tag/she-ji.html">设计 </a>
-    <a href="/tag/cheng-xu.html">程序 </a>
-    <a href="/tag/yi-zhu.html">艺术 </a>
-    <a href="/tag/jia-gou.html">架构 </a>
-</p>
-
-
-
-<p><a href="/about-design.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/about-design.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="/think-about-happiness.html"><h3 class="article-title">幸福思考</h3></a>
-<h6 class="subheader" title="2016-01-10T20:28:13+08:00">Sun 10 January 2016
-</h6>
-
-
-
-<h1 id="_13">回家的路</h1>
-<p>2015-12-12 Sat 10:35 AM </p>
-<p>43路</p>
-<p>可以带我回家</p>
-<p>从今天起 </p>
-<p>我不再有车就上</p>
-<p>而是等待没几个人的那趟</p>
-<p>坐到最后一排</p>
-<p>当然必须靠窗</p>
-<p>这样我可以不时地看一眼车到哪个站了</p>
-<p>然后再掏出笔记本</p>
-<p>打开terminal </p>
-<p>敲入blog命令</p>
-<p>vi 一篇我想写的帖子</p>
-<p>用markdown 格式化我的想法</p>
-<p>此刻</p>
-<p>车开了没有</p>
-<p>人多与否</p>
-<p>我全然不觉 </p>
-<p>也不在关心</p>
-<p>实在没有什么想写了</p>
-<p>就读一本书</p>
-<p>不知站之将至</p>
-<p>最后</p>
-<p>大家切莫模仿</p>
-<p>因为公车后排好抖</p>
-<p>除非你的硬盘是SSD 😄</p>
-<h1 id="_14">一起，要许多福气</h1>
-<p>2015-12-13 16:02</p>
-<h1 id="_15">“前几天我见到胡歌，他说他准备稍微休息一段时间，他说我已经不需要为挣钱活着了，我希望追求更高层次的东西。”</h1>
-<p>让我不禁想，对啊，我们活着一定要去赚钱吗？</p>
-<p>人类开始之初，并不是这样的啊。</p>
-<p>造物主把我们造出来，不是让我们给资本家做牛做马的啊！</p>
-<p>上帝创造了人类，人类也创造了很多东西。上帝赋予了我们智能，也许就是为了让我们多创造吧。</p>
-<h1 id="_16">乡村生活</h1>
-<p>2015-12-14 Mon 09:44 AM</p>
-<p>上周六，我去三乡陪爸妈吃晚饭，顺便看看装修情况。吃完饭，由于比较晚了，回珠海也不太方便，于是就在三乡小区过了一晚。</p>
-<p>此处晚上非常安静。 能听到虫鸣。</p>
-<p>走出花园，凉风习习。风吹着小区里的树，发出哗哗的声音。</p>
-<p>睡觉的时候，感觉窗外格外安静，静得有点不太适应。</p>
-<p>早上起来，空气很清新，小区花树已长成，暗香夹道，还能听到小鸟的叫声。</p>
-<p>我知道，这就是我目前想要的生活状态。</p>
-<p>爸妈似乎也比较满意这清静的环境。</p>
-<p>当然，他们最高兴的,是我能过去陪他们吃饭。尽管我一周才回一两次。</p>
-<p>以后,我争取能每周回去两次以上。闲暇时,当作度假。忙碌时,吃顿饭就走也行。</p>
-<p>同时，我希望能把工作变得更弹性一些，可以在等车的时候，或者是车上。尽量减少在家里用电脑做事。</p>
-<p>林语堂说，要造就良好的感染力，除了健康的身体，灵敏的感觉，还需要一个充满爱的家庭和美丽的自然环境。</p>
-<p>我正一步步地努力。</p>
-<h1 id="_17">考验</h1>
-<p>心意</p>
-<p>考验</p>
-<p>合格</p>
-<p>2016-01-04 10:04</p>
-<p class="subheader">Category: <a href="/category/life.html">Life</a>
-
-    Tagged: 
-    <a href="/tag/kuai-le.html">快乐 </a>
-    <a href="/tag/xing-fu.html">幸福 </a>
-    <a href="/tag/si-kao.html">思考 </a>
-</p>
-
-
-
-<p><a href="/think-about-happiness.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/think-about-happiness.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="/english.html"><h3 class="article-title">英语学习</h3></a>
-<h6 class="subheader" title="2016-01-04T10:04:10+08:00">Mon 04 January 2016
-</h6>
-
-
-
-<ol>
-<li>Google Analytics Email-Opt-Out Confirmation</li>
-</ol>
-<p>Opt-Out 选择退出 </p>
-<ol>
-<li>
-<p>ROI return on investment
-投资回报率</p>
-</li>
-<li>
-<p>niche </p>
-</li>
-</ol>
-<p>壁龛；舒适或称心的工作（或生活等）；（产品的）商机；市场定位</p>
-<p>-- 我发现bing.com/dict 的翻译还是比较智能的。我通过mac上的dictionary查，只查出来基本意思，没有查出引申意思。而用bing查，就能查出详细解析。 </p>
-<ol>
-<li>dodgy </li>
-</ol>
-<p>dodgy guy </p>
-<p>dodgy weather </p>
-<p>adj.狡猾的；狡诈的；可疑的；有毛病的
-网络躲闪的；危险的；善于骗人的</p>
-<ol>
-<li>expenditure</li>
-</ol>
-<p>开支 </p>
-<ol>
-<li>
-<p>Les Retrouvailles
-重逢 </p>
-</li>
-<li>
-<p>Ronda
-西班牙一小镇，据说是斗牛发源地</p>
-</li>
-<li>
-<p>medieval</p>
-</li>
-</ol>
-<p>中世纪的 ...</p><p class="subheader">Category: <a href="/category/tech.html">Tech</a>
-
-    Tagged: 
-    <a href="/tag/wai-yu.html">外语 </a>
-</p>
-
-
-
-<p><a href="/english.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/english.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="/read-some-books.html"><h3 class="article-title">read some books 读些书</h3></a>
-<h6 class="subheader" title="2015-12-20T21:52:13+08:00">Sun 20 December 2015
-</h6>
-
-
-
-<p>我觉得谈读书是一件很矫情很装逼的事情，你读就读了，看就看了，你还到处显摆，炫耀知识和炫耀财富是一样的可恶。
-但是还是应该拿出来说，因为在这个年代，不读书是不行的，保持读书学习的习惯，太有必要了。</p>
-<p class="subheader">Category: <a href="/category/life.html">Life</a>
-
-    Tagged: 
-    <a href="/tag/reading.html">reading </a>
-    <a href="/tag/books.html">books </a>
-    <a href="/tag/learn.html">learn </a>
-</p>
-
-
-
-<p><a href="/read-some-books.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/read-some-books.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="/invest-notes.html"><h3 class="article-title">投(du)资(bo)笔记</h3></a>
-<h6 class="subheader" title="2015-12-14T09:40:03+08:00">Mon 14 December 2015
-</h6>
-
-
-
-<h1 id="2015-12-02-0837">2015-12-02 08:37</h1>
-<p>昨日被山东人(SDR)刷屏了！ 据说是利好。sdr是什么回事？就是屌丝拿了张会员卡，加入了高富帅俱乐部，由一群高富帅带着一起玩。搞不好还屌丝逆袭。</p>
-<p class="subheader">Category: <a href="/category/life.html">Life</a>
-
-    Tagged: 
-    <a href="/tag/zhuan-qian.html">赚钱 </a>
-    <a href="/tag/tou-zi.html">投资 </a>
-    <a href="/tag/du-bo.html">赌博 </a>
-    <a href="/tag/tou-ji.html">投机 </a>
-    <a href="/tag/gu-piao.html">股票 </a>
-    <a href="/tag/ji-jin.html">基金 </a>
-</p>
-
-
-
-<p><a href="/invest-notes.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/invest-notes.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="/the-benifit-of-writing.html"><h3 class="article-title">写作的好处</h3></a>
-<h6 class="subheader" title="2015-12-11T08:39:50+08:00">Fri 11 December 2015
-</h6>
-
-
-
-<h2 id="_7">文字的力量</h2>
-<p>2015-11-24 15:59</p>
-<p>我感觉到文字有一种收敛力。就是当你感觉到浮躁的时候，当你思维混乱，迷茫，心神不定的时候，写写东西，当你把此刻的想法记下来的时候，思绪一下清晰了，情绪也稳定了，一股要外放的情绪，也能通过文字，一点点的平复。就像散落荷叶上的露珠，终归也要落入地面。又像漂泊在各地的游子，最后都要回家。
-思想落实到文字，就是黄花闺女找到了好的归宿。</p>
-<p class="subheader">Category: <a href="/category/life.html">Life</a>
-
-    Tagged: 
-    <a href="/tag/sheng-huo.html">生活 </a>
-    <a href="/tag/xie-zi.html">写字 </a>
-</p>
-
-
-
-<p><a href="/the-benifit-of-writing.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="/the-benifit-of-writing.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-            <!-- /#posts-list -->
-<div class="pagination-centered">
-<h6 class="subheader">Page 7 of 8</h6>
-
-<p>
-            <a href="/index6.html">&laquo; Prev</a>
-
-        <a href="/index8.html">Next &raquo;</a>
-</p>
-</div>
-
-    </div>
-    <!-- End Main Content -->
-
-    <!-- Sidebar -->
-    <aside class="large-3 columns">
-        <h5 class="sidebar-title">Site</h5>
-        <ul class="side-nav">
-            <li><a href="/archives.html">Archives</a>
-            <li><a href="/tags.html">Tags</a>
-        </ul>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</ol>
 		
-        <h5 class="sidebar-title">Categories</h5>
-        <ul class="side-nav">
-            <li><a href="/category/about.html">About</a></li>
-            <li><a href="/category/job.html">Job</a></li>
-            <li><a href="/category/life.html">Life</a></li>
-            <li><a href="/category/misc.html">misc</a></li>
-            <li><a href="/category/tech.html">Tech</a></li>
-   
-        </ul>
-
-        <h5 class="sidebar-title">Links</h5>
-        <ul class="side-nav">
-            <li><a href="https://www.linkedin.com">LinkedIn</a></li>
-            <li><a href="http://www.slideshare.net">SlideShare</a></li>
-            <li><a href="https://www.github.com">Github</a></li>
-            <li><a href="http://www.zhihu.com">知乎(ZhiHu)</a></li>
-            <li><a href="https://www.quora.com">Quora</a></li>
-            <li><a href="#">欢迎交换链接</a></li>
-        </ul>
+		<p>More posts in the <a href="/archives.html">archive</a>.</p>
+	</div>
+</div>
+	
 		
-        <h5 class="sidebar-title">Social</h5>
-        <ul class="side-nav">
-            <li><a href="http://weibo.com/poooon">See me on Sina WeiBo</a></li>
-            <li><a href="http://github.com/willpoon">See me on GitHub</a></li>
-        </ul>
-
-    </aside> <!-- End Sidebar -->
-
-</div> <!-- End Main Content and Sidebar -->
-
-
-<!-- Footer -->
-<footer class="row">
-    <div class="large-12 columns">
-        <hr />
-        <div class="row">
-            <div class="large-6 columns">
-              <!--                  <p>仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 by Poon</p> -->
-            </div>
-            </div>
-    </div>
+<footer class="clearfix">
+	<div class="wrapper pages">
+		<ul class="nav">
+			<li><a href="/archives.html">Archive</a></li>
+		</ul>
+	</div>
+	
+	<div class="copy wrapper">
+		<ul class="social">
+			<li><a href="http://weibo.com/poooon">See me on Sina WeiBo</a></li>
+			<li><a href="http://github.com/willpoon">See me on GitHub</a></li>
+		</ul>
+	
+		<p role="contentinfo">© 2012 Poon<br>
+		Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">Pelican</a>.</p>
+	</div>
 </footer>
+	
+	<script>
+	  var _gaq=[['_setAccount','UA-69868761-1'],['_trackPageview']];
+	  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+	  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+	  s.parentNode.insertBefore(g,s)}(document,'script'));
+	</script>
 </body>
 </html>
