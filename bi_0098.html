@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="">	
+<head>
+	<meta charset="utf-8"/>
+	<title>公众号文章自动发布机器人 - 仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</title>	
+	<meta name="author" content="Poon">
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0">
+	
+	<link href='http://fonts.googleapis.com/css?family=Droid+Sans:700,400|Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+		
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+	
+	<link href="/" type="application/atom+xml" rel="alternate" title="仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖 ATOM Feed" />
+</head>
+	
+<body>		
+	<header class="clearfix" role="banner">
+		<div class="wrapper">
+			<h1 class="huge"><a href="">仗梦天涯&nbsp;&nbsp;&nbsp;&nbsp;倚霞而栖</a></h1>
+		</div>
+	</header>
+	
+<div role="main" class="content clearfix">	
+	<article>
+		<div class="post wrapper">
+			<h1>公众号文章自动发布机器人</h1>
+			<p>公众号文章发布绝对是个体力活。一直在寻思如何从中解放。近日借助applescript自动化处理脚步，写了一个'发布机器人'，帮我把写好的文章自动上传到微信公众平台。</p>
+<p>闲话休提，</p>
+<h1 id="_1">机器人的功能如下：</h1>
+<ol>
+<li>自动登录</li>
+<li>自动把公众号相关的图片上传</li>
+<li>自动填写文章标题、作者、文章正文</li>
+<li>自动格式化markdown标签</li>
+<li>自动保存</li>
+</ol>
+<p># 待完善的功能</p>
+<p>1.摘要目前只能默认，后续打算填充指定的摘要内容。
+ 2.由于推送文章需要手机扫码认证，后续探索定时自动发送。
+ 3.自动拉取图片库的图片地址。</p>
+<p># 机器人实现原理</p>
+<h2 id="_2">简单来说：</h2>
+<ol>
+<li>模拟点击</li>
+<li>模拟快捷键</li>
+</ol>
+<h2 id="_3">业务流程：</h2>
+<ol>
+<li>登录公众号</li>
+<li>素材管理</li>
+<li>新建图文消息</li>
+<li>填写标题、作者、正文</li>
+<li>上传封面和正文图片</li>
+<li>保存</li>
+</ol>
+<h2 id="_4">技术要点</h2>
+<ol>
+<li>单击操作</li>
+<li>剪贴板操作</li>
+<li>快捷键操作</li>
+<li>延时&amp;等待</li>
+<li>过程调用</li>
+<li>js调用</li>
+<li>shell命令调用
+...</li>
+</ol>
+<p>本文首发于微信公众号： <strong><code>BI实验室</code></strong> ，微信搜索 <strong><code>BI实验室</code></strong> 或 <strong><code>bidatalab</code></strong> ，也可以扫描下方二维码快速关注哦！</p>
+<p><img alt="求关注forWeChat" src="https://mmbiz.qlogo.cn/mmbiz/sfKia69cLy1yGH30FHU6SYaJPqvibh7Wib9Pg2V6rc7zjaPJ7aKk9NcpQb9IIhZLCIG8CB4b0QV2vKWopevlhvafw/0?wx_fmt=png" /></p>
+			
+			<a href="https://twitter.com/share" class="twitter-share-button" data-via="" data-lang="en" data-size="large" data-related="">Tweet</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+						
+			<div class="comments">
+			<h2>Comments !</h2>
+			    <div id="disqus_thread"></div>
+			    <script type="text/javascript">
+			       var disqus_identifier = "bi_0098.html";
+			       (function() {
+			       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			       dsq.src = '//gitwillpoonimx3.disqus.com/embed.js';
+			       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			      })();
+			    </script>
+			</div>
+			
+		</div>
+	
+<div class="meta wrapper">
+	<time datetime="2016-06-08T21:51:36+08:00" pubdate>Wed 08 June 2016</time>
+	<ul class="tag clearfix">
+		<li><a href="/category/misc.html">misc</a></li>
+	</ul>
+</div>	</article>	
+</div>
+	
+		
+<footer class="clearfix">
+	<div class="wrapper pages">
+		<ul class="nav">
+			<li><a href="/archives.html">Archive</a></li>
+		</ul>
+	</div>
+	
+	<div class="copy wrapper">
+		<ul class="social">
+			<li><a href="http://weibo.com/poooon">See me on Sina WeiBo</a></li>
+			<li><a href="http://github.com/willpoon">See me on GitHub</a></li>
+		</ul>
+	
+		<p role="contentinfo">© 2012 Poon<br>
+		Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">Pelican</a>.</p>
+	</div>
+</footer>
+	
+	<script>
+	  var _gaq=[['_setAccount','UA-69868761-1'],['_trackPageview']];
+	  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+	  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+	  s.parentNode.insertBefore(g,s)}(document,'script'));
+	</script>
+</body>
+</html>

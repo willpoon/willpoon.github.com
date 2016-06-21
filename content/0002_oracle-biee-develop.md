@@ -1077,4 +1077,15 @@ current_date 无法通过语法 , 只能用字段。
 1. 仪表盘属性－》 过滤器和变量。
 
 2. 区域 隐藏 ： 条件 always false
+# 2016-06-17 09:04
 
+https://sranka.wordpress.com  
+
+Sunil S. Ranka's Weblog
+Superior Data Analytics is the antidote to Business Failure
+
+# 2016-06-20 10:33
+
+ be a tough guy !
+
+ 做一个硬汉
