@@ -2,9 +2,15 @@
 /archives.html
 /tags.html
 /categories.html
+/bi_0101.html
+/oracle-biee-develop.html
+/01_0100.html
+/01_0099.html
+/bi_0098.html
+/01_0097.html
 /01_0092.html
-/01_0096.html
 /01_0094.html
+/01_0096.html
 /01_0095.html
 /newyorker03.html
 /odvd_express.html
@@ -12,7 +18,6 @@
 /newyorkerLastWord02.html
 /biee12cpatchOnWindows.html
 /lastWord.html
-/oracle-biee-develop.html
 /whenWildcardMeetSpace.html
 /wayToMakeMoney.html
 /excelMacro.html

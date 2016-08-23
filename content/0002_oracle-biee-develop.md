@@ -1086,6 +1086,17 @@ Superior Data Analytics is the antidote to Business Failure
 
 # 2016-06-20 10:33
 
- be a tough guy !
+biee 层级关系复合维度的复用：
 
- 做一个硬汉
+1. 可以复用
+2. 需要把相应的display column 拖到 presentation 表。
+3. 需要在presentation 列添加响应的display column.
+
+
+
+
+# 2016-07-08 09:04
+
+当发现biee前端图标展示不出来的时候，可能是因为系统分区存储满了。
+
+
