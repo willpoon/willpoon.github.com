@@ -30,37 +30,39 @@
 <div role="main" class="content clearfix">
 
 	<article class="wrapper main">
-		<h1><a href="/bi_0101.html">BIEE:允许任何用户通过提示设置会话变量的值</a></h1>
-		<h1 id="_1">背景</h1>
-<p>最近在群里有朋友问为何通过提示无法为会话变量赋值。刚好我也碰到过这个问题。
-当我们在rpd中定义了一个会话变量(session variable )，然后企图通过提示中的请求变量(request variable) 来改变会话变量的值的时候，却发现数据并没有根据提示的设置而改变。
-同时报如下错误：</p>
-<p>nQSerror:13015 您无权设置变量 'xxxx' 的值, 有关此错误的详细信息，请让系统管理员查看日志。</p>
-<p>png</p>
-<h1 id="_2">原因</h1>
-<p>这是因为会话变量的值设置权限没有设置给任意用户。</p>
-<h1 id="_3">解决</h1>
-<p>如下图，通过rpd 修改 会话变量的设值权限：</p>
-<p>允许任何用户设置值( enable any user to set the value )</p>
-<p>png </p>
-<p>经此设置之后，除weblogic以外的普通用户也能够通过提示中的请求变量来改变会话变量的值了。</p>
-<p>以下，原创凑字数专用!300字怎么就不算原创了？！
-关键字： obiee,rpd,提示,权限，会话变量，session variable , 请求变量 ...</p> <a class="btn" href="/bi_0101.html">read more →</a>
+		<h1><a href="/bi_0105.html">谈数据质量监控</a></h1>
+		<p>近期工作中遇到多起上游系统数据异常影响到下游的情况。比如说这些：</p>
+<p>问题：</p>
+<ol>
+<li>上游交易系统/分析系统出现问题，数据异常。影响所有下游系统数据的准确性。</li>
+<li>下游系统管理员在不明所以的情况下，问题率先被用户发现，然后才反馈给系统管理员。</li>
+<li>下游系统管理人员没有收到上游系统异常的预警，在接到反馈后，只能按常规流程进行各种问题分析核查，最后发现问题不是出在自己的系统上，而是上游系统的问题。但是时间也花了,吃力不讨好。</li>
+<li>定位问题后，上游也同样需要花大量的时间分析解决问题。再一次消耗上游人力资源。下游干等，同样也是浪费。同时问题的出现容易破坏心情，破坏团队稳定。</li>
+<li>数据重处理涉及各种数据重跑，需要找上下游协调，下游推动上游还不好推动。</li>
+<li>上下游花了不少力气，终于把问题处理完了，而用户也等到菜都凉了。</li>
+<li>用户并不关心问题的根源，纵然你给他解释是那那那的问题，时间长了，次数多了，他也只会认为是(下游)系统出了问题，下游系统人员只能啃这个死猫。</li>
+<li>久而久之，影响用户体验;影响上下游系统管理员的心情；影响团队稳定、信誉。</li>
+</ol>
+<p>分析：
+归根结底，还是系统监控机制、消息机制不够完善。而消息机制的建立，有赖于各种数据监控。
+上游的问题 ...</p> <a class="btn" href="/bi_0105.html">read more →</a>
 	</article>
 
 	<div class="wrapper main">		
 		<h3>More posts</h3>
 		<ol class="archive">
 
-			<li class="clearfix"><a href="/oracle-biee-develop.html" rel="bookmark" title="Permalink to Oracle BIEE 经验总结"><time datetime="2016-06-20T10:33:38+08:00" pubdate>Mon 20 June 2016</time> Oracle BIEE 经验总结</a></li>
+			<li class="clearfix"><a href="/oracle-biee-develop.html" rel="bookmark" title="Permalink to Oracle BIEE 经验总结"><time datetime="2016-07-08T09:06:18+08:00" pubdate>Fri 08 July 2016</time> Oracle BIEE 经验总结</a></li>
+
+			<li class="clearfix"><a href="/01_0103.html" rel="bookmark" title="Permalink to 人生追求"><time datetime="2016-06-24T06:59:12+08:00" pubdate>Fri 24 June 2016</time> 人生追求</a></li>
+
+			<li class="clearfix"><a href="/bi_0101.html" rel="bookmark" title="Permalink to BIEE:允许任何用户通过提示设置会话变量的值"><time datetime="2016-06-21T11:15:58+08:00" pubdate>Tue 21 June 2016</time> BIEE:允许任何用户通过提示设置会话变量的值</a></li>
 
 			<li class="clearfix"><a href="/01_0100.html" rel="bookmark" title="Permalink to 跑步:30分钟地狱，一整天的天堂"><time datetime="2016-06-15T19:55:17+08:00" pubdate>Wed 15 June 2016</time> 跑步:30分钟地狱，一整天的天堂</a></li>
 
 			<li class="clearfix"><a href="/01_0099.html" rel="bookmark" title="Permalink to 我慢慢喜欢上跑步了"><time datetime="2016-06-12T13:00:11+08:00" pubdate>Sun 12 June 2016</time> 我慢慢喜欢上跑步了</a></li>
 
-			<li class="clearfix"><a href="/bi_0098.html" rel="bookmark" title="Permalink to 公众号文章自动发布机器人"><time datetime="2016-06-08T21:51:36+08:00" pubdate>Wed 08 June 2016</time> 公众号文章自动发布机器人</a></li>
 
-			<li class="clearfix"><a href="/01_0097.html" rel="bookmark" title="Permalink to 打工其实也是乞讨"><time datetime="2016-06-08T20:08:54+08:00" pubdate>Wed 08 June 2016</time> 打工其实也是乞讨</a></li>
 
 
 

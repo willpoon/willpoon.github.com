@@ -5,42 +5,56 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2016-06-21T22:31:06-00:00</lastmod>
+<lastmod>2016-08-23T22:11:20-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2016-06-21T22:31:06-00:00</lastmod>
+<lastmod>2016-08-23T22:11:20-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2016-06-21T22:31:06-00:00</lastmod>
+<lastmod>2016-08-23T22:11:20-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2016-06-21T22:31:06-00:00</lastmod>
+<lastmod>2016-08-23T22:11:20-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/bi_0101.html</loc>
-<lastmod>2016-06-21T11:15:58+08:00</lastmod>
+<loc>/bi_0105.html</loc>
+<lastmod>2016-08-23T21:54:46+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/oracle-biee-develop.html</loc>
-<lastmod>2016-06-20T10:33:38+08:00</lastmod>
+<lastmod>2016-07-08T09:06:18+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/01_0103.html</loc>
+<lastmod>2016-06-24T06:59:12+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/bi_0101.html</loc>
+<lastmod>2016-06-21T11:15:58+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -578,6 +592,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>/category/0103.html</loc>
+<lastmod>2016-06-24T06:59:12+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>/category/about.html</loc>
 <lastmod>2015-11-09T18:45:00+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -600,14 +621,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/misc.html</loc>
-<lastmod>2016-06-21T11:15:58+08:06</lastmod>
+<lastmod>2016-08-23T21:54:46+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/category/tech.html</loc>
-<lastmod>2016-06-20T10:33:38+08:06</lastmod>
+<lastmod>2016-07-08T09:06:18+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -761,7 +782,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/biee.html</loc>
-<lastmod>2016-06-20T10:33:38+08:06</lastmod>
+<lastmod>2016-07-08T09:06:18+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -803,7 +824,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/bi.html</loc>
-<lastmod>2016-06-20T10:33:38+08:06</lastmod>
+<lastmod>2016-07-08T09:06:18+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -950,7 +971,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/oracle.html</loc>
-<lastmod>2016-06-20T10:33:38+08:06</lastmod>
+<lastmod>2016-07-08T09:06:18+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -978,7 +999,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/author/poon.html</loc>
-<lastmod>2016-06-21T11:15:58+08:06</lastmod>
+<lastmod>2016-08-23T21:54:46+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
