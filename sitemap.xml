@@ -5,42 +5,56 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2016-08-23T22:11:20-00:00</lastmod>
+<lastmod>2016-10-29T08:52:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2016-08-23T22:11:20-00:00</lastmod>
+<lastmod>2016-10-29T08:52:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2016-08-23T22:11:20-00:00</lastmod>
+<lastmod>2016-10-29T08:52:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2016-08-23T22:11:20-00:00</lastmod>
+<lastmod>2016-10-29T08:52:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/bi_0105.html</loc>
-<lastmod>2016-08-23T21:54:46+08:00</lastmod>
+<loc>/big_data.html</loc>
+<lastmod>2016-10-21T12:57:53+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/oracle-biee-develop.html</loc>
-<lastmod>2016-07-08T09:06:18+08:00</lastmod>
+<lastmod>2016-10-05T07:02:05+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/banking-finance.html</loc>
+<lastmod>2016-09-23T17:14:02+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/bi_0105.html</loc>
+<lastmod>2016-08-23T21:54:46+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -473,13 +487,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/big_data.html</loc>
-<lastmod>2016-03-25T20:09:18+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>/work-on-linux.html</loc>
 <lastmod>2016-02-28T10:38:29+08:00</lastmod>
 <changefreq>monthly</changefreq>
@@ -510,13 +517,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/setup-and-config-my-github-blog-with-pelican.html</loc>
 <lastmod>2016-02-04T07:27:52+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/banking-finance.html</loc>
-<lastmod>2016-01-17T09:08:34+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -628,7 +628,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/tech.html</loc>
-<lastmod>2016-07-08T09:06:18+08:06</lastmod>
+<lastmod>2016-10-21T12:57:53+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/disqus.html</loc>
+<lastmod>2016-02-04T07:27:52+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -684,7 +691,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/da-shu-ju.html</loc>
-<lastmod>2016-03-25T20:09:18+08:06</lastmod>
+<lastmod>2016-10-21T12:57:53+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -711,15 +718,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/city.html</loc>
-<lastmod>2016-02-12T17:53:22+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/tag/db2.html</loc>
-<lastmod>2016-02-04T12:35:18+08:06</lastmod>
+<loc>/tag/yin-xing.html</loc>
+<lastmod>2016-09-23T17:14:02+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -747,7 +747,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/hadoop.html</loc>
-<lastmod>2016-03-25T20:09:18+08:06</lastmod>
+<lastmod>2016-10-21T12:57:53+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -782,7 +782,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/biee.html</loc>
-<lastmod>2016-07-08T09:06:18+08:06</lastmod>
+<lastmod>2016-10-05T07:02:05+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -795,8 +795,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/yin-xing.html</loc>
-<lastmod>2016-01-17T09:08:34+08:06</lastmod>
+<loc>/tag/city.html</loc>
+<lastmod>2016-02-12T17:53:22+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -824,7 +824,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/bi.html</loc>
-<lastmod>2016-07-08T09:06:18+08:06</lastmod>
+<lastmod>2016-10-05T07:02:05+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -852,7 +852,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/ye-wu.html</loc>
-<lastmod>2016-01-17T09:08:34+08:06</lastmod>
+<lastmod>2016-09-23T17:14:02+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -865,8 +865,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/disqus.html</loc>
-<lastmod>2016-02-04T07:27:52+08:06</lastmod>
+<loc>/tag/db2.html</loc>
+<lastmod>2016-02-04T12:35:18+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -943,7 +943,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/jin-rong.html</loc>
-<lastmod>2016-01-17T09:08:34+08:06</lastmod>
+<lastmod>2016-09-23T17:14:02+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -971,7 +971,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/oracle.html</loc>
-<lastmod>2016-07-08T09:06:18+08:06</lastmod>
+<lastmod>2016-10-05T07:02:05+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -999,7 +999,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/author/poon.html</loc>
-<lastmod>2016-08-23T21:54:46+08:06</lastmod>
+<lastmod>2016-10-21T12:57:53+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

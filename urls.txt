@@ -2,8 +2,10 @@
 /archives.html
 /tags.html
 /categories.html
-/bi_0101.html
+/bi_0105.html
 /oracle-biee-develop.html
+/01_0103.html
+/bi_0101.html
 /01_0100.html
 /01_0099.html
 /bi_0098.html
@@ -80,6 +82,7 @@
 /employment.html
 /tools-to-complete-jobs.html
 /about.html
+/category/0103.html
 /category/about.html
 /category/job.html
 /category/life.html
