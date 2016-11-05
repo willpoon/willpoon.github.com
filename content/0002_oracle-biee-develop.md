@@ -1081,7 +1081,7 @@ current_date 无法通过语法 , 只能用字段。
 
 https://sranka.wordpress.com  
 
-Sunil S. Ranka's Weblog
+Sunil S. Ranka s Weblog
 Superior Data Analytics is the antidote to Business Failure
 
 # 2016-06-20 10:33
@@ -1113,3 +1113,8 @@ oracle nocycle 和 loop  的关系:
 nocycle , 不递归，不循环。不loop。
 如果不加nocycle ， 就会递归，报错。
 
+# 2016-10-31 16:07
+
+biee 提示设计：
+
+当两个日期提示分别携带两个变量时，提示所作用的列不能完全一样。否则放在仪表盘上的时候，会失效。

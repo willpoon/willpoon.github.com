@@ -2,8 +2,10 @@
 /archives.html
 /tags.html
 /categories.html
-/bi_0105.html
+/big_data.html
 /oracle-biee-develop.html
+/banking-finance.html
+/bi_0105.html
 /01_0103.html
 /bi_0101.html
 /01_0100.html
@@ -65,13 +67,11 @@
 /educate_yourself.html
 /game_is_good_but_consume_time.html
 /blog_template.html
-/big_data.html
 /work-on-linux.html
 /cites_memory.html
 /work-on-Mac.html
 /play-databases.html
 /setup-and-config-my-github-blog-with-pelican.html
-/banking-finance.html
 /programming.html
 /about-design.html
 /think-about-happiness.html
@@ -88,6 +88,7 @@
 /category/life.html
 /category/misc.html
 /category/tech.html
+/tag/disqus.html
 /tag/osx.html
 /tag/pelican.html
 /tag/list.html
@@ -99,8 +100,7 @@
 /tag/mysql.html
 /tag/du-bo.html
 /tag/shi-lu.html
-/tag/city.html
-/tag/db2.html
+/tag/yin-xing.html
 /tag/git.html
 /tag/tools.html
 /tag/travel.html
@@ -111,7 +111,7 @@
 /tag/yi-zhu.html
 /tag/biee.html
 /tag/reading.html
-/tag/yin-xing.html
+/tag/city.html
 /tag/shu-ju-ku.html
 /tag/zhuan-qian.html
 /tag/db.html
@@ -121,7 +121,7 @@
 /tag/mac.html
 /tag/ye-wu.html
 /tag/xie-zi.html
-/tag/disqus.html
+/tag/db2.html
 /tag/tou-ji.html
 /tag/me.html
 /tag/github.html

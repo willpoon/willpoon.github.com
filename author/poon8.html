@@ -30,17 +30,27 @@
 <div role="main" class="content clearfix">
 
 	<article class="wrapper main">
-		<h1><a href="/big_data.html">大数据 best practice</a></h1>
+		<h1><a href="/oracle-biee-develop.html">Oracle BIEE 经验总结</a></h1>
 		
-<p>终于开始写大数据方面的东西了！这可能是关于大数据实践方面写得最详细的，详细里面写得最易懂的！</p>
- <a class="btn" href="/big_data.html">read more →</a>
+<h2 id="biee-instance">biee 多instance 环境 隔离问题 ！</h2>
+<ol>
+<li>rpd 不是我们要的rpd </li>
+</ol>
+<p>通过 NQSConfig.INI 配置！</p>
+<p>Start = TheOneYouWant.rpd</p>
+<ol>
+<li>catalog 不是我用的catalog </li>
+</ol>
+<p>通过 instanceconfig.xml 配置 ！ 修改  表示目录！ </p>
+<p>也就是 <catalogpath> 标签！</catalogpath></p>
+ <a class="btn" href="/oracle-biee-develop.html">read more →</a>
 	</article>
 
 	<div class="wrapper main">		
 		<h3>More posts</h3>
 		<ol class="archive">
 
-			<li class="clearfix"><a href="/oracle-biee-develop.html" rel="bookmark" title="Permalink to Oracle BIEE 经验总结"><time datetime="2016-10-05T07:02:05+08:00" pubdate>Wed 05 October 2016</time> Oracle BIEE 经验总结</a></li>
+			<li class="clearfix"><a href="/big_data.html" rel="bookmark" title="Permalink to 大数据 best practice"><time datetime="2016-10-21T12:57:53+08:00" pubdate>Fri 21 October 2016</time> 大数据 best practice</a></li>
 
 			<li class="clearfix"><a href="/banking-finance.html" rel="bookmark" title="Permalink to 银行金融业务知识学习"><time datetime="2016-09-23T17:14:02+08:00" pubdate>Fri 23 September 2016</time> 银行金融业务知识学习</a></li>
 
