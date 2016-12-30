@@ -1,0 +1,565 @@
+# PDI环境设置
+
+pdi 是 pentaho data integration 的缩写。是一套etl工具。PDI 也叫 Kettle，在2006年 Kettle 加入了开源的 BI 组织 Pentaho, 正式命名为PDI，英文全称为Pentaho Data Integeration。这个工具也正如我们中文翻译为水壶那样，它希望把所有需要的数据放到一个水壶里，然后以流的方式流出来。
+
+pdi安装包是跨平台的。适用于windows、linux、mac环境。
+
+我用的是pdi 6.1 ce 。 ce 是社区版的意思。 要求的jre版本1.7以上。原来用的1.6不能用。报：
+
+> could not create the Java virtual machine.
+
+然后我到oracle官方网站 下载了 jre-7u80-windows-i586.tar.gz ， windows 下 32位免安装的jre 1.7 u80版本。
+
+点击spoon.bat 启动 仍然报：
+
+> could not reserve enough space for object heap pentaho
+
+然后通过SpoonDebug.bat 输出的日志，得到spoon.bat 中的启动参数：
+
+`-Xmx2048m`
+
+把这个参数改小：
+
+`-Xmx1024m`
+
+即可启动。如果你不确定该多大合适，那么你可以每次减少100m，看减少到多少能够启动。
+
+这可能是主机内存不足导致的。
+
+
+spoon启动之后，通过 工具->选项->观感->缺省语言，可以修改 spoon的界面语言。
+
+
+# 实战 : 针对 oracle 创建 链接
+
+> Unable to connect to oracle via Pentaho. 'oracle.jdbc.driver.OracleDriver' could not be found
+
+碰到这个错误，这是由于 pdi安装目录下的lib\ 下缺少 ojdbc 的jar包导致的。我在机器上找了一个jar包，放进lib目录，重启，就好了。
+
+参考：http://stackoverflow.com/questions/4401396/could-not-reserve-enough-space-for-object-heap
+
+
+# 体验：
+
+## 1.
+创建 database connection 之后，进入explore 窗口，要花几分钟加载，当然也取决于目标数据库的体积，如果库中表多信息多，加载就要久一点。
+加载完成后，目标数据库的元数据会被同步到kettle上展示，但是并不是同步过来之后，就能迅速寻找和现实，当展开树状菜单的时候，或者双击，都会有数分钟的卡顿。
+这要求开发人员要比较清楚自己的目标，不能乱点菜单。否则时间都耗费在等待上了。
+
+## 2. 
+涉及读取树状菜单，预览等的操作，都需要比较长时间的等待。可见pdi对内存要求也是比较高的。
+
+下面这些链接，都有关于pdi响应慢或者跑数慢的反馈：
+http://forums.pentaho.com/showthread.php?189833-PDI-is-Very-Slow-when-trying-to-acces-the-repository
+http://forums.pentaho.com/showthread.php?159315-Slow-response-time-with-Kettle-5-0-1-and-MYSQL-repository-database
+http://wiki.pentaho.com/display/EAI/01.+Installing+Kettle
+
+##3.
+pdi组件的命名很有意思，spoon,kitchen , kettle , pan... 都是厨房相关的。看来设计者是个美食大家。spoon是汤勺的意思，我理解为 尝鲜。因为汤勺就是用来尝鲜味的嘛！而spoon是pdi的可视化工具，能够承重 pdi 中 所有的 ‘鲜’ ， 故称之为spoon，实在是恰当不过了。 
+
+# 问题
+
+如何调度pdi作业？
+
+通过spoon配置生成了以ktr为后缀的xml文件。然后通过 kitchen 调用 ktr文件，视为一个作业。
+
+(kitchen 封装了 spoon， 负责解释、运行 通过spoon配置的ktr作业。也就是说，所有烹饪 工作，都在kitchen中进行。)
+
+至于作业调度，可以用crontab，at，control-m等工具。
+
+可不可以通过后台的方式配置任务？
+
+
+## ktr 和 kjb 的区别
+
+http://www.cnblogs.com/wxjnew/p/3620792.html
+
+Spoon 是一个图形用户界面，它允许你运行转换或者任务，其中转换是用Pan 工具来运行，任务是用Kitchen 来运行。Pan 是一个数据转换引擎，它可以执行很多功能，例如：从不同的数据源读取、操作和写入数据。Kitchen 是一个可以运行利用XML 或数据资源库描述
+的任务。
+
+https://yq.aliyun.com/articles/38086?spm=5176.100239.blogcont38089.7.XyeV8L
+
+
+
+## xml atrribute 和 element 的区别
+
+atrribute 是数据条目（节点）属性。
+element 是节点。
+
+## data Movement : round-Robin 是轮流写入，将会导致数据缺失！ copy data to next STEP 才是一条不漏地写入。
+
+另外，xml 到 db 的处理比较缓慢。
+
+
+
+## 怎么使用 insert/update ?
+
+
+ VBoxHeadless --startvm "SampleAppv511pClone"
+Oracle VM VirtualBox Headless Interface 5.0.24
+(C) 2008-2016 Oracle Corporation
+All rights reserved.
+
+
+
+poon@WMBP:/tmp$  ssh root@127.0.0.1 -p 2511
+root@127.0.0.1's password: 
+Permission denied, please try again.
+root@127.0.0.1's password: 
+[root@demo ~]# 
+[root
+
+
+
+
+[[user@]host1:]file1 ...
+         [[user@]host2:]file2
+
+
+
+
+poon@WMBP:~/VirtualBox VMs$ VBoxHeadless --startvm "SampleAppv511pClone" &
+[1] 3959
+poon@WMBP:~/VirtualBox VMs$ Oracle VM VirtualBox Headless Interface 5.0.24
+(C) 2008-2016 Oracle Corporation
+All rights reserved.
+
+
+
+SampleApp_V107_frDiskToMac
+
+
+VBoxHeadless --startvm "SampleApp_V107_frDiskToMac" &
+
+
+
+poon@WMBP:/tmp$ sftp -P 4455 oracle@127.0.0.1
+oracle@127.0.0.1's password: 
+Received message too long 538976288
+
+
+poon@WMBP:~/Downloads$ scp -P 4455 jobscheduler_linux-x64.1.10.6.tar.gz  oracle@127.0.0.1:/tmp/
+oracle@127.0.0.1's password: 
+          inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0
+
+
+
+
+poon@WMBP:~$ cd Downloads/
+poon@WMBP:~/Downloads$ scp -P 4455 jobscheduler_linux-x64.1.10.6.tar.gz  root@127.0.0.1:/tmp/
+jobscheduler_linux-x64.1.10.6.tar.gz                                                                                                               100%   93MB  30.9MB/s   00:03    
+poon@WMBP:~/Downloads$ 
+poon@WMBP:~/Downloads$ 
+poon@WMBP:~/Downloads$ 
+poon@WMBP:~/Downloads$ 
+poon@WMBP:~/Downloads$ scp -P 4455 jobscheduler_linux-x64.1.10.6.tar.gz  oracle@127.0.0.1:/tmp/
+          inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0
+poon@WMBP:~/Downloads$ scp -P 4455 jobscheduler_linux-x64.1.10.6.tar.gz  oracle@127.0.0.1:/tmp/
+          inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0
+poon@WMBP:~/Downloads$ scp -P 4455 jobscheduler_linux-x64.1.10.6.tar.gz  oracle@127.0.0.1:/tmp/
+          inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0
+poon@WMBP:~/Downloads$ 
+
+
+
+
+
+poon@WMBP:~/Downloads$ scp -P 4455 jobscheduler_* davfs2@127.0.0.1:/tmp/
+id: cannot find name for group ID 501
+scp: /tmp//jobscheduler_linux-x64.1.10.6.tar.gz: Permission denied
+jobscheduler_universal_agent_batch_installer: not a regular file
+jobscheduler_universal_agent_batch_installer 2: not a regular file
+jobscheduler_universal_agent_batch_installer.tar.gz                                                                                                100% 6637     6.5KB/s   00:00    
+jobscheduler_unix_universal_agent.1.10.6.tar.gz                                                                                                    100%   67MB  22.2MB/s   00:03    
+poon@
+
+          
+VBoxHeadless --startvm "SampleAppv511pClone"
+
+
+
+
+# jobscheduler 需要jre1.7 以上。
+
+
+export JAVA_HOME=/home/oracle/jre1.7.0_80
+
+export PATH=$PATH:JAVA_HOME/bin
+
+
+
+No X11 DISPLAY variable was set, but this program performed an operation which requires it.
+
+
+su - root -c "vi abc"
+
+export DISPLAY=:0.0
+
+
+
+http://icooke.blog.51cto.com/4123148/802353
+
+
+
+
+Xlib: connection to ":0.0" refused by server
+ 
+Xlib:  No protocol specified
+
+[root@localhost ~]# xhost local:oracle non-network local connections being added to access control list 
+
+
+xhost:  unable to open display "127.0.0.1:0.0"
+
+
+
+
+
+cat /tmp/log.txt 
+ ./setup.sh -u
+/home/oracle/jre1.7.0_80/bin/java -Dizpack.mode=privileged -jar "./jobscheduler_linux-x86.1.10.6.jar" 
+The application that you are trying to install requires a 1.8 version or later of the Java platform.
+You are running a 1.7.0_80 version of the Java platform.
+Please upgrade to a newer version.
+[oracle@demo jobscheduler.1.10.6]$ 
+
+
+
+db:scheduler
+user: scheduler
+pass: 123456
+
+
+
+select owner,table_name from all_tables where table_name like '%DATABASES%';
+
+
+
+Z-JAVA-105  Java exception java.lang.UnsupportedClassVersionError: sos/spooler/Idispatch : Unsupported major.minor version 52.0, method=FindClass [sos/spooler/Idispatch]
+
+
+Found out the issue. The JAVA_HOME environment variable was incorrect. Corrected it and it started successfully.
+
+
+
+
+
+[oracle@demo bin]$ export JAVA_HOME="/home/oracle/jre1.8.0_112"
+
+
+[oracle@demo bin]$ ./jobscheduler.sh  start
+Starting JobScheduler...
+
+[oracle@demo bin]$ ps -ef|grep -i jobscheduler
+oracle   17758     1 48 05:16 ?        00:00:05 /opt/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444/bin/scheduler -service -id=demo.us.oracle.com_4444 -sos.ini=/home/oracle/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444/config/sos.ini -ini=/home/oracle/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444/config/factory.ini -config=/home/oracle/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444/config/scheduler.xml -param=/home/oracle/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444 -cd=/home/oracle/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444 -include-path=/home/oracle/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444 -pid-file=/home/oracle/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444/logs/scheduler.pid
+oracle   17797 10829  0 05:17 pts/3    00:00:00 grep -i jobscheduler
+[oracle@demo bin]$ 
+
+
+
+
+https://sourceforge.net/p/jobscheduler/bugs/68/
+
+
+
+# x11 配置
+1.
+ssh 到nat环境的虚拟机的时候，使用 －X参数。
+2. 宿主机host 使用 xquartz 来捕捉。
+
+
+
+如果没有x11 server，需要先安装。
+如果没有:
+
+[poon@localhost ~]$ sudo yum install xorg-x11-server-utils.x86_64
+
+
+[poon@localhost ~]$ sudo yum install xorg-x11-apps
+
+
+[poon@localhost ~]$  sudo yum install xauth
+
+
+ VBoxManage showvminfo SampleApp_V107_frDiskToMac --machinereadable | awk -F '[",]' '/^Forwarding/ { printf ("Rule %s host port %d forwards to guest port %d\n", $2, $5, $7); }'
+
+
+poon@WMBP:~$ VBoxManage showvminfo SampleApp_V107_frDiskToMac
+
+
+
+VBoxManage modifyvm 虚拟机名称"n01.kylin.hdp" --natpf1 "备注,协议[tcp,udp],[hostip],host_port[2223],guest_ip[10.0.2.11,22]"
+VBoxManage modifyvm "n01.kylin.hdp" --natpf1 "guestssh,tcp,,2223,10.0.2.11,22"
+
+VBoxManage modifyvm "SampleApp_V107_frDiskToMac" --natpf1 "guestssh,tcp,,5444,10.0.2.15,4444"
+
+
+[poon@localhost ~]$ 
+
+VBoxManage showvminfo SampleAppv511pClone --machinereadable | awk -F '[",]' '/^Forwarding/ { printf ("Rule %s host port %d forwards to guest port %d\n", $2, $5, $7); }'
+
+
+VBoxManage modifyvm "SampleAppv511pClone" --natpf1 "rule5,tcp,10.241.186.207,2225,,22"
+
+
+VBoxHeadless -s SampleAppv511pClone
+
+
+poon@WMBP:~$ VBoxManage modifyvm "SampleApp_V107_frDiskToMac" --natpf1 "jobscheduler4444,tcp,,4000,10.0.2.15,4444"
+
+
+VBoxManage modifyvm "SampleApp_V107_frDiskToMac" --natpf1 "jobscheduler9994,tcp,,9994,,4444"
+
+
+
+
+
+
+export JRE_HOME=/home/poon/jre1.8.0_112/
+export JAVA_HOME=/home/poon/jre1.8.0_112/
+
+export PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/poon/.local/bin:/home/poon/bin:/home/poon/.local/bin:/home/poon/bin:/home/poon/jre1.8.0_112/bin
+
+
+
+
+#!/bin/sh
+echo "$SCHEDULER_JOB_NAME is running"
+echo "Current Timestamp: `date`"
+exit $?
+
+
+
+https://kb.sos-berlin.com/display/PKB/Error+Codes+-+Messages
+
+Order Jobs (page 10) should be configured to run with the Stop On Error parameter deactivated, so that further Orders can be processed despite the unsuccessful run.
+
+
+
+https://kb.sos-berlin.com/display/PKB/How+to+dynamically+assign+JobScheduler+Agents+to+a+job
+
+
+
+http://www.sos-berlin.com/jobscheduler-universal-agent
+
+# 无agent调度。
+https://kb.sos-berlin.com/display/PKB/Agentless+Scheduling
+
+
+
+
+poon@WMBP:~/Downloads$  ssh -X oracle@127.0.0.1 -p 4455
+
+
+
+
+
+2016-12-12 10:16:24.370+0100 [ERROR]  Z-REMOTE-118  Separate process pid=0: No response from new process within 60s [zschimmer::com::object_server::Connection::Connect_operation::async_check_error_]
+
+
+
+
+scheduler.remote_scheduler
+
+demo.us.oracle.com:4445
+
+
+
+.13 07:51:43.538    10  4535.B7EFC6D0 [ERROR SCHEDULER-224  Supervisor has closed the connection [10.0.2.15/demo.us.oracle.com:4445]]
+.13 07:51:43.538     0  4535.B7EFC6D0 zschimmer::Async_operation::async_continue ERROR SCHEDULER-224  Supervisor has closed the connection [10.0.2.15/demo.us.oracle.com:4445], Xml_client_connection(10.0.2.15/demo.us.oracle.com:4445 waiting, sending "<?xml version="1.0" encoding="ISO-8859-1"?><remote_scheduler.start_remote_task tcp_port="59999"/>")
+.13 07:51:43.538     0  4535.B7EFC6D0 [ERROR SCHEDULER-224  Supervisor has closed the connection [10.0.2.15/demo.us.oracle.com:4445]]
+.13 07:51:43.538     0  4535.B7EFC6D0 zschimmer::Async_operation::async_continue ERROR SCHEDULER-224  Supervisor has closed the connection [10.0.2.15/demo.us.oracle.com:4445], Async_remote_operation starting Tcp_remote_api_process 10.0.2.15/demo.us.oracle.com
+.1
+
+
+
+
+
+
+
+.13 08:04:14.166     2  4535.B7EFC6D0 gethostbyname("demo.us.oracle.com")
+.13 08:04:14.166     0  4535.B7EFC6D0 gethostbyname("demo.us.oracle.com") ==> 10.0.2.15 demo 
+.13 08:04:14.171     5  4535.B7EFC6D0 {socket.connect} connect(239,10.0.2.15/demo.us.oracle.com:4445) ...
+.13 08:04:14.175     4  4535.B7EFC6D0 {scheduler} Execute <commands><subsystem.show what="statistics"/><show_state subsystems="lock schedule process_class folder" what="folders cluster remote_schedulers schedules"/></commands>
+.13 08:04:14.181     6  4535.B7EFC6D0 {socket.connect} connect(239,10.0.2.15:4445) ...
+.13 08:04:14.181     0  4535.B7EFC6D0 {socket.connect} connect(239,10.0.2.15:4445): connected!
+.13 08:04:14.182     1  4535.B7EFC6D0 {scheduler} sos::scheduler::Xml_client_connection::async_continue_, waiting for XML-response
+.13 08:04:14.193    11  4535.B7EFC6D0 [ERROR SCHEDULER-224  Supervisor has closed the connection [10.0.2.15/demo.us.oracle.com:4445]]
+.13 08:04:14.193     0  4535.B7EFC6D0 zschimmer::Async_operation::async_continue ERROR SCHEDULER-224  Supervisor has closed the connection [10.0.2.15/demo.us.oracle.com:4445], Xml_client_connection(10.0.2.15/demo.us.oracle.com:4445 waiting, sending "<?xml version="1.0" encoding="ISO-8859-1"?><remote_scheduler.start_remote_task tcp_port="59999"/>")
+.13 08:04:14.193     0  4535.B7EFC6D0 [ERROR SCHEDULER-224  Supervisor has closed the connection [10.0.2.15/demo.us.oracle.com:4445]]
+.13 08:04:14.193     0  4535.B7EFC6D0 zschimmer::Async_operation::async_continue ERROR SCHEDULER-224  Supervisor has closed the connection [10.0.2.15/demo.us.oracle.com:4445], Async_remote_operation starting Tcp_remote_api_process 10.0.2.15/demo.us.oracle.com
+.13 08:04:14.229    36  4535.B7EFC6D0 {scheduler} Execute <commands><show_state max_task_history="0" path="/" subsystems="order folder" what="folders no_subfolders job_chain_orders order_source_files blacklist job_chain_jobs"/><show_state max_task_history="0" path="/quick" subsystems="order folder" what="folders no_subfolders job_chain_orders order_source_files blacklist job_chain_jobs"/><show_state max_task_history="0" path="/sos/operations/criticalpath" subsystems="order folder" what="folders no_subfolders job_chain_orders order_source_files blacklist job_chain_jobs"/></commands>
+.13 08:04:14.261    32  4535.B7EFC6D0 {scheduler} Execute <show_job_chain job_chain="/quick/Job_Chain_1" max_order_history="50" max_orders="30" what="job_chain_orders job_chain_jobs order_source_files blacklist"/>
+.13 08:04:14.
+
+
+.12 10:15:24.820     0  4535.B7EFC6D0 Unsupported HTTP method
+
+
+.13 07:15:27.208     0  4535.B7EFC6D0 Server: spray-can/1.3.4
+.13 07:15:27.208     0  4535.B7EFC6D0 Date: Tue, 13 Dec 2016 06:15:27 GMT
+.13 07:15:27.208     0  4535.B7EFC6D0 Content-Type: text/plain; charset=UTF-8
+.13 07:15:27.208     0  4535.B7EFC6D0 Connection: close
+.13 07:15:27.208     0  4535.B7EFC6D0 Content-Length: 23
+.13 07:15:27.208     0  4535.B7EFC6D0
+.13 07:15:27.208     0  4535.B7EFC6D0 Unsupported HTTP method
+.13 07:15:27.209     1  4535.B7EFC6D0 [xc.insert 1, "org.xml.sax.SAXParseException; lineNumber: 1; columnNumber: 1; Content is not allowed in prolog."]
+.13 07:15:27.209     0  4535.B7EFC6D0 [xc.insert 2, "CallObjectMethodA"]
+.13 07:15:27.209     0  4535.B7EFC6D0 zschimmer::Async_operation::async_continue ERROR Z-JAVA-105  Java exception org.xml.sax.SAXParseException; lineNumber: 1; columnNumber: 1; Content is not allowed in prolog., method=CallObjectMethodA [], Async_remote_operation starting Tcp_remote_api_process 10.0.2.15/demo.us.oracle.com
+.13 07:15:27.212     3  4535.B7EFC6D0 [ERROR SCHEDULER-224  Supervisor has closed the connection [10.0.2.15/demo.us.oracle.com:4445]]
+.13 07:15:27.212     0  4535.B7EFC6D0 zschimmer::Async_operation::async_continue ERROR SCHEDULER-224  Supervisor has closed the connection [10.0.2.15/demo.us.oracle.com:4445], Xml_client_connection(10.0.2.15/demo.us.oracle.com:4445 connected)
+.13 07:15:27.212     0  4535.B7EFC6D0 [ERROR SCHEDULER-224  Supervisor has closed the connection [10.0.2.15/demo.us.oracle.com:4445]]
+.13 07:15:27.212     0  4535.B7EFC6D0 zschimmer::Async_operation::async_continue ERROR SCHEDULER-224  Supervisor has closed the connection [10.0.2.15/demo.us.oracle.com:4445], Async_remote_operation starting Tcp_remote_api_process 10.0.2.15/demo.us.oracle.com,ERROR=Z-JAVA-105  Java exception org.xml.sax.SAXParseException; lineNumber: 1; columnNumber: 1; Content is not allowed in prolog., method=CallObjectMethodA []
+.13 07:15:27.241    29  4535.B7EFC6D0 {scheduler} sos::schedu
+
+
+
+
+
+
+
+
+<job title="Launch commands or executable files by SSH">
+  <description>
+    <include file="jobs/JobSchedulerSSHJob.xml"/>
+  </description>
+  <params>
+    <param name="host" value="demo.us.oracle.com"/>
+    <param name="port" value="22"/>
+    <param name="user" value="oracle"/>
+    <param name="password" value="oracle"/>
+    <param name="auth_method" value="password"/>
+    <param name="command_script_file" value="/tmp/test_sleep_90s.sh"/>
+    <param name="runWithWatchdog" value="true"/>
+    <param name="cleanupJobchain" value="kill_jobs/remote_cleanup_test"/>
+    <param name="ssh_job_kill_pid_command" value="kill -9 \${pid}"/>
+    <param name="ssh_job_terminate_pid_command" value="kill -15 \${pid}"/>
+    <param name="ssh_job_get_pid_command" value="echo $$"/>
+    <param name="ssh_job_get_active_processes_command" value="/bin/ps -ef | grep \${pid} | grep \${user} | grep -v grep"/>
+  </params>
+  <script java_class="sos.scheduler.job.SOSSSHJob2JSAdapter" language="java"/>
+  <run_time/>
+</job>
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<job title="Launch remote commands or executable files by SSH" stop_on_error="no">
+    <description >
+        <include  file="jobs/JobSchedulerSSHJob.xml"/>
+    </description>
+    <params >
+        <param  name="host" value="demo.us.oracle.com"/>
+        <param  name="user" value="oracle"/>
+        <param  name="password" value="oracle"/>
+        <param  name="auth_method" value="password"/>
+        <param  name="command" value="printenv"/>
+    </params>
+    <script  language="java" java_class="sos.scheduler.job.SOSSSHJob2JSAdapter"/>
+    <run_time />
+</job>
+
+
+
+
+
+
+2016-12-14 04:34:38.126+0100 [ERROR]  ERROR [main] (SOSSSHJobJSch.java:164) - Error occured during connection/authentication: (poon@10.0.2.2:22) com.jcraft.jsch.JSchException - Auth fail (Auth fail) ((poon@10.0.2.2:22) com.jcraft.jsch.JSchException - Auth fail (Auth fail))
+
+
+
+
+
+
+
+# jobscheduler 可以通过ssh 调用远程作业，linux 测试ok，但mac不行。
+
+https://kb.sos-berlin.com/display/PKB/Example+for+the+JobScheduler+SSH+Job
+
+
+
+
+
+
+2016-12-16 04:02:24.847+0100 [info]   SCHEDULER-726  Task runs on this JobScheduler 'http://demo.us.oracle.com:4444'
+2016-12-16 04:02:24.847+0100 [info]   SCHEDULER-918  state=starting (at=2016-12-16 04:02:24.818+0100)
+2016-12-16 04:02:25.839+0100 [info]    INFO [main] (JobSchedulerJobAdapter.java:85) - 1.10.6 (2016-11-04 13:10, revision 4de563e0ff1456b4d455699828810fec98db1cb0) Copyright 2003-2016 SOS GmbH Berlin
+2016-12-16 04:02:25.989+0100 [info]    INFO [main] (SOSMsg.java:108) - JSJ_I_0010: JobSchedulerJobAdapter::getNodeName: Current Job is 'quick/job_1'.
+2016-12-16 04:02:26.156+0100 [info]    INFO [main] (SOSVfsSFtpJCraft.java:674) - SOSVfs-D-0101: Try to connect to host '192.168.99.100' at Port '22'.
+2016-12-16 04:02:26.793+0100 [info]    INFO [main] (SOSVfsSFtpJCraft.java:645) - SOSVfs_D_133: user 'poon' logged in.
+2016-12-16 04:02:27.806+0100 [info]    INFO [main] (SOSVfsSFtpJCraft.java:439) - %ComSpec%
+2016-12-16 04:02:27.806+0100 [info]   
+2016-12-16 04:02:27.808+0100 [info]    INFO [main] (SOSVfsTransferBaseClass.java:699) - (SOSVfsSFtpJCraft::executeCommand) (poon@192.168.99.100:22) SOSVfs_I_192: ...server reply [ExecuteCommand] 'OK'
+2016-12-16 04:02:28.830+0100 [info]    INFO [main] (SOSVfsTransferBaseClass.java:699) - (SOSVfsSFtpJCraft::executeCommand) (poon@192.168.99.100:22) SOSVfs_I_192: ...server reply [ExecuteCommand] 'com.sos.JSHelper.Exceptions.JobSchedulerException: SOSVfs_E_164: SOS-SSH-E-150: remote command terminated with exit code: 2 (sh: export: line 1: Welt >> $SCHEDULER_RETURN_VALUES: bad variable name
+2016-12-16 04:02:28.830+0100 [info]   )'
+2016-12-16 04:02:28.834+0100 [ERROR]  ERROR [main] (SOSSSHJobJSch.java:142) - SOSVfs_E_164: SOS-SSH-E-150: remote command terminated with exit code: 2 (sh: export: line 1: Welt >> $SCHEDULER_RETURN_VALUES: bad variable name
+2016-12-16 04:02:28.834+0100 [ERROR]  )
+2016-12-16 04:02:28.834+0100 [ERROR]  com.sos.VirtualFileSystem.SFTP.SOSVfsSFtpJCraft.executeCommand(SOSVfsSFtpJCraft.java:460)
+2016-12-16 04:02:28.834+0100 [ERROR]  sos.net.ssh.SOSSSHJobJSch.execute(SOSSSHJobJSch.java:126)
+2016-12-16 04:02:28.834+0100 [ERROR]  sos.scheduler.job.SOSSSHJob2JSAdapter.doProcessing(SOSSSHJob2JSAdapter.java:108)
+2016-12-16 04:02:28.834+0100 [ERROR]  sos.scheduler.job.SOSSSHJob2JSAdapter.spooler_process(SOSSSHJob2JSAdapter.java:48)
+2016-12-16 04:02:28.834+0100 [ERROR]  
+2016-12-16 04:02:28.836+0100 [ERROR]  ERROR [main] (SOSSSHJobJSch.java:164) - Exception raised: com.sos.JSHelper.Exceptions.JobSchedulerException: SOSVfs_E_164: SOS-SSH-E-150: remote command terminated with exit code: 2 (sh: export: line 1: Welt >> $SCHEDULER_RETURN_VALUES: bad variable name
+2016-12-16 04:02:28.836+0100 [ERROR]  ) (SOSVfs_E_164: SOS-SSH-E-150: remote command terminated with exit code: 2 (sh: export: line 1: Welt >> $SCHEDULER_RETURN_VALUES: bad variable name
+2016-12-16 04:02:28.836+0100 [ERROR]  ))
+2016-12-16 04:02:28.836+0100 [ERROR]  sos.net.ssh.SOSSSHJobJSch.execute(SOSSSHJobJSch.java:143)
+2016-12-16 04:02:28.836+0100 [ERROR]  sos.scheduler.job.SOSSSHJob2JSAdapter.doProcessing(SOSSSHJob2JSAdapter.java:108)
+2016-12-16 04:02:28.836+0100 [ERROR]  sos.scheduler.job.SOSSSHJob2JSAdapter.spooler_process(SOSSSHJob2JSAdapter.java:48)
+2016-12-16 04:02:28.836+0100 [ERROR]  
+2016-12-16 04:02:28.839+0100 [ERROR]  ERROR [main] (SOSSSHJobJSch.java:165) - SOS-SSH-E-120: error occurred processing ssh command: "echo ADD='Hallo Welt' >> $SCHEDULER_RETURN_VALUES"
+2016-12-16 04:02:28.839+0100 [ERROR]  SOS-SSH-E-120: full command String: "export SCHEDULER_MASTER_JAVA_HOME='/home/oracle/jre1.8.0_112';export SCHEDULER_MASTER_HOSTNAME='demo.us.oracle.com';export SCHEDULER_MASTER_USER='oracle';export SCHEDULER_MASTER_LD_LIBRARY_PATH='/opt/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444/lib:/usr/local/lib:/home/oracle/jre1.8.0_112/lib/i386:/home/oracle/jre1.8.0_112/lib/i386/client:/home/oracle/jre1.8.0_112/jre/lib/i386:/home/oracle/jre1.8.0_112/jre/lib/i386/client:/home/oracle/app/oracle/product/TimesTen/tt1121/lib:/home/oracle/app/oracle/product/TimesTen/tt1121/ttoracle_home/instantclient_11_1:/home/oracle/app/oracle/product/11.2.0/dbhome_2/lib';export SCHEDULER_MASTER_SCHEDULER_JOB_PATH='/quick/job_1';export SCHEDULER_MASTER_SHELL='/bin/bash';export SCHEDULER_MASTER_SHLVL='3';export SCHEDULER_MASTER_ORACLE_SID='orcl';export SCHEDULER_PARAM_AUTH_METHOD='password';export SCHEDULER_MASTER_ORACLE_HOME='/home/oracle/app/oracle/product/11.2.0/dbhome_2';export SCHEDULER_MASTER_SCHEDULER_HOME='/opt/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444';export SCHEDULER_MASTER_SSH_CONNECTION='10.0.2.2 49857 10.0.2.15 22';export SCHEDULER_MASTER_SCHEDULER_USER='oracle';export SCHEDULER_PARAM_EXIT_SIGNAL='';export SCHEDULER_MASTER_DISPLAY='localhost:10.0';export SCHEDULER_MASTER_HOME='/home/oracle';export SCHEDULER_MASTER_SCHEDULER_CONFIGURATION_DIRECTORY='/home/oracle/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444/config/live';export SCHEDULER_PARAM_USER='poon';export SCHEDULER_MASTER_SSH_TTY='/dev/pts/2';export SCHEDULER_PARAM_COMMAND='echo ADD='Hallo Welt' >> $SCHEDULER_RETURN_VALUES';export SCHEDULER_MASTER_XFILESEARCHPATH='/usr/dt/app-defaults/%L/Dt';export SCHEDULER_MASTER_G_BROKEN_FILENAMES='1';export SCHEDULER_MASTER_MAIL='/var/spool/mail/oracle';export SCHEDULER_MASTER_PWD='/home/oracle/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444/scheduler_home/bin';export SCHEDULER_MASTER_LESSOPEN='|/usr/bin/lesspipe.sh %s';export SCHEDULER_MASTER_SSH_ASKPASS='/usr/libexec/openssh/gnome-ssh-askpass';export SCHEDULER_MASTER_SCHEDULER_JOB_TITLE='Launch remote commands or executable files by SSH';export SCHEDULER_MASTER_SCHEDULER_DIRECTORY='/home/oracle/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444/';export SCHEDULER_MASTER_TT_HOME='/home/oracle/app/oracle/product/TimesTen/tt1121';export SCHEDULER_MASTER_LS_COLORS='';export SCHEDULER_MASTER_TNS_ADMIN='/home/oracle/app/oracle/product/11.2.0/dbhome_2/network/admin';export SCHEDULER_PARAM_EXIT_CODE='';export SCHEDULER_MASTER_LOGNAME='oracle';export SCHEDULER_MASTER_SCHEDULER_TCP_PORT='4444';export SCHEDULER_MASTER_SCHEDULER_TASK_ID='273';export SCHEDULER_MASTER_NLSPATH='/usr/dt/lib/nls/msg/%L/%N.cat';export SCHEDULER_MASTER__='/opt/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444/bin/scheduler';export SCHEDULER_MASTER_PATH='/home/oracle/app/oracle/product/TimesTen/tt1121/bin:/home/oracle/app/oracle/product/TimesTen/tt1121/quickstart/sample_code/oci:/home/oracle/app/oracle/product/TimesTen/tt1121/quickstart/sample_code/odbc:/home/oracle/app/oracle/product/TimesTen/tt1121/quickstart/sample_code/odbc/xla:/home/oracle/app/oracle/product/TimesTen/tt1121/quickstart/sample_code/jdbc:/home/oracle/app/oracle/product/TimesTen/tt1121/quickstart/sample_code/odbc_drivermgr:/home/oracle/app/oracle/product/TimesTen/tt1121/quickstart/sample_code/proc:/home/oracle/app/oracle/product/TimesTen/tt1121/quickstart/sample_code/ttclasses:/home/oracle/app/oracle/product/TimesTen/tt1121/quickstart/sample_code/ttclasses/xla:/home/oracle/app/oracle/product/TimesTen/tt1121/ttoracle_home/instantclient_11_1:/home/oracle/app/oracle/product/TimesTen/tt1121/ttoracle_home/instantclient_11_1/sdk:/home/oracle/app/oracle/product/TimesTen/tt1121/3rdparty/ant/bin:/usr/java/latest/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/oracle/app/oracle/product/11.2.0/dbhome_2/bin:/home/oracle/bin:/bishiphome/Middleware/Oracle_BI1/OPatch';export SCHEDULER_MASTER_HISTSIZE='1000';export SCHEDULER_MASTER_TT_SCRIPTS='/home/oracle/otndd_labs/imdb_cache';export SCHEDULER_MASTER_SSH_CLIENT='10.0.2.2 49857 22';export SCHEDULER_MASTER_CLASSPATH='/home/oracle/app/oracle/product/TimesTen/tt1121/lib/ttjdbc6.jar:/home/oracle/app/oracle/product/TimesTen/tt1121/lib/orai18n.jar:/home/oracle/app/oracle/product/TimesTen/tt1121/lib/timestenjmsxla.jar:/home/oracle/app/oracle/product/TimesTen/tt1121/3rdparty/jms1.1/lib/jms.jar:.:/home/oracle/app/oracle/product/11.2.0/dbhome_2/ucp/lib/ucp.jar:/home/oracle/app/oracle/product/11.2.0/dbhome_2/jdbc/lib/ojdbc6.jar';export SCHEDULER_MASTER_EDITOR='vi';export SCHEDULER_MASTER_SCHEDULER_UDP_PORT='4444';export SCHEDULER_MASTER_SCHEDULER_JOB_NAME='job_1';export SCHEDULER_MASTER_SCHEDULER_HOST='demo.us.oracle.com';export SCHEDULER_MASTER_TERM='xterm-256color';export SCHEDULER_MASTER_SCHEDULER_DATA='/home/oracle/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444';export SCHEDULER_MASTER_LANG='en_US.UTF-8';export SCHEDULER_MASTER_SCHEDULER_JOB_FOLDER='/quick';export SCHEDULER_MASTER___SCHEDULER_SOCKET='243';export SCHEDULER_MASTER_SOS_INI='/home/oracle/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444/config/sos.ini';export SCHEDULER_MASTER_INPUTRC='/etc/inputrc';export SCHEDULER_MASTER_ANT_HOME='/home/oracle/app/oracle/product/TimesTen/tt1121/3rdparty/ant';export SCHEDULER_MASTER_TT_RESET='/home/oracle/otndd_labs/imdb_cache/.reset';export SCHEDULER_MASTER_SCHEDULER_ID='demo.us.oracle.com_4444';export SCHEDULER_PARAM_HOST='192.168.99.100';echo $$;export SCHEDULER_RETURN_VALUES=sos-ssh-return-values-808f9ae0-5915-48ee-aa94-0979e9f87e89.txt;echo ADD='Hallo Welt' >> $SCHEDULER_RETURN_VALUES"
+2016-12-16 04:02:28.842+0100 [info]    INFO [main] (SOSVfsTransferBaseClass.java:699) - (SOSVfsSFtpJCraft::disconnect) disconnect OK
+2016-12-16 04:02:28.845+0100 [ERROR]  FATAL [main] (SOSSSHJob2JSAdapter.java:50) - SOS-SSH-E-120: error occurred processing ssh command: "echo ADD='Hallo Welt' >> $SCHEDULER_RETURN_VALUES"
+2016-12-16 04:02:28.845+0100 [ERROR]  SOS-SSH-E-120: full command String: "export SCHEDULER_MASTER_JAVA_HOME='/home/oracle/jre1.8.0_112';export SCHEDULER_MASTER_HOSTNAME='demo.us.oracle.com';export SCHEDULER_MASTER_USER='oracle';export SCHEDULER_MASTER_LD_LIBRARY_PATH='/opt/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444/lib:/usr/local/lib:/home/oracle/jre1.8.0_112/lib/i386:/home/oracle/jre1.8.0_112/lib/i386/client:/home/oracle/jre1.8.0_112/jre/lib/i386:/home/oracle/jre1.8.0_112/jre/lib/i386/client:/home/oracle/app/oracle/product/TimesTen/tt1121/lib:/home/oracle/app/oracle/product/TimesTen/tt1121/ttoracle_home/instantclient_11_1:/home/oracle/app/oracle/product/11.2.0/dbhome_2/lib';export SCHEDULER_MASTER_SCHEDULER_JOB_PATH='/quick/job_1';export SCHEDULER_MASTER_SHELL='/bin/bash';export SCHEDULER_MASTER_SHLVL='3';export SCHEDULER_MASTER_ORACLE_SID='orcl';export SCHEDULER_PARAM_AUTH_METHOD='password';export SCHEDULER_MASTER_ORACLE_HOME='/home/oracle/app/oracle/product/11.2.0/dbhome_2';export SCHEDULER_MASTER_SCHEDULER_HOME='/opt/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444';export SCHEDULER_MASTER_SSH_CONNECTION='10.0.2.2 49857 10.0.2.15 22';export SCHEDULER_MASTER_SCHEDULER_USER='oracle';export SCHEDULER_PARAM_EXIT_SIGNAL='';export SCHEDULER_MASTER_DISPLAY='localhost:10.0';export SCHEDULER_MASTER_HOME='/home/oracle';export SCHEDULER_MASTER_SCHEDULER_CONFIGURATION_DIRECTORY='/home/oracle/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444/config/live';export SCHEDULER_PARAM_USER='poon';export SCHEDULER_MASTER_SSH_TTY='/dev/pts/2';export SCHEDULER_PARAM_COMMAND='echo ADD='Hallo Welt' >> $SCHEDULER_RETURN_VALUES';export SCHEDULER_MASTER_XFILESEARCHPATH='/usr/dt/app-defaults/%L/Dt';export SCHEDULER_MASTER_G_BROKEN_FILENAMES='1';export SCHEDULER_MASTER_MAIL='/var/spool/mail/oracle';export SCHEDULER_MASTER_PWD='/home/oracle/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444/scheduler_home/bin';export SCHEDULER_MASTER_LESSOPEN='|/usr/bin/lesspipe.sh %s';export SCHEDULER_MASTER_SSH_ASKPASS='/usr/libexec/openssh/gnome-ssh-askpass';export SCHEDULER_MASTER_SCHEDULER_JOB_TITLE='Launch remote commands or executable files by SSH';export SCHEDULER_MASTER_SCHEDULER_DIRECTORY='/home/oracle/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444/';export SCHEDULER_MASTER_TT_HOME='/home/oracle/app/oracle/product/TimesTen/tt1121';export SCHEDULER_MASTER_LS_COLORS='';export SCHEDULER_MASTER_TNS_ADMIN='/home/oracle/app/oracle/product/11.2.0/dbhome_2/network/admin';export SCHEDULER_PARAM_EXIT_CODE='';export SCHEDULER_MASTER_LOGNAME='oracle';export SCHEDULER_MASTER_SCHEDULER_TCP_PORT='4444';export SCHEDULER_MASTER_SCHEDULER_TASK_ID='273';export SCHEDULER_MASTER_NLSPATH='/usr/dt/lib/nls/msg/%L/%N.cat';export SCHEDULER_MASTER__='/opt/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444/bin/scheduler';export SCHEDULER_MASTER_PATH='/home/oracle/app/oracle/product/TimesTen/tt1121/bin:/home/oracle/app/oracle/product/TimesTen/tt1121/quickstart/sample_code/oci:/home/oracle/app/oracle/product/TimesTen/tt1121/quickstart/sample_code/odbc:/home/oracle/app/oracle/product/TimesTen/tt1121/quickstart/sample_code/odbc/xla:/home/oracle/app/oracle/product/TimesTen/tt1121/quickstart/sample_code/jdbc:/home/oracle/app/oracle/product/TimesTen/tt1121/quickstart/sample_code/odbc_drivermgr:/home/oracle/app/oracle/product/TimesTen/tt1121/quickstart/sample_code/proc:/home/oracle/app/oracle/product/TimesTen/tt1121/quickstart/sample_code/ttclasses:/home/oracle/app/oracle/product/TimesTen/tt1121/quickstart/sample_code/ttclasses/xla:/home/oracle/app/oracle/product/TimesTen/tt1121/ttoracle_home/instantclient_11_1:/home/oracle/app/oracle/product/TimesTen/tt1121/ttoracle_home/instantclient_11_1/sdk:/home/oracle/app/oracle/product/TimesTen/tt1121/3rdparty/ant/bin:/usr/java/latest/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/oracle/app/oracle/product/11.2.0/dbhome_2/bin:/home/oracle/bin:/bishiphome/Middleware/Oracle_BI1/OPatch';export SCHEDULER_MASTER_HISTSIZE='1000';export SCHEDULER_MASTER_TT_SCRIPTS='/home/oracle/otndd_labs/imdb_cache';export SCHEDULER_MASTER_SSH_CLIENT='10.0.2.2 49857 22';export SCHEDULER_MASTER_CLASSPATH='/home/oracle/app/oracle/product/TimesTen/tt1121/lib/ttjdbc6.jar:/home/oracle/app/oracle/product/TimesTen/tt1121/lib/orai18n.jar:/home/oracle/app/oracle/product/TimesTen/tt1121/lib/timestenjmsxla.jar:/home/oracle/app/oracle/product/TimesTen/tt1121/3rdparty/jms1.1/lib/jms.jar:.:/home/oracle/app/oracle/product/11.2.0/dbhome_2/ucp/lib/ucp.jar:/home/oracle/app/oracle/product/11.2.0/dbhome_2/jdbc/lib/ojdbc6.jar';export SCHEDULER_MASTER_EDITOR='vi';export SCHEDULER_MASTER_SCHEDULER_UDP_PORT='4444';export SCHEDULER_MASTER_SCHEDULER_JOB_NAME='job_1';export SCHEDULER_MASTER_SCHEDULER_HOST='demo.us.oracle.com';export SCHEDULER_MASTER_TERM='xterm-256color';export SCHEDULER_MASTER_SCHEDULER_DATA='/home/oracle/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444';export SCHEDULER_MASTER_LANG='en_US.UTF-8';export SCHEDULER_MASTER_SCHEDULER_JOB_FOLDER='/quick';export SCHEDULER_MASTER___SCHEDULER_SOCKET='243';export SCHEDULER_MASTER_SOS_INI='/home/oracle/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444/config/sos.ini';export SCHEDULER_MASTER_INPUTRC='/etc/inputrc';export SCHEDULER_MASTER_ANT_HOME='/home/oracle/app/oracle/product/TimesTen/tt1121/3rdparty/ant';export SCHEDULER_MASTER_TT_RESET='/home/oracle/otndd_labs/imdb_cache/.reset';export SCHEDULER_MASTER_SCHEDULER_ID='demo.us.oracle.com_4444';export SCHEDULER_PARAM_HOST='192.168.99.100';echo $$;export SCHEDULER_RETURN_VALUES=sos-ssh-return-values-808f9ae0-5915-48ee-aa94-0979e9f87e89.txt;echo ADD='Hallo Welt' >> $SCHEDULER_RETURN_VALUES" (Exception raised: com.sos.JSHelper.Exceptions.JobSchedulerException: SOSVfs_E_164: SOS-SSH-E-150: remote command terminated with exit code: 2 (sh: export: line 1: Welt >> $SCHEDULER_RETURN_VALUES: bad variable name
+2016-12-16 04:02:28.845+0100 [ERROR]  ) (SOSVfs_E_164: SOS-SSH-E-150: remote command terminated with exit code: 2 (sh: export: line 1: Welt >> $SCHEDULER_RETURN_VALUES: bad variable name
+2016-12-16 04:02:28.845+0100 [ERROR]  )))
+2016-12-16 04:02:28.845+0100 [ERROR]  sos.net.ssh.SOSSSHJobJSch.execute(SOSSSHJobJSch.java:166)
+2016-12-16 04:02:28.845+0100 [ERROR]  sos.scheduler.job.SOSSSHJob2JSAdapter.doProcessing(SOSSSHJob2JSAdapter.java:108)
+2016-12-16 04:02:28.845+0100 [ERROR]  sos.scheduler.job.SOSSSHJob2JSAdapter.spooler_process(SOSSSHJob2JSAdapter.java:48)
+2016-12-16 04:02:28.845+0100 [ERROR]  
+2016-12-16 04:02:28.852+0100 [ERROR]  COM-80020009  DISP_E_EXCEPTION [step] [] [Z-JAVA-105  Java exception com.sos.JSHelper.Exceptions.JobSchedulerException: SOS-SSH-E-120: error occurred processing ssh command: "echo ADD='Hallo Welt' >> $SCHEDULER_RETURN_VALUES"
+2016-12-16 04:02:28.852+0100 [ERROR]  SOS-SSH-E-120: full command String: "export SCHEDULER_MASTER_JAVA_HOME='/home/oracle/jre1.8.0_112';export SCHEDULER_MASTER_HOSTNAME='demo.us.oracle.com';export SCHEDULER_MASTER_USER='oracle';export SCHEDULER_MASTER_LD_LIBRARY_PATH='/opt/sos-berlin.com/jobscheduler/demo.us.oracle.com_4444/lib:/usr/local/lib:/home/or...], method=call
+2016-12-16 04:02:28.862+0100 [info]   Job job_1 terminated.
+2016-12-16 04:02:28.975+0100 [WARN]   SCHEDULER-280  Process terminated with exit code 1 (0x1)
+2016-12-16 04:02:28.986+0100 [WARN]   SCHEDULER-320  Could not send mail
+
+
+
+
+
+poon@WMBP:/tmp$ docker pull crossbuilder/c7-gui-base
+Using default tag: latest
+latest: Pulling from crossbuilder/c7-gui-base
+08d48e6f1cff: Downloading 3.784 MB
+ddbe612ee2b0: Downloading 27.53 MB
+dae5b145a061: Downloading [==================>                                ] 18.15 MB/47.81 MB
+25290742279b: Waiting 
+4b6eb441fda9: Waiting 
+6bdaf1acd49b: Waiting 
+
+
+
+
+
+[poon@localhost bin]$ 
+[poon@localhost bin]$ ./jobeditor.sh 
+Exception in thread "main" java.lang.UnsatisfiedLinkError: Could not load SWT library. Reasons: 
+  no swt-pi-gtk-4332 in java.library.path
+  no swt-pi-gtk in java.library.path
+  /home/poon/.swt/lib/linux/x86_64/libswt-pi-gtk-4332.so: libXtst.so.6: cannot open shared object file: No such file or directory
+  /home/poon/.swt/lib/linux/x86_64/libswt-pi-gtk.so: libXtst.so.6: cannot open shared object file: No such file or directory
+
+  at org.eclipse.swt.internal.Library.loadLibrary(Unknown Source)
+  at org.eclipse.swt.internal.Library.loadLibrary(Unknown Source)
+  at org.eclipse.swt.internal.gtk.OS.<clinit>(Unknown Source)
+  at org.eclipse.swt.internal.Converter.wcsToMbcs(Unknown Source)
+  at org.eclipse.swt.internal.Converter.wcsToMbcs(Unknown Source)
+  at org.eclipse.swt.widgets.Display.<clinit>(Unknown Source)
+  at sos.scheduler.editor.app.Editor.main(Editor.java:31)
+[poon@localhost bin]$ 
+
+

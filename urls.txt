@@ -2,8 +2,8 @@
 /archives.html
 /tags.html
 /categories.html
-/big_data.html
 /oracle-biee-develop.html
+/big_data.html
 /banking-finance.html
 /bi_0105.html
 /01_0103.html

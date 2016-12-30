@@ -1118,3 +1118,14 @@ nocycle , 不递归，不循环。不loop。
 biee 提示设计：
 
 当两个日期提示分别携带两个变量时，提示所作用的列不能完全一样。否则放在仪表盘上的时候，会失效。
+
+# 2016-12-22 10:28
+
+https://www.rittmanmead.com/blog/2007/05/using-initialization-blocks-with-ldap-and-database-queries-to-control-authentication-and-authorization/
+
+
+Next we need to define the variable that will hold the results of the data source we just defined. This variable is called GROUP and is populated after the user logs in. The Presentation Service parses this variable and grants the user access to any group that is defined there and matches a semicolon delimited value in the variable. Any unmatched value is ignored. So if the table contains something like:
+
+
+
+
