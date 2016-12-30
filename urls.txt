@@ -3,6 +3,7 @@
 /tags.html
 /categories.html
 /oracle-biee-develop.html
+/01_0116.html
 /big_data.html
 /banking-finance.html
 /bi_0105.html
